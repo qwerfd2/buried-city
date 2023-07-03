@@ -137,7 +137,7 @@ var MenuLayer = cc.Layer.extend({
         btn7.setPosition(106, bg.height / 2 - 346);
         bg.addChild(btn7);
 
-        var btn8 = uiUtil.createSpriteBtn({normal: "icon_info.png"}, this, function () {
+        var btn8 = uiUtil.createSpriteBtn({normal: "btn_contact.png"}, this, function () {
             if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE) {
                 new DialogMoreGame("index_zh.html").show();      
             } else {
@@ -164,7 +164,7 @@ var SettingLayer = cc.Layer.extend({
         this.addChild(new cc.LayerColor(cc.color(0, 0, 0, 220)));
 
         this.label_music = new cc.LabelTTF(stringUtil.getString(1248), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        this.label_music.setPosition(cc.winSize.width / 2, 950);
+        this.label_music.setPosition(cc.winSize.width / 2, 1050);
         this.addChild(this.label_music);
 
         this.btn_music = new SettingButton("", true);
@@ -174,14 +174,14 @@ var SettingLayer = cc.Layer.extend({
         } else {
             this.btn_music.setTitle(stringUtil.getString(1250));
         }
-        this.btn_music.setPosition(cc.winSize.width / 2, 900);
+        this.btn_music.setPosition(cc.winSize.width / 2, 1000);
         this.addChild(this.btn_music);
         this.btn_music.setClickListener(this, function (sender) {
             self.openMusicSelector(sender.on);
         })
         
         this.label_sound = new cc.LabelTTF("SFX", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        this.label_sound.setPosition(cc.winSize.width / 2, 800);
+        this.label_sound.setPosition(cc.winSize.width / 2, 900);
         this.addChild(this.label_sound);
 
         this.btn_sound = new SettingButton("", true);
@@ -191,14 +191,14 @@ var SettingLayer = cc.Layer.extend({
         } else {
             this.btn_sound.setTitle(stringUtil.getString(1250));
         }
-        this.btn_sound.setPosition(cc.winSize.width / 2, 750);
+        this.btn_sound.setPosition(cc.winSize.width / 2, 850);
         this.addChild(this.btn_sound);
         this.btn_sound.setClickListener(this, function (sender) {
             self.openSoundSelector(sender.on);
         })
 
         this.label_lan = new cc.LabelTTF(stringUtil.getString(1251), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        this.label_lan.setPosition(cc.winSize.width / 2, 650);
+        this.label_lan.setPosition(cc.winSize.width / 2, 600);
         this.addChild(this.label_lan);
 
         this.btn_lan = new SettingButton("", true);
@@ -206,14 +206,14 @@ var SettingLayer = cc.Layer.extend({
         if (!this.lan)
             this.lan = cc.sys.language;
         this.btn_lan.setTitle(stringName[this.lan]);
-        this.btn_lan.setPosition(cc.winSize.width / 2, 600);
+        this.btn_lan.setPosition(cc.winSize.width / 2, 550);
         this.addChild(this.btn_lan);
         this.btn_lan.setClickListener(this, function (sender) {
             self.openLanguageSelector();
         })
         
         this.label_screenfix = new cc.LabelTTF(stringUtil.getString(9017), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        this.label_screenfix.setPosition(cc.winSize.width / 2, 500);
+        this.label_screenfix.setPosition(cc.winSize.width / 2, 750);
         this.addChild(this.label_screenfix);
 
         this.btn_screenfix = new SettingButton("", true);
@@ -223,7 +223,7 @@ var SettingLayer = cc.Layer.extend({
         } else {
             this.btn_screenfix.setTitle(stringUtil.getString(1250));
         }
-        this.btn_screenfix.setPosition(cc.winSize.width / 2, 450);
+        this.btn_screenfix.setPosition(cc.winSize.width / 2, 700);
         this.addChild(this.btn_screenfix);
         this.btn_screenfix.setClickListener(this, function (sender) {
             self.openScreenfixSelector(sender.on);
@@ -232,7 +232,7 @@ var SettingLayer = cc.Layer.extend({
         this.btn_back = uiUtil.createBigBtnWhite(stringUtil.getString(1030), this, function () {
             this.removeFromParent();
         });
-        this.btn_back.setPosition(cc.winSize.width / 2, 150);
+        this.btn_back.setPosition(cc.winSize.width / 2, 100);
         this.addChild(this.btn_back);
         cc.eventManager.addListener(cc.EventListener.create({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,

@@ -100,6 +100,7 @@ var audioManager = {
         if (!needMusic()) {
             return;
         }
+        this.playingMusic = "";
         cc.audioEngine.stopMusic(releaseData);
     },
     insertMusic: function (url) {

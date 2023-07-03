@@ -112,7 +112,7 @@ var Navigation = {
                     musicName = audioManager.music.HOME;
                     break;             
             }
-            if (musicName && musicName != this.currentMusic) {
+            if ((musicName && musicName != this.currentMusic) || !this.currentMusic) {
                 audioManager.stopMusic(this.currentMusic);
                 this.currentMusic = musicName;
                 audioManager.playMusic(this.currentMusic, true);
@@ -135,6 +135,7 @@ var Navigation = {
     stopMusic: function () {
         if (this.currentMusic) {
             audioManager.stopMusic(this.currentMusic);
+            this.currentMusic = null;
         }
     },
     root: function (nodeName, userData) {

@@ -101,8 +101,8 @@ var Medal = {
             var info = self._map[id];
             if (info.completed === 1 || Record.getMedalCheat()) {
                 cc.log('improveAttr: ' + id);
-                player.hp += memoryUtil.changeEncode(info.effect.attr.hp);
-                player.hpMaxOrigin += memoryUtil.changeEncode(info.effect.attr.hp);
+                player.hp += info.effect.attr.hp;
+                player.hpMaxOrigin += info.effect.attr.hp;
                 player.hpMax = player.hpMaxOrigin;
             }
         });

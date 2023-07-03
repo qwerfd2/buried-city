@@ -7,8 +7,8 @@ var IAPPackage = {
 
     init: function (player) {
         if (this.isIAPUnlocked(102) && this.getChosenTalentPurchaseId(102)){
-            player.hp += memoryUtil.changeEncode(60);
-            player.hpMaxOrigin += memoryUtil.changeEncode(60);
+            player.hp += 60;
+            player.hpMaxOrigin += 60;
             player.hpMax = player.hpMaxOrigin;
         }
     },

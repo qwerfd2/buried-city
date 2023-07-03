@@ -74,7 +74,7 @@ var TopFrameNode = cc.Node.extend({
 
         this.updateByTime();
 
-        var temperature = new StatusButton(btnSize, "#icon_temperature_0.png", memoryUtil.decode(player.temperature), {scale: 0.5});
+        var temperature = new StatusButton(btnSize, "#icon_temperature_0.png", player.temperature, {scale: 0.5});
         temperature.setClickListener(this, function (sender) {
             var label = sender.getChildByName("label");
             showStatusDialog(3, label.getString(), sender.spriteFrameName);
@@ -84,7 +84,7 @@ var TopFrameNode = cc.Node.extend({
         temperature.setName("temperature");
         this.firstLine.addChild(temperature);
         utils.emitter.on("temperature_change", function (value) {
-            temperature.updateView(null, memoryUtil.decode(player.temperature));
+            temperature.updateView(null, player.temperature);
         });
         var eActive = player.map.getSite(WORK_SITE).isActive;
         var sid = 0;
@@ -312,7 +312,7 @@ var showAttrStatusDialog = function (stringId, attr) {
     config.title.icon = "#icon_" + attr + "_0.png";
     config.title.title = strConfig.title;
     if (attr === 'hp') {
-        config.title.txt_1 = cc.formatStr(config.title.txt_1, memoryUtil.decode(player[attr]) + "/" + memoryUtil.decode(player[attr + "Max"]));
+        config.title.txt_1 = cc.formatStr(config.title.txt_1, player[attr] + "/" + player[attr + "Max"]);
     } else {
         config.title.txt_1 = player.getAttrStr(attr);
     }

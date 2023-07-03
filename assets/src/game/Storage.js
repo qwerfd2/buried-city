@@ -5,7 +5,7 @@
 var StorageCell = cc.Class.extend({
     ctor: function (item, num) {
         this.item = item;
-        this.num = memoryUtil.encode(num);
+        this.num = num;
     }
 });
 var Storage = cc.Class.extend({
@@ -16,7 +16,7 @@ var Storage = cc.Class.extend({
     save: function () {
         var saveObj = {};
         for (var itemId in this.map) {
-            saveObj[itemId] = memoryUtil.decode(this.map[itemId].num);
+            saveObj[itemId] = this.map[itemId].num;
         }
         return saveObj;
     },
@@ -33,7 +33,7 @@ var Storage = cc.Class.extend({
         }
         var cell = this.map[itemId];
         if (cell) {
-            cell.num += memoryUtil.changeEncode(num);
+            cell.num += num;
         } else {
             this.map[itemId] = new StorageCell(new Item(itemId), num);
         }
@@ -48,8 +48,8 @@ var Storage = cc.Class.extend({
         num = Number(num);
         cc.i("decreaseItem: " + itemId + " " + num)
         var cell = this.map[itemId];
-        cell.num -= memoryUtil.changeEncode(num);
-        if (memoryUtil.decode(cell.num) === 0) {
+        cell.num -= num;
+        if (cell.num === 0) {
             delete this.map[itemId];
         }
 
@@ -61,7 +61,7 @@ var Storage = cc.Class.extend({
         num = Number(num);
         var cell = this.map[itemId];
         if (cell) {
-            return cell.num >= memoryUtil.encode(num);
+            return cell.num >= num;
         } else {
             return false;
         }
@@ -132,12 +132,12 @@ var Storage = cc.Class.extend({
     forEach: function (func) {
         for (var itemId in this.map) {
             var cell = this.map[itemId];
-            func(cell.item, memoryUtil.decode(cell.num));
+            func(cell.item, cell.num);
         }
     },
     getNumByItemId: function (itemId) {
         if (this.map[itemId]) {
-            return memoryUtil.decode(this.map[itemId].num);
+            return this.map[itemId].num;
         } else {
             return 0;
         }
@@ -163,7 +163,7 @@ var Storage = cc.Class.extend({
         } else {
             var cell = this.map[itemId];
             if (cell) {
-                cell.num = memoryUtil.encode(num);
+                cell.num = num;
             } else {
                 this.map[itemId] = new StorageCell(new Item(itemId), num);
             }

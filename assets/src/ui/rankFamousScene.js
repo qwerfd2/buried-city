@@ -16,7 +16,9 @@ var RankFamousLayer = cc.Layer.extend({
 
     onEnter: function () {
         this._super();
-
+        if (Record.getScreenFix()) {
+            this.setScale(0.9);
+        }
         this.bg = autoSpriteFrameController.getSpriteFromSpriteName("#rank_famous_bg.png");
         this.bg.x = cc.winSize.width / 2;
         this.bg.y = cc.winSize.height / 2;
@@ -163,6 +165,7 @@ var RankFamousLayer = cc.Layer.extend({
 var RankFamousScene = BaseScene.extend({
     ctor: function () {
         this._super(APP_NAVIGATION.MENU_THIRD);
+        autoSpriteFrameController.addSpriteFrames("res/rank.plist");
     },
     onEnter: function () {
         this._super();

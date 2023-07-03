@@ -63,8 +63,8 @@ var Battle = cc.Class.extend({
             playerObj = {
                 bulletNum: player.bag.getNumByItemId(BattleConfig.BULLET_ID),
                 toolNum: player.bag.getNumByItemId(player.equip.getEquip(EquipmentPos.TOOL)),
-                hp: memoryUtil.decode(player.hp),
-                injury: memoryUtil.decode(player.injury),
+                hp: player.hp,
+                injury: player.injury,
                 weapon1: player.equip.getEquip(EquipmentPos.GUN),
                 weapon2: player.equip.getEquip(EquipmentPos.WEAPON),
                 equip: player.equip.getEquip(EquipmentPos.TOOL)
@@ -655,8 +655,8 @@ var Gun = Weapon.extend({
         precise = IAPPackage.getPreciseEffect(precise);
         precise += player.weather.getValue("gun_precise");
         //若是老罗,则需要被心情影响
-        cc.log('spirit ' + memoryUtil.decode(player.spirit));
-        var decPrecise = (100 - memoryUtil.decode(player.spirit)) * 0.0025;
+        cc.log('spirit ' + player.spirit);
+        var decPrecise = (100 - player.spirit) * 0.0025;
         cc.log('decPrecise ' + decPrecise);
         precise -= decPrecise;
 

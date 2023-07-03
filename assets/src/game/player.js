@@ -3,40 +3,40 @@ var Player = cc.Class.extend({
         this.config = utils.clone(playerConfig);
 
         this.hp = 240;
-        this.hp = memoryUtil.encode(this.hp);
+        this.hp = this.hp;
         this.hpMaxOrigin = 240;
-        this.hpMaxOrigin = memoryUtil.encode(this.hpMaxOrigin);
+        this.hpMaxOrigin = this.hpMaxOrigin;
         this.hpMax = this.hpMaxOrigin;
         //心情
         this.spirit = 100;
-        this.spirit = memoryUtil.encode(this.spirit);
+        this.spirit = this.spirit;
         this.spiritMax = 100;
-        this.spiritMax = memoryUtil.encode(this.spiritMax);
+        this.spiritMax = this.spiritMax;
         //饥饿
         this.starve = 50;
-        this.starve = memoryUtil.encode(this.starve);
+        this.starve = this.starve;
         this.starveMax = 100;
-        this.starveMax = memoryUtil.encode(this.starveMax);
+        this.starveMax = this.starveMax;
         //精力
         this.vigour = 100;
-        this.vigour = memoryUtil.encode(this.vigour);
+        this.vigour = this.vigour;
         this.vigourMax = 100;
-        this.vigourMax = memoryUtil.encode(this.vigourMax);
+        this.vigourMax = this.vigourMax;
         //外伤
         this.injury = 0;
-        this.injury = memoryUtil.encode(this.injury);
+        this.injury = this.injury;
         this.injuryMax = 100;
-        this.injuryMax = memoryUtil.encode(this.injuryMax);
+        this.injuryMax = this.injuryMax;
         //感染
         this.infect = 0;
-        this.infect = memoryUtil.encode(this.infect);
+        this.infect = this.infect;
         this.infectMax = 100;
-        this.infectMax = memoryUtil.encode(this.infectMax);
+        this.infectMax = this.infectMax;
         //温度
         this.temperature = this.initTemperature();
-        this.temperature = memoryUtil.encode(this.temperature);
+        this.temperature = this.temperature;
         this.temperatureMax = 100;
-        this.temperatureMax = memoryUtil.encode(this.temperatureMax);
+        this.temperatureMax = this.temperatureMax;
         //睡眠状态
         this.isInSleep = false;
         //服药状态
@@ -73,17 +73,15 @@ var Player = cc.Class.extend({
 
     save: function () {
         var opt = {
-            hp: memoryUtil.decode(this.hp),
-            hpMaxOrigin: memoryUtil.decode(this.hpMaxOrigin),
-            hpMax: memoryUtil.decode(this.hpMax),
-            spirit: memoryUtil.decode(this.spirit),
-            starve: memoryUtil.decode(this.starve),
-            vigour: memoryUtil.decode(this.vigour),
-            injury: memoryUtil.decode(this.injury),
-            infect: memoryUtil.decode(this.infect),
-            temperature: memoryUtil.decode(this.temperature),
-            //fix bug: 睡觉中强退后一直处于睡眠状态
-            //isInSleep: this.isInSleep,
+            hp: this.hp,
+            hpMaxOrigin: this.hpMaxOrigin,
+            hpMax: this.hpMax,
+            spirit: this.spirit,
+            starve: this.starve,
+            vigour: this.vigour,
+            injury: this.injury,
+            infect: this.infect,
+            temperature: this.temperature,
             cured: this.cured,
             cureTime: this.cureTime,
             binded: this.binded,
@@ -114,17 +112,15 @@ var Player = cc.Class.extend({
     restore: function () {
         var opt = Record.restore("player");
         if (opt) {
-            this.hp = memoryUtil.encode(opt.hp);
-            this.hpMaxOrigin = memoryUtil.encode(opt.hpMaxOrigin);
-            this.hpMax = memoryUtil.encode(opt.hpMax);
-            this.spirit = memoryUtil.encode(opt.spirit);
-            this.starve = memoryUtil.encode(opt.starve);
-            this.vigour = memoryUtil.encode(opt.vigour);
-            this.injury = memoryUtil.encode(opt.injury);
-            this.infect = memoryUtil.encode(opt.infect);
-            this.temperature = memoryUtil.encode(opt.temperature);
-            //fix bug: 睡觉中强退后一直处于睡眠状态
-            //this.isInSleep = opt.isInSleep;
+            this.hp = opt.hp;
+            this.hpMaxOrigin = opt.hpMaxOrigin;
+            this.hpMax = opt.hpMax;
+            this.spirit = opt.spirit;
+            this.starve = opt.starve;
+            this.vigour = opt.vigour;
+            this.injury = opt.injury;
+            this.infect = opt.infect;
+            this.temperature = opt.temperature;
             this.cured = opt.cured;
             this.cureTime = opt.cureTime;
             this.binded = opt.binded;
@@ -231,11 +227,11 @@ var Player = cc.Class.extend({
     },
 
     isAttrMax: function (key) {
-        return memoryUtil.decode(this[key]) == memoryUtil.decode(this[key + "Max"]);
+        return this[key] == this[key + "Max"];
     },
 
     getAttrPercentage: function (key) {
-        return memoryUtil.decode(this[key]) / memoryUtil.decode(this[key + "Max"]);
+        return this[key] / this[key + "Max"];
     },
 
     changeAttr: function (key, value) {
@@ -254,11 +250,11 @@ var Player = cc.Class.extend({
             }
         }
         var beforeRangeInfo = this.getAttrRangeInfo(key, this[key]);
-        this[key] += memoryUtil.changeEncode(value);
-        this[key] = memoryUtil.encode(cc.clampf(memoryUtil.decode(this[key]), 0, memoryUtil.decode(this[key + "Max"])));
+        this[key] += value;
+        this[key] = cc.clampf(this[key], 0, this[key + "Max"]);
         var afterRangeInfo = this.getAttrRangeInfo(key, this[key]);
 
-        cc.i("changeAttr " + key + " value:" + value + " after:" + memoryUtil.decode(this[key]));
+        cc.i("changeAttr " + key + " value:" + value + " after:" + this[key]);
         if (this === player) {
             utils.emitter.emit(key + "_change", value);
         }
@@ -292,7 +288,7 @@ var Player = cc.Class.extend({
         }
 
         if (key === "hp") {
-            if (memoryUtil.decode(this.hp) == 0 && this === player) {
+            if (this.hp == 0 && this === player) {
                 //die
                 this.die();
             }
@@ -331,8 +327,8 @@ var Player = cc.Class.extend({
         if (this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107012)) {
             hpBuffEffect = this.buffManager.getBuffValue();
         }
-        this.hpMax = memoryUtil.encode(memoryUtil.decode(this.hpMaxOrigin) + hpBuffEffect - memoryUtil.decode(this.injury));
-        this.hp = memoryUtil.encode(Math.min(memoryUtil.decode(this.hp), memoryUtil.decode(this.hpMax)));
+        this.hpMax = this.hpMaxOrigin + hpBuffEffect - this.injury;
+        this.hp = Math.min(this.hp, this.hpMax);
     },
 
     updateByTime: function () {
@@ -373,7 +369,7 @@ var Player = cc.Class.extend({
             var bedLevel = player.room.getBuildLevel(9);
             var bedRate = buildActionConfig[9][bedLevel].rate;
             //睡眠等级=床等级值*0.5+饱食度/100*0.2+心情值/100*0.3
-            bedRate = bedRate * 0.5 + memoryUtil.decode(this.starve) / memoryUtil.decode(this.starveMax) * 0.2 + memoryUtil.decode(this.spirit) / memoryUtil.decode(this.spiritMax) * 0.3;
+            bedRate = bedRate * 0.5 + this.starve / this.starveMax * 0.2 + this.spirit / this.spiritMax * 0.3;
             //精力值
             //每小时回复精力值=睡眠等级*10
             var vigour = bedRate * 15;
@@ -423,7 +419,7 @@ var Player = cc.Class.extend({
                     //感染属性影响中有公式
                     //对血的影响为公式
                     if (attr === 'hp') {
-                        value *= memoryUtil.decode(this.infect) / 100;
+                        value *= this.infect / 100;
                         value = Math.ceil(value);
                         this.deathCausedInfect = true;
                     }
@@ -439,7 +435,7 @@ var Player = cc.Class.extend({
             }
         }
 
-        if (memoryUtil.decode(this.hp) === 0) {
+        if (this.hp === 0) {
             this.log.addMsg(1108);
         } else {
             this.deathCausedInfect = false;
@@ -497,7 +493,7 @@ var Player = cc.Class.extend({
         }
         //天气
         temperature += this.weather.getValue("temperature");
-        this.changeTemperature(temperature - memoryUtil.decode(this.temperature));
+        this.changeTemperature(temperature - this.temperature);
     },
 
     updateTemperatureEffect: function () {
@@ -537,7 +533,7 @@ var Player = cc.Class.extend({
         var res;
         var config = playerAttrEffect[attr];
         if (config) {
-            value = memoryUtil.decode(value);
+            value = value;
             for (var rangeId in config) {
                 var range = new Range(config[rangeId].range);
                 if (range.isInRange(value)) {
@@ -942,7 +938,6 @@ var Player = cc.Class.extend({
             self.underAttackInNight();
             self.room.getBuild(9).sleeped = false;
             cc.timer.checkSeason();
-            cc.sys.localStorage.setItem("ad", "0");
             var rand = Math.random();
             if (rand < 0.5) {
                 cc.sys.localStorage.setItem("ad", "1");
@@ -994,12 +989,12 @@ var Player = cc.Class.extend({
     },
     //重生
     relive: function () {
-        this.changeSpirit(memoryUtil.decode(this.spiritMax) - memoryUtil.decode(this.spirit));
-        this.changeStarve(memoryUtil.decode(this.starveMax) - memoryUtil.decode(this.starve));
-        this.changeVigour(memoryUtil.decode(this.vigourMax) - memoryUtil.decode(this.vigour));
-        this.changeInjury(0 - memoryUtil.decode(this.injury));
-        this.changeInfect(0 - memoryUtil.decode(this.infect));
-        this.changeAttr("hp", memoryUtil.decode(this.hpMax));
+        this.changeSpirit(this.spiritMax - this.spirit);
+        this.changeStarve(this.starveMax - this.starve);
+        this.changeVigour(this.vigourMax - this.vigour);
+        this.changeInjury(0 - this.injury);
+        this.changeInfect(0 - this.infect);
+        this.changeAttr("hp", this.hpMax);
         this.isInSleep = false;
         this.cured = false;
         this.binded = false;

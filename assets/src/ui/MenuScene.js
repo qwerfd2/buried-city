@@ -3,15 +3,12 @@
  * Date: 15/1/5
  * Time: 下午4:07
  */
-//下载服务器地址
-var updatePackageUrl = "http://berrytown.update.locojoy.com/";
 //缓存新版本文件信息
 var tempVersionConfig;
 var MenuLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
 
-        ClientData.CHANNEL = "" + CommonUtil.getMetaDataInt("channelId");
         ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
         ClientData.MOD_VERSION = 4;
         ClientData.MOD_VARIANT = 1;
@@ -27,7 +24,9 @@ var MenuLayer = cc.Layer.extend({
 
     onEnter: function () {
         this._super();
-
+        if (Record.getScreenFix()) {
+            this.setScale(0.9);
+        }
         var bgName = "#menu_bg.png";
         var bg = autoSpriteFrameController.getSpriteFromSpriteName(bgName);
         bg.x = cc.winSize.width / 2;
@@ -75,16 +74,14 @@ var MenuLayer = cc.Layer.extend({
         btn2.setEnabled(!Record.isFirstTime());
 
         var btn3 = uiUtil.createBigBtnWhite(stringUtil.getString(1235), this, function () {
-            cc.director.runScene(new RankScene());
-            cc.director.pushScene(new RankFamousScene());
+            cc.director.runScene(new RankFamousScene());
         });
         btn3.setPosition(bg.width / 2, bg.height / 2 - 346);
         bg.addChild(btn3);
         btn3.setName("btn_3");
         
         var btn4 = uiUtil.createBigBtnWhite(stringUtil.getString(1260), this, function () {
-            cc.director.runScene(new RankScene());
-            cc.director.pushScene(new achievementScene());
+            cc.director.runScene(new achievementScene());
         });
         btn4.setPosition(bg.width / 2, bg.height / 2 - 456);
         bg.addChild(btn4);
@@ -342,6 +339,7 @@ var SettingLayer = cc.Layer.extend({
         this.btn_screenfix_selector.setClickListener(this, function (sender) {
             Record.setScreenFix(sender.on);
             self.refreshThisLayer();
+            cc.director.runScene(new MenuScene());
         });
         this.btn_screenfix_selector.setPosition(this.btn_screenfix.x, this.btn_screenfix.y - this.btn_screenfix.height);
         this.addChild(this.btn_screenfix_selector);

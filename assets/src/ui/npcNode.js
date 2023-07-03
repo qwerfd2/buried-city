@@ -26,7 +26,7 @@ var NpcNode = BottomFrameNode.extend({
         this.heartNode.y = this.actionBarBaseHeight;
         this.heartNode.setName("heart");
         this.bg.addChild(this.heartNode);
-        this.heartNode.updateView(memoryUtil.decode(this.npc.reputation));
+        this.heartNode.updateView(this.npc.reputation);
 
         var digDes = autoSpriteFrameController.getSpriteFromSpriteName("#npc_dig_bg.png");
         digDes.setAnchorPoint(0.5, 1)
@@ -207,7 +207,7 @@ var NpcNode = BottomFrameNode.extend({
         this.npc.takeNeedItem();
         this.updateViewAfterNpcNeed();
         this.bg.getChildByName("trade").updateView();
-        this.bg.getChildByName("heart").updateView(memoryUtil.decode(this.npc.reputation));
+        this.bg.getChildByName("heart").updateView(this.npc.reputation);
     },
     onClickBtn2: function () {
         this.forward(Navigation.nodeName.NPC_STORAGE_NODE, this.userData);

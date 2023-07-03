@@ -125,7 +125,7 @@ var MaxHpBuff = Buff.extend({
     },
     onStart: function () {
         cc.log("MaxHpBuff onStart " + this.value);
-        cc.log(memoryUtil.decode(player.hpMaxOrigin));
+        cc.log(player.hpMaxOrigin);
         player.updateHpMax();
     },
     onEnd: function () {

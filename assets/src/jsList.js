@@ -5,7 +5,6 @@ var jsList = [
     "src/util/stringUtil.js",
     "src/util/range.js",
     "src/util/audioManager.js",
-    "src/util/memoryUtil.js",
 
     "src/data/string/string.js",
     "src/data/blackList.js",
@@ -84,7 +83,6 @@ var jsList = [
     "src/ui/StoryScene.js",
     "src/ui/radioNode.js",
     "src/ui/endScene.js",
-    "src/ui/rankScene.js",
     "src/ui/gateOutNode.js",
     "src/ui/ChooseScene.js",
     "src/ui/shopNode.js",

@@ -29,7 +29,7 @@ uiUtil.Steal = function(arr, bo, npcName) {
     var dialog = new DialogTiny(config);
     var co = dialog.contentNode;
 
-    dialog.titleNode.getChildByName('title').setPosition(co.width / 4, co.height - 55);
+    dialog.titleNode.getChildByName('title').setPosition(co.width / 15, co.height - 55);
     richText = new ItemRichText(arr, arr.length * 86, arr.length, 0.5, cc.color(0, 0, 222, 222), 22);
     richText.setVisible(bo)
     co.addChild(richText);
@@ -39,7 +39,7 @@ uiUtil.Steal = function(arr, bo, npcName) {
     }
     var close = new cc.LabelTTF(npcName + stringUtil.getString(9014) + res, "", 25);
     close.setAnchorPoint(0, 1);
-    close.setPosition(co.width / 3, co.height / 3)
+    close.setPosition(co.width / 12, co.height / 3)
     close.setColor(cc.color(255, 0, 0, 255));
     close.setVisible(!bo)
     co.addChild(close);
@@ -573,7 +573,7 @@ uiUtil.showNpcNeedHelpDialog = function (npc, noCb, yesCb, needRestore) {
     config.title.title = npc.getName();
     config.title.txt = cc.timer.getTimeDayStr() + " " + cc.timer.getTimeHourStr();
     config.title.icon = "#icon_npc.png";
-    config.title.heart = memoryUtil.decode(npc.reputation);
+    config.title.heart = npc.reputation;
     if (needRestore) {
         config.title.heart++;
     }
@@ -641,7 +641,7 @@ uiUtil.showNpcSendGiftDialog = function (npc) {
     config.title.title = npc.getName();
     config.title.txt = cc.timer.getTimeDayStr() + " " + cc.timer.getTimeHourStr();
     config.title.icon = "#icon_npc.png";
-    config.title.heart = memoryUtil.decode(npc.reputation);
+    config.title.heart = npc.reputation;
 
     config.content.dig_des = "#npc_dig_" + npc.id + ".png";
 
@@ -728,7 +728,7 @@ uiUtil.showNpcInMapDialog = function (entity, time, okCb, cancelCb) {
     };
     config.title.title = npc.getName();
     config.title.icon = "#icon_npc.png";
-    config.title.heart = memoryUtil.decode(npc.reputation);
+    config.title.heart = npc.reputation;
     config.content.dig_des = "#npc_dig_" + npc.id + ".png";
     config.content.des = npc.getDes();
     config.action.btn_1.txt = stringUtil.getString(1031);
@@ -1412,7 +1412,7 @@ uiUtil.createItemListSliders = function (itemList) {
         data = itemList.map(function (storageCell) {
             return {
                 itemId: storageCell.item.id,
-                num: memoryUtil.decode(storageCell.num)
+                num: storageCell.num
             };
         });
         console.log('data: ' + JSON.stringify(data));

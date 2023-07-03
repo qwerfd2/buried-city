@@ -100,17 +100,14 @@ var audioManager = {
         if (!needMusic()) {
             return;
         }
+        this.lastMusic = this.playingMusic;
         this.playingMusic = "";
         cc.audioEngine.stopMusic(releaseData);
     },
     insertMusic: function (url) {
-        if (this.playingMusic) {
-            this.stopMusic(this.playingMusic);
-        }
         this.playMusic(url, true);
     },
     resumeMusic: function () {
-        this.stopMusic(this.playingMusic);
         this.playMusic(this.lastMusic, true);
     },
     getPlayingMusic: function () {

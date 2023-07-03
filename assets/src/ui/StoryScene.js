@@ -15,7 +15,9 @@ var StoryLayer = cc.Layer.extend({
 
     onEnter: function () {
         this._super();
-
+        if (Record.getScreenFix()) {
+            this.setScale(0.9);
+        }
         var bg = new Button(cc.winSize);
         bg.x = cc.winSize.width / 2;
         bg.y = cc.winSize.height / 2;

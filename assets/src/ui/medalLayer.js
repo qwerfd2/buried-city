@@ -92,7 +92,9 @@ var medalNode = cc.Node.extend({
 var medalLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
-
+        if (Record.getScreenFix()) {
+            this.setScale(0.9);
+        }
         var bg = autoSpriteFrameController.getSpriteFromSpriteName("#medalBg.png");
         bg.setAnchorPoint(0, 0);
         this.addChild(bg);

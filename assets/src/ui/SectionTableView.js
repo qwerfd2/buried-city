@@ -102,7 +102,7 @@ var ItemCell = cc.Node.extend({
         icon.setPosition(this.btn.getContentSize().width / 2, this.btn.getContentSize().height / 2);
         this.btn.addChild(icon);
 
-        var numLabel = new cc.LabelTTF("" + memoryUtil.decode(storageCell.num), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
+        var numLabel = new cc.LabelTTF("" + storageCell.num, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
         numLabel.setPosition(this.btn.getContentSize().width - 4, 4);
         numLabel.setAnchorPoint(1, 0);
         this.btn.addChild(numLabel);

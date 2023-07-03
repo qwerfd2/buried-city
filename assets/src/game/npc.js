@@ -9,9 +9,9 @@ var NPC = BaseSite.extend({
         this.pos = this.config.coordinate;
 
         this.reputation = 0;
-        this.reputation = memoryUtil.encode(this.reputation);
+        this.reputation = this.reputation;
         this.reputationMax = 10;
-        this.reputationMax = memoryUtil.encode(this.reputationMax);
+        this.reputationMax = this.reputationMax;
         //交易次数
         this.tradingCount = 0;
 
@@ -36,8 +36,8 @@ var NPC = BaseSite.extend({
     save: function () {
         return {
             pos: this.pos,
-            reputation: memoryUtil.decode(this.reputation),
-            maxRep: memoryUtil.decode(this.maxRep),
+            reputation: this.reputation,
+            maxRep: this.maxRep,
             storage: this.storage.save(),
             needSendGiftList: this.needSendGiftList,
             isUnlocked: this.isUnlocked,
@@ -50,8 +50,8 @@ var NPC = BaseSite.extend({
     restore: function (saveObj) {
         if (saveObj) {
             this.pos = saveObj.pos;
-            this.reputation = memoryUtil.encode(saveObj.reputation);
-            this.maxRep = memoryUtil.encode(saveObj.maxRep);
+            this.reputation = saveObj.reputation;
+            this.maxRep = saveObj.maxRep;
             this.storage.restore(saveObj.storage);
             this.needSendGiftList = saveObj.needSendGiftList;
             this.isUnlocked = saveObj.isUnlocked;
@@ -80,7 +80,7 @@ var NPC = BaseSite.extend({
     
         if (this.reputation == this.reputationMax && value > 0) {
             return false;
-        } else if (memoryUtil.decode(this.reputation) == 0 && value < 0) {
+        } else if (this.reputation == 0 && value < 0) {
             return false;
         }
 
@@ -92,8 +92,8 @@ var NPC = BaseSite.extend({
             audioManager.playEffect(audioManager.sound.BAD_EFFECT);
         }
 
-        this.reputation += memoryUtil.changeEncode(value);
-        this.reputation = memoryUtil.encode(cc.clampf(memoryUtil.decode(this.reputation), 0, memoryUtil.decode(this.reputationMax)));
+        this.reputation += value;
+        this.reputation = cc.clampf(this.reputation, 0, this.reputationMax);
         cc.i("reputation " + this.reputation);
         if (this.isReputationMax()) {
             Achievement.checkNpcReputation(this.id);
@@ -103,7 +103,7 @@ var NPC = BaseSite.extend({
     },
     unlockByReputation: function () {
         if (this.reputation > this.maxRep) {
-            for (var start = memoryUtil.decode(this.maxRep) + 1, end = memoryUtil.decode(this.reputation); start <= end; start++) {
+            for (var start = this.maxRep + 1, end = this.reputation; start <= end; start++) {
                 this.unlockTrading(start, true);
                 this.unlockGift(start);
             }
@@ -154,13 +154,13 @@ var NPC = BaseSite.extend({
     },
     updateTradingItem: function () {
         this.storage = new Storage();
-        for (var start = 0, end = memoryUtil.decode(this.reputation); start <= end; start++) {
+        for (var start = 0, end = this.reputation; start <= end; start++) {
             this.unlockTrading(start);
         }
     },
     getNeedItem: function () {
         var itemInfo;
-        for (var i = memoryUtil.decode(this.reputation); i >= 0; i--) {
+        for (var i = this.reputation; i >= 0; i--) {
             itemInfo = this.needItemInfo[i];
             if (itemInfo != null) {
                 break;
@@ -181,7 +181,7 @@ var NPC = BaseSite.extend({
     },
     //获得交易比例
     getTradeRate: function (storage) {
-        var favorite = this.favoriteList[memoryUtil.decode(this.reputation)];
+        var favorite = this.favoriteList[this.reputation];
         var npcOriginTotalPrice = 0;
         this.storage.forEach(function (item, num) {
             var deltaPrice = 1;

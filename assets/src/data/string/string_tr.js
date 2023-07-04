@@ -7,6 +7,7 @@ var string = {
         "title": "Elektrikli çit",
         "des": "Yetersiz voltaj nedeniyle, kendi kendine yapılan elektrikli Çit yaklaşan zombileri hemen ortadan kaldıramaz, ancak onlara uzak durmalarını 'önerebilir'."
     },
+    "1169": "ses efekti",
     "1321": "Masako",
     "1322": "Elektrik mühendisi",
     "1323": "Tamirat (%s dk)",

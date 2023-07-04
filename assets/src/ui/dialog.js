@@ -542,6 +542,11 @@ var RandomBattleDialog = DialogBig.extend({
         this.log.height = this.log.height + 70;
         this.createBattleBeginView();
         this.getChildByName("bgColor").height = 1003;
+        if (Record.getScreenFix()) {
+            this.getChildByName("bgColor").height = 941;
+        } else {
+            this.getChildByName("bgColor").height = 1003;
+        }
     },
     show: function () {
         this._super();

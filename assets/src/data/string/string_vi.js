@@ -7,6 +7,7 @@ var string = {
         "title": "Hàng rào điện",
         "des": "Do không đủ điện áp nên Hàng rào điện tự dựng không thể loại bỏ ngay lũ zombie đang tiến đến, nhưng nó có thể 'gợi ý' chúng tránh xa."
     },
+    "1169": "hiệu ứng âm thanh",
     "1321": "Masako",
     "1322": "Kĩ sư điện",
     "1323": "Sửa (%s điểm)",

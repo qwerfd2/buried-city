@@ -11,7 +11,7 @@ var achievementLayer = cc.Layer.extend({
     onEnter: function () {
         this._super();
         if (Record.getScreenFix()) {
-            this.setScale(0.9);
+            this.setScale(0.84);
         }
         this.bg = autoSpriteFrameController.getSpriteFromSpriteName("#rank_bg.png");
         this.bg.x = cc.winSize.width / 2;
@@ -194,7 +194,7 @@ var achievementLayer = cc.Layer.extend({
 
 var achievementScene = BaseScene.extend({
     ctor: function () {
-        this._super(APP_NAVIGATION.MENU_THIRD);
+        this._super(APP_NAVIGATION.MENU_SUB);
         autoSpriteFrameController.addSpriteFrames("res/rank.plist");
     },
     onEnter: function () {

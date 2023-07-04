@@ -25,7 +25,7 @@ var MenuLayer = cc.Layer.extend({
     onEnter: function () {
         this._super();
         if (Record.getScreenFix()) {
-            this.setScale(0.9);
+            this.setScale(0.84);
         }
         var bgName = "#menu_bg.png";
         var bg = autoSpriteFrameController.getSpriteFromSpriteName(bgName);
@@ -135,7 +135,7 @@ var MenuLayer = cc.Layer.extend({
         bg.addChild(btn7);
 
         var btn8 = uiUtil.createSpriteBtn({normal: "btn_contact.png"}, this, function () {
-            if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE) {
+            if (cc.sys.localStorage.getItem("language") == 'zh' || cc.sys.localStorage.getItem("language") == 'zh-Hant') {
                 new DialogMoreGame("index_zh.html").show();      
             } else {
                 new DialogMoreGame("index_en.html").show();
@@ -158,7 +158,10 @@ var SettingLayer = cc.Layer.extend({
         this._super();
 
         var self = this;
-        this.addChild(new cc.LayerColor(cc.color(0, 0, 0, 220)));
+        var layer = new cc.LayerColor(cc.color(0, 0, 0, 220));
+        layer.changeWidth(1000);
+        layer.x -= 300;
+        this.addChild(layer);
 
         this.label_music = new cc.LabelTTF(stringUtil.getString(1248), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
         this.label_music.setPosition(cc.winSize.width / 2, 1050);
@@ -177,7 +180,7 @@ var SettingLayer = cc.Layer.extend({
             self.openMusicSelector(sender.on);
         })
         
-        this.label_sound = new cc.LabelTTF("SFX", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
+        this.label_sound = new cc.LabelTTF(stringUtil.getString(1169), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
         this.label_sound.setPosition(cc.winSize.width / 2, 900);
         this.addChild(this.label_sound);
 
@@ -229,7 +232,7 @@ var SettingLayer = cc.Layer.extend({
         this.btn_back = uiUtil.createBigBtnWhite(stringUtil.getString(1030), this, function () {
             this.removeFromParent();
         });
-        this.btn_back.setPosition(cc.winSize.width / 2, 100);
+        this.btn_back.setPosition(cc.winSize.width / 2, this.height / 2 - 456);
         this.addChild(this.btn_back);
         cc.eventManager.addListener(cc.EventListener.create({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
@@ -453,6 +456,9 @@ var MenuScene = BaseScene.extend({
 
         if (this.openSetting) {
             var settingLayer = new SettingLayer();
+            if (Record.getScreenFix()) {
+                settingLayer.setScale(0.84);
+            }
             this.addChild(settingLayer);
         }
     },

@@ -767,7 +767,7 @@ uiUtil.showNpcInMapDialog = function (entity, time, okCb, cancelCb) {
         });
     });
     var showItemBtn = new ImageButton("res/tradelist.png");
-    showItemBtn.setPosition(540, 250);
+    showItemBtn.setPosition(cc.winSize.width / 2 + 200, label1.y + 180);
     dialog.addChild(showItemBtn, 1);
     showItemBtn.setClickListener(this, function(a) {
         var d = new NpcTradeItemDialog(needItems);

@@ -276,9 +276,9 @@ var Monster = cc.Class.extend({
         }
     },
     atk: function () {
-        if (this.battle.isBattleEnd)
+        if (this.battle.isBattleEnd || this.dead){
             return;
-
+        }
         this.playEffect(audioManager.sound.MONSTER_ATTACK);
         var player = this.battle.player;
         player.underAtk(this);
@@ -383,8 +383,11 @@ var BattlePlayer = cc.Class.extend({
         if (this.hp == 0) {
             this.die();
         }
-        player.changeAttr("hp", -harm);
         //每次收到攻击,外伤等级+1
+        if (harm > 0) {
+            player.changeAttr("hp", -harm);
+            player.changeAttr("injury", 1);
+        }
         player.changeAttr("injury", 1);
     },
     die: function () {

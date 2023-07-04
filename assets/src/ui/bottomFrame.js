@@ -202,10 +202,13 @@ var BottomFrameNode = cc.Node.extend({
         this.initRes();
         this.bg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_bg_bottom.png");
         if (Record.getScreenFix()) {
-            this.bg.setScale(0.9);
+            this.bg.setScale(0.85);
+            this.bg.setPosition(cc.winSize.width / 2, 98);
+        } else {
+            this.bg.setPosition(cc.winSize.width / 2, 18);
         }
         this.bg.setAnchorPoint(0.5, 0);
-        this.bg.setPosition(cc.winSize.width / 2, 18);
+        
         this.addChild(this.bg);
         this.bgRect = cc.rect(0, 0, this.bg.width, this.bg.height);
         this.contentTopLineHeight = 770;

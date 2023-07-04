@@ -9,12 +9,15 @@ var TopFrameNode = cc.Node.extend({
 
         var bg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_bg_top.png")
         bg.setAnchorPoint(0.5, 1);
-        bg.setPosition(cc.winSize.width / 2, cc.winSize.height - 18);
         if (Record.getScreenFix()) {
-            bg.setScale(0.9);
-        } 
+            bg.setScale(0.85);
+            bg.setPosition(cc.winSize.width / 2, cc.winSize.height - 98);
+        } else {
+            bg.setPosition(cc.winSize.width / 2, cc.winSize.height - 18);
+        }
+        
         this.addChild(bg, 6, 1);
-
+        this.bbgg = bg;
         this.firstLine = new cc.Node();
         this.firstLine.setAnchorPoint(0, 0);
         this.firstLine.setPosition(6, 190);
@@ -260,18 +263,27 @@ var TopFrameNode = cc.Node.extend({
 
     createLogTableView: function () {
         this.bgNode = new cc.Node();
-        this.addChild(this.bgNode, 5);
-
-        var bgColor = new cc.LayerColor();
-        bgColor.setColor(cc.color(0, 0, 0, 155));
-        bgColor.setOpacity(200);
-        this.bgNode.addChild(bgColor, 0);
-
-        this.logTablebg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_bg_bottom.png");
-        this.logTablebg.setAnchorPoint(0.5, 0);
-        this.logTablebg.setPosition(cc.winSize.width / 2, 18);
-        this.bgNode.addChild(this.logTablebg, 10);
-
+        if (Record.getScreenFix()) {
+            this.bbgg.addChild(this.bgNode, 5);
+            this.bgNode.setAnchorPoint(0, 0);
+            this.bgNode.setPosition(0, -cc.winSize.height / 1.32);
+            var drawNode = new cc.DrawNode();
+            this.logTablebg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_bg_bottom.png");
+            this.logTablebg.setAnchorPoint(0, 0);
+            this.bgNode.addChild(drawNode, 9);
+            this.bgNode.addChild(this.logTablebg, 10);
+            drawNode.drawRect(cc.p(0, 0), cc.p(this.logTablebg.width, this.logTablebg.height), cc.color(0, 0, 0, 220), 0, cc.color(0, 0, 0, 0));
+        } else {
+            this.addChild(this.bgNode, 5);
+            var bgColor = new cc.LayerColor();
+            bgColor.setColor(cc.color(0, 0, 0, 155));
+            bgColor.setOpacity(200);    
+            this.bgNode.addChild(bgColor, 0);
+            this.logTablebg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_bg_bottom.png");
+            this.logTablebg.setAnchorPoint(0.5, 0);
+            this.logTablebg.setPosition(cc.winSize.width / 2, 18);
+            this.bgNode.addChild(this.logTablebg, 10);
+        }
         var self = this;
         var btn = new ButtonInScrollView(this.logTablebg.getContentSize());
         btn.setAnchorPoint(0, 0);

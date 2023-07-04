@@ -7,6 +7,7 @@ var string = {
         "title": "Cerca elétrica",
         "des": "Devido à voltagem insuficiente, a cerca de energia autoconstruída não pode eliminar imediatamente os zumbis que se aproximam, mas pode 'sugerir' que eles fiquem longe."
     },
+    "1169": "efeito sonoro",
     "1321": "Masako",
     "1322": "Engenheiro elétrico",
     "1323": "Repair (%s m)",

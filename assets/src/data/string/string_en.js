@@ -10,6 +10,7 @@ var string = {
     "1321": "Masako",
     "1322": "Electrical Engineer",
     "1323": "Repair (%s m)",
+    "1169": "sound effect",
     "1": {
         "title": "Date",
         "des": "Number of days you've survived. The more days you stay alive, the more bragging rights you have when you eventually turn into a zombie."

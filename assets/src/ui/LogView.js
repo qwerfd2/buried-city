@@ -5,7 +5,6 @@ var LogView = cc.ScrollView.extend({
     ctor: function (size) {
         this.mycontainer = new cc.Layer();
         this._super(size, this.mycontainer);
-
         this.setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL);
         this.setBounceable(false);
         this.setClippingToBounds(true);

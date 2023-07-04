@@ -7,7 +7,7 @@ var ChooseLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         if (Record.getScreenFix()) {
-            this.setScale(0.9);
+            this.setScale(0.84);
         }
         var title = new cc.LabelTTF(stringUtil.getString(1217), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_1);
         title.x = cc.winSize.width / 2;

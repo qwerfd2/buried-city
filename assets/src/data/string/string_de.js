@@ -7,6 +7,7 @@ var string = {
         "title": "Elektrozaun",
         "des": "Aufgrund unzureichender Spannung kann der selbstgebaute Stromzaun die herannahenden Zombies zwar nicht sofort vernichten, aber er kann sie „auffordern“, sich fernzuhalten."
     },
+    "1169": "Soundeffekt",
     "1321": "Masako",
     "1322": "Elektroingenieur",
     "1323": "Reparatur (%s m)",

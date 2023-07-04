@@ -7,6 +7,7 @@ var string = {
         "title": "Cerca eléctrica",
         "des": "Debido a un voltaje insuficiente, la valla de energía autoconstruida no puede eliminar inmediatamente a los zombis que se acercan, pero puede 'sugerirles' que se mantengan alejados."
     },
+    "1169": "efecto de sonido",
     "1321": "Masako",
     "1322": "Ingeniero eléctrico",
     "1323": "Reparar (%s m)",

@@ -7,9 +7,6 @@ var DayLayer = cc.Layer.extend({
     ctor: function (res) {
         this._super();
         this.res = res;
-        if (Record.getScreenFix()) {
-            this.setScale(0.9);
-        }
         var self = this;
         cc.eventManager.addListener(cc.EventListener.create({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,

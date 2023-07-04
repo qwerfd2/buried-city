@@ -17,7 +17,7 @@ var EndLayer = cc.Layer.extend({
     onEnter: function () {
         this._super();
         if (Record.getScreenFix()) {
-            this.setScale(0.9);
+            this.setScale(0.84);
         }
         var bg = autoSpriteFrameController.getSpriteFromSpriteName("#end_bg.png");
         bg.x = cc.winSize.width / 2;

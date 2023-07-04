@@ -7,6 +7,7 @@ var string = {
         "title": "Clôture électrique",
         "des": "En raison d'une tension insuffisante, la clôture électrique auto-construite ne peut pas éliminer immédiatement les zombies qui approchent, mais elle peut leur 'suggérer' de rester à l'écart."
     },
+    "1169": "effet sonore",
     "1321": "Masako",
     "1322": "Ingénieur éléctricien",
     "1323": "Réparation(%s m)",

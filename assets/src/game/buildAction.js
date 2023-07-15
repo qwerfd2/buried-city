@@ -820,7 +820,6 @@ var BedBuildAction = BuildAction.extend({
             action1Disabled: action1Disabled,
             percentage: 0
         };
-        cc.e(JSON.stringify(res));
         return res;
     }
 });

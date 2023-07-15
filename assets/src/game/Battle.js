@@ -18,7 +18,6 @@ var BattleConfig = {
 
 var Battle = cc.Class.extend({
     ctor: function (battleInfo, isDodge) {
-        cc.log(JSON.stringify(battleInfo));
         this.battleInfo = battleInfo;
         this.isDodge = isDodge;
         var monsterList = this.battleInfo.monsterList;
@@ -103,13 +102,11 @@ var Battle = cc.Class.extend({
         }
     },
     updatePlayer: function (dt) {
-        //cc.log("updatePlayer");
         if (!this.isDodge) {
             this.player.action();
         }
     },
     updateMonster: function (dt) {
-        //cc.log("updateMonster");
         if (!this.isMonsterStop) {
             this.monsters.forEach(function (mon) {
                 mon.move();
@@ -144,9 +141,7 @@ var Battle = cc.Class.extend({
     gameEnd: function (isWin) {
         this.isBattleEnd = true;
 
-        cc.e(this.battleInfo.id + " gameEnd " + isWin);
         this.sumRes.win = isWin;
-        cc.e(JSON.stringify(this.sumRes));
         this.isMonsterStop = true;
         cc.director.getScheduler().unscheduleCallbackForTarget(this, this.updateMonster);
         cc.director.getScheduler().unscheduleCallbackForTarget(this, this.updatePlayer);
@@ -270,7 +265,6 @@ var Monster = cc.Class.extend({
         }
         l.monster = this;
         this.line = l;
-        cc.log("monster " + this.id + " move to " + l.index);
         if (this.id == this.battle.targetMon.id) {
             this.battle.processLog(stringUtil.getString(1046, stringUtil.getString("monsterType_" + this.attr.prefixType), l.index));
         }
@@ -312,7 +306,6 @@ var Monster = cc.Class.extend({
         } else if (obj instanceof Bomb) {
             harm = obj.attr.atk;
         }
-        cc.d("monster " + this.id + " underAtk harm=" + harm);
 
         this.attr.hp -= harm;
         this.attr.hp = Math.max(0, this.attr.hp);
@@ -323,7 +316,6 @@ var Monster = cc.Class.extend({
     },
     die: function (obj) {
         this.battle.sumRes.monsterKilledNum++;
-        cc.e("monster " + this.id + " die");
         this.dead = true;
         this.battle.removeMonster(this);
         if (obj instanceof Bomb) {
@@ -375,7 +367,6 @@ var BattlePlayer = cc.Class.extend({
         harm = Math.max(1, harm);
         this.hp -= harm;
 
-        cc.e("player underAtk hp=" + this.hp + " by monster " + monster.id);
         this.battle.processLog(stringUtil.getString(1047, stringUtil.getString("monsterType_" + monster.attr.prefixType), "-" + harm), cc.color.RED);
         this.battle.sumRes.totalHarm += harm;
         this.battle.sumRes.underAtk++;
@@ -391,7 +382,6 @@ var BattlePlayer = cc.Class.extend({
         player.changeAttr("injury", 1);
     },
     die: function () {
-        cc.e("player die");
         player.log.addMsg(1109);
         this.battle.processLog(stringUtil.getString(1057));
         this.battle.gameEnd(false);
@@ -432,7 +422,6 @@ var BattlePlayer = cc.Class.extend({
 });
 
 var createEquipment = function (id, bPlayer) {
-    cc.log("weapon id=" + id);
     if (!id)
         return null;
     switch (Number(id)) {
@@ -476,7 +465,6 @@ var BattleEquipment = cc.Class.extend({
     action: function () {
         if (this.isInAtkCD)
             return;
-        cc.d(this.itemConfig.name + " action");
         this.beforeCd();
         this.isInAtkCD = true;
         var func = function () {
@@ -657,10 +645,8 @@ var Gun = Weapon.extend({
         deathHit = scale * deathHit;
         precise = IAPPackage.getPreciseEffect(precise);
         precise += player.weather.getValue("gun_precise");
-        //若是老罗,则需要被心情影响
-        cc.log('spirit ' + player.spirit);
+
         var decPrecise = (100 - player.spirit) * 0.0025;
-        cc.log('decPrecise ' + decPrecise);
         precise -= decPrecise;
 
         var rand = Math.random();
@@ -669,7 +655,6 @@ var Gun = Weapon.extend({
         }
 
         rand = Math.random();
-        cc.e("precise: " + precise);
         if (rand <= precise) {
             return this.getBulletHarm();
         }

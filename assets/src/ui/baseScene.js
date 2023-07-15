@@ -14,7 +14,6 @@ var BaseLayer = cc.Layer.extend({
         var keyboardListener = cc.EventListener.create({
             event: cc.EventListener.KEYBOARD,
             onKeyReleased: function (keyCode, event) {
-                cc.log("pressed Keycode = " + keyCode);
                 if (keyCode == cc.KEY.back) {
                     switch (self.navigationType) {
                         case APP_NAVIGATION.MENU:

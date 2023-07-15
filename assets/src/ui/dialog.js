@@ -94,7 +94,6 @@ var Dialog = cc.Layer.extend({
         var keyboardListener = cc.EventListener.create({
             event: cc.EventListener.KEYBOARD,
             onKeyReleased: function (keyCode, event) {
-                cc.log("pressed Keycode = " + keyCode);
                 if (keyCode == cc.KEY.back) {
                     if (self.autoDismiss) {
                         self.scheduleOnce(function () {
@@ -128,7 +127,6 @@ var Dialog = cc.Layer.extend({
         audioManager.playEffect(audioManager.sound.POPUP);
         var keyEventLayer = cc.director.getRunningScene().getChildByName("keyEventLayer");
         if (keyEventLayer) {
-            cc.v("pause eventManager")
             cc.eventManager.pauseTarget(keyEventLayer);
         }
         dialogManager.showDialog(this);
@@ -138,7 +136,6 @@ var Dialog = cc.Layer.extend({
         this.removeFromParent();
         var keyEventLayer = cc.director.getRunningScene().getChildByName("keyEventLayer");
         if (keyEventLayer) {
-            cc.v("resume eventManger")
             cc.eventManager.resumeTarget(keyEventLayer);
         }
 

@@ -222,7 +222,6 @@ var BuildNode = BottomFrameNode.extend({
         this.tableView.reloadData();
     },
     tableCellTouched: function (table, cell) {
-        cc.log("cell touched at index: " + cell.getIdx());
     },
 
     tableCellSizeForIndex: function (table, idx) {

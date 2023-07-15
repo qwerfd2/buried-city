@@ -73,8 +73,6 @@ var StorageNode = BottomFrameNode.extend({
             var res = player.useItem(player.storage, itemId);
             if (res.result) {
                 self.updateView();
-            } else {
-                cc.e("useItem fail " + res.msg);
             }
         }
     },

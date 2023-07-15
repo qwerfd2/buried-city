@@ -92,7 +92,6 @@ var ItemCell = cc.Node.extend({
 
         var iconFame = autoSpriteFrameController.getSpriteFrameFromSpriteName(iconName);
         if (!iconFame) {
-            cc.e("don't have " + iconName);
             iconFame = autoSpriteFrameController.getSpriteFrameFromSpriteName("icon_item_1101051.png");
         }
         var icon = autoSpriteFrameController.getSpriteFromSpriteName(iconFame);

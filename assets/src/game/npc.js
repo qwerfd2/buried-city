@@ -91,7 +91,6 @@ var NPC = BaseSite.extend({
 
         this.reputation += value;
         this.reputation = cc.clampf(this.reputation, 0, this.reputationMax);
-        cc.i("reputation " + this.reputation);
         if (this.isReputationMax()) {
             Achievement.checkNpcReputation(this.id);
         }
@@ -184,7 +183,6 @@ var NPC = BaseSite.extend({
             var deltaPrice = 1;
             favorite.forEach(function (itemInfo) {
                 if (itemInfo.itemId == item.id) {
-                    cc.i("high price itemId=" + itemInfo.itemId)
                     deltaPrice = itemInfo.price;
                 }
             });
@@ -196,7 +194,6 @@ var NPC = BaseSite.extend({
             var deltaPrice = 1;
             favorite.forEach(function (itemInfo) {
                 if (itemInfo.itemId == item.id) {
-                    cc.i("high price itemId=" + itemInfo.itemId)
                     deltaPrice = itemInfo.price;
                 }
             });
@@ -209,11 +206,9 @@ var NPC = BaseSite.extend({
         return Object.keys(this.needSendGiftList).length > 0;
     },
     sendGift: function () {
-        cc.i("sendGift");
         uiUtil.showNpcSendGiftDialog(this);
     },
     needHelp: function () {
-        cc.i("needHelp");
         var self = this;
         cc.timer.pause();
         var needRestore = false;
@@ -295,10 +290,8 @@ var NPCManager = cc.Class.extend({
         }
         if (cc.timer.formatTime().d < 2) {
             return;
-        }
-       
+        }      
         var rand = utils.getRandomInt(0, 100);
-        cc.i("visitPlayer " + rand);
         var criteria = 15;
         var chatlog = JSON.parse(cc.sys.localStorage.getItem("radio") || "[]");
         if (chatlog.length > 0) {

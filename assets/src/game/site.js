@@ -241,7 +241,6 @@ var Site = BaseSite.extend({
                 player.log.addMsg(1117, stringUtil.getString(3007)[doneRoom.workType]);
             }
             this.step++;
-            cc.i("roomEnd " + isWin + " " + this.step + "/" + this.rooms.length);
             if (this.step >= this.rooms.length) {
                 this.siteEnd();
             }
@@ -295,7 +294,6 @@ var Site = BaseSite.extend({
 var AdSite = Site.extend({
     ctor: function (siteId) {
         this.id = siteId;
-        cc.log(this.id);
         this.config = utils.clone(siteConfig[this.id]);
         this.pos = this.config.coordinate;
         this.storage = new Storage();
@@ -339,7 +337,6 @@ var AdSite = Site.extend({
 var BazaarSite = Site.extend({
     ctor: function (siteId) {
         this.id = siteId;
-        cc.log(this.id);
         this.config = utils.clone(siteConfig[this.id]);
         this.pos = this.config.coordinate;
         this.storage = new Storage();
@@ -383,7 +380,6 @@ var BazaarSite = Site.extend({
 var WorkSite = Site.extend({
     ctor: function (siteId) {
         this.id = siteId;
-        cc.log(this.id);
         this.config = utils.clone(siteConfig[this.id]);
         this.pos = this.config.coordinate;
         this.storage = new Storage();
@@ -429,14 +425,11 @@ var WorkSite = Site.extend({
         utils.emitter.emit('onWorkSiteChange', this.isActive);
     },
     checkActive: function () {
-        cc.log('checkActive ' + this.isActive);
         if (this.isActive) {
             var intervalTime = cc.timer.time - this.fixedTime;
-            cc.log('intervalTime ' + intervalTime);
             if (intervalTime > workSiteConfig.lastTime * 60) {
                 var rand = Math.random();
                 if (rand < workSiteConfig.brokenProbability) {
-                    cc.log('workSite broken');
                     this.isActive = false;
                     utils.emitter.emit('onWorkSiteChange', this.isActive);
                 }
@@ -448,7 +441,6 @@ var WorkSite = Site.extend({
 var BossSite = Site.extend({
     ctor: function (siteId) {
         this.id = siteId;
-        cc.log(this.id);
         this.config = utils.clone(siteConfig[this.id]);
         this.pos = this.config.coordinate;
         this.storage = new Storage();

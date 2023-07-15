@@ -70,7 +70,6 @@ var Medal = {
                 medalInfo.effect = MedalConfig[medalId].effect;
             }
         }
-        cc.log(JSON.stringify(this._map));
     },
     save: function () {
         cc.sys.localStorage.setItem("medal", JSON.stringify(this._map));
@@ -96,7 +95,6 @@ var Medal = {
         ids.forEach(function (id) {
             var info = self._map[id];
             if (info.completed === 1 || Record.getMedalCheat()) {
-                cc.log('improveAttr: ' + id);
                 player.hp += info.effect.attr.hp;
                 player.hpMaxOrigin += info.effect.attr.hp;
                 player.hpMax = player.hpMaxOrigin;
@@ -132,7 +130,6 @@ var Medal = {
         ids.forEach(function (id) {
             var info = self._map[id];
             if (info.completed === 1 || Record.getMedalCheat()) {
-                cc.log('improveItems: ' + id);
                 info.effect.items.forEach(function (item) {
                     player.storage.increaseItem(item.itemId, item.num);
                 });

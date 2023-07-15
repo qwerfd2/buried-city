@@ -60,11 +60,9 @@ var Button = cc.Node.extend({
         }
     },
     onPressed: function () {
-        cc.e("btn pressed")
         audioManager.playEffect(audioManager.sound.CLICK);
     },
     onRelease: function (isInBound) {
-        cc.e("btn release " + isInBound)
         if (isInBound) {
             this.onClick();
         }

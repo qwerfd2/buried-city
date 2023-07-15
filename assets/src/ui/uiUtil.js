@@ -1177,7 +1177,6 @@ uiUtil.createEquipedItemIconList = function (dark) {
         if (!itemInfo)
             return;
         var itemId = itemInfo.itemId;
-        cc.log(itemId)
         var name;
         if (itemId === Equipment.HAND) {
             name = "#icon_tab_hand.png";
@@ -1585,14 +1584,12 @@ uiUtil.createItemListSliders = function (itemList) {
             return cell;
         },
         numberOfCellsInTableView: function (table) {
-            cc.log('size ' + data.length)
             return data.length;
         }
     };
 
     var delegate = {
         tableCellTouched: function (table, cell) {
-            cc.log("tableCellTouched");
             uiUtil.showItemDialog(cell.data.itemId, false, 'top');
         },
         tableCellHighlight: function (table, cell) {

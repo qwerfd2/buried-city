@@ -128,7 +128,6 @@ var ItemChangeNode = cc.Node.extend({
                 toData.increaseItem(itemId, num);
                 return true;
             } else {
-                cc.e("not enough weight");
                 uiUtil.showTinyInfoDialog(1131);
                 return false;
             }

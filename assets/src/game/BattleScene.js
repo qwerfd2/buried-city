@@ -131,7 +131,6 @@ var BattleNode = cc.Node.extend({
 
         if (targetIndex != -1) {
             this.monsters.splice(targetIndex, 1);
-            cc.e("remove mon");
         }
 
         this.updateAimMonster();
@@ -162,7 +161,6 @@ var BattleNode = cc.Node.extend({
     },
 
     gameEnd: function (isWin) {
-        cc.e("gameEnd " + isWin);
         this.isMonsterStop = true;
     }
 });
@@ -314,7 +312,6 @@ var Monster = cc.Node.extend({
         } else {
             harm = obj;
         }
-        cc.d("harm:" + harm)
 
         var emitter = new cc.ParticleSystem("res/blood.plist");
         emitter.setPosition(this.getContentSize().width / 2, this.getContentSize().height / 2);
@@ -333,7 +330,6 @@ var Monster = cc.Node.extend({
         }
     },
     die: function () {
-        cc.e("die");
         this.battleNode.removeMonster(this);
         this.line.monster = null;
         this.removeFromParent();
@@ -364,14 +360,12 @@ var Player = cc.Class.extend({
     },
     underAtk: function (monster) {
         this.hp -= monster.attr.attack;
-        cc.e("player underAtk hp=" + this.hp);
         this.hp = Math.max(0, this.hp);
         if (this.hp == 0) {
             this.die();
         }
     },
     die: function () {
-        cc.e("player die");
         this.battleNode.gameEnd(false);
     },
     isDie: function () {
@@ -425,7 +419,6 @@ var Equipment = cc.Class.extend({
         this.isInAtkCD = false;
     },
     action: function () {
-        cc.d("action : " + this.isInAtkCD);
         if (this.isInAtkCD)
             return;
         this.isInAtkCD = true;
@@ -521,7 +514,6 @@ var Weapon = cc.Class.extend({
     },
 
     atk: function (monster) {
-        cc.d("atk");
         if (this.isInAtkCD)
             return;
         monster.underAtk(this);
@@ -550,15 +542,12 @@ var Gun = Weapon.extend({
         var dtLineIndex = BattleConfig.LINE_LENGTH - 1 - monster.line.index;
         var precise = this.attr.precise + this.attr.dtPrecise * dtLineIndex;
         var deathHit = this.attr.deathHit + this.attr.dtDeathHit * dtLineIndex;
-        cc.e("dtLineIndex: " + dtLineIndex);
-        cc.e("dtDeathHit: " + this.attr.dtDeathHit);
+   
         //根据准星校准精准度
         var scale = this.aimCircle.getScale();
         precise = utils.map(scale, 0.5, 1, precise * 0.5, precise);
 
         var rand = Math.random();
-        cc.e("rand:" + rand);
-        cc.e("deathHit: " + deathHit);
         if (rand <= deathHit) {
             return Number.MAX_VALUE;
         }
@@ -596,7 +585,6 @@ var AimCircle = cc.Node.extend({
         this.setupDebug();
     },
     attack: function () {
-        cc.d("aimcircle attack")
         this.setScale(1);
         this.runAction(cc.sequence(cc.scaleTo(this.restoreTime, 0.5)));
     },

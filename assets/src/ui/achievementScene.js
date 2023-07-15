@@ -118,7 +118,6 @@ var achievementLayer = cc.Layer.extend({
         this.tbSliderBar.onScroll(1);
     },
     tableCellTouched: function (table, cell) {
-        cc.log("cell touched at index: " + cell.getIdx());
     },
 
     tableCellSizeForIndex: function (table, idx) {

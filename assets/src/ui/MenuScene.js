@@ -293,7 +293,6 @@ var SettingLayer = cc.Layer.extend({
         var keyboardListener = cc.EventListener.create({
             event: cc.EventListener.KEYBOARD,
             onKeyReleased: function (keyCode, event) {
-                cc.log("pressed Keycode = " + keyCode);
                 if (keyCode == cc.KEY.back) {
                     self.removeFromParent();
                 }
@@ -305,7 +304,6 @@ var SettingLayer = cc.Layer.extend({
         this._super();
         var keyEventLayer = cc.director.getRunningScene().getChildByName("keyEventLayer");
         if (keyEventLayer) {
-            cc.v("pause eventManager");
             cc.eventManager.pauseTarget(keyEventLayer);
         }
     },
@@ -314,7 +312,6 @@ var SettingLayer = cc.Layer.extend({
         var keyEventLayer = cc.director.getRunningScene().getChildByName("keyEventLayer");
         if (keyEventLayer) {
             keyEventLayer.scheduleOnce(function () {
-                cc.v("resume eventManger");
                 cc.eventManager.resumeTarget(keyEventLayer);
             }, 0.1)
         }

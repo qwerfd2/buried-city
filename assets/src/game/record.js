@@ -8,7 +8,6 @@ var Record = {
     saveAll: function () {
         this.save("player", player.save());
         this.save("time", cc.timer.save());
-        cc.e("save all ");
     },
     save: function (key, obj) {
         this.recordObj[key] = obj;
@@ -35,7 +34,6 @@ var Record = {
                 this.uuid += utils.getRandomInt(0, 9);
             }
             cc.sys.localStorage.setItem("uuid", this.uuid);
-            cc.log("getUUID: " + this.uuid);
         }
         return this.uuid;
     },

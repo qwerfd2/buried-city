@@ -66,7 +66,6 @@ var WeatherSystem = cc.Class.extend({
         this.weatherConfig = weatherConfig[this.weatherId];
         this.lastDays = 0;
         this.Notice();
-        cc.d("change weather " + this.weatherId);
         utils.emitter.emit("weather_change", weatherId);
 
         if (sendLog) {

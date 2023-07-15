@@ -3,18 +3,12 @@ utils = utils || {};
 
 utils.emitter = new Emitter();
 
-/**
- * Check and invoke callback function
- */
 utils.invokeCallback = function (cb) {
     if (!!cb && typeof cb === 'function') {
         cb.apply(null, Array.prototype.slice.call(arguments, 1));
     }
 };
 
-/**
- * clone an object
- */
 utils.clone = function (origin) {
     if (!origin || typeof origin !== 'object') {
         cc.e("utils clone wrong args");
@@ -101,11 +95,6 @@ utils.isArrayRepeat = function (array) {
     return false;
 }
 
-/**
- * 调试用
- * @param o
- * @returns {*}
- */
 utils.string = function (o) {
     try {
         return JSON.stringify(o);
@@ -118,9 +107,7 @@ utils.string = function (o) {
 
 utils.itemsToStr = function (items) {
     var str = ""
-    cc.log(JSON.stringify(items));
     items.forEach(function (item) {
-        cc.log(JSON.stringify(item));
         var itemD = itemData[item.itemId];
         str += itemD.name + " x" + item.num + " ";
     });
@@ -318,13 +305,7 @@ utils.getTimeShareRetainStr = function (time) {
     return timeStr;
 }
 
-/**
- * 时间对象的格式化;
- */
 Date.prototype.format = function (format) {
-    /*
-     * eg:format="YYYY-MM-dd hh:mm:ss";
-     */
     var o = {
         "M+": this.getMonth() + 1, // month
         "d+": this.getDate(), // day
@@ -332,8 +313,7 @@ Date.prototype.format = function (format) {
         "m+": this.getMinutes(), // minute
         "s+": this.getSeconds(), // second
         "q+": Math.floor((this.getMonth() + 3) / 3), // quarter
-        "S": this.getMilliseconds()
-        // millisecond
+        "S": this.getMilliseconds() // millisecond
     };
 
     if (/(Y+)/.test(format)) {
@@ -350,7 +330,6 @@ Date.prototype.format = function (format) {
     return format;
 };
 
-//TODO MrC 自定义Bridge接口
 utils.doBridgeCall = function (jsonObj) {
     var result = "";
     if (jsonObj && typeof jsonObj === 'object') {
@@ -359,7 +338,6 @@ utils.doBridgeCall = function (jsonObj) {
     return result;
 };
 
-//TODO MrC 自定义BridgeReceive接口
 utils.doBridgeReceive = function (jsonObj) {
     var count = parseInt(jsonObj);
     var effect = PurchaseList[201].effect;
@@ -389,10 +367,6 @@ utils.pay = function (purchaseId, target, cb) {
     purchaseTask.pay();
 };
 
-/**
- * 将PurchaseList转化为ProductId映射表
- * @returns {{}}
- */
 utils.getProductIdMap = function () {
     var productIdMap = {};
     var purchaseIdList = Object.keys(PurchaseList);
@@ -430,10 +404,8 @@ utils.getFlagName = function (countryCode) {
 
 utils.splitLog = function (log, zhLen, enLen) {
     if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE) {
-        //var len = 85;
         var len = zhLen;
     } else {
-        //var len = 62;
         var len = enLen;
     }
     var logs = [];

@@ -11,7 +11,6 @@ var Equipment = cc.Class.extend({
         this.equip(EquipmentPos.WEAPON, Equipment.HAND);
     },
     equip: function (pos, itemId) {
-        cc.i(pos + " equip " + itemId);
         if (itemId !== Equipment.HAND) {
             if (!player.bag.validateItem(itemId, 1)) {
                 return false;
@@ -45,9 +44,6 @@ var Equipment = cc.Class.extend({
                 break;
             }
         }
-        if (res) {
-            cc.e("equiped")
-        }
         return res;
     },
     save: function () {
@@ -68,7 +64,6 @@ var Equipment = cc.Class.extend({
                 itemList.push(itemId);
             }
         }
-        cc.e(JSON.stringify(itemList))
         if (itemList.length > 1) {
             var index = itemList.indexOf(Equipment.HAND);
             if (index !== -1) {

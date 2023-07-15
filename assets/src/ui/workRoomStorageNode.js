@@ -48,7 +48,6 @@ var WorkRoomStorageNode = BottomFrameNode.extend({
         utils.emitter.off("guideNextRoom");
     },
     flushItems: function () {
-        cc.i("last items in room move to site storage")
         var self = this;
         this.storage.forEach(function (item, num) {
             self.site.increaseItem(item.id, num);

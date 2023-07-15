@@ -556,7 +556,6 @@ var BattleAndWorkNode = BottomFrameNode.extend({
                 self.site.secretRoomsEnd();
                 self.back();
 
-                cc.log("playing " + audioManager.getPlayingMusic());
                 if (audioManager.getPlayingMusic() === audioManager.music.SITE_SECRET) {
                     audioManager.stopMusic(audioManager.getPlayingMusic());
                     audioManager.playMusic(Navigation.getSiteMusic(), true);

@@ -14,7 +14,6 @@ var BuffManager = cc.Class.extend({
         }
     },
     createBuff: function (itemId, lastTime) {
-        cc.log("buffManager createBuff itemId=" + itemId + " lastTime=" + lastTime);
         if (itemId == BuffItemEffectType.ITEM_1107012) {
             return new MaxHpBuff(itemId, lastTime);
         } else {
@@ -22,19 +21,16 @@ var BuffManager = cc.Class.extend({
         }
     },
     applyBuff: function (itemId) {
-        cc.log("buffManager applyBuff " + itemId);
         this.abortBuff();
         this.buff = this.createBuff(itemId);
         this.startBuff();
     },
     startBuff: function () {
-        cc.log("buffManager startBuff");
         if (this.buff) {
             this.buff.onStart();
         }
     },
     abortBuff: function () {
-        cc.log("buffManager abortBuff");
         if (this.buff) {
             var oldBuff = this.buff;
             this.buff = null;
@@ -91,16 +87,13 @@ var BuffItemEffectType = {
 
 var Buff = cc.Class.extend({
     ctor: function (itemId, lastTime) {
-        cc.log("buff " + itemId + " lastTime " + lastTime);
         this.itemId = itemId;
         this.buffConfig = utils.clone(itemConfig[itemId]["effect_buff"]);
         this.lastTime = lastTime || this.buffConfig.lastTime * 60 * 60;
     },
     onStart: function () {
-        cc.log("buff onStart");
     },
     onEnd: function () {
-        cc.log("buff onEnd");
     },
     process: function (dt) {
         this.lastTime -= dt;
@@ -120,12 +113,9 @@ var MaxHpBuff = Buff.extend({
         this.value = this.buffConfig.value;
     },
     onStart: function () {
-        cc.log("MaxHpBuff onStart " + this.value);
-        cc.log(player.hpMaxOrigin);
         player.updateHpMax();
     },
     onEnd: function () {
-        cc.log("MaxHpBuff onEnd");
         player.updateHpMax();
     }
 });

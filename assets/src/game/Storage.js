@@ -23,7 +23,6 @@ var Storage = cc.Class.extend({
     },
     increaseItem: function (itemId, num) {
         num = Number(num);
-        cc.i("increaseItem: " + itemId + " " + num)
         if (num === 0) {
             return;
         }
@@ -42,7 +41,6 @@ var Storage = cc.Class.extend({
     },
     decreaseItem: function (itemId, num) {
         num = Number(num);
-        cc.i("decreaseItem: " + itemId + " " + num)
         var cell = this.map[itemId];
         cell.num -= num;
         if (cell.num === 0) {
@@ -247,12 +245,10 @@ var Bag = Storage.extend({
                 weaponBrokenProbability -= weaponBrokenProbability * 0.25;
             }
             var rand = Math.random();
-            cc.log("testWeaponBroken " + itemId + " " + weaponBrokenProbability + ":" + rand);
             var isBroken = (rand <= weaponBrokenProbability);
             if (isBroken) {
                 player.equip.unequipByItemId(itemId);
                 this.decreaseItem(itemId, 1);
-                cc.log("itemId=" + itemId + " is broken");
                 player.log.addMsg(1205, stringUtil.getString(itemId).title);
 
                 Record.saveAll();
@@ -272,12 +268,10 @@ var Bag = Storage.extend({
                 armBrokenProbability -= armBrokenProbability * 0.25;
             }
             var rand = Math.random();
-            cc.log("testArmBroken " + itemId + " " + armBrokenProbability + ":" + rand);
             var isBroken = (rand <= armBrokenProbability);
             if (isBroken) {
                 player.equip.unequipByItemId(itemId);
                 this.decreaseItem(itemId, 1);
-                cc.log("itemId=" + itemId + " is broken");
                 player.log.addMsg(1205, stringUtil.getString(itemId).title);
 
                 Record.saveAll();

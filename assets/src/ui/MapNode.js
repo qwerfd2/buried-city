@@ -58,7 +58,6 @@ var MapView = cc.ScrollView.extend({
         this.func = this.createFuncOnWeatherChange();
         utils.emitter.on("weather_change", this.func);
 
-        adHelper.updateAd();
         adHelper.addAdListener(this, function (adStatus) {
             self.entityList.forEach(function (e) {
                 e.updateStatus();
@@ -78,7 +77,6 @@ var MapView = cc.ScrollView.extend({
         utils.emitter.off("onWorkSiteChange", this.funcOnWorkSiteChange);
     },
     _updateAllStatus: function () {
-        cc.log('onWorkSiteChange');
         this.entityList.forEach(function (e) {
             e.updateStatus();
         });

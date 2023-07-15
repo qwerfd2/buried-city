@@ -320,15 +320,12 @@ var Player = cc.Class.extend({
     changeAttr: function (key, value) {
         if (!this.isAttrChangeGood(key, value)) {
             if (key === 'infect' && this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107022)) {
-                cc.d('ITEM_1107022 effect infect');
                 return;
             }
             if (key === 'starve' && this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107042)) {
-                cc.d('ITEM_1107042 effect starve');
                 return;
             }
             if (key === 'vigour' && this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107032)) {
-                cc.d('ITEM_1107032 effect vigour');
                 return;
             }
         }
@@ -345,7 +342,6 @@ var Player = cc.Class.extend({
         this[key] = cc.clampf(this[key], 0, this[key + "Max"]);
         var afterRangeInfo = this.getAttrRangeInfo(key, this[key]);
 
-        cc.i("changeAttr " + key + " value:" + value + " after:" + this[key]);
         if (this === player) {
             utils.emitter.emit(key + "_change", value);
         }
@@ -353,7 +349,6 @@ var Player = cc.Class.extend({
             var suffix;
             if (afterRangeInfo.id - beforeRangeInfo.id > 0) {
                 suffix = "_up";
-                cc.e(key + suffix + " " + (afterRangeInfo.id - 1));
                 this.log.addMsg(stringUtil.getString(key + suffix)[afterRangeInfo.id - 1]);
                 if (key === "infect" || key === "injury") {
                     audioManager.playEffect(audioManager.sound.BAD_EFFECT);
@@ -362,7 +357,6 @@ var Player = cc.Class.extend({
                 }
             } else if (afterRangeInfo.id - beforeRangeInfo.id < 0) {
                 suffix = "_down";
-                cc.e(key + suffix + " " + (afterRangeInfo.id - 1));
                 this.log.addMsg(stringUtil.getString(key + suffix)[afterRangeInfo.id - 1]);
                 if (key === "infect" || key === "injury") {
                     audioManager.playEffect(audioManager.sound.GOOD_EFFECT);
@@ -370,10 +364,7 @@ var Player = cc.Class.extend({
                     audioManager.playEffect(audioManager.sound.BAD_EFFECT);
                 }
             }
-        } else {
-            cc.e(key + " is not in range " + this[key]);
         }
-
         if (key === "injury") {
             this.updateHpMax();
         }
@@ -475,7 +466,6 @@ var Player = cc.Class.extend({
         var bedRate = buildActionConfig[9][bedLevel].rate;
         //睡眠等级=床等级值*0.5+饱食度/100*0.2+心情值/100*0.3
         bedRate = bedRate * 0.5 + this.starve / this.starveMax * 0.2 + this.spirit / this.spiritMax * 0.3;
-        //精力值
         //每小时回复精力值=睡眠等级*10
         var vigour = bedRate * 15;
         vigour = Math.ceil(vigour);
@@ -484,7 +474,6 @@ var Player = cc.Class.extend({
 
     updateStarve: function () {
         if (this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107042)) {
-            cc.d('ITEM_1107042 updateStarve');
             return;
         }
 
@@ -500,9 +489,7 @@ var Player = cc.Class.extend({
     },
 
     updateInfect: function () {
-
         if (this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107022)) {
-            cc.d('ITEM_1107022 updateInfect');
             return;
         }
 
@@ -512,8 +499,7 @@ var Player = cc.Class.extend({
             for (var attr in effect) {
                 if (this.hasOwnProperty(attr)) {
                     var value = effect[attr];
-                    //感染属性影响中有公式
-                    //对血的影响为公式
+                    //感染属性影响中有公式 对血的影响为公式
                     if (attr === 'hp') {
                         value *= this.infect / 100;
                         value = Math.ceil(value);
@@ -540,7 +526,6 @@ var Player = cc.Class.extend({
 
     updateVigour: function () {
         if (this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107032)) {
-            cc.d('ITEM_1107032 updateVigour ');
             return;
         }
 
@@ -705,7 +690,6 @@ var Player = cc.Class.extend({
     },
 
     useItem: function (storage, itemId) {
-        cc.e("useItem " + itemId);
         if (storage.validateItem(itemId, 1)) {
             cc.timer.updateTime(600);
             
@@ -754,9 +738,7 @@ var Player = cc.Class.extend({
     item1104032Effect: function (item, obj) {
         var hpChance = obj.hp_chance;
         var rand = Math.random();
-        cc.log(" hpChance=" + hpChance + " rand=" + rand)
         if (rand <= hpChance) {
-            cc.log("1104032 worked");
             this.changeHp(obj.hp);
             return false;
         } else {
@@ -776,11 +758,8 @@ var Player = cc.Class.extend({
             if (this.hasOwnProperty(key)) {
                 var chance = obj[key + "_chance"];
                 var rand = Math.random();
-                cc.log(key + " chance=" + chance + " rand=" + rand)
                 if (rand <= chance) {
-                    cc.log("worked");
                     var funName = cc.formatStr("change%s%s", key.substr(0, 1).toUpperCase(), key.substr(1));
-                    cc.log(funName);
                     var changeValue = obj[key];
                     this[funName](changeValue);
                     if (!this.isAttrChangeGood(key, changeValue)) {
@@ -873,10 +852,8 @@ var Player = cc.Class.extend({
 
     _getAttackResult: function (attackStrength, def, causeStorage) {
         var res = {};
-        cc.d("monster strength=" + attackStrength + " def=" + def);
         if (attackStrength > def) {
             var produceValue = attackStrength / 5 - 1 + 3;
-            cc.i("moonlighting defeat value=" + produceValue);
             var tmpStorage = new Storage();
             var tmpBlackList = blackList.storageLost.concat();
             while (produceValue > 0 && !causeStorage.isEmpty()) {
@@ -986,7 +963,6 @@ var Player = cc.Class.extend({
         } else {
             rand = Math.random();
         }
-        cc.i("moonlighting..." + rand);
         var timeObj = cc.timer.formatTime();
         var probability = 0;
         for (var i = 0; i < MoonlightingConfig.strength.length; i++) {
@@ -1062,7 +1038,6 @@ var Player = cc.Class.extend({
         var stage = cc.timer.getStage();
         var config = RandomBattleConfig[stage];
         var rand = Math.random();
-        cc.d(rand);
         var probability = config.probability;
         if (IAPPackage.isStealthUnlocked()) {
             probability -= probability * 0.25;
@@ -1072,7 +1047,6 @@ var Player = cc.Class.extend({
 
             var diff = utils.getRandomInt(config.difficulty[0], config.difficulty[1]);
             var list = utils.getMonsterListByDifficulty(diff)
-            cc.e("action")
             uiUtil.showRandomBattleDialog({
                 difficulty: diff,
                 list: list
@@ -1082,7 +1056,6 @@ var Player = cc.Class.extend({
         return false;
     },
     start: function () {
-        cc.i("player start...");
         var self = this;
         cc.timer.addTimerCallbackDayAndNight(null, function (flag) {
             if (flag === 'day') {
@@ -1132,13 +1105,11 @@ var Player = cc.Class.extend({
             if (self.bindTime) {
                 if (now - self.bindTime >= 24 * 60 * 60) {
                     self.binded = false;
-                    cc.i("binded false");
                 }
             }
             if (self.cureTime) {
                 if (now - self.cureTime >= 24 * 60 * 60) {
                     self.cured = false;
-                    cc.i("cured false");
                 }
             }
         });

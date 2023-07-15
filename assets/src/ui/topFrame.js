@@ -421,8 +421,6 @@ var showAttrStatusDialog = function (stringId, attr) {
                 itemTableView.updateData();
                 itemTableView.reloadData();
                 Record.saveAll();
-            } else {
-                cc.e("useItem fail " + res.msg);
             }
         };
 

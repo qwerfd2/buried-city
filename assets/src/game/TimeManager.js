@@ -73,12 +73,10 @@ var TimerManager = cc.Class.extend({
     },
     pause: function () {
         this.pausedRef++;
-        cc.e("timeManager pause " + this.pausedRef);
     },
     resume: function () {
         this.pausedRef--;
         this.pausedRef = Math.max(0, this.pausedRef);
-        cc.e("timeManager resume " + this.pausedRef);
     },
     isPaused: function () {
         return this.pausedRef > 0;
@@ -86,7 +84,6 @@ var TimerManager = cc.Class.extend({
     stop: function () {
         this.callbackList = [];
         cc.director.getScheduler().unscheduleUpdateForTarget(this);
-        cc.e("timeManager stop");
     },
     accelerateWorkTime: function (time) {
         var realTime = 3;
@@ -96,7 +93,6 @@ var TimerManager = cc.Class.extend({
     },
     accelerate: function (time, realTime) {
         if (this.isAccelerated) {
-            cc.e("timer is accelerated!");
             return;
         }
         this.timeScale = time / realTime;
@@ -156,7 +152,6 @@ var TimerManager = cc.Class.extend({
         };
         var targetTime = this.objToTime(targetTimeObj);
         if (targetTime >= nowTime) {
-            cc.d("targetTime bigger than nowTime");
             //使用头一小时的此时
             if (targetTimeObj.h == 0) {
                 targetTimeObj.d--;
@@ -195,7 +190,6 @@ var TimerManager = cc.Class.extend({
         };
         var targetTime = this.objToTime(targetTimeObj);
         if (targetTime >= nowTime) {
-            cc.d("targetTime bigger than nowTime");
             //使用头一天的此时
             targetTimeObj.d--;
             targetTime = this.objToTime(targetTimeObj);
@@ -212,7 +206,6 @@ var TimerManager = cc.Class.extend({
 
     removeTimerCallback: function (callback) {
         var index = this.callbackList.indexOf(callback);
-        cc.d("removeTimerCallback index=" + index);
         if (index != -1) {
             this.callbackList.splice(index, 1);
         }

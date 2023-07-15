@@ -20,18 +20,15 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
         var self = this;
 
         var oldSearchPath = cc.sys.localStorage.getItem("assetPath");
-        cc.log("oldSearchPath: " + oldSearchPath);
         if (!oldSearchPath) {
             oldSearchPath = [];
         } else {
             oldSearchPath = JSON.parse(oldSearchPath);
         }
-        cc.log("old search path is " + JSON.stringify(oldSearchPath));
         jsb.fileUtils.setSearchPaths(oldSearchPath);
 
         var manifestPath = "res/project.manifest";
         var storagePath = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() + UPDATE_PATH : UPDATE_PATH);
-        cc.log("Storage path: " + storagePath);
 
         var currentVersion = "0.0.1";
         if (jsb.fileUtils.isFileExist(storagePath + "version.manifest")) {
@@ -71,35 +68,24 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
         this.failTimes = 0;
 
         if (!this.am.getLocalManifest().isLoaded()) {
-            cc.log("Fail to update assets, step skipped.");
             this.loadGame();
         } else {
             var listener = new jsb.EventListenerAssetsManager(this.am, function (event) {
-                cc.log("eventCode " + event.getEventCode());
                 switch (event.getEventCode()) {
                     case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
-                        cc.log("No local manifest file found, skip assets update.");
                         self.loadGame();
                         break;
                     case jsb.EventAssetsManager.UPDATE_PROGRESSION:
-
-                        cc.log("event.getPercent():" + event.getPercent());
-                        cc.log("event.getPercentByFile():" + event.getPercentByFile());
-
                         percentageLabel.setString(event.getPercent() + "%");
-
                         break;
                     case jsb.EventAssetsManager.ERROR_DOWNLOAD_MANIFEST:
                     case jsb.EventAssetsManager.ERROR_PARSE_MANIFEST:
-                        cc.log("Fail to download manifest file, update skipped.");
                         self.loadGame();
                         break;
                     case jsb.EventAssetsManager.NEW_VERSION_FOUND:
-                        cc.log("new version found !!");
                         var newVersion = "";
                         var versionManifest = JSON.parse(jsb.fileUtils.getStringFromFile(storagePath + "version.manifest"));
 
-                        cc.log(JSON.stringify(versionManifest))
                         if (versionManifest) {
                             var groupVersions = versionManifest["groupVersions"];
                             var versionIndexArray = Object.keys(groupVersions);
@@ -112,26 +98,20 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
                         break;
                     case jsb.EventAssetsManager.ALREADY_UP_TO_DATE:
                     case jsb.EventAssetsManager.UPDATE_FINISHED:
-                        cc.log("Update finished. " + event.getMessage());
                         self.loadGame();
                         break;
                     case jsb.EventAssetsManager.UPDATE_FAILED:
-                        cc.log("Update failed. " + event.getMessage());
-
                         self.failTimes++;
                         if (self.failTimes < 1) {
                             self.am.downloadFailedAssets();
                         } else {
-                            cc.log("Reach maximum fail count, exit update process");
                             self.failTimes = 0;
                             self.loadGame();
                         }
                         break;
                     case jsb.EventAssetsManager.ERROR_UPDATING:
-                        cc.log("Asset update error: " + event.getAssetId() + ", " + event.getMessage());
                         break;
                     case jsb.EventAssetsManager.ERROR_DECOMPRESS:
-                        cc.log(event.getMessage());
                         break;
                     default:
                         break;

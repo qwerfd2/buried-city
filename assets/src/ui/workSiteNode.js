@@ -102,7 +102,6 @@ var WorkSiteNode = BottomFrameNode.extend({
         if (IAPPackage.isHandyworkerUnlocked()) {
             time = Math.round(time * 0.7);
         }
-        cc.log('res ' + res + ' isActive ' + this.site.isActive);
         var actionDisabled = !res || this.site.isActive || temp;
 
         this.actionView.updateView({

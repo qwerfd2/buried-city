@@ -12,7 +12,6 @@ var PurchaseAndroid = {
     },
 
     onGameExit: function (result) {
-        cc.e(JSON.stringify(result));
         var obj = JSON.parse(result);
         this.showExitDialog(function () {
             cc.director.end();
@@ -31,7 +30,6 @@ var PurchaseAndroid = {
     },
     onPurchaseInfo: function (result) {
         if (result) {
-            cc.e(JSON.stringify(result));
             var obj = JSON.parse(result);
             if (obj.statusCode == 1) {
                 this.getPurchaseListCb(null, obj);

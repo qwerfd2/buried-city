@@ -27,7 +27,7 @@ var PurchaseTask = cc.Class.extend({
         this.step = step;
     },
     onPurchaseResult: function (result) {
-            IAPPackage.payConsumeIAP(this.purchaseId);
+        IAPPackage.payConsumeIAP(this.purchaseId);
     }
 });
 
@@ -46,17 +46,13 @@ var PurchaseTaskAndroid = PurchaseTask.extend({
         return orderid;
     },
     onPayResult: function (result, data) {
-        cc.v("onPayResult " + result);
-        cc.v("onPayResult " + JSON.stringify(data));
         if (result == 1) {
-            cc.v("purchaseTask  success");
             this.onPurchaseResult(1)
             this.payLog(result, this.createAppOrderId(), data.productId);
             if (this.afterPay) {
                 this.afterPay(this.purchaseId, 1);
             }
         } else {
-            cc.v("purchaseTask  failed");
             this.payLog(result, null, null, data.errorCode);
             if (this.afterPay) {
                 this.afterPay(this.purchaseId, 0);

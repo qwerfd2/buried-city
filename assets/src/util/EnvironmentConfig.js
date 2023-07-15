@@ -9,7 +9,6 @@ cc.originAudioEngine = {};
 
 var setSound = function (isOn) {
     cc.sys.localStorage.setItem("sound", isOn ? 1 : 2);
-    aaa
 }
 var needSound = function () {
     var sound = cc.sys.localStorage.getItem("sound") || 1;
@@ -21,7 +20,6 @@ var needSound = function () {
 
 var setMusic = function (isOn) {
     cc.sys.localStorage.setItem("music", isOn ? 1 : 2);
-    aaa
 }
 var needMusic = function () {
     var music = cc.sys.localStorage.getItem("music") || 1;
@@ -75,7 +73,6 @@ cc._log = function (l, msg) {
     if (LOG_LEVEL.level > l.level)
         return;
     var message = "[t " + l["name"] + "]" + msg;
-    //var message =  msg;
     cc.originLog(message);
 
 }
@@ -99,11 +96,7 @@ cc.e = function (msg) {
 }
 
 cc.eventManager.addCustomListener(cc.game.EVENT_HIDE, function(){
-       //onEnterBackground handler
-       cc.log("game hide")
 });
 
 cc.eventManager.addCustomListener(cc.game.EVENT_SHOW, function(){
-       //onEnterForeground handler
-       cc.log("game show")
 });

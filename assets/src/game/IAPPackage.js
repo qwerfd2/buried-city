@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/6/11.
- */
 var IAPPackage = {
     _map: {},
     _record: {},

@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/9/21.
- */
 var PurchaseAndroid = {
 
     PAY_TYPE_GOOGLE_PLAY: "googleplay",

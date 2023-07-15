@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var NpcNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -81,7 +78,7 @@ var NpcNode = BottomFrameNode.extend({
         this.bg.addChild(btn2);
         btn2.setName("btn_2");
         
-        var stealLogBtn = new ImageButton("res/stealLogBtn.png");
+        var stealLogBtn = new ImageButton("res/new/stealLogBtn.png");
         stealLogBtn.setPosition(this.bgRect.width / 4 * 3 + 88, 212);
         this.bg.addChild(stealLogBtn, 1);
         stealLogBtn.setClickListener(this, function(a) {
@@ -112,8 +109,7 @@ var NpcNode = BottomFrameNode.extend({
         var btn3 = uiUtil.createCommonBtnWhite(stringUtil.getString(9015), this, function() {
             var a = player.bag.getCurrentWeight()
             var b = player.bag.getTotalWeight()
-            if (a >= b) //背包满了不可偷窃
-            {
+            if (a >= b) {//背包满了不可偷窃
                 uiUtil.showTinyInfoDialog(stringUtil.getString(9008));
             } else {
                 self.npc.isSteal = false;
@@ -153,15 +149,34 @@ var NpcNode = BottomFrameNode.extend({
         var ItemSortNum = this.npc.storage.getItemSortNum();
         var a = (player.Steal - this.npc.Alert - this.Increase) / ItemSortNum;
         var self = this;
+        var success = false;
         this.npc.storage.forEach(function(i, n) {
             var b = utils.getRandomInt(0, 100);
             if (b <= a) {
-                self.npc.storage.decreaseItem(i.id, n);
-                player.bag.increaseItem(i.id, n);
-                arr.push({
-                    itemId: i.id,
-                    num: n
-                })
+                if (itemConfig[i.id].weight == 0) {
+                    self.npc.storage.decreaseItem(i.id, n);
+                    player.bag.increaseItem(i.id, n);
+                    arr.push({
+                        itemId: i.id,
+                        num: n
+                    })
+                } else {
+                    success = true;
+                    var amount = 0;
+                    for (var a = 0; a < n; a++) {
+                        if (player.bag.validateItemWeight(i.id, 1)) {
+                            self.npc.storage.decreaseItem(i.id, 1);
+                            player.bag.increaseItem(i.id, 1);
+                            amount++;
+                        }
+                    }
+                    if (amount > 0) {
+                        arr.push({
+                            itemId: i.id,
+                            num: amount
+                        })
+                    }
+                }
             }
         });
         
@@ -171,14 +186,13 @@ var NpcNode = BottomFrameNode.extend({
             ar: arr
         })
         var bo = arr.length > 0;
-        uiUtil.Steal(arr, bo, this.npc.getName());
+        uiUtil.Steal(arr, success, bo, this.npc.getName());
 
         //偷窃成功
-        if (bo) {
+        if (success) {
             self.npc.changeAlert(1)
             this.desupdateView(stringUtil.getString(9006));
-        } else //失败
-        {
+        } else { //失败
             if (!IAPPackage.isAllItemUnlocked()) {
                 if (IAPPackage.isSocialEffectUnlocked()) {
                     self.npc.changeReputation(-1);
@@ -186,7 +200,7 @@ var NpcNode = BottomFrameNode.extend({
                     self.npc.changeReputation(-2);
                 }
             } 
-            self.npc.changeAlert(2)
+            self.npc.changeAlert(2);
             this.heartNode.updateView(this.npc.reputation);
             this.desupdateView(stringUtil.getString(9007));
         }

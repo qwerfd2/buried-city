@@ -55,7 +55,6 @@ var Player = cc.Class.extend({
 
         this.bag = new Bag('player');
         this.storage = new Storage('player');
-        this.dog = new Dog();
         this.room = new Room();
         this.equip = new Equipment();
         this.npcManager = new NPCManager();
@@ -65,10 +64,13 @@ var Player = cc.Class.extend({
         this.buffManager = new BuffManager();
 
         this.setting = {};
-        this.roleType = RoleType.STRANGER;
+        this.roleType = 0;
         this.isBombActive = false;
         this.Steal = 50;
         this.totalDistance = 0;
+        this.currency = 50;
+        this.leftHomeTime = 0;
+        this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 10}, {"itemId": 1103033, "amount": 10}, {"itemId": 1105011, "amount": 10}];
     },
 
     save: function () {
@@ -95,7 +97,6 @@ var Player = cc.Class.extend({
 
             bag: this.bag.save(),
             storage: this.storage.save(),
-            dog: this.dog.save(),
             room: this.room.save(),
             equip: this.equip.save(),
             map: this.map.save(),
@@ -104,7 +105,10 @@ var Player = cc.Class.extend({
             buffManager: this.buffManager.save(),
             isBombActive: this.isBombActive,
             Steal: this.Steal,
-            totalDistance: this.totalDistance
+            totalDistance: this.totalDistance,
+            currency: this.currency,
+            shopList: this.shopList,
+            leftHomeTime: this.leftHomeTime
         };
         return opt;
     },
@@ -132,17 +136,20 @@ var Player = cc.Class.extend({
             this.setting = opt.setting;
             this.bag.restore(opt.bag);
             this.storage.restore(opt.storage);
-            this.dog.restore(opt.dog);
             this.equip.restore(opt.equip);
             this.weather.restore(opt.weather);
             this.buffManager.restore(opt.buffManager);
             this.isBombActive = opt.isBombActive;
             this.Steal = opt.Steal;
             this.totalDistance = opt.totalDistance;
+            this.currency = opt.currency;
+            this.shopList = opt.shopList;
+            this.leftHomeTime = opt.leftHomeTime;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
             if (IAPPackage.isHoarderUnlocked()) {
+            this.currency += 50;
                 var itemList = [1101011,1101021,1101031,1101041,1101051,1101061,1101071,1101073,1103011,1103041,1103083,1104011,1104021,1104043,1105011,1105022,1105033,1105042,1105051,1301011,1301022,1301033,1301041,1301052,1302011,1302021,1303012,1304012,1304024,1305011,1305023,1106054];
                 var amountList = [180,180,100,100,80,80,80,60,20,20,10,10,10,5,40,30,20,60,60,3,2,2,3,2,5,5,10,2,2,500,2,1];
                 for (var itemId in itemConfig) {
@@ -161,7 +168,74 @@ var Player = cc.Class.extend({
             this.room.createBuild(12, 0);
         }
     },
+    onCurrencyChange: function(value) {
+        if (typeof value == "number") {
+            player.currency += value;
+            if (player.currency >= 99999) {
+                player.currency = 99999;
+            }
+        utils.emitter.emit("onCurrencyChange", player.currency);
+        }
+    },
+    trySteal: function() {
+        var TheftConfig = [[0.0, 0.01, 0.02, 0.03, 0.04],[0.01, 0.02, 0.04, 0.06, 0.08],[0.02, 0.04, 0.06, 0.08, 0.1],[0.04, 0.06, 0.08, 0.1, 0.12],[0.06, 0.08, 0.1, 0.14, 0.18],[0.08, 0.1, 0.14, 0.18, 0.25]]; 
+        var dtTime = Math.round(cc.timer.time - this.leftHomeTime);
+        var weight = this.storage.getAllItemNum();
+        var timeIndex = -1;
+        var weightIndex = -1;
+        var timeGrade = [28800, 57600, 86400, 115200, 144400];
+        var weightGrade = [200, 600, 1200, 2000, 3000, 4200];
+        for (var i = 0; i < timeGrade.length; i++) {
+            if (dtTime >= timeGrade[i]) {
+                timeIndex++;
+            } else {
+                break;
+            }
+        }
+        for (var i = 0; i < weightGrade.length; i++) {
+            if (weight >= weightGrade[i]) {
+                weightIndex++;
+            } else {
+                break;
+            }
+        }
 
+        if (timeIndex < 0 || weightIndex < 0) {
+            return;
+        }
+        var probability = TheftConfig[weightIndex][timeIndex];
+        var def = this._getHomeDeter();
+
+        probability = probability * def;
+        var rand = Math.random();
+
+        if (rand < probability) {
+            var res = this._getAttackResult(90, 0, this.storage);
+            res = res.items;
+            Record.saveAll();
+            var self = this;
+            uiUtil.showStolenDialog(stringUtil.getString(9032), "#stealPrompt.png", self, res);
+        }
+    },
+    
+    getPrice: function(item) {
+        var item = Number(item);
+        var items = formulaConfig[item + 100000];
+        var price = 0;
+        if (items) //如果是可制作物品
+        {
+            var a = items.produce[0].num; //每次制作数量
+            var b = items.makeTime * (1 / 60) / a; //每个的每分钟1元时间成本
+            var c = (items.placedTime || 0) * (0.1 / 60) / a; //每个每分钟0.1元时间成本
+            items.cost.forEach(function(e) {
+                price += (new Item(e.itemId).getPrice() * e.num);
+            })
+            price = price / a + b + c; //制作总价%每次制作数量+时间成本=单个制作价格
+        } else {//非可制作物品按原价格
+            price = new Item(item).getPrice();
+        }
+        return Number(price);
+    },
     //包扎
     bindUp: function () {
         this.binded = true;
@@ -189,6 +263,7 @@ var Player = cc.Class.extend({
 
     out: function () {
         this.isAtHome = false;
+        this.leftHomeTime = cc.timer.time;
     },
 
     enterSite: function (siteId) {
@@ -226,6 +301,14 @@ var Player = cc.Class.extend({
         }
     },
 
+    getAttr: function (key) {
+        return this[key];
+    },
+    
+    getAttrMax: function (key) {
+        return this[key + "Max"];
+    },
+
     isAttrMax: function (key) {
         return this[key] == this[key + "Max"];
     },
@@ -250,6 +333,14 @@ var Player = cc.Class.extend({
             }
         }
         var beforeRangeInfo = this.getAttrRangeInfo(key, this[key]);
+        if (key == "vigour" && player.isInSleep && this[key] == 100) {
+            if (this.hp != this.hpMax) {
+                this.changeAttr("spirit", -1);
+            } else {
+                this.changeAttr("spirit", -2);    
+            }
+
+        }
         this[key] += value;
         this[key] = cc.clampf(this[key], 0, this[key + "Max"]);
         var afterRangeInfo = this.getAttrRangeInfo(key, this[key]);
@@ -341,8 +432,6 @@ var Player = cc.Class.extend({
 
         //扣减饥饿度
         this.changeStarve(c[0][0]);
-        //扣减狗的饥饿度
-        this.dog.changeStarve(c[1][0]);
 
         /*
          白天家中，精力值	-1
@@ -366,17 +455,12 @@ var Player = cc.Class.extend({
 
         //在睡眠状态下的影响
         if (this.isInSleep) {
-            var bedLevel = player.room.getBuildLevel(9);
-            var bedRate = buildActionConfig[9][bedLevel].rate;
-            //睡眠等级=床等级值*0.5+饱食度/100*0.2+心情值/100*0.3
-            bedRate = bedRate * 0.5 + this.starve / this.starveMax * 0.2 + this.spirit / this.spiritMax * 0.3;
-            //精力值
-            //每小时回复精力值=睡眠等级*10
-            var vigour = bedRate * 15;
-            vigour = Math.ceil(vigour);
+            var vigour = this.getVigourChange();
             this.changeVigour(vigour);
             //生命值
             //每小时回血=睡眠等级*20
+            var bedLevel = player.room.getBuildLevel(9);
+            var bedRate = buildActionConfig[9][bedLevel].rate;
             var hp = bedRate * 20;
             hp = Math.ceil(hp);
             this.changeHp(hp)
@@ -384,6 +468,18 @@ var Player = cc.Class.extend({
         //天气影响
         this.changeVigour(this.weather.getValue("vigour"));
         this.changeSpirit(this.weather.getValue("spirit"));
+    },
+
+    getVigourChange: function () {
+        var bedLevel = player.room.getBuildLevel(9);
+        var bedRate = buildActionConfig[9][bedLevel].rate;
+        //睡眠等级=床等级值*0.5+饱食度/100*0.2+心情值/100*0.3
+        bedRate = bedRate * 0.5 + this.starve / this.starveMax * 0.2 + this.spirit / this.spiritMax * 0.3;
+        //精力值
+        //每小时回复精力值=睡眠等级*10
+        var vigour = bedRate * 15;
+        vigour = Math.ceil(vigour);
+        return vigour;
     },
 
     updateStarve: function () {
@@ -730,7 +826,7 @@ var Player = cc.Class.extend({
         if (level >= 0) {
             homeDef += (level + 1) * 10;
         }
-        if (this.dog.isActive()) {
+        if (this.room.getBuild(12).isActive()) {
             homeDef += 10;
         }
         var electricFenceBuild = this.room.getBuild(19);
@@ -740,6 +836,28 @@ var Player = cc.Class.extend({
         }
         return homeDef;
     },
+    
+    _getHomeDeter: function () {
+        //家的防御 = 栅栏等级*n + 狗(活跃+10)
+        var homeDef = 0;
+        var level = this.room.getBuildLevel(11);
+        if (level >= 0) {
+            homeDef += (level + 1) * 10;
+        }
+        if (this.room.getBuild(12).isActive()) {
+            homeDef += 10;
+        }
+        var electricFenceBuild = this.room.getBuild(19);
+        //雷区抵御僵尸夜袭
+        if (electricFenceBuild && electricFenceBuild.isActive()) {  //电网抵御僵尸
+            homeDef += 30;
+        }
+        if (this.isBombActive) {
+            homeDef += 30;
+        }
+        return 1.0 - (homeDef / 100);
+    },
+    
     _getOrigDef: function () {
         //家的防御 = 栅栏等级*n + 狗(活跃+10)
         var homeDef = 0;
@@ -747,7 +865,7 @@ var Player = cc.Class.extend({
         if (level >= 0) {
             homeDef += (level + 1) * 10;
         }
-        if (this.dog.isActive()) {
+        if (this.room.getBuild(12).isActive()) {
             homeDef += 10;
         }
         return homeDef;
@@ -804,6 +922,61 @@ var Player = cc.Class.extend({
             res.win = true;
         }
         return res;
+    },
+    updateBazaarList: function () {
+        function selectFrom(min, max) {
+            var sum = max - min + 1;
+            return Math.floor(Math.random() * sum + min);
+        }
+
+        function myNum(n, min, max) {
+            var a = [];
+            for (i = 0; i < n; i++) {
+                a[i] = selectFrom(min, max);
+                for (z = 0; z < i; z++) {
+                    if (a[i] == a[z]) {
+                        i--;
+                        break;
+                    }
+                }
+            }
+            return a;
+        }
+        var rray = [];
+        var copyItem = utils.clone(itemConfig);
+        var deleteItem = [1106013, 1305064, 1305053, 1305044, 1305034, 1305024, 1305023];
+        for (var a in deleteItem) {
+            delete copyItem[deleteItem[a]];
+        }
+        var le = Object.keys(copyItem).length;
+        var result = myNum(6, 0, le - 1);
+        
+        result.forEach(function(k) {
+            var itemId = Number(Object.keys(copyItem)[k]);
+            var amount = 10;
+            if (itemId == 1305011) {
+                amount = 30;
+            }
+            var twentyList = [1101011, 1101021, 1101031, 1101041, 1101051, 1103011, 1105042];
+            var fifteenList = [1101061, 1101071, 1101073];
+            var fiveList = [1102011, 1102022, 1102033, 1102042, 1103074, 1104032, 1301011, 1301022, 1301033, 1301041, 1301052, 1301063, 1301071, 1301082, 1302043, 1303033, 1303044]
+            var twoList = [1102053, 1102063, 1104043, 1106054, 1107012, 1107022, 1107032, 1107042];
+            
+            if (fiveList.indexOf(itemId) !== -1) {
+                amount = 5;
+            } else if (twoList.indexOf(itemId) !== -1) {
+                amount = 2;
+            } else if (twentyList.indexOf(itemId) !== -1) {
+                amount = 20;
+            } else if (fifteenList.indexOf(itemId) !== -1) {
+                amount = 15;
+            } if (itemId == 1106054) {
+                amount = 1;
+            }
+            rray.push({"itemId": itemId, "amount": amount});
+        })
+        player.shopList = rray;
+        
     },
     underAttackInNight: function () {
         var homeRes = {};
@@ -935,13 +1108,11 @@ var Player = cc.Class.extend({
             }
             self.Steal = utils.getRandomInt(35, 65);
             utils.emitter.emit("Steal");
+            self.updateBazaarList();
             self.underAttackInNight();
             self.room.getBuild(9).sleeped = false;
             cc.timer.checkSeason();
-            var rand = Math.random();
-            if (rand < 0.5) {
-                cc.sys.localStorage.setItem("ad", "1");
-            }
+            cc.sys.localStorage.setItem("ad", "1");
         });
         cc.timer.addTimerCallbackHourByHour(this, function () {
             self.updateByTime();
@@ -1039,44 +1210,5 @@ var Player = cc.Class.extend({
         var step = this.getStep();
         step++;
         this.setSetting("step", step);
-    }
-});
-
-var Dog = cc.Class.extend({
-    ctor: function () {
-        //饥饿
-        this.starve = 0;
-        this.starveMax = 100;
-    },
-
-    changeAttr: function (key, value) {
-        this[key] += value;
-        this[key] = cc.clampf(this[key], 0, this[key + "Max"]);
-        cc.i("dog changeAttr " + key + " value:" + value + " after:" + this[key]);
-    },
-
-    changeStarve: function (value) {
-        this.changeAttr("starve", value);
-    },
-    canFeed: function () {
-        return this.starve < this.starveMax;
-    },
-    feed: function () {
-        this.changeStarve(this.starveMax - this.starve);
-    },
-    isActive: function () {
-        return this.starve > 0;
-    },
-    save: function () {
-        var opt = {
-            starve: this.starve
-        };
-        return opt;
-    },
-
-    restore: function (opt) {
-        if (opt) {
-            this.starve = opt.starve;
-        }
     }
 });

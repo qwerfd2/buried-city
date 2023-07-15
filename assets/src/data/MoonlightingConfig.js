@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/5/7.
- */
-
 var MoonlightingConfig = {
     strength: [
         {day: [1, 5], strength: [1, 5], probability: 0.2},

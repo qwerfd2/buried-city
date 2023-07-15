@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var workSiteConfig = {
     costTime: 120,
     needItems: [
@@ -63,6 +60,9 @@ var WorkSiteNode = BottomFrameNode.extend({
         this.updateView();
     },
     onClickFix: function () {
+        this.actionView.updateView({
+            action1Disabled: true
+        });
         var pastTime = 0;
         var self = this;
         var time = workSiteConfig.costTime * 60;

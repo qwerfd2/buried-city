@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var RELIVE_ITEMID = 1106054;
 var DeathNode = BottomFrameNode.extend({
     ctor: function (userData) {

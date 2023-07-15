@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/4/7.
- */
-
 var StorageCell = cc.Class.extend({
     ctor: function (item, num) {
         this.item = item;

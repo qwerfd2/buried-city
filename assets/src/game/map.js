@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/10.
- */
 var Map = cc.Class.extend({
     ctor: function () {
         this.npcMap = {};
@@ -40,6 +37,8 @@ var Map = cc.Class.extend({
                     site = new BossSite(siteId);
                 } else if (siteId == WORK_SITE) {
                     site = new WorkSite(siteId);
+                } else if (siteId == BAZAAR_SITE) {
+                    site = new BazaarSite(siteId);
                 } else {
                     site = new Site(siteId);
                 }
@@ -57,9 +56,9 @@ var Map = cc.Class.extend({
     init: function () {
         var all;
         if (IAPPackage.isAllItemUnlocked()) {
-            all = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,20,21,22,30,31,32,33,41,42,43,51,52,61,100,201,202,203,204,301,302,303,304,305,306,307,308,309,310,311,312];
+            all = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,20,21,22,30,31,32,33,41,42,43,51,52,61,100,201,202,203,204,301,302,303,304,305,306,307,308,309,310,311,312,400,500,501,666];
         } else {
-            all = [100, 201, 202, 204];
+            all = [100, 201, 202, 204, 400];
         }
         for (var i = 0; i < all.length; i++){
             this.unlockSite(all[i]);
@@ -80,7 +79,7 @@ var Map = cc.Class.extend({
             func(player.npcManager.getNPC(npcId));
         }
         for (var siteId in this.siteMap) {
-            if (!this.siteMap[siteId].closed && siteId < 300) {
+            if (!this.siteMap[siteId].closed && (siteId < 300 || siteId > 399)) {
                 func(this.siteMap[siteId]);
             }
         }
@@ -103,6 +102,8 @@ var Map = cc.Class.extend({
                 site = new BossSite(siteId);
             } else if (siteId == WORK_SITE) {
                 site = new WorkSite(siteId);
+            } else if (siteId == BAZAAR_SITE) {
+                site = new BazaarSite(siteId);
             } else {
                 site = new Site(siteId);
             }

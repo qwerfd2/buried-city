@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/7/10.
-     "3014": ["多云", "晴朗", "下雨", "下雪", "大雾"],
- */
 var Weather = {
     CLOUDY: 0,
     SUNSHINY: 1,

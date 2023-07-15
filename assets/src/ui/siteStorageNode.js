@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var SiteStorageNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -17,7 +14,8 @@ var SiteStorageNode = BottomFrameNode.extend({
         equipNode.setAnchorPoint(0.5, 1);
         equipNode.setPosition(this.bgRect.width / 2, this.contentTopLineHeight);
         this.bg.addChild(equipNode, 1);
-        var itemChangeNode = new ItemChangeNode(player.bag, stringUtil.getString(1034), this.site.storage, stringUtil.getString(1032), true);
+
+        var itemChangeNode = new ItemChangeNode(player.bag, stringUtil.getString(1034), this.site.storage, stringUtil.getString(1032), true, false, this.site);
         itemChangeNode.setAnchorPoint(0.5, 0);
         itemChangeNode.setPosition(this.bgRect.width / 2, 0);
         this.bg.addChild(itemChangeNode);
@@ -34,3 +32,5 @@ var SiteStorageNode = BottomFrameNode.extend({
 });
 
 var AdStorageNode = SiteStorageNode.extend({});
+
+var BazaarStorageNode = SiteStorageNode.extend({});

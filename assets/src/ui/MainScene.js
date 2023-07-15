@@ -1,8 +1,3 @@
-/**
- * User: Alex
- * Date: 15/1/5
- * Time: 下午4:07
- */
 var MainLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
@@ -29,7 +24,7 @@ var MainScene = BaseScene.extend({
         this._super(APP_NAVIGATION.GAME);
 
         cc.spriteFrameCache.removeSpriteFramesFromFile("res/menu.plist");
-
+        autoSpriteFrameController.addSpriteFrames("res/new.plist");
         autoSpriteFrameController.addSpriteFrames("res/dig_item.plist");
         autoSpriteFrameController.addSpriteFrames("res/dig_monster.plist");
         autoSpriteFrameController.addSpriteFrames("res/ui.plist");
@@ -37,15 +32,9 @@ var MainScene = BaseScene.extend({
         autoSpriteFrameController.addSpriteFrames("res/build.plist");
         autoSpriteFrameController.addSpriteFrames("res/dig_build.plist");
         autoSpriteFrameController.addSpriteFrames("res/site.plist");
-        autoSpriteFrameController.addSpriteFrames("res/dig_work.plist");
         autoSpriteFrameController.addSpriteFrames("res/gate.plist");
-        autoSpriteFrameController.addSpriteFrames("res/map.plist");
         autoSpriteFrameController.addSpriteFrames("res/site.plist");
         autoSpriteFrameController.addSpriteFrames("res/end.plist");
-        autoSpriteFrameController.addSpriteFrames("res/day.plist");
-        autoSpriteFrameController.addSpriteFrames("res/day2.plist");
-        autoSpriteFrameController.addSpriteFrames("res/weather.plist");
-        autoSpriteFrameController.addSpriteFrames("res/guide.plist");
         autoSpriteFrameController.addSpriteFrames("res/new_site.plist");
 
         var layer = new MainLayer();

@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/5/13.
- */
-
 var Range = function (rangstr) {
     var array = rangstr.split(',');
     this.leftInclude = array[0].substr(0, 1) === '[';

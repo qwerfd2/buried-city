@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var WorkRoomStorageNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -27,7 +24,7 @@ var WorkRoomStorageNode = BottomFrameNode.extend({
             self.storage.increaseItem(itemInfo.itemId, itemInfo.num);
         });
 
-        var itemChangeNode = new ItemChangeNode(player.bag, stringUtil.getString(1034), this.storage, this.uiConfig.title, true, true);
+        var itemChangeNode = new ItemChangeNode(player.bag, stringUtil.getString(1034), this.storage, this.uiConfig.title, true, true, siteId);
         itemChangeNode.setAnchorPoint(0.5, 0);
         itemChangeNode.setPosition(this.bgRect.width / 2, 100);
         this.bg.addChild(itemChangeNode);

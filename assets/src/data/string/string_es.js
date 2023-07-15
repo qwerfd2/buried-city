@@ -1,4 +1,12 @@
 var string = {
+"site_501": {
+        "name": "Instituto",
+        "des": "El pasillo del instituto, antes lleno de bullicio, ahora está tan tranquilo que se puede oír caer un alfiler. Si no fuera por los libros dispersos y las manchas de sangre, uno pensaría que es un día festivo."
+    },
+    "site_666": {
+        "name": "Portal",
+        "des": "Este televisor no requiere alimentación externa y tiene un mundo oculto detrás de la pantalla. Aunque no sabemos qué hay al otro lado, definitivamente no es el cielo."
+    },
 "18_0": {
         "title": "Electric Stove",
         "des": "Puede adaptarse a voltajes extremadamente inestables y, aunque no puede alcanzar la temperatura requerida para cocinar, es suficiente para satisfacer los requisitos de calefacción de un espacio confinado."
@@ -7,6 +15,20 @@ var string = {
         "title": "Cerca eléctrica",
         "des": "Debido a un voltaje insuficiente, la valla de energía autoconstruida no puede eliminar inmediatamente a los zombis que se acercan, pero puede 'sugerirles' que se mantengan alejados."
     },
+"9030": "¿Quieres vender?",
+"9031": "¿Quieres comprar?",
+"9033": "Vender",
+"9034": "Comprar",
+"9035": "Stock: ",
+"9036": "Pero tu mochila no puede contener las cosas que has robado. Las has vuelto a poner en silencio.",
+    "1171": "El perro comiendo la carne fresca, está contento.",
+"1023": "Carne insuficiente",
+    "1218": "página principal",
+    "1219": "Predeterminado",
+    "1220": "Navidad",
+    "1209": "Mapa",
+    "1210": "Ciudad",
+    "1211": "Pueblo",
     "1169": "efecto de sonido",
     "1321": "Masako",
     "1322": "Ingeniero eléctrico",
@@ -97,10 +119,10 @@ var string = {
     "1017": "Con el café y la música, es como la época pasada.",
     "1018": "Dormir",
     "1019": "Quedarse dormido, está recuperando el cuerpo y energía.",
-    "1020": "Alimentar(%s m)",
-    "1021": "El perro está en buen estado, ¡listo para luchar!",
-    "1022": "El perro tiene hambre, necesita carne.",
-    "1023": "El perro comiendo la carne fresca, está contento.",
+    "1020": "Alimentar",
+    "1022": "El perro tiene hambre y quiere carne. 1 trozo de carne puede mantenerlo durante 12 horas.",
+    "1021": "El perro está guardando la casa. Quedan %s trozo(s) de carne para %s horas.",
+
     "1024": "Ninguno",
     "1025": "Peso:",
     "1026": "Resto:",
@@ -257,14 +279,10 @@ var string = {
     "1183": "Carroñero",
     "1184": "Es bueno para encontrar el valor en la basura.",
     "1185": "Recursos de mazmorra +10%, Carga de Mochila +30%",
-    "1186": "Infantería de marina",
-    "1187": "Tiene la supervivencia excepcional y capacidad de combate.",
-    "1188": "Botiquín de emergencia +%s(recompensa +%s en el último juego sobrevivió tantos días)",
     "1190": "Precio:",
     "1191": "%s",
     "1192": "Gratis",
     "1193": "Regresar",
-    "1194": "Conectando…",
     "1195": "Fue impulsado por el deseo",
     "1196": "Ellos muerden y tragan groseramente.",
     "1197": "Está cercando el vacío",
@@ -917,10 +935,50 @@ var string = {
         "name": "Gasolinera",
         "des": "Una gran variedad de coches aparcados en la gasolinera, están atascados y no pueden moverse, no hay explosión en esta situación, ¡ha sido milagro!"
     },
-    "site_202": {
-        "name": "???",
-        "des": "Un aparato sospechoso. Sigue funcionando sin depender del suministro de electricidad. A veces transmite vídeos, y manda regalos. Pues primero sigamos con la transmisión, después el viaje de la muerte será más excitante..."
-    },
+"site_202": {
+          "name": "Chatarrería",
+          "des": "El vertedero de basura de la ciudad huele tan mal que ni siquiera los zombis se atreven a acercarse. Aunque puede haber suministros en él, pero... no hablemos de eso, escupámoslo"
+      },
+      "site_400": {
+          "name": "Mercado de Supervivientes",
+          "des": "El bazar organizado por los sobrevivientes tendrá nuevos productos todos los días. Por favor venda suministros en 'Consigna'. El capitalismo es realmente más feroz que los zombis"
+      },
+      "site_500": {
+          "name": "Guarida de bandidos",
+          "des": "Este edificio anodino es en realidad el campamento de una banda de ladrones. Ya que te atreves a robarme, entonces no debes tener miedo de que lo recupere"
+      },
+      "13": {
+          "title": "Monedas",
+          "des": "Aunque la isla está bajo el asedio de zombis, las monedas siguen siendo el único medio para intercambiar con la gente"
+      },
+      "npc_7": {
+          "name": "W. White",
+          "des": "Antes del desastre, era profesor de química en la escuela secundaria de la ciudad, pero a juzgar por el equipo en casa, los químicos aquí ni siquiera se enseñan en las universidades",
+          "dialogs": ["Tos..Tos..Tos.. Lo siento, enfermedad ocupacional. Los materiales de protección son cada vez más difíciles de conseguir", "¡Jesse! ¡Jesse! Oye, la vida se vuelve cada vez más estresante sin Jesse", "También puedo hacer algunas sustancias químicas que son 'fuera del mostrador', jejeje...", "¡Alto! ¡Levanta las manos! Oye, no eres un ladrón... Lo siento entonces", "Extraño el momento en que luchaba ingeniosamente con mi esposa y mis amigos. Ahora, tengo que luchar contra todos"]
+      },
+      "statusDialog2": {
+          "title": {
+              "txt_1": "Actual: %s"
+          },
+          "content": {"des2":"Las monedas son la única moneda reconocida en Survivor Market. Puedes comprar y vender suministros allí y ganar monedas"
+          },
+          "action": {
+              "btn_1": {
+                  "txt": "Entendido"
+              }
+          }
+      },
+      "9019": "Buscar (30 minutos)",
+      "9020": "Vender",
+      "9021": "Precio unitario: ",
+      "9022": "Seleccionar cantidad: ",
+      "9023": "Precio total: ",
+      "9024": "Estas a punto de vender (%s) por %s monedas",
+      "9025": "Vendiste (%s) y obtuviste %s monedas",
+      "9026": "Estas a punto de gastar %s monedas para comprar (%s)",
+      "9027": "Gastaste %s monedas para comprar (%s)",
+      "9028": "¡Tus monedas no son suficientes para pagar la tarifa! La moneda actual es: %s",
+      "9032": "Regresaste a casa para encontrar todo en desorden. Atraídos por tu riqueza y la falta de guardia, los ladrones saquearon tu casa y perdiste:",
     "site_61": {
         "name": "Instituto 081",
         "des": "Quién hubiera pensado que en este pueblo, a 30 metros bajo tierra, debajo de una base secreta, habría un edificio tan enorme. ¿Quién lo habrá construido? ¿Qué habrá ocurrido en él?"

@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/24.
- */
 var buildActionConfig = {
     "5": [{
         "cost": [{"itemId": 1101011, "num": 1}],
@@ -57,8 +54,9 @@ var buildActionConfig = {
         }]
     ],
     "12": [{
-        "cost": [{"itemId": 1103041, "num": 2}],
-        "makeTime": 30
+        "cost": [{"itemId": 1103041, "num": 1}],
+        "makeTime": 720,
+        "max": 6
     }],
     "17": [{
         "cost": [{"itemId": 1303012, "num": 3}],

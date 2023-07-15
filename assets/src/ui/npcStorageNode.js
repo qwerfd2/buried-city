@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var NpcStorageNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -18,7 +15,6 @@ var NpcStorageNode = BottomFrameNode.extend({
         equipNode.setAnchorPoint(0.5, 1);
         equipNode.setPosition(this.bgRect.width / 2, this.contentTopLineHeight);
         this.bg.addChild(equipNode, 1);
-
         var itemChangeNode = new ItemExchangeNode(this.npc, player.bag, stringUtil.getString(1034), this.npc.storage, this.npc.getName());
         itemChangeNode.setAnchorPoint(0.5, 0);
         itemChangeNode.setPosition(this.bgRect.width / 2, 0);
@@ -47,7 +43,7 @@ var NpcStorageNode = BottomFrameNode.extend({
 
 var ItemExchangeNode = ItemChangeNode.extend({
     ctor: function (npc, topStorage, topStorageName, bottomStorage, bottomStorageName) {
-        this._super(topStorage, topStorageName, bottomStorage, bottomStorageName);
+        this._super(topStorage, topStorageName, bottomStorage, bottomStorageName, false, false, 0);
         this.npc = npc;
 
         var sectionBar = this.getChildByName("bottom").getChildByName("section");

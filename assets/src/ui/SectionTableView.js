@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/21.
- */
 var SectionTableView = cc.ScrollView.extend({
     ctor: function (size, id) {
         this.mycontainer = new cc.Layer();

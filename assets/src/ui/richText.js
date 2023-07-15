@@ -1,10 +1,6 @@
-/**
- * Created by lancelot on 15/4/23.
- */
 var ItemRichText = cc.Node.extend({
     ctor: function (itemInfos, width, col, itemIconScale, txtDefaultColor, txtSize) {
         this._super();
-
         this.width = width;
         this.col = col;
         this.itemIconScale = itemIconScale || 1;

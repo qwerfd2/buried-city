@@ -1,4 +1,12 @@
 var string = {
+    "site_501": {
+        "name": "Lise",
+        "des": "Bir zamanlar insanlarla dolu olan lise koridoru şimdi öyle sessiz ki bir iğnenin düşüşünü bile duyabilirsiniz. Dağılmış kitaplar ve kan lekeleri olmasaydı, sanki tatil günüymüş gibi düşünebilirdiniz."
+    },
+    "site_666": {
+        "name": "Portal",
+        "des": "Bu televizyon dış güce ihtiyaç duymaz ve ekranın arkasında gizli bir dünya vardır. Diğer tarafında ne olduğunu bilmesek de, kesinlikle cennet değildir."
+    },
     "18_0": {
         "title": "Elektrikli Ocak",
         "des": "Son derece kararsız voltajlara uyum sağlayabilir.Pişirme için gerekli sıcaklığa ulaşamasa da yine de kapalı bir alanın ısıtma ihtiyacını karşılamaya yeterlidir."
@@ -7,6 +15,20 @@ var string = {
         "title": "Elektrikli çit",
         "des": "Yetersiz voltaj nedeniyle, kendi kendine yapılan elektrikli Çit yaklaşan zombileri hemen ortadan kaldıramaz, ancak onlara uzak durmalarını 'önerebilir'."
     },
+"9030": "Satmak istiyor musunuz?",
+"9031": "Satın almak istiyor musunuz?",
+"9033": "Sat",
+"9034": "Satın al",
+"9035": "Stok: ",
+"9036": "Ancak çantanız çalıntı şeyleri koymak için yeterli alanı içermiyor. Onları sessizce geri koydunuz.",
+    "1171": "Köpek aç gözlü şekilde taze eti çiğniyor",
+    "1023": "Yetersiz et",
+    "1218": "ana sayfa",
+    "1219": "Varsayılan",
+    "1220": "Noel",
+    "1209": "Harita",
+    "1210": "Şehir",
+    "1211": "Kasaba",
     "1169": "ses efekti",
     "1321": "Masako",
     "1322": "Elektrik mühendisi",
@@ -97,10 +119,9 @@ var string = {
     "1017": "Kahve ve müzikle tekrar dün gibi.",
     "1018": "Uyu",
     "1019": "Uyuyorsun, vücudun iyileşiyor.",
-    "1020": "Besle (%s dk)",
-    "1021": "Köpek mutlu. Evi savunmaya hazır.",
-    "1022": "Köpek aç, ete ihtiyacı var.",
-    "1023": "Köpek aç gözlü şekilde taze eti çiğniyor",
+    "1020": "Besle",
+    "1022": "Köpek aç ve et istiyor. 1 parça et, onu 12 saat boyunca doyurabilir.",
+    "1021": "Köpek evi koruyor. %s parça et %s saat için kaldı.",
     "1024": "Numara",
     "1025": "Ağırlık:",
     "1026": "Stokta:",
@@ -257,14 +278,10 @@ var string = {
     "1183": "Çöpçü",
     "1184": "Molozda değerli şeyleri bulmada iyi ol.",
     "1185": "Kaynak +10%, Çanta yükü +30%",
-    "1186": "Deniz Askerleri",
-    "1187": "Ayrıcalıklı hayatta kalma ve operasyon yeteneği vardır",
-    "1188": "İlk yardım çantası +%s (son oyunda hayatta kalma ödülü +%s)",
     "1190": "Ücret:",
     "1191": "%s yuan",
     "1192": "Ücretsiz",
     "1193": "Dön",
-    "1194": "Bağlanılıyor...",
     "1195": "Şehvete kapılmış,",
     "1196": "Vahşice birbirilerini parçalayıp yiyorlar",
     "1197": "Boşluk tam köşede",
@@ -917,10 +934,50 @@ var string = {
         "name": "Benzin istasyonu",
         "des": "Benzin istasyonunda yatay yedi dikey sekiz arazide her çeşit araba bulunuyor, birbirilerini çıkartmayacak şekilde duruyorlar. Bu kadar karışık bir sahnede ateşlenip patlamamak gerçekten bir mucize!"
     },
-    "site_202": {
-        "name": "???",
-        "des": "Şüpheli bir ekipman, harici güç ekipmanının sürekli çalışacağına güvenilmez, bazen televizyona çıkar ve hediye dağıtır. Tamam, önce bir aşama reklama girelim, sonra ölüm yolculuğu daha heyecanlı olacak!"
-    },
+      "site_202": {
+          "name": "Hurdalık",
+          "des": "Kasabanın çöplüğü o kadar pis kokuyor ki zombiler bile yaklaşmaya cesaret edemiyor. İçinde erzak olsa da... bunun hakkında konuşmayalım, tükürelim"
+      },
+      "site_400": {
+          "name": "Survivor's Market",
+          "des": "Hayatta kalanların düzenlediği çarşıda her gün yeni ürünler olacak. Lütfen malzemeleri 'Depolananlar' içinde satın. Kapitalizm gerçekten de zombilerden daha vahşi."
+      },
+      "site_500": {
+          "name": "Haydut İni",
+          "des": "Bu sıradan bina aslında bir soyguncu çetesinin kampı. Madem beni soymaya cüret ediyorsun, o zaman onu geri almamdan korkmamalısın."
+      },
+      "13": {
+          "title": "Paralar",
+          "des": "Ada zombilerin kuşatması altında olmasına rağmen, madeni paralar hala insanlarla takas yapmak için tek araç."
+      },
+      "npc_7": {
+          "name": "W. Beyaz",
+          "des": "Felaketten önce kasabanın lisesinde kimya öğretmeniydi ama evdeki donanıma bakılırsa buradaki kimyasallar üniversitelerde bile öğretilmiyor.",
+          "dialogs": ["Öhö..Öksürük..Öf.. Üzgünüm meslek hastalığı. Koruyucu malzemelere ulaşmak gittikçe zorlaşıyor.", "Jesse! Jesse! Hey, Jesse olmadan hayat giderek daha stresli hale geliyor." , "'Reçetesiz' bazı kimyasal maddeler de yapabilirim, hehehe...", "Dur! Ellerini kaldır! Hey, sen hırsız değilsin... Üzgünüm o zaman." , "Hala yaptım. karım ve arkadaşlarımla akıl kavgası yaptığım zamanları özlüyorum. şimdi herkesle savaşmak zorundayım."]
+      },
+      "statusDialog2": {
+          "title": {
+              "txt_1": "Geçerli: %s"
+          },
+          "content": {"des2":"Survivor Market'te tanınan tek para birimi jetondur. Orada malzemeleri alıp satabilir ve jeton kazanabilirsiniz."
+          },
+          "action": {
+              "btn_1": {
+                  "txt": "Anladım"
+              }
+          }
+      },
+      "9019": "Ara (30 dakika)",
+      "9020": "Sat",
+      "9021": "Birim fiyatı: ",
+      "9022": "Miktar Seçiniz: ",
+      "9023": "Toplam fiyat: ",
+      "9024": "%s coin karşılığında (%s) satmak üzeresiniz",
+      "9025": " (%s) sattınız ve %s coin aldınız",
+      "9026": "Satın almak için %s coin harcamak üzeresiniz (%s)",
+      "9027": "Satın almak için %s coin harcadınız (%s)",
+      "9028": "Coinleriniz ücreti ödemeye yetmiyor! Mevcut coin: %s",
+      "9032": "Eve döndüğünde her şeyin bir karmaşa içinde olduğunu gördün. Zenginliğin ve güvenlik önlemlerinin eksikliğiyle çekicilik uyandıran hırsızlar evini yağmaladı ve şunları kaybettin:",
     "site_61": {
         "name": "Enstitü",
         "des": "Böyle olacağını hiç düşünmemiştim, bu küçük kasabanın 30 m altında gizli üssün alt tarafında bu kadar büyük bir inşaat var, bunu buraya kim inşa etti? Burada ne oldu?"

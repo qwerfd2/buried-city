@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/4/3.
- */
-
 var BuildAction = cc.Class.extend({
     ctor: function (bid) {
         this.isActioning = false;
@@ -393,10 +389,15 @@ var TrapBuildAction = Formula.extend({
     }
 });
 
-var DogBuildAction = BuildAction.extend({
+var BonfireBuildAction = BuildAction.extend({
     ctor: function (bid) {
         this._super(bid);
         this.config = utils.clone(buildActionConfig[this.id][0]);
+        this.fuel = 0;
+        this.pastTime = 0;
+        this.startTime = null;
+        this.fuelMax = this.config.max;
+        this.timePerFuel = this.config["makeTime"] * 60;
         this.needBuild = {bid: this.id, level: 0};
     },
     clickIcon: function () {
@@ -405,38 +406,96 @@ var DogBuildAction = BuildAction.extend({
     clickAction1: function () {
         if (!uiUtil.checkVigour())
             return;
-        if (!player.dog.canFeed()) {
-            uiUtil.showTinyInfoDialog(1130);
-            return;
-        }
-        utils.emitter.emit("left_btn_enabled", false);
-        this.build.setActiveBtnIndex(this.idx);
+        if (player.validateItems(this.config.cost)) {
+            if (this.fuel >= this.fuelMax) {
+                uiUtil.showTinyInfoDialog(1134);
+            } else {
+                player.costItems(this.config.cost);
 
-        //2. 制作
-        var time = this.config["makeTime"];
-        time *= 60;
-        if (IAPPackage.isHandyworkerUnlocked()) {
-            time = Math.round(time * 0.7);
+                this.addFuel();
+            }
+        } else {
+            uiUtil.showTinyInfoDialog(1146);
         }
+    },
+    addFuelTimer: function () {
         var self = this;
-        this.addTimer(time, time, function () {
-            //1. cost成功
-            player.costItems(self.config.cost);
-
-            player.dog.feed();
-            self.build.resetActiveBtnIndex();
-            utils.emitter.emit("left_btn_enabled", true);
+        this.addTimer(this.timePerFuel, function () {
+            self.fuel--;
+            if (self.fuel > 0) {
+                self.addFuelTimer();
+            } else {
+                //中断回复后,并不需要build resetActiveBtnIndex
+                if (self.build) {
+                    self.build.resetActiveBtnIndex();
+                }
+                //燃料用尽刷新温度
+                player.updateTemperature();
+            }
             Record.saveAll();
-        });
+        }, this.startTime);
+    },
+    addFuel: function () {
+        //燃料空的时候,注册timer
+        if (this.fuel == 0) {
+            this.addFuelTimer();
+            this.build.setActiveBtnIndex(this.idx);
+        }
+        this.fuel++;
+
+        player.updateTemperature();
+
         this._sendUpdageSignal();
+        player.log.addMsg(1097);
+
+        Record.saveAll();
+    },
+    save: function () {
+        return {
+            fuel: this.fuel,
+            pastTime: this.pastTime,
+            startTime: this.startTime
+        };
+    },
+    restore: function (saveObj) {
+        if (saveObj) {
+            this.fuel = saveObj.fuel || 0;
+            this.pastTime = saveObj.pastTime || 0;
+            this.startTime = saveObj.startTime;
+        }
+        if (this.fuel > 0) {
+            this.addFuelTimer();
+        }
+    },
+    addTimer: function (time, endCb, startTime) {
+        this.isActioning = true;
+        var self = this;
+        var tcb = cc.timer.addTimerCallback(new TimerCallback(time, this, {
+            process: function (dt) {
+                self.pastTime += dt;
+                self.totalTime = self.fuel * self.timePerFuel;
+                if (self.view) {
+                    self.view.updatePercentage((self.totalTime - self.pastTime ) / self.totalTime * 100);
+                }
+            },
+            end: function () {
+                self.isActioning = false;
+                self.pastTime = 0;
+                self.startTime = null;
+
+                if (endCb) {
+                    endCb();
+                }
+
+                self._sendUpdageSignal();
+            }
+        }), startTime);
+        this.startTime = tcb.startTime;
     },
     _getUpdateViewInfo: function () {
         var iconName = "#build_action_" + this.id + "_0" + ".png";
-        var time = this.config["makeTime"];
-        if (IAPPackage.isHandyworkerUnlocked()) {
-            time = Math.round(time * 0.7);
-        }
-        var action1Txt = stringUtil.getString(1020, time);
+
+        var action1Txt = stringUtil.getString(1010);
 
         var hint, hintColor, items, action1Disabled;
         if (this.needBuild.level > player.room.getBuildLevel(this.needBuild.bid)) {
@@ -444,23 +503,13 @@ var DogBuildAction = BuildAction.extend({
             hintColor = cc.color.RED;
             action1Disabled = true;
         } else if (this.isActioning) {
-            hint = stringUtil.getString(1023);
+            hint = stringUtil.getString(1012, this.fuel, Math.floor(this.fuel * this.config["makeTime"] / 60));
             hintColor = cc.color.WHITE;
-            action1Disabled = true;
         } else {
-            hint = player.dog.isActive() ? stringUtil.getString(1021) : stringUtil.getString(1022);
-            var cost = this.config.cost;
-            if (!player.validateItems(cost)) {
-                action1Disabled = true;
-            }
-            items = cost.map(function (itemInfo) {
-                return {
-                    itemId: itemInfo.itemId,
-                    num: itemInfo.num,
-                    color: itemInfo.haveNum >= itemInfo.num ? cc.color.WHITE : cc.color.RED
-                };
-            });
+            hint = stringUtil.getString(1011);
+            hintColor = cc.color.WHITE;
         }
+
         var res = {
             iconName: iconName,
             hint: hint,
@@ -473,6 +522,7 @@ var DogBuildAction = BuildAction.extend({
         return res;
     }
 });
+
 
 var RestBuildAction = BuildAction.extend({
     ctor: function (bid, level) {
@@ -604,7 +654,7 @@ var DrinkBuildAction = BuildAction.extend({
         this.addTimer(time, time, function () {
             //1. cost成功
             player.costItems(self.config.cost);
-            self.config.produce.forEach(function (item) {
+            self.config.cost.forEach(function (item) {
                 Achievement.checkCost(item.itemId, item.num);
             });
             player.applyEffect(self.config["effect"]);
@@ -691,12 +741,8 @@ var BedBuildAction = BuildAction.extend({
         uiUtil.showBuildActionDialog(this.bid, this.type - 1);
     },
     clickAction1: function () {
-        this.updateConfig();
-
-        utils.emitter.emit("left_btn_enabled", false);
-        this.build.setActiveBtnIndex(this.idx);
-        //2. 制作
         var time;
+        this.updateConfig();
         switch (this.type) {
             case BedBuildActionType.SLEEP_1_HOUR:
                 time = 1 * 60 * 60;
@@ -708,7 +754,6 @@ var BedBuildAction = BuildAction.extend({
                 time = cc.timer.getTimeFromNowToMorning();
                 break;
         }
-        //单位小时的影响
         var effect = this.config["effect"];
         var hours = time / 60 / 60;
         var totalEffect = {};
@@ -719,6 +764,10 @@ var BedBuildAction = BuildAction.extend({
                 totalEffect[key] = effect[key];
             }
         }
+        utils.emitter.emit("left_btn_enabled", false);
+        this.build.setActiveBtnIndex(this.idx);
+        //2. 制作
+        //单位小时的影响
         player.sleep();
         var self = this;
         this.addTimer(time, time, function () {
@@ -776,7 +825,7 @@ var BedBuildAction = BuildAction.extend({
     }
 });
 
-var BonfireBuildAction = BuildAction.extend({
+var DogBuildAction = BuildAction.extend({
     ctor: function (bid) {
         this._super(bid);
         this.config = utils.clone(buildActionConfig[this.id][0]);
@@ -788,21 +837,20 @@ var BonfireBuildAction = BuildAction.extend({
         this.needBuild = {bid: this.id, level: 0};
     },
     clickIcon: function () {
-        uiUtil.showBuildActionDialog(this.bid, 0);
+            uiUtil.showBuildActionDialog(this.bid, 0);     
     },
     clickAction1: function () {
         if (!uiUtil.checkVigour())
             return;
         if (player.validateItems(this.config.cost)) {
             if (this.fuel >= this.fuelMax) {
-                uiUtil.showTinyInfoDialog(1134);
+                uiUtil.showTinyInfoDialog(1130);
             } else {
                 player.costItems(this.config.cost);
-
                 this.addFuel();
             }
         } else {
-            uiUtil.showTinyInfoDialog(1146);
+            uiUtil.showTinyInfoDialog(1023);
         }
     },
     addFuelTimer: function () {
@@ -816,8 +864,6 @@ var BonfireBuildAction = BuildAction.extend({
                 if (self.build) {
                     self.build.resetActiveBtnIndex();
                 }
-                //燃料用尽刷新温度
-                player.updateTemperature();
             }
             Record.saveAll();
         }, this.startTime);
@@ -833,7 +879,7 @@ var BonfireBuildAction = BuildAction.extend({
         player.updateTemperature();
 
         this._sendUpdageSignal();
-        player.log.addMsg(1097);
+        player.log.addMsg(1171);
 
         Record.saveAll();
     },
@@ -882,7 +928,7 @@ var BonfireBuildAction = BuildAction.extend({
     _getUpdateViewInfo: function () {
         var iconName = "#build_action_" + this.id + "_0" + ".png";
 
-        var action1Txt = stringUtil.getString(1010);
+        var action1Txt = stringUtil.getString(1020);
 
         var hint, hintColor, items, action1Disabled;
         if (this.needBuild.level > player.room.getBuildLevel(this.needBuild.bid)) {
@@ -890,10 +936,10 @@ var BonfireBuildAction = BuildAction.extend({
             hintColor = cc.color.RED;
             action1Disabled = true;
         } else if (this.isActioning) {
-            hint = stringUtil.getString(1012, this.fuel, Math.floor(this.fuel * this.config["makeTime"] / 60));
+            hint = stringUtil.getString(1021, this.fuel, Math.floor(this.fuel * this.config["makeTime"] / 60));
             hintColor = cc.color.WHITE;
         } else {
-            hint = stringUtil.getString(1011);
+            hint = stringUtil.getString(1022);
             hintColor = cc.color.WHITE;
         }
 

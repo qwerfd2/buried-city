@@ -1,8 +1,3 @@
-/**
- * User: Alex
- * Date: 15/1/5
- * Time: 下午4:07
- */
 var Navigation = {
     _array: null,
     _map: {},
@@ -27,7 +22,10 @@ var Navigation = {
         RADIO_NODE: "RadioNode",
         GATE_OUT_NODE: "GateOutNode",
         SHOP_NODE: "ShopNode",
-        AD_STORAGE_NODE: "AdStorageNode"
+        AD_STORAGE_NODE: "AdStorageNode",
+        BAZAAR_SITE_NODE: "BazaarSiteNode",
+        BAZAAR_STORAGE_NODE: "BazaarStorageNode",
+        BAZAAR_NODE: "BazaarNode"
     },
     siteMusic: null,
     forward: function (nodeName, userData) {
@@ -110,7 +108,16 @@ var Navigation = {
                     break;
                 case this.nodeName.SHOP_NODE:
                     musicName = audioManager.music.HOME;
-                    break;             
+                    break;
+                case this.nodeName.BAZAAR_NODE:
+                    musicName = audioManager.music.NPC;
+                    break;
+                case this.nodeName.BAZAAR_STORAGE_NODE:
+                    musicName = audioManager.music.NPC;
+                    break;
+                case this.nodeName.BAZAAR_SITE_NODE:
+                    musicName = audioManager.music.NPC;
+                    break;
             }
             if ((musicName && musicName != this.currentMusic) || !this.currentMusic) {
                 audioManager.stopMusic(this.currentMusic);
@@ -168,6 +175,9 @@ var Navigation = {
         this._map["GateOutNode"] = GateOutNode.prototype.constructor;
         this._map["ShopNode"] = ShopNode.prototype.constructor;
         this._map["AdStorageNode"] = AdStorageNode.prototype.constructor;
+        this._map["BazaarNode"] = BazaarNode.prototype.constructor;
+        this._map["BazaarSiteNode"] = BazaarSiteNode.prototype.constructor;
+        this._map["BazaarStorageNode"] = BazaarStorageNode.prototype.constructor;
         this.restore();
     },
     getClz: function (nodeName) {
@@ -202,8 +212,8 @@ var BottomFrameNode = cc.Node.extend({
         this.initRes();
         this.bg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_bg_bottom.png");
         if (Record.getScreenFix()) {
-            this.bg.setScale(0.85);
-            this.bg.setPosition(cc.winSize.width / 2, 98);
+            this.bg.setScale(0.87);
+            this.bg.setPosition(cc.winSize.width / 2, 90);
         } else {
             this.bg.setPosition(cc.winSize.width / 2, 18);
         }
@@ -246,7 +256,6 @@ var BottomFrameNode = cc.Node.extend({
     },
     onClickRightBtn: function () {
         //this.forward(Navigation.nodeName.HOME_NODE);
-
     },
 
     forward: function (nodeName, userData) {

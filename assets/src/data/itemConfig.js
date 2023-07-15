@@ -275,7 +275,7 @@ var itemConfig = {
             "effect": 1,
             "effectType": 1,
             "value": 60,
-            "lastTime": 72
+            "lastTime": 48
         }
     },
     "1107022": {
@@ -288,7 +288,7 @@ var itemConfig = {
             "effect": 2,
             "effectType": 2,
             "value": 0,
-            "lastTime": 72
+            "lastTime": 48
         }
     },
     "1107032": {
@@ -301,7 +301,7 @@ var itemConfig = {
             "effect": 3,
             "effectType": 2,
             "value": 0,
-            "lastTime": 72
+            "lastTime": 48
         }
     },
     "1107042": {
@@ -314,7 +314,7 @@ var itemConfig = {
             "effect": 4,
             "effectType": 2,
             "value": 0,
-            "lastTime": 72
+            "lastTime": 48
         }
     },
     "1301011": {
@@ -669,7 +669,7 @@ var itemConfig = {
         "effect_arm": {
             "id": "1304012",
             "def": 3,
-            "brokenProbability": 0.1
+            "brokenProbability": 0.08
         }
     },
     "1304023": {
@@ -680,7 +680,7 @@ var itemConfig = {
         "effect_arm": {
             "id": "1304023",
             "def": 5,
-            "brokenProbability": 0.08
+            "brokenProbability": 0.06
         }
     },
     "1304024": {

@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/12/15.
- */
 var specialItemConfig = {
     //强光手电,增加发现密室的几率
     1305053: {probability: 0.08},

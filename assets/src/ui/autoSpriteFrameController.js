@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/5/22.
- */
-
 var autoSpriteFrameController = {
     _plistInfoCache: {},
     _map: {},

@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/5/16.
- */
 var player;
 var game = {
     init: function () {

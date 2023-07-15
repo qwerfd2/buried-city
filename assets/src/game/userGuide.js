@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/6/2.
- */
 var userGuide = {
     stepName: {
         GAME_START: 0,

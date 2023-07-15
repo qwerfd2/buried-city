@@ -1,8 +1,3 @@
-/**
- *
- * Created by lancelot on 15/7/7.
- */
-
 var BaseSite = cc.Class.extend({
     ctor: function () {
         this.pos = cc.p(utils.getRandomInt(5, 25), utils.getRandomInt(5, 50));
@@ -15,6 +10,7 @@ var HOME_SITE = 100;
 var AD_SITE = 202;
 var BOSS_SITE = 61;
 var WORK_SITE = 204;
+var BAZAAR_SITE = 400;
 
 var Site = BaseSite.extend({
     ctor: function (siteId) {
@@ -48,15 +44,15 @@ var Site = BaseSite.extend({
             var ITEM_FLASHLIGHT = 1305053;
             //密室收到道具影响
             var maxCount = Number.parseInt(this.secretRoomsConfig.maxCount);
-            if (player.storage.getNumByItemId(ITEM_EXPLORER) > 0) {
+            if (player.equip.isEquiped(ITEM_EXPLORER)) {
                 maxCount += specialItemConfig[ITEM_EXPLORER].maxCount;
             }
             if (this.secretRoomsShowedCount < maxCount) {
                 var probability = Number.parseFloat(this.secretRoomsConfig.probability);
 
-                if (player.storage.getNumByItemId(ITEM_EXPLORER) > 0) {
+                if (player.equip.isEquiped(ITEM_EXPLORER)) {
                     probability += specialItemConfig[ITEM_EXPLORER].probability;
-                } else if (player.storage.getNumByItemId(ITEM_FLASHLIGHT) > 0) {
+                } else if (player.equip.isEquiped(ITEM_FLASHLIGHT)) {
                     probability += specialItemConfig[ITEM_FLASHLIGHT].probability;
                 }
                 var rand = Math.random();
@@ -297,6 +293,50 @@ var Site = BaseSite.extend({
 });
 
 var AdSite = Site.extend({
+    ctor: function (siteId) {
+        this.id = siteId;
+        cc.log(this.id);
+        this.config = utils.clone(siteConfig[this.id]);
+        this.pos = this.config.coordinate;
+        this.storage = new Storage();
+        this.isActive = false;
+    },
+    save: function () {
+        return {
+            pos: this.pos,
+            step: this.step,
+            storage: this.storage.save(),
+            isActive: this.isActive,
+            haveNewItems: this.haveNewItems
+        };
+    },
+    restore: function (saveObj) {
+        if (saveObj) {
+            this.pos = saveObj.pos;
+            this.step = saveObj.step;
+            this.storage.restore(saveObj.storage);
+            this.isActive = saveObj.isActive;
+            this.haveNewItems = saveObj.haveNewItems;
+        } else {
+            this.init();
+        }
+    },
+    init: function () {
+    },
+    isSiteEnd: function () {
+        return false;
+    },
+    //进度
+    getProgressStr: function () {
+        return "???";
+    },
+    //当前room的指示
+    getCurrentProgressStr: function () {
+        return "";
+    }
+});
+
+var BazaarSite = Site.extend({
     ctor: function (siteId) {
         this.id = siteId;
         cc.log(this.id);

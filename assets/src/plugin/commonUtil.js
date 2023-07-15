@@ -1,6 +1,4 @@
-/**
- * Created by lancelot on 15/3/12.
- */
+
 var CommonUtil = {
     _callbackList: {},
     _dialog: null,
@@ -9,17 +7,6 @@ var CommonUtil = {
         if (PurchaseAndroid.payType == PurchaseAndroid.PAY_TYPE_GOOGLE_PLAY)
             url = "https://play.google.com/store/apps/details?id=com.locojoy.buriedtown";
         jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "openShare", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", msg, url, title);
-    },
-
-    getLocaleCountryCode: function () {
-        return jsb.reflection.callStaticMethod("org/cocos2dx/javascript/CommonUtil", "getLocaleCountryCode", "()Ljava/lang/String;");
-    },
-    getLocaleLanguage: function () {
-            return jsb.reflection.callStaticMethod("org/cocos2dx/javascript/CommonUtil", "getLocaleLanguage", "()Ljava/lang/String;");
-    },
-
-    gotoAppstore: function () {
-        jsb.reflection.callStaticMethod("org/cocos2dx/javascript/CommonUtil", "gotoMarketDetail", "()V");
     },
     gotoUrl: function (url) {
         jsb.reflection.callStaticMethod("org/cocos2dx/javascript/CommonUtil", "gotoUrl", "(Ljava/lang/String;)V", url);

@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var BossSiteNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);

@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var AdSiteNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -29,7 +26,7 @@ var AdSiteNode = BottomFrameNode.extend({
         this.txt2.setPosition(rightEdge + 20, this.actionBarBaseHeight - 4);
         this.bg.addChild(this.txt2);
 
-        var digDes = autoSpriteFrameController.getSpriteFromSpriteName("#site_dig_" + this.site.id + ".png");
+        var digDes = autoSpriteFrameController.getSpriteFromSpriteName("#ad_site.png");
         digDes.setAnchorPoint(0.5, 1);
         digDes.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - 50);
         this.bg.addChild(digDes);
@@ -47,7 +44,7 @@ var AdSiteNode = BottomFrameNode.extend({
         this.bg.addChild(btn1);
         btn1.setName("btn_1")
 
-        this.notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName('map_actor.png');
+        this.notifyIcon = new cc.Sprite('res/new/map_actor.png');
         this.notifyIcon.x = btn1.width - 5;
         this.notifyIcon.y = btn1.height - 5;
         btn1.addChild(this.notifyIcon);
@@ -59,10 +56,11 @@ var AdSiteNode = BottomFrameNode.extend({
         this.playHighlight = autoSpriteFrameController.getSpriteFromSpriteName('icon_ad_play_highlight.png');
         this.playHighlight.x = digDes.width / 2;
         this.playHighlight.y = digDes.height / 2;
+        this.playHighlight.setScale(0.8);
         digDes.addChild(this.playHighlight);
-        this.playHighlight.runAction(cc.repeatForever((cc.sequence(cc.fadeOut(2), cc.fadeIn(2)))));
 
-        var btnPlay = uiUtil.createSpriteBtn({normal: "icon_ad_play.png"}, this, function () {
+        var btnPlay = uiUtil.createBigBtnWhite(stringUtil.getString(9019), this, function () {
+            cc.timer.updateTime(1800);
             adHelper.onAdStatusChange(adHelper.AD_STATUS_DISMISS);
         });
         btnPlay.x = this.playHighlight.width / 2;

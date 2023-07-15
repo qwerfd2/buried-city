@@ -1,11 +1,7 @@
-/**
- * Created by lancelot on 15/4/27.
- */
-
 var ItemChangeNode = cc.Node.extend({
-    ctor: function (topStorage, topStorageName, bottomStorage, bottomStorageName, withTakeAll, smallSize) {
+    ctor: function (topStorage, topStorageName, bottomStorage, bottomStorageName, withTakeAll, smallSize, siteId) {
         this._super();
-
+        this.site = siteId.id;
         if (smallSize) {
             this.setContentSize(596, 570);
         } else {
@@ -99,11 +95,15 @@ var ItemChangeNode = cc.Node.extend({
         var self = this;
         return function (storageCell, id, isLongPressed) {
             if (isLongPressed) {
-                uiUtil.showItemSliderDialog(storageCell.item.id, id === "top" ? self.topData : self.bottomData, function (num) {
-                    num = Number(num);
-                    self.exchange(id, storageCell.item.id, num);
-                    self.updateView();
-                });
+                if (self.site == 400 && id === "top") {
+                    uiUtil.bazaarSell(storageCell.item.id, true);
+                } else {
+                    uiUtil.showItemSliderDialog(storageCell.item.id, id === "top" ? self.topData : self.bottomData, function (num) {
+                        num = Number(num);
+                        self.exchange(id, storageCell.item.id, num);
+                        self.updateView();
+                    });
+                }
             } else {
                 self.exchange(id, storageCell.item.id, 1);
                 self.updateView();
@@ -147,10 +147,15 @@ var ItemChangeNode = cc.Node.extend({
             toData = this.topData;
         }
         fromData.forEach(function (item, num) {
-            for (var i = 0; i < num; i++) {
-                if (toData.validateItemWeight(item.id, 1)) {
-                    fromData.decreaseItem(item.id, 1);
-                    toData.increaseItem(item.id, 1);
+            if (itemConfig[item.id].weight == 0) {
+                fromData.decreaseItem(item.id, num);
+                toData.increaseItem(item.id, num);
+            } else {
+                for (var i = 0; i < num; i++) {
+                    if (toData.validateItemWeight(item.id, 1)) {
+                        fromData.decreaseItem(item.id, 1);
+                        toData.increaseItem(item.id, 1);
+                    }
                 }
             }
         });

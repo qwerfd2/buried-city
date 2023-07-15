@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/8/19.
- */
 var SliderBar = cc.Node.extend({
     ctor: function (size) {
         this._super();

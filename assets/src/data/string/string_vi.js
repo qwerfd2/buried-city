@@ -1,4 +1,12 @@
 var string = {
+"site_501": {
+        "name": "Trường Trung học",
+        "des": "Hành lang trường trung học, trước đây nhộn nhịp với người đông, giờ đây yên tĩnh đến mức bạn có thể nghe thấy tiếng kim rơi. Nếu không có sách rải rác và vết máu, người ta có thể tưởng như đó là một ngày nghỉ."
+    },
+    "site_666": {
+        "name": "Cổng truyền",
+        "des": "Chiếc tivi này không cần nguồn điện bên ngoài và có một thế giới bí ẩn đằng sau màn hình. Mặc dù chúng ta không biết bên kia có gì, nhưng chắc chắn không phải thiên đường."
+    },
     "18_0": {
         "title": "Bếp điện",
         "des": "Nó có thể thích ứng với điện áp cực kỳ không ổn định, mặc dù không thể đạt được nhiệt độ cần thiết để nấu ăn nhưng vẫn đủ để đáp ứng yêu cầu sưởi ấm của một không gian hạn chế."
@@ -7,6 +15,20 @@ var string = {
         "title": "Hàng rào điện",
         "des": "Do không đủ điện áp nên Hàng rào điện tự dựng không thể loại bỏ ngay lũ zombie đang tiến đến, nhưng nó có thể 'gợi ý' chúng tránh xa."
     },
+"9030": "Bạn có muốn bán?",
+"9031": "Bạn có muốn mua?",
+"9033": "Bán",
+"9034": "Mua",
+"9035": "Hàng tồn: ",
+"9036": "Nhưng cặp của bạn không đủ chỗ để chứa những thứ đã ăn cắp. Bạn đã để chúng trở lại một cách im lặng.",
+    "1171": "Chú chó vui mừng ăn từng miếng thịt tươi.",
+"1023": "Thiếu thịt",
+    "1218": "trang chủ",
+    "1219": "Mặc định",
+    "1220": "Giáng sinh",
+    "1209": "Bản đồ",
+    "1210": "Thành phố",
+    "1211": "Thị trấn",
     "1169": "hiệu ứng âm thanh",
     "1321": "Masako",
     "1322": "Kĩ sư điện",
@@ -98,10 +120,10 @@ var string = {
     "1017": "Cùng với hương café thơm nồng, bạn dường như đang trở về với những ngày xưa tươi đẹp",
     "1018": "Ngủ",
     "1019": "Đi vào giấc ngủ, cơ thể và sức mạnh được khôi phục.",
-    "1020": "Cho ăn (%s điểm)",
-    "1021": "Trạng thái của chó rất tốt, có thể chiến đấu bất cứ lúc nào!",
-    "1022": "Chó bị đói, nó cần ăn thịt",
-    "1023": "Chú chó vui mừng ăn từng miếng thịt tươi.",
+    "1020": "Cho ăn",
+    "1022": "Chó đói và muốn thịt. 1 miếng thịt có thể nuôi nó trong 12 giờ.",
+    "1021": "Con chó đang giữ nhà. Còn lại %s miếng thịt trong %s giờ.",
+
     "1024": "Không",
     "1025": "Trọng lượng:",
     "1026": "Dư lượng:",
@@ -258,14 +280,10 @@ var string = {
     "1183": "Người nhặt rác",
     "1184": "Có sở trường tìm được những thứ có giá trị trong đống đổ nát",
     "1185": "Tài nguyên phụ bản + 10%, Tải trọng túi + 30%",
-    "1186": "Đội viên lục chiến",
-    "1187": "Có khả năng sinh tồn và chiến đấu siêu việt",
-    "1188": "Túi cứu sinh +%s cái ( Phần thưởng cho số ngày sống  sót ở lần chơi trước + +%s cái)",
     "1190": "Giá:",
     "1191": "%s tiền",
     "1192": "Miễn phí",
     "1193": "Trở lại",
-    "1194": "Đang kết nối…",
     "1195": "Bị dục vọng dẫn lỗi ",
     "1196": "Chúng cắn xé lẫn nhau một cách tàn bạo",
     "1197": "Xung quanh một khoảng hư không",
@@ -918,10 +936,50 @@ var string = {
         "name": "Trạm xăng",
         "des": "Trong trạm xăng, xe hơi đỗ la liệt, lộn xộn, tiến không được, lùi cũng không xong. Kỳ lạ là hỗn loạn như thế nhưng không gây ra cháy nổ."
     },
-    "site_202": {
-        "name": "???",
-        "des": "Một thiết bị khả nghi, nó hoạt động mà không nhờ vào một thiết bị cung cấp điện từ bên ngoài, thi thoảng lại phát video, còn phát quà nữa. Thôi được, xem một đoạn quảng cáo trước rồi tới chuyến du lịch chết chóc càng kích thích hơn."
-    },
+"site_202": {
+          "name": "Bãi rác",
+          "des": "Bãi rác của thị trấn hôi thối đến mức zombie cũng không dám lại gần. Mặc dù có thể có đồ tiếp tế trong đó, nhưng... đừng nói về nó, hãy nhổ nó đi"
+      },
+      "site_400": {
+          "name": "Survivor's Market",
+          "des": "Phiên chợ do những người sống sót tổ chức sẽ có sản phẩm mới mỗi ngày. Vui lòng bán nguồn cung cấp trong 'Nơi để đồ'. Chủ nghĩa tư bản thực sự hung dữ hơn cả thây ma."
+      },
+      "site_500": {
+          "name": "Bandit Den",
+          "des": "Tòa nhà không có gì nổi bật này kỳ thực là nơi đóng quân của một băng nhóm cướp, nếu bạn dám cướp của tôi, thì bạn đừng sợ tôi lấy lại."
+      },
+      "13": {
+          "title": "Tiền xu",
+          "des": "Mặc dù hòn đảo đang bị bao vây bởi thây ma, nhưng tiền xu vẫn là phương tiện duy nhất để trao đổi với mọi người."
+      },
+      "npc_7": {
+          "name": "W. Trắng",
+          "des": "Trước thảm họa, anh ấy là giáo viên hóa học tại trường trung học của thị trấn, nhưng xét theo thiết bị ở nhà, hóa chất ở đây thậm chí còn không được các trường đại học giảng dạy.",
+          "dialogs": ["Cough..Cough..Cough.. Xin lỗi, bệnh nghề nghiệp. Đồ bảo hộ ngày càng khó kiếm.", "Jesse! Jesse! Này, cuộc sống ngày càng căng thẳng khi không có Jesse." , "Tôi cũng có thể tạo ra một số chất hóa học 'ngoài quầy', hehehe...", "Dừng lại! Giơ tay lên! Này, bạn không phải là kẻ trộm ... Vậy thì xin lỗi", "Tôi vẫn nhớ khoảng thời gian đấu trí với vợ và bạn bè. Bây giờ, tôi phải chiến đấu với mọi người."]
+      },
+      "actionDialog2": {
+          "title": {
+              "txt_1": "Hiện tại: %s"
+          },
+          "content": {"des2":"Tiền xu là đơn vị tiền tệ duy nhất được công nhận trong Chợ người sống sót. Bạn có thể mua và bán vật tư ở đó và kiếm xu."
+          },
+          "action": {
+              "btn_1": {
+                  "txt": "Hiểu rồi"
+              }
+          }
+      },
+      "9019": "Tìm kiếm (30 phút)",
+      "9020": "Bán",
+      "9021": "Đơn giá: ",
+      "9022": "Chọn Số lượng: ",
+      "9023": "Tổng giá: ",
+      "9024": "Bạn sắp bán (%s) lấy %s xu",
+      "9025": "Bạn đã bán (%s) và nhận được %s xu",
+      "9026": "Bạn sắp chi %s xu để mua (%s)",
+      "9027": "Bạn đã chi %s xu để mua (%s)",
+      "9028": "Xu của bạn không đủ để trả phí! Xu hiện tại là: %s",
+      "9032": "Bạn trở về nhà và thấy mọi thứ trong tình trạng hỗn loạn. Bị thu hút bởi sự giàu có của bạn và thiếu sự bảo vệ, trộm cướp đã cướp nhà bạn và bạn đã mất:",
     "site_61": {
         "name": "Phòng nghiên cứu 081",
         "des": "Thật không ngờ ở cái thị trấn này sâu dưới lòng đất 30m lại có một công trình to lớn đến vậy, rốt cục là ai đã tạo ra nó? Ở đây đã xảy ra điều gì?"

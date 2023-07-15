@@ -21,12 +21,12 @@ var jsList = [
     "src/data/MoonlightingConfig.js",
     "src/data/randomBattleConfig.js",
     "src/data/playerAttrEffect.js",
-    "src/data/clientData.js",
     "src/data/secretRooms.js",
     "src/data/weatherConfig.js",
     "src/data/weatherSystemConfig.js",
     "src/data/randomReward.js",
     "src/data/specialItemConfig.js",
+    "src/data/purchaseList.js",
 
     "src/game/record.js",
     "src/game/achievement.js",
@@ -48,7 +48,6 @@ var jsList = [
     "src/game/weather.js",
     "src/game/medal.js",
     "src/game/buff.js",
-    "src/game/role.js",
 
     "src/ui/baseScene.js",
     "src/ui/button.js",
@@ -90,10 +89,10 @@ var jsList = [
     "src/ui/rankFamousScene.js",
     "src/ui/sliderBar.js",
     "src/ui/medalLayer.js",
+    "src/ui/bazaarNode.js",
 
     "src/plugin/commonUtil.js",
     "src/plugin/PurchaseAndroid.js",
-    "src/plugin/purchaseList.js",
     "src/plugin/purchaseTask.js",
     "src/plugin/adHelper.js"
 ]

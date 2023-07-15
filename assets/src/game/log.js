@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/1/27.
- */
-
 var Log = cc.Class.extend({
     ctor: function () {
         this.logList = [];

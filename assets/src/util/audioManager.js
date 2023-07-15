@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/5/22.
- */
 var audioManager = {
     sound: {
         ATTACK_1: "res/sound/attack_1.mp3",

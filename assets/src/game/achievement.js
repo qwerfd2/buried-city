@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/8/12.
- */
-
 var AchievementConfig = {
     bt_season_1: {aim: 1, aimCompleted: 0, completed: 0, time: 0, seasonId: 1},
     bt_season_2: {aim: 1, aimCompleted: 0, completed: 0, time: 0, seasonId: 2},

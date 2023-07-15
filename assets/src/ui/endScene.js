@@ -1,9 +1,3 @@
-/**
- * User: Alex
- * Date: 15/1/5
- * Time: 下午4:07
- */
-
 var EndLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
@@ -17,7 +11,7 @@ var EndLayer = cc.Layer.extend({
     onEnter: function () {
         this._super();
         if (Record.getScreenFix()) {
-            this.setScale(0.84);
+            this.setScale(0.83);
         }
         var bg = autoSpriteFrameController.getSpriteFromSpriteName("#end_bg.png");
         bg.x = cc.winSize.width / 2;

@@ -1,4 +1,12 @@
 var string = {
+   "site_501": {
+        "name": "Gymnasium",
+        "des": "Der Schulflur, einst belebt von Schülern, ist jetzt so ruhig, dass man eine Stecknadel fallen hören könnte. Wären da nicht die verstreuten Bücher und Blutspuren, könnte man denken, es ist ein Feiertag."
+    },
+    "site_666": {
+        "name": "Portal",
+        "des": "Dieser Fernseher benötigt keine externe Stromversorgung und hat eine verborgene Welt hinter dem Bildschirm. Obwohl wir nicht wissen, was sich auf der anderen Seite befindet, ist es definitiv nicht der Himmel."
+    },
     "18_0": {
         "title": "E-Herd",
         "des": "Es kann sich an extrem instabile Spannungen anpassen. Obwohl es die zum Kochen erforderliche Temperatur nicht erreichen kann, reicht es dennoch aus, um den Heizbedarf eines begrenzten Raums zu decken."
@@ -7,6 +15,20 @@ var string = {
         "title": "Elektrozaun",
         "des": "Aufgrund unzureichender Spannung kann der selbstgebaute Stromzaun die herannahenden Zombies zwar nicht sofort vernichten, aber er kann sie „auffordern“, sich fernzuhalten."
     },
+"9030": "Você quer vender?",
+"9031": "Você quer comprar?",
+"9033": "Vender",
+"9034": "Comprar",
+"9035": "Estoque: ",
+"9036": "Aber dein Rucksack kann die gestohlenen Dinge nicht aufnehmen. Du hast sie leise zurückgelegt.",
+    "1171": "Der Hund frisst gierig das frische Fleisch",
+    "1023": "Unzureichendes Fleisch",
+    "1218": "Hauptseite",
+    "1219": "Standard",
+    "1220": "Weihnachten",
+    "1209": "Karte",
+    "1210": "Stadt",
+    "1211": "Dorf",
     "1169": "Soundeffekt",
     "1321": "Masako",
     "1322": "Elektroingenieur",
@@ -97,10 +119,10 @@ var string = {
     "1017": "Mit Kaffee und Musik ist alles so wie früher",
     "1018": "Schlafen",
     "1019": "Du schläfst ein. Dein Körper stellt Kraft wieder her.",
-    "1020": "Füttern (%s m)",
-    "1021": "Der Hund ist zufrieden. Er ist bereit dazu, dass Haus zu verteidigen.",
-    "1022": "Der Hund ist hungrig und benötigt Fleisch.",
-    "1023": "Der Hund frisst gierig das frische Fleisch",
+    "1020": "Füttern",
+    "1022": "Der Hund hat Hunger und möchte Fleisch. 1 Stück Fleisch reicht für 12 Stunden.",
+    "1021": "Der Hund bewacht das Haus. Es sind noch %s Stück(e) Fleisch für %s Stunden übrig.",
+
     "1024": "Nicht vorhanden",
     "1025": "Gewicht:",
     "1026": "Verfügbare Menge:",
@@ -257,14 +279,10 @@ var string = {
     "1183": "Schnorrer",
     "1184": "Ist gut darin, wertvolle Dinge zu finden.",
     "1185": "Ressourcen +10%, Rucksacktragfähigkeit +30%",
-    "1186": "Soldat",
-    "1187": "Hat ausgezeichnete Überlebens-und Kampffähigkeiten",
-    "1188": "Erste Hilfe Set +%s (Überlebensbelohnung des letzten Spiels +%s)",
     "1190": "Preis:",
     "1191": "%s",
     "1192": "Kostenlos",
     "1193": "Zurück",
-    "1194": "Verbindung wird hergestellt",
     "1195": "Von der Lust getrieben",
     "1196": "Sie verschlingen sich auf grausame Weise gegenseitig.",
     "1197": "Überall ist Leere",
@@ -917,10 +935,50 @@ var string = {
         "name": "Tankstelle",
         "des": "An dieser Tankstelle parken alle möglichen Autos kreuz und quer und blockieren sich gegenseitig. Es gibt kein Rein- und Rauskommen. Das es in einem solchen Chaos noch zu keiner Explosion gekommen ist, ist echt ein Wunder! "
     },
-    "site_202": {
-        "name": "???",
-        "des": "Eine merkwürdige Anlage, die nicht auf einkommenden Strom angewiesen ist und trotzdem funktioniert. Ab und zu wird noch ein Video abgespielt und Geschenke ausgesandt. Das muss wohl eine neuartige Werbung sein. Die letzte Reise soll noch aufregender werden."
-    },
+"site_202": {
+          "name": "Schrottplatz",
+          "des": "Die Mülldeponie der Stadt stinkt so sehr, dass nicht einmal Zombies es wagen, sich ihr zu nähern. Es mag zwar Vorräte darin geben, aber... lasst uns nicht darüber reden, sondern sie ausspucken."
+      },
+      "site_400": {
+          "name": "Markt der Überlebenden",
+          "des": "Auf dem von den Überlebenden organisierten Basar werden jeden Tag neue Produkte angeboten. Bitte verkaufen Sie Vorräte in ‚Depotstelle‘. Der Kapitalismus ist wirklich grausamer als Zombies."
+      },
+      "site_500": {
+          "name": "Banditenhöhle",
+          "des": "Dieses unauffällige Gebäude ist eigentlich das Lager einer Räuberbande. Da du es wagst, mich auszurauben, solltest du keine Angst davor haben, dass ich es zurücknehme."
+      },
+      "13": {
+          "title": "Münzen",
+          "des": "Obwohl die Insel von Zombies belagert wird, sind Münzen immer noch das einzige Medium für den Tauschhandel mit Menschen."
+      },
+      "npc_7": {
+          "name": "W. White",
+          "des": "Vor der Katastrophe war er Chemielehrer an der High School der Stadt, aber der Ausstattung zu Hause nach zu urteilen, werden Chemikalien hier nicht einmal an Universitäten gelehrt.",
+          "dialogs": ["Hust..Hust..Hust.. Tut mir leid, Berufskrankheit. Schutzmaterialien werden immer schwerer zu bekommen.", "Jesse! Jesse! Hey, das Leben wird ohne Jesse immer stressiger." , "Ich kann auch einige chemische Substanzen herstellen, die ‚von der Stange‘ sind, hehehe…", "Halt! Hände hoch! Hey, du bist kein Dieb... Dann tut es mir leid." , "Ich immer noch Ich vermisse die Zeit, als ich mit meiner Frau und meinen Freunden um den Verstand kämpfte. Jetzt muss ich gegen jeden kämpfen."]
+      },
+      "statusDialog2": {
+          "title": {
+              "txt_1": "Aktuell: %s"
+          },
+          "content": {"des2": "Münzen sind die einzige anerkannte Währung auf dem Survivor Market. Sie können dort Vorräte kaufen und verkaufen und Münzen verdienen."
+          },
+          "action": {
+              "btn_1": {
+                  "txt": "Verstanden"
+              }
+          }
+      },
+      "9019": "Suche (30 Minuten)",
+      "9020": "Verkaufen",
+      "9021": "Einzelpreis:",
+      "9022": "Menge auswählen:",
+      "9023": "Gesamtpreis:",
+      "9024": "Sie sind dabei, (%s) für %s Münzen zu verkaufen",
+      "9025": "Sie haben (%s) verkauft und %s Münzen erhalten",
+      "9026": "Sie sind dabei, %s Münzen auszugeben, um (%s) zu kaufen",
+      "9027": "Sie haben %s Münzen ausgegeben, um (%s) zu kaufen",
+      "9028": "Ihre Münzen reichen nicht aus, um die Gebühr zu bezahlen! Die aktuelle Münze ist: %s",
+      "9032": "Du kehrtest nach Hause zurück und fandest alles in Unordnung vor. Angezogen von deinem Reichtum und dem Mangel an Wachpersonal plünderten Diebe dein Haus und du hast verloren:",
     "site_61": {
         "name": "Labor 081",
         "des": "Wer hätte gedacht, dass 30 m unter diesem Dorf eine geheime Basis existiert? Und noch dazu eine so große! Wer sie wohl gebaut hat und was hier passiert ist?"

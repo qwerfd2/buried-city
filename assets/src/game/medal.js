@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/8/12.
- */
-
 var MedalConfig = {
     103: {
         aim: 5,

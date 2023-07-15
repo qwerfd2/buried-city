@@ -1,11 +1,8 @@
-/**
- * Created by lancelot on 15/4/25.
- */
 var EquipNode = cc.Node.extend({
     ctor: function () {
         this._super();
 
-        this.tabSize = 4;
+        this.tabSize = 5;
         this.setContentSize(572, 100);
 
         var self = this;
@@ -89,10 +86,30 @@ var EquipNode = cc.Node.extend({
                 itemType = 1303;
                 break;
         }
-        var itemList = player.tmpBag ? player.tmpBag.getItemsByType(itemType) : player.bag.getItemsByType(itemType);
-        itemList = itemList.map(function (storageCell) {
-            return storageCell.item.id;
-        });
+        var itemList = [];
+        if (pos == EquipmentPos.SPECIAL){
+            if (player.tmpBag) {
+                if (player.tmpBag.validateItem(1305053, 1)){
+                    itemList.push("1305053");
+                }
+                if (player.tmpBag.validateItem(1305064, 1)){
+                    itemList.push("1305064");
+                }
+            } else {
+                if (player.bag.validateItem(1305053, 1)){
+                    itemList.push("1305053");
+                }
+                if (player.bag.validateItem(1305064, 1)){
+                    itemList.push("1305064");
+                }
+            }
+        } else {
+            itemList = player.tmpBag ? player.tmpBag.getItemsByType(itemType) : player.bag.getItemsByType(itemType);
+            itemList = itemList.map(function (storageCell) {
+                return storageCell.item.id;
+            });
+        }
+
         if (pos === EquipmentPos.WEAPON) {
             itemList.unshift(Equipment.HAND);
         }
@@ -118,13 +135,13 @@ var EquipNode = cc.Node.extend({
             itemIdList.push(0);
         }
         var vPadding = 10;
-        var size = cc.size(520, 108 * itemIdList.length + 2 * vPadding);
+        var size = cc.size(565, 108 * itemIdList.length + 2 * vPadding);
         var bg = autoSpriteFrameController.getScale9Sprite("frame_tab_content.png", cc.rect(14, 14, 1, 1));
         bg.setContentSize(size);
 
         var self = this;
         itemIdList.forEach(function (itemId, index) {
-            var line = self.createOneLineView(itemId);
+            var line = self.createOneLineView(itemId, pos);
             line.setAnchorPoint(0.5, 1);
             line.setPosition(bg.getContentSize().width / 2, bg.getContentSize().height - vPadding - index * line.getContentSize().height);
             bg.addChild(line);
@@ -152,7 +169,7 @@ var EquipNode = cc.Node.extend({
         bg.pos = pos;
     },
 
-    createOneLineView: function (itemId) {
+    createOneLineView: function (itemId, pos) {
         var size = cc.size(520, 108);
         var node = new cc.Node();
         node.setContentSize(size);
@@ -191,40 +208,49 @@ var EquipNode = cc.Node.extend({
                     effect_weapon: {atkCD: 1}
                 };
             } else {
-                iconName = "#icon_tab_content_" + itemId + ".png";
+                if (itemId == "1305053" || itemId == "1305064") {
+                    iconName = "#icon_item_"+itemId+".png";
+                } else {
+                    iconName = "#icon_tab_content_" + itemId + ".png";
+                }
                 itemInfo = itemConfig[itemId];
                 itemInfo.name = stringUtil.getString(itemId).title;
             }
+
             var icon = autoSpriteFrameController.getSpriteFromSpriteName(iconName);
             icon.setAnchorPoint(0, 0.5);
             icon.setPosition(0, size.height / 2);
             node.addChild(icon);
-
+            
             var name = new cc.LabelTTF(itemInfo.name, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
             name.setPosition(icon.x + icon.width * icon.scale, size.height - 5);
             name.setAnchorPoint(0, 1);
             node.addChild(name);
 
             var weight = new cc.LabelTTF(stringUtil.getString(1025) + itemInfo.weight, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-            weight.setPosition(name.x, name.y - name.height - 10);
+            weight.setPosition(name.x, name.y - name.height - 5);
             weight.setAnchorPoint(0, 1);
             node.addChild(weight);
 
             var num = new cc.LabelTTF(stringUtil.getString(1026) + player.bag.getNumByItemId(itemId), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-            num.setPosition(name.x, weight.y - weight.height - 10);
+            num.setPosition(name.x, weight.y - weight.height - 5);
             num.setAnchorPoint(0, 1);
             node.addChild(num);
 
             if (itemInfo.effect_weapon) {
                 var atkCD = new cc.LabelTTF(stringUtil.getString(1027) + itemInfo.effect_weapon.atkCD, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-                atkCD.setPosition(size.width - 20, name.y - name.height - 10);
+                atkCD.setPosition(size.width - 20, name.y - name.height - 5);
                 atkCD.setAnchorPoint(1, 1);
                 node.addChild(atkCD);
             }
-
-
         } else {
-            var label = new cc.LabelTTF(stringUtil.getString(1024), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
+            var string;
+            if (pos == EquipmentPos.SPECIAL) {
+                string = stringUtil.getString(1305053).title + " / " + stringUtil.getString(1305064).title;
+            } else {
+                string = stringUtil.getString(1024);
+            }
+            var label = new cc.LabelTTF(string, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
             label.setPosition(node.getContentSize().width / 2, node.getContentSize().height / 2);
             node.addChild(label);
         }
@@ -243,6 +269,8 @@ var EquipNode = cc.Node.extend({
                 equipPos = EquipmentPos.EQUIP;
             } else if (i === 3) {
                 equipPos = EquipmentPos.TOOL;
+            } else if (i === 4) {
+                equipPos = EquipmentPos.SPECIAL;
             }
             var iconName = "";
             var itemId = player.equip.getEquip(equipPos)
@@ -250,7 +278,13 @@ var EquipNode = cc.Node.extend({
                 if (itemId === Equipment.HAND) {
                     iconName = "#icon_tab_hand.png";
                 } else {
-                    iconName = "#icon_tab_" + itemId + ".png";
+                    if (itemId == "1305053") {
+                        iconName = "#icon_item_1305053.png";
+                    } else if (itemId == "1305064") {
+                        iconName = "#icon_item_1305064.png";
+                    } else {
+                        iconName = "#icon_tab_" + itemId + ".png";
+                    }
                 }
             } else {
                 switch (equipPos) {
@@ -265,6 +299,9 @@ var EquipNode = cc.Node.extend({
                         break;
                     case EquipmentPos.TOOL:
                         iconName = "#icon_tab_tool.png";
+                        break;
+                    case EquipmentPos.SPECIAL:
+                        iconName = "#build_action_fix.png";
                         break;
                 }
             }

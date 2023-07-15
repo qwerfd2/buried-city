@@ -1,4 +1,12 @@
 var string = {
+"site_501": {
+        "name": "Lycée",
+        "des": "Le couloir du lycée, autrefois animé par les élèves, est maintenant si calme qu'on peut entendre une épingle tomber. Si ce n'était pas pour les livres dispersés et les traces de sang, on croirait que c'est un jour férié."
+    },
+    "site_666": {
+        "name": "Portail",
+        "des": "Cette télévision ne nécessite pas d'alimentation externe et cache un monde secret derrière l'écran. Bien que nous ne sachions pas ce qui se trouve de l'autre côté, ce n'est certainement pas le paradis."
+    },
     "18_0": {
         "title": "Cuisinière électrique",
         "des": "Il peut s'adapter à des tensions extrêmement instables, s'il ne peut atteindre la température nécessaire à la cuisson, il reste suffisant pour répondre aux besoins de chauffage d'un espace confiné."
@@ -7,6 +15,21 @@ var string = {
         "title": "Clôture électrique",
         "des": "En raison d'une tension insuffisante, la clôture électrique auto-construite ne peut pas éliminer immédiatement les zombies qui approchent, mais elle peut leur 'suggérer' de rester à l'écart."
     },
+    
+"9030": "Voulez-vous vendre?",
+"9031": "Voulez-vous acheter?",
+"9033": "Vendre",
+"9034": "Acheter",
+"9035": "Stock: ",
+"9036": "Mais votre sac à dos ne peut pas contenir les objets volés. Vous les avez discrètement remis en place.",
+    "1171": "Le chien est en train de avaler de la viande fraîche et fait un ronronnement joyeux",
+    "1023": "Viande insuffisante",
+    "1218": "page principale",
+    "1219": "Par défaut",
+    "1220": "Noël",
+    "1209": "Carte",
+    "1210": "Ville",
+    "1211": "Village",
     "1169": "effet sonore",
     "1321": "Masako",
     "1322": "Ingénieur éléctricien",
@@ -97,10 +120,10 @@ var string = {
     "1017": "Avec du café et de la musique, il s'agit que vous étiez dans les anciens jours.",
     "1018": "Dormir",
     "1019": "Le corps et l'énergie se restaurent en dormant.",
-    "1020": "Nourrir (%s m)",
-    "1021": "Le chien est en bonne forme, prêt à la lutte!",
-    "1022": "Le chien a faim et il a besoin de la viande.",
-    "1023": "Le chien est en train de avaler de la viande fraîche et fait un ronronnement joyeux",
+    "1020": "Nourrir",
+    "1022": "Le chien a faim et veut de la viande. 1 morceau de viande peut le nourrir pendant 12 heures.",
+    "1021": "Le chien garde la maison. Il reste %s morceau(x) de viande pendant %s heures.",
+
     "1024": "Aucun",
     "1025": "Poids:",
     "1026": "Reste:",
@@ -257,14 +280,10 @@ var string = {
     "1183": "Brocanteur",
     "1184": "Être bon à trouver des choses précieuses dans les ruines",
     "1185": "Ressources: 10%, Sac à dos +30%",
-    "1186": "Marine",
-    "1187": "A la puissance exceptionnelle de survie et de lutte",
-    "1188": "Kit de premiers secours +%s (Récompenses de jours survivants au jeu +%s)",
     "1190": "Prix:",
     "1191": "%s",
     "1192": "Gratuit",
     "1193": "Retour",
-    "1194": "En cours de connecter...",
     "1195": "Conduit par la convoitise",
     "1196": "Ils déchirent et dévorent les uns les autres brutalement.",
     "1197": "Le vide est au coin",
@@ -917,10 +936,50 @@ var string = {
         "name": "Station d'essence",
         "des": "À la station d'essence toutes sortes de véhicules sont garés pêle-mêle, ils se bloquent le passage et il est impossible d'entrer ou de sortir.Dans un tel chaos, c'est un miracle qu'aucun incendie ou explosion ne se soit produit."
     },
-    "site_202": {
-        "name": "???",
-        "des": "Un dispositif suspect continue à fonctionner sans l'alimentation électronique externe, et parfois diffuse de la vidéo et des cadeaux. Eh bien, après un peu de publicité, le voyage de mort sera plus excitant!"
-    },
+"site_202": {
+          "name": "Jardin à ferraille",
+          "des": "Le dépotoir de la ville est si malodorant que même les zombies n'osent pas s'en approcher. Bien qu'il y ait peut-être des provisions dedans, mais... n'en parlons pas, recrachons-le"
+      },
+      "site_400": {
+          "name": "Marché des survivants",
+          "des": "Le bazar organisé par les survivants aura de nouveaux produits tous les jours. Veuillez vendre des fournitures en 'Dépôt'. Le capitalisme est vraiment plus féroce que les zombies."
+      },
+      "site_500": {
+          "name": "Le repaire des bandits",
+          "des": "Ce bâtiment banal est en fait le camp d'un gang de voleurs. Puisque vous osez me voler, alors vous ne devriez pas avoir peur que je le reprenne."
+      },
+      "13": {
+          "title": "Pièces",
+          "des": "Bien que l'île soit assiégée par des zombies, les pièces de monnaie sont toujours le seul moyen de troquer avec les gens."
+      },
+      "npc_7": {
+          "name": "W. White",
+          "des": "Avant la catastrophe, il était professeur de chimie au lycée de la ville, mais à en juger par l'équipement à la maison, les produits chimiques ici ne sont même pas enseignés par les universités.",
+          "dialogs": ["Tousse..Tousse..Tousse.. Désolé, maladie professionnelle. Les matériaux de protection sont de plus en plus difficiles à obtenir.", "Jesse ! Jesse ! Hé, la vie devient de plus en plus stressante sans Jesse." , "Je peux aussi faire des produits chimiques qui sont 'hors comptoir', hehehe...", "Arrêtez ! Levez les mains ! Hey, vous n'êtes pas un voleur... Désolé alors.", "J'ai encore manquez le temps où je me battais avec ma femme et mes amis. Maintenant, je dois combattre tout le monde. "]
+      },
+      "statusDialog2": {
+          "title": {
+              "txt_1": "Actuel : %s"
+          },
+          "content": {"des2":"Les pièces sont la seule monnaie reconnue sur le marché des survivants. Vous pouvez y acheter et vendre des fournitures et gagner des pièces."
+          },
+          "action": {
+              "btn_1": {
+                  "txt": "J'ai compris"
+              }
+          }
+      },
+      "9019": "Recherche (30 minutes)",
+      "9020": "Vendre",
+      "9021": "Prix unitaire : ",
+      "9022": "Sélectionner la quantité : ",
+      "9023": "Prix total : ",
+      "9024": "Vous êtes sur le point de vendre (%s) pour %s pièces",
+      "9025": "Vous avez vendu (%s) et obtenu %s pièces",
+      "9026": "Vous êtes sur le point de dépenser %s pièces pour acheter (%s)",
+      "9027": "Vous avez dépensé %s pièces pour acheter (%s)",
+      "9028": "Vos pièces ne suffisent pas pour payer les frais ! La pièce actuelle est : %s",
+      "9032": "Vous êtes rentré chez vous pour trouver tout en désordre. Attirés par votre richesse et l'absence de gardien, des voleurs ont pillé votre maison et vous avez tout perdu :",
     "site_61": {
         "name": "081Institut de Recherche",
         "des": "Je ne m'y attendais pas, 30 mètres sous la terre de la ville, il y aura une énorme bâtiment au bas de la base secrète! C'est qui l'a construit ici? Qu'est-ce qu'il s'est passé?"

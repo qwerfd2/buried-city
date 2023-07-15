@@ -12,7 +12,160 @@ uiUtil.fontSize = {
     COMMON_3: 20
 };
 
-uiUtil.Steal = function(arr, bo, npcName) {
+uiUtil.bazaarItem = function(itemInfo, target, cb) {
+    var node = new cc.Node();
+
+    var item = new Item(itemInfo.itemId);
+    //背景
+    var bg = autoSpriteFrameController.getSpriteFromSpriteName("frame_iap_bg_item.png");
+    node.setContentSize(bg.getContentSize());
+    bg.x = node.width / 2;
+    bg.y = node.height / 2;
+    node.addChild(bg);
+    //商品名
+    as = stringUtil.getString(itemInfo.itemId).title;
+    ad = player.storage.getNumByItemId(itemInfo.itemId);
+    ee = round(player.getPrice(itemInfo.itemId));
+    var name = new cc.LabelTTF(as, uiUtil.fontFamily.normal, 26);
+    name.x = bg.width / 2;
+    name.y = bg.height / 1.15;
+    name.color = cc.color.BLACK;
+    node.addChild(name);
+
+    var price = new cc.LabelTTF("", uiUtil.fontFamily.normal, 23);
+    price.x = bg.width / 6 - 30;
+    price.y = bg.height / 6;
+    price.color = cc.color.BLACK;
+    price.setString(stringUtil.getString(9021) + ee);
+    price.setAnchorPoint(0, 1);
+    node.addChild(price);
+    //图标 
+    var icon = autoSpriteFrameController.getSpriteFromSpriteName("#dig_item_" + itemInfo.itemId + ".png");
+    icon.x = bg.width / 2;
+    icon.y = bg.height / 2;
+    icon.setScale(0.5);
+    node.addChild(icon);
+    var btnSize = cc.size(bg.width - 20, bg.height - 20);
+    var btnIcon = new ButtonWithPressed(btnSize);
+    btnIcon.x = bg.width / 2;
+    btnIcon.y = bg.height / 2;
+    node.addChild(btnIcon);
+    btnIcon.setClickListener(this, function() {
+        uiUtil.bazaarSell(itemInfo.itemId, false, itemInfo.amount);
+    });
+    return node;
+};
+
+uiUtil.bazaarSell = function(itemId, vvv, amount) {
+    var ee = player.getPrice(itemId);
+    var config = {
+        title: {},
+        content: {
+            log: true
+        },
+        action: {
+            btn_1: {},
+            btn_2: {}
+        }
+    };
+    var strConfig = stringUtil.getString(itemId);
+    config.title.title = strConfig.title;
+    config.title.icon = "#icon_item_" + itemId + ".png";
+    config.content.dig_des = "#dig_item_" + itemId + ".png";
+    var Num = player.bag.getNumByItemId(itemId);
+    var Nuw = (Num / Num || 0);
+    config.title.txt_1 = stringUtil.getString(9035) + Num;
+
+    config.action.btn_1.txt = stringUtil.getString(1031);
+    var ss = "";
+    var z = 1;
+    if (vvv) {
+        ss = stringUtil.getString(9033);
+        z = 0.8;
+    } else {
+        ss = stringUtil.getString(9034);
+        z = 1;
+        Nuw = 1;
+    }
+    ee *= z;
+    config.title.txt_2 = stringUtil.getString(9021) + round(ee);
+    config.action.btn_2.txt = ss;
+    var dialog = new DialogBig(config);
+
+    config.action.btn_2.target = dialog;
+    dialog.show();
+
+    var oo = dialog.contentNode;
+    var dig_des = dialog.contentNode.getChildByName('dig_des');
+    var label1 = new cc.LabelTTF(stringUtil.getString(9022) + Nuw, uiUtil.fontFamily.normal, 25);
+    label1.setAnchorPoint(0, 1);
+    label1.setPosition(dig_des.width / 8 - 40, dig_des.height - 70);
+    label1.setColor(cc.color.BLACK);
+    oo.addChild(label1);
+
+    var label2 = new cc.LabelTTF(ss + stringUtil.getString(9023) + round(ee) * Nuw, uiUtil.fontFamily.normal, 25);
+    label2.setAnchorPoint(0, 1);
+    label2.setPosition(label1.x, label1.y - 70);
+    label2.setColor(cc.color.BLACK);
+    label2.setName("label2");
+    oo.addChild(label2);
+
+    var slider = new cc.ControlSlider("#slider_bg.png", "#slider_content.png", "#slider_cap.png");
+    slider.setMinimumValue(Nuw);
+    if (vvv) {
+        slider.setMaximumValue(player.bag.getNumByItemId(itemId));
+    } else {
+        slider.setMaximumValue(amount);
+    }
+    slider.setPosition(dig_des.width / 2, label2.y - 70);
+    slider.setAnchorPoint(0.5, 0.5);
+    oo.addChild(slider);
+
+    dialog.value = slider.getValue().toFixed(0);
+    slider.addTargetWithActionForControlEvents(this, function(sender) {
+        var value = sender.getValue().toFixed(0);
+        var v = ee * value;
+        dialog.value = value;
+        label1.setString(stringUtil.getString(9022) + value);
+        label2.setString(ss + stringUtil.getString(9023) + round(v));
+    }, cc.CONTROL_EVENT_VALUECHANGED);
+
+    config.action.btn_2.cb = function() {
+        var a = (this.value ? this.value : 0);
+        if (a > 0) {
+            var v = a * ee;
+            if (vvv) {
+                bazaarSellDialog(vvv, stringUtil.getString(9024, a + "x " + config.title.title, round(v)), function() {
+                    player.bag.decreaseItem(itemId, a);
+                    player.onCurrencyChange(v);
+                    player.log.addMsg(stringUtil.getString(9025, a + "x " + config.title.title, round(v)));
+                    utils.emitter.emit("pay");
+                    Record.saveAll();
+                })
+            } else {
+                bazaarSellDialog(vvv, stringUtil.getString(9026, round(v), a + "x " + config.title.title), function() {
+                    if (player.currency >= v) {
+                        player.map.getSite(400).storage.increaseItem(itemId, a);
+                        player.map.getSite(400).haveNewItems = true;
+                        player.onCurrencyChange(-v);
+                        for (var i = 0; i < player.shopList.length; i++) {
+                            if (player.shopList[i].itemId == itemId) {
+                                player.shopList[i].amount -= a;
+                            }
+                        }
+                        player.log.addMsg(stringUtil.getString(9027, round(v), a + "x " + config.title.title));
+                        utils.emitter.emit("pay");
+                        Record.saveAll();
+                    } else {
+                        bazaarNotEnoughDialog(stringUtil.getString(9028, Number(player.currency.toFixed(2))));
+                    };
+                })
+            }
+        }
+    }
+};
+
+uiUtil.Steal = function(arr, success, bo, npcName) {
 
     var config = {
         title: {},
@@ -22,8 +175,17 @@ uiUtil.Steal = function(arr, bo, npcName) {
         }
     };
     config.action.btn_1.txt = stringUtil.getString(1073);
-    var title = bo ? stringUtil.getString(9011) : stringUtil.getString(9010);
-    var des = bo ? stringUtil.getString(9013) : stringUtil.getString(9012);
+    var title = success ? stringUtil.getString(9011) : stringUtil.getString(9010);
+    var des;
+    if (success) {
+        if (bo) {
+            des = stringUtil.getString(9013);
+        } else {
+            des = stringUtil.getString(9036);
+        }
+    } else {
+        des = stringUtil.getString(9012);
+    }
     config.title.title = title;
     config.content.des = des;
     var dialog = new DialogTiny(config);
@@ -31,7 +193,7 @@ uiUtil.Steal = function(arr, bo, npcName) {
 
     dialog.titleNode.getChildByName('title').setPosition(co.width / 15, co.height - 55);
     richText = new ItemRichText(arr, arr.length * 86, arr.length, 0.5, cc.color(0, 0, 222, 222), 22);
-    richText.setVisible(bo)
+    richText.setVisible(success && bo);
     co.addChild(richText);
     var res = 2 - IAPPackage.isSocialEffectUnlocked();
     if (IAPPackage.isAllItemUnlocked()) {
@@ -41,7 +203,7 @@ uiUtil.Steal = function(arr, bo, npcName) {
     close.setAnchorPoint(0, 1);
     close.setPosition(co.width / 12, co.height / 3)
     close.setColor(cc.color(255, 0, 0, 255));
-    close.setVisible(!bo)
+    close.setVisible(!bo);
     co.addChild(close);
 
     dialog.show();
@@ -448,6 +610,18 @@ uiUtil.showGuideDialog = function(str, pic, target, isPicDown) {
     dialog.show();
 }
 
+uiUtil.showStolenDialog = function (str, pic, target, itemList) {
+    var config = {
+        title: {},
+        content: {}
+    };
+    config.title.title = "";
+    config.content.des = str;
+    config.content.dig_des = pic;
+    var dialog = new DialogSteal(config, target, itemList);
+    dialog.show();
+}
+
 uiUtil.showBuildDialog = function (bid, level) {
     var config = utils.clone(stringUtil.getString("build"));
     var strConfig = stringUtil.getString(bid + "_" + level);
@@ -766,25 +940,32 @@ uiUtil.showNpcInMapDialog = function (entity, time, okCb, cancelCb) {
             color: cc.color.BLACK
         });
     });
-    var showItemBtn = new ImageButton("res/tradelist.png");
+    var showItemBtn = new ImageButton("res/new/tradelist.png");
     showItemBtn.setPosition(cc.winSize.width / 2 + 200, label1.y + 180);
     dialog.addChild(showItemBtn, 1);
     showItemBtn.setClickListener(this, function(a) {
         var d = new NpcTradeItemDialog(needItems);
         d.show();
-        
     });
     dialog.show();
 };
 
 uiUtil.showSiteDialog = function (entity, time, okCb, cancelCb) {
     var config = utils.clone(stringUtil.getString(5000));
-    config.title.icon = "#site_" + entity.baseSite.id + ".png";
+    if (entity.baseSite.id == 202) {
+        config.title.icon = "#site202.png";
+    } else {
+        config.title.icon = "#site_" + entity.baseSite.id + ".png";
+    }
     config.title.title = entity.baseSite.getName();
     config.title.txt_1 = cc.formatStr(config.title.txt_1, entity.baseSite.getProgressStr(1, entity.baseSite.id));
     config.title.txt_2 = cc.formatStr(config.title.txt_2, entity.baseSite.getAllItemNum());
     config.content.log = true;
-    config.content.dig_des = "#site_dig_" + entity.baseSite.id + ".png";
+    if (entity.baseSite.id == 202) {
+        config.content.dig_des = "#ad_site.png";
+    } else {
+        config.content.dig_des = "#site_dig_" + entity.baseSite.id + ".png";
+    }
     config.content.des = entity.baseSite.getDes();
     config.action.btn_1.target = entity;
     config.action.btn_1.cb = cancelCb;
@@ -812,6 +993,26 @@ uiUtil.showSiteDialog = function (entity, time, okCb, cancelCb) {
     if (cc.RTL) {
         label.anchorX = 1;
         label.x = dialog.rightEdge;
+    }
+    
+    if (entity.baseSite.id == 400) {
+        var needItems = [];
+        player.shopList.forEach(function(item) {
+            if (item.amount > 0) {
+                needItems.push({
+                    itemId: item.itemId,
+                    num: item.amount,
+                    color: cc.color.BLACK
+                });
+            }
+        });
+        var showItemBtn = new ImageButton("res/new/tradelist.png");
+        showItemBtn.setPosition(cc.winSize.width / 2 + 200, label.y + 180);
+        dialog.addChild(showItemBtn, 1);
+        showItemBtn.setClickListener(this, function(a) {
+            var d = new NpcTradeItemDialog(needItems);
+            d.show();
+        });
     }
     dialog.show();
 

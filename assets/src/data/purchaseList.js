@@ -1,6 +1,4 @@
-/**
- * Created by lancelot on 15/7/6.
- */
+
 var PurchaseList = {
     101: {
         priceList: [

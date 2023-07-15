@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/12/15.
- */
-
 var BuffManager = cc.Class.extend({
     buff: null,
     ctor: function () {

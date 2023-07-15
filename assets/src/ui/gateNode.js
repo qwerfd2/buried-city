@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var GateNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -21,7 +18,8 @@ var GateNode = BottomFrameNode.extend({
         equipNode.setPosition(this.bgRect.width / 2, this.contentTopLineHeight);
         this.bg.addChild(equipNode, 1);
         equipNode.setName("equipNode");
-        var itemChangeNode = new ItemChangeNode(player.bag, stringUtil.getString(1034), player.storage, stringUtil.getString(1035));
+
+        var itemChangeNode = new ItemChangeNode(player.bag, stringUtil.getString(1034), player.storage, stringUtil.getString(1035), false, false, 100);
         itemChangeNode.setAnchorPoint(0.5, 0);
         itemChangeNode.setPosition(this.bgRect.width / 2, 0);
         this.bg.addChild(itemChangeNode);

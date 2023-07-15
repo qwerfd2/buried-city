@@ -1,10 +1,6 @@
-/**
- * Created by lancelot on 15/12/10.
- */
 
 var adConfig = {
     probability: 1,
-    //probability: 0.30,
     reward: {
         "produceValue": 3,
         "produceList": [{"itemId": "1101011", "weight": 15}, {
@@ -54,11 +50,6 @@ var AdController = cc.Class.extend({
 });
 
 var adHelper = {
-
-    AD_ADMOB: 1,
-    AD_CHARTBOOST: 2,
-    AD_U3D: 3,
-
     AD_STATUS_READY: 1,
     AD_STATUS_DISMISS: 2,
     AD_STATUS_ERROR: 3,
@@ -77,7 +68,7 @@ var adHelper = {
             return;
 
         cc.log("ad init");
-        this.adType = adType || this.AD_U3D;
+        this.adType = 0;
         this._isAdReady = false;
         this._isAdActive = false;
         this.restore();

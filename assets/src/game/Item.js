@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/4/7.
- */
-
 var ItemType = {
     TOOL: "11",
     EQUIP: "13",
@@ -28,6 +24,9 @@ var Item = cc.Class.extend({
     },
     getPrice: function () {
         return this.config["price"];
+    },
+    getValue: function () {
+        return this.config["value"];
     },
     getType: function (level) {
         var itemIdStr = "" + this.id;

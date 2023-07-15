@@ -1,7 +1,3 @@
-/**
- * Created by LVWC on 15/8/31.
- */
-
 var medalNode = cc.Node.extend({
     ctor: function (medalIndex) {
         this._super();
@@ -11,7 +7,7 @@ var medalNode = cc.Node.extend({
         var medalStrings = stringUtil.getString("m_" + medalInfoIndex);
 
         var leftEdge = 50;
-        var medalIcon = autoSpriteFrameController.getSpriteFromSpriteName("#medalIcon_" + medalIndex + ".png");
+        var medalIcon = new cc.Sprite("res/new/medalIcon_" + medalIndex + ".png");
         medalIcon.setPosition(leftEdge + 75, 128);
         this.addChild(medalIcon);
 
@@ -19,7 +15,7 @@ var medalNode = cc.Node.extend({
         if (completedMedalInfo.completed && !completedMedalInfo.warned) {
             completedMedalInfo.warned = true;
             Medal.save();
-            var medalWarn = autoSpriteFrameController.getSpriteFromSpriteName("#medalWarn.png");
+            var medalWarn = new cc.Sprite("res/new/medalWarn.png");
             medalWarn.setPosition(leftEdge, medalIcon.height - 10);
             medalIcon.addChild(medalWarn);
         }
@@ -28,10 +24,10 @@ var medalNode = cc.Node.extend({
         
         var starBg;
         if ((level == 1 && medalInfo.completed) || Record.getMedalCheat()) {
-            starBg = autoSpriteFrameController.getSpriteFromSpriteName("#star_3.png");
+            starBg = new cc.Sprite("res/new/star_3.png");
 
         } else {
-            starBg = autoSpriteFrameController.getSpriteFromSpriteName("#star_" + (3 - level) + ".png");
+            starBg = new cc.Sprite("res/new/star_" + (3 - level) + ".png");
         }
         starBg.setPosition(leftEdge + 75, 16);
         this.addChild(starBg);
@@ -93,9 +89,9 @@ var medalLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         if (Record.getScreenFix()) {
-            this.setScale(0.84);
+            this.setScale(0.83);
         }
-        var bg = autoSpriteFrameController.getSpriteFromSpriteName("#medalBg.png");
+        var bg = new cc.Sprite("res/new/medalBg.png");
         bg.setAnchorPoint(0, 0);
         this.addChild(bg);
         this.setContentSize(bg.getContentSize());
@@ -160,7 +156,7 @@ var medalScene = BaseScene.extend({
 var medalShowDialog = cc.Layer.extend({
     ctor: function (medalIndex) {
         this._super();
-        var bg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_medal_bg.png");
+        var bg = new cc.Sprite("res/new/frame_medal_bg.png");
         bg.setAnchorPoint(0, 0);
         this.addChild(bg);
 
@@ -169,7 +165,7 @@ var medalShowDialog = cc.Layer.extend({
         var medalStrings = stringUtil.getString("m_" + medalInfoIndex);
 
         var leftEdge = 50;
-        var medalIcon = autoSpriteFrameController.getSpriteFromSpriteName("#medalIcon_" + medalIndex + ".png");
+        var medalIcon = new cc.Sprite("res/new/medalIcon_" + medalIndex + ".png");
         medalIcon.setPosition(leftEdge + 75, 128);
         this.addChild(medalIcon);
 
@@ -177,10 +173,10 @@ var medalShowDialog = cc.Layer.extend({
 
         var starBg;
         if (level == 1 && medalInfo.completed) {
-            starBg = autoSpriteFrameController.getSpriteFromSpriteName("#star_3.png");
+            starBg = new cc.Sprite("res/new/star_3.png");
 
         } else {
-            starBg = autoSpriteFrameController.getSpriteFromSpriteName("#star_" + (3 - level) + ".png");
+            starBg = new cc.Sprite("res/new/star_" + (3 - level) + ".png");
         }
         starBg.setPosition(leftEdge + 75, 16);
         this.addChild(starBg);

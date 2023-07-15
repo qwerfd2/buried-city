@@ -1,7 +1,3 @@
-    /**
- * Created by lancelot on 15/4/17.
- */
-
 var HomeNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -20,7 +16,6 @@ var HomeNode = BottomFrameNode.extend({
         homeBg.setPosition(this.bgRect.width / 2, 0);
         this.bg.addChild(homeBg, 2);
 
-        //840
         var infos = [
             {bid: 1, pos: {x: 64, y: 360}},
             {bid: 2, pos: {x: 412, y: 780}},
@@ -33,33 +28,35 @@ var HomeNode = BottomFrameNode.extend({
             {bid: 8, pos: {x: 112, y: 780}},
             {bid: 9, pos: {x: 70, y: 590}},
             {bid: 10, pos: {x: 480, y: 410}},
-            {bid: 11, pos: {x: 420, y: 82}},
+            {bid: 11, pos: {x: 430, y: 85}},
             {bid: 13, pos: {x: 125, y: 52}},
             {bid: 14, pos: {x: 425, y: 216}},
             {bid: 16, pos: {x: 500, y: 670}},
-            {bid: 19, pos: {x: 440, y: 82}},
-            {bid: 17, pos: {x: 422, y: 108}},
+            {bid: 19, pos: {x: 430, y: 85}},
+            {bid: 17, pos: {x: 410, y: 108}},
             {bid: 3, pos: {x: 545, y: 270}},
             {bid: 12, pos: {x: 335, y: 125}}
         ];
-
         this.btnList = {};
 
         var self = this;
         infos.forEach(function (info) {
             var buildLevel = player.room.getBuildLevel(info.bid);
             buildLevel = Math.max(0, buildLevel);
-            var btn = new ButtonAtHome("#icon_start_build_" + info.bid + "_" + buildLevel + ".png");
+            var btn;
+            if (info.bid == 17) {
+                btn = new ButtonAtHome("#iconstart_build_17_" + buildLevel + ".png");
+            } else {
+                btn = new ButtonAtHome("#icon_start_build_" + info.bid + "_" + buildLevel + ".png");
+            }
             btn.setClickListener(self, self.onClickBuild);
             btn.setPosition(info.pos);
             homeBg.addChild(btn);
             btn.info = info;
-
             self.btnList[info.bid] = btn;
 
             self.updateBtn(info.bid);
         });
-
 
         utils.emitter.on("placed_success", function (bid) {
             self.updateBtn(bid);
@@ -161,11 +158,11 @@ var HomeNode = BottomFrameNode.extend({
         //新手引导文字
         this.scheduleOnce(function () {
             if (userGuide.isStep(userGuide.stepName.GAME_START)) {
-                uiUtil.showGuideDialog(stringUtil.getString(1237), "#guide_pic_1.png", self);
+                uiUtil.showGuideDialog(stringUtil.getString(1237), "res/new/guide_pic_1.png", self);
             } else if (userGuide.isStep(userGuide.stepName.BACK_HOME_WARN)) {
-                uiUtil.showGuideDialog(stringUtil.getString(1238), "#guide_pic_2.png", self, true);
+                uiUtil.showGuideDialog(stringUtil.getString(1238), "res/new/guide_pic_2.png", self, true);
             } else if (userGuide.isStep(userGuide.stepName.WAKE_UP_WARN)) {
-                uiUtil.showGuideDialog(stringUtil.getString(1239), "#guide_pic_1.png", self);
+                uiUtil.showGuideDialog(stringUtil.getString(1239), "res/new/guide_pic_1.png", self);
             }
         }, 0.1);
     },

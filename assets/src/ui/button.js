@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/5/18.
- */
 var Button = cc.Node.extend({
     ctor: function (size, swallowTouches) {
         this._super();
@@ -202,14 +199,13 @@ var StatusButton = ButtonWithPressed.extend({
         var label = this.getChildByName("label");
         if (label.isVisible()) {
             var iconWidth = this.opt.scale ? icon.width * this.opt.scale : icon.width;
-            var edgePadding = (this.width - midPadding - iconWidth - label.width) / 2;
 
             icon.setAnchorPoint(0, 0.5);
-            icon.x = edgePadding;
+            icon.x = 0;
             icon.y = this.height / 2;
 
-            label.setAnchorPoint(1, 0.5);
-            label.x = this.width - edgePadding;
+            label.setAnchorPoint(1.1, 0.5);
+            label.x = this.width;
             label.y = this.height / 2;
         } else {
             icon.setAnchorPoint(0.5, 0.5);

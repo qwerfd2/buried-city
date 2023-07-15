@@ -1,8 +1,3 @@
-/**
- * User: Alex
- * Date: 15/1/5
- * Time: 下午4:07
- */
 var RankFamousLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
@@ -17,9 +12,9 @@ var RankFamousLayer = cc.Layer.extend({
     onEnter: function () {
         this._super();
         if (Record.getScreenFix()) {
-            this.setScale(0.84);
+            this.setScale(0.83);
         }
-        this.bg = autoSpriteFrameController.getSpriteFromSpriteName("#rank_famous_bg.png");
+        this.bg = new cc.Sprite("res/new/rank_famous_bg.png");
         this.bg.x = cc.winSize.width / 2;
         this.bg.y = cc.winSize.height / 2;
         this.addChild(this.bg);
@@ -43,7 +38,6 @@ var RankFamousLayer = cc.Layer.extend({
         btnInfo.x = 576;
         btnInfo.y = 1066;
         this.bg.addChild(btnInfo);
-
     },
 
     showInfoDialog: function () {
@@ -110,7 +104,7 @@ var RankFamousLayer = cc.Layer.extend({
         if (!cell) {
             cell = new cc.TableViewCell();
 
-            var tombstone = autoSpriteFrameController.getSpriteFromSpriteName('icon_tombstone.png');
+            var tombstone = new cc.Sprite('res/new/icon_tombstone.png');
             tombstone.setAnchorPoint(0, 0.5);
             tombstone.x = 10;
             tombstone.y = size.height / 2;
@@ -140,7 +134,6 @@ var RankFamousLayer = cc.Layer.extend({
             lastWord.setName('lastWord');
             cell.addChild(lastWord);
         }
-
         var info = this.data[idx];
 
         cell.getChildByName('username').setString(info.username);
@@ -161,11 +154,9 @@ var RankFamousLayer = cc.Layer.extend({
 
 });
 
-
 var RankFamousScene = BaseScene.extend({
     ctor: function () {
         this._super(APP_NAVIGATION.MENU_SUB);
-        autoSpriteFrameController.addSpriteFrames("res/rank.plist");
     },
     onEnter: function () {
         this._super();

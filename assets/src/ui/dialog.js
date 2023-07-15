@@ -1,9 +1,3 @@
-/**
- * User: Alex
- * Date: 15/1/13
- * Time: 下午9:17
- */
-
 var dialogManager = {
     dialogStack: [],
     showDialog: function (dialog) {
@@ -20,6 +14,48 @@ var dialogManager = {
     isDialogShowing: function () {
         return this.dialogStack.length > 0;
     }
+};
+
+var bazaarSellDialog = function(boolean, str, cd) {
+    var config = {
+        title: {},
+        content: {},
+        action: {
+            btn_1: {},
+            btn_2: {}
+        }
+    };
+
+    config.action.btn_1.txt = stringUtil.getString(1031);
+    if (boolean) {
+        str += stringUtil.getString(9030);
+        config.action.btn_2.txt = stringUtil.getString(9033);
+    } else {
+        str += stringUtil.getString(9031);
+        config.action.btn_2.txt = stringUtil.getString(9034);
+    }
+    config.content.des = String(str).toString();
+    config.action.btn_2.cb = cd
+    aa = new DialogTiny(config).show();
+};
+
+var bazaarNotEnoughDialog = function(str) {
+    var config = {
+        title: {},
+        content: {},
+        action: {
+            btn_1: {},
+            btn_2: {}
+        }
+    };
+
+    config.content.des = String(str).toString();
+    config.action.btn_2.txt = stringUtil.getString(1073);
+    new DialogTiny(config).show();
+};
+
+var round = function(a) {
+    return Math.round(a * 100).toFixed(2) / 100;
 };
 
 var Dialog = cc.Layer.extend({
@@ -238,7 +274,7 @@ var DialogGuide = DialogCommon.extend({
         this.leftEdge = 30;
         this.rightEdge = this.bgNode.getContentSize().width - this.leftEdge;
         if (config.content.dig_des) {
-            var digDes = autoSpriteFrameController.getSpriteFromSpriteName(config.content.dig_des);
+            var digDes = new cc.Sprite(config.content.dig_des);
             digDes.setAnchorPoint(0.5, 1);
             digDes.setPosition(this.contentNode.getContentSize().width / 2, this.contentNode.getContentSize().height - 20);
             this.contentNode.addChild(digDes);
@@ -275,7 +311,7 @@ var DialogGuide = DialogCommon.extend({
         this.dismiss();
     },
     initContentSize: function () {
-        var bg = autoSpriteFrameController.getSpriteFromSpriteName("#guide_bg.png");
+        var bg = new cc.Sprite("res/new/guide_bg.png");
         bg.setAnchorPoint(0, 0);
         bg.setPosition(0, 0);
         this.bgNode.addChild(bg, 0);
@@ -312,6 +348,84 @@ var DialogGuide = DialogCommon.extend({
             userGuide.step();
             this.target.updateBtn(1);
         }
+    }
+})
+
+var DialogSteal = DialogCommon.extend({
+    ctor: function (config, target, itemList) {
+        this.itemList = itemList;
+        this._super(config);
+
+        this.target = target;
+        this.leftEdge = 30;
+        this.rightEdge = this.bgNode.getContentSize().width - this.leftEdge;
+
+        if (config.content.dig_des) {
+            var digDes = new cc.Sprite(config.content.dig_des);
+            digDes.setAnchorPoint(0.5, 1);
+            digDes.setPosition(this.contentNode.getContentSize().width / 2, this.contentNode.getContentSize().height + 90);
+            this.contentNode.addChild(digDes);
+            digDes.setName("dig_des");
+        }
+
+        if (config.content.des) {
+            var des = new cc.LabelTTF(config.content.des, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
+            des.setAnchorPoint(0, 1);
+            des.setPosition(this.leftEdge - 40, this.contentNode.getContentSize().height - 160);
+            this.contentNode.addChild(des, 1);
+            des.setName("des");
+            des.setScale(1.2);
+            des.setColor(cc.color.BLACK);
+        }
+
+        if (config.content.log) {
+            var log = new cc.Node();
+            log.setAnchorPoint(0, 0);
+            log.setPosition(0, 0);
+            log.setContentSize(this.contentNode.getContentSize().width, 100);
+            log.setName("log");
+            this.contentNode.addChild(log);
+        }
+    },
+    onClickLayer: function () {
+        this.dismiss();
+    },
+    initContentSize: function () {
+        var bg = new cc.Sprite("res/new/guide_bg.png");
+        bg.setAnchorPoint(0, 0);
+        bg.setPosition(0, 0);
+        this.bgNode.addChild(bg, 0);
+        bg.setName("bg");
+        this.bgNode.setContentSize(bg.getContentSize());
+
+        this.titleNode = new cc.Node();
+        this.titleNode.setAnchorPoint(0.5, 0);
+        this.titleNode.setPosition(this.bgNode.getContentSize().width / 2, this.bgNode.getContentSize().height - 110);
+        this.titleNode.setContentSize(this.bgNode.getContentSize().width, 100);
+        this.bgNode.addChild(this.titleNode);
+
+        this.actionNode = new cc.Node();
+        this.actionNode.setAnchorPoint(0.5, 1);
+        this.actionNode.setPosition(0, 0);
+        this.actionNode.setContentSize(0, 0);
+        this.bgNode.addChild(this.actionNode);
+
+        this.contentNode = new cc.Node();
+        this.contentNode.setAnchorPoint(0.5, 0);
+        this.contentNode.setPosition(this.bgNode.getContentSize().width / 2, 93);
+        this.contentNode.setContentSize(this.bgNode.getContentSize().width, this.bgNode.getContentSize().height - this.titleNode.getContentSize().height - this.actionNode.getContentSize().height - 20);
+        
+        this.contentNode.setScale(0.8);
+        this.bgNode.addChild(this.contentNode);
+
+        var richText = new ItemRichText(this.itemList, 480, 5, 0.6, cc.color.BLACK, uiUtil.fontSize.COMMON_2);
+        richText.setName("richText");
+        richText.setAnchorPoint(0, 1);
+        richText.setPosition(-20, this.contentNode.y - 60);
+        this.contentNode.addChild(richText);
+    },
+    onExit: function () {
+        this._super();
     }
 })
 
@@ -405,7 +519,7 @@ var DialogBig2 = DialogCommon.extend({
         }
     },
     initContentSize: function () {
-        var bg = new cc.Sprite("res/Steal.png");
+        var bg = new cc.Sprite("res/new/Steal.png");
         bg.setAnchorPoint(0, 0);
         bg.setPosition(0, 0);
         this.bgNode.addChild(bg, 0);
@@ -541,9 +655,9 @@ var RandomBattleDialog = DialogBig.extend({
         this.log = this.contentNode.getChildByName("log");
         this.log.height = this.log.height + 70;
         this.createBattleBeginView();
-        this.getChildByName("bgColor").height = 1003;
+        this.getChildByName("bgColor").height = 1004;
         if (Record.getScreenFix()) {
-            this.getChildByName("bgColor").height = 941;
+            this.getChildByName("bgColor").height = 946;
         } else {
             this.getChildByName("bgColor").height = 1003;
         }

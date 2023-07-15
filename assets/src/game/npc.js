@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/7/7.
- */
 var NPC = BaseSite.extend({
     ctor: function (npcId) {
         this._super();
@@ -294,7 +291,7 @@ var NPCManager = cc.Class.extend({
     },
     visitPlayer: function () { 
         if (IAPPackage.isAllItemUnlocked()) {
-            this.unlockNpc(1);this.unlockNpc(2);this.unlockNpc(3);this.unlockNpc(4);this.unlockNpc(5);this.unlockNpc(6);
+            this.unlockNpc(1);this.unlockNpc(2);this.unlockNpc(3);this.unlockNpc(4);this.unlockNpc(5);this.unlockNpc(6);this.unlockNpc(7);
         }
         if (cc.timer.formatTime().d < 2) {
             return;
@@ -302,7 +299,7 @@ var NPCManager = cc.Class.extend({
        
         var rand = utils.getRandomInt(0, 100);
         cc.i("visitPlayer " + rand);
-        var criteria = 10;
+        var criteria = 15;
         var chatlog = JSON.parse(cc.sys.localStorage.getItem("radio") || "[]");
         if (chatlog.length > 0) {
             var addtime = cc.timer.time - 60*60*36;
@@ -312,7 +309,7 @@ var NPCManager = cc.Class.extend({
         }
         if (rand <= criteria) {
             player.log.addMsg(1100);
-            var npcPool = [1,2,3,4,5,6];
+            var npcPool = [1,2,3,4,5,6,7];
             var npcId = npcPool[utils.getRandomInt(0, npcPool.length - 1)];
             this.unlockNpc(npcId);
             var npc = this.npcList[npcId];

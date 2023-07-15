@@ -1,8 +1,3 @@
-/**
- * User: Alex
- * Date: 15/1/5
- * Time: 下午4:07
- */
 var StoryLayer = cc.Layer.extend({
     ctor: function () {
         this._super();

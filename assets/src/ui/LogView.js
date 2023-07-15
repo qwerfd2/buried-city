@@ -1,15 +1,12 @@
-/**
- * Created by lancelot on 15/4/21.
- */
+
 var LogView = cc.ScrollView.extend({
     ctor: function (size) {
         this.mycontainer = new cc.Layer();
         this._super(size, this.mycontainer);
         this.setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL);
-        this.setBounceable(false);
-        this.setClippingToBounds(true);
+        this.setBounceable(true);
         this.setDelegate(this);
-
+        this.setClippingToBounds(true);
         this.data = [];
         this.updateContentSize();
         return true;

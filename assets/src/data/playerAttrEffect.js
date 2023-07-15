@@ -87,7 +87,8 @@ var playerAttrEffect = {
             "effect": {},
             "id": 4,
             "range": "(75,-]"
-        }
+        },
+
     },
     "injury": {
         "1": {

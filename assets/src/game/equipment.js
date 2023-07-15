@@ -1,11 +1,9 @@
-/**
- * Created by lancelot on 15/4/27.
- */
 var EquipmentPos = {
     GUN: 0,
     WEAPON: 1,
     EQUIP: 2,
-    TOOL: 3
+    TOOL: 3,
+    SPECIAL: 4
 }
 var Equipment = cc.Class.extend({
     ctor: function () {

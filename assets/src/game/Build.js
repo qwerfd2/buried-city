@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/3.
- */
 var BuildUpgradeType = {
     UPGRADABLE: 1,
     MAX_LEVEL: 2,
@@ -209,14 +206,18 @@ var TrapBuild = Build.extend({
 });
 
 var DogBuild = Build.extend({
-    ctor: function (bid, level) {
-        this._super(bid, level);
+    ctor: function (bid, level, saveObj) {
+        this._super(bid, level, saveObj);
     },
     initBuildActions: function () {
         var action = new DogBuildAction(this.id);
         this.actions.push(action);
     },
-    restore: function (opt) {
+    isActive: function () {
+        if (this.level >= 0) {
+            return this.actions[0].fuel > 0;
+        }
+        return false;
     }
 });
 

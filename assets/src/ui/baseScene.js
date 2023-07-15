@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/9/23.
- */
-
 var APP_NAVIGATION = {
     NONE: 1,
     MENU: 2,

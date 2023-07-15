@@ -1,4 +1,12 @@
 var string = {
+    "site_501": {
+        "name": "Ensino Médio",
+        "des": "O corredor do ensino médio, antes movimentado de pessoas, está tão silencioso que se pode ouvir um alfinete cair. Se não fossem os livros espalhados e as manchas de sangue, alguém poderia pensar que é um feriado."
+    },
+    "site_666": {
+        "name": "Portal",
+        "des": "Esta televisão não requer energia externa e tem um mundo oculto atrás da tela. Embora não saibamos o que está do outro lado, certamente não é o paraíso."
+    },
     "18_0": {
         "title": "Fogão elétrico",
         "des": "Pode adaptar-se a tensões extremamente instáveis, embora não consiga atingir a temperatura necessária para cozinhar, mas ainda assim é suficiente para atender às necessidades de aquecimento de um espaço confinado."
@@ -7,6 +15,20 @@ var string = {
         "title": "Cerca elétrica",
         "des": "Devido à voltagem insuficiente, a cerca de energia autoconstruída não pode eliminar imediatamente os zumbis que se aproximam, mas pode 'sugerir' que eles fiquem longe."
     },
+"9030": "Você quer vender?",
+"9031": "Você quer comprar?",
+"9033": "Vender",
+"9034": "Comprar",
+"9035": "Estoque: ",
+"9036": "Mas a sua mochila não consegue guardar as coisas roubadas. Você as colocou de volta discretamente.",
+    "1171": "O cão está devorando carne e soltando latidos de alegria.",
+"1023": "Carne insuficiente",
+    "1218": "página principal",
+    "1219": "Padrão",
+    "1220": "Natal",
+    "1209": "Mapa",
+    "1210": "Cidade",
+    "1211": "Vila",
     "1169": "efeito sonoro",
     "1321": "Masako",
     "1322": "Engenheiro elétrico",
@@ -97,10 +119,10 @@ var string = {
     "1017": "Com café e música, você se lembra dos dias passados.",
     "1018": "Dormir",
     "1019": "Ao dormir, sua energia será recuperada.",
-    "1020": "Alimentar (%s m)",
-    "1021": "O cão está feliz e pronto para proteger a casa.",
-    "1022": "O cão está com fome e precisa de carne.",
-    "1023": "O cão está devorando carne e soltando latidos de alegria.",
+    "1020": "Alimentar",
+    "1022": "O cachorro está com fome e quer carne. 1 pedaço de carne pode sustentá-lo por 12 horas.",
+    "1021": "O cachorro está guardando a casa. Restam %s pedaço(s) de carne por mais %s horas.",
+
     "1024": "Vazio",
     "1025": "Peso:",
     "1026": "Abono:",
@@ -257,14 +279,10 @@ var string = {
     "1183": "Gari",
     "1184": "Bom em procurar artigos valiosos nos escombros.",
     "1185": "Fonte +10%, Peso da Mochila +30%",
-    "1186": "Marines",
-    "1187": "Possui capacidade de sobrevivência e combate excepcionais.",
-    "1188": "KPS+%s (recompensa de %s dos dias de sobrevivência no jogo anterior)",
     "1190": "Preço:",
     "1191": "%s ouro",
     "1192": "Grátis",
     "1193": "Retornar",
-    "1194": "Conectando...",
     "1195": "Compelido pelo desejo",
     "1196": "Eles se mordem e devoram brutalmente.",
     "1197": "O Vazio está se aproximando.",
@@ -917,10 +935,50 @@ var string = {
         "name": "Posto de Gasolina",
         "des": "Dentro do posto há todo tipo de veículos, sendo impossível entrar e sair. Como que aqui não há explosivos!?"
     },
-    "site_202": {
-        "name": "???",
-        "des": "Um equipamento curioso que não usa energia elétrica, mas algumas vezes apresenta vídeos e envia presentes. Primeiro uma propaganda pra deixar a morte ainda mais estimulante!"
-    },
+      "site_202": {
+          "name": "Ferro-velho",
+          "des": "O depósito de lixo da cidade é tão fedorento que nem mesmo os zumbis ousam se aproximar dele. Embora possa haver suprimentos nele, mas... não vamos falar sobre isso, vamos cuspir."
+      },
+      "site_400": {
+          "name": "Mercado do Sobrevivente",
+          "des": "O bazar organizado pelos sobreviventes terá novos produtos todos os dias. Por favor, venda suprimentos em 'Depósito'. O capitalismo é realmente mais feroz que os zumbis."
+      },
+      "site_500": {
+          "name": "Covil dos Bandidos",
+          "des": "Este edifício comum é na verdade o acampamento de uma gangue de ladrões. Já que você se atreve a me roubar, então você não deve ter medo de que eu o pegue de volta."
+      },
+      "13": {
+          "title": "Moedas",
+          "des": "Embora a ilha esteja sob o cerco de zumbis, as moedas ainda são o único meio de troca com as pessoas."
+      },
+      "npc_7": {
+          "name": "W. White",
+          "des": "Antes do desastre, Ele era professor de química na escola secundária da cidade, mas a julgar pelo equipamento em casa, os produtos químicos aqui nem são ensinados nas universidades.",
+          "dialogs": ["Tosse..Tosse..Tosse.. Desculpe, doença ocupacional. Materiais de proteção estão ficando cada vez mais difíceis de conseguir.", "Jesse! Jesse! Ei, a vida está ficando cada vez mais estressante sem Jesse." , "Também posso fazer algumas substâncias químicas que estão 'fora do balcão', hehehe...", "Pare! Levante as mãos! Ei, você não é ladrão... Desculpe então." , "Eu ainda saudades da época em que eu brigava com minha esposa e amigos. Agora, tenho que brigar com todo mundo."]
+      },
+      "statusDialog2": {
+          "title": {
+              "txt_1": "Atual: %s"
+          },
+          "content": {"des2":"Moedas são a única moeda reconhecida no Survivor Market. Você pode comprar e vender suprimentos lá e ganhar moedas."
+          },
+          "action": {
+              "btn_1": {
+                  "txt": "Entendi"
+              }
+          }
+      },
+      "9019": "Pesquisar (30 minutos)",
+      "9020": "Vender",
+      "9021": "Preço unitário: ",
+      "9022": "Selecione a quantidade: ",
+      "9023": "Preço total: ",
+      "9024": "Você está prestes a vender (%s) por %s moedas",
+      "9025": "Você vendeu (%s) e ganhou %s moedas",
+      "9026": "Você está prestes a gastar %s moedas para comprar (%s)",
+      "9027": "Você gastou %s moedas para comprar (%s)",
+      "9028": "Suas moedas não são suficientes para pagar a taxa! A moeda atual é: %s",
+      "9032": "Você voltou para casa e encontrou tudo bagunçado. Atraídos pela sua riqueza e falta de guarda, ladrões saquearam sua casa e você perdeu:",
     "site_61": {
         "name": "081Centro de Pesquisa",
         "des": "Nunca imaginei que nesta vila, há 30m de profundidade, ainda descobriria uma construção tão grande! Quem construiu isso e o que aconteceu aqui?"

@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var RadioNode = BuildNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -84,9 +81,9 @@ var RadioNode = BuildNode.extend({
             return;
         } 
         var prefix = msg.substring(0, msg.indexOf(' '));
-        var lists = ["language","achievement","chosenTalent","medal","medalTemp","uuid","username","record","lastScore","type","radio","ad","assetPath","music","sound","dataLog","screenfix","cheat","curMusic"];
+        var lists = ["language","achievement","chosenTalent","medal","medalTemp","uuid","username","lastScore","type","radio","ad","assetPath","music","sound","dataLog","screenfix","cheat","curMusic"];
         if (msg == "help"){
-            msgData.msg = "Welcome to the Cheat Terminal.\n\nCommand:\nobtain 'name' int: Obtain the item given name, amount.\nobtain evertything int: Obtain everything given amount.\nheal: Heal the player on all aspect.\nkill: kill the player.\nget 'record_name': Get the record content.\nset 'record_name' 'content': Set the record content.\neval code: eval some code.\n\nAll records: " + JSON.stringify(lists);
+            msgData.msg = "Welcome to the Cheat Terminal.\n\nCommand:\nobtain 'name' int: Obtain the item given name, amount.\nobtain everything int: Obtain everything given amount.\nheal: Heal the player on all aspect.\nkill: kill the player.\nget 'record_name': Get the record content.\nset 'record_name' 'content': Set the record content.\neval code: eval some code.\n\nAll records: " + JSON.stringify(lists);
         } else if (prefix == "get"){
             var field = msg.substring(msg.indexOf(' ') + 1);
             if (lists.indexOf(field) == -1){
@@ -118,19 +115,25 @@ var RadioNode = BuildNode.extend({
             } else {
                 if (itemName == "everything") {
                     found = true;
+                    player.onCurrencyChange(amount);
                     for (var itemId in itemConfig) {
                         itemId = Number(itemId);
                         player.storage.increaseItem(itemId, amount);
                     }
                 } else {
-                    for (var itemId in itemConfig) {
-                        itemId = Number(itemId);
-                        var testItemName = stringUtil.getString(itemId).title;
-                        if (itemName == testItemName) {
-                            player.storage.increaseItem(itemId, amount);
-                            found = true;   
-                            break;
-                        }    
+                    if (itemName == stringUtil.getString(13).title) {
+                        player.onCurrencyChange(amount);
+                        found = true;
+                    } else {
+                        for (var itemId in itemConfig) {
+                            itemId = Number(itemId);
+                            var testItemName = stringUtil.getString(itemId).title;
+                            if (itemName == testItemName) {
+                                player.storage.increaseItem(itemId, amount);
+                                found = true;   
+                                break;
+                            }    
+                        }
                     }
                 }
                 if (!found) {

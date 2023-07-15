@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var SiteNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -52,7 +49,7 @@ var SiteNode = BottomFrameNode.extend({
         this.bg.addChild(btn1);
         btn1.setName("btn_1");
 
-        this.notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName('map_actor.png');
+        this.notifyIcon = new cc.Sprite('res/new/map_actor.png');
         this.notifyIcon.x = btn1.width - 5;
         this.notifyIcon.y = btn1.height - 5;
         btn1.addChild(this.notifyIcon);
@@ -89,7 +86,11 @@ var SiteNode = BottomFrameNode.extend({
         this.site.haveNewItems = false;
     },
     onClickBtn2: function () {
-        this.forward(Navigation.nodeName.BATTLE_AND_WORK_NODE, this.userData);
+        if (this.site.id == 400) {
+            this.forward(Navigation.nodeName.BAZAAR_NODE, this.userData);
+        } else {
+            this.forward(Navigation.nodeName.BATTLE_AND_WORK_NODE, this.userData);
+        }
     },
     onEnter: function () {
         this._super();
@@ -114,5 +115,12 @@ var SiteNode = BottomFrameNode.extend({
         config.action.btn_1.txt = stringUtil.getString(1030);
         var dialog = new DialogTiny(config);
         dialog.show();
+    }
+});
+
+var BazaarSiteNode = SiteNode.extend({
+    onClickBtn1: function () {
+        this.forward(Navigation.nodeName.BAZAAR_STORAGE_NODE, this.userData);
+        this.site.haveNewItems = false;
     }
 });

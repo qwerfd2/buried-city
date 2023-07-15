@@ -20,8 +20,11 @@ var MapView = cc.ScrollView.extend({
     ctor: function (size) {
         var container = new cc.Layer();
         this._super(size, container);
-
-        this.bg = autoSpriteFrameController.getSpriteFromSpriteName("#map_bg.png");
+        if (Record.getCity()) {
+            this.bg = new cc.Sprite("res/new/map_bg_new.png");
+        } else {
+            this.bg = new cc.Sprite("res/new/map_bg.png");
+        }
         this.bg.setAnchorPoint(0, 0);
         this.bg.setName("name");
         container.addChild(this.bg);
@@ -98,7 +101,7 @@ var MapView = cc.ScrollView.extend({
             weatherBg.removeFromParent();
         }
         if (weatherId != Weather.CLOUDY) {
-            weatherBg = autoSpriteFrameController.getSpriteFromSpriteName("#weather_" + weatherId + ".png");
+            weatherBg = new cc.Sprite("res/new/weather_" + weatherId + ".png");
             weatherBg.setAnchorPoint(0, 0);
             weatherBg.setName("weather");
             this.bg.addChild(weatherBg);
@@ -116,7 +119,6 @@ var MapView = cc.ScrollView.extend({
         var time = distance / this.actor.getMaxVelocity();
         var okFunc = function () {
             entity.setHighlight(true);
-
             cc.timer.accelerate(time, player.storage.validateItem(1304024, 1) ? 2 : 3);
             player.log.addMsg(1112, entity.baseSite.getName());
             self.makeLine(startPos, endPos);
@@ -171,6 +173,7 @@ var MapView = cc.ScrollView.extend({
             if (baseSite.id == HOME_SITE) {
                 nodeName = Navigation.nodeName.HOME_NODE;
                 player.log.addMsg(1111);
+                player.trySteal();
             } else {
                 if (baseSite.id == AD_SITE) {
                     nodeName = Navigation.nodeName.AD_SITE_NODE;
@@ -178,6 +181,8 @@ var MapView = cc.ScrollView.extend({
                     nodeName = Navigation.nodeName.BOSS_SITE_NODE;
                 } else if (baseSite.id == WORK_SITE) {
                     nodeName = Navigation.nodeName.WORK_SITE_NODE;
+                } else if (baseSite.id == BAZAAR_SITE) {
+                    nodeName = Navigation.nodeName.BAZAAR_SITE_NODE;
                 } else {
                     nodeName = Navigation.nodeName.SITE_NODE;
                 }
@@ -225,10 +230,9 @@ var MapView = cc.ScrollView.extend({
     },
 
     scrollViewDidScroll: function (view) {
-        //cc.e("onscroll " + JSON.stringify(view.getContentOffset()));
     },
+    
     scrollViewDidZoom: function (view) {
-        //cc.e("onzoom " + JSON.stringify(view.getContentOffset()));
         var offset = view.getContentOffset();
         offset = this.clampOffset(offset);
         view.setContentOffset(offset);
@@ -249,11 +253,11 @@ var MapView = cc.ScrollView.extend({
         this.pathLine.setPosition(startP);
         var v = cc.pSub(endP, startP);
         var length = cc.pLength(v);
-        var lineSpriteFrame = autoSpriteFrameController.getSpriteFrameFromSpriteName("map_line.png");
-        var w = lineSpriteFrame.getRect().width;
+        var lineSpriteFrame = new cc.Sprite("res/new/map_line.png");
+        var w = lineSpriteFrame.getContentSize().width;
         var num = Math.ceil(length / w);
         for (var i = 0; i < num; i++) {
-            var l = autoSpriteFrameController.getSpriteFromSpriteName("#map_line.png");
+            var l = new cc.Sprite("res/new/map_line.png");
             l.setAnchorPoint(0, 0.5);
             l.setPosition(i * w, 0);
             this.pathLine.addChild(l);
@@ -274,7 +278,7 @@ var Actor = cc.Node.extend({
         this._super();
 
         this.map = map;
-        var s = autoSpriteFrameController.getSpriteFromSpriteName("#map_actor.png");
+        var s = new cc.Sprite("res/new/map_actor.png");
         this.setContentSize(s.getContentSize());
         this.setAnchorPoint(0.5, 0.5);
         s.setPosition(this.getContentSize().width / 2, this.getContentSize().height / 2);
@@ -377,23 +381,29 @@ var Entity = Button.extend({
 
         var bg = autoSpriteFrameController.getSpriteFromSpriteName(this.baseSite.id == HOME_SITE ? "site_big_bg.png" : "#site_bg.png");
         this._super(bg.getContentSize());
-
+        bg.setScale(0.8);
         bg.setPosition(this.getContentSize().width / 2, this.getContentSize().height / 2);
         this.addChild(bg);
 
         var bg2 = autoSpriteFrameController.getSpriteFromSpriteName(this.baseSite.id == HOME_SITE ? "site_highlight_big_bg.png" : "#site_highlight_bg.png");
         bg2.setPosition(this.getContentSize().width / 2, this.getContentSize().height / 2);
         bg2.setName("highlight");
+        bg2.setScale(0.8);
         bg2.setVisible(false);
         this.addChild(bg2);
 
         var iconName, icon;
         if (this.baseSite instanceof Site) {
-            iconName = "#site_" + this.baseSite.id + ".png";
+            if (this.baseSite.id == 202) {
+                iconName = "#site202.png";
+            } else {
+                iconName = "#site_" + this.baseSite.id + ".png";
+            }
         } else {
             iconName = "#npc_" + this.baseSite.id + ".png";
         }
         icon = autoSpriteFrameController.getSpriteFromSpriteName(iconName);
+        icon.setScale(0.8);
         icon.setPosition(this.getContentSize().width / 2, this.getContentSize().height / 2);
         this.addChild(icon);
 
@@ -429,7 +439,8 @@ var Entity = Button.extend({
             if (cc.sys.localStorage.getItem("ad") == "1") {
                 var notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_ad_show.png');
                 notifyIcon.x = this.width - 10;
-                notifyIcon.y = this.height;
+                notifyIcon.y = this.height - 10;
+                notifyIcon.setScale(0.8);
                 this.addChild(notifyIcon);
             }
         } else if (this.baseSite instanceof WorkSite) {
@@ -441,13 +452,15 @@ var Entity = Button.extend({
             if (this.baseSite.isActive) {
                 var notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_electric_active.png');
                 notifyIcon.x = this.width - 10;
-                notifyIcon.y = this.height;
+                notifyIcon.y = this.height - 10;
+                notifyIcon.setScale(0.6);
                 notifyIcon.setName('icon');
                 this.addChild(notifyIcon);
             } else {
                 var notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_electric_inactive.png');
                 notifyIcon.x = this.width - 10;
-                notifyIcon.y = this.height;
+                notifyIcon.y = this.height - 10;
+                notifyIcon.setScale(0.6);
                 notifyIcon.setName('icon');
                 this.addChild(notifyIcon);
             }

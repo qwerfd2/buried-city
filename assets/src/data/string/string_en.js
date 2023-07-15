@@ -1,4 +1,12 @@
 var string = {
+"site_501": {
+        "name": "High School",
+        "des": "The high school hallway, once bustling with people, is now so quiet that you can hear a pin drop. If it weren't for the scattered books and bloodstains, one would think it's a holiday."
+    },
+"site_666": {
+    "name": "Portal",
+    "des": "This television does not require external power and has a hidden world behind the screen. Although we don't know what's on the other side, it's definitely not heaven."
+    },
     "18_0": {
         "title": "Electric Stove",
         "des": "It can adapt to extremely unstable voltage. Although it cannot reach the temperature required for cooking, it is still sufficient to meet the heating requirements of a confined space."
@@ -7,6 +15,19 @@ var string = {
         "title": "Electric Fence",
         "des": "Due to insufficient voltage, the self-built power Fence cannot immediately eliminate the approaching zombies, but it can 'suggest' them to stay away."
     },
+"9030": "Do you want to sell?",
+"9031": "Do you want to buy?",
+"9033": "Sell",
+"9034": "Buy",
+"9035": "Stock: ",
+"9036": "But your backpack cannot hold the stolen items. You quitely put them back.",
+    "1171": "The dog is happily eating the fresh meat.",
+    "1218": "main page",
+    "1219": "Default",
+    "1220": "Christmas",
+    "1209": "Map",
+    "1210": "City",
+    "1211": "Town",
     "1321": "Masako",
     "1322": "Electrical Engineer",
     "1323": "Repair (%s m)",
@@ -89,10 +110,10 @@ var string = {
     "1017": "With coffee and music, you feel like you've gone back to happier times.",
     "1018": "Sleep",
     "1019": "Falling asleep, your body and energy recover a little.",
-    "1020": "Feed (%s m)",
-    "1021": "The dog is happy. It is guarding the house.  ",
-    "1022": "The dog is hungry, feed it some meat.",
-    "1023": "The dog is happily eating the fresh meat.",
+    "1020": "Feed",
+    "1022": "Dog is hungry and wants meat. 1 meat can sustain for 12 hours.",
+    "1021": "The dog is guarding the house. There are %s meat left for %s hours.",
+    "1023": "Insufficient meat",
     "1024": "None",
     "1025": "Weight:",
     "1026": "Stock:",
@@ -249,14 +270,10 @@ var string = {
     "1183": "Scavenger",
     "1184": "Good at scavenging useful items from rubble.",
     "1185": "Resources +10%, Backpack load +30%",
-    "1186": "Soldier",
-    "1187": "Has exceptional survival and combat abilities.",
-    "1188": "First aid kit +%s (%s reward for survival time in previous game)",
     "1190": "Price:",
     "1191": "$%s",
     "1192": "Free",
     "1193": "Return",
-    "1194": "Connecting…",
     "1195": "Driven by hunger",
     "1196": "They brutally tear and devour each other",
     "1197": "The void is just around the corner",
@@ -920,10 +937,50 @@ var string = {
         "name": "Gas Station",
         "des": "Various vehicles are parked so haphazardly in the station that they cannot move either forward or backward. It's a miracle that no explosion has occurred in the station."
     },
-    "site_202": {
-        "name": "??? ",
-        "des": "A suspicious device that continues to operate without an external power supply. It occasionally plays videos, and sometimes sends out presents.  Okay, we'll be right back after some commercials. Stay tuned for more hair-raising adventure!"
-    },
+     "site_202": {
+         "name": "Junkyard",
+         "des": "The town's garbage dump is so smelly that even zombies dare not approach it. Although there may be supplies in it, but... let's not talk about it, let's spit it out"
+     },
+     "site_400": {
+         "name": "Survivor's Market",
+         "des": "The bazaar organized by the survivors will have new products every day. Please sell supplies in 'Depository'. Capitalism is really more ferocious than zombies."
+     },
+     "site_500": {
+         "name": "Bandit Den",
+         "des": "This unremarkable building is actually the camp of a gang of robbers. Since you dare to rob me, then you should not be afraid of me taking it back."
+     },
+     "13": {
+         "title": "Coins",
+         "des": "Although the island is under the siege of zombies, coins are still the only medium for bartering with people."
+     },
+     "npc_7": {
+         "name": "W. White",
+         "des": "Before the disaster, He was a chemistry teacher in the town's high school, but judging by the equipment at home, the chemicals here are not even taught by universities.",
+         "dialogs": ["Cough..Cough..Cough.. Sorry, occupational disease. Protective materials are getting harder and harder to get.", "Jesse! Jesse! Hey, life is getting more and more stressful without Jesse.", "I can also make some chemical substances that are 'off the counter', hehehe...", "Stop! Put your hands up! Hey, you're not a thief... Sorry then." , "I still miss the time when I was fighting wits with my wife and friends. Now, I have to fight everyone."]
+     },
+     "statusDialog2": {
+         "title": {
+             "txt_1": "Current: %s"
+         },
+         "content": {"des2":"Coins are the only recognized currency in the Survivor Market. You can buy and sell supplies there and earn coins."
+         },
+         "action": {
+             "btn_1": {
+                 "txt": "Got it"
+             }
+         }
+     },
+     "9019": "Search (30 minutes)",
+     "9020": "Sell",
+     "9021": "Unit price: ",
+     "9022": "Select Quantity: ",
+     "9023": "Total price: ",
+     "9024": "You are about to sell (%s) for %s coins",
+     "9025": "You sold (%s) and got %s coins",
+     "9026": "You are about to spend %s coins to buy (%s)",
+     "9027": "You spent %s coins to buy (%s)",
+     "9028": "Your coins are not enough to pay the fee! The current coin is: %s",
+     "9032": "You returned home to find everything in a mess. Attracted by your wealth and lack of guard, thiefs plundered your house and you lost:",
     "site_61": {
         "name": "081 Research Institute ",
         "des": "One would never expect to find such an enormous structure 30 meters underground  beneath a secret base. Who on earth built this place?  And what happened here?"

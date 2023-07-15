@@ -1,6 +1,3 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var BattleAndWorkNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -427,7 +424,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         if (this.bg.getChildByName("dig_des")) {
             this.bg.removeChildByName("dig_des");
         }
-        var digDes = autoSpriteFrameController.getSpriteFromSpriteName("#work_dig_" + this.room.workType + ".png");
+        var digDes = new cc.Sprite("res/new/work_dig_" + this.room.workType + ".png");
         digDes.setAnchorPoint(0.5, 1);
         digDes.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - 20);
         digDes.setName("dig_des");

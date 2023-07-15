@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/4/23.
- */
-
 var StorageNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);

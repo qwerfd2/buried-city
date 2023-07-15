@@ -11,9 +11,9 @@ var achievementLayer = cc.Layer.extend({
     onEnter: function () {
         this._super();
         if (Record.getScreenFix()) {
-            this.setScale(0.84);
+            this.setScale(0.83);
         }
-        this.bg = autoSpriteFrameController.getSpriteFromSpriteName("#rank_bg.png");
+        this.bg = new cc.Sprite("res/new/rank_bg.png");
         this.bg.x = cc.winSize.width / 2;
         this.bg.y = cc.winSize.height / 2;
         this.addChild(this.bg);
@@ -24,13 +24,13 @@ var achievementLayer = cc.Layer.extend({
         this.createTableView();
         this.requestData();
 
-        var rankLogoName;
+        var rankLogoName = "res/new/";
         if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE) {
-            rankLogoName = 'top_logo_zh.png';
+            rankLogoName += "top_logo_zh.png";
         } else {
-            rankLogoName = 'top_logo_en.png';
+            rankLogoName = "top_logo_en.png";
         }
-        var rankLogo = autoSpriteFrameController.getSpriteFromSpriteName(rankLogoName);
+        var rankLogo = new cc.Sprite(rankLogoName);
         rankLogo.x = cc.winSize.width / 2;
         rankLogo.y = 1038;
         rankLogo.scale = 0.5;
@@ -134,7 +134,7 @@ var achievementLayer = cc.Layer.extend({
         var itemName = info.name;
         cell = new cc.TableViewCell();
         var tombstone;
-        if (info.completed == 1){
+        if (info.completed){
             tombstone = new cc.Sprite("res/achievements/" + itemName + ".png");
         } else {
             tombstone = new cc.Sprite("res/achievements/bt_locked.png");
@@ -191,11 +191,9 @@ var achievementLayer = cc.Layer.extend({
     }
 });
 
-
 var achievementScene = BaseScene.extend({
     ctor: function () {
         this._super(APP_NAVIGATION.MENU_SUB);
-        autoSpriteFrameController.addSpriteFrames("res/rank.plist");
     },
     onEnter: function () {
         this._super();

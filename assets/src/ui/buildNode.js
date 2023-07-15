@@ -1,14 +1,15 @@
-/**
- * Created by lancelot on 15/4/22.
- */
 var BuildNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
     },
     _init: function () {
-        var bid = this.userData.bid;
-        this.build = player.room.getBuild(bid);
-        var title = player.room.getBuildCurrentName(bid);
+        this.bid = this.userData.bid;
+        this.build = player.room.getBuild(this.bid);
+        var title = player.room.getBuildCurrentName(this.bid);
+        if (this.bid === 19) {
+            title += " & ";
+            title += player.room.getBuildCurrentName(11);
+        }
         this.setName(Navigation.nodeName.BUILD_NODE);
         this.uiConfig = {
             title: title,
@@ -30,24 +31,23 @@ var BuildNode = BottomFrameNode.extend({
                 utils.emitter.emit("left_btn_enabled", false);
                 self.build.upgrade(function (percentage) {
                     self.upgradeView.updatePercentage(percentage);
-                    if (bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
+                    if (this.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
                         uiUtil.removeIconWarn(self.upgradeView.getChildByName("action1"));
                     }
                 }, function () {
                     utils.emitter.emit("left_btn_enabled", true);
-                    if (bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
+                    if (this.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
                         userGuide.step();
                     }
                     self.afterUpgrade();
                     btnShop.setEnabled(true);
                 });
-                //fix bug 1.3.1 建筑升级时点商店造成的,本页面被回收后继续执行回调的问题
                 btnShop.setEnabled(false);
             }
             }
         );
 
-        if (bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
+        if (this.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
             if (player.room.getBuildLevel(9) > -1) {
                 userGuide.step();
             } else {
@@ -58,11 +58,43 @@ var BuildNode = BottomFrameNode.extend({
         this.upgradeView.setAnchorPoint(0.5, 1);
         this.upgradeView.setPosition(this.bgRect.width / 2, this.contentTopLineHeight);
         this.bg.addChild(this.upgradeView, 1);
+        
+        if (this.bid === 19) {
+            this.fenceView = uiUtil.createCommonListItem(
+                {
+                    target: this, cb: function () {
+                    uiUtil.showBuildDialog(11, player.room.getBuild(11).isMax() ? player.room.getBuild(11).level : (player.room.getBuild(11).level + 1));
+                    }
+                },
+                {
+                    target: this, cb: function () {
+                    if (!uiUtil.checkVigour())
+                        return;
+                    utils.emitter.emit("left_btn_enabled", false);
+                    player.room.getBuild(11).upgrade(function (percentage) {
+                        self.fenceView.updatePercentage(percentage);
+                    }, function () {
+                        utils.emitter.emit("left_btn_enabled", true);
+                        self.afterUpgrade();
+                        btnShop.setEnabled(true);
+                    });
+                    btnShop.setEnabled(false);
+                }
+            });
+            this.fenceView.setAnchorPoint(0.5, 1);
+            this.fenceView.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - this.upgradeView.height);
+            this.bg.addChild(this.fenceView, 2);
+        }
 
         this.updateUpgradeView();
 
         this.sectionView = autoSpriteFrameController.getSpriteFromSpriteName("#frame_section_bg.png");
-        this.sectionView.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - this.upgradeView.getContentSize().height);
+        
+        if (this.build.id === 19) {
+            this.sectionView.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - this.upgradeView.getContentSize().height * 2);
+        } else {
+            this.sectionView.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - this.upgradeView.getContentSize().height);
+        }
         this.sectionView.setAnchorPoint(0.5, 1);
         this.bg.addChild(this.sectionView);
 
@@ -149,7 +181,12 @@ var BuildNode = BottomFrameNode.extend({
 
     afterUpgrade: function () {
         this.updateAllView();
-        this.title.setString(player.room.getBuildCurrentName(this.build.id));
+        var title = player.room.getBuildCurrentName(this.build.id);
+        if (this.bid === 19) {
+            title += " & ";
+            title += player.room.getBuildCurrentName(11);
+        }   
+        this.title.setString(title);
     },
 
     updateAllView: function () {
@@ -263,6 +300,59 @@ var BuildNode = BottomFrameNode.extend({
     },
 
     updateUpgradeView: function () {
+        var action1Disabled;
+        if (this.build.id === 19) {
+            var upgradeInfo = player.room.getBuild(11).canUpgrade();
+            switch (upgradeInfo.buildUpgradeType) {
+                case BuildUpgradeType.UPGRADABLE:
+                case BuildUpgradeType.CONDITION:
+                case BuildUpgradeType.COST:
+                    var upgradeConfig = player.room.getBuild(11).getUpgradeConfig();
+                    if (IAPPackage.isHandyworkerUnlocked()) {
+                        upgradeConfig.upgradeTime = Math.round(upgradeConfig.upgradeTime * 0.7);
+                    }
+                    var action1Txt = player.room.getBuild(11).needBuild() ? stringUtil.getString(1005, upgradeConfig.upgradeTime) : stringUtil.getString(1001, upgradeConfig.upgradeTime);
+
+                    var hint = upgradeInfo.buildUpgradeType === BuildUpgradeType.CONDITION ? stringUtil.getString(1006, player.room.getBuildName(upgradeInfo.condition["bid"], upgradeInfo.condition["level"])) : "";
+                    var items = null;
+                    if (upgradeInfo.buildUpgradeType === BuildUpgradeType.UPGRADABLE) {
+                        items = upgradeConfig.upgradeCost;
+                    } else if (upgradeInfo.buildUpgradeType === BuildUpgradeType.COST) {
+                        items = upgradeInfo.cost.map(function (itemInfo) {
+                            return {
+                                itemId: itemInfo.itemId,
+                                num: itemInfo.num,
+                                color: itemInfo.haveNum >= itemInfo.num ? cc.color.WHITE : cc.color.RED
+                            };
+                        });
+                    }
+                    action1Disabled = upgradeInfo.buildUpgradeType === BuildUpgradeType.UPGRADABLE ? false : true;
+                    //当建筑物中有任何不是本btn的活跃动作时,则不能使用
+                    if ( this.build.anyBtnActive() && this.build.activeBtnIndex !== -1) {
+                        action1Disabled = true;
+                    }
+                    if (player.room.getBuild(11).isUpgrading || this.build.isUpgrading) {
+                        action1Disabled = true;
+                    }
+                    this.fenceView.updateView({
+                        iconName: "#build_11_" + upgradeConfig.level + ".png",
+                        hint: hint,
+                        hintColor: hint ? cc.color.RED : null,
+                        items: items,
+                        action1: action1Txt,
+                        action1Disabled: action1Disabled,
+                        percentage: 0
+                    });
+                    break;
+                case BuildUpgradeType.MAX_LEVEL:
+                    this.fenceView.updateView({
+                        iconName: "#build_11_2.png",
+                        hint: stringUtil.getString(1147),
+                        percentage: 0
+                    });
+                    break;
+            }
+        }
         var upgradeInfo = this.build.canUpgrade();
         switch (upgradeInfo.buildUpgradeType) {
 
@@ -288,9 +378,12 @@ var BuildNode = BottomFrameNode.extend({
                         };
                     });
                 }
-                var action1Disabled = upgradeInfo.buildUpgradeType === BuildUpgradeType.UPGRADABLE ? false : true;
+                action1Disabled = upgradeInfo.buildUpgradeType === BuildUpgradeType.UPGRADABLE ? false : true;
                 //当建筑物中有任何不是本btn的活跃动作时,则不能使用
                 if (this.build.anyBtnActive() && this.build.activeBtnIndex !== -1) {
+                    action1Disabled = true;
+                }
+                if (player.room.getBuild(11).isUpgrading && this.build.id === 19) {
                     action1Disabled = true;
                 }
                 if (this.build.isUpgrading) {

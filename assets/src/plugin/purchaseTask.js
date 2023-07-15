@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/8/17.
- */
-var VALIDATE_ERROR = 70001;
 var PurchaseTaskManager = {
     _activeTask: null,
     newTask: function (purchaseId) {

@@ -1,11 +1,9 @@
-/**
- * User: Alex
- * Date: 15/1/5
- * Time: 下午4:07
- */
 var DayLayer = cc.Layer.extend({
     ctor: function (res) {
         this._super();
+        if (Record.getScreenFix()) {
+            this.setScale(0.86);
+        }
         this.res = res;
         var self = this;
         cc.eventManager.addListener(cc.EventListener.create({
@@ -32,6 +30,8 @@ var DayLayer = cc.Layer.extend({
         var bgColor = new cc.LayerColor();
         bgColor.setColor(cc.color(0, 0, 0, 200));
         bgColor.setOpacity(0);
+        bgColor.changeWidth(1000);
+        bgColor.x -= 300;
         this.addChild(bgColor, 0);
         bgColor.setName("bgColor");
 
@@ -64,7 +64,7 @@ var DayLayer = cc.Layer.extend({
         } else {
             bgName = "day_scene_peace.png";
         }
-        var bg = autoSpriteFrameController.getSpriteFromSpriteName(bgName);
+        var bg = new cc.Sprite("res/new/" + bgName);
         bg.x = cc.winSize.width / 2;
         bg.y = cc.winSize.height / 2;
         this.addChild(bg);

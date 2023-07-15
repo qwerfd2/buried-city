@@ -1289,8 +1289,8 @@ var npcConfig = {
             "num": "1"
         }, null],
         "coordinate": {
-            "x": 453,
-            "y": 401
+            "x": 483,
+            "y": 371
         }
     },
     "5": {
@@ -1658,5 +1658,6 @@ var npcConfig = {
             "x": 300,
             "y": 50
         }
-    }
+    },
+"7":{"favorite":[[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.5},{"itemId":1301033,"price":1.5},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.5},{"itemId":1301063,"price":1.5}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.5},{"itemId":1301033,"price":1.5},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.5},{"itemId":1301063,"price":1.5}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.5},{"itemId":1301033,"price":1.4},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.5},{"itemId":1301063,"price":1.4}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.4},{"itemId":1301033,"price":1.4},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.4},{"itemId":1301063,"price":1.4}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.4},{"itemId":1301033,"price":1.4},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.4},{"itemId":1301063,"price":1.3}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.4},{"itemId":1301033,"price":1.3},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.4},{"itemId":1301063,"price":1.3}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.3},{"itemId":1301033,"price":1.3},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.3},{"itemId":1301063,"price":1.3}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.3},{"itemId":1301033,"price":1.3},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.3},{"itemId":1301063,"price":1.2}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.3},{"itemId":1301033,"price":1.2},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.3},{"itemId":1301063,"price":1.2}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.2},{"itemId":1301033,"price":1.3},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.3},{"itemId":1301063,"price":1.3}],[{"itemId":1301041,"price":1.2},{"itemId":1301011,"price":1.2},{"itemId":1301033,"price":1.2},{"itemId":1301022,"price":1.2},{"itemId":1301052,"price":1.2},{"itemId":1301063,"price":1.2}]],"trading":[[{"itemId":1101071,"num":2}],[{"itemId":1101071,"num":2},{"itemId":1105033,"num":1}],[{"itemId":1101071,"num":2}],[{"itemId":1101071,"num":2},{"itemId":1105033,"num":1}],[{"itemId":1101071,"num":2}],[{"itemId":1101071,"num":2},{"itemId":1105033,"num":1}],[{"itemId":1101071,"num":2}],[{"itemId":1101071,"num":2},{"itemId":1105033,"num":1}],[{"itemId":1101071,"num":2}],[{"itemId":1101071,"num":2},{"itemId":1105033,"num":1}],[{"itemId":1101071,"num":2}]],"needItem":[{"itemId":1301011,"num":1},{"itemId":1301022,"num":1},{"itemId":1301033,"num":1},{"itemId":1301041,"num":1},{"itemId":1301052,"num":1},{"itemId":1302043,"num":1},{"itemId":1303012,"num":2},{"itemId":1303044,"num":1},{"itemId":1305011,"num":20},{"itemId":1305011,"num":40},null],"gift":[null,{"itemId":"1101071","num":"5"},null,{"siteId": "500"},{"itemId":"1101071","num":"5"},null,{"itemId":"1101071","num":"10"},{"siteId": "501"},{"itemId":"1101071","num":"10"},null,{"itemId":"1105033","num":"10"}],"gift_extra":[null,null,null,null,{"itemId":"1101071","num":"10"},null,null,{"itemId":"1101071","num":"10"},null,null,{"itemId":"1105033","num":"10"}],"coordinate":{"x":310,"y":250}}
 };

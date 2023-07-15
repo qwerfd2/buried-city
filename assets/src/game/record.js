@@ -1,7 +1,3 @@
-/**
- * Created by lancelot on 15/5/15.
- */
-
 var Record = {
     recordObj: null,
     recordName: null,
@@ -12,7 +8,6 @@ var Record = {
     saveAll: function () {
         this.save("player", player.save());
         this.save("time", cc.timer.save());
-        //cc.e("save all " + JSON.stringify(this.recordObj));
         cc.e("save all ");
     },
     save: function (key, obj) {
@@ -112,6 +107,32 @@ var Record = {
             onVal = 1;
         }
         cc.sys.localStorage.setItem("screenfix", onVal);
+    },
+    
+    getCity: function () {
+       var value = cc.sys.localStorage.getItem("city") || 0;
+       return value == 1 ? true : false;
+    },
+    
+    setCity: function (on) {
+        var onVal = 2;
+        if (on) {
+            onVal = 1;
+        }
+        cc.sys.localStorage.setItem("city", onVal);
+    },
+    
+    getFestival: function () {
+       var value = cc.sys.localStorage.getItem("festival") || 0;
+       return value == 1 ? true : false;
+    },
+    
+    setFestival: function (on) {
+        var onVal = 2;
+        if (on) {
+            onVal = 1;
+        }
+        cc.sys.localStorage.setItem("festival", onVal);
     }
 };
 

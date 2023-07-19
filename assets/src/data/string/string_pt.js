@@ -1,4 +1,12 @@
 var string = {
+"1324": "Problemas para dormir por causa do café. Descanse após %s horas.",
+"1325": "Precisão reduzida em %s% devido ao álcool!",
+"1326": "Por favor, venda a partir da bolsa!",
+"1327": ["Desligado","Parcial","Completo"],
+"1103094": {
+        "title": "Queijo",
+        "des": "A textura suave e derretida e o rico sabor lácteo podem fazer você esquecer as pressões da sobrevivência."
+    },
     "site_501": {
         "name": "Ensino Médio",
         "des": "O corredor do ensino médio, antes movimentado de pessoas, está tão silencioso que se pode ouvir um alfinete cair. Se não fossem os livros espalhados e as manchas de sangue, alguém poderia pensar que é um feriado."
@@ -615,7 +623,7 @@ var string = {
         "title": "Roupa de Defesa",
         "des": "Casaco grosso ligado localmente com chapas para proteger partes críticas contra danos."
     },
-    "1304024": {
+    "1306001": {
         "title": "Botas",
         "des": "Espessamento do peito do pé, reforço da sola, pode proteger seus pés e aumentar a velocidade de locomoção nos escombros."
     },
@@ -1356,6 +1364,14 @@ var string = {
 "bt_npc_12": {
 "title": "Tão gentil de sua parte, Senhor!",
 "des": "Amizade com o Estranho aumenta para 100%."
+},
+"bt_npc_13": {
+"title": "Oi, Sr. White!",
+"des": "Conheça W.White."
+},
+"bt_npc_14": {
+"title": "Tão gentil da sua parte, Walter!",
+"des": "A amizade com W.White aumenta para 100%."
 },
 "bt_item_1": {
 "title": "Bang!",

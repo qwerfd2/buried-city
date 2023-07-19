@@ -140,8 +140,8 @@ var siteConfig = {
             "itemId": "1302*1",
             "num": 0
         }, {
-            "itemId": "1106013",
-            "num": 0
+            "itemId": "1103094",
+            "num": 1
         }],
         "unlockValue": {
             "site": ["2", "3"]
@@ -292,8 +292,8 @@ var siteConfig = {
             "itemId": "1302*1",
             "num": 0
         }, {
-            "itemId": "1106013",
-            "num": 0
+            "itemId": "1103094",
+            "num": 2
         }],
         "unlockValue": {
             "site": ["4", "5"]
@@ -594,8 +594,8 @@ var siteConfig = {
             "itemId": "1302*1",
             "num": 0
         }, {
-            "itemId": "1106013",
-            "num": 0
+            "itemId": "1103094",
+            "num": 2
         }],
         "unlockValue": {},
         "secretRoomsId": 1,
@@ -610,7 +610,7 @@ var siteConfig = {
         "battleRoom": 6,
         "difficulty": [3, 4],
         "workRoom": 3,
-        "produceValue": 123,
+        "produceValue": 113,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -891,8 +891,8 @@ var siteConfig = {
             "itemId": "1302*1",
             "num": 0
         }, {
-            "itemId": "1106013",
-            "num": 0
+            "itemId": "1103094",
+            "num": 2
         }],
         "unlockValue": {
             "site": ["8"]
@@ -1040,8 +1040,8 @@ var siteConfig = {
             "itemId": "1105033",
             "num": 0
         }, {
-            "itemId": "1302*1",
-            "num": 0
+            "itemId": "1106013",
+            "num": 1
         }],
         "unlockValue": {
             "site": ["9"]
@@ -1058,7 +1058,7 @@ var siteConfig = {
         "battleRoom": 8,
         "difficulty": [4, 6],
         "workRoom": 6,
-        "produceValue": 242,
+        "produceValue": 240,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -1190,8 +1190,8 @@ var siteConfig = {
             "itemId": "1302*1",
             "num": 0
         }, {
-            "itemId": "1106013",
-            "num": 0
+            "itemId": "1103094",
+            "num": 1
         }],
         "unlockValue": {},
         "def": 30
@@ -1506,7 +1506,7 @@ var siteConfig = {
         "battleRoom": 9,
         "difficulty": [3, 4],
         "workRoom": 9,
-        "produceValue": 362,
+        "produceValue": 375,
         "produceList": [{
             "itemId": "1101011",
             "weight": 15
@@ -1638,8 +1638,8 @@ var siteConfig = {
             "itemId": "1302*1",
             "num": 0
         }, {
-            "itemId": "1106013",
-            "num": 0
+            "itemId": "1103094",
+            "num": 1
         }],
         "unlockValue": {},
         "secretRoomsId": 2,
@@ -5422,80 +5422,176 @@ var siteConfig = {
     "battleRoom": 600,
     "difficulty": [8, 12],
     "workRoom": 66,
-    "produceValue": 6720,
+    "produceValue": 7220,
     "produceList": [{
         "itemId": "1101011",
-        "weight": 150
+        "weight": 20
     }, {
         "itemId": "1101021",
-        "weight": 30
+        "weight": 20
     }, {
         "itemId": "1101031",
         "weight": 20
     }, {
         "itemId": "1101041",
-        "weight": 40
+        "weight": 20
     }, {
         "itemId": "1101051",
-        "weight": 50
+        "weight": 20
     }, {
-        "itemId": "1101**",
+        "itemId": "1101061",
+        "weight": 20
+    }, {
+        "itemId": "1101073",
         "weight": 10
     }, {
         "itemId": "1102011",
+        "weight": 5
+    }, {
+        "itemId": "1102022",
+        "weight": 5
+    }, {
+        "itemId": "1102033",
+        "weight": 5
+    }, {
+        "itemId": "1102042",
+        "weight": 5
+    }, {
+        "itemId": "1102053",
         "weight": 2
     }, {
-        "itemId": "1103*1",
-        "weight": 50
+        "itemId": "1102063",
+        "weight": 2
     }, {
-        "itemId": "1104011",
+        "itemId": "1103011",
         "weight": 10
     }, {
-        "itemId": "1104021",
+        "itemId": "1103022",
+        "weight": 5
+    }, {
+        "itemId": "1103033",
+        "weight": 5
+    }, {
+        "itemId": "1103041",
         "weight": 10
     }, {
-        "itemId": "1104043",
-        "weight": 0
+        "itemId": "1103052",
+        "weight": 5
     }, {
-        "itemId": "1105011",
-        "weight": 30
+        "itemId": "1103063",
+        "weight": 5
     }, {
-        "itemId": "1105042",
-        "weight": 10
-    }, {
-        "itemId": "1105**",
-        "weight": 0
-    }, {
-        "itemId": "1305011",
-        "weight": 300
+        "itemId": "1103074",
+        "weight": 5
     }, {
         "itemId": "1103083",
-        "weight": 15
+        "weight": 5
     }, {
-        "itemId": "1102**",
-        "weight": 6
+        "itemId": "1103094",
+        "weight": 5
     }, {
-        "itemId": "1301**",
-        "weight": 0
+        "itemId": "1104011",
+        "weight": 5
+    }, {
+        "itemId": "1104021",
+        "weight": 5
+    }, {
+        "itemId": "1104032",
+        "weight": 2
+    }, {
+        "itemId": "1104043",
+        "weight": 2
+    }, {
+        "itemId": "1105011",
+        "weight": 10
     }, {
         "itemId": "1105022",
-        "weight": 10
+        "weight": 5
     }, {
         "itemId": "1105033",
         "weight": 5
     }, {
-        "itemId": "1302*1",
+        "itemId": "1105042",
         "weight": 5
     }, {
-        "itemId": "1106013",
-        "weight": 0
+        "itemId": "1105051",
+        "weight": 5
+    }, {
+        "itemId": "1106054",
+        "weight": 1
+    }, {
+        "itemId": "1107012",
+        "weight": 2
+    }, {
+        "itemId": "1107022",
+        "weight": 2
+    }, {
+        "itemId": "1107032",
+        "weight": 2
+    }, {
+        "itemId": "1107042",
+        "weight": 2
+    }, {
+        "itemId": "1301011",
+        "weight": 5
+    }, {
+        "itemId": "1301022",
+        "weight": 5
+    }, {
+        "itemId": "1301033",
+        "weight": 5
+    }, {
+        "itemId": "1301041",
+        "weight": 5
+    }, {
+        "itemId": "1301052",
+        "weight": 5
+    }, {
+        "itemId": "1301063",
+        "weight": 5
     }, {
         "itemId": "1101071",
-        "weight": 25
+        "weight": 5
+    }, {
+        "itemId": "1301082",
+        "weight": 5
+    }, {
+        "itemId": "1302011",
+        "weight": 10
+    }, {
+        "itemId": "1302021",
+        "weight": 10
+    }, {
+        "itemId": "1302032",
+        "weight": 5
+    }, {
+        "itemId": "1302043",
+        "weight": 2
+    }, {
+        "itemId": "1303012",
+        "weight": 5
+    }, {
+        "itemId": "1303022",
+        "weight": 5
+    }, {
+        "itemId": "1303033",
+        "weight": 5
+    }, {
+        "itemId": "1303044",
+        "weight": 5
+    }, {
+        "itemId": "1304012",
+        "weight": 5
+    }, {
+        "itemId": "1304023",
+        "weight": 5
+    }, {
+        "itemId": "1305011",
+        "weight": 50
     }],
     "fixedProduceList": [{
         "itemId": "1101011",
-        "num": 0
+        "num": 1
     }, {
         "itemId": "1101021",
         "num": 0
@@ -5510,7 +5606,7 @@ var siteConfig = {
         "num": 0
     }, {
         "itemId": "1101073",
-        "num": 28
+        "num": 0
     }, {
         "itemId": "1101**",
         "num": 0

@@ -646,8 +646,16 @@ var Gun = Weapon.extend({
         precise = IAPPackage.getPreciseEffect(precise);
         precise += player.weather.getValue("gun_precise");
 
-        var decPrecise = (100 - player.spirit) * 0.0025;
+        var decPrecise = (100 - player.spirit) * 0.0035;
         precise -= decPrecise;
+        
+        var currentTime = Number(cc.timer.time);
+        currentTime -= player.lastAlcoholTime;
+        if (currentTime <= 43200) {
+            currentTime = 43200 - currentTime;
+            currentTime = Math.ceil(currentTime / 3600);
+            precise -= 0.2 * currentTime;
+        }
 
         var rand = Math.random();
         if (rand <= deathHit) {

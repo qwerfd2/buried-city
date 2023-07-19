@@ -12,9 +12,6 @@ var game = {
         player.restore();
         userGuide.init();
         Medal.initCompletedForOneGame(false);
-        if (!Record.restore('randomPack')) {
-            Record.save('randomPack', utils.getRandomInt(1, 2));
-        }
     },
     start: function () {
         player.start();

@@ -98,7 +98,7 @@ var ItemChangeNode = cc.Node.extend({
                 if (self.site == 400 && id === "top") {
                     uiUtil.bazaarSell(storageCell.item.id, true);
                 } else {
-                    uiUtil.showItemSliderDialog(storageCell.item.id, id === "top" ? self.topData : self.bottomData, function (num) {
+                    uiUtil.showItemSliderDialog(storageCell.item.id, id === "top" ? self.topData : self.bottomData, self.site, function (num) {
                         num = Number(num);
                         self.exchange(id, storageCell.item.id, num);
                         self.updateView();

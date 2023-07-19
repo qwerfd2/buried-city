@@ -1,4 +1,3 @@
-
 var adConfig = {
     probability: 1,
     reward: {

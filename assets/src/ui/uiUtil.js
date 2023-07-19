@@ -684,7 +684,7 @@ uiUtil.showBuildActionDialog = function (bid, index) {
     dialog.show();
 };
 
-uiUtil.showItemSliderDialog = function (itemId, storage, cb) {
+uiUtil.showItemSliderDialog = function (itemId, storage, siteId, cb) {
     var item = new Item(itemId);
     var stringId = "item_1";
     if (item.isType(ItemType.TOOL, ItemType.FOOD)) {
@@ -712,6 +712,14 @@ uiUtil.showItemSliderDialog = function (itemId, storage, cb) {
         cb(this.value ? this.value : 0);
     };
     var content = dialog.contentNode;
+
+    if (siteId == 400) {
+        var label = new cc.LabelTTF(stringUtil.getString(1326), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label.setAnchorPoint(0, 1);
+        label.setPosition(content.width / 6, 30);
+        label.setColor(cc.color.RED);
+        content.addChild(label);
+    }
 
     var slider = new cc.ControlSlider("#slider_bg.png", "#slider_content.png", "#slider_cap.png");
     slider.setMinimumValue(1); // Sets the min value of range

@@ -1,4 +1,12 @@
 var string = {
+"1324": "Problèmes de sommeil à cause du café. Reposez-vous après %s heures.",
+"1325": "Précision réduite de %s% à cause de l'alcool !",
+"1326": "Veuillez vendre à partir du sac !",
+"1327": ["Arrêt","Partiel","Complet"],
+    "1103094": {
+        "title": "Fromage",
+        "des": "La texture douce et fondante ainsi que la saveur laiteuse et riche peuvent vous faire oublier les pressions de la survie."
+    },
 "site_501": {
         "name": "Lycée",
         "des": "Le couloir du lycée, autrefois animé par les élèves, est maintenant si calme qu'on peut entendre une épingle tomber. Si ce n'était pas pour les livres dispersés et les traces de sang, on croirait que c'est un jour férié."
@@ -616,7 +624,7 @@ var string = {
         "title": "Costume Anti-coup",
         "des": "Les parties essentielles de la Veste épaisse se couvrent de plaques de métal. Elle peut résister aux dégâts physiques de zombies."
     },
-    "1304024": {
+    "1306001": {
         "title": "Bottes",
         "des": "L'empeigne épaissie et la semelle renforcée peuvent protéger vos pieds et améliorer votre vitesse d'avancement dans les ruines."
     },
@@ -1357,6 +1365,14 @@ var string = {
 "bt_npc_12": {
 "title": "Très gentil de votre part, Monsieur !",
 "des": "L'amitié avec l'inconnu passe à 100%."
+},
+"bt_npc_13": {
+"title": "Salut, M. White !",
+"des": "Rencontrez W.White."
+},
+"bt_npc_14": {
+"title": "C'est si gentil de votre part, Walter !",
+"des": "L'amitié avec W.White augmente à 100%."
 },
 "bt_item_1": {
 "title": "Bang !",

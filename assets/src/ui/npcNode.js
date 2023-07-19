@@ -147,12 +147,13 @@ var NpcNode = BottomFrameNode.extend({
     Steal: function() {
         var arr = [];
         var ItemSortNum = this.npc.storage.getItemSortNum();
-        var a = (player.Steal - this.npc.Alert - this.Increase) / ItemSortNum;
+        var baseLine = (player.Steal - this.npc.Alert - this.Increase) / ItemSortNum;
         var self = this;
         var success = false;
         this.npc.storage.forEach(function(i, n) {
             var b = utils.getRandomInt(0, 100);
-            if (b <= a) {
+            if (b <= baseLine) {
+                success = true;
                 if (itemConfig[i.id].weight == 0) {
                     self.npc.storage.decreaseItem(i.id, n);
                     player.bag.increaseItem(i.id, n);
@@ -161,7 +162,6 @@ var NpcNode = BottomFrameNode.extend({
                         num: n
                     })
                 } else {
-                    success = true;
                     var amount = 0;
                     for (var a = 0; a < n; a++) {
                         if (player.bag.validateItemWeight(i.id, 1)) {

@@ -11,7 +11,6 @@ utils.invokeCallback = function (cb) {
 
 utils.clone = function (origin) {
     if (!origin || typeof origin !== 'object') {
-        cc.e("utils clone wrong args");
         throw {msg: "wrong args"};
     }
     var newObj = null;
@@ -214,7 +213,6 @@ utils.getFixedValueItemIds = function (produceValue, produceList) {
             produceValue -= value;
             itemIds.push(itemId);
         } else {
-            cc.e("itemId=" + itemId + " is not exist!");
             throw {};
         }
     }

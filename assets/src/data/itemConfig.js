@@ -1,3 +1,10 @@
+var specialItemConfig = {
+    //强光手电,增加发现密室的几率
+    1305053: {probability: 0.08},
+    //高能探测器,增加发现密室的几率和数量
+    1305064: {probability: 0.16, maxCount: 1}
+};
+
 var itemConfig = {
     "1101011": {
         "id": "1101011",
@@ -177,6 +184,19 @@ var itemConfig = {
             "starve_chance": 1
         }
     },
+    "1103094": {
+        "id": "1103094",
+        "weight": 1,
+        "price": 14,
+        "value": 13.20843054871349,
+        "effect_food": {
+            "id": "1103074",
+            "spirit": 80,
+            "spirit_chance": 1,
+            "starve": 30,
+            "starve_chance": 1
+        }
+    },
     "1104011": {
         "id": "1104011",
         "weight": 1,
@@ -275,7 +295,7 @@ var itemConfig = {
             "effect": 1,
             "effectType": 1,
             "value": 60,
-            "lastTime": 48
+            "lastTime": 72
         }
     },
     "1107022": {
@@ -288,7 +308,7 @@ var itemConfig = {
             "effect": 2,
             "effectType": 2,
             "value": 0,
-            "lastTime": 48
+            "lastTime": 72
         }
     },
     "1107032": {
@@ -301,7 +321,7 @@ var itemConfig = {
             "effect": 3,
             "effectType": 2,
             "value": 0,
-            "lastTime": 48
+            "lastTime": 72
         }
     },
     "1107042": {
@@ -314,7 +334,7 @@ var itemConfig = {
             "effect": 4,
             "effectType": 2,
             "value": 0,
-            "lastTime": 48
+            "lastTime": 72
         }
     },
     "1301011": {
@@ -683,8 +703,8 @@ var itemConfig = {
             "brokenProbability": 0.06
         }
     },
-    "1304024": {
-        "id": "1304024",
+    "1306001": {
+        "id": "1306001",
         "weight": 1,
         "price": 8,
         "value": 7.878000000000001

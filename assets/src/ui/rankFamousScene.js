@@ -11,7 +11,7 @@ var RankFamousLayer = cc.Layer.extend({
 
     onEnter: function () {
         this._super();
-        if (Record.getScreenFix()) {
+        if (Record.getScreenFix() == 1) {
             this.setScale(0.83);
         }
         this.bg = new cc.Sprite("res/new/rank_famous_bg.png");

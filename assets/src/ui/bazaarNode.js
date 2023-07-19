@@ -1,8 +1,6 @@
 var BazaarNode = BottomFrameNode.extend({
-
     ctor: function(userData) {
         this._super(userData);
-
     },
     _init: function() {
         this.uiConfig = {
@@ -37,9 +35,7 @@ var BazaarNode = BottomFrameNode.extend({
                 self.bg.addChild(payNode);
                 self.nodeMap[purchaseItem.itemId] = payNode;
             }
-
         });
-
     },
 
     remove: function() {
@@ -65,6 +61,5 @@ var BazaarNode = BottomFrameNode.extend({
     onExit: function() {
         this._super();
         utils.emitter.off("pay");
-        
     }
 });

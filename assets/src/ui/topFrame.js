@@ -4,7 +4,8 @@ var TopFrameNode = cc.Node.extend({
 
         var bg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_bg_top.png")
         bg.setAnchorPoint(0.5, 1);
-        if (Record.getScreenFix()) {
+        var screenFix = Record.getScreenFix();
+        if (screenFix == 1) {
             bg.setScale(0.87);
             bg.setPosition(cc.winSize.width / 2, cc.winSize.height - 90);
         } else {
@@ -283,8 +284,9 @@ var TopFrameNode = cc.Node.extend({
         bgColor.setColor(cc.color(0, 0, 0, 155));
         bgColor.setOpacity(200);    
         this.bgNode.addChild(bgColor, 0);
-        if (Record.getScreenFix()) {
-            this.logTablebg.setPosition(cc.winSize.width / 2, 90);
+        var screenFix = Record.getScreenFix();
+        if (screenFix == 1) {
+            this.logTablebg.setPosition(cc.winSize.width / 2, 91);
             this.logTablebg.setScale(0.87);
         } else {
             this.logTablebg.setPosition(cc.winSize.width / 2, 18);        

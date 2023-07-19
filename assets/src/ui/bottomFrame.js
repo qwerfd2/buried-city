@@ -211,7 +211,8 @@ var BottomFrameNode = cc.Node.extend({
         this.userData = userData;
         this.initRes();
         this.bg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_bg_bottom.png");
-        if (Record.getScreenFix()) {
+        var screenFix = Record.getScreenFix(); 
+        if (screenFix == 1) {
             this.bg.setScale(0.87);
             this.bg.setPosition(cc.winSize.width / 2, 90);
         } else {

@@ -18,109 +18,12 @@ var stringName = {
 var AssetsManagerLoaderScene = cc.Scene.extend({
     run: function () {
         var self = this;
-
-        var oldSearchPath = cc.sys.localStorage.getItem("assetPath");
-        if (!oldSearchPath) {
-            oldSearchPath = [];
-        } else {
-            oldSearchPath = JSON.parse(oldSearchPath);
-        }
+        oldSearchPath = [];
         jsb.fileUtils.setSearchPaths(oldSearchPath);
-
-        var manifestPath = "res/project.manifest";
-        var storagePath = (jsb.fileUtils ? jsb.fileUtils.getWritablePath() + UPDATE_PATH : UPDATE_PATH);
-
-        var currentVersion = "0.0.1";
-        if (jsb.fileUtils.isFileExist(storagePath + "version.manifest")) {
-            var versionManifest = JSON.parse(jsb.fileUtils.getStringFromFile(storagePath + "version.manifest"));
-            if (versionManifest) {
-                var groupVersions = versionManifest["groupVersions"];
-                if (groupVersions) {
-                    var versionIndexArray = Object.keys(groupVersions);
-                    var tmpVersion = groupVersions[versionIndexArray[versionIndexArray.length - 1]];
-                    if (tmpVersion) {
-                        currentVersion = tmpVersion;
-                    }
-                }
-            }
-        }
-        var layer = new cc.Layer();
-        this.addChild(layer);
-
-        var newVersionLabel = new cc.LabelTTF("最新版本:" + currentVersion, "", 20);
-        newVersionLabel.setPosition(cc.winSize.width - 9, 40);
-        newVersionLabel.setAnchorPoint(1, 0);
-        layer.addChild(newVersionLabel, 0);
-
-        var currentVersionLabel = new cc.LabelTTF("当前版本:" + currentVersion, "", 20)
-        currentVersionLabel.setPosition(cc.winSize.width - 9, 10);
-        currentVersionLabel.setAnchorPoint(1, 0);
-        layer.addChild(currentVersionLabel, 0);
-
-        var percentageLabel = new cc.LabelTTF("", "", 20)
-        percentageLabel.setPosition(9, 10);
-        percentageLabel.setAnchorPoint(0, 0);
-        layer.addChild(percentageLabel, 0);
-
         jsb.fileUtils.setSearchPaths([""]);
-        this.am = new jsb.AssetsManager(manifestPath, storagePath);
-        this.am.retain();
-        this.failTimes = 0;
-
-        if (!this.am.getLocalManifest().isLoaded()) {
-            this.loadGame();
-        } else {
-            var listener = new jsb.EventListenerAssetsManager(this.am, function (event) {
-                switch (event.getEventCode()) {
-                    case jsb.EventAssetsManager.ERROR_NO_LOCAL_MANIFEST:
-                        self.loadGame();
-                        break;
-                    case jsb.EventAssetsManager.UPDATE_PROGRESSION:
-                        percentageLabel.setString(event.getPercent() + "%");
-                        break;
-                    case jsb.EventAssetsManager.ERROR_DOWNLOAD_MANIFEST:
-                    case jsb.EventAssetsManager.ERROR_PARSE_MANIFEST:
-                        self.loadGame();
-                        break;
-                    case jsb.EventAssetsManager.NEW_VERSION_FOUND:
-                        var newVersion = "";
-                        var versionManifest = JSON.parse(jsb.fileUtils.getStringFromFile(storagePath + "version.manifest"));
-
-                        if (versionManifest) {
-                            var groupVersions = versionManifest["groupVersions"];
-                            var versionIndexArray = Object.keys(groupVersions);
-                            var tmpVersion = groupVersions[versionIndexArray[versionIndexArray.length - 1]];
-                            if (tmpVersion) {
-                                newVersion = tmpVersion;
-                            }
-                        }
-                        newVersionLabel.setString("最新版本:" + newVersion);
-                        break;
-                    case jsb.EventAssetsManager.ALREADY_UP_TO_DATE:
-                    case jsb.EventAssetsManager.UPDATE_FINISHED:
-                        self.loadGame();
-                        break;
-                    case jsb.EventAssetsManager.UPDATE_FAILED:
-                        self.failTimes++;
-                        if (self.failTimes < 1) {
-                            self.am.downloadFailedAssets();
-                        } else {
-                            self.failTimes = 0;
-                            self.loadGame();
-                        }
-                        break;
-                    case jsb.EventAssetsManager.ERROR_UPDATING:
-                        break;
-                    case jsb.EventAssetsManager.ERROR_DECOMPRESS:
-                        break;
-                    default:
-                        break;
-                }
-            });
-            cc.eventManager.addListener(listener, 1);
-            this.am.update();
-        }
+        this.loadGame();
     },
+    
     loadGame: function () {
         var self = this;
         cc.director.getScheduler().scheduleCallbackForTarget(this, function () {
@@ -173,8 +76,7 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
                             }
                         }
                         var filename = jsFilename.substring(0, jsFilename.lastIndexOf('.'));
-                        var jscFilename = filename + ".jsc";
-                        if (jsb.fileUtils.isFileExist(storagePaths[key] + jscFilename) || (cc.debug && jsb.fileUtils.isFileExist(storagePaths[key] + jsFilename))) {
+                        if (jsb.fileUtils.isFileExist(storagePaths[key] + jsFilename)) {
                             require(storagePaths[key] + jsFilename);
                             break;
                         }
@@ -197,9 +99,6 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
     },
 
     onExit: function () {
-        if (this.am) {
-            this.am.release();
-        }
         this._super();
     }
 });

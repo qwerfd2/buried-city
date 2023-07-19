@@ -188,7 +188,7 @@ var NPC = BaseSite.extend({
             });
             npcOriginTotalPrice += (item.getPrice() * deltaPrice * num);
         });
-
+        npcOriginTotalPrice = npcOriginTotalPrice.toFixed(3);
         var npcCurrentTotalPrice = 0;
         storage.forEach(function (item, num) {
             var deltaPrice = 1;
@@ -199,6 +199,7 @@ var NPC = BaseSite.extend({
             });
             npcCurrentTotalPrice += (item.getPrice() * deltaPrice * num);
         });
+        npcCurrentTotalPrice = npcCurrentTotalPrice.toFixed(3);
         return npcCurrentTotalPrice / npcOriginTotalPrice;
     },
 
@@ -302,7 +303,10 @@ var NPCManager = cc.Class.extend({
         }
         if (rand <= criteria) {
             player.log.addMsg(1100);
-            var npcPool = [1,2,3,4,5,6,7];
+            var npcPool = [1,2,3,4,6,7];
+            if (this.getNPC(5).isUnlocked) {
+                npcPool.push(5);
+            }
             var npcId = npcPool[utils.getRandomInt(0, npcPool.length - 1)];
             this.unlockNpc(npcId);
             var npc = this.npcList[npcId];

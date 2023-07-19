@@ -10,7 +10,7 @@ var achievementLayer = cc.Layer.extend({
 
     onEnter: function () {
         this._super();
-        if (Record.getScreenFix()) {
+        if (Record.getScreenFix() == 1) {
             this.setScale(0.83);
         }
         this.bg = new cc.Sprite("res/new/rank_bg.png");
@@ -21,14 +21,15 @@ var achievementLayer = cc.Layer.extend({
         this.data = [];
         this.skip = 0;
         this.isEnd = false;
+        
         this.createTableView();
         this.requestData();
-
+        
         var rankLogoName = "res/new/";
         if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE) {
             rankLogoName += "top_logo_zh.png";
         } else {
-            rankLogoName = "top_logo_en.png";
+            rankLogoName += "top_logo_en.png";
         }
         var rankLogo = new cc.Sprite(rankLogoName);
         rankLogo.x = cc.winSize.width / 2;
@@ -97,8 +98,8 @@ var achievementLayer = cc.Layer.extend({
         self.updateView();
         self.skip = self.data.length;
         self.isEnd = this.data.length === 0;
-
     },
+    
     createTableView: function () {
         this.tableView = new cc.TableView(this, cc.size(610, 840));
         this.tableView.setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL);
@@ -117,6 +118,7 @@ var achievementLayer = cc.Layer.extend({
         this.tbSliderBar.updateBarSize(this.tableView.getViewSize().height / this.tableView.getContentSize().height);
         this.tbSliderBar.onScroll(1);
     },
+    
     tableCellTouched: function (table, cell) {
     },
 

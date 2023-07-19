@@ -26,8 +26,13 @@ var BuildNode = BottomFrameNode.extend({
             },
             {
                 target: this, cb: function () {
-                if (!uiUtil.checkVigour())
+                if (!uiUtil.checkVigour()) {
                     return;
+                }
+                if (BuildOccupied) {
+                    return;
+                }
+                BuildOccupied = true;
                 utils.emitter.emit("left_btn_enabled", false);
                 self.build.upgrade(function (percentage) {
                     self.upgradeView.updatePercentage(percentage);
@@ -39,6 +44,7 @@ var BuildNode = BottomFrameNode.extend({
                     if (this.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
                         userGuide.step();
                     }
+                    BuildOccupied = false;
                     self.afterUpgrade();
                     btnShop.setEnabled(true);
                 });
@@ -68,12 +74,18 @@ var BuildNode = BottomFrameNode.extend({
                 },
                 {
                     target: this, cb: function () {
-                    if (!uiUtil.checkVigour())
+                    if (!uiUtil.checkVigour()) {
                         return;
+                    }
+                    if (BuildOccupied) {
+                        return;
+                    }
+                    BuildOccupied = true;
                     utils.emitter.emit("left_btn_enabled", false);
                     player.room.getBuild(11).upgrade(function (percentage) {
                         self.fenceView.updatePercentage(percentage);
                     }, function () {
+                        BuildOccupied = false;
                         utils.emitter.emit("left_btn_enabled", true);
                         self.afterUpgrade();
                         btnShop.setEnabled(true);
@@ -327,7 +339,7 @@ var BuildNode = BottomFrameNode.extend({
                     }
                     action1Disabled = upgradeInfo.buildUpgradeType === BuildUpgradeType.UPGRADABLE ? false : true;
                     //当建筑物中有任何不是本btn的活跃动作时,则不能使用
-                    if ( this.build.anyBtnActive() && this.build.activeBtnIndex !== -1) {
+                    if (this.build.anyBtnActive() && this.build.activeBtnIndex !== -1) {
                         action1Disabled = true;
                     }
                     if (player.room.getBuild(11).isUpgrading || this.build.isUpgrading) {

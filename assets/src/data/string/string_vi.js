@@ -1,4 +1,12 @@
 var string = {
+"1324": "Vì uống cà phê nên bạn gặp vấn đề về giấc ngủ. Nghỉ sau %s giờ.",
+"1325": "Độ chính xác giảm %s% do uống rượu!",
+"1326": "Vui lòng bán từ túi!",
+"1327": ["Tắt","Một phần","Toàn bộ"],
+    "1103094": {
+        "title": "Phô mai",
+        "des": "Cảm giác mềm mại và tan chảy cùng hương vị sữa thơm ngon có thể khiến bạn quên đi những áp lực trong cuộc sống."
+    },
 "site_501": {
         "name": "Trường Trung học",
         "des": "Hành lang trường trung học, trước đây nhộn nhịp với người đông, giờ đây yên tĩnh đến mức bạn có thể nghe thấy tiếng kim rơi. Nếu không có sách rải rác và vết máu, người ta có thể tưởng như đó là một ngày nghỉ."
@@ -616,7 +624,7 @@ var string = {
         "title": "Áo chống bạo động",
         "des": "Những bộ phận quan trọng của áo khoác dày được làm thêm bằng kim loại, có thể chống được tấn công vật lý ở mực độ cao của cương thi"
     },
-    "1304024": {
+    "1306001": {
         "title": "Giày",
         "des": "Được tăng độ dày ở bề mặt và độ kiên cố ở đế nhằm bảo vệ chân và tăng tốc độ di chuyển trên đống đổ nát."
     },
@@ -1357,6 +1365,14 @@ var string = {
 "bt_npc_12": {
 "title": "Rất tốt ông, ngài!",
 "des": "Tình bạn với Người lạ tăng lên 100%."
+},
+"bt_npc_13": {
+"title": "Xin chào, ông White!",
+"des": "Gặp gỡ W.White."
+},
+"bt_npc_14": {
+"title": "Rất tử tế của ông, Walter!",
+"des": "Mức độ tình bạn với W.White tăng lên 100%."
 },
 "bt_item_1": {
 "title": "Bắn nào!",

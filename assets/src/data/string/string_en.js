@@ -1,4 +1,12 @@
 var string = {
+"1324": "You had trouble sleeping because of the coffee. Rest after %s hours.",
+"1325": "Your accuracy decreased by %s% due to alcohol!",
+"1326": "Please sell from the bag!",
+"1327": ["Off","Partial","Full"],
+ "1103094": {
+        "title": "Cheese",
+        "des": "The smooth and melty texture and the rich milky flavor can make you forget the pressures of survival."
+    },
 "site_501": {
         "name": "High School",
         "des": "The high school hallway, once bustling with people, is now so quiet that you can hear a pin drop. If it weren't for the scattered books and bloodstains, one would think it's a holiday."
@@ -617,7 +625,7 @@ var string = {
         "title": "Anti-riot suit",
         "des": "A thick coat covered with sheet metal that protects critical parts from zombies and physical damage."
     },
-    "1304024": {
+    "1306001": {
         "title": "Boot",
         "des": "This boot has a thickened instep and a reinforced sole. It can protect your feet allowing you to move faster through rubble."
     },
@@ -1355,6 +1363,14 @@ var string = {
 "bt_npc_12": {
     "title": "So kind of you, Mister!",
     "des": "Friendship with Stranger increases to 100%."
+},
+"bt_npc_13": {
+    "title": "Hi, Mr. White!",
+    "des": "Meet W.White."
+},
+"bt_npc_14": {
+    "title": "So kind of you, Walter!",
+    "des": "Friendship with W.White increases to 100%."
 },
 "bt_item_1": {
     "title": "Bang!",

@@ -1,4 +1,12 @@
 var string = {
+"1324": "Schlafprobleme wegen des Kaffees. Ruhen Sie sich nach %s Stunden aus.",
+"1325": "Genauigkeit um %s% durch Alkohol reduziert!",
+"1326": "Bitte verkaufen Sie aus der Tasche!",
+"1327": ["Aus","Teilweise","Vollständig"],
+    "1103094": {
+        "title": "Käse",
+        "des": "Die cremige und schmelzende Textur und der reiche milchige Geschmack können dich die Belastungen des Überlebens vergessen lassen."
+    },
    "site_501": {
         "name": "Gymnasium",
         "des": "Der Schulflur, einst belebt von Schülern, ist jetzt so ruhig, dass man eine Stecknadel fallen hören könnte. Wären da nicht die verstreuten Bücher und Blutspuren, könnte man denken, es ist ein Feiertag."
@@ -615,7 +623,7 @@ var string = {
         "title": "Schutzjacke",
         "des": "Dicker Mantel, an den Metalplatten angebracht sind, mit dem wichtige Körperteile vor Schaden geschützt werden sollen."
     },
-    "1304024": {
+    "1306001": {
         "title": "Schuhe",
         "des": "Festes Schuhwerk mit stabiler Sohle. Schützt die Füße und erhöht das Lauftempo beim Laufen in unwegsamen Gelände."
     },
@@ -1358,6 +1366,14 @@ var string = {
 "bt_npc_12": {
 "title": "Sehr nett von Ihnen, Herr!",
 "des": "Freundschaft mit dem Fremden auf 100% erhöhen."
+},
+"bt_npc_13": {
+"title": "Hallo, Herr White!",
+"des": "Treffen Sie W.White."
+},
+"bt_npc_14": {
+"title": "So nett von Ihnen, Walter!",
+"des": "Die Freundschaft mit W.White steigt auf 100%."
 },
 "bt_item_1": {
 "title": "Peng!",

@@ -1,25 +1,6 @@
-
-/**
- * Expose `Emitter`.
- */
-
-/**
- * Initialize a new `Emitter`.
- *
- * @api public
- */
-
 function Emitter(obj) {
   if (obj) return mixin(obj);
 };
-
-/**
- * Mixin the emitter properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
 
 function mixin(obj) {
   for (var key in Emitter.prototype) {
@@ -28,15 +9,6 @@ function mixin(obj) {
   return obj;
 }
 
-/**
- * Listen on the given `event` with `fn`.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
 Emitter.prototype.on =
 Emitter.prototype.addEventListener = function(event, fn){
   this._callbacks = this._callbacks || {};
@@ -44,16 +16,6 @@ Emitter.prototype.addEventListener = function(event, fn){
     .push(fn);
   return this;
 };
-
-/**
- * Adds an `event` listener that will be invoked a single
- * time then automatically removed.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
 
 Emitter.prototype.once = function(event, fn){
   var self = this;
@@ -68,16 +30,6 @@ Emitter.prototype.once = function(event, fn){
   this.on(event, on);
   return this;
 };
-
-/**
- * Remove the given callback for `event` or all
- * registered callbacks.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
 
 Emitter.prototype.off =
 Emitter.prototype.removeListener =
@@ -113,18 +65,9 @@ Emitter.prototype.removeEventListener = function(event, fn){
   return this;
 };
 
-/**
- * Emit `event` with the given args.
- *
- * @param {String} event
- * @param {Mixed} ...
- * @return {Emitter}
- */
-
 Emitter.prototype.emit = function(event){
   this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks[event];
+  var args = [].slice.call(arguments, 1), callbacks = this._callbacks[event];
 
   if (callbacks) {
     callbacks = callbacks.slice(0);
@@ -132,30 +75,13 @@ Emitter.prototype.emit = function(event){
       callbacks[i].apply(this, args);
     }
   }
-
   return this;
 };
-
-/**
- * Return array of callbacks for `event`.
- *
- * @param {String} event
- * @return {Array}
- * @api public
- */
 
 Emitter.prototype.listeners = function(event){
   this._callbacks = this._callbacks || {};
   return this._callbacks[event] || [];
 };
-
-/**
- * Check if this emitter has `event` handlers.
- *
- * @param {String} event
- * @return {Boolean}
- * @api public
- */
 
 Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;

@@ -1,7 +1,7 @@
 var DayLayer = cc.Layer.extend({
     ctor: function (res) {
         this._super();
-        if (Record.getScreenFix()) {
+        if (Record.getScreenFix() == 1) {
             this.setScale(0.86);
         }
         this.res = res;
@@ -55,7 +55,7 @@ var DayLayer = cc.Layer.extend({
                     bgName = "day_scene_win_electric.png";
                 } else if (this.res.isBomb) {
                     bgName = "day_scene_win_bomb.png";
-                }else if (this.res.isOrig){
+                } else if (this.res.isOrig){
                     bgName = "day_scene_win.png";
                 }
             } else {

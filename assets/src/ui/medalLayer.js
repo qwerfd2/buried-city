@@ -88,7 +88,7 @@ var medalNode = cc.Node.extend({
 var medalLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
-        if (Record.getScreenFix()) {
+        if (Record.getScreenFix() == 1) {
             this.setScale(0.83);
         }
         var bg = new cc.Sprite("res/new/medalBg.png");

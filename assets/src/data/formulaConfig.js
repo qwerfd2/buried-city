@@ -20,13 +20,13 @@ var formulaConfig = {
         }],
         "cost": [{
             "itemId": 1101021,
-            "num": 10
-        }, {
-            "itemId": 1101041,
             "num": 12
         }, {
+            "itemId": 1101041,
+            "num": 14
+        }, {
             "itemId": 1101051,
-            "num": 10
+            "num": 12
         }],
         "makeTime": 90
     },
@@ -529,7 +529,7 @@ var formulaConfig = {
     "1404024": {
         "id": "1404024",
         "produce": [{
-            "itemId": 1304024,
+            "itemId": 1306001,
             "num": 1
         }],
         "cost": [{

@@ -3,7 +3,11 @@ cc.game.onStart = function () {
         document.body.removeChild(document.getElementById("cocosLoading"));
     cc.view.enableRetina(true);
     cc.view.adjustViewPort(true);
-    cc.view.setDesignResolutionSize(640, 1136, cc.ResolutionPolicy.FIXED_HEIGHT);
+    if (Number(cc.sys.localStorage.getItem("screenfix")) == 2) {
+        cc.view.setDesignResolutionSize(640, 1136, 2);
+    } else {
+        cc.view.setDesignResolutionSize(640, 1136, cc.ResolutionPolicy.FIXED_HEIGHT);
+    }
     cc.view.resizeWithBrowserSize(true);
     beginGame();
 };

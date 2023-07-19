@@ -1,3 +1,5 @@
+var BuildOccupied = false;
+
 var BuildAction = cc.Class.extend({
     ctor: function (bid) {
         this.isActioning = false;
@@ -120,7 +122,10 @@ var Formula = BuildAction.extend({
         var itemInfo = this.config.produce[0];
         var itemName = stringUtil.getString(itemInfo.itemId).title;
         if (this.step == 0) {
-
+            if (BuildOccupied) {
+                return;
+            }
+            BuildOccupied = true;
             this.build.setActiveBtnIndex(this.idx);
             utils.emitter.emit("left_btn_enabled", false);
             //2. 制作
@@ -135,6 +140,7 @@ var Formula = BuildAction.extend({
                 if (self.step == self.maxStep) {
                     self.step = 0;
                 }
+                BuildOccupied = false;
                 if (self.step == 1) {
                     //1. cost成功
                     player.costItems(self.config.cost);
@@ -557,6 +563,7 @@ var RestBuildAction = BuildAction.extend({
         this.addTimer(time, time, function () {
             //1. cost成功
             player.costItems(self.config.cost);
+            player.lastCoffeeTime = Number(cc.timer.time);
             self.config.cost.forEach(function (item) {
                 Achievement.checkCost(item.itemId, item.num);
             });
@@ -654,6 +661,7 @@ var DrinkBuildAction = BuildAction.extend({
         this.addTimer(time, time, function () {
             //1. cost成功
             player.costItems(self.config.cost);
+            player.lastAlcoholTime = Number(cc.timer.time);
             self.config.cost.forEach(function (item) {
                 Achievement.checkCost(item.itemId, item.num);
             });
@@ -778,7 +786,14 @@ var BedBuildAction = BuildAction.extend({
             Record.saveAll();
         });
         this._sendUpdageSignal();
-        player.log.addMsg(1098);
+        var currentTime = Number(cc.timer.time);
+        currentTime -= player.lastCoffeeTime;
+        if (currentTime <= 21600) {
+            var hint = Math.ceil((21600 - currentTime) / 3600);
+            player.log.addMsg(1324, hint);
+        } else {
+            player.log.addMsg(1098);
+        }
     },
     _getUpdateViewInfo: function () {
         this.updateConfig();

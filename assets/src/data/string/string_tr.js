@@ -1,4 +1,12 @@
 var string = {
+"1324": "Kahve nedeniyle uyku sorunu yaşadınız. %s saat sonra dinlenin.",
+"1325": "Alkolden dolayı hassasiyetiniz %s% azaldı!",
+"1326": "Lütfen çantadan satın alın!",
+"1327": ["Kapalı","Kısmi","Tam"],
+    "1103094": {
+        "title": "Peynir",
+        "des": "Düz ve eriyen dokusu ile zengin süt aroması, hayatta kalma baskılarını unutmanıza neden olabilir."
+    },
     "site_501": {
         "name": "Lise",
         "des": "Bir zamanlar insanlarla dolu olan lise koridoru şimdi öyle sessiz ki bir iğnenin düşüşünü bile duyabilirsiniz. Dağılmış kitaplar ve kan lekeleri olmasaydı, sanki tatil günüymüş gibi düşünebilirdiniz."
@@ -614,7 +622,7 @@ var string = {
         "title": "Anti-isyan kıyafeti",
         "des": "Kritik yerleri hasardan korumak için kısmi metal parçaları ile kalın kaplama eklenmiştir."
     },
-    "1304024": {
+    "1306001": {
         "title": "Bot",
         "des": "Ayağın üst kısmı kalındır ve tek desteklidir, molozlarda hızla ilerlemeni sağlar ve ayağını korur."
     },
@@ -1360,6 +1368,14 @@ var string = {
     "title": "Çok naziksiniz, Beyefendi!",
     "des": "Bir yabancı ile olan arkadaşlığınız %100'e yükseldi."
     },
+"bt_npc_13": {
+"title": "Merhaba, Bay White!",
+"des": "W.White ile tanışın."
+},
+"bt_npc_14": {
+"title": "Çok naziksiniz, Walter!",
+"des": "W.White ile olan arkadaşlık 100%'e yükseldi."
+},
     "bt_item_1": {
     "title": "Patlat!",
     "des": "Bir Magnum elde et."

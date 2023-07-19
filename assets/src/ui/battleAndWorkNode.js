@@ -191,8 +191,20 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             label2.x = node.width;
         }
 
+        var currentTime = Number(cc.timer.time);
+        currentTime -= player.lastAlcoholTime;
+
         if (!player.equip.haveWeapon()) {
             var label3 = new cc.LabelTTF(stringUtil.getString(1207), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(node.width, 0));
+            label3.setAnchorPoint(0, 1);
+            label3.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 15);
+            node.addChild(label3);
+            label3.setColor(cc.color.RED);
+        } else if (currentTime <= 43200) {
+            currentTime = 43200 - currentTime;
+            currentTime = Math.ceil(currentTime / 3600);
+            currentTime = Number(2 * currentTime);
+            var label3 = new cc.LabelTTF(stringUtil.getString(1325, currentTime), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
             label3.setAnchorPoint(0, 1);
             label3.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 15);
             node.addChild(label3);

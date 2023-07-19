@@ -18,10 +18,6 @@ var PurchaseAndroid = {
         });
     },
 
-    moreGame: function (obj) {
-        jsb.reflection.callStaticMethod("net/dice7/pay/PayHelper", "moreGame", "()V");
-    },
-
     getPurchaseList: function (purchaseIdList, cb) {
         this.getPurchaseListCb = cb;
         if (!this.payType && this.payType === this.PAY_TYPE_GOOGLE_PLAY) {

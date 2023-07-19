@@ -117,7 +117,7 @@ var MapView = cc.ScrollView.extend({
         var time = distance / this.actor.getMaxVelocity();
         var okFunc = function () {
             entity.setHighlight(true);
-            cc.timer.accelerate(time, player.storage.validateItem(1304024, 1) ? 2 : 3);
+            cc.timer.accelerate(time, player.storage.validateItem(1306001, 1) ? 2 : 3);
             player.log.addMsg(1112, entity.baseSite.getName());
             self.makeLine(startPos, endPos);
             self.actor.move(endPos, function () {
@@ -313,7 +313,7 @@ var Actor = cc.Node.extend({
             v += this.MAX_VELOCITY_ENHANCE_MOTO;
         }
         //靴子效果累加
-        if (player.storage.getNumByItemId(1304024) > 0) {
+        if (player.storage.getNumByItemId(1306001) > 0) {
             v += this.MAX_VELOCITY_ENHANCE;
         }
         //天气影响

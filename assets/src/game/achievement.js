@@ -23,6 +23,8 @@ var AchievementConfig = {
     bt_npc_10: {aim: 1, aimCompleted: 0, completed: 0, time: 0, npcId: 5},
     bt_npc_11: {aim: 1, aimCompleted: 0, completed: 0, time: 0, npcId: 6},
     bt_npc_12: {aim: 1, aimCompleted: 0, completed: 0, time: 0, npcId: 6},
+    bt_npc_13: {aim: 1, aimCompleted: 0, completed: 0, time: 0, npcId: 7},
+    bt_npc_14: {aim: 1, aimCompleted: 0, completed: 0, time: 0, npcId: 7},
     bt_item_1: {aim: 1, aimCompleted: 0, completed: 0, time: 0, itemId: 1301041},
     bt_item_2: {aim: 1, aimCompleted: 0, completed: 0, time: 0, itemId: 1301052},
     bt_item_3: {aim: 1, aimCompleted: 0, completed: 0, time: 0, itemId: 1301063},
@@ -33,7 +35,7 @@ var AchievementConfig = {
     bt_cost_2: {aim: 100, aimCompleted: 0, completed: 0, time: 0, itemId: 1105011},
     bt_cost_3: {aim: 150, aimCompleted: 0, completed: 0, time: 0, itemId: 1105011},
     bt_special_1: {aim: 5, aimCompleted: 0,completed: 0, time: 0, itemId: 1},
-    bt_special_2: {aim: 1, aimCompleted: 0, completed: 0, time: 0},
+    bt_special_2: {aim: 1, aimCompleted: 0, completed: 0, time: 0}
 };
 var Achievement = {
     _map: null,
@@ -43,8 +45,17 @@ var Achievement = {
             var achievementStr = cc.sys.localStorage.getItem("achievement");
             if (achievementStr) {
                 this._map = JSON.parse(achievementStr);
+                if (!this._map.hasOwnProperty("bt_npc_13")) {
+                    this._map["bt_npc_13"] = {aim: 1, aimCompleted: 0, completed: 0, time: 0, npcId: 7};
+                    cc.sys.localStorage.setItem("achievement", JSON.stringify(this._map));
+                }
+                if (!this._map.hasOwnProperty("bt_npc_14")) {
+                    this._map["bt_npc_14"] = {aim: 1, aimCompleted: 0, completed: 0, time: 0, npcId: 7};
+                    cc.sys.localStorage.setItem("achievement", JSON.stringify(this._map));
+                }
             } else {
                 this._map = utils.clone(AchievementConfig);
+                cc.sys.localStorage.setItem("achievement", JSON.stringify(this._map));
             }
         }
         this._enable = true;
@@ -96,7 +107,7 @@ var Achievement = {
         }
     },
     checkNpcUnlock: function (npcId) {
-        var ids = ["bt_npc_1", "bt_npc_3", "bt_npc_5", "bt_npc_7", "bt_npc_9", "bt_npc_11"];
+        var ids = ["bt_npc_1", "bt_npc_3", "bt_npc_5", "bt_npc_7", "bt_npc_9", "bt_npc_11", "bt_npc_13"];
         var gcId = this.findIdFromArray(ids, "npcId", npcId);
         if (gcId) {
             this._map[gcId].aimCompleted = 1;
@@ -104,7 +115,7 @@ var Achievement = {
         }
     },
     checkNpcReputation: function (npcId) {
-        var ids = ["bt_npc_2", "bt_npc_4", "bt_npc_6", "bt_npc_8", "bt_npc_10", "bt_npc_12"];
+        var ids = ["bt_npc_2", "bt_npc_4", "bt_npc_6", "bt_npc_8", "bt_npc_10", "bt_npc_12", "bt_npc_14"];
         var gcId = this.findIdFromArray(ids, "npcId", npcId);
         if (gcId) {
             this._map[gcId].aimCompleted = 1;

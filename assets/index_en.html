@@ -3,7 +3,8 @@
  <head></head>
  <body style="background-color: #e8eae7;">
   <meta charset="utf-8"> 
-  <h1>Buried City - Modded by ArithSeq</h1>
+  <h1>Buried City</h1>
+  <p>Modded by ArithSeq, based on BuriedTown 1.4.3. Commercial use is prohibited.</p>
 <h2>Peripheral Edits</h2>
 <p>
 0. Renamed APK package to com.locojoy.buriedcity.<br>
@@ -33,25 +34,26 @@
 6. New talent: Survivor (reduced weapon damage), Hoarder (extra supply on start), Ingenuity (faster crafting & upgrading), Stealth (reduced zombie encounter & moonlighting).<br>
 7. New cheat talent: Free IAP (unlimited free purchase from shop, radio CMD (see appendix)), All Unlock (all locations, all NPCs, full friendship, repeatable locations).<br>
 8. You can select multiple talents and the effects are combined.<br>
-9. If you're starving, HP will decrease. Buff item's effect has been reduced. Power Plant won't be broken within 7 days of fixing. Reduced cost of generator parts.<br>
+9. If you're starving, HP will decrease. Power Plant won't be broken within 7 days of fixing. Reduced cost of generator parts.<br>
 10. NPC stealing functionality (see appendix).<br>
 11. "Survivor Bazaar" location (see appendix).<br>
 12. "W. White" NPC, who loves guns and will sell chemical products. Unlockable locations: Bandit Den, High School<br>
-13. Bandit will steal from your home if you own too much stuff and leave for too long.<br>
-14. Weather forcast after Radio is crafted (view at status bar - weather), 20% that the weather forcast is wrong.<br>
+13. Bandit will steal from your home if you own too much stuff and leave for too long. Defense will reduce the chance of this.<br>
+14. Weather forcast after Radio is crafted (view at status bar - weather), 16% that the weather forcast is wrong.<br>
 15. Ability to skip tutorial.<br>
 16. "Portal" location unlock after 081-12 (Bedroom) is completed.<br>
-17. Using item will take 10 minutes.<br>
+17. Using item will take 10 minutes. Consuming coffee will make you reduce sleep quality for the next 6 hours. Consuming alcohol will reduce your gun accuracy for the next 12 hours (hours * 2%).<br>
 18. Ad location is fixed and changed to "junkyard" where you can obtain free items given time.<br>
 19. Sending messages every 36 hours in Radio increases chance to find NPCs [15 -> 30%], messages now uses in-game time and saves.<br>
 20. Use Buff items from status bar - HP (heart).<br>
 21. View trade items from NPCs at map.<br>
+22. New item - Cheese, obtainable at select locations and survivor bazaar. Effect is the reverse of soup - a lot of spirit and a bit of food.<br>
 22. Item weight & formula minor tweaks. Some locations have been lengthened.<br>
 23. Storeroom now pauses the timer.<br>
 24. Status bar shows electricity status.<br>
 25. Flashlight and detector must be equipped for the buff to take effect.<br>
-26. Dog feeding is now like stove, with max duration of 3 days.<br>
-27. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage).<br>
+26. Dog feeding is now like stove, with max duration of 3 days. Dog shed must be constructed and the dog is at the museum.<br>
+27. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage, NPC value rounding error, multi-clickable crafting buttons).<br>
 </p>
 <h2>Appendix</h2>
 <h3>Moonlighting：</h3>
@@ -71,6 +73,13 @@
 <p>If stealing is successful, that NPC's alert increases by 1. If failed, the alert increases by 2, and friendship is reduced by 2 (Communicator -1, Cheat: All Unlocked: -0). Your luck is updated daily [35, 65], and it will affect the success rate. If not stolen from the NPC's alert will decrease by 1 per day.</p>
 <h3>Survivor Bazaar</h3>
 <p>A location where you can sell items in your bag for coins, and buy items which refreshes every day. Items can be previewed in map.</p>
+<h2>Buried Town Factsheet</h2>
+<p>
+Buried Town, originally named Berry Town, was developed by Chengdu DianXi (Dice7) Network Co.Ltd and published by Beijing LeDongZhuoYue (Locojoy) Technology Co.Ltd. The game started its beta phase on Sep. 25th, 2015, and was released at Google Play on Nov. 23rd, 2015. The last update (1.4.3) was released on Jun. 27th, 2018, and the game server was shut down around late June, 2019.<br>
+Thanks to the game's weak online dependency, the majority of the functionality can be enjoyed offline, with the exception of leaderboards, In-App Purchases, and in-game radio.<br>
+Developed using Cocos2d-JS, the installation package of Buried Town is unprotected, source code not compiled nor obfuscated, making modifications extremely easy. Although the graphics have been encrypted, the process after obtaining the key (B29B3886543224E471BDF6E39275C626) and edit tool (TexturePacker) is trivial.<br>
+The game's save file is stored under root-only directory using an encrypted sqlite3 database, with the password (1a2b3c4d5fberrytown).
+</p>
 <h2>Contact</h2>
 <p>QQ: 3421587952<br>Email: mtngckover@gmail.com<br> Discord: antcfgss#0<br>Tieba: qwerfd02</p>
  </body>

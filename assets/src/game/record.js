@@ -96,15 +96,11 @@ var Record = {
     
     getScreenFix: function () {
        var value = cc.sys.localStorage.getItem("screenfix") || 0;
-       return value == 1 ? true : false;
+       return value;
     },
     
     setScreenFix: function (on) {
-        var onVal = 2;
-        if (on) {
-            onVal = 1;
-        }
-        cc.sys.localStorage.setItem("screenfix", onVal);
+        cc.sys.localStorage.setItem("screenfix", Number(on));
     },
     
     getCity: function () {

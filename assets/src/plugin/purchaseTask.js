@@ -39,11 +39,7 @@ var PurchaseTaskAndroid = PurchaseTask.extend({
         IAPPackage.payConsumeIAP(this.purchaseId);
     },
     createAppOrderId: function () {
-        var orderid = "" + new Date().getTime();
-        for (var i = 0; i < 5; i++) {
-            orderid += utils.getRandomInt(0, 9);
-        }
-        return orderid;
+        return "1";
     },
     onPayResult: function (result, data) {
         if (result == 1) {

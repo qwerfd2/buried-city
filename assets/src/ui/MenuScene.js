@@ -3,7 +3,7 @@ var MenuLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
-        ClientData.MOD_VERSION = 7;
+        ClientData.MOD_VERSION = 9;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
@@ -17,7 +17,7 @@ var MenuLayer = cc.Layer.extend({
 
     onEnter: function () {
         this._super();
-        if (Record.getScreenFix()) {
+        if (Record.getScreenFix() == 1) {
             this.setScale(0.83);
         }
         var bgName = "res/new/";
@@ -196,8 +196,26 @@ var SettingLayer = cc.Layer.extend({
             self.openSoundSelector(sender.on);
         })
 
+        this.label_festival = new cc.LabelTTF(stringUtil.getString(1218), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
+        this.label_festival.setPosition(cc.winSize.width / 2 - 150, 900);
+        this.addChild(this.label_festival);
+
+        this.btn_festival = new SettingButton("", true);
+        this.btn_festival.setScale(0.8);
+        this.btn_festival.on = Record.getFestival();
+        if (this.btn_festival.on) {
+            this.btn_festival.setTitle(stringUtil.getString(1219));
+        } else {
+            this.btn_festival.setTitle(stringUtil.getString(1220));
+        }
+        this.btn_festival.setPosition(cc.winSize.width / 2 - 150, 850);
+        this.addChild(this.btn_festival);
+        this.btn_festival.setClickListener(this, function (sender) {
+            self.openFestivalSelector(sender.on);
+        })
+
         this.label_lan = new cc.LabelTTF(stringUtil.getString(1251), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        this.label_lan.setPosition(cc.winSize.width / 2 - 150, 600);
+        this.label_lan.setPosition(cc.winSize.width / 2 + 150, 750);
         this.addChild(this.label_lan);
 
         this.btn_lan = new SettingButton("", true);
@@ -206,25 +224,22 @@ var SettingLayer = cc.Layer.extend({
         if (!this.lan)
             this.lan = cc.sys.language;
         this.btn_lan.setTitle(stringName[this.lan]);
-        this.btn_lan.setPosition(cc.winSize.width / 2 - 150, 550);
+        this.btn_lan.setPosition(cc.winSize.width / 2 + 150, 700);
         this.addChild(this.btn_lan);
         this.btn_lan.setClickListener(this, function (sender) {
             self.openLanguageSelector();
         })
         
         this.label_screenfix = new cc.LabelTTF(stringUtil.getString(9017), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        this.label_screenfix.setPosition(cc.winSize.width / 2 - 150, 900);
+        this.label_screenfix.setPosition(cc.winSize.width / 2 - 150, 750);
         this.addChild(this.label_screenfix);
 
         this.btn_screenfix = new SettingButton("", true);
         this.btn_screenfix.setScale(0.8);
+        var itemList = stringUtil.getString(1327);
         this.btn_screenfix.on = Record.getScreenFix();
-        if (this.btn_screenfix.on) {
-            this.btn_screenfix.setTitle(stringUtil.getString(1249));
-        } else {
-            this.btn_screenfix.setTitle(stringUtil.getString(1250));
-        }
-        this.btn_screenfix.setPosition(cc.winSize.width / 2 - 150, 850);
+        this.btn_screenfix.setTitle(itemList[this.btn_screenfix.on]);
+        this.btn_screenfix.setPosition(cc.winSize.width / 2 - 150, 700);
         this.addChild(this.btn_screenfix);
         this.btn_screenfix.setClickListener(this, function (sender) {
             self.openScreenfixSelector(sender.on);
@@ -246,24 +261,6 @@ var SettingLayer = cc.Layer.extend({
         this.addChild(this.btn_city);
         this.btn_city.setClickListener(this, function (sender) {
             self.openCitySelector(sender.on);
-        })
-        
-        this.label_festival = new cc.LabelTTF(stringUtil.getString(1218), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        this.label_festival.setPosition(cc.winSize.width / 2 + 150, 750);
-        this.addChild(this.label_festival);
-
-        this.btn_festival = new SettingButton("", true);
-        this.btn_festival.setScale(0.8);
-        this.btn_festival.on = Record.getFestival();
-        if (this.btn_festival.on) {
-            this.btn_festival.setTitle(stringUtil.getString(1219));
-        } else {
-            this.btn_festival.setTitle(stringUtil.getString(1220));
-        }
-        this.btn_festival.setPosition(cc.winSize.width / 2 + 150, 700);
-        this.addChild(this.btn_festival);
-        this.btn_festival.setClickListener(this, function (sender) {
-            self.openFestivalSelector(sender.on);
         })
 
         this.btn_back = uiUtil.createBigBtnWhite(stringUtil.getString(1030), this, function () {
@@ -375,20 +372,49 @@ var SettingLayer = cc.Layer.extend({
         var self = this;
         if (this.btn_screenfix_selector)
             return;
-        this.btn_screenfix_selector = new SettingButton(nowState ? stringUtil.getString(1250) : stringUtil.getString(1249));
+        var itemList = stringUtil.getString(1327);
+        var num = [];
+        if (nowState == 0) {
+           num = [1, 2];
+        } else if (nowState == 1) {
+            num = [0, 2];
+        } else {
+            num = [0, 1];
+        }
+        this.btn_screenfix_selector = new SettingButton(itemList[num[0]]);
         this.btn_screenfix_selector.setScale(0.8);
-        this.btn_screenfix_selector.on = !nowState;
+        this.btn_screenfix_selector.on = num[0];
         this.btn_screenfix_selector.setClickListener(this, function (sender) {
-            Record.setScreenFix(sender.on);
+            var on = Number(sender.on);
+            Record.setScreenFix(on);
+            if (on == 2 || nowState == 2) {
+                cc.game.restart();
+            }
             self.refreshThisLayer();
             cc.director.runScene(new MenuScene());
         });
         this.btn_screenfix_selector.setPosition(this.btn_screenfix.x, this.btn_screenfix.y - this.btn_screenfix.height + 10);
         this.addChild(this.btn_screenfix_selector);
+        
+        this.btn_screenfix_selector_2 = new SettingButton(itemList[num[1]]);
+        this.btn_screenfix_selector_2.setScale(0.8);
+        this.btn_screenfix_selector_2.on = num[1];
+        this.btn_screenfix_selector_2.setClickListener(this, function (sender) {
+            var on = Number(sender.on);
+            Record.setScreenFix(on);
+            if (on == 2 || nowState == 2) {
+                cc.game.restart();
+            }
+            self.refreshThisLayer();
+            cc.director.runScene(new MenuScene());
+        });
+        this.btn_screenfix_selector_2.setPosition(this.btn_screenfix.x, this.btn_screenfix.y - this.btn_screenfix.height * 2 + 20);
+        this.addChild(this.btn_screenfix_selector_2);
     },
     closeScreenfixSelector: function () {
         if (this.btn_screenfix_selector) {
             this.btn_screenfix_selector.removeFromParent();
+            this.btn_screenfix_selector_2.removeFromParent();
             this.btn_screenfix_selector = null;
         }
     },
@@ -447,12 +473,10 @@ var SettingLayer = cc.Layer.extend({
         btn.setScale(0.8);
         btn.setName("btn");
         btn.setAnchorPoint(0, 0);
-
-        var label = new ccui.Text("test", "", uiUtil.fontSize.COMMON_3);
+        var label = new ccui.Text("", "", uiUtil.fontSize.COMMON_3);
         label.setColor(cc.color(0, 0, 0, 0));
         label.setName("label");
         label.setPosition(btn.width / 2 - 20, btn.height / 2 + 10);
-
         var listItem = new ccui.Layout();
         listItem.addChild(btn);
         listItem.addChild(label, 1);
@@ -543,8 +567,8 @@ var MenuScene = BaseScene.extend({
 
         if (this.openSetting) {
             var settingLayer = new SettingLayer();
-            if (Record.getScreenFix()) {
-                settingLayer.setScale(0.84);
+            if (Record.getScreenFix() == 1) {
+                settingLayer.setScale(0.83);
             }
             this.addChild(settingLayer);
         }

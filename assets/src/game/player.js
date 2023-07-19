@@ -70,7 +70,9 @@ var Player = cc.Class.extend({
         this.totalDistance = 0;
         this.currency = 50;
         this.leftHomeTime = 0;
-        this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 10}, {"itemId": 1103033, "amount": 10}, {"itemId": 1105011, "amount": 10}];
+        this.lastCoffeeTime = -999999;
+        this.lastAlcoholTime = -999999;
+        this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
     },
 
     save: function () {
@@ -108,7 +110,9 @@ var Player = cc.Class.extend({
             totalDistance: this.totalDistance,
             currency: this.currency,
             shopList: this.shopList,
-            leftHomeTime: this.leftHomeTime
+            leftHomeTime: this.leftHomeTime,
+            lastCoffeeTime: this.lastCoffeeTime,
+            lastAlcoholTime: this.lastAlcoholTime
         };
         return opt;
     },
@@ -145,13 +149,15 @@ var Player = cc.Class.extend({
             this.currency = opt.currency;
             this.shopList = opt.shopList;
             this.leftHomeTime = opt.leftHomeTime;
+            this.lastCoffeeTime = opt.lastCoffeeTime;
+            this.lastAlcoholTime = opt.lastAlcoholTime;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
             if (IAPPackage.isHoarderUnlocked()) {
             this.currency += 50;
-                var itemList = [1101011,1101021,1101031,1101041,1101051,1101061,1101071,1101073,1103011,1103041,1103083,1104011,1104021,1104043,1105011,1105022,1105033,1105042,1105051,1301011,1301022,1301033,1301041,1301052,1302011,1302021,1303012,1304012,1304024,1305011,1305023,1106054];
-                var amountList = [180,180,100,100,80,80,80,60,20,20,10,10,10,5,40,30,20,60,60,3,2,2,3,2,5,5,10,2,2,500,2,1];
+                var itemList = [1101011,1101021,1101031,1101041,1101051,1101061,1101071,1101073,1103011,1103041,1103083,1104011,1104021,1104043,1105011,1105022,1105033,1105042,1105051,1301011,1301022,1301033,1301041,1301052,1302011,1302021,1303012,1304012,1306001,1305011,1305023,1106054];
+                var amountList = [160,160,100,100,80,80,80,60,20,20,10,10,10,5,40,30,20,60,60,3,2,2,3,2,5,5,10,2,2,300,2,1];
                 for (var itemId in itemConfig) {
                     itemId = Number(itemId);
                     var index = itemList.indexOf(itemId);
@@ -164,8 +170,8 @@ var Player = cc.Class.extend({
         this.room.restore(opt ? opt.room : null);
         this.npcManager.restore(opt ? opt.npcManager : null);
         this.map.restore(opt ? opt.map : null);
-        if (!player.room.isBuildExist(12, 0)) {
-            this.room.createBuild(12, 0);
+        if (!player.room.isBuildExist(12, -1) && !player.room.isBuildExist(12, 0)) {
+            this.room.createBuild(12, -1);
         }
     },
     onCurrencyChange: function(value) {
@@ -178,7 +184,7 @@ var Player = cc.Class.extend({
         }
     },
     trySteal: function() {
-        var TheftConfig = [[0.0, 0.01, 0.02, 0.03, 0.04],[0.01, 0.02, 0.04, 0.06, 0.08],[0.02, 0.04, 0.06, 0.08, 0.1],[0.04, 0.06, 0.08, 0.1, 0.12],[0.06, 0.08, 0.1, 0.14, 0.18],[0.08, 0.1, 0.14, 0.18, 0.25]]; 
+        var TheftConfig = [[0.01, 0.02, 0.03, 0.04, 0.05],[0.02, 0.04, 0.06, 0.08, 0.1],[0.03, 0.06, 0.09, 0.12, 0.15],[0.04, 0.08, 0.12, 0.16, 0.2],[0.05, 0.1, 0.15, 0.2, 0.25],[0.06, 0.12, 0.18, 0.24, 0.3]]; 
         var dtTime = Math.round(cc.timer.time - this.leftHomeTime);
         var weight = this.storage.getAllItemNum();
         var timeIndex = -1;
@@ -205,11 +211,10 @@ var Player = cc.Class.extend({
         }
         var probability = TheftConfig[weightIndex][timeIndex];
         var def = this._getHomeDeter();
-
         probability = probability * def;
         var rand = Math.random();
 
-        if (rand < probability) {
+        if (rand <= probability) {
             var res = this._getAttackResult(90, 0, this.storage);
             res = res.items;
             Record.saveAll();
@@ -329,17 +334,21 @@ var Player = cc.Class.extend({
                 return;
             }
         }
-        var beforeRangeInfo = this.getAttrRangeInfo(key, this[key]);
-        if (key == "vigour" && player.isInSleep && this[key] == 100) {
-            if (this.hp != this.hpMax) {
-                this.changeAttr("spirit", -1);
+        if (key == "vigour" && this.isInSleep && this[key] >= this[key + "Max"]) {
+            if (this.hp < this.hpMax) {
+                this.changeSpirit(-1);
             } else {
-                this.changeAttr("spirit", -2);    
+                this.changeSpirit(-2);
             }
-
         }
+        var beforeRangeInfo = this.getAttrRangeInfo(key, this[key]);
         this[key] += value;
-        this[key] = cc.clampf(this[key], 0, this[key + "Max"]);
+        if (key == "temperature") {
+        this[key] = cc.clampf(this[key], -2, this[key + "Max"]);
+        } else {
+            this[key] = cc.clampf(this[key], 0, this[key + "Max"]);
+        }
+
         var afterRangeInfo = this.getAttrRangeInfo(key, this[key]);
 
         if (this === player) {
@@ -347,9 +356,14 @@ var Player = cc.Class.extend({
         }
         if (beforeRangeInfo && afterRangeInfo) {
             var suffix;
+            var currentTime = Number(cc.timer.time);
+            currentTime -= this.lastCoffeeTime;
             if (afterRangeInfo.id - beforeRangeInfo.id > 0) {
                 suffix = "_up";
-                this.log.addMsg(stringUtil.getString(key + suffix)[afterRangeInfo.id - 1]);
+                if (key === "vigour" && currentTime <= 21600) {
+                } else {
+                    this.log.addMsg(stringUtil.getString(key + suffix)[afterRangeInfo.id - 1]);
+                }
                 if (key === "infect" || key === "injury") {
                     audioManager.playEffect(audioManager.sound.BAD_EFFECT);
                 } else {
@@ -357,7 +371,10 @@ var Player = cc.Class.extend({
                 }
             } else if (afterRangeInfo.id - beforeRangeInfo.id < 0) {
                 suffix = "_down";
-                this.log.addMsg(stringUtil.getString(key + suffix)[afterRangeInfo.id - 1]);
+                if (key === "vigour" && currentTime <= 21600) {
+                } else {
+                    this.log.addMsg(stringUtil.getString(key + suffix)[afterRangeInfo.id - 1]);
+                }
                 if (key === "infect" || key === "injury") {
                     audioManager.playEffect(audioManager.sound.GOOD_EFFECT);
                 } else {
@@ -371,7 +388,6 @@ var Player = cc.Class.extend({
 
         if (key === "hp") {
             if (this.hp == 0 && this === player) {
-                //die
                 this.die();
             }
         }
@@ -414,22 +430,11 @@ var Player = cc.Class.extend({
     },
 
     updateByTime: function () {
-
         var c = this.config["changeByTime"];
-        //Credit: Miao version: if in extreme starve, reduce HP.
-        if (!this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107042) && this.starve < 10) {
-            this.changeHp(-2);
-        }
-
         //扣减饥饿度
         this.changeStarve(c[0][0]);
-
-        /*
-         白天家中，精力值	-1
-         白天野外，精力值	-2
-         夜晚家中，精力值	-3
-         夜晚野外，精力值	-4
-         */
+        
+         //白天家中，精力值	-1    白天野外，精力值	-2    夜晚家中，精力值	-3    夜晚野外，精力值	-4
         if (cc.timer.getStage() === "day") {
             if (this.isAtHome) {
                 this.changeVigour(c[2][0]);
@@ -443,18 +448,36 @@ var Player = cc.Class.extend({
                 this.changeVigour(c[5][0]);
             }
         }
-
+        if (!this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107042) && this.starve < 10) {
+            this.changeHp(-2);
+        }
         //在睡眠状态下的影响
         if (this.isInSleep) {
-            var vigour = this.getVigourChange();
-            this.changeVigour(vigour);
-            //生命值
-            //每小时回血=睡眠等级*20
             var bedLevel = player.room.getBuildLevel(9);
             var bedRate = buildActionConfig[9][bedLevel].rate;
+
+            //睡眠等级=床等级值*0.5+饱食度/100*0.2+心情值/100*0.3
+            bedRate = bedRate * 0.5 + this.starve / this.starveMax * 0.2 + this.spirit / this.spiritMax * 0.3;
+
+            //精力值
+            //每小时回复精力值=睡眠等级*10
+            var vigour = bedRate * 15;
+            vigour = Math.ceil(vigour);
+      
+            //生命值
+            //每小时回血=睡眠等级*20
             var hp = bedRate * 20;
             hp = Math.ceil(hp);
-            this.changeHp(hp)
+            
+            var currentTime = Number(cc.timer.time);
+            currentTime -= this.lastCoffeeTime;     
+            if (currentTime <= 21600) {
+                vigour = Number(0.2 * vigour);
+                hp = Number(0.2 * hp);
+            }
+            
+            this.changeVigour(vigour);
+            this.changeHp(hp);
         }
         //天气影响
         this.changeVigour(this.weather.getValue("vigour"));
@@ -467,7 +490,7 @@ var Player = cc.Class.extend({
         //睡眠等级=床等级值*0.5+饱食度/100*0.2+心情值/100*0.3
         bedRate = bedRate * 0.5 + this.starve / this.starveMax * 0.2 + this.spirit / this.spiritMax * 0.3;
         //每小时回复精力值=睡眠等级*10
-        var vigour = bedRate * 15;
+        var vigour = bedRate * 12;
         vigour = Math.ceil(vigour);
         return vigour;
     },
@@ -567,9 +590,7 @@ var Player = cc.Class.extend({
             if (this.room.getBuild(5).isActive()) {
                 temperature += Math.floor(c[4][0] / 2);
             }
-        }
-        //火炉
-        else if (this.room.getBuild(5).isActive()) {
+        } else if (this.room.getBuild(5).isActive()) {
             temperature += c[4][0];
         }
         //天气
@@ -936,7 +957,7 @@ var Player = cc.Class.extend({
             }
             var twentyList = [1101011, 1101021, 1101031, 1101041, 1101051, 1103011, 1105042];
             var fifteenList = [1101061, 1101071, 1101073];
-            var fiveList = [1102011, 1102022, 1102033, 1102042, 1103074, 1104032, 1301011, 1301022, 1301033, 1301041, 1301052, 1301063, 1301071, 1301082, 1302043, 1303033, 1303044]
+            var fiveList = [1102011, 1102022, 1102033, 1102042, 1103074, 1104032, 1301011, 1301022, 1301033, 1301041, 1301052, 1301063, 1301071, 1301082, 1302043, 1303033, 1303044, 1103094]
             var twoList = [1102053, 1102063, 1104043, 1106054, 1107012, 1107022, 1107032, 1107042];
             
             if (fiveList.indexOf(itemId) !== -1) {

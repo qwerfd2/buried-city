@@ -360,7 +360,7 @@ var DialogSteal = DialogCommon.extend({
         if (config.content.dig_des) {
             var digDes = new cc.Sprite(config.content.dig_des);
             digDes.setAnchorPoint(0.5, 1);
-            digDes.setPosition(this.contentNode.getContentSize().width / 2, this.contentNode.getContentSize().height + 90);
+            digDes.setPosition(this.contentNode.getContentSize().width / 2, this.contentNode.getContentSize().height + 80);
             this.contentNode.addChild(digDes);
             digDes.setName("dig_des");
         }
@@ -368,7 +368,7 @@ var DialogSteal = DialogCommon.extend({
         if (config.content.des) {
             var des = new cc.LabelTTF(config.content.des, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
             des.setAnchorPoint(0, 1);
-            des.setPosition(this.leftEdge - 40, this.contentNode.getContentSize().height - 160);
+            des.setPosition(this.leftEdge - 40, this.contentNode.getContentSize().height - 170);
             this.contentNode.addChild(des, 1);
             des.setName("des");
             des.setScale(1.2);
@@ -397,7 +397,7 @@ var DialogSteal = DialogCommon.extend({
 
         this.titleNode = new cc.Node();
         this.titleNode.setAnchorPoint(0.5, 0);
-        this.titleNode.setPosition(this.bgNode.getContentSize().width / 2, this.bgNode.getContentSize().height - 110);
+        this.titleNode.setPosition(this.bgNode.getContentSize().width / 2, this.bgNode.getContentSize().height - 100);
         this.titleNode.setContentSize(this.bgNode.getContentSize().width, 100);
         this.bgNode.addChild(this.titleNode);
 
@@ -409,16 +409,16 @@ var DialogSteal = DialogCommon.extend({
 
         this.contentNode = new cc.Node();
         this.contentNode.setAnchorPoint(0.5, 0);
-        this.contentNode.setPosition(this.bgNode.getContentSize().width / 2, 93);
+        this.contentNode.setPosition(this.bgNode.getContentSize().width / 2, 83);
         this.contentNode.setContentSize(this.bgNode.getContentSize().width, this.bgNode.getContentSize().height - this.titleNode.getContentSize().height - this.actionNode.getContentSize().height - 20);
         
-        this.contentNode.setScale(0.8);
+        this.contentNode.setScale(0.9);
         this.bgNode.addChild(this.contentNode);
 
         var richText = new ItemRichText(this.itemList, 480, 5, 0.6, cc.color.BLACK, uiUtil.fontSize.COMMON_2);
         richText.setName("richText");
         richText.setAnchorPoint(0, 1);
-        richText.setPosition(-20, this.contentNode.y - 60);
+        richText.setPosition(-20, this.contentNode.y - 50);
         this.contentNode.addChild(richText);
     },
     onExit: function () {
@@ -653,10 +653,11 @@ var RandomBattleDialog = DialogBig.extend({
         this.log.height = this.log.height + 70;
         this.createBattleBeginView();
         this.getChildByName("bgColor").height = 1004;
-        if (Record.getScreenFix()) {
+        var screenFix = Record.getScreenFix();
+        if (screenFix == 1) {
             this.getChildByName("bgColor").height = 946;
         } else {
-            this.getChildByName("bgColor").height = 1003;
+            this.getChildByName("bgColor").height = 1004;
         }
     },
     show: function () {
@@ -694,9 +695,20 @@ var RandomBattleDialog = DialogBig.extend({
             label2.x = this.rightEdge;
         }
 
+        var currentTime = Number(cc.timer.time);
+        currentTime -= player.lastAlcoholTime;
+
         if (!player.equip.haveWeapon()) {
-            var label3Str = stringUtil.getString(1207);
-            var label3 = new cc.LabelTTF(label3Str, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
+            var label3 = new cc.LabelTTF(stringUtil.getString(1207), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
+            label3.setAnchorPoint(0, 1);
+            label3.setPosition(this.leftEdge, label2.y - label2.height);
+            this.log.addChild(label3);
+            label3.setColor(cc.color.RED);
+        } else if (currentTime <= 43200) {
+            currentTime = 43200 - currentTime;
+            currentTime = Math.ceil(currentTime / 3600);
+            currentTime = Number(2 * currentTime);
+            var label3 = new cc.LabelTTF(stringUtil.getString(1325, currentTime), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
             label3.setAnchorPoint(0, 1);
             label3.setPosition(this.leftEdge, label2.y - label2.height);
             this.log.addChild(label3);
@@ -1036,7 +1048,7 @@ var AboutUUIDDialog = DialogTiny.extend({
         config.action.btn_1.txt = stringUtil.getString(1030);
 
         this._super(config);
-        var str = "UUID: " +Record.getUUID() + "\nDID: " + CommonUtil.getUUID();
+        var str = "UUID: " +Record.getUUID() + "\nBuried City, Modded by ArithSeq";
         var label1 = new cc.LabelTTF(str, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
         label1.x = this.contentNode.width / 2;
         label1.y = this.contentNode.height / 2;
@@ -1215,7 +1227,6 @@ var DialogMoreGame = Dialog.extend({
         bg.y = cc.winSize.height / 2;
         this.addChild(bg);
 
-
         var webview = new ccui.WebView();
         webview.loadFile(a);
         webview.setContentSize(cc.size(440, 545));
@@ -1224,7 +1235,6 @@ var DialogMoreGame = Dialog.extend({
         webview.y = 20;
         bg.addChild(webview, 100);
         webview.setOnDidFinishLoading(function() {
-            cc.e("webview onloading");
             webview.setVisible(true);
         });
         webview.setVisible(false);
@@ -1240,7 +1250,6 @@ var DialogMoreGame = Dialog.extend({
         bg.addChild(btnClose);
 
         this.autoDismiss = false;
-
     },
     initContentSize: function() {
         return cc.winSize;

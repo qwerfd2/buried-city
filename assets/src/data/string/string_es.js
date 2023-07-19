@@ -1,4 +1,12 @@
 var string = {
+"1324": "Problemas para dormir por el café. Descansa después de %s horas.",
+"1325": "¡Precisión reducida en %s% debido al alcohol!",
+"1326": "¡Por favor, vende desde la bolsa!",
+"1327": ["Apagado","Parcial","Completo"],
+   "1103094": {
+        "title": "Queso",
+        "des": "La suave y derretida textura y el rico sabor lácteo pueden hacerte olvidar las presiones de la supervivencia."
+    },
 "site_501": {
         "name": "Instituto",
         "des": "El pasillo del instituto, antes lleno de bullicio, ahora está tan tranquilo que se puede oír caer un alfiler. Si no fuera por los libros dispersos y las manchas de sangre, uno pensaría que es un día festivo."
@@ -615,7 +623,7 @@ var string = {
         "title": "Traje antidisturbios",
         "des": "Capa gruesa con chapa para proteger las partes críticas, de los daños, puede resistir con gran medida del daño físico de zombies. "
     },
-    "1304024": {
+    "1306001": {
         "title": "Botas",
         "des": "Zapatos  reforzados, pueden proteger los pies, acelerar la velocidad de caminar  en los escombros."
     },
@@ -1356,6 +1364,14 @@ var string = {
 "bt_npc_12": {
 "title": "¡Muy amable de su parte, señor!",
 "des": "La amistad con el desconocido aumenta al 100%."
+},
+"bt_npc_13": {
+"title": "¡Hola, Sr. White!",
+"des": "Conoce a W.White."
+},
+"bt_npc_14": {
+"title": "¡Muy amable de tu parte, Walter!",
+"des": "La amistad con W.White aumenta al 100%."
 },
 "bt_item_1": {
 "title": "¡Bang!",

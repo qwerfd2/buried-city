@@ -2,6 +2,10 @@ var string = {
 "1324": "Vì uống cà phê nên bạn gặp vấn đề về giấc ngủ. Nghỉ sau %s giờ.",
 "1325": "Độ chính xác giảm %s% do uống rượu!",
 "1326": "Vui lòng bán từ túi!",
+"1333": "Trao đổi %s x%s lấy 20 lượng virus? Hành động này không thể hoàn tác.",
+"1334": "Trao đổi",
+"1335": "Bạn đã trao đổi %s %s lấy 20 lượng virus.",
+"1336": "Tăng giới hạn tải lên:",
 "1327": ["Tắt","Một phần","Toàn bộ"],
     "1103094": {
         "title": "Phô mai",
@@ -23,6 +27,20 @@ var string = {
         "title": "Hàng rào điện",
         "des": "Do không đủ điện áp nên Hàng rào điện tự dựng không thể loại bỏ ngay lũ zombie đang tiến đến, nhưng nó có thể 'gợi ý' chúng tránh xa."
     },
+    "14": {
+        "title": "Mức Độ Khát Nước",
+        "des": "Hạn chế nước trong cơ thể có thể gây nguy hiểm đến tính mạng. Nếu có nước trong phòng chứa (hoặc trong balo khi ở ngoài trời), bạn sẽ tự động uống nước định kỳ. Nếu bạn đang rất khát, bạn sẽ uống nhiều hơn."
+    },
+
+    "15": {
+        "title": "Lượng Virus",
+        "des": "Bạn không miễn dịch và cũng không có áo giáp bất tử. Nếu bị thương trong trận chiến, lượng virus sẽ tăng. Bạn có thể hy sinh các thuộc tính khác để tăng giới hạn lượng virus, nhưng một khi virus xâm nhập, nó sẽ tồn tại. Nếu lượng virus vượt quá giới hạn, bạn sẽ ngay lập tức biến thành xác sống."
+    },
+    "1328": "Bạn đang rất khát và đã uống 1 ly nước mới lấy được.",
+    "1329": "Bạn đang rất khát và đã uống 1 ly nước từ balo của bạn.",
+    "1330": "Bạn đang rất khát và đã uống 1 ly nước từ phòng chứa.",
+    "1331": "Bạn đã uống 1 ly nước từ balo của bạn.",
+    "1332": "Bạn đã uống 1 ly nước từ phòng chứa.",
 "9030": "Bạn có muốn bán?",
 "9031": "Bạn có muốn mua?",
 "9033": "Bán",
@@ -1055,11 +1073,13 @@ var string = {
     "b_1107022": "Giúp bạn không bị ảnh hưởng của việc lây nhiễm nữa",
     "b_1107032": "Giúp bạn không còn cảm thấy mệt nữa",
     "b_1107042": "Giúp bạn không còn cảm thấy đói nữa",
-    "starve_name": ["Đói khát trầm trọng", "Vô cùng đói", "Đói khát"],
-    "vigour_name": ["Khốn đốn", "Mệt mỏi", "Mệt mỏi"],
-    "spirit_name": ["Suy sụp", "Đau khổ", "Bất an"],
-    "injury_name": [null, "Vết thương ngoài da", "Thương nhẹ", "Trọng thương", "Vết thương nghiêm trọng"],
-    "infect_name": [null, "Nhiễm trùng nhẹ", "Nhiễm trùng mức trung bình", "Nhiễm trùng nặng", "Hệ miễn dịch sụp đổ"],
+"water_name": ["Khát nặng", "Rất khát", "Hơi khát", "Không khát nước"],
+    "starve_name": ["Đói đến nỗi nguy kịch", "Đói", "Đói", "Không đói"],
+    "vigour_name": ["Kiệt sức", "Mệt mỏi", "Mệt mỏi", "Năng động"],
+    "spirit_name": ["Suy sụp", "Chán nản", "Buồn", "Tự tin"],
+    "injury_name": ["Không bị thương", "Bị thương", "Bị thương nhẹ", "Bị thương nặng", "Bị thương tử vong"],
+    "infect_name": ["Không nhiễm trùng", "Nhiễm trùng nhẹ", "Nhiễm trùng vừa", "Nhiễm trùng nặng", "Suy kiệt hệ miễn dịch"],
+"water_down": ["Bạn đang cực kỳ khát - tầm nhìn của bạn đang mờ đi.", "Bạn rất khát - khi bạn nhắm mắt, bạn nghĩ đến nước.", "Bạn muốn uống nước."],
     "infect_up": [null, "Vi khuẩn đang phát triển trong cơ thể bạn", "Nhiễm trùng đã lan ra nhanh chóng, bạn cảm thấy toàn thân đau nhức", "Nhiễm trùng nặng làm cho toàn thân bạn nóng lên, bạn cảm thấy cuộc sống của mình đang mất dần đi"],
     "infect_down": [null, null, "Nhiễm trùng tạm thời đã được khống chế, ít nhất sẽ không lan ra nữa.", "Tình hình nhiễm trùng đã được giảm bớt nhưng vẫn chưa thể lạc quan được", "Thuốc đã có tác dụng nhưng tình hình nhiễm trùng vẫn rất nghiêm trọng"],
     "injury_up": [null, "Vết thương của bạn đang rộng ra", "Vết thương của bạn xấu đi, có thể bị nhiễm trùng bất cứ lúc nào", "Vết thương của bạn vô cùng nghiêm trọng, gần như mất khả năng vận động"],

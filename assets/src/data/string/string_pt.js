@@ -3,6 +3,10 @@ var string = {
 "1325": "Precisão reduzida em %s% devido ao álcool!",
 "1326": "Por favor, venda a partir da bolsa!",
 "1327": ["Desligado","Parcial","Completo"],
+"1333": "Trocar %s x%s por 20 Cargas de Vírus? Esta ação é irreversível.",
+"1334": "Trocar",
+"1335": "Você trocou %s %s por 20 Cargas de Vírus.",
+"1336": "Aumentar o limite superior de carga:",
 "1103094": {
         "title": "Queijo",
         "des": "A textura suave e derretida e o rico sabor lácteo podem fazer você esquecer as pressões da sobrevivência."
@@ -23,6 +27,20 @@ var string = {
         "title": "Cerca elétrica",
         "des": "Devido à voltagem insuficiente, a cerca de energia autoconstruída não pode eliminar imediatamente os zumbis que se aproximam, mas pode 'sugerir' que eles fiquem longe."
     },
+    "14": {
+        "title": "Nível de Sede",
+        "des": "A desidratação prolongada pode ser fatal. Se houver água no depósito (ou na mochila, se estiver ao ar livre), você automaticamente beberá água em intervalos regulares. Se estiver particularmente sedento, beberá mais."
+    },
+
+    "15": {
+        "title": "Carga Viral",
+        "des": "Você não é imune e não tem proteção de enredo. Se ficar ferido em batalha, a carga viral aumentará. Você pode sacrificar outros atributos para aumentar o limite de carga, mas uma vez que o vírus entre, ele permanece. Se a carga viral exceder o limite, você se transformará imediatamente em um zumbi."
+    },
+    "1328": "Você está muito sedento e bebeu 1 copo de água que acabou de obter.",
+    "1329": "Você está muito sedento e bebeu 1 copo de água da sua mochila.",
+    "1330": "Você está muito sedento e bebeu 1 copo de água do depósito.",
+    "1331": "Você bebeu 1 copo de água da sua mochila.",
+    "11332": "Você bebeu 1 copo de água do depósito.",
 "9030": "Você quer vender?",
 "9031": "Você quer comprar?",
 "9033": "Vender",
@@ -1054,11 +1072,13 @@ var string = {
     "b_1107022": "Faz você não ser infectado ",
     "b_1107032": "Faz você não ficar cansado",
     "b_1107042": "Faz você não sentir fome",
-    "starve_name": ["Fome Severa", "Realmente faminto", "Faminto"],
-    "vigour_name": ["Exausto", "Cansado", "Fatigado"],
-    "spirit_name": ["Maluco", "Depressivo", "Nervoso"],
-    "injury_name": [null, "Machucado", "Ferido Levemente", "Ferido Gravemente", "Ferido Fatalmente"],
-    "infect_name": [null, "Infecção leve", "Infectado Moderadamente", "Infectado Gravemente", "Colapso do Sist. Imunológico"],
+    "water_name": ["Sede Severa", "Muito Sedento", "Ligeiramente Sedento", "Não tem sede"],
+    "starve_name": ["Fome Grave", "Com Fome", "Com fome", "Sem fome"],
+    "vigour_name": ["Esgotado", "Fatigado", "Cansado", "Energético"],
+    "spirit_name": ["Colapso", "Deprimido", "Chateado", "Confiante"],
+    "injury_name": ["Sem ferimentos", "Ferido", "Ligeiramente ferido", "Gravemente ferido", "Fatalmente ferido"],
+"infect_name": ["Sem infecção", "Infecção leve", "Infecção moderada", "Infecção grave", "Colapso do sistema imunológico"],
+"water_down": ["Você está extremamente sedento - sua visão está ficando embaçada.", "Você está com muita sede - quando você fecha os olhos, pensa em água.", "Você quer beber água."],
     "infect_up": [null, "Bactérias estão se multiplicando em seu corpo.", "Infecções estão se espalhando rapidamente. Todo seu corpo dói.", "Infecção severa causou febre. Você se sente como se sua vida estivesse se perdendo."],
     "infect_down": [null, null, "A infecção está temporariamente controlada e não irá se espalhar.", "A infecção está sendo retardada, mas a situação não é otimista.", "Os medicamentos tiveram algum efeito, mas a infecção é ainda grave."],
     "injury_up": [null, "Seu ferimendo está maior.", "O ferimento está pior e você poderá ser infectado a qualuqer instante.", "Seus ferimentos são muito graves, você quase não consegue se mover."],

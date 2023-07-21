@@ -3,6 +3,10 @@ var string = {
 "1325": "Genauigkeit um %s% durch Alkohol reduziert!",
 "1326": "Bitte verkaufen Sie aus der Tasche!",
 "1327": ["Aus","Teilweise","Vollständig"],
+"1333": "Tausche %s x%s gegen 20 Viruslast? Diese Aktion kann nicht rückgängig gemacht werden.",
+"1334": "Tauschen",
+"1335": "Du hast %s %s gegen 20 Viruslast getauscht.",
+"1336": "Erhöhe die obere Grenze der Last:",
     "1103094": {
         "title": "Käse",
         "des": "Die cremige und schmelzende Textur und der reiche milchige Geschmack können dich die Belastungen des Überlebens vergessen lassen."
@@ -23,6 +27,20 @@ var string = {
         "title": "Elektrozaun",
         "des": "Aufgrund unzureichender Spannung kann der selbstgebaute Stromzaun die herannahenden Zombies zwar nicht sofort vernichten, aber er kann sie „auffordern“, sich fernzuhalten."
     },
+    "14": {
+        "title": "Durststufe",
+        "des": "Lang anhaltende Dehydration kann lebensbedrohlich sein. Wenn sich Wasser im Lager befindet (oder im Rucksack, wenn du dich draußen befindest), wirst du automatisch in regelmäßigen Abständen Wasser trinken. Wenn du besonders durstig bist, wirst du mehr trinken."
+    },
+
+    "15": {
+        "title": "Viruslast",
+        "des": "Du bist nicht immun und hast keine Handlungspanzerung. Wenn du im Kampf verletzt wirst, wird die Viruslast steigen. Du kannst andere Attribute opfern, um das Lastlimit zu erhöhen, aber sobald das Virus eindringt, bleibt es. Wenn die Viruslast das Limit überschreitet, verwandelst du dich sofort in einen Zombie."
+    },
+    "1328": "Du hast sehr Durst und hast 1 Wasser getrunken, das du gerade erhalten hast.",
+    "1329": "Du hast sehr Durst und hast 1 Wasser aus deinem Rucksack getrunken.",
+    "1330": "Du hast sehr Durst und hast 1 Wasser aus dem Lager getrunken.",
+    "1331": "Du hast 1 Wasser aus deinem Rucksack getrunken.",
+    "1332": "Du hast 1 Wasser aus dem Lager getrunken.",
 "9030": "Você quer vender?",
 "9031": "Você quer comprar?",
 "9033": "Vender",
@@ -1054,11 +1072,13 @@ var string = {
     "b_1107022": "Verhindert Kontaminierung.",
     "b_1107032": "Verhindert Müdigkeit.",
     "b_1107042": "Verhindert Hunger.",
-    "starve_name": ["Schwer unterernährt", "Sehr hungrig", "Hungrig"],
-    "vigour_name": ["Erschöpft", "Ermüdet", "Müde"],
-    "spirit_name": ["Kurz vor dem Zusammenbruch", "Deprimiert", "Unruhig"],
-    "injury_name": ["Normal", "Äußere Verwundung", "Leicht verwundet", "Schwer verwundet", "Tödlich verwundet"],
-    "infect_name": ["Normal", "Leichte Infektion", "Mittlere Entzündung", "Schwere Infektion", "Der Zusammenbruch des Immunssystems steht kurz bevor"],
+    "water_name": ["Starker Durst", "Sehr Durstig", "Leicht Durstig", "Nicht durstig"],
+    "starve_name": ["Schwer verhungernd", "Verhungern", "Hungrig", "Nicht hungrig"],
+    "vigour_name": ["Erschöpft", "Müde", "Müde", "Energetisch"],
+    "spirit_name": ["Zusammenbruch", "Depressiv", "Verärgert", "Selbstbewusst"],
+    "injury_name": ["Keine Verletzung", "Verletzt", "Leicht verletzt", "Schwer verletzt", "Tödlich verletzt"],
+"infect_name": ["Keine Infektion", "Leichte Infektion", "Mittlere Infektion", "Schwere Infektion", "Zusammenbruch des Immunsystems"],
+"water_down": ["Du bist extrem durstig - deine Sicht wird verschwommen.","Du bist sehr durstig - wenn du die Augen schließt, denkst du an Wasser.","Du möchtest Wasser trinken."],
     "infect_up": [null, "Die Bakterien in deinem Körper breiten sich aus.", "Die Infektion breitet sich aus. Du spürst Schmerzen am ganzen Körper.", "Eine ernsthafte Infektion ruft Fieber bei dir hervor. Du hast das Gefühl, dass deine letzte Lebensenergie schwindet"],
     "infect_down": [null, null, "Die Infektion ist vorübergehend unter Kontrolle.Sie breitet sich zumindest nicht weiter aus.", "Die Infektion ist gelindert. Die Aussichten sind jedoch nicht sehr positiv.", "Die Medizin hat eine positive Wirkung, aber die Infektion ist immer noch sehr ernsthaft."],
     "injury_up": [null, "Deine Wunde ist schlimmer geworden", "Die Verletzung ist schlimmer geworden. Sie könnte zu einer Infektion werden.", "Deine Verletzungen sind sehr ernsthaft. Du kannst dich kaum noch bewegen."],

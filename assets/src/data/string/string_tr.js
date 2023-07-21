@@ -3,6 +3,10 @@ var string = {
 "1325": "Alkolden dolayı hassasiyetiniz %s% azaldı!",
 "1326": "Lütfen çantadan satın alın!",
 "1327": ["Kapalı","Kısmi","Tam"],
+"1333": "%s x%s'i 20 Virüs Yükü için değiştirmek istiyor musunuz? Bu işlem geri alınamaz.",
+"1334": "Değiştir",
+"1335": "%s %s'yi 20 virüs yükü için değiştirdiniz.",
+"1336": "Yük sınırını arttır:",
     "1103094": {
         "title": "Peynir",
         "des": "Düz ve eriyen dokusu ile zengin süt aroması, hayatta kalma baskılarını unutmanıza neden olabilir."
@@ -23,6 +27,21 @@ var string = {
         "title": "Elektrikli çit",
         "des": "Yetersiz voltaj nedeniyle, kendi kendine yapılan elektrikli Çit yaklaşan zombileri hemen ortadan kaldıramaz, ancak onlara uzak durmalarını 'önerebilir'."
     },
+        "14": {
+        "title": "Susuzluk Seviyesi",
+        "des": "Uzun süreli susuzluk hayati tehlike oluşturabilir. Eğer depoda su varsa (veya dışarıdaysanız sırt çantanızda), düzenli aralıklarla otomatik olarak su içeceksiniz. Özellikle susuz hissettiğinizde daha fazla su içeceksiniz."
+    },
+
+    "15": {
+        "title": "Virüs Yükü",
+        "des": "Bağışıklığınız yok ve kaderinizde bir kalkanınız da yok. Savaşta yaralanırsanız, virüs yükü artar. Diğer özellikleri feda ederek yük sınırını artırabilirsiniz, ancak virüs bir kez girdiğinde kalır. Eğer virüs yükü sınırı aşarsa, hemen bir zombiye dönüşürsünüz."
+    },
+
+    "1328": "Çok susuzsunuz ve yeni elde ettiğiniz 1 suyu içtiniz.",
+    "1329": "Çok susuzsunuz ve sırt çantanızdan 1 su içtiniz.",
+    "1330": "Çok susuzsunuz ve depodan 1 su içtiniz.",
+    "1331": "Sırt çantanızdan 1 su içtiniz.",
+    "1332": "Depodan 1 su içtiniz.",
 "9030": "Satmak istiyor musunuz?",
 "9031": "Satın almak istiyor musunuz?",
 "9033": "Sat",
@@ -1053,12 +1072,14 @@ var string = {
     "b_1107022": "Tekrar enfeksiyondan etkilenmemeni sağlar",
     "b_1107032": "Tekrar yorulmamanı sağlar",
     "b_1107042": "Tekrar acıkmazsın",
-    "starve_name": ["Açlıktan ölmek üzere", "Gerçekten açsın", "Açsın"],
-    "vigour_name": ["Yorgun", "Yoruldun", "Yorgunsun"],
-    "spirit_name": ["Kafayı yedi", "Depresyondasın", "Üzgünsün"],
-    "injury_name": [null, "Yaralandın", "Hafif yaralısın", "Ciddi yaralandın", "Ölümcül yaralandın"],
-    "infect_name": [null, "Hafif enfeksiyon kaptın", "Orta derecede enfeksiyon kaptın", "Şiddetli enfeksiyon kaptın", "Bağışıklık sistemin çökmek üzere"],
-    "infect_up": [null, "Vücudunda bakteri büyüyor.", "Enfeksiyon hızla yayılıyor. Heryerin kaşındı.", "Ciddi enfeksiyon ateşe sebep oldu. Hayatın emiliyor gibi hissediyorsun."],
+"water_name": ["Ciddi Susuzluk", "Çok Susuz", "Hafif Susuz", "Susuz Değil"],
+    "starve_name": ["Ciddi Açlık", "Aç", "Aç Hissediyor", "Aç Değil"],
+    "vigour_name": ["Tükenmiş", "Yorgun", "Bitkin", "Enerjik"],
+    "spirit_name": ["Çöküş", "Depresif", "Üzgün", "Kendine Güvenen"],
+    "injury_name": ["Yaralanma Yok", "Yaralı", "Hafif Yaralı", "Ciddi Yaralı", "Ölümcül Yaralı"],
+    "infect_name": ["Enfeksiyon Yok", "Hafif Enfeksiyon", "Orta Düzeyde Enfeksiyon", "Ağır Enfeksiyon", "Bağışıklık Sistemi Çöküşü"],
+"water_down": ["Çok susuzsunuz - görmeniz bulanıklaşıyor.","Çok susuzsunuz - gözlerinizi kapattığınızda su düşünüyorsunuz.","Su içmek istiyorsunuz."],
+"infect_up": [null, "Vücudunda bakteri büyüyor.", "Enfeksiyon hızla yayılıyor. Heryerin kaşındı.", "Ciddi enfeksiyon ateşe sebep oldu. Hayatın emiliyor gibi hissediyorsun."],
     "infect_down": [null, null, "Enfeksiyon geçici olarak kontrol altında. En azından yayılmayacak.", "Enfeksiyon remisyona girdi, görünüş pek iç açıcı değil.", "İlaçların biraz etkisi oldu ama enfeksiyon hala ciddi."],
     "injury_up": [null, "Yaran büyüyor.", "Yaran kötüleşti. Enfeksiyon kapabilirsin.", "Yaraların çok şiddetli, zar zor hareket ediyorsun."],
     "injury_down": [null, null, "Yaran stabilize oldu. Neredeyse güvendesin.", "Yaran hala kanıyor ama durum kötüleşmedi.", "Yaran hala şiddetli. Daha fazla bakıma ihtiyacın var."],

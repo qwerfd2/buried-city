@@ -142,7 +142,7 @@ var TopFrameNode = cc.Node.extend({
         this.secondLine.setContentSize(584, 50);
         bg.addChild(this.secondLine);
 
-        var btnSize2 = cc.size(this.secondLine.width / 6, this.secondLine.height);
+        var btnSize2 = cc.size(this.secondLine.width / 8, this.secondLine.height);
         var createAttrButton = function (attr, needStatusStr, stringId, reversPercentage, warnRange) {
             var btn = new AttrButton(btnSize2, attr, "", warnRange, {scale: 0.5});
             btn.setClickListener(this, function () {
@@ -162,28 +162,37 @@ var TopFrameNode = cc.Node.extend({
         };
 
         var injury = createAttrButton("injury", false, 10, true, new Range("[0,0.5]"));
-        injury.setPosition(this.secondLine.width / 12 * 1, this.secondLine.height / 2);
+        injury.setPosition(this.secondLine.width / 16 * 1, this.secondLine.height / 2);
         this.secondLine.addChild(injury);
 
         var infect = createAttrButton("infect", false, 9, true, new Range("[0,0.75]"));
-        infect.setPosition(this.secondLine.width / 12 * 3, this.secondLine.height / 2);
+        infect.setPosition(this.secondLine.width / 16 * 3, this.secondLine.height / 2);
         this.secondLine.addChild(infect);
 
         var starve = createAttrButton("starve", false, 6, false, new Range("[0,0.5]"));
-        starve.setPosition(this.secondLine.width / 12 * 5, this.secondLine.height / 2);
+        starve.setPosition(this.secondLine.width / 16 * 5, this.secondLine.height / 2);
         this.secondLine.addChild(starve);
 
         var vigour = createAttrButton("vigour", false, 7, false, new Range("[0,0.5]"));
-        vigour.setPosition(this.secondLine.width / 12 * 7, this.secondLine.height / 2);
+        vigour.setPosition(this.secondLine.width / 16 * 7, this.secondLine.height / 2);
         this.secondLine.addChild(vigour);
 
         var spirit = createAttrButton("spirit", false, 8, false, new Range("[0,0.5]"));
-        spirit.setPosition(this.secondLine.width / 12 * 9, this.secondLine.height / 2);
+        spirit.setPosition(this.secondLine.width / 16 * 9, this.secondLine.height / 2);
         this.secondLine.addChild(spirit);
 
+        var water = createAttrButton("water", false, 14, false, new Range("[0,0.5]"));
+        water.setPosition(this.secondLine.width / 16 * 11, this.secondLine.height / 2);
+        this.secondLine.addChild(water);
+        
+        var virus = createAttrButton("virus", false, 15, true, new Range("[0,0.25]"));
+        virus.setPosition(this.secondLine.width / 16 * 13, this.secondLine.height / 2);
+        this.secondLine.addChild(virus);
+
         var hp = createAttrButton("hp", false, 5, false, new Range("[0,0.5]"));
-        hp.setPosition(this.secondLine.width / 12 * 11, this.secondLine.height / 2);
+        hp.setPosition(this.secondLine.width / 16 * 15, this.secondLine.height / 2);
         this.secondLine.addChild(hp);
+        
 
         this.thirdLine = new ButtonWithPressed(cc.size(584, 122));
         this.thirdLine.setAnchorPoint(0, 0);
@@ -332,10 +341,10 @@ var showAttrStatusDialog = function (stringId, attr) {
     var strConfig = stringUtil.getString(stringId);
     config.title.icon = "#icon_" + attr + "_0.png";
     config.title.title = strConfig.title;
-    if (attr === 'hp') {
+    if (attr === 'hp' || attr === 'virus') {
         config.title.txt_1 = cc.formatStr(config.title.txt_1, player[attr] + "/" + player[attr + "Max"]);
     } else {
-        config.title.txt_1 = player.getAttrStr(attr);
+        config.title.txt_1 = cc.formatStr(player.getAttrStr(attr), config.title.txt_1, player[attr] + "/" + player[attr + "Max"]);
     }
     config.content.des = strConfig.des;
     var dialog = new DialogBig(config);
@@ -423,6 +432,7 @@ var showAttrStatusDialog = function (stringId, attr) {
                 itemTableView.updateData();
                 itemTableView.reloadData();
                 Record.saveAll();
+                dialog.dismiss();
             }
         };
 
@@ -432,6 +442,128 @@ var showAttrStatusDialog = function (stringId, attr) {
                 utils.emitter.off('btn_1_click', onItemUse);
             }
         });
+    }
+    if (attr == "virus") {
+        var showText = new cc.LabelTTF(stringUtil.getString(1336), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(dialog.rightEdge - dialog.leftEdge, 0));
+        showText.anchorX = 0;
+        showText.anchorY = 1;
+        showText.x = dialog.leftEdge;
+        showText.y = 100;
+        dialog.contentNode.addChild(showText);
+        showText.setColor(cc.color.RED);
+    
+        if (player.injuryMax > 9) {
+            var exchangeInjury = new ImageButton("res/new/injury.png");
+            exchangeInjury.setPosition(60, 40);
+            exchangeInjury.setScale(0.7);
+            dialog.contentNode.addChild(exchangeInjury, 1);
+            exchangeInjury.setClickListener(this, function(a) {
+                virusExchangeDialog(10, function() {
+                    player.injuryMax -= 5;
+                    player.injury = cc.clampf(player.injury, 0, player.injuryMax);
+                    player.virusMax += 20;
+                    Record.saveAll();
+                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(10).title));
+                    dialog.dismiss();
+                })
+            });
+        }
+        if (player.infectMax > 9) {
+            var exchangeInfection = new ImageButton("res/new/infection.png");
+            exchangeInfection.setPosition(120, 40);
+            exchangeInfection.setScale(0.7);
+            dialog.contentNode.addChild(exchangeInfection, 1);
+            exchangeInfection.setClickListener(this, function(a) {
+                virusExchangeDialog(9, function() {
+                    player.infectMax -= 5;
+                    player.infect = cc.clampf(player.infect, 0, player.infectMax);
+                    player.virusMax += 20;
+                    Record.saveAll();
+                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(9).title));
+                    dialog.dismiss();
+                })
+            });
+        }
+        if (player.starveMax > 9) {
+            var exchangeHunger = new ImageButton("res/new/hunger.png");
+            exchangeHunger.setPosition(180, 40);
+            exchangeHunger.setScale(0.7);
+            dialog.contentNode.addChild(exchangeHunger, 1);
+            exchangeHunger.setClickListener(this, function(a) {
+                virusExchangeDialog(6, function() {
+                    player.starveMax -= 5;
+                    player.starve = cc.clampf(player.starve, 0, player.starveMax);
+                    player.virusMax += 20;
+                    Record.saveAll();
+                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(6).title));
+                    dialog.dismiss();
+                })        
+            });
+        }
+        if (player.vigourMax > 9) {
+            var exchangeVigour = new ImageButton("res/new/vigour.png");
+            exchangeVigour.setPosition(240, 40);
+            exchangeVigour.setScale(0.7);
+            dialog.contentNode.addChild(exchangeVigour, 1);
+            exchangeVigour.setClickListener(this, function(a) {
+                virusExchangeDialog(7, function() {
+                    player.vigourMax -= 5;
+                    player.vigour = cc.clampf(player.vigour, 0, player.vigourMax);
+                    player.virusMax += 20;
+                    Record.saveAll();
+                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(7).title));
+                    dialog.dismiss();
+                })
+            });
+        }
+        if (player.spiritMax > 9) {
+            var exchangeSpirit = new ImageButton("res/new/spirit.png");
+            exchangeSpirit.setPosition(300, 40);
+            exchangeSpirit.setScale(0.7);
+            dialog.contentNode.addChild(exchangeSpirit, 1);
+            exchangeSpirit.setClickListener(this, function(a) {
+                virusExchangeDialog(8, function() {
+                    player.spiritMax -= 5;
+                    player.spirit = cc.clampf(player.spirit, 0, player.spiritMax);
+                    player.virusMax += 20;
+                    Record.saveAll();
+                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(8).title));
+                    dialog.dismiss();
+                })
+            });
+        }
+        if (player.waterMax > 9) {
+            var exchangeWater = new ImageButton("res/new/water.png");
+            exchangeWater.setPosition(360, 40);
+            exchangeWater.setScale(0.7);
+            dialog.contentNode.addChild(exchangeWater, 1);
+            exchangeWater.setClickListener(this, function(a) {
+                virusExchangeDialog(14, function() {
+                    player.waterMax -= 5;
+                    player.water = cc.clampf(player.water, 0, player.waterMax);
+                    player.virusMax += 20;
+                    Record.saveAll();
+                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(14).title));
+                    dialog.dismiss();
+                })
+            });
+        }
+        if (player.hpMax > 19) {
+            var exchangeHp = new ImageButton("res/new/hp.png");
+            exchangeHp.setPosition(420, 40);
+            exchangeHp.setScale(0.7);
+            dialog.contentNode.addChild(exchangeHp, 1);
+            exchangeHp.setClickListener(this, function(a) {
+                virusExchangeDialog(5, function() {
+                    player.hpMax -= 10;
+                    player.hp = cc.clampf(player.hp, 0, player.hpMax);
+                    player.virusMax += 20;
+                    Record.saveAll();
+                    player.log.addMsg(stringUtil.getString(1335, 10, stringUtil.getString(5).title));
+                    dialog.dismiss();
+                })
+            });
+        }
     }
 
     dialog.show();

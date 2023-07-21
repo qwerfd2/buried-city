@@ -254,7 +254,12 @@ var AttrButton = ButtonWithPressed.extend({
         icon.addChild(icon2);
 
         if (this.range) {
-            var icon3 = autoSpriteFrameController.getSpriteFromSpriteName("#icon_" + attr + "_2.png");
+            var icon3;
+            if (attr == "virus" || attr == "water") {
+                icon3 = new cc.Sprite("res/new/icon_" + attr + "_2.png");
+            } else {
+                icon3 = autoSpriteFrameController.getSpriteFromSpriteName("#icon_" + attr + "_2.png");
+            }
             icon3.x = icon.width / 2;
             icon3.y = icon.height / 2;
             icon3.setName("icon3");

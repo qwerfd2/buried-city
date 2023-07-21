@@ -141,9 +141,15 @@ var HomeNode = BottomFrameNode.extend({
 
     flushBag: function () {
         player.bag.forEach(function (item, num) {
-            if (!player.equip.isEquiped(item.id) && item.id != BattleConfig.BULLET_ID) {
+            if (!player.equip.isEquiped(item.id) && item.id != BattleConfig.BULLET_ID && item.id != "1101061") {
                 player.storage.increaseItem(item.id, num);
                 player.bag.decreaseItem(item.id, num);
+            } else if (item.id == "1101061") {
+                num = num - 5;
+                if (num > 0) {
+                     player.storage.increaseItem(item.id, num);
+                     player.bag.decreaseItem(item.id, num);
+                }
             }
         });
     },

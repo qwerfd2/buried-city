@@ -17,9 +17,10 @@ var BattleConfig = {
 }
 
 var Battle = cc.Class.extend({
-    ctor: function (battleInfo, isDodge) {
+    ctor: function (battleInfo, isDodge, difficulty) {
         this.battleInfo = battleInfo;
         this.isDodge = isDodge;
+        this.difficulty = difficulty;
         var monsterList = this.battleInfo.monsterList;
 
         this.indicateLines = [];
@@ -53,6 +54,8 @@ var Battle = cc.Class.extend({
                 bulletNum: Number(pobj["weapon1_num"]),
                 toolNum: Number(pobj["tool_num"]),
                 hp: pobj["hp"],
+                virus: pobj["virus"],
+                virusMax: pobj["virusMax"],
                 def: pobj["def"] || 0,
                 weapon1: pobj["weapon1"],
                 weapon2: pobj["weapon2"],
@@ -63,6 +66,8 @@ var Battle = cc.Class.extend({
                 bulletNum: player.bag.getNumByItemId(BattleConfig.BULLET_ID),
                 toolNum: player.bag.getNumByItemId(player.equip.getEquip(EquipmentPos.TOOL)),
                 hp: player.hp,
+                virus: player.virus,
+                virusMax: player.virusMax,
                 injury: player.injury,
                 weapon1: player.equip.getEquip(EquipmentPos.GUN),
                 weapon2: player.equip.getEquip(EquipmentPos.WEAPON),
@@ -78,6 +83,7 @@ var Battle = cc.Class.extend({
         this.sumRes = {
             id: this.battleInfo.id,
             underAtk: 0,
+            totalVirus: 0,
             totalHarm: 0,
             weapon1: 0,
             weapon2: 0,
@@ -346,6 +352,7 @@ var BattlePlayer = cc.Class.extend({
         this.battle = battle;
 
         this.hp = playerObj.hp;
+        this.virus = playerObj.virus;
         this.maxHp = this.hp;
         this.injury = playerObj.injury;
         this.def = playerObj.def;
@@ -378,6 +385,11 @@ var BattlePlayer = cc.Class.extend({
         if (harm > 0) {
             player.changeAttr("hp", -harm);
             player.changeAttr("injury", 1);
+            var rand = Math.random();
+            if (rand <= 0.5 && this.battle.difficulty > 4) {
+                player.changeAttr("virus", 1);
+                this.battle.sumRes.totalVirus += 1;
+            }
         }
         player.changeAttr("injury", 1);
     },

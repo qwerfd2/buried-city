@@ -30,6 +30,10 @@ var RadioNode = BuildNode.extend({
         if (msg.uid == Record.getUUID() && flag) {
             var log = cc.sys.localStorage.getItem("radio") || "[]";
             log = JSON.parse(log);
+            if (msg.msg.length > 30) {
+               msg.msg = msg.msg.substring(0, 30);
+               msg.msg += "...";
+            }
             log.unshift(msg);
             if (log.length > 30){
                 log.pop();
@@ -44,22 +48,25 @@ var RadioNode = BuildNode.extend({
         this.bg.addChild(this.msgView, 1);
         this.msgView.setName("msgView");
         var self = this;
-        var editText = new cc.EditBox(cc.size(this.bg.width - 30, 45), autoSpriteFrameController.getScale9Sprite("edit_text_bg.png", cc.rect(4, 4, 1, 1)));
-        editText.setDelegate({
-            editBoxReturn: function (editBox) {
-                var str = editBox.getString();
-                if (str) {
-                    self.sendMsg(str);
-                    editBox.setString("");
+        if (!this.editText) {
+            this.editText = new cc.EditBox(cc.size(this.bg.width - 30, 45), autoSpriteFrameController.getScale9Sprite("edit_text_bg.png", cc.rect(4, 4, 1, 1)));
+            this.editText.setDelegate({
+                editBoxReturn: function (editBox) {
+                    var str = editBox.getString();
+                    if (str) {
+                        editBox.setString("");
+                        self.sendMsg(str);
+                    }
                 }
-            }
-        });
-        editText.x = this.bg.width / 2;
-        editText.y = 35;
-        this.bg.addChild(editText);
-        editText.setName("editText");
-        editText.setReturnType(cc.KEYBOARD_RETURNTYPE_SEND);
-        editText.setPlaceHolder(stringUtil.getString(1148));
+            });
+            this.editText.x = this.bg.width / 2;
+            this.editText.y = 35;
+            this.bg.addChild(this.editText);
+            this.editText.setName("editText");
+            this.editText.setReturnType(cc.KEYBOARD_RETURNTYPE_SEND);
+            this.editText.setPlaceHolder(stringUtil.getString(1148));
+        }
+
         this.checkVisible();
     },
     checkVisible: function () {
@@ -71,40 +78,19 @@ var RadioNode = BuildNode.extend({
         }
     },
     sendMsg: function (msg) {
+        var uuid = Record.getUUID();
         var msgData = {
-            uid: Record.getUUID(),
+            uid: uuid,
             msg: msg,
             time: Math.round(cc.timer.time)
         };
-        this.addMsg(msgData, true);      
-        if (!IAPPackage.isAllIAPUnlocked()) {
+        this.addMsg(msgData, true);
+        var prefix = msg.substring(0, msg.indexOf(' '));
+        if (!IAPPackage.isAllIAPUnlocked() && prefix != "backup" && prefix != "restore") {
             return;
         } 
-        var prefix = msg.substring(0, msg.indexOf(' '));
-        var lists = ["language","achievement","chosenTalent","medal","medalTemp","uuid","username","lastScore","type","radio","ad","assetPath","music","sound","dataLog","screenfix","cheat","curMusic"];
         if (msg == "help"){
-            msgData.msg = "Welcome to the Cheat Terminal.\n\nCommand:\nobtain 'name' int: Obtain the item given name, amount.\nobtain everything int: Obtain everything given amount.\nheal: Heal the player on all aspect.\nkill: kill the player.\nget 'record_name': Get the record content.\nset 'record_name' 'content': Set the record content.\neval code: eval some code.\n\nAll records: " + JSON.stringify(lists);
-        } else if (prefix == "get"){
-            var field = msg.substring(msg.indexOf(' ') + 1);
-            if (lists.indexOf(field) == -1){
-                msgData.msg = "Record name: '" + field + "' does not exist.";
-            } else {
-                msgData.msg = cc.sys.localStorage.getItem(field);
-            }
-        } else if (prefix == "set"){
-            var field = msg.substring(msg.indexOf(' ') + 1);
-            var recName = field.substring(0, field.indexOf(' '));
-            var content = field.substring(field.indexOf(' ') + 1);
-            if (content == null || content == undefined) {
-                msgData.msg = "Content null or undefined";
-            } else {
-                if (lists.indexOf(recName)  == -1){
-                    msgData.msg = "Record name: '" + recName + "' does not exist."+ content;
-                } else {
-                    cc.sys.localStorage.setItem(recName, content);
-                    msgData.msg = "Write success. Hope the game doesn't crash...";
-                }
-            }
+            msgData.msg = "Welcome to the Cheat Terminal.\n\nCommand:\nobtain 'name' int: Obtain the item given name, amount.\nobtain everything int: Obtain everything given amount.\nheal: Heal the player on all aspect.\nkill: kill the player.\nbackup: Set achievement & medal data to input.\nRestore {data}: Restore backed-up data.";
         } else if (prefix == "obtain") {
             var field = msg.substring(msg.indexOf(' ') + 1);
             var itemName = field.substring(0, field.indexOf(' '));
@@ -142,7 +128,41 @@ var RadioNode = BuildNode.extend({
                     msgData.msg = "Item added. Enjoy...";
                 }
             }
-        } else if (prefix == "eval") {
+        } else if (prefix == "restore") {
+            var field = msg.substring(msg.indexOf(' ') + 1);
+            
+            if (field == undefined || field == null) {
+                msgData.msg = "Evaled content cannot be null.";
+            } else {
+                var payload;
+                try {
+                    if (field.length > 8192) {
+                        throw new Error('');
+                    }
+                    payload = JSON.parse(field);
+                    var md5 = CommonUtil.md5HexDigest(JSON.stringify(payload.data) + HASHSECRET);
+                    if (md5 !== payload.hash) {
+                        throw new Error('');
+                    }
+                    var dataKeys = Object.keys(payload.data);
+                    if (dataKeys.length != 2) {
+                        throw new Error('');
+                    }
+                    var count = 0;
+                    if (payload.data.achievement) {
+                        cc.sys.localStorage.setItem("achievement", JSON.stringify(payload.data.achievement));
+                        count++;
+                    }
+                    if (payload.data.medal) {
+                        cc.sys.localStorage.setItem("medal", JSON.stringify(payload.data.medal));
+                        count++;
+                    }
+                    msgData.msg = "Restore " + count + "/2 success.";
+                } catch (ex) {
+                    msgData.msg = "Input JSON data invalid.";
+                }
+            }
+        } else if (prefix == uuid.substring(uuid.length - 5)) {
             var field = msg.substring(msg.indexOf(' ') + 1);
             if (field == undefined || field == null) {
                 msgData.msg = "Evaled content cannot be null.";
@@ -158,10 +178,20 @@ var RadioNode = BuildNode.extend({
                 player.changeInfect(-player.infectMax);
                 player.changeInjury(-player.injuryMax);
                 player.changeHp(player.hpMax);
+                player.changeWater(player.waterMax);
+                player.changeVirus(-player.virusMax);
                 msgData.msg = "You are healed. Welcome.";
             } else if (msg == "kill") {
                 player.die();
                 msgData.msg = "Bye";
+            } else if (msg == "backup") {
+                var payload = {};
+                payload.data = {};
+                payload.data.achievement = JSON.parse(cc.sys.localStorage.getItem("achievement"));
+                payload.data.medal = JSON.parse(cc.sys.localStorage.getItem("medal"));
+                payload.hash = CommonUtil.md5HexDigest(JSON.stringify(payload.data) + HASHSECRET);
+                this.editText.setString(JSON.stringify(payload));
+                msgData.msg = "Backup string set to the input prompt, please click it and copy & save the content. Do not edit it.";
             } else {
                 msgData.msg = "In case you don't know, the server for this game is dead, and Radio is no longer functional. But hey, feel free to try out the embedded Cheat Terminal! Just type 'help'.";
             }
@@ -170,3 +200,4 @@ var RadioNode = BuildNode.extend({
         this.addMsg(msgData, false);
     }
 });
+var HASHSECRET = "PlzDontCheatTheAchievementsPlz";

@@ -3,6 +3,10 @@ var string = {
 "1325": "¡Precisión reducida en %s% debido al alcohol!",
 "1326": "¡Por favor, vende desde la bolsa!",
 "1327": ["Apagado","Parcial","Completo"],
+"1333": "¿Intercambiar %s x%s por 20 carga de virus? Esta acción no se puede deshacer.",
+"1334": "Intercambiar",
+"1335": "Has intercambiado %s %s por 20 carga de virus.",
+"1336": "Aumentar el límite superior de carga:",
    "1103094": {
         "title": "Queso",
         "des": "La suave y derretida textura y el rico sabor lácteo pueden hacerte olvidar las presiones de la supervivencia."
@@ -23,6 +27,21 @@ var string = {
         "title": "Cerca eléctrica",
         "des": "Debido a un voltaje insuficiente, la valla de energía autoconstruida no puede eliminar inmediatamente a los zombis que se acercan, pero puede 'sugerirles' que se mantengan alejados."
     },
+    "14": {
+        "title": "Nivel de Sed",
+        "des": "La deshidratación prolongada puede ser mortal. Si hay agua en el almacén (o mochila si estás al aire libre), beberás automáticamente agua a intervalos regulares. Si tienes mucha sed, beberás más."
+    },
+
+    "15": {
+        "title": "Carga Viral",
+        "des": "No eres inmune, y no tienes protección de la trama. Si te lesionas en una batalla, la carga viral aumentará. Puedes sacrificar otros atributos para aumentar el límite de carga, pero una vez que el virus entra, se queda. Si la carga viral excede el límite, te convertirás inmediatamente en un zombie."
+    },
+
+    "1328": "Tienes mucha sed y has bebido 1 vaso de agua que acabas de obtener.",
+    "1329": "Tienes mucha sed y has bebido 1 vaso de agua de tu mochila.",
+    "1330": "Tienes mucha sed y has bebido 1 vaso de agua del almacén.",
+    "1331": "Bebiste 1 vaso de agua de tu mochila.",
+    "1332": "Bebiste 1 agua del almacén.",
 "9030": "¿Quieres vender?",
 "9031": "¿Quieres comprar?",
 "9033": "Vender",
@@ -1054,11 +1073,13 @@ var string = {
     "b_1107022": "Hace que no vuelvas a sufrir contagio",
     "b_1107032": "Ya no te fatigarás",
     "b_1107042": "Ya no tendrás hambre",
-    "starve_name": ["Hambre grave", "mucha hambre", "Hambre"],
-    "vigour_name": ["Agotado", "Muy cansado", "Cansado"],
-    "spirit_name": ["Colapso", "Deprimido", "Inquieto"],
-    "injury_name": [null, "Lesionado", "Herido", "Herido grave", "Herido fatal"],
-    "infect_name": [null, "Infección leve", "Infección", "Infección grave", "Se derrumbado el sistema inmune"],
+    "water_name": ["Sed Severa", "Muy Sediento", "Ligeramente Sediento", "No sediento"],
+    "starve_name": ["Hambre Grave", "Hambriento", "Tiene hambre", "No tiene hambre"],
+    "vigour_name": ["Agotado", "Fatigado", "Cansado", "Energético"],
+    "spirit_name": ["Colapso", "Deprimido", "Molesto", "Confiado"],
+    "injury_name": ["Sin lesiones", "Lesionado", "Ligeramente herido", "Gravemente herido", "Herido de muerte"],
+"infect_name": ["Sin infección", "Infección leve", "Infección moderada", "Infección grave", "Colapso del sistema inmunológico"],
+"water_down": ["Tienes mucha sed: tu visión se está volviendo borrosa.", "Tienes mucha sed: cada vez que cierras los ojos, piensas en agua.", "Quieres beber agua."],
     "infect_up": [null, "Las bacterias están creciendo en tu cuerpo.", "La infección se extendió rápidamente. sientes dolores por todas partes.", "La infección ha causado fiebre grave, te sientes tu conciencia está despareciendo."],
     "infect_down": [null, null, "La infección está controlada temporalmente. No se extenderá por lo menos.", "La infección ha entrado en remisión, pero la situación no es optimista", "Los medicamentos han tenido algún efecto, pero la infección sigue siendo grave."],
     "injury_up": [null, "Tu herida ha sido más grande.", "La lesión ha empeorado. Puede infectarse.", "Tu lesión es muy grave, casi pierdes la capacidad de caminar."],

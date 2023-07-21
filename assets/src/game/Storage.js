@@ -23,6 +23,14 @@ var Storage = cc.Class.extend({
     },
     increaseItem: function (itemId, num) {
         num = Number(num);
+        //Water check. If water not full, auto deduct and edit.
+        if (itemId == "1101061") {
+            if (!player.isAttrMax("water")) {
+                num = num - 1;
+                player.incrementWater();
+                player.log.addMsg(stringUtil.getString(1328));
+            }
+        }
         if (num === 0) {
             return;
         }
@@ -208,15 +216,15 @@ var Bag = Storage.extend({
         return weight;
     },
     getTotalWeight: function () {
-        var weight = 35;
+        var weight = 40;
         if (player.storage.getNumByItemId(1305023) > 0) {
             weight += 10;
         }
         if (player.storage.getNumByItemId(1305024) > 0) {
-            weight += 25;
+            weight += 20;
         }
         if (player.storage.getNumByItemId(1305044) > 0) {
-            weight += 20;
+            weight += 30;
         }
         return weight;
     },

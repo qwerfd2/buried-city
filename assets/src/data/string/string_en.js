@@ -3,6 +3,10 @@ var string = {
 "1325": "Your accuracy decreased by %s% due to alcohol!",
 "1326": "Please sell from the bag!",
 "1327": ["Off","Partial","Full"],
+"1333": "Exchange %s x%s for 20 Virus Load? This action is irreversible.",
+"1334": "Exchange",
+"1335": "You exchanged %s %s for 20 virus load.",
+"1336": "Increase load upper limit: ",
  "1103094": {
         "title": "Cheese",
         "des": "The smooth and melty texture and the rich milky flavor can make you forget the pressures of survival."
@@ -23,6 +27,27 @@ var string = {
         "title": "Electric Fence",
         "des": "Due to insufficient voltage, the self-built power Fence cannot immediately eliminate the approaching zombies, but it can 'suggest' them to stay away."
     },
+    "14": {
+        "title": "Thirst Level",
+        "des": "Prolonged dehydration can be life-threatening. If there is water in the storeroom (or backpack if outdoors), you will automatically drink water at regular intervals. If you are particularly thirsty, you will drink more."
+    },
+
+    "15": {
+        "title": "Viral Load",
+        "des": "You are not immune, and you don't have plot armor. If you get injured in battle, the viral load will increase. You can sacrifice other attributes to increase the load limit, but once the virus enters, it stays. If the viral load exceeds the limit, you will immediately turn into a zombie."
+    },
+
+    "water_name": ["Severe Thirst", "Very Thirsty", "Slightly Thirsty", "Not thirsty"],
+    "starve_name": ["Seriously starving", "Starving", "Hungry", "Not hungry"],
+    "vigour_name": ["Exhausted", "Fatigued", "Tired", "Energetic"],
+    "spirit_name": ["Breakdown", "Depressed", "Upset", "Confident"],
+    "injury_name": ["No injury", "Injured", "Slightly injured", "Severely injured", "Fatally injured"],
+    "infect_name": ["No infection", "Light infection", "Medium infection", "Severe infection", "Immune system collapse"],
+    "1328": "You are very thirsty and drank 1 water you just obtained.",
+    "1329": "You are very thirsty and drank 1 water from your backpack.",
+    "1330": "You are very thirsty and drank 1 water from the storeroom.",
+    "1331": "You drank 1 water from your backpack.",
+    "1332": "You drank 1 water from the storeroom.",
 "9030": "Do you want to sell?",
 "9031": "Do you want to buy?",
 "9033": "Sell",
@@ -1056,11 +1081,7 @@ var string = {
     "b_1107022": "Grants immunity to infection.",
     "b_1107032": "You no longer feel fatigued. ",
     "b_1107042": "You no longer feel hungry. ",
-    "starve_name": ["Seriously starving", "Starving", "Hungry"],
-    "vigour_name": ["Exhausted", "Fatigued", "Tired"],
-    "spirit_name": ["Breakdown", "Depressed", "Upset"],
-    "injury_name": [null, "Injured", "Slightly injured", "Severely injured", "Fatally injured"],
-    "infect_name": [null, "Light infection", "Medium infection", "Severe infection", "Immune system collapse"],
+"water_down": ["You're extremely thirsty - your vision is becoming blurred.", "You're very thirsty - when you close your eyes, you think of water.", "You want to drink water."],
     "infect_up": [null, "Bacteria are spreading throughout your body", "The infection is rapidly spreading. You feel aches all over.", "A serious infection has resulted in a fever. You feel like your life is draining away."],
     "infect_down": [null, null, "The infection is temporarily under control. For now, it has stopped spreading.", "The infection went into remission, but it is still dangerous.", "The medicine had some effect, but the infection is still severe."],
     "injury_up": [null, "Your wound has become bigger.", "Your injury has become worse, it may become infected at any time.", "Your injuries are very severe. You can hardly move."],

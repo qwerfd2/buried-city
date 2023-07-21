@@ -3,7 +3,7 @@ var MenuLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
-        ClientData.MOD_VERSION = 9;
+        ClientData.MOD_VERSION = 10;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);

@@ -240,7 +240,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         this.bg.getChildByName("des").setString("");
 
         utils.emitter.emit("left_btn_enabled", false);
-        var battle = new Battle({id: 0, monsterList: this.room.list});
+        var battle = new Battle({id: 0, monsterList: this.room.list}, false, this.room.difficulty);
         var self = this;
         battle.setGameEndListener(function (sumRes) {
             utils.emitter.off("battleProcessLog");
@@ -377,7 +377,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         richText.setPosition(label1.x + label1.width, label1.y - label1.height / 2);
         node.addChild(richText);
 
-        var label2 = new cc.LabelTTF(stringUtil.getString(1059) + stringUtil.getString("hp") + " " + sumRes.totalHarm, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        var label2 = new cc.LabelTTF(stringUtil.getString(1059) + stringUtil.getString("hp") + " " + sumRes.totalHarm + ", " + stringUtil.getString("15").title + " " + sumRes.totalVirus, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label2.setAnchorPoint(0, 1);
         label2.setPosition(0, label1.getPositionY() - label1.getContentSize().height - 10);
         node.addChild(label2);

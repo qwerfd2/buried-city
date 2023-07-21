@@ -169,6 +169,52 @@ var playerAttrEffect = {
             "range": "(75,-]"
         }
     },
+    "water": {
+        "1": {
+            "effect": {
+                "hp": -10
+            },
+            "id": 1,
+            "range": "[-,25]"
+        },
+        "2": {
+            "effect": {},
+            "id": 2,
+            "range": "(25,50]"
+        },
+        "3": {
+            "effect": {},
+            "id": 3,
+            "range": "(50,75]"
+        },
+        "4": {
+            "effect": {},
+            "id": 4,
+            "range": "(75,-]"
+        }
+    },
+    "virus": {
+        "1": {
+            "effect": {},
+            "id": 1,
+            "range": "[-,25]"
+        },
+        "2": {
+            "effect": {},
+            "id": 2,
+            "range": "(25,50]"
+        },
+        "3": {
+            "effect": {},
+            "id": 3,
+            "range": "(50,75]"
+        },
+        "4": {
+            "effect": {},
+            "id": 4,
+            "range": "(75,-]"
+        }
+    },
     "temperature": {
         "1": {
             "effect": {},

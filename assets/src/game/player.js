@@ -9,29 +9,26 @@ var Player = cc.Class.extend({
         this.hpMax = this.hpMaxOrigin;
         //心情
         this.spirit = 100;
-        this.spirit = this.spirit;
         this.spiritMax = 100;
-        this.spiritMax = this.spiritMax;
         //饥饿
         this.starve = 50;
-        this.starve = this.starve;
         this.starveMax = 100;
-        this.starveMax = this.starveMax;
         //精力
         this.vigour = 100;
-        this.vigour = this.vigour;
         this.vigourMax = 100;
-        this.vigourMax = this.vigourMax;
         //外伤
         this.injury = 0;
-        this.injury = this.injury;
         this.injuryMax = 100;
-        this.injuryMax = this.injuryMax;
         //感染
         this.infect = 0;
-        this.infect = this.infect;
         this.infectMax = 100;
-        this.infectMax = this.infectMax;
+        //
+        this.water = 100;
+        this.waterMax = 100;
+        this.lastWaterTime = -999999;
+        //
+        this.virus = 0;
+        this.virusMax = 100;
         //温度
         this.temperature = this.initTemperature();
         this.temperature = this.temperature;
@@ -81,10 +78,15 @@ var Player = cc.Class.extend({
             hpMaxOrigin: this.hpMaxOrigin,
             hpMax: this.hpMax,
             spirit: this.spirit,
+            spiritMax: this.spiritMax,
             starve: this.starve,
+            starveMax: this.starveMax,
             vigour: this.vigour,
+            vigourMax: this.vigourMax,
             injury: this.injury,
+            injuryMax: this.injuryMax,
             infect: this.infect,
+            infectMax: this.infectMax,
             temperature: this.temperature,
             cured: this.cured,
             cureTime: this.cureTime,
@@ -112,7 +114,12 @@ var Player = cc.Class.extend({
             shopList: this.shopList,
             leftHomeTime: this.leftHomeTime,
             lastCoffeeTime: this.lastCoffeeTime,
-            lastAlcoholTime: this.lastAlcoholTime
+            lastAlcoholTime: this.lastAlcoholTime,
+            water: this.water,
+            waterMax: this.waterMax,
+            virus: this.virus,
+            virusMax: this.virusMax,
+            lastWaterTime: this.lastWaterTime,
         };
         return opt;
     },
@@ -124,10 +131,15 @@ var Player = cc.Class.extend({
             this.hpMaxOrigin = opt.hpMaxOrigin;
             this.hpMax = opt.hpMax;
             this.spirit = opt.spirit;
+            this.spiritMax = opt.spiritMax;
             this.starve = opt.starve;
             this.vigour = opt.vigour;
             this.injury = opt.injury;
             this.infect = opt.infect;
+            this.starveMax = opt.starveMax;
+            this.vigourMax = opt.vigourMax;
+            this.injuryMax = opt.injuryMax;
+            this.infectMax = opt.infectMax;
             this.temperature = opt.temperature;
             this.cured = opt.cured;
             this.cureTime = opt.cureTime;
@@ -151,6 +163,11 @@ var Player = cc.Class.extend({
             this.leftHomeTime = opt.leftHomeTime;
             this.lastCoffeeTime = opt.lastCoffeeTime;
             this.lastAlcoholTime = opt.lastAlcoholTime;
+            this.water = opt.water;
+            this.waterMax = opt.waterMax;
+            this.virus = opt.virus;
+            this.virusMax = opt.virusMax;
+            this.lastWaterTime = opt.lastWaterTime;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
@@ -264,6 +281,7 @@ var Player = cc.Class.extend({
 
     goHome: function () {
         this.isAtHome = true;
+        this.fixWater();
     },
 
     out: function () {
@@ -303,6 +321,10 @@ var Player = cc.Class.extend({
                 return value < 0;
             case "temperature":
                 return value >= 0;
+            case "water":
+                return value >= 0;
+            case "virus":
+                return value < 0;
         }
     },
 
@@ -391,6 +413,12 @@ var Player = cc.Class.extend({
                 this.die();
             }
         }
+        if (key == "virus") {
+            if (this.virus >= this.virusMax && this === player) {
+                player.log.addMsg("你体内的病毒终于战胜了你的免疫，结束了你的人性。");
+                this.changeAttr("hp", -this["hp"]);
+            }
+        }
     },
     changeHp: function (value) {
         this.changeAttr("hp", value);
@@ -419,6 +447,14 @@ var Player = cc.Class.extend({
     changeTemperature: function (value) {
         this.changeAttr("temperature", value);
     },
+    
+    changeWater: function (value) {
+        this.changeAttr("water", value);
+    },
+    
+    changeVirus: function (value) {
+        this.changeAttr("virus", value);
+    },
 
     updateHpMax: function () {
         var hpBuffEffect = 0;
@@ -428,12 +464,67 @@ var Player = cc.Class.extend({
         this.hpMax = this.hpMaxOrigin + hpBuffEffect - this.injury;
         this.hp = Math.min(this.hp, this.hpMax);
     },
-
+    incrementWater: function() {
+        var diff = this.waterMax - this.water;
+        if (diff > 18) {
+            this.changeWater(18);
+        } else {
+            this.changeWater(diff);
+            //Converted time of immunity
+            var given = (18 - diff) / 3 * 3600;
+            var temp = Number(cc.timer.time) - 21600 + given;
+            if (temp > this.lastWaterTime) {
+                this.lastWaterTime = temp;
+            }
+        }
+    },
+    fixWater: function () {
+        var amount = Math.ceil((this.waterMax - this.water) / 18);
+        for (var i = 0; i < amount; i++) {
+            this.storage.decreaseItem(1101061, 1);
+            this.incrementWater();
+            this.log.addMsg(stringUtil.getString(1330));
+        }
+        if (amount > 0) {
+           Record.saveAll();
+        }
+    },
     updateByTime: function () {
         var c = this.config["changeByTime"];
         //扣减饥饿度
         this.changeStarve(c[0][0]);
-        
+        var curTime = Number(cc.timer.time);
+        //First fix any water deficiency issues.
+        if (this.water < this.waterMax) {
+            if (!this.isAtHome && this.bag.validateItem(1101061, 1)) {
+                this.bag.decreaseItem(1101061, 1);
+                this.incrementWater();
+                this.log.addMsg(stringUtil.getString(1329));
+            } else if (this.isAtHome && this.storage.validateItem(1101061, 1)) {
+                this.storage.decreaseItem(1101061, 1);
+                this.incrementWater();
+                this.log.addMsg(stringUtil.getString(1330));
+            }
+        }
+        //Deduct water. If buff is in effect, don't deduct. 
+        if (curTime - this.lastWaterTime >= 21600) {
+            //Deduct water from either the bag or storage
+            if (!this.isAtHome && this.bag.validateItem(1101061, 1)) {
+                this.bag.decreaseItem(1101061, 1);
+                this.lastWaterTime = curTime;
+                this.log.addMsg(stringUtil.getString(1331));
+            } else if (this.isAtHome && this.storage.validateItem(1101061, 1)) {
+                this.storage.decreaseItem(1101061, 1);
+                this.lastWaterTime = curTime;
+                this.log.addMsg(stringUtil.getString(1332));
+            } else {
+                //No water deducted, reduce water status.
+                this.changeWater(-3);
+            }
+        }
+        if (this.water < 25) {
+            this.changeHp(-20);
+        }
          //白天家中，精力值	-1    白天野外，精力值	-2    夜晚家中，精力值	-3    夜晚野外，精力值	-4
         if (cc.timer.getStage() === "day") {
             if (this.isAtHome) {
@@ -635,6 +726,7 @@ var Player = cc.Class.extend({
         var res;
         var config = playerAttrEffect[attr];
         if (config) {
+            value = Number(this[attr] / this[attr + "Max"] * 100);
             value = value;
             for (var rangeId in config) {
                 var range = new Range(config[rangeId].range);
@@ -1157,6 +1249,8 @@ var Player = cc.Class.extend({
         this.changeVigour(this.vigourMax - this.vigour);
         this.changeInjury(0 - this.injury);
         this.changeInfect(0 - this.infect);
+        this.changeWater(0 - this.water);
+        this.changeVirus(0 - this.virus);
         this.changeAttr("hp", this.hpMax);
         this.isInSleep = false;
         this.cured = false;

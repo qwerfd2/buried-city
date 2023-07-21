@@ -39,6 +39,30 @@ var bazaarSellDialog = function(boolean, str, cd) {
     aa = new DialogTiny(config).show();
 };
 
+var virusExchangeDialog = function(tid, cd) {
+    var config = {
+        title: {},
+        content: {},
+        action: {
+            btn_1: {},
+            btn_2: {}
+        }
+    };
+    var amount = 5;
+    if (tid == 5){
+        amount = 10;
+    }
+    var name = stringUtil.getString(tid).title;
+    config.action.btn_1.txt = stringUtil.getString(1031);
+    var str = stringUtil.getString(1333, name, amount);
+    config.action.btn_2.txt = stringUtil.getString(1334);
+    config.content.des = String(str).toString();
+    config.action.btn_2.cb = cd
+    aa = new DialogTiny(config);
+    aa.y = -196;
+    aa.show();
+};
+
 var bazaarNotEnoughDialog = function(str) {
     var config = {
         title: {},
@@ -751,7 +775,7 @@ var RandomBattleDialog = DialogBig.extend({
         var battle = new Battle({
             id: 0,
             monsterList: this.monsterList
-        }, isDodge);
+        }, isDodge, this.difficulty);
         var self = this;
         battle.setGameEndListener(function (sumRes) {
             utils.emitter.off("battleProcessLog");
@@ -890,7 +914,7 @@ var RandomBattleDialog = DialogBig.extend({
         richText.setPosition(label1.x + label1.width, label1.y - label1.height / 2);
         this.log.addChild(richText);
 
-        var label2 = new cc.LabelTTF(stringUtil.getString(1059) + stringUtil.getString("hp") + " " + sumRes.totalHarm, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        var label2 = new cc.LabelTTF(stringUtil.getString(1059) + stringUtil.getString("hp") + " " + sumRes.totalHarm + ", " + stringUtil.getString("15").title + " " + sumRes.totalVirus, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label2.setAnchorPoint(0, 1);
         label2.setPosition(this.leftEdge, label1.getPositionY() - label1.getContentSize().height - 10);
         label2.setColor(cc.color.BLACK);

@@ -3,6 +3,10 @@ var string = {
 "1325": "Précision réduite de %s% à cause de l'alcool !",
 "1326": "Veuillez vendre à partir du sac !",
 "1327": ["Arrêt","Partiel","Complet"],
+"1333": "Échanger %s x%s contre 20 charges de virus ? Cette action est irréversible.",
+"1334": "Échanger",
+"1335": "Vous avez échangé %s %s contre 20 charges de virus.",
+"1336": "Augmenter la limite supérieure de charge :",
     "1103094": {
         "title": "Fromage",
         "des": "La texture douce et fondante ainsi que la saveur laiteuse et riche peuvent vous faire oublier les pressions de la survie."
@@ -23,7 +27,20 @@ var string = {
         "title": "Clôture électrique",
         "des": "En raison d'une tension insuffisante, la clôture électrique auto-construite ne peut pas éliminer immédiatement les zombies qui approchent, mais elle peut leur 'suggérer' de rester à l'écart."
     },
-    
+        "14": {
+        "title": "Niveau de Soif",
+        "des": "La déshydratation prolongée peut être mortelle. S'il y a de l'eau dans le stockage (ou le sac à dos si vous êtes en extérieur), vous boirez automatiquement de l'eau à intervalles réguliers. Si vous avez particulièrement soif, vous boirez davantage."
+    },
+
+    "15": {
+        "title": "Charge Virale",
+        "des": "Vous n'êtes pas immunisé, et vous n'avez pas d'armure de scénario. Si vous êtes blessé au combat, la charge virale augmentera. Vous pouvez sacrifier d'autres attributs pour augmenter la limite de charge, mais une fois que le virus entre, il reste. Si la charge virale dépasse la limite, vous vous transformerez immédiatement en zombie."
+    },
+    "1328": "Vous avez très soif et avez bu 1 verre d'eau que vous venez d'obtenir.",
+    "1329": "Vous avez très soif et avez bu 1 verre d'eau de votre sac à dos.",
+    "1330": "Vous avez très soif et avez bu 1 verre d'eau du stockage.",
+    "1331": "Vous avez bu 1 verre d'eau de votre sac à dos.",
+    "1332": "Vous avez bu 1 eau du stockage.",
 "9030": "Voulez-vous vendre?",
 "9031": "Voulez-vous acheter?",
 "9033": "Vendre",
@@ -1055,11 +1072,13 @@ var string = {
     "b_1107022": "Hors d'influence d'infection",
     "b_1107032": "Vous n'êtes plus fatigué",
     "b_1107042": "Vous n'avez plus faim",
-    "starve_name": ["Faim sérieuse", "Faim de loup", "Faim"],
-    "vigour_name": ["Accablé", "Épuisé", "Fatigué"],
-    "spirit_name": ["Effondré  ", "Déprimé", "Bouleversé"],
-    "injury_name": [null, "Blessure", "Blessure légère", "Blessure grave", "Blessure fatale"],
-    "infect_name": [null, "Infection légère", "Infection modérée", "Infection grave", "Système immunitaire s'effond"],
+    "water_name": ["Forte Soif", "Très Assoiffé", "Légèrement Assoiffé", "Pas soif"],
+    "starve_name": ["Gravement affamé", "Affamé", "Faim", "Pas faim"],
+    "vigour_name": ["Épuisé", "Fatigué", "Fatigué", "Énergique"],
+    "spirit_name": ["Effondrement", "Déprimé", "Contrarié", "Confiant"],
+    "injury_name": ["Pas de blessure", "Blessé", "Légèrement blessé", "Gravement blessé", "Mortellement blessé"],
+"infect_name": ["Pas d'infection", "Infection légère", "Infection modérée", "Infection sévère", "Effondrement du système immunitaire"],
+"water_down": ["Vous avez extrêmement soif - votre vision devient floue.","Vous avez très soif - quand vous fermez les yeux, vous pensez à l'eau.","Vous voulez boire de l'eau."],
     "infect_up": [null, "Des bactéries croissent dans votre corps", "L'infection se propage rapidement. Vous vous sentez des douleurs partout.", "L'infection grave a provoqué une fièvre. Votre vie se vide de suite."],
     "infect_down": [null, null, "L'infection est contrôlée temporairement. Il ne se propage pas au moins.", "L'infection a disparu en rémission, mais les perspectives ne sont pas optimistes.", "Les médicaments ont eu un certain effet. Mais l'infection est encore grave."],
     "injury_up": [null, "Votre blessure devient plus grande", "La blessure s'est aggravée. Il peut s'infecter.", "Vos blessures sont très graves. Vous pouvez à peine bouger."],

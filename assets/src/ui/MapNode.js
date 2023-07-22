@@ -20,7 +20,7 @@ var MapView = cc.ScrollView.extend({
     ctor: function (size) {
         var container = new cc.Layer();
         this._super(size, container);
-        if (Record.getCity()) {
+        if (!Record.getCity()) {
             this.bg = new cc.Sprite("res/new/map_bg_new.png");
         } else {
             this.bg = new cc.Sprite("res/new/map_bg.png");

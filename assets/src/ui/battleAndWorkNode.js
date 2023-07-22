@@ -382,6 +382,10 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         label2.setPosition(0, label1.getPositionY() - label1.getContentSize().height - 10);
         node.addChild(label2);
 
+        if (sumRes.totalVirus) {
+                player.changeAttr("virus", sumRes.totalVirus);
+        }
+
         if (sumRes.brokenWeapon) {
             var label3 = new cc.LabelTTF(stringUtil.getString(1208), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
             label3.setAnchorPoint(0, 1);
@@ -539,7 +543,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
                     self.site.testSecretRoomsBegin();
                 }
 
-                player.bag.testWeaponBroken(itemId);
+                player.bag.testWeaponBroken(itemId, 0);
 
                 self.gotoWorkRoomStorage();
                 utils.emitter.emit("left_btn_enabled", true);

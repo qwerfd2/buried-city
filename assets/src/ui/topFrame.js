@@ -452,7 +452,7 @@ var showAttrStatusDialog = function (stringId, attr) {
         dialog.contentNode.addChild(showText);
         showText.setColor(cc.color.RED);
     
-        if (player.injuryMax > 9) {
+        if (player.injuryMax > 14) {
             var exchangeInjury = new ImageButton("res/new/injury.png");
             exchangeInjury.setPosition(60, 40);
             exchangeInjury.setScale(0.7);
@@ -462,13 +462,15 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.injuryMax -= 5;
                     player.injury = cc.clampf(player.injury, 0, player.injuryMax);
                     player.virusMax += 20;
+                    player.changeInjury(0);
+                    player.changeVirus(0);
                     Record.saveAll();
                     player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(10).title));
                     dialog.dismiss();
                 })
             });
         }
-        if (player.infectMax > 9) {
+        if (player.infectMax > 14) {
             var exchangeInfection = new ImageButton("res/new/infection.png");
             exchangeInfection.setPosition(120, 40);
             exchangeInfection.setScale(0.7);
@@ -478,13 +480,15 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.infectMax -= 5;
                     player.infect = cc.clampf(player.infect, 0, player.infectMax);
                     player.virusMax += 20;
+                    player.changeInfect(0);
+                    player.changeVirus(0);
                     Record.saveAll();
                     player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(9).title));
                     dialog.dismiss();
                 })
             });
         }
-        if (player.starveMax > 9) {
+        if (player.starveMax > 14) {
             var exchangeHunger = new ImageButton("res/new/hunger.png");
             exchangeHunger.setPosition(180, 40);
             exchangeHunger.setScale(0.7);
@@ -494,13 +498,15 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.starveMax -= 5;
                     player.starve = cc.clampf(player.starve, 0, player.starveMax);
                     player.virusMax += 20;
+                    player.changeStarve(0);
+                    player.changeVirus(0);
                     Record.saveAll();
                     player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(6).title));
                     dialog.dismiss();
                 })        
             });
         }
-        if (player.vigourMax > 9) {
+        if (player.vigourMax > 14) {
             var exchangeVigour = new ImageButton("res/new/vigour.png");
             exchangeVigour.setPosition(240, 40);
             exchangeVigour.setScale(0.7);
@@ -510,13 +516,15 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.vigourMax -= 5;
                     player.vigour = cc.clampf(player.vigour, 0, player.vigourMax);
                     player.virusMax += 20;
+                    player.changeVigour(0);
+                    player.changeVirus(0);
                     Record.saveAll();
                     player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(7).title));
                     dialog.dismiss();
                 })
             });
         }
-        if (player.spiritMax > 9) {
+        if (player.spiritMax > 14) {
             var exchangeSpirit = new ImageButton("res/new/spirit.png");
             exchangeSpirit.setPosition(300, 40);
             exchangeSpirit.setScale(0.7);
@@ -526,13 +534,15 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.spiritMax -= 5;
                     player.spirit = cc.clampf(player.spirit, 0, player.spiritMax);
                     player.virusMax += 20;
+                    player.changeSpirit(0);
+                    player.changeVirus(0);
                     Record.saveAll();
                     player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(8).title));
                     dialog.dismiss();
                 })
             });
         }
-        if (player.waterMax > 9) {
+        if (player.waterMax > 14) {
             var exchangeWater = new ImageButton("res/new/water.png");
             exchangeWater.setPosition(360, 40);
             exchangeWater.setScale(0.7);
@@ -542,13 +552,15 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.waterMax -= 5;
                     player.water = cc.clampf(player.water, 0, player.waterMax);
                     player.virusMax += 20;
+                    player.changeWater(0);
+                    player.changeVirus(0);
                     Record.saveAll();
                     player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(14).title));
                     dialog.dismiss();
                 })
             });
         }
-        if (player.hpMax > 19) {
+        if (player.hpMax > 29) {
             var exchangeHp = new ImageButton("res/new/hp.png");
             exchangeHp.setPosition(420, 40);
             exchangeHp.setScale(0.7);
@@ -558,6 +570,8 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.hpMax -= 10;
                     player.hp = cc.clampf(player.hp, 0, player.hpMax);
                     player.virusMax += 20;
+                    player.changeHp(0);
+                    player.changeVirus(0);
                     Record.saveAll();
                     player.log.addMsg(stringUtil.getString(1335, 10, stringUtil.getString(5).title));
                     dialog.dismiss();

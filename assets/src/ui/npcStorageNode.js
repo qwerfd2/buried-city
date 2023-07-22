@@ -53,10 +53,14 @@ var ItemExchangeNode = ItemChangeNode.extend({
                 return;
             self.topSrcData.map = self.topData.map;
             self.bottomSrcData.map = self.bottomData.map;
+            for (var i = 0; i < 5; i++) {
+                var equipped = player.equip.getEquip(i);
+                player.equip.unequip(i);
+                player.equip.equip(i, equipped);
+            }
             utils.emitter.emit("exchange_end");
             audioManager.playEffect(audioManager.sound.LOOT);
-
-            self.npc.tradingCount = self.npc.tradingCount || 0
+            self.npc.tradingCount = self.npc.tradingCount || 0;
             self.npc.tradingCount++;
         });
         this.exchangeBtn.setAnchorPoint(0.5, 0.5);

@@ -7,6 +7,8 @@ var string = {
 "1334": "Échanger",
 "1335": "Vous avez échangé %s %s contre 20 charges de virus.",
 "1336": "Augmenter la limite supérieure de charge :",
+"1337": "Bienvenue !",
+"1338": "Bienvenue à Buried City, un mod de Buried Town réalisé par ArithSeq.\nSi le contenu de l'écran est incomplet, veuillez vous rendre dans les paramètres en bas à droite et modifier le rétrécissement de l'écran.\nCette version a subi de nombreux ajustements et a reçu de nombreuses fonctionnalités. Veuillez lire la documentation en bas à gauche pour toutes les informations.\nLogiciel open source, veuillez ne pas l'utiliser à des fins commerciales. Profitez de votre séjour !",
     "1103094": {
         "title": "Fromage",
         "des": "La texture douce et fondante ainsi que la saveur laiteuse et riche peuvent vous faire oublier les pressions de la survie."

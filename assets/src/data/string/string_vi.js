@@ -7,6 +7,8 @@ var string = {
 "1335": "Bạn đã trao đổi %s %s lấy 20 lượng virus.",
 "1336": "Tăng giới hạn tải lên:",
 "1327": ["Tắt","Một phần","Toàn bộ"],
+"1337": "Chào mừng!",
+"1338": "Chào mừng đến với Buried City, một phiên bản mod của Buried Town được tạo bởi ArithSeq.\n\nNếu nội dung màn hình chưa hoàn chỉnh, vui lòng vào Cài đặt ở góc dưới bên phải và chỉnh sửa Thu nhỏ màn hình.\n\nPhiên bản này đã trải qua nhiều điều chỉnh và đã được trang bị nhiều tính năng. Vui lòng đọc tài liệu ở góc dưới bên trái để biết thêm thông tin.\n\nPhần mềm mã nguồn mở, xin vui lòng không sử dụng vì mục đích thương mại. Hãy thưởng thức thời gian ở đây!",
     "1103094": {
         "title": "Phô mai",
         "des": "Cảm giác mềm mại và tan chảy cùng hương vị sữa thơm ngon có thể khiến bạn quên đi những áp lực trong cuộc sống."

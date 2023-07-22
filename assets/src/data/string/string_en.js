@@ -7,6 +7,8 @@ var string = {
 "1334": "Exchange",
 "1335": "You exchanged %s %s for 20 virus load.",
 "1336": "Increase load upper limit: ",
+"1337": "Welcome!",
+"1338": "Welcome to Buried City, a Buried Town mod made by ArithSeq.\n\nIf the screen content is incomplete, please go to Settings in the bottom right corner and modify Shrink Screen.\n\nThis version has undergone lots of tweaks and has received numerous features. Please read the documentation on the bottom left corner for all the information. \n\nOpen source software, please don't use for commercial gain. Enjoy your stay!",
  "1103094": {
         "title": "Cheese",
         "des": "The smooth and melty texture and the rich milky flavor can make you forget the pressures of survival."

@@ -7,6 +7,8 @@ var string = {
 "1334": "Intercambiar",
 "1335": "Has intercambiado %s %s por 20 carga de virus.",
 "1336": "Aumentar el límite superior de carga:",
+"1337": "¡Bienvenido!",
+"1338": "¡Bienvenido a Buried City, una modificación de Buried Town creada por ArithSeq!\n\nSi el contenido de la pantalla no está completo, ve a Configuración en la esquina inferior derecha y modifica Encoger Pantalla.\n\nEsta versión ha sido sometida a muchas modificaciones y ha recibido numerosas características. Lee la documentación en la esquina inferior izquierda para obtener toda la información.\n\nSoftware de código abierto, por favor, no lo uses con fines comerciales. ¡Disfruta de tu estadía!",
    "1103094": {
         "title": "Queso",
         "des": "La suave y derretida textura y el rico sabor lácteo pueden hacerte olvidar las presiones de la supervivencia."

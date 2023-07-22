@@ -23,7 +23,7 @@ var Player = cc.Class.extend({
         this.infect = 0;
         this.infectMax = 100;
         //
-        this.water = 100;
+        this.water = 82;
         this.waterMax = 100;
         this.lastWaterTime = -999999;
         //
@@ -70,6 +70,7 @@ var Player = cc.Class.extend({
         this.lastCoffeeTime = -999999;
         this.lastAlcoholTime = -999999;
         this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
+        this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
 
     save: function () {
@@ -120,6 +121,7 @@ var Player = cc.Class.extend({
             virus: this.virus,
             virusMax: this.virusMax,
             lastWaterTime: this.lastWaterTime,
+            weaponRound: this.weaponRound,
         };
         return opt;
     },
@@ -168,6 +170,7 @@ var Player = cc.Class.extend({
             this.virus = opt.virus;
             this.virusMax = opt.virusMax;
             this.lastWaterTime = opt.lastWaterTime;
+            this.weaponRound = opt.weaponRound;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
@@ -481,9 +484,11 @@ var Player = cc.Class.extend({
     fixWater: function () {
         var amount = Math.ceil((this.waterMax - this.water) / 18);
         for (var i = 0; i < amount; i++) {
-            this.storage.decreaseItem(1101061, 1);
-            this.incrementWater();
-            this.log.addMsg(stringUtil.getString(1330));
+            if (this.storage.validateItem(1101061, 1)) {
+                this.storage.decreaseItem(1101061, 1);
+                this.incrementWater();
+                this.log.addMsg(stringUtil.getString(1330));
+            }
         }
         if (amount > 0) {
            Record.saveAll();

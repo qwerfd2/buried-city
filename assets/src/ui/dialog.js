@@ -172,6 +172,8 @@ var Dialog = cc.Layer.extend({
     }
 });
 
+
+
 var DialogCommon = Dialog.extend({
     ctor: function (config) {
         this._super();
@@ -920,6 +922,10 @@ var RandomBattleDialog = DialogBig.extend({
         label2.setColor(cc.color.BLACK);
         this.log.addChild(label2);
 
+        if (sumRes.totalVirus) {
+                player.changeAttr("virus", sumRes.totalVirus);
+        }
+        
         if (sumRes.brokenWeapon) {
             var label3 = new cc.LabelTTF(stringUtil.getString(1208), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
             label3.setAnchorPoint(0, 1);
@@ -1277,5 +1283,17 @@ var DialogMoreGame = Dialog.extend({
     },
     initContentSize: function() {
         return cc.winSize;
+    }
+});
+
+var FTUEDialog = DialogBig.extend({
+    ctor: function () {
+        var config = {
+            title: {title: stringUtil.getString(1337)},
+            content: {des: stringUtil.getString(1338)},
+            action: {btn_1: {}}
+        };
+        config.action.btn_1.txt = stringUtil.getString(1030);
+        this._super(config);
     }
 });

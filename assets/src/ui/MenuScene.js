@@ -3,7 +3,7 @@ var MenuLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
-        ClientData.MOD_VERSION = 10;
+        ClientData.MOD_VERSION = 11;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
@@ -52,7 +52,11 @@ var MenuLayer = cc.Layer.extend({
                 });
             }
         });
-        
+        if (!cc.sys.localStorage.getItem("ftue")) {
+            var d = new FTUEDialog();
+            d.show();
+            cc.sys.localStorage.setItem("ftue", 1);
+        }     
         var musics = [audioManager.music.BATTLE, audioManager.music.DEATH, audioManager.music.HOME, audioManager.music.NPC, audioManager.music.HOME_REST, audioManager.music.MAIN_PAGE, audioManager.music.MAP, audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3];
         var curIndex =Number(cc.sys.localStorage.getItem("curMusic")) || 5;
         
@@ -253,9 +257,9 @@ var SettingLayer = cc.Layer.extend({
         this.btn_city.setScale(0.8);
         this.btn_city.on = Record.getCity();
         if (this.btn_city.on) {
-            this.btn_city.setTitle(stringUtil.getString(1210));
-        } else {
             this.btn_city.setTitle(stringUtil.getString(1211));
+        } else {
+            this.btn_city.setTitle(stringUtil.getString(1210));
         }
         this.btn_city.setPosition(cc.winSize.width / 2 + 150, 850);
         this.addChild(this.btn_city);
@@ -423,7 +427,7 @@ var SettingLayer = cc.Layer.extend({
         var self = this;
         if (this.btn_city_selector)
             return;
-        this.btn_city_selector = new SettingButton(nowState ? stringUtil.getString(1211) : stringUtil.getString(1210));
+        this.btn_city_selector = new SettingButton(nowState ? stringUtil.getString(1210) : stringUtil.getString(1211));
         this.btn_city_selector.setScale(0.8);
         this.btn_city_selector.on = !nowState;
         this.btn_city_selector.setClickListener(this, function (sender) {
@@ -566,11 +570,8 @@ var MenuScene = BaseScene.extend({
         this.addChild(layer);
 
         if (this.openSetting) {
-            var settingLayer = new SettingLayer();
-            if (Record.getScreenFix() == 1) {
-                settingLayer.setScale(0.83);
-            }
-            this.addChild(settingLayer);
+            var d = new FTUEDialog();
+            d.show();
         }
     },
     onExit: function () {

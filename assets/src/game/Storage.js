@@ -68,7 +68,6 @@ var Storage = cc.Class.extend({
             return false;
         }
     },
-
     getItemsByType: function (type) {
         type = "" + type;
         var items = Object.keys(this.map);
@@ -205,13 +204,25 @@ var Bag = Storage.extend({
         this._super(name);
     },
     validateItemWeight: function (itemId, num) {
-        var weight = Math.abs(itemConfig[itemId].weight) * num;
-        return weight + this.getCurrentWeight() <= this.getTotalWeight();
+        if (itemId == "1305011" || itemId == "1105011") {
+            var weight = player.bag.getNumByItemId(itemId) + num;
+            var oldWeight = player.bag.getNumByItemId(itemId);
+            weight = Math.ceil(weight / 50);
+            oldWeight = Math.ceil(oldWeight / 50);
+            return weight + this.getCurrentWeight() - oldWeight <= this.getTotalWeight();
+        } else {
+            var weight = Math.abs(itemConfig[itemId].weight) * Math.abs(num);
+            return weight + this.getCurrentWeight() <= this.getTotalWeight();
+        }
     },
     getCurrentWeight: function () {
         var weight = 0;
         this.forEach(function (item, num) {
+        if (item.id == "1305011" || item.id == "1105011") {
+            weight += Math.ceil(num / 50);
+        } else {
             weight += item.getWeight() * num;
+        }
         });
         return weight;
     },
@@ -242,47 +253,35 @@ var Bag = Storage.extend({
         }
         return newBag;
     },
-    testWeaponBroken: function (itemId) {
+    testWeaponBroken: function (itemId, type) {
         //新手保护, 3天内不会损坏武器
         if (cc.timer.formatTime().d < 3) {
             return false;
         }
         if (itemConfig[itemId]) {
-            var weaponBrokenProbability = itemConfig[itemId].effect_weapon.brokenProbability;
+            var weaponBrokenProbability;
+            if (type == 0) {
+                weaponBrokenProbability = itemConfig[itemId].effect_weapon.brokenProbability;
+            } else {
+                weaponBrokenProbability = itemConfig[itemId].effect_arm.brokenProbability;
+            }
             if (IAPPackage.isWeaponEffectUnlocked()){
                 weaponBrokenProbability -= weaponBrokenProbability * 0.25;
-            }
+            }          
             var rand = Math.random();
             var isBroken = (rand <= weaponBrokenProbability);
-            if (isBroken) {
+            if (isBroken && player.weaponRound.itemId > 2) {
                 player.equip.unequipByItemId(itemId);
                 this.decreaseItem(itemId, 1);
+                player.weaponRound[itemId] = 0;
                 player.log.addMsg(1205, stringUtil.getString(itemId).title);
 
                 Record.saveAll();
-            }
-            return isBroken;
-        }
-        return false;
-    },
-    testArmBroken: function (itemId) {
-        //新手保护, 3天内不会损坏武器
-        if (cc.timer.formatTime().d < 3) {
-            return false;
-        }
-        if (itemConfig[itemId]) {
-            var armBrokenProbability = itemConfig[itemId].effect_arm.brokenProbability;
-            if (IAPPackage.isWeaponEffectUnlocked()){
-                armBrokenProbability -= armBrokenProbability * 0.25;
-            }
-            var rand = Math.random();
-            var isBroken = (rand <= armBrokenProbability);
-            if (isBroken) {
-                player.equip.unequipByItemId(itemId);
-                this.decreaseItem(itemId, 1);
-                player.log.addMsg(1205, stringUtil.getString(itemId).title);
-
-                Record.saveAll();
+            } else if (isBroken) {
+                player.weaponRound[itemId] = 3;
+                isBroken = false;
+            } else {
+                player.weaponRound[itemId]++;
             }
             return isBroken;
         }

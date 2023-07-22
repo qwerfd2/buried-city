@@ -7,6 +7,8 @@ var string = {
 "1334": "Değiştir",
 "1335": "%s %s'yi 20 virüs yükü için değiştirdiniz.",
 "1336": "Yük sınırını arttır:",
+"1337": "Hoş Geldiniz!",
+"1338": "Buried Town tarafından yapılmış ArithSeq tarafından yapılan Buried City'e hoş geldiniz.\n\nEkran içeriği eksik ise, lütfen sağ alt köşedeki Ayarlar'a gidin ve Ekranı Küçült seçeneğini değiştirin.\n\nBu sürüm birçok ayarlamadan geçti ve birçok özellik kazandı. Tüm bilgiler için sol alt köşedeki belgelendirmeyi okuyun.\n\nAçık kaynaklı yazılımdır, ticari kazanç için kullanmayın. Konaklamanızı keyifli geçirin!",
     "1103094": {
         "title": "Peynir",
         "des": "Düz ve eriyen dokusu ile zengin süt aroması, hayatta kalma baskılarını unutmanıza neden olabilir."

@@ -7,6 +7,8 @@ var string = {
 "1334": "Tauschen",
 "1335": "Du hast %s %s gegen 20 Viruslast getauscht.",
 "1336": "Erhöhe die obere Grenze der Last:",
+"1337": "Willkommen!",
+"1338": "Willkommen in Buried City, einer Buried Town-Modifikation von ArithSeq.\nWenn der Bildschirminhalt unvollständig ist, gehen Sie bitte zu den Einstellungen in der unteren rechten Ecke und ändern Sie Schrumpfen des Bildschirms.\nDiese Version wurde umfangreich überarbeitet und enthält zahlreiche Funktionen. Bitte lesen Sie die Dokumentation in der unteren linken Ecke für alle Informationen.\nOpen-Source-Software, bitte nicht für kommerzielle Zwecke verwenden. Genießen Sie Ihren Aufenthalt!",
     "1103094": {
         "title": "Käse",
         "des": "Die cremige und schmelzende Textur und der reiche milchige Geschmack können dich die Belastungen des Überlebens vergessen lassen."

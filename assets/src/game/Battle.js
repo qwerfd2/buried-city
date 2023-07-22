@@ -175,16 +175,16 @@ var Battle = cc.Class.extend({
 
             var brokenWeapon = [];
             var gunItemId = player.equip.getEquip(EquipmentPos.GUN);
-            if (gunItemId && this.sumRes.weapon1 > 0 && player.bag.testWeaponBroken(gunItemId)) {
+            if (gunItemId && this.sumRes.weapon1 > 0 && player.bag.testWeaponBroken(gunItemId, 0)) {
                 brokenWeapon.push(gunItemId);
             }
             var weaponItemId = player.equip.getEquip(EquipmentPos.WEAPON);
-            if (weaponItemId && weaponItemId != Equipment.HAND && this.sumRes.weapon2 > 0 && player.bag.testWeaponBroken(weaponItemId)) {
+            if (weaponItemId && weaponItemId != Equipment.HAND && this.sumRes.weapon2 > 0 && player.bag.testWeaponBroken(weaponItemId, 0)) {
                 brokenWeapon.push(weaponItemId);
             }
             if (this.sumRes.totalHarm > 0) {
                 var armItemId = player.equip.getEquip(EquipmentPos.EQUIP);
-                if (armItemId && player.bag.testArmBroken(armItemId)){
+                if (armItemId && player.bag.testWeaponBroken(armItemId, 1)){
                     brokenWeapon.push(armItemId);
                 }
             }
@@ -386,8 +386,7 @@ var BattlePlayer = cc.Class.extend({
             player.changeAttr("hp", -harm);
             player.changeAttr("injury", 1);
             var rand = Math.random();
-            if (rand <= 0.5 && this.battle.difficulty > 4) {
-                player.changeAttr("virus", 1);
+            if (rand <= 0.5 && this.battle.difficulty > 2) {
                 this.battle.sumRes.totalVirus += 1;
             }
         }

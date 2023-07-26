@@ -386,7 +386,7 @@ var BattlePlayer = cc.Class.extend({
             player.changeAttr("hp", -harm);
             player.changeAttr("injury", 1);
             var rand = Math.random();
-            if (rand <= 0.5 && this.battle.difficulty > 2) {
+            if (rand <= 0.5 && this.battle.difficulty > 2 && !player.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
                 this.battle.sumRes.totalVirus += 1;
             }
         }

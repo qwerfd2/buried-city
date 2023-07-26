@@ -648,8 +648,11 @@ var npcConfig = {
             [{
                 "itemId": 1104011,
                 "num": 1
-            }], null, null, [{
+            }], null, [{
                 "itemId": 1104011,
+                "num": 1
+            }], [{
+                "itemId": 1107052,
                 "num": 1
             }], null
         ],

@@ -74,16 +74,17 @@ uiUtil.bazaarSell = function(itemId, vvv, amount) {
     config.content.dig_des = "#dig_item_" + itemId + ".png";
     var Num = player.bag.getNumByItemId(itemId);
     var Nuw = (Num / Num || 0);
-    config.title.txt_1 = stringUtil.getString(9035) + Num;
 
     config.action.btn_1.txt = stringUtil.getString(1031);
     var ss = "";
     var z = 1;
     if (vvv) {
         ss = stringUtil.getString(9033);
+        config.title.txt_1 = stringUtil.getString(9035) + Num;
         z = 0.8;
     } else {
         ss = stringUtil.getString(9034);
+        config.title.txt_1 = stringUtil.getString(9035) + amount;
         z = 1;
         Nuw = 1;
     }
@@ -99,7 +100,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount) {
     var dig_des = dialog.contentNode.getChildByName('dig_des');
     var label1 = new cc.LabelTTF(stringUtil.getString(9022) + Nuw, uiUtil.fontFamily.normal, 25);
     label1.setAnchorPoint(0, 1);
-    label1.setPosition(dig_des.width / 8 - 40, dig_des.height - 70);
+    label1.setPosition(30, dig_des.height - 70);
     label1.setColor(cc.color.BLACK);
     oo.addChild(label1);
 
@@ -117,7 +118,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount) {
     } else {
         slider.setMaximumValue(amount);
     }
-    slider.setPosition(dig_des.width / 2, label2.y - 70);
+    slider.setPosition(oo.width / 2, label2.y - 70);
     slider.setAnchorPoint(0.5, 0.5);
     oo.addChild(slider);
 
@@ -603,9 +604,8 @@ uiUtil.showGuideDialog = function(str, pic, target, isPicDown) {
     config.action.btn_2.txt = stringUtil.getString(9002);
 
     var dialog = new DialogGuide(config, target, isPicDown);
-    var xx = dialog.contentNode.getChildByName('dig_des')
-    dialog.actionNode.getChildByName('btn_1').setPosition(88, 36)
-    dialog.actionNode.getChildByName('btn_2').setPosition(dialog.contentNode.width - 88, 36)
+    dialog.actionNode.getChildByName('btn_1').setPosition(120, 36)
+    dialog.actionNode.getChildByName('btn_2').setPosition(dialog.contentNode.width - 120, 36)
     dialog.titleNode.getChildByName('title').setPosition(dialog.contentNode.width / 2, dialog.contentNode.height + 66)
     dialog.show();
 }
@@ -703,7 +703,13 @@ uiUtil.showItemSliderDialog = function (itemId, storage, siteId, cb) {
     config.content.dig_des = "#dig_item_" + itemId + ".png";
     var totalNum = storage.getNumByItemId(itemId);
     config.title.title = stringUtil.getString(itemId).title;
-    config.title.txt_1 = stringUtil.getString(1028, itemConfig[itemId].weight);
+    var string;
+    if (itemId == "1305011" || itemId == "1105011") {
+        string = stringUtil.getString(1028, 1);
+    } else {
+        string = stringUtil.getString(1028, itemConfig[itemId].weight);
+    }
+    config.title.txt_1 = string;
     config.title.txt_2 = stringUtil.getString(1029, "1/" + totalNum);
     config.action.btn_1.txt = stringUtil.getString(1030);
     var dialog = new DialogBig(config);
@@ -739,7 +745,13 @@ uiUtil.showItemSliderDialog = function (itemId, storage, siteId, cb) {
         } else {
             valueStr += value;
         }
-        dialog.titleNode.getChildByName("txt_1").setString(stringUtil.getString(1028, value * itemConfig[itemId].weight));
+        var string;
+        if (itemId == "1305011" || itemId == "1105011") {
+            string = stringUtil.getString(1028, Math.ceil(0.02 * value));
+        } else {
+            string = stringUtil.getString(1028, value * itemConfig[itemId].weight)
+        }
+        dialog.titleNode.getChildByName("txt_1").setString(string);
         dialog.titleNode.getChildByName("txt_2").setString(stringUtil.getString(1029, valueStr + "/" + totalNum));
     }, cc.CONTROL_EVENT_VALUECHANGED);
     slider.setName("slider");
@@ -813,7 +825,74 @@ uiUtil.showNpcNeedHelpDialog = function (npc, noCb, yesCb, needRestore) {
     dialog.show();
     audioManager.playEffect(audioManager.sound.NPC_KNOCK);
 };
+uiUtil.showNpcSaleDialog = function (npc, noCb, yesCb, rid) {
+    var needItems = npc.tradeItem;
+    var price = npc.price;
+    
+    var config = {
+        title: {},
+        content: {log: true},
+        action: {btn_1: {}, btn_2: {}}
+    };
+    config.title.txt = cc.timer.getTimeDayStr() + " " + cc.timer.getTimeHourStr();
+    config.title.icon = "#icon_npc.png";
+    if (rid != 0) {
+        config.content.dig_des = "#npc_dig_" + npc.id + ".png";
+        config.title.title = npc.getName();
+    } else {
+        config.content.dig_des = "#npc_dig_0.png";
+        config.title.title = "???";
+    }
+    config.content.des = stringUtil.getString(1339, price);
 
+    config.action.btn_1.txt = stringUtil.getString(1071);
+    config.action.btn_1.target = npc;
+    config.action.btn_1.cb = noCb;
+
+    config.action.btn_2.txt = stringUtil.getString(1072);
+    config.action.btn_2.target = npc;
+    config.action.btn_2.cb = yesCb;
+    var dialog = new DialogBig(config);
+    dialog.autoDismiss = false;
+    var log = dialog.contentNode.getChildByName("log");
+    log.height = 130;
+
+    var label = new cc.LabelTTF(stringUtil.getString(1066), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+    label.setAnchorPoint(0, 1);
+    label.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
+    label.setColor(cc.color.BLACK);
+    log.addChild(label);
+
+    var pass = player.validateItems(needItems);
+
+    needItems = needItems.map(function (itemInfo) {
+        return {
+            itemId: itemInfo.itemId,
+            num: itemInfo.num,
+            color: itemInfo.haveNum >= itemInfo.num ? cc.color.BLACK : cc.color.RED
+        };
+    });
+
+    var richText = new ItemRichText(needItems, dialog.rightEdge - dialog.leftEdge, 3, 0.5, cc.color.BLACK);
+    richText.setName("richText")
+    richText.setAnchorPoint(0, 1);
+    richText.setPosition(dialog.leftEdge, label.getPositionY() - label.getContentSize().height - 10);
+    log.addChild(richText);
+
+    if (cc.RTL) {
+        label.anchorX = 1;
+        label.x = dialog.rightEdge;
+
+        richText.anchorX = 1;
+        richText.x = dialog.rightEdge;
+    }
+
+    var btnYes = dialog.actionNode.getChildByName("btn_2");
+    btnYes.setEnabled(pass);
+
+    dialog.show();
+    audioManager.playEffect(audioManager.sound.NPC_KNOCK);
+};
 uiUtil.showNpcSendGiftDialog = function (npc) {
     var config = {
         title: {},

@@ -69,6 +69,7 @@ var Player = cc.Class.extend({
         this.leftHomeTime = 0;
         this.lastCoffeeTime = -999999;
         this.lastAlcoholTime = -999999;
+        this.mapBattle = {};
         this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
@@ -122,6 +123,7 @@ var Player = cc.Class.extend({
             virusMax: this.virusMax,
             lastWaterTime: this.lastWaterTime,
             weaponRound: this.weaponRound,
+            mapBattle: this.mapBattle,
         };
         return opt;
     },
@@ -171,6 +173,7 @@ var Player = cc.Class.extend({
             this.virusMax = opt.virusMax;
             this.lastWaterTime = opt.lastWaterTime;
             this.weaponRound = opt.weaponRound;
+            this.mapBattle = opt.mapBattle;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
@@ -197,14 +200,14 @@ var Player = cc.Class.extend({
     onCurrencyChange: function(value) {
         if (typeof value == "number") {
             player.currency += value;
-            if (player.currency >= 99999) {
-                player.currency = 99999;
+            if (player.currency >= 9999) {
+                player.currency = 9999;
             }
         utils.emitter.emit("onCurrencyChange", player.currency);
         }
     },
     trySteal: function() {
-        var TheftConfig = [[0.01, 0.02, 0.03, 0.04, 0.05],[0.02, 0.04, 0.06, 0.08, 0.1],[0.03, 0.06, 0.09, 0.12, 0.15],[0.04, 0.08, 0.12, 0.16, 0.2],[0.05, 0.1, 0.15, 0.2, 0.25],[0.06, 0.12, 0.18, 0.24, 0.3]]; 
+        var TheftConfig = [[0.02, 0.05, 0.09, 0.14, 0.2],[0.05, 0.11, 0.18, 0.26, 0.35],[0.09, 0.19, 0.3, 0.42, 0.55],[0.14, 0.29, 0.45, 0.62, 0.8],[0.2, 0.41, 0.63, 0.86, 1.1],[0.26, 0.53, 0.81, 1.1, 1.4]]; 
         var dtTime = Math.round(cc.timer.time - this.leftHomeTime);
         var weight = this.storage.getAllItemNum();
         var timeIndex = -1;
@@ -242,7 +245,9 @@ var Player = cc.Class.extend({
             uiUtil.showStolenDialog(stringUtil.getString(9032), "#stealPrompt.png", self, res);
         }
     },
-    
+    getRandomOwnedItem: function() {
+        return this.storage.getRandomItem();
+    },
     getPrice: function(item) {
         var item = Number(item);
         var items = formulaConfig[item + 100000];
@@ -356,6 +361,9 @@ var Player = cc.Class.extend({
                 return;
             }
             if (key === 'vigour' && this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107032)) {
+                return;
+            }
+            if (key === 'virus' && this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
                 return;
             }
         }
@@ -1055,7 +1063,7 @@ var Player = cc.Class.extend({
             var twentyList = [1101011, 1101021, 1101031, 1101041, 1101051, 1103011, 1105042];
             var fifteenList = [1101061, 1101071, 1101073];
             var fiveList = [1102011, 1102022, 1102033, 1102042, 1103074, 1104032, 1301011, 1301022, 1301033, 1301041, 1301052, 1301063, 1301071, 1301082, 1302043, 1303033, 1303044, 1103094]
-            var twoList = [1102053, 1102063, 1104043, 1106054, 1107012, 1107022, 1107032, 1107042];
+            var twoList = [1102053, 1102063, 1104043, 1106054, 1107012, 1107022, 1107032, 1107042, 1107052];
             
             if (fiveList.indexOf(itemId) !== -1) {
                 amount = 5;
@@ -1152,7 +1160,7 @@ var Player = cc.Class.extend({
         new DayLayer(homeRes).show();
     },
 
-    randomAttack: function (cb) {
+    randomAttack: function (cb, override) {
         var stage = cc.timer.getStage();
         var config = RandomBattleConfig[stage];
         var rand = Math.random();
@@ -1160,11 +1168,21 @@ var Player = cc.Class.extend({
         if (IAPPackage.isStealthUnlocked()) {
             probability -= probability * 0.25;
         }
-        if (rand <= probability) {
+        if (rand <= probability || override) {
             player.log.addMsg(1113);
-
-            var diff = utils.getRandomInt(config.difficulty[0], config.difficulty[1]);
-            var list = utils.getMonsterListByDifficulty(diff)
+            var diff;
+            var list;
+            if (!override) {
+                diff = utils.getRandomInt(config.difficulty[0], config.difficulty[1]);
+                list = utils.getMonsterListByDifficulty(diff);
+                this.mapBattle = {"a": diff, "b": list};
+                Record.saveAll();
+            } else {
+                diff = this.mapBattle.a;
+                list = utils.getMonsterListByDifficulty(diff);
+            }
+            //player.log.addMsg("saved: " + JSON.stringify(this.mapBattle));
+            //player.log.addMsg("obtined: " + diff + ", " + JSON.stringify(list));
             uiUtil.showRandomBattleDialog({
                 difficulty: diff,
                 list: list
@@ -1185,6 +1203,7 @@ var Player = cc.Class.extend({
                 Record.saveAll();
             } else {
                 self.log.addMsg(1121);
+                self.npcManager.visitSale();
             }
         });
         cc.timer.addTimerCallbackDayByDay(this, function () {

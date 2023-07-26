@@ -21,6 +21,31 @@ var Storage = cc.Class.extend({
             this.map[itemId] = new StorageCell(new Item(itemId), saveObj[itemId]);
         }
     },
+    getRandomItem: function() {
+        var randomIndex = utils.getRandomInt(0, index);
+        var keyArray = Object.keys(this.map);
+        var deleteItem = [1106013, 1305064, 1305053, 1305044, 1305034, 1305024, 1305023];
+        for (var a in deleteItem) {
+            delete keyArray[deleteItem[a]];
+        }
+        if (!keyArray.length) {
+            return null;
+        }
+        var randomIndex = utils.getRandomInt(0, keyArray.length - 1);
+        var itemid = keyArray[randomIndex];
+        var index = this.getNumByItemId(itemid);
+        if (index > 20) {
+            randomIndex = utils.getRandomInt(5, 15);
+        } else {
+            randomIndex = utils.getRandomInt(1, index);
+        }
+        if (itemid == 1305011) {
+            randomIndex *= 2;
+        }
+        var result = [];
+        result.push({itemId: itemid, num: randomIndex});
+        return result;
+    },
     increaseItem: function (itemId, num) {
         num = Number(num);
         //Water check. If water not full, auto deduct and edit.
@@ -235,6 +260,9 @@ var Bag = Storage.extend({
             weight += 20;
         }
         if (player.storage.getNumByItemId(1305044) > 0) {
+            weight += 30;
+        }
+        if (IAPPackage.isBigBagUnlocked()) {
             weight += 30;
         }
         return weight;

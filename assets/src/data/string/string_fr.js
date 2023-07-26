@@ -8,6 +8,7 @@ var string = {
 "1335": "Vous avez échangé %s %s contre 20 charges de virus.",
 "1336": "Augmenter la limite supérieure de charge :",
 "1337": "Bienvenue !",
+"1339": "Bonjour, j'aimerais échanger ceci contre %s pièces. Ça vous convient ?",
 "1338": "Bienvenue à Buried City, un mod de Buried Town réalisé par ArithSeq.\nSi le contenu de l'écran est incomplet, veuillez vous rendre dans les paramètres en bas à droite et modifier le rétrécissement de l'écran.\nCette version a subi de nombreux ajustements et a reçu de nombreuses fonctionnalités. Veuillez lire la documentation en bas à gauche pour toutes les informations.\nLogiciel open source, veuillez ne pas l'utiliser à des fins commerciales. Profitez de votre séjour !",
     "1103094": {
         "title": "Fromage",
@@ -579,6 +580,11 @@ var string = {
         "title": "Rations Militaires",
         "des": "Incroyable! L'aliment fait avec du miel, de la farine et de l'huile de salade, vous ne vous sentez pas faim pour quelques jours..."
     },
+    "b_1107052": "Vous n'accumulerez pas le virus pendant un certain temps.",
+    "1107052": {
+      "title": "Antidote Expérimental",
+      "des": "Bien qu'une percée dans la guérison du virus zombie n'ait pas encore été réalisée, il est toujours possible d'empêcher temporairement l'invasion du virus."
+    },
     "1301011": {
         "title": "Pistolet",
         "des": "Arme d'autodéfense à courte portée. Les dégâts seront plus stables lorsque l'ennemi est plus proche."
@@ -669,11 +675,11 @@ var string = {
     },
     "1305053": {
         "title": "Torche Électrique Brillante",
-        "des": "Tout devient clair avant la torche électrique brillante."
+        "des": "Tout devient clair avant la torche électrique brillante. Augmentez la probabilité de trouver des salles secrètes."
     },
     "1305064": {
         "title": "Détecteur Énergique",
-        "des": "Avec une sonde sensible, il peut mesurer la configuration automatiquement. En Chine, il est plus utile que la Pelle de Luoyang"
+        "des": "Avec une sonde sensible, il peut mesurer la configuration automatiquement. En Chine, il est plus utile que la Pelle de Luoyang. Augmentez grandement la probabilité de trouver des salles secrètes."
     },
     "1_0": {
         "title": "Boîte à outils",
@@ -1183,7 +1189,7 @@ var string = {
     "p_103": {
         "name": "Brocanteur",
         "des": "Vous êtes bon à trouver la valeur dans les ordures.",
-        "effect": "Butins d'instances augmentent à 110%"
+        "effect": "Butins d'instances augmentent à 120%"
     },
     "p_104": {
         "name": "Communicateur",
@@ -1243,6 +1249,11 @@ var string = {
     "des": "Débloquez tous les emplacements, PNJ, amitié maximale et emplacements répétables.",
     "effect": "Fonction de triche, débloque toutes les copies, PNJ, amitié maximale et emplacements répétables. (Les réalisations ne seront pas comptabilisées)"
   },
+"p_110": {
+    "name": "Routard",
+    "des": "Vous avez un sac à dos extra large.",
+    "effect": "Taille du sac à dos +30."
+},
     "m_103": {
         "name": "Médaille d'Homme de Fer (Troisième)",
         "condition": "Survivre pendant 5 jours durant une seule manche",
@@ -1289,7 +1300,7 @@ var string = {
         "des": "Apporter automatiquement 1 M40 au début du jeu"
     },
     "1260": "Réussite",
-"1261": "Les succès Google peuvent être déverrouillés et consultés hors ligne ici.",
+"1261": "Les succès Google peuvent être déverrouillés et consultés hors ligne ici. Vous pouvez sauvegarder et restaurer votre progression à tout moment en utilisant la commande radio : 'backup', 'restore {}'.",
 "1272": "Vous avez débloqué la réalisation : ",
 "bt_season_1": {
 "title": "En hiver",

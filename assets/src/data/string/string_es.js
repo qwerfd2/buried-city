@@ -8,6 +8,7 @@ var string = {
 "1335": "Has intercambiado %s %s por 20 carga de virus.",
 "1336": "Aumentar el límite superior de carga:",
 "1337": "¡Bienvenido!",
+"1339": "Hola, me gustaría intercambiar esto por %s monedas. ¿Estás de acuerdo?",
 "1338": "¡Bienvenido a Buried City, una modificación de Buried Town creada por ArithSeq!\n\nSi el contenido de la pantalla no está completo, ve a Configuración en la esquina inferior derecha y modifica Encoger Pantalla.\n\nEsta versión ha sido sometida a muchas modificaciones y ha recibido numerosas características. Lee la documentación en la esquina inferior izquierda para obtener toda la información.\n\nSoftware de código abierto, por favor, no lo uses con fines comerciales. ¡Disfruta de tu estadía!",
    "1103094": {
         "title": "Queso",
@@ -580,6 +581,11 @@ var string = {
         "title": "Ración militar",
         "des": "¡Es difícil de creer! Hecha con miel, harina y aceite, si la comes te sorprenderá cómo puedes pasar varios días sin que te dé hambre..."
     },
+    "b_1107052": "No acumularás el virus por un tiempo.",
+    "1107052": {
+        "title": "Antídoto Experimental",
+        "des": "Si bien aún no se ha logrado un avance en la cura del virus zombie, todavía es posible evitar temporalmente la invasión del virus."
+    },
     "1301011": {
         "title": "Pistola",
         "des": "Un corto alcance arma de defensa. El daño es más consistente cuando el enemigo está más cerca."
@@ -670,11 +676,11 @@ var string = {
     },
     "1305053": {
         "title": "Linterna de alta potencia",
-        "des": "No la menosprecies. Pocos secretos pueden ocultarse ante ella."
+        "des": "No la menosprecies. Pocos secretos pueden ocultarse ante ella. Aumenta la probabilidad de encontrar habitaciones secretas."
     },
     "1305064": {
         "title": "Detector multifunción",
-        "des": "Equipado con un sensor extremadamente sensible. Gracias a su sistema automático de mapeo topográfico, es mejor que cualquier herramienta arqueológica."
+        "des": "Equipado con un sensor extremadamente sensible. Gracias a su sistema automático de mapeo topográfico, es mejor que cualquier herramienta arqueológica. Aumenta la probabilidad de encontrar habitaciones secretas."
     },
     "1_0": {
         "title": "Caja de herramientas",
@@ -1184,7 +1190,7 @@ var string = {
     "p_103": {
         "name": "Carroñero",
         "des": "Eres bueno para encontrar el valor en la basura. ",
-        "effect": "Obtener recursos de Items 110%"
+        "effect": "Obtener recursos de Items 120%"
     },
     "p_104": {
         "name": "Comunicador",
@@ -1244,6 +1250,11 @@ var string = {
     "des": "Desbloquea todas las ubicaciones, personajes no jugadores (NPC), máxima amistad y ubicaciones repetibles.",
     "effect": "Función de trucos, desbloquea todas las copias, NPC, máxima amistad y ubicaciones repetibles. (Los logros no serán contados)"
   },
+"p_110": {
+    "name": "Mochilero",
+    "des": "Tienes una mochila extra grande.",
+    "effect": "Tamaño de la mochila +30."
+},
     "m_103": {
         "name": "Medalla de hombre del hierro (tercera clase)",
         "condition": "Sobrevivir más de 5 días en un juego",
@@ -1290,7 +1301,7 @@ var string = {
         "des": "Viene con 1 M40 para empezar el juego"
     },
     "1260": "Logro",
-"1261": "Los logros de Google se pueden desbloquear y disfrutar sin conexión aquí.",
+"1261": "Los logros de Google se pueden desbloquear y disfrutar sin conexión aquí. Puedes hacer una copia de seguridad y restaurar el progreso en cualquier momento usando el comando de radio: 'backup', 'restore {}'.",
 "1272": "Has desbloqueado el logro: ",
 "bt_season_1": {
 "title": "En invierno",

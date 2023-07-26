@@ -1,9 +1,10 @@
 var ClientData = {};
+var Musics = [audioManager.music.BATTLE, audioManager.music.DEATH, audioManager.music.HOME, audioManager.music.NPC, audioManager.music.HOME_REST, audioManager.music.MAIN_PAGE, audioManager.music.MAP, audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3];
 var MenuLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
-        ClientData.MOD_VERSION = 11;
+        ClientData.MOD_VERSION = 13;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
@@ -57,15 +58,15 @@ var MenuLayer = cc.Layer.extend({
             d.show();
             cc.sys.localStorage.setItem("ftue", 1);
         }     
-        var musics = [audioManager.music.BATTLE, audioManager.music.DEATH, audioManager.music.HOME, audioManager.music.NPC, audioManager.music.HOME_REST, audioManager.music.MAIN_PAGE, audioManager.music.MAP, audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3];
-        var curIndex =Number(cc.sys.localStorage.getItem("curMusic")) || 5;
+
+        var curIndex = Number(cc.sys.localStorage.getItem("curMusic")) || 5;
         
         btn1.setPosition(bg.width / 2, bg.height / 2 - 126);
         bg.addChild(btn1);
         btn1.setName("btn_1");
 
         var btn2 = uiUtil.createBigBtnWhite(stringUtil.getString(1143), this, function () {
-            audioManager.stopMusic(musics[curIndex]);
+            audioManager.stopMusic(Musics[curIndex]);
             game.init();
             game.start();
             cc.director.runScene(new MainScene());
@@ -89,7 +90,7 @@ var MenuLayer = cc.Layer.extend({
         bg.addChild(btn4);
         btn4.setName("btn_4");
         
-        audioManager.playMusic(musics[curIndex], true);   
+        audioManager.playMusic(Musics[curIndex], true);   
 
         var btn_quit = uiUtil.createSpriteBtn({normal: "btn_ad_back.png"}, this, function () {
             PurchaseAndroid.exitGame();
@@ -105,14 +106,14 @@ var MenuLayer = cc.Layer.extend({
         
         var btn_chgmusic = uiUtil.createSpriteBtn({normal: "icon_music_on.png"}, this, function () {
             
-            audioManager.stopMusic(musics[curIndex], true);
-            if (curIndex < musics.length - 1) {
+            audioManager.stopMusic(Musics[curIndex], true);
+            if (curIndex < Musics.length - 1) {
                 curIndex += 1;
             } else {
                 curIndex = 0;
             }          
             cc.sys.localStorage.setItem("curMusic", curIndex);
-            audioManager.playMusic(musics[curIndex], true);
+            audioManager.playMusic(Musics[curIndex], true);
         });
         btn_chgmusic.setPosition(bg.width - 106, bg.height / 2 - 236);
         bg.addChild(btn_chgmusic);
@@ -328,9 +329,9 @@ var SettingLayer = cc.Layer.extend({
             var on = sender.on;
             if (on) {
                 audioManager.setMusic(on);
-                audioManager.playMusic(audioManager.music.MAIN_PAGE, true);
+                audioManager.playMusic(Musics[Number(cc.sys.localStorage.getItem("curMusic")) || 5], true);
             } else {
-                audioManager.stopMusic(audioManager.music.MAIN_PAGE, true);
+                audioManager.stopMusic();
                 audioManager.setMusic(on);
             }
             self.refreshThisLayer();
@@ -484,7 +485,7 @@ var SettingLayer = cc.Layer.extend({
         var listItem = new ccui.Layout();
         listItem.addChild(btn);
         listItem.addChild(label, 1);
-        listItem.setContentSize(217, 62);
+        listItem.setContentSize(217, 49.6);
 
         listView.setItemModel(listItem);
         listView.setContentSize(217, 225);
@@ -507,15 +508,15 @@ var SettingLayer = cc.Layer.extend({
             realIndex++;
             var label = items[key].getChildByName("label");
             label.setString(stringName[lans[lanIndex]]);
-            label.setPosition(label.x, label.y + realIndex * 10 - 10);
+            label.setPosition(label.x, label.y - 10);
             var button = items[key].getChildByName("btn");
             button.lan = lans[lanIndex];
-            button.setPosition(button.x, button.y + 5 + realIndex * 10);
+            button.setPosition(button.x, button.y + 5);
             button.addTouchEventListener(function (sender, type) {
                 if (type == ccui.Widget.TOUCH_ENDED) {
                     cc.sys.localStorage.setItem("language", sender.lan);
 
-                    if (jsb.fileUtils.isFileExist("src/data/string/string_" + sender.lan + ".js") || jsb.fileUtils.isFileExist("src/data/string/string_" + sender.lan + ".jsc")) {
+                    if (jsb.fileUtils.isFileExist("src/data/string/string_" + sender.lan + ".js")) {
                         __cleanScript("src/data/string/string_" + self.lan + ".js");
                         require("src/data/string/string_" + sender.lan + ".js")
                         if (sender.lan == cc.sys.LANGUAGE_ARABIC) {

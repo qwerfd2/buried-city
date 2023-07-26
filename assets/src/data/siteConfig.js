@@ -5422,7 +5422,7 @@ var siteConfig = {
     "battleRoom": 600,
     "difficulty": [8, 12],
     "workRoom": 66,
-    "produceValue": 7220,
+    "produceValue": 7260,
     "produceList": [{
         "itemId": "1101011",
         "weight": 20
@@ -5530,6 +5530,9 @@ var siteConfig = {
         "weight": 2
     }, {
         "itemId": "1107042",
+        "weight": 2
+    }, {
+        "itemId": "1107052",
         "weight": 2
     }, {
         "itemId": "1301011",

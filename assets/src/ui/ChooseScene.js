@@ -14,15 +14,19 @@ var ChooseLayer = cc.Layer.extend({
         var NODE_HEIGHT = 196;
         var widthPadding = (cc.winSize.width - 3 * NODE_WIDTH ) / 4;
         var heightPadding = 30;
-        var data = [0, 101, 102, 103, 104, 105, 106, 107, 108, 109];
+        var data = [0, 101, 102, 103, 104, 105, 106, 107, 110, 108, 109];
         var self = this;
         this.btnList = [];
         var purchase;
         data.forEach(function (purchaseId, index) {
-            if (purchaseId >= 108) {
-                purchase = "icon_iap_bg.png";
-            } else{
+            if (purchaseId == 110) {
+                purchase ="icon_iap_105.png";
+            } else if (purchaseId == 105) {
+                purchase ="icon_iap_201.png";
+            } else if (purchaseId < 108) {
                 purchase ="icon_iap_" + purchaseId + ".png";
+            } else {
+                purchase = "icon_iap_bg.png";
             }
             var btn = new ButtonAtChooseScene(purchase);
             btn.anchorX = 0;

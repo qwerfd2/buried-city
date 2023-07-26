@@ -337,6 +337,19 @@ var itemConfig = {
             "lastTime": 72
         }
     },
+    "1107052": {
+        "id": "1107052",
+        "weight": 1,
+        "price": 24,
+        "value": 24,
+        "effect_buff": {
+            "id": "1107052",
+            "effect": 5,
+            "effectType": 2,
+            "value": 0,
+            "lastTime": 72
+        }
+    },
     "1301011": {
         "id": "1301011",
         "weight": 1,

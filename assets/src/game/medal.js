@@ -48,8 +48,8 @@ var MedalConfig = {
         effect: {items: [{itemId: 1301011, num: 1}]}
     },
     301: {
-        aim: 30,
-        aimCompleted: 20,
+        aim: 20,
+        aimCompleted: 0,
         completed: 0,
         effect: {items: [{itemId: 1301052, num: 1}]}
     }

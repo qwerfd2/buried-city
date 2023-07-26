@@ -8,6 +8,7 @@ var string = {
 "1335": "You exchanged %s %s for 20 virus load.",
 "1336": "Increase load upper limit: ",
 "1337": "Welcome!",
+"1339": "Hi, I'd like to exchange these for %s coins. Are you good with it?",
 "1338": "Welcome to Buried City, a Buried Town mod made by ArithSeq.\n\nIf the screen content is incomplete, please go to Settings in the bottom right corner and modify Shrink Screen.\n\nThis version has undergone lots of tweaks and has received numerous features. Please read the documentation on the bottom left corner for all the information. \n\nOpen source software, please don't use for commercial gain. Enjoy your stay!",
  "1103094": {
         "title": "Cheese",
@@ -405,7 +406,7 @@ var string = {
     "9016": "Cheat",
     "9017": "shrink screen",
     "1260": "Achievement",
-    "1261": "Google Play achievements can be unlocked and viewed here.",
+    "1261": "Google Play achievements can be unlocked and viewed here. You can back up and restore progress at any time using the radio CMD: 'backup', 'restore {}'.",
     "3000": ["Autumn", "Winter", "Spring", "Summer"],
     "3006": ["Materials ", "Food ", "Medicines ", "Enhancement ", "Equipment ", "Miscellaneous "],
     "3007": ["Case", "Table", "Cupboard"],
@@ -588,6 +589,11 @@ var string = {
         "title": "Military Ration ",
         "des": "It's incredible that you don't feel hungry for days after eating what is merely made of honey, flour, and salad oil."
     },
+    "b_1107052": "You won't accumulate the virus for a while.",
+    "1107052": {
+        "title": "Experimental Antidote",
+        "des": "While a breakthrough in the cure for the zombie virus has not been achieved yet, temporarily preventing the invasion of the virus is still possible."
+    },
     "1301011": {
         "title": "Pistol",
         "des": "Short-range self-defense weapon. Its damage is more consistent when enemies are closer."
@@ -678,11 +684,11 @@ var string = {
     },
     "1305053": {
         "title": "Bright Flashlight ",
-        "des": "Don't underestimate it. Few secrets remain hidden before a bright flashlight."
+        "des": "Don't underestimate it. Few secrets remain hidden before a bright flashlight. Increase the probability of finding secret rooms."
     },
     "1305064": {
         "title": "Hyper Detector ",
-        "des": "Equipped with a sensitive probe and capable of automatic terrain surveying. In China, it even works better than a Luoyang shovel. "
+        "des": "Equipped with a sensitive probe and capable of automatic terrain surveying. In China, it even works better than a Luoyang shovel. Greatly increase the probability of finding secret rooms."
     },
     "1_0": {
         "title": "Toolbox",
@@ -1186,7 +1192,7 @@ var string = {
     "p_103": {
         "name": "Scavenger",
         "des": "Good at scavenging useful items from rubble. ",
-        "effect": "Item drops increased by 10%."
+        "effect": "Item drops increased by 20%."
     },
     "p_104": {
         "name": "Communicator",
@@ -1246,6 +1252,11 @@ var string = {
          "des": "Unlock all locations, NPCs, max friendship, and repeatable locations.",
          "effect": "Cheat function, unlock all locations, NPCs, max friendship, and repeatable locations. (Achievements will not be counted)"
      },
+"p_110": {
+    "name": "Backpacker",
+    "des": "You have an extra large backpack.",
+    "effect": "Backpack size +30."
+},
     "m_103": {
         "name": "Ironman Medal (Grade 3)",
         "condition": "Survive 5 days in a single game",

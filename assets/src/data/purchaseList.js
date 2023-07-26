@@ -1,4 +1,3 @@
-
 var PurchaseList = {
     101: {
         priceList: [
@@ -93,6 +92,17 @@ var PurchaseList = {
         priceList: [
             {
                 productId: "cnan_huozhe_nc10",
+                price: 12,
+                currencyCode: "",
+                productPriceStr: ""
+            }
+        ],
+        multiPrice: false
+    },
+    110: {
+        priceList: [
+            {
+                productId: "cnan_huozhe_nc11",
                 price: 12,
                 currencyCode: "",
                 productPriceStr: ""

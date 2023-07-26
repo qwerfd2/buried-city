@@ -8,6 +8,7 @@ var string = {
 "1335": "%s %s'yi 20 virüs yükü için değiştirdiniz.",
 "1336": "Yük sınırını arttır:",
 "1337": "Hoş Geldiniz!",
+"1339": "Merhaba, bunları %s sikke ile değiştirmek istiyorum. Sizce uygun mu?",
 "1338": "Buried Town tarafından yapılmış ArithSeq tarafından yapılan Buried City'e hoş geldiniz.\n\nEkran içeriği eksik ise, lütfen sağ alt köşedeki Ayarlar'a gidin ve Ekranı Küçült seçeneğini değiştirin.\n\nBu sürüm birçok ayarlamadan geçti ve birçok özellik kazandı. Tüm bilgiler için sol alt köşedeki belgelendirmeyi okuyun.\n\nAçık kaynaklı yazılımdır, ticari kazanç için kullanmayın. Konaklamanızı keyifli geçirin!",
     "1103094": {
         "title": "Peynir",
@@ -579,6 +580,11 @@ var string = {
         "title": "Askeri Rasyon",
         "des": "İnanılmaz, bal, un ve salata yağından yapılan birşey, yedikten sonra birkaç gün acıkmıyorsun."
     },
+    "b_1107052": "Bir süre boyunca virüs birikmeyecek.",
+    "1107052": {
+      "title": "Deneysel Antidot",
+      "des": "Hâlâ zombi virüsünün tedavisinde bir ilerleme kaydedilmese de, virüsün geçici olarak istilasını önlemek mümkündür."
+    },
     "1301011": {
         "title": "Tabanca",
         "des": "Kısa menzilli ve savunma silahı. Düşman yakın olduğunda hasarı daha tutarlıdır."
@@ -669,11 +675,11 @@ var string = {
     },
     "1305053": {
         "title": "Güçlü Fener",
-        "des": "Onu küçümseme, önünde çok sayıda hiçbir yerde gizlenemeyen sırları vardır."
+        "des": "Onu küçümseme, önünde çok sayıda hiçbir yerde gizlenemeyen sırları vardır. Gizli odaları bulma olasılığını arttırın."
     },
     "1305064": {
         "title": "Enerji Dedektörü",
-        "des": "Hassas arama sensörü vardır, otomatik arazi ölçüm fonksiyonunu barındırır. Çinde güneş batması kepçesinden daha etkilidir. "
+        "des": "Hassas arama sensörü vardır, otomatik arazi ölçüm fonksiyonunu barındırır. Çinde güneş batması kepçesinden daha etkilidir. Gizli odaları bulma olasılığını büyük ölçüde arttırın."
     },
     "1_0": {
         "title": "Araç Kutusu",
@@ -1183,7 +1189,7 @@ var string = {
     "p_103": {
         "name": "Çöpçü",
         "des": "Çöpte değerli şeyler bulmada yeteneklisin. ",
-        "effect": "Öğe düşmesine 125% eklendi"
+        "effect": "Öğe düşmesine 120% eklendi"
     },
     "p_104": {
         "name": "İletişimci",
@@ -1243,6 +1249,11 @@ var string = {
     "des": "Tüm konumları, NPC'leri, maksimum arkadaşlığı ve tekrarlanabilir konumları açar.",
     "effect": "Hile işlevi, tüm kopyaları, NPC'leri, maksimum arkadaşlığı ve tekrarlanabilir konumları açar. (Başarılar sayılmayacak)"
   },
+"p_110": {
+    "name": "Gezgin",
+    "des": "Ekstra büyük bir sırt çantasına sahipsiniz.",
+    "effect": "Sırt çantası boyutu +30."
+},
     "m_103": {
         "name": "Demir adam madalyası (3. sınıf)",
         "condition": "Tek seferde 5 günden fazla hayatta kal",
@@ -1289,7 +1300,7 @@ var string = {
         "des": "Kendi getirdiğin 1 M40'ı aç"
     },
     "1260": "Başarı",
-"1261": "Google başarılarını burada çevrimdışı olarak açabilir ve izleyebilirsiniz.",
+"1261": "Google başarılarını burada çevrimdışı olarak açabilir ve izleyebilirsiniz. Radyo CMD kullanarak herhangi bir zamanda ilerlemeyi yedekleyip geri yükleyebilirsiniz: 'backup', 'restore {}'.",
 "1272": "Başarı kilidini açtınız: ",
 "bt_season_1": {
 "title": "Kışın İçinde",

@@ -333,7 +333,13 @@ var Actor = cc.Node.extend({
             var dtPos = cc.pMult(this.velocity, dt);
             this.setPosition(cc.pAdd(pos, dtPos));
             player.map.updatePos(this.getPosition());
-            if (cc.pDistanceSQ(this.targetPos, this.getPosition()) <= 10) {
+            var self = this;
+            if (player.mapBattle.a) {
+                this.paused = player.randomAttack(function () {
+                    self.paused = false;
+                }, true);
+                this.lastCheckPos = this.getPosition();
+            } else if (cc.pDistanceSQ(this.targetPos, this.getPosition()) <= 10) {
                 //到达终点
                 this.setPosition(this.targetPos);
                 player.map.updatePos(this.getPosition());
@@ -346,7 +352,7 @@ var Actor = cc.Node.extend({
                 if (distance >= RandomBattleConfig.distance) {
                     this.paused = player.randomAttack(function () {
                         self.paused = false;
-                    });
+                    }, false);
                     this.lastCheckPos = this.getPosition();
                 }
             }

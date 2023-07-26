@@ -299,15 +299,15 @@ var DialogGuide = DialogCommon.extend({
         if (config.content.dig_des) {
             var digDes = new cc.Sprite(config.content.dig_des);
             digDes.setAnchorPoint(0.5, 1);
-            digDes.setPosition(this.contentNode.getContentSize().width / 2, this.contentNode.getContentSize().height - 20);
+            digDes.setPosition(this.contentNode.getContentSize().width / 2, this.contentNode.getContentSize().height + 10);
             this.contentNode.addChild(digDes);
             digDes.setName("dig_des");
         }
 
         if (config.content.des) {
-            var des = new cc.LabelTTF(config.content.des, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(this.rightEdge - this.leftEdge, 0));
+            var des = new cc.LabelTTF(config.content.des, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
             des.setAnchorPoint(0, 1);
-            des.setPosition(this.leftEdge, digDes ? this.contentNode.getContentSize().height - digDes.height - 20 * digDes.scale : this.contentNode.getContentSize().height - 20);
+            des.setPosition(this.leftEdge, digDes ? this.contentNode.getContentSize().height - digDes.height * digDes.scale : this.contentNode.getContentSize().height - 20);
             this.contentNode.addChild(des, 1);
             des.setName("des");
             des.setColor(cc.color.BLACK);
@@ -692,6 +692,8 @@ var RandomBattleDialog = DialogBig.extend({
     },
     dismiss: function () {
         this._super();
+        player.mapBattle = {};
+        Record.saveAll();
         cc.timer.resume();
     },
     createBattleBeginView: function () {

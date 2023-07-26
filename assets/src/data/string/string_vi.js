@@ -8,6 +8,7 @@ var string = {
 "1336": "Tăng giới hạn tải lên:",
 "1327": ["Tắt","Một phần","Toàn bộ"],
 "1337": "Chào mừng!",
+"1339": "Xin chào, tôi muốn đổi những thứ này lấy %s đồng. Bạn đồng ý chứ?",
 "1338": "Chào mừng đến với Buried City, một phiên bản mod của Buried Town được tạo bởi ArithSeq.\n\nNếu nội dung màn hình chưa hoàn chỉnh, vui lòng vào Cài đặt ở góc dưới bên phải và chỉnh sửa Thu nhỏ màn hình.\n\nPhiên bản này đã trải qua nhiều điều chỉnh và đã được trang bị nhiều tính năng. Vui lòng đọc tài liệu ở góc dưới bên trái để biết thêm thông tin.\n\nPhần mềm mã nguồn mở, xin vui lòng không sử dụng vì mục đích thương mại. Hãy thưởng thức thời gian ở đây!",
     "1103094": {
         "title": "Phô mai",
@@ -580,6 +581,11 @@ var string = {
         "title": "Lương khô quân dụng",
         "des": "Không thể tin được là đồ này được làm từ mật ong, bột mỳ và dầu salad. Ăn vào có thể no mấy ngày."
     },
+    "b_1107052": "Bạn sẽ không tích lũy virus trong một thời gian.",
+    "1107052": {
+      "title": "Giải độc thử nghiệm",
+      "des": "Trong khi vẫn chưa đạt được tiến bộ trong việc chữa trị virus zombie, việc ngăn chặn xâm nhập của virus tạm thời vẫn có thể thực hiện được."
+    },
     "1301011": {
         "title": "Súng ngắn  ",
         "des": "Vũ khí tự vệ tầm ngắn, kẻ địch càng gần thì mức độ sát thương càng lớn."
@@ -670,11 +676,11 @@ var string = {
     },
     "1305053": {
         "title": "Đèn pin",
-        "des": "Đừng coi thường nó, nó có thể làm sáng tỏ rất nhiều bí mật đấy"
+        "des": "Đừng coi thường nó, nó có thể làm sáng tỏ rất nhiều bí mật đấy. Tăng khả năng tìm phòng bí mật."
     },
     "1305064": {
         "title": "Máy do thám",
-        "des": "Được trang bị đầu do thám nhạy cảm, có chức năng tự động thăm dò địa hình."
+        "des": "Được trang bị đầu do thám nhạy cảm, có chức năng tự động thăm dò địa hình. Tăng đáng kể khả năng tìm phòng bí mật."
     },
     "1_0": {
         "title": "Hòm công cụ",
@@ -1184,7 +1190,7 @@ var string = {
     "p_103": {
         "name": "Người nhặt rác",
         "des": "Có sở trường tìm được đồ có giá trị trong đống rác. ",
-        "effect": "Tài nguyên nhận được trong phụ bản tăng lên 110%"
+        "effect": "Tài nguyên nhận được trong phụ bản tăng lên 120%"
     },
     "p_104": {
         "name": "Nhà ngoại giao",
@@ -1244,6 +1250,11 @@ var string = {
     "des": "Mở khóa tất cả các vị trí, NPC, tình bạn tối đa và các vị trí lặp lại.",
     "effect": "Chức năng gian lận, mở khóa tất cả các bản sao, NPC, tình bạn tối đa và các vị trí lặp lại. (Thành tựu sẽ không được tính)"
   },
+"p_110": {
+    "name": "Du khách cắm trại",
+    "des": "Bạn có một ba lô cỡ lớn.",
+    "effect": "Kích thước ba lô +30."
+},
     "m_103": {
         "name": "Huân chương người sắt (cấp 3)",
         "condition": "Sống sót hơn 5 ngày trong 1 ván",
@@ -1290,7 +1301,7 @@ var string = {
         "des": "Mang theo một khẩu M40 lúc bắt đầu ván"
     },
     "1260": "Thành tựu",
-"1261": "Bạn có thể mở khóa và xem thành tựu Google trong chế độ ngoại tuyến tại đây.",
+"1261": "Bạn có thể mở khóa và xem thành tựu Google trong chế độ ngoại tuyến tại đây. Bạn có thể sao lưu và khôi phục tiến trình bất cứ lúc nào bằng cách sử dụng lệnh radio: 'backup', 'restore {}'.",
 "1272": "Bạn đã mở khóa thành tích: ",
 "bt_season_1": {
 "title": "Vào mùa đông",

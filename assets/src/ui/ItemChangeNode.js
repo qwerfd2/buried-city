@@ -147,8 +147,25 @@ var ItemChangeNode = cc.Node.extend({
         }
         fromData.forEach(function (item, num) {
             if (itemConfig[item.id].weight == 0) {
-                fromData.decreaseItem(item.id, num);
-                toData.increaseItem(item.id, num);
+                var amount = player.bag.getNumByItemId(item.id);
+                var mod = amount % 50;
+                //amount does not exceed weight modulo, direct add.
+                if (num < mod) {
+                    fromData.decreaseItem(item.id, num);
+                    toData.increaseItem(item.id, num);
+                }
+                //Process 50 by 50, until the amount left is below 50.
+                while (num > 50) {
+                    if (toData.validateItemWeight(item.id, 50)) {
+                        fromData.decreaseItem(item.id, 50);
+                        toData.increaseItem(item.id, 50);
+                    }
+                    num -= 50;
+                }
+                if (num < 50 && toData.validateItemWeight(item.id, num)) {
+                    fromData.decreaseItem(item.id, num);
+                    toData.increaseItem(item.id, num);
+                }
             } else {
                 for (var i = 0; i < num; i++) {
                     if (toData.validateItemWeight(item.id, 1)) {

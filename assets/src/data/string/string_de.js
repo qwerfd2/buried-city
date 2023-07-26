@@ -8,6 +8,7 @@ var string = {
 "1335": "Du hast %s %s gegen 20 Viruslast getauscht.",
 "1336": "Erhöhe die obere Grenze der Last:",
 "1337": "Willkommen!",
+"1339": "Hallo, ich möchte diese gegen %s Münzen tauschen. Ist das in Ordnung für Sie?",
 "1338": "Willkommen in Buried City, einer Buried Town-Modifikation von ArithSeq.\nWenn der Bildschirminhalt unvollständig ist, gehen Sie bitte zu den Einstellungen in der unteren rechten Ecke und ändern Sie Schrumpfen des Bildschirms.\nDiese Version wurde umfangreich überarbeitet und enthält zahlreiche Funktionen. Bitte lesen Sie die Dokumentation in der unteren linken Ecke für alle Informationen.\nOpen-Source-Software, bitte nicht für kommerzielle Zwecke verwenden. Genießen Sie Ihren Aufenthalt!",
     "1103094": {
         "title": "Käse",
@@ -579,6 +580,11 @@ var string = {
         "title": "Ration",
         "des": "Kaum zu glauben, aber mit diesem Gemisch aus Honig, Teig und Salatöl kann man mehrere Tage ohne Hungergefühl auskommen."
     },
+    "b_1107052": "Du wirst das Virus eine Weile lang nicht ansammeln.",
+    "1107052": {
+        "title": "Experimentelles Gegenmittel",
+        "des": "Obwohl der Durchbruch bei der Heilung des Zombie-Virus noch nicht erreicht wurde, ist es immer noch möglich, die Ausbreitung des Virus vorübergehend zu verhindern."
+    },
     "1301011": {
         "title": "Pistole",
         "des": "Ein Waffe zur Selbstverteidigung mit kurzer Reichweite. Es ist einfacher, zuverlässig Schaden anzurichten, wenn der Gegner ganz in der Nähe ist."
@@ -669,11 +675,11 @@ var string = {
     },
     "1305053": {
         "title": "Taschenlampe",
-        "des": "Unterschätze sie bloß nicht! Damit kann man vielen Geheimnissen auf die Spur kommen."
+        "des": "Unterschätze sie bloß nicht! Damit kann man vielen Geheimnissen auf die Spur kommen. Erhöhe die Wahrscheinlichkeit, geheime Räume zu finden."
     },
     "1305064": {
         "title": "Hochenergiedetektor",
-        "des": "Darauf ist ein sensitives Kopfteil installiert mit automatischer Topografiemessfunktion."
+        "des": "Darauf ist ein sensitives Kopfteil installiert mit automatischer Topografiemessfunktion. Erhöhe die Wahrscheinlichkeit, geheime Räume stark zu finden."
     },
     "1_0": {
         "title": "Werkzeugbox",
@@ -1183,7 +1189,7 @@ var string = {
     "p_103": {
         "name": "Schnorrer",
         "des": "Du bist gut darin, wertvolle Ressourcen zu finden ",
-        "effect": "Erhaltene Ressourcen erhöht auf 110%"
+        "effect": "Erhaltene Ressourcen erhöht auf 120%"
     },
     "p_104": {
         "name": "Kommunikator",
@@ -1244,7 +1250,11 @@ var string = {
     "des": "Schalte alle Orte, NPCs, maximale Freundschaft und wiederholbare Orte frei.",
     "effect": "Cheat-Funktion, schalte alle Kopien, NPCs, maximale Freundschaft und wiederholbare Orte frei. (Erfolge werden nicht gezählt)"
   },
-
+"p_110": {
+    "name": "Rucksacktourist",
+    "des": "Du hast einen extra großen Rucksack.",
+    "effect": "Rucksackgröße +30."
+},
     "m_103": {
         "name": "Iron Man Medaille（3. Grad）",
         "condition": "Dein Überlebenszeit in einem Szenario ist länger als 5 Tage",
@@ -1291,7 +1301,7 @@ var string = {
         "des": "Du erhältst zu Szenariobeginn eine M40"
     },
     "1260": "Errungenschaft",
-"1261": "Google-Errungenschaften können hier offline freigeschaltet und angesehen werden.",
+"1261": "Google-Errungenschaften können hier offline freigeschaltet und angesehen werden. Du kannst jederzeit den Fortschritt mit dem Radio-Befehl 'backup', 'restore {}' sichern und wiederherstellen.",
 "1272": "Du hast die Leistung freigeschaltet: ",
 "bt_season_1": {
 "title": "Im Winter",

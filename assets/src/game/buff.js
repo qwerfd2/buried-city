@@ -82,7 +82,8 @@ var BuffItemEffectType = {
     ITEM_1107012: 1107012,
     ITEM_1107022: 1107022,
     ITEM_1107032: 1107032,
-    ITEM_1107042: 1107042
+    ITEM_1107042: 1107042,
+    ITEM_1107052: 1107052
 };
 
 var Buff = cc.Class.extend({

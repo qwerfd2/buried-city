@@ -49,11 +49,6 @@ var adHelper = {
     init: function (adType) {
         this.enable = true;
         this.adType = 0;
-        this.restore();
-    },
-    save: function () {
-    },
-    restore: function () {
     },
 
     onAdStatusChange: function (status) {

@@ -226,8 +226,8 @@ var EquipNode = cc.Node.extend({
             name.setPosition(icon.x + icon.width * icon.scale, size.height - 5);
             name.setAnchorPoint(0, 1);
             node.addChild(name);
-
-            var weight = new cc.LabelTTF(stringUtil.getString(1025) + itemInfo.weight, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+            var string = stringUtil.getString(1025) + itemInfo.weight;
+            var weight = new cc.LabelTTF(string, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
             weight.setPosition(name.x, name.y - name.height - 5);
             weight.setAnchorPoint(0, 1);
             node.addChild(weight);

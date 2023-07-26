@@ -20,7 +20,7 @@ var IAPPackage = {
 
     getDropEffect: function (produceValue) {
         if (this.isIAPUnlocked(103) && this.getChosenTalentPurchaseId(103)){
-            return produceValue * (1 + 0.1);
+            return produceValue * (1 + 0.2);
         }else{
             return produceValue;
         }
@@ -53,6 +53,10 @@ var IAPPackage = {
     
     isAllItemUnlocked: function () {
         return this.isIAPUnlocked(109) && this.getChosenTalentPurchaseId(109);
+    },
+    
+    isBigBagUnlocked: function () {
+        return this.isIAPUnlocked(110) && this.getChosenTalentPurchaseId(110);
     },
 
     chooseTalent: function (id) {

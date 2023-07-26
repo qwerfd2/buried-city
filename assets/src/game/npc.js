@@ -4,7 +4,6 @@ var NPC = BaseSite.extend({
         this.id = npcId;
         this.config = utils.clone(npcConfig[this.id]);
         this.pos = this.config.coordinate;
-
         this.reputation = 0;
         this.reputation = this.reputation;
         this.reputationMax = 10;
@@ -209,6 +208,50 @@ var NPC = BaseSite.extend({
     sendGift: function () {
         uiUtil.showNpcSendGiftDialog(this);
     },
+    needSell: function (rid) {
+        cc.timer.pause();
+        Record.saveAll();
+        this.tradeItem = player.getRandomOwnedItem();
+        if (this.tradeItem == null) {
+            cc.timer.resume();
+            return;
+        }
+        var multiplier;
+        this.rid = rid;
+        if (!rid) {
+            multiplier = utils.getRandomInt(0, 10);
+        } else {
+            multiplier = this.reputation;
+        }
+        multiplier = 1 + multiplier * 0.02;
+        this.price = round(this.tradeItem[0].num * player.getPrice(this.tradeItem[0].itemId) * multiplier);
+        var self = this;
+        uiUtil.showNpcSaleDialog(this,
+            //no
+            function () {
+                if (!self.rid) {
+                    player.log.addMsg(1102, "???");
+                } else {
+                    player.log.addMsg(1102, self.getName());
+                }
+                cc.timer.resume();
+                Record.saveAll();
+            },
+            //yes
+            function () {
+                player.cost(self.tradeItem);
+                player.onCurrencyChange(self.price);
+                if (!self.rid) {
+                    player.log.addMsg(1101, "???", self.tradeItem[0].num, stringUtil.getString(self.tradeItem[0].itemId).title, player.storage.getNumByItemId(self.tradeItem[0].itemId));
+                } else {
+                    player.log.addMsg(1101, self.getName(), self.tradeItem[0].num, stringUtil.getString(self.tradeItem[0].itemId).title, player.storage.getNumByItemId(self.tradeItem[0].itemId));
+                }
+                player.log.addMsg(1103, self.price, stringUtil.getString("13").title, player.currency);
+                cc.timer.resume();
+                Record.saveAll();
+            }, rid
+        );
+    },
     needHelp: function () {
         var self = this;
         cc.timer.pause();
@@ -240,6 +283,7 @@ var NPC = BaseSite.extend({
             }, needRestore
         );
     },
+
     getNeedHelpItems: function () {
         this.needHelpItems = utils.convertItemIds2Item(utils.getFixedValueItemIds(npcGiftConfig.produceValue, npcGiftConfig.produceList));
         return this.needHelpItems;
@@ -315,6 +359,18 @@ var NPCManager = cc.Class.extend({
             } else {
                 npc.needHelp();
             }
+        }
+    },
+    visitSale: function () {
+        var rand = utils.getRandomInt(0, 7);
+        if (rand != 0) {
+            var npc = this.npcList[rand];
+            if (npc.isUnlocked) {
+                npc.needSell(rand);
+            }
+        } else {
+            var npc = this.npcList[1];
+            npc.needSell(rand);
         }
     },
     unlockNpc: function (npcId) {

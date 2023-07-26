@@ -8,6 +8,7 @@ var string = {
 "1335": "Você trocou %s %s por 20 Cargas de Vírus.",
 "1336": "Aumentar o limite superior de carga:",
 "1337": "Bem-vindo!",
+"1339": "Olá, gostaria de trocar isso por %s moedas. Você concorda?",
 "1338": "Bem-vindo ao Buried City, uma modificação do Buried Town feita por ArithSeq.\n\nSe o conteúdo da tela estiver incompleto, vá para Configurações no canto inferior direito e modifique Reduzir Tela.\n\nEsta versão passou por muitos ajustes e recebeu inúmeras funcionalidades. Por favor, leia a documentação no canto inferior esquerdo para obter todas as informações.\n\nSoftware de código aberto, por favor, não use para fins comerciais. Aproveite a sua estadia!",
 "1103094": {
         "title": "Queijo",
@@ -579,6 +580,11 @@ var string = {
         "title": "Pílula de Cereais",
         "des": "Feito de mel, farinha e óleo, isso fará com que você não sinta fome."
     },
+    "b_1107052": "Você não acumulará o vírus por um tempo.",
+    "1107052": {
+        "title": "Antídoto Experimental",
+        "des": "Embora ainda não tenha sido alcançado um avanço na cura do vírus zumbi, é ainda possível evitar temporariamente a invasão do vírus."
+    },
     "1301011": {
         "title": "Pistola",
         "des": "Arma de defesa pessoal de curta distância. O dano é maior quando o inimigo está próximo."
@@ -669,11 +675,11 @@ var string = {
     },
     "1305053": {
         "title": "Laser",
-        "des": "Na sua frente, muitos segredos são detectados."
+        "des": "Na sua frente, muitos segredos são detectados. Aumente a probabilidade de encontrar salas secretas."
     },
     "1305064": {
         "title": "Detector de Neutrons",
-        "des": "Unidade de busca extremamente veloz que possui função de detecção automática."
+        "des": "Unidade de busca extremamente veloz que possui função de detecção automática. Aumente muito a probabilidade de encontrar salas secretas."
     },
     "1_0": {
         "title": "Caixa de Ferramentas",
@@ -1183,7 +1189,7 @@ var string = {
     "p_103": {
         "name": "Gari",
         "des": "Você é bom em buscar objetos valiosos no lixo. ",
-        "effect": "Itens caídos 110%"
+        "effect": "Itens caídos 120%"
     },
     "p_104": {
         "name": "Comunicador",
@@ -1243,6 +1249,11 @@ var string = {
     "des": "Desbloqueia todas as localizações, NPCs, amizade máxima e localizações repetíveis.",
     "effect": "Função de trapaça, desbloqueia todas as cópias, NPCs, amizade máxima e localizações repetíveis. (As conquistas não serão contabilizadas)"
   },
+"p_110": {
+    "name": "Mochileiro",
+    "des": "Você tem uma mochila extra grande.",
+    "effect": "Tamanho da mochila +30."
+},
     "m_103": {
         "name": "Medalha Homem de Ferro (Nv. 3)",
         "condition": "Sobreviveu por mais de 5 dias",
@@ -1289,7 +1300,7 @@ var string = {
         "des": "Ao abrir o jogo, trazer consigo 1 M40"
     },
     "1260": "Realização",
-"1261": "As realizações do Google podem ser desbloqueadas e visualizadas offline aqui.",
+"1261": "As realizações do Google podem ser desbloqueadas e visualizadas offline aqui. Você pode fazer backup e restaurar o progresso a qualquer momento usando o comando de rádio: 'backup', 'restore {}'.",
 "1272": "Você desbloqueou a conquista: ",
 "bt_season_1": {
 "title": "No inverno",

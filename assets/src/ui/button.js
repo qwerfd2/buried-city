@@ -615,10 +615,12 @@ var ButtonAtChooseScene = Button.extend({
             content: {},
             action: {btn_1: {}}
         };
-        if (purchaseId == 108) {
-            config.title.icon = "npc_1.png";
-        } else if (purchaseId == 109) {
-            config.title.icon = "npc_4.png";
+        if (purchaseId == 105) {
+            config.title.icon = "icon_iap_201.png";
+        } else if (purchaseId == 110) {
+            config.title.icon = "icon_iap_105.png";
+        } else if (purchaseId > 107) {
+            config.title.icon = "";
         } else {
             config.title.icon = "icon_iap_" + purchaseId + ".png";
         }

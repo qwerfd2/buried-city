@@ -9,6 +9,24 @@ var string = {
 "1336": "Aumentar o limite superior de carga:",
 "1337": "Bem-vindo!",
 "1339": "Olá, gostaria de trocar isso por %s moedas. Você concorda?",
+"gachapon": {
+    "title": "Sorteio",
+    "des": "Venha tentar a sua sorte! Um grande prêmio o aguarda! 100% de prêmio garantido!"
+},
+"gachaponDialog": {
+    "title": {
+        "txt_1": "Preço: %s moedas"
+    },
+    "content": {},
+    "action": {
+        "btn_1": {
+            "txt": "Jogar"
+        },
+        "btn_1": {
+            "txt": "Agora não"
+        }
+    }
+},
 "1338": "Bem-vindo ao Buried City, uma modificação do Buried Town feita por ArithSeq.\n\nSe o conteúdo da tela estiver incompleto, vá para Configurações no canto inferior direito e modifique Reduzir Tela.\n\nEsta versão passou por muitos ajustes e recebeu inúmeras funcionalidades. Por favor, leia a documentação no canto inferior esquerdo para obter todas as informações.\n\nSoftware de código aberto, por favor, não use para fins comerciais. Aproveite a sua estadia!",
 "1103094": {
         "title": "Queijo",
@@ -484,10 +502,6 @@ var string = {
         "title": "Parte de Katana",
         "des": "Espada samurai quebrada. Precisa ser reparada para ser usada."
     },
-    "1102053": {
-        "title": "Aparelho de Falcon",
-        "des": "Peça essencial do Falcon."
-    },
     "1103011": {
         "title": "Batatas",
         "des": "Nutritiva e facilmente plantada, são boas para comer. Batatas cruas podem causar infecção intestinal."
@@ -665,18 +679,28 @@ var string = {
         "title": "Mochila Militar",
         "des": "Possui padrão de qualidade de mochilas militares, seu peso é próximo ao peso do corpo."
     },
+    "1102053": {
+        "title": "Motor de Motocicleta",
+        "des": "O componente principal para fabricar motocicletas."
+    },
     "1305034": {
         "title": "Motocicleta",
-        "des": "Motocicleta estilo antigo que pode aumentar muito sua VEL."
-    },
-    "1305044": {
-        "title": "Falcon",
-        "des": "Foi o transporte de algum importante personagem. Pode não apenas aumenta VEL, como também é super espaçoso."
+        "des": "Uma motocicleta antiga com grande capacidade de carga, aumentando significativamente sua velocidade de viagem."
     },
     "1305053": {
-        "title": "Laser",
-        "des": "Na sua frente, muitos segredos são detectados. Aumente a probabilidade de encontrar salas secretas."
+        "title": "Lanterna Forte",
+        "des": "Não subestime; na sua presença, zumbis escondidos em cantos não terão onde se esconder. Reduz consideravelmente a chance de encontrar zumbis."
     },
+    "1102073": {
+        "title": "Componente de Bomba de Combustível",
+        "des": "Além de faltar cerâmica, este componente é impecável. A gasolina é muito corrosiva e o plástico se torna frágil em poucos dias."
+    },
+    "16": {
+        "title": "Gasolina",
+        "des": "Sem gasolina, os veículos motorizados não funcionarão. Esse recurso precioso deve ser mantido em segredo dos outros sobreviventes. Altamente inflamável e explosiva, só pode ser armazenada no tanque de combustível."
+    },
+    "1340": "Necessidade de Combustível:",
+    "1341": "Suas botas estão quebradas.",
     "1305064": {
         "title": "Detector de Neutrons",
         "des": "Unidade de busca extremamente veloz que possui função de detecção automática. Aumente muito a probabilidade de encontrar salas secretas."
@@ -1291,12 +1315,12 @@ var string = {
     },
     "m_302": {
         "name": "Medalha da Liberdade (Nv. 2)",
-        "condition": "Limpou 10 salas secretas",
+        "condition": "Limpou 15 salas secretas",
         "des": "Ao abrir o jogo, trazer consigo 1 revólver"
     },
     "m_301": {
         "name": "Medalha da Liberdade (Nv. 1)",
-        "condition": "Limpou 20 salas secretas",
+        "condition": "Limpou 30 salas secretas",
         "des": "Ao abrir o jogo, trazer consigo 1 M40"
     },
     "1260": "Realização",

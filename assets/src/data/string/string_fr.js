@@ -9,6 +9,28 @@ var string = {
 "1336": "Augmenter la limite supérieure de charge :",
 "1337": "Bienvenue !",
 "1339": "Bonjour, j'aimerais échanger ceci contre %s pièces. Ça vous convient ?",
+"gachapon": {
+    "title": "Tirage au sort",
+    "des": "Venez tenter votre chance ! Un énorme prix vous attend !"
+},
+"gachaponDialog": {
+    "title": {
+        "txt_1": "Prix : %s pièces"
+    },
+    "content": {},
+    "action": {
+        "btn_1": {
+            "txt": "Jouer"
+        },
+        "btn_1": {
+            "txt": "Pas maintenant"
+        }
+    }
+},
+"gachapon": {
+    "title": "Sorteo",
+    "des": "¡Ven a probar tu suerte! ¡Un gran premio te espera! 100% de chances de gagner !"
+},
 "1338": "Bienvenue à Buried City, un mod de Buried Town réalisé par ArithSeq.\nSi le contenu de l'écran est incomplet, veuillez vous rendre dans les paramètres en bas à droite et modifier le rétrécissement de l'écran.\nCette version a subi de nombreux ajustements et a reçu de nombreuses fonctionnalités. Veuillez lire la documentation en bas à gauche pour toutes les informations.\nLogiciel open source, veuillez ne pas l'utiliser à des fins commerciales. Profitez de votre séjour !",
     "1103094": {
         "title": "Fromage",
@@ -484,10 +506,6 @@ var string = {
         "title": "Débris de Katana",
         "des": "Kanata cassé, il faut le réparer d'abord."
     },
-    "1102053": {
-        "title": "Moteur du Faucon",
-        "des": "Élément critique pour fabriquer le Faucon"
-    },
     "1103011": {
         "title": "Pomme de terre",
         "des": "Une plante facile à cultiver et nutritive. Elle joue un rôle important pour lutter contre la famine depuis XVIe siècle. Mais les pommes de terre crues peuvent causer des infections intestinales."
@@ -665,18 +683,29 @@ var string = {
         "title": "Sac à dos militaire",
         "des": "Un sac qui est produit conformément au standard militaire peut supporter presque le poids près de la limite du corps de l'homme"
     },
+
+    "1102053": {
+        "title": "Moteur de moto",
+        "des": "Le composant essentiel pour fabriquer des motos."
+    },
     "1305034": {
         "title": "Moto",
-        "des": "Ancien moto peut augmenter votre vitesse de mouvement dans les ruines."
-    },
-    "1305044": {
-        "title": "Faucon",
-        "des": "On dit qu'il est la monture d'un grand personnage. Il est non seulement vraiment rapide, maisu aussi peut charger beaucoup! Il est le suprême pour l'exploration aux ruines."
+        "des": "Une moto à l'ancienne avec une grande capacité de transport, augmentant considérablement votre vitesse de déplacement."
     },
     "1305053": {
-        "title": "Torche Électrique Brillante",
-        "des": "Tout devient clair avant la torche électrique brillante. Augmentez la probabilité de trouver des salles secrètes."
+        "title": "Lampe de poche puissante",
+        "des": "Ne le sous-estimez pas; en sa présence, les zombies se cachant dans les coins n'auront nulle part où se cacher. Réduit considérablement les chances de rencontrer des zombies."
     },
+    "1102073": {
+        "title": "Composant de pompe à essence",
+        "des": "Mis à part le manque de céramique, ce composant est impeccable. L'essence est trop corrosive et le plastique devient cassant en quelques jours."
+    },
+    "16": {
+        "title": "Essence",
+        "des": "Sans essence, les véhicules à moteur ne fonctionneront pas. Cette précieuse ressource doit rester secrète pour les autres survivants. Hautement inflammable et explosive, elle ne peut être stockée que dans le réservoir de carburant."
+    },
+    "1340": "Besoin en carburant:",
+    "1341": "Tes bottes sont cassées.",
     "1305064": {
         "title": "Détecteur Énergique",
         "des": "Avec une sonde sensible, il peut mesurer la configuration automatiquement. En Chine, il est plus utile que la Pelle de Luoyang. Augmentez grandement la probabilité de trouver des salles secrètes."
@@ -1291,12 +1320,12 @@ var string = {
     },
     "m_302": {
         "name": "Médaille de Liberté (Deuxième)",
-        "condition": "Vider 10 pièces secrètes en une seule manche",
+        "condition": "Vider 15 pièces secrètes en une seule manche",
         "des": "Apporter automatiquement 1 révolver au début du jeu"
     },
     "m_301": {
         "name": "Médaille de Liberté (Premier)",
-        "condition": "Vider 20 pièces secrètes en une seule manche",
+        "condition": "Vider 30 pièces secrètes en une seule manche",
         "des": "Apporter automatiquement 1 M40 au début du jeu"
     },
     "1260": "Réussite",

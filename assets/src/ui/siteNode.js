@@ -45,7 +45,11 @@ var SiteNode = BottomFrameNode.extend({
         des.setColor(cc.color.WHITE);
 
         var btn1 = uiUtil.createCommonBtnWhite(stringUtil.getString(1032), this, this.onClickBtn1);
-        btn1.setPosition(this.bgRect.width / 4, 100);
+        if (this.site.id == 400) {
+            btn1.setPosition(this.bgRect.width / 6, 100);
+        } else {
+            btn1.setPosition(this.bgRect.width / 4, 100);
+        }
         this.bg.addChild(btn1);
         btn1.setName("btn_1");
 
@@ -56,10 +60,21 @@ var SiteNode = BottomFrameNode.extend({
         this.notifyIcon.setVisible(this.site.haveNewItems);
 
         var btn2 = uiUtil.createCommonBtnWhite(stringUtil.getString(1033), this, this.onClickBtn2);
-        btn2.setPosition(this.bgRect.width / 4 * 3, 100);
+        if (this.site.id == 400) {
+            btn2.setPosition(this.bgRect.width / 6 * 5, 100);
+        } else {
+            btn2.setPosition(this.bgRect.width / 4 * 3, 100);
+        }
         this.bg.addChild(btn2);
         btn2.setName("btn_2")
         btn2.setEnabled(!this.site.isSiteEnd());
+        
+        if (this.site.id == 400) {
+            var btn3 = uiUtil.createCommonBtnWhite(stringUtil.getString("gachapon").title, this, this.onClickBtn3);
+            btn3.setPosition(this.bgRect.width / 2, 100);
+            this.bg.addChild(btn3);
+            btn3.setName("btn_3")
+        }
 
         if (userGuide.isStep(userGuide.stepName.ENTER_SITE)) {
             uiUtil.createIconWarn(btn2);
@@ -91,6 +106,65 @@ var SiteNode = BottomFrameNode.extend({
         } else {
             this.forward(Navigation.nodeName.BATTLE_AND_WORK_NODE, this.userData);
         }
+    },
+    onClickBtn3: function () {
+        var config = utils.clone(stringUtil.getString("gachaponDialog"));
+        var strConfig = stringUtil.getString("gachapon");
+        config.title.icon = "#site_202.png";
+        config.title.title = strConfig.title;
+        config.title.txt_1 = cc.formatStr(config.title.txt_1, 8);
+        config.content.des = strConfig.des;
+        var dialog = new DialogSmall(config);
+        dialog.autoDismiss = false;
+        this.btnPlay = uiUtil.createSpriteBtn({normal: "icon_ad_play.png"}, this, function () {
+            if (player.currency < 8) {
+                var config = {
+                    title: {},
+                    content: {des: stringUtil.getString(9028, Number(player.currency.toFixed(2)))},
+                    action: {btn_1: {}}
+                };
+                config.action.btn_1.txt = stringUtil.getString(1073);
+                var d = new DialogTiny(config);
+                d.y = -94;
+                d.show();
+                return;
+            }
+            player.onCurrencyChange(-8);
+            var rand = utils.getRandomInt(0, 399);
+            var bound = 0;
+            for (var i = 0; i < GachaponConfig.length; i++) {
+                bound += GachaponConfig[i].weight;
+                if (rand < bound) {
+                    //this is it!
+                    rand = i;
+                    break;
+                }
+            }
+            var itemId = GachaponConfig[rand].itemId;
+            var num = GachaponConfig[rand].num;
+            player.map.getSite(400).storage.increaseItem(itemId, num);
+            Record.saveAll();
+            player.map.getSite(400).haveNewItems = true;
+            this.notifyIcon.setVisible(true);
+            var str = stringUtil.getString(1069) + stringUtil.getString(itemId).title + " x" + num;
+            player.log.addMsg(str);
+            var config = {
+                title: {},
+                content: {des: str},
+                action: {btn_1: {}}
+            };
+            config.action.btn_1.txt = stringUtil.getString(1030);
+            var d = new DialogTiny(config);
+            d.y = -94;
+            d.show();
+        });
+        this.btnPlay.x = dialog.contentNode.width / 2;
+        this.btnPlay.y = dialog.contentNode.height / 2 - 70;
+        dialog.contentNode.addChild(this.btnPlay);
+        var itemTableView = uiUtil.createItemListSlidersViewOnly(GachaponConfig);
+        itemTableView.setPosition(20, 100);
+        dialog.contentNode.addChild(itemTableView);
+        dialog.show();
     },
     onEnter: function () {
         this._super();

@@ -386,7 +386,13 @@ var BattlePlayer = cc.Class.extend({
             player.changeAttr("hp", -harm);
             player.changeAttr("injury", 1);
             var rand = Math.random();
-            if (rand <= 0.5 && this.battle.difficulty > 2 && !player.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
+            var threshold = 0.9;
+            if (player.equip.isEquiped(1304023)) {
+                threshold = 0.5;
+            } else if (player.equip.isEquiped(1304012)) {
+                threshold = 0.7;
+            }
+            if (rand <= threshold && this.battle.difficulty > 2 && !player.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
                 this.battle.sumRes.totalVirus += 1;
             }
         }

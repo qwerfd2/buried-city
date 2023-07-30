@@ -4009,13 +4009,13 @@ var siteConfig = {
         "battleRoom": 9,
         "difficulty": [1, 3],
         "workRoom": 4,
-        "produceValue": 600,
+        "produceValue": 300,
         "produceList": [{
             "itemId": "1101*1",
-            "weight": 5
+            "weight": 10
         }, {
             "itemId": "1101071",
-            "weight": 95
+            "weight": 90
         }],
         "fixedProduceList": [{
             "itemId": "1101*1",
@@ -4034,11 +4034,26 @@ var siteConfig = {
             "x": 410,
             "y": 492
         },
-        "difficulty": [],
+        "battleRoom": 2,
+        "difficulty": [7, 8],
+        "workRoom": 1,
         "produceList": [],
-        "fixedProduceList": [],
+        "fixedProduceList": [{
+            "itemId": "1101051",
+            "num": 4
+        }, {
+            "itemId": "1101041",
+            "num": 6
+        }, {
+            "itemId": "1101021",
+            "num": 4
+        }, {
+            "itemId": "1102063",
+            "num": 1
+        }],
         "unlockValue": {},
-        "def": 100
+        "secretRoomsId": 2,
+        "def": 40
     },
     "301": {
         "id": 301,

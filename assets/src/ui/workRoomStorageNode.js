@@ -65,6 +65,6 @@ var WorkRoomStorageNode = BottomFrameNode.extend({
             utils.emitter.emit("nextStep");
         }
         this.flushItems();
-        this.replace(Navigation.nodeName.BATTLE_AND_WORK_NODE, this.userData.siteId);
+        this.replace(Navigation.nodeName.BATTLE_AND_WORK_NODE, this.userData.siteId)
     }
 });

@@ -14,7 +14,7 @@ var BaseLayer = cc.Layer.extend({
         var keyboardListener = cc.EventListener.create({
             event: cc.EventListener.KEYBOARD,
             onKeyReleased: function (keyCode, event) {
-                if (keyCode == cc.KEY.back) {
+                if (keyCode == cc.KEY.back && !GLOBAL_DIALOGS) {
                     switch (self.navigationType) {
                         case APP_NAVIGATION.MENU:
                             PurchaseAndroid.exitGame({});

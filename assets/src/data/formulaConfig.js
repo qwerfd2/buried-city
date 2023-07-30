@@ -30,6 +30,27 @@ var formulaConfig = {
         }],
         "makeTime": 90
     },
+    "1202073": {
+        "id": "1202073",
+        "produce": [{
+            "itemId": 1102073,
+            "num": 1
+        }],
+        "cost": [{
+            "itemId": 1101021,
+            "num": 4
+        }, {
+            "itemId": 1101031,
+            "num": 8
+        }, {
+            "itemId": 1101041,
+            "num": 6
+        }, {
+            "itemId": 1101071,
+            "num": 2
+        }],
+        "makeTime": 90
+    },
     "1203011": {
         "id": "1203011",
         "produce": [{
@@ -598,27 +619,6 @@ var formulaConfig = {
         }],
         "makeTime": 30
     },
-    "1405044": {
-        "id": "1405044",
-        "produce": [{
-            "itemId": 1305044,
-            "num": 1
-        }],
-        "cost": [{
-            "itemId": 1102053,
-            "num": 1
-        }, {
-            "itemId": 1101021,
-            "num": 12
-        }, {
-            "itemId": 1101041,
-            "num": 16
-        }, {
-            "itemId": 1101073,
-            "num": 8
-        }],
-        "makeTime": 240
-    },
     "1405053": {
         "id": "1405053",
         "produce": [{
@@ -671,16 +671,19 @@ var formulaConfig = {
             "num": 1
         }],
         "cost": [{
-            "itemId": 1101021,
-            "num": 8
+            "itemId": 1102053,
+            "num": 1
         }, {
-            "itemId": 1101041,
+            "itemId": 1101021,
             "num": 12
         }, {
+            "itemId": 1101041,
+            "num": 16
+        }, {
             "itemId": 1101073,
-            "num": 6
+            "num": 8
         }],
-        "makeTime": 180
+        "makeTime": 240
     },
     "1102053": {
         "id": "1102053",

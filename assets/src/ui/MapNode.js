@@ -114,13 +114,21 @@ var MapView = cc.ScrollView.extend({
         var startPos = this.actor.getPosition();
         var endPos = entity.baseSite.pos;
         var distance = cc.pDistance(startPos, endPos);
-        var time = distance / this.actor.getMaxVelocity();
+        var fuelNeed = Math.ceil(distance / 50);
+        var canAfford = false;
+        if (player.fuel >= fuelNeed) {
+            canAfford = true;
+        }
+        var time = distance / this.actor.getMaxVelocity(canAfford);
+        if (player.storage.getNumByItemId(1305034) <= 0) {
+            fuelNeed = -1;
+        }
         var okFunc = function () {
             entity.setHighlight(true);
             cc.timer.accelerate(time, player.storage.validateItem(1306001, 1) ? 2 : 3);
             player.log.addMsg(1112, entity.baseSite.getName());
             self.makeLine(startPos, endPos);
-            self.actor.move(endPos, function () {
+            self.actor.move(endPos, canAfford, function () {
                 self.enterEntity(entity);
                 player.totalDistance += Math.round(distance);
             });
@@ -150,12 +158,12 @@ var MapView = cc.ScrollView.extend({
 
         if (entity.baseSite instanceof Site) {
             if (entity.baseSite.id == HOME_SITE) {
-                uiUtil.showHomeDialog(entity, time, okFunc, cancelFunc);
+                uiUtil.showHomeDialog(entity, time, fuelNeed, canAfford, okFunc, cancelFunc);
             } else {
-                uiUtil.showSiteDialog(entity, time, okFunc, cancelFunc);
+                uiUtil.showSiteDialog(entity, time, fuelNeed, canAfford, okFunc, cancelFunc);
             }
         } else {
-            uiUtil.showNpcInMapDialog(entity, time, okFunc, cancelFunc);
+            uiUtil.showNpcInMapDialog(entity, time, fuelNeed, canAfford, okFunc, cancelFunc);
         }
     },
 
@@ -177,7 +185,7 @@ var MapView = cc.ScrollView.extend({
                     nodeName = Navigation.nodeName.AD_SITE_NODE;
                 } else if (baseSite.id == BOSS_SITE) {
                     nodeName = Navigation.nodeName.BOSS_SITE_NODE;
-                } else if (baseSite.id == WORK_SITE) {
+                } else if (baseSite.id == WORK_SITE || baseSite.id == GAS_SITE) {
                     nodeName = Navigation.nodeName.WORK_SITE_NODE;
                 } else if (baseSite.id == BAZAAR_SITE) {
                     nodeName = Navigation.nodeName.BAZAAR_SITE_NODE;
@@ -281,18 +289,16 @@ var Actor = cc.Node.extend({
         this.setAnchorPoint(0.5, 0.5);
         s.setPosition(this.getContentSize().width / 2, this.getContentSize().height / 2);
         this.addChild(s);
-
+        this.lastDistance = 0;
         this.MAX_VELOCITY = 97 / (1 * 60 * 60 ) * 0.8 * 1.1;
         //靴子效果
-        this.MAX_VELOCITY_ENHANCE = this.MAX_VELOCITY * 0.25;
+        this.MAX_VELOCITY_ENHANCE = this.MAX_VELOCITY * 0.3;
         //摩托车效果
-        this.MAX_VELOCITY_ENHANCE_MOTO = this.MAX_VELOCITY * 0.35;
-        //战隼效果
-        this.MAX_VELOCITY_ENHANCE_ZHANSUN = this.MAX_VELOCITY * 0.45;
-
+        this.MAX_VELOCITY_ENHANCE_MOTO = this.MAX_VELOCITY * 1.5;
+        this.isUsingMoto = false;
         this.isMoving = false;
         this.targetPos = null;
-
+        this.sumDistance = 0;
         this.paused = false;
         this.lastCheckPos = null;
 
@@ -305,12 +311,11 @@ var Actor = cc.Node.extend({
             }
         }, TimerManager.REPEAT_FOREVER));
     },
-    getMaxVelocity: function () {
+    getMaxVelocity: function (canAfford) {
         var v = this.MAX_VELOCITY;
-        if (player.storage.getNumByItemId(1305044) > 0) {
-            v += this.MAX_VELOCITY_ENHANCE_ZHANSUN;
-        } else if (player.storage.getNumByItemId(1305034) > 0) {
+        if (player.storage.getNumByItemId(1305034) > 0 && canAfford) {
             v += this.MAX_VELOCITY_ENHANCE_MOTO;
+            this.isUsingMoto = true;
         }
         //靴子效果累加
         if (player.storage.getNumByItemId(1306001) > 0) {
@@ -331,7 +336,15 @@ var Actor = cc.Node.extend({
 
             var pos = this.getPosition();
             var dtPos = cc.pMult(this.velocity, dt);
-            this.setPosition(cc.pAdd(pos, dtPos));
+            var newPos = cc.pAdd(pos, dtPos);
+            var dBetween = cc.pDistance(pos, newPos);
+            this.lastDistance += dBetween;
+            this.sumDistance += dBetween;
+            if (this.lastDistance > 50 && this.isUsingMoto) {
+                this.lastDistance -= 50;
+                player.onFuelChange(-1);
+            }
+            this.setPosition(newPos);
             player.map.updatePos(this.getPosition());
             var self = this;
             if (player.mapBattle.a) {
@@ -341,9 +354,12 @@ var Actor = cc.Node.extend({
                 this.lastCheckPos = this.getPosition();
             } else if (cc.pDistanceSQ(this.targetPos, this.getPosition()) <= 10) {
                 //到达终点
+                if (player.storage.validateItem(1306001, 1) || player.bag.validateItem(1306001, 1)) {
+                    player.shoeTime += this.sumDistance;
+                }
                 this.setPosition(this.targetPos);
                 player.map.updatePos(this.getPosition());
-
+                player.onFuelChange(-1);
                 this.isMoving = false;
                 this.afterMove();
             } else {
@@ -358,10 +374,10 @@ var Actor = cc.Node.extend({
             }
         }
     },
-    move: function (pos, cb) {
+    move: function (pos, canAfford, cb) {
         if (this.isMoving)
             return;
-        this.maxVelocityThisTrip = this.getMaxVelocity();
+        this.maxVelocityThisTrip = this.getMaxVelocity(canAfford);
         this.targetPos = pos;
         this.lastCheckPos = this.getPosition();
         this.cb = cb;
@@ -418,13 +434,10 @@ var Entity = Button.extend({
         if (userGuide.isStep(userGuide.stepName.MAP_SITE) && userGuide.isSite(this.baseSite.id)) {
             uiUtil.createIconWarn(this);
         }
-
         if (userGuide.isStep(userGuide.stepName.MAP_SITE_HOME) && this.baseSite.id == HOME_SITE) {
             uiUtil.createIconWarn(this);
         }
-
         this.updateStatus();
-
     },
     onPressed: function () {
         this.getChildByName("highlight").setVisible(true);
@@ -452,16 +465,23 @@ var Entity = Button.extend({
             if (oldIcon) {
                 this.removeChildByName('icon');
             }
-
+            var iconStr = "";
+            if (this.baseSite.id == 204) {
+                iconStr = "icon_electric_";     
+            } else {
+                iconStr = "icon_oil_";
+            }
             if (this.baseSite.isActive) {
-                var notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_electric_active.png');
+                iconStr += "active.png";
+                var notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName(iconStr);
                 notifyIcon.x = this.width - 10;
                 notifyIcon.y = this.height - 10;
                 notifyIcon.setScale(0.6);
                 notifyIcon.setName('icon');
                 this.addChild(notifyIcon);
             } else {
-                var notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_electric_inactive.png');
+                iconStr += "inactive.png"
+                var notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName(iconStr);
                 notifyIcon.x = this.width - 10;
                 notifyIcon.y = this.height - 10;
                 notifyIcon.setScale(0.6);

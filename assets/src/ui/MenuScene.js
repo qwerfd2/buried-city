@@ -4,7 +4,7 @@ var MenuLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
-        ClientData.MOD_VERSION = 13;
+        ClientData.MOD_VERSION = 15;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
@@ -511,7 +511,7 @@ var SettingLayer = cc.Layer.extend({
             label.setPosition(label.x, label.y - 10);
             var button = items[key].getChildByName("btn");
             button.lan = lans[lanIndex];
-            button.setPosition(button.x, button.y + 5);
+            button.setPosition(button.x, button.y + 3);
             button.addTouchEventListener(function (sender, type) {
                 if (type == ccui.Widget.TOUCH_ENDED) {
                     cc.sys.localStorage.setItem("language", sender.lan);
@@ -534,7 +534,7 @@ var SettingLayer = cc.Layer.extend({
         }
 
         this.languageSelector.addChild(listView);
-        this.languageSelector.setPosition(cc.pSub(this.btn_lan.getPosition(), cc.p(0, this.btn_lan.height / 2)));
+        this.languageSelector.setPosition(cc.pSub(this.btn_lan.getPosition(), cc.p(0, this.btn_lan.height / 2 - 3)));
         this.addChild(this.languageSelector);
     },
     closeLanguageSelector: function () {

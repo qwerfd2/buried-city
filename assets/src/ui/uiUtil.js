@@ -100,7 +100,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount) {
     var dig_des = dialog.contentNode.getChildByName('dig_des');
     var label1 = new cc.LabelTTF(stringUtil.getString(9022) + Nuw, uiUtil.fontFamily.normal, 25);
     label1.setAnchorPoint(0, 1);
-    label1.setPosition(30, dig_des.height - 70);
+    label1.setPosition(30, dialog.contentNode.width / 2 - 40);
     label1.setColor(cc.color.BLACK);
     oo.addChild(label1);
 
@@ -980,7 +980,7 @@ uiUtil.showNpcSendGiftDialog = function (npc) {
     audioManager.playEffect(audioManager.sound.NPC_KNOCK);
 };
 
-uiUtil.showNpcInMapDialog = function (entity, time, okCb, cancelCb) {
+uiUtil.showNpcInMapDialog = function (entity, time, fuelNeed, canAfford, okCb, cancelCb) {
     var npc = entity.baseSite;
     var config = {
         title: {},
@@ -1006,19 +1006,26 @@ uiUtil.showNpcInMapDialog = function (entity, time, okCb, cancelCb) {
     label1.setPosition(dialog.leftEdge, log.getContentSize().height - 30);
     label1.setColor(cc.color.BLACK);
     log.addChild(label1);
-
-    var label2 = new cc.LabelTTF(stringUtil.getString(1137, npc.storage.getItemSortNum()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-    label2.setAnchorPoint(0, 1);
-    label2.setPosition(dialog.leftEdge, label1.y - label1.height - 10);
-    label2.setColor(cc.color.BLACK);
-    log.addChild(label2);
+    
+    if (fuelNeed > 0) {
+        var label3 = new cc.LabelTTF(stringUtil.getString(1340) + " " + fuelNeed + "-" + (fuelNeed + 1), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label3.setAnchorPoint(0, 1);
+        label3.setPosition(dialog.leftEdge, label1.y - label1.height - 10);
+        if (canAfford) {
+            label3.setColor(cc.color.BLACK);
+        } else {
+            label3.setColor(cc.color.RED);
+        }
+        log.addChild(label3);
+    }
+    
     if (cc.RTL) {
         label1.anchorX = 1;
         label1.x = dialog.rightEdge;
-
-        label2.anchorX = 1;
-        label2.x = dialog.rightEdge;
+        label3.anchorX = 1;
+        label3.x = dialog.rightEdge;
     }
+    
     var needItems = [];
     npc.storage.forEach(function(item, num) {
         needItems.push({
@@ -1037,7 +1044,7 @@ uiUtil.showNpcInMapDialog = function (entity, time, okCb, cancelCb) {
     dialog.show();
 };
 
-uiUtil.showSiteDialog = function (entity, time, okCb, cancelCb) {
+uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cancelCb) {
     var config = utils.clone(stringUtil.getString(5000));
     if (entity.baseSite.id == 202) {
         config.title.icon = "#site202.png";
@@ -1076,10 +1083,25 @@ uiUtil.showSiteDialog = function (entity, time, okCb, cancelCb) {
     label.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
     label.setColor(cc.color.BLACK);
     log.addChild(label);
+    
+    if (fuelNeed > 0) {
+        var str = stringUtil.getString(1340) + " " + fuelNeed + "-" + (fuelNeed + 1);
+        var label2 = new cc.LabelTTF(str, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label2.setAnchorPoint(0, 1);
+        label2.setPosition(dialog.leftEdge, label.y - label.height - 10);
+        if (canAfford) {
+            label2.setColor(cc.color.BLACK);
+        } else {
+            label2.setColor(cc.color.RED);
+        }
+        log.addChild(label2);
+    }
 
     if (cc.RTL) {
         label.anchorX = 1;
         label.x = dialog.rightEdge;
+        label2.anchorX = 1;
+        label2.x = dialog.rightEdge;
     }
     
     if (entity.baseSite.id == 400) {
@@ -1108,7 +1130,7 @@ uiUtil.showSiteDialog = function (entity, time, okCb, cancelCb) {
     }
 };
 
-uiUtil.showHomeDialog = function (entity, time, okCb, cancelCb) {
+uiUtil.showHomeDialog = function (entity, time, fuelNeed, canAfford, okCb, cancelCb) {
     var config = utils.clone(stringUtil.getString(5000));
     config.title.icon = "#site_" + entity.baseSite.id + ".png";
     config.title.title = entity.baseSite.getName();
@@ -1132,10 +1154,24 @@ uiUtil.showHomeDialog = function (entity, time, okCb, cancelCb) {
     label.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
     label.setColor(cc.color.BLACK);
     log.addChild(label);
+    
+    if (fuelNeed > 0) {
+        var label2 = new cc.LabelTTF(stringUtil.getString(1340) + " " + fuelNeed + "-" + (fuelNeed + 1), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label2.setAnchorPoint(0, 1);
+        label2.setPosition(dialog.leftEdge, label.y - label.height - 10);
+        if (canAfford) {
+            label2.setColor(cc.color.BLACK);
+        } else {
+            label2.setColor(cc.color.RED);
+        }
+        log.addChild(label2);
+    }
 
     if (cc.RTL) {
         label.anchorX = 1;
         label.x = dialog.rightEdge;
+        label2.anchorX = 1;
+        label2.x = dialog.rightEdge;
     }
     dialog.show();
 
@@ -1701,6 +1737,82 @@ uiUtil.createItemListSliders = function (itemList) {
             };
         });
         console.log('data: ' + JSON.stringify(data));
+    };
+    tableView.updateData();
+    tableView.reloadData();
+
+    return tableView;
+};
+
+uiUtil.createItemListSlidersViewOnly = function (itemList) {
+    var data = [];
+    var datasource = {
+        tableCellSizeForIndex: function (table, idx) {
+            return cc.size(100, 100);
+        },
+        tableCellAtIndex: function (table, idx) {
+            var cell = table.dequeueCell();
+            var size = this.tableCellSizeForIndex(idx);
+            if (!cell) {
+                cell = new cc.TableViewCell();
+
+                var bg = autoSpriteFrameController.getSpriteFromSpriteName('item_bg.png');
+                bg.x = size.width / 2;
+                bg.y = size.height / 2;
+                bg.setName('bg');
+                cell.addChild(bg);
+
+                var numLabel = new cc.LabelTTF("", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
+                numLabel.anchorX = 1;
+                numLabel.anchorY = 0;
+                numLabel.x = bg.width - 4;
+                numLabel.y = 4;
+                numLabel.setName('num');
+                bg.addChild(numLabel, 1);
+                numLabel.enableStroke(cc.color.BLACK, 2);
+            }
+            var info = data[idx];
+
+            var bg = cell.getChildByName('bg');
+            if (bg.getChildByName('icon')) {
+                bg.removeChildByName('icon');
+            }
+
+            var itemId = info.itemId;
+            var iconName = "icon_item_" + itemId + ".png";
+            var icon = autoSpriteFrameController.getSpriteFromSpriteName(iconName);
+            icon.x = bg.width / 2;
+            icon.y = bg.height / 2;
+            icon.setName('icon');
+            bg.addChild(icon);
+            var probab = info.weight / 4;
+            bg.getChildByName('num').setString(probab.toFixed(2) + "%");
+            cell.data = info;
+
+            return cell;
+        },
+        numberOfCellsInTableView: function (table) {
+            return data.length;
+        }
+    };
+
+    var delegate = {
+        tableCellTouched: function (table, cell) {
+        },
+        tableCellHighlight: function (table, cell) {
+        },
+        tableCellUnhighlight: function (table, cell) {
+        },
+        tableCellWillRecycle: function (table, cell) {
+        }
+    };
+
+    var tableView = new cc.TableView(datasource, cc.size(400, 100));
+    tableView.setDirection(cc.SCROLLVIEW_DIRECTION_HORIZONTAL);
+    tableView.setVerticalFillOrder(cc.TABLEVIEW_FILL_TOPDOWN);
+    tableView.setDelegate(delegate);
+    tableView.updateData = function () {
+        data = utils.clone(itemList).reverse();
     };
     tableView.updateData();
     tableView.reloadData();

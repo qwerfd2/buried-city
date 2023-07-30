@@ -70,6 +70,8 @@ var Player = cc.Class.extend({
         this.lastCoffeeTime = -999999;
         this.lastAlcoholTime = -999999;
         this.mapBattle = {};
+        this.fuel = 0;
+        this.shoeTime = 0;
         this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
@@ -124,6 +126,8 @@ var Player = cc.Class.extend({
             lastWaterTime: this.lastWaterTime,
             weaponRound: this.weaponRound,
             mapBattle: this.mapBattle,
+            fuel: this.fuel,
+            shoeTime: this.shoeTime
         };
         return opt;
     },
@@ -174,6 +178,8 @@ var Player = cc.Class.extend({
             this.lastWaterTime = opt.lastWaterTime;
             this.weaponRound = opt.weaponRound;
             this.mapBattle = opt.mapBattle;
+            this.fuel = opt.fuel;
+            this.shoeTime = opt.shoeTime || 0;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
@@ -200,13 +206,39 @@ var Player = cc.Class.extend({
     onCurrencyChange: function(value) {
         if (typeof value == "number") {
             player.currency += value;
-            if (player.currency >= 9999) {
-                player.currency = 9999;
+            if (player.currency >= 99999) {
+                player.currency = 99999;
             }
         utils.emitter.emit("onCurrencyChange", player.currency);
         }
     },
+    onFuelChange: function(value) {
+        if (typeof value == "number") {
+            player.fuel += value;
+            if (player.fuel >= 99) {
+                player.fuel = 99;
+            } else if (player.fuel < 0) {
+                player.fuel = 0;
+            }
+        utils.emitter.emit("onFuelChange", player.fuel);
+        }
+    },
     trySteal: function() {
+        var saveFlag = false;
+        if (this.shoeTime > 30000) {
+            //break a shoe from storage
+            if (this.storage.validateItem(1306001, 1)) {
+                this.storage.decreaseItem(1306001, 1);
+                player.log.addMsg(stringUtil.getString(1341));
+                this.shoeTime = 0;
+                saveFlag = true;
+            } else if (this.bag.validateItem(1306001, 1)) {
+                this.bag.decreaseItem(1306001, 1);
+                player.log.addMsg(stringUtil.getString(1341));
+                this.shoeTime = 0;
+                saveFlag = true;
+            }
+        }
         var TheftConfig = [[0.02, 0.05, 0.09, 0.14, 0.2],[0.05, 0.11, 0.18, 0.26, 0.35],[0.09, 0.19, 0.3, 0.42, 0.55],[0.14, 0.29, 0.45, 0.62, 0.8],[0.2, 0.41, 0.63, 0.86, 1.1],[0.26, 0.53, 0.81, 1.1, 1.4]]; 
         var dtTime = Math.round(cc.timer.time - this.leftHomeTime);
         var weight = this.storage.getAllItemNum();
@@ -240,9 +272,12 @@ var Player = cc.Class.extend({
         if (rand <= probability) {
             var res = this._getAttackResult(90, 0, this.storage);
             res = res.items;
-            Record.saveAll();
+            saveFlag = true;
             var self = this;
             uiUtil.showStolenDialog(stringUtil.getString(9032), "#stealPrompt.png", self, res);
+        }
+        if (saveFlag) {
+            Record.saveAll();
         }
     },
     getRandomOwnedItem: function() {
@@ -518,6 +553,10 @@ var Player = cc.Class.extend({
                 this.incrementWater();
                 this.log.addMsg(stringUtil.getString(1330));
             }
+        }
+        //Add fuel if site is active, then test whether it is still active
+        if (this.map.getSite(GAS_SITE).isActive) {
+            this.onFuelChange(1);
         }
         //Deduct water. If buff is in effect, don't deduct. 
         if (curTime - this.lastWaterTime >= 21600) {
@@ -1047,7 +1086,7 @@ var Player = cc.Class.extend({
         }
         var rray = [];
         var copyItem = utils.clone(itemConfig);
-        var deleteItem = [1106013, 1305064, 1305053, 1305044, 1305034, 1305024, 1305023];
+        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073];
         for (var a in deleteItem) {
             delete copyItem[deleteItem[a]];
         }
@@ -1168,6 +1207,9 @@ var Player = cc.Class.extend({
         if (IAPPackage.isStealthUnlocked()) {
             probability -= probability * 0.25;
         }
+        if (player.equip.isEquiped(1305053)) {
+            probability -= probability * 0.25;
+        }
         if (rand <= probability || override) {
             player.log.addMsg(1113);
             var diff;
@@ -1181,8 +1223,6 @@ var Player = cc.Class.extend({
                 diff = this.mapBattle.a;
                 list = utils.getMonsterListByDifficulty(diff);
             }
-            //player.log.addMsg("saved: " + JSON.stringify(this.mapBattle));
-            //player.log.addMsg("obtined: " + diff + ", " + JSON.stringify(list));
             uiUtil.showRandomBattleDialog({
                 difficulty: diff,
                 list: list
@@ -1274,7 +1314,7 @@ var Player = cc.Class.extend({
         this.changeInjury(0 - this.injury);
         this.changeInfect(0 - this.infect);
         this.changeWater(0 - this.water);
-        this.changeVirus(0 - this.virus);
+        this.changeVirus(0 - Math.ceil(this.virus / 2));
         this.changeAttr("hp", this.hpMax);
         this.isInSleep = false;
         this.cured = false;

@@ -10,6 +10,7 @@ var HOME_SITE = 100;
 var AD_SITE = 202;
 var BOSS_SITE = 61;
 var WORK_SITE = 204;
+var GAS_SITE = 201;
 var BAZAAR_SITE = 400;
 
 var Site = BaseSite.extend({
@@ -35,25 +36,21 @@ var Site = BaseSite.extend({
 
         this.isUnderAttacked = false;
         this.haveNewItems = false;
+        this.isActive = false;
+        this.fixedTime = 0;
     },
     testSecretRoomsBegin: function () {
         if (this.secretRoomsConfig) {
-            //高能探测器
-            var ITEM_EXPLORER = 1305064;
-            //强光手电
-            var ITEM_FLASHLIGHT = 1305053;
             //密室收到道具影响
             var maxCount = Number.parseInt(this.secretRoomsConfig.maxCount);
-            if (player.equip.isEquiped(ITEM_EXPLORER)) {
-                maxCount += specialItemConfig[ITEM_EXPLORER].maxCount;
+            if (player.equip.isEquiped(1305064)) {
+                maxCount += 1;
             }
             if (this.secretRoomsShowedCount < maxCount) {
                 var probability = Number.parseFloat(this.secretRoomsConfig.probability);
 
-                if (player.equip.isEquiped(ITEM_EXPLORER)) {
-                    probability += specialItemConfig[ITEM_EXPLORER].probability;
-                } else if (player.equip.isEquiped(ITEM_FLASHLIGHT)) {
-                    probability += specialItemConfig[ITEM_FLASHLIGHT].probability;
+                if (player.equip.isEquiped(1305064)) {
+                    probability += 0.16;
                 }
                 var rand = Math.random();
                 if (probability >= rand) {
@@ -123,7 +120,9 @@ var Site = BaseSite.extend({
             secretRoomType: this.secretRoomType,
             closed: this.closed,
             isUnderAttacked: this.isUnderAttacked,
-            haveNewItems: this.haveNewItems
+            haveNewItems: this.haveNewItems,
+            isActive: this.isActive,
+            fixedTime: this.fixedTime
         };
     },
     restore: function (saveObj) {
@@ -141,6 +140,8 @@ var Site = BaseSite.extend({
             this.closed = saveObj.closed;
             this.isUnderAttacked = saveObj.isUnderAttacked;
             this.haveNewItems = saveObj.haveNewItems;
+            this.isActive = saveObj.isActive;
+            this.fixedTime = saveObj.fixedTime;
         } else {
             this.init();
         }
@@ -378,60 +379,40 @@ var BazaarSite = Site.extend({
 });
 
 var WorkSite = Site.extend({
-    ctor: function (siteId) {
-        this.id = siteId;
-        this.config = utils.clone(siteConfig[this.id]);
-        this.pos = this.config.coordinate;
-        this.storage = new Storage();
-        this.isActive = false;
-        this.fixedTime = 0;
-    },
-    save: function () {
-        return {
-            pos: this.pos,
-            step: this.step,
-            storage: this.storage.save(),
-            isActive: this.isActive,
-            fixedTime: this.fixedTime
-        };
-    },
-    restore: function (saveObj) {
-        if (saveObj) {
-            this.pos = saveObj.pos;
-            this.step = saveObj.step;
-            this.storage.restore(saveObj.storage);
-            this.isActive = saveObj.isActive;
-            this.fixedTime = saveObj.fixedTime;
-        } else {
-            this.init();
-        }
-    },
-    init: function () {
-    },
-    isSiteEnd: function () {
+    canClose: function () {
         return false;
-    },
-    //进度
-    getProgressStr: function () {
-        return "???";
-    },
-    //当前room的指示
-    getCurrentProgressStr: function () {
-        return "";
     },
     fix: function () {
         this.isActive = true;
         this.fixedTime = cc.timer.time;
-        utils.emitter.emit('onWorkSiteChange', this.isActive);
+        if (this.id == 204) {
+            utils.emitter.emit('onWorkSiteChange', this.isActive);
+        } else {
+            utils.emitter.emit('onGasSiteChange', this.isActive);
+        }
     },
     checkActive: function () {
         if (this.isActive) {
             var intervalTime = cc.timer.time - this.fixedTime;
-            if (intervalTime > workSiteConfig.lastTime * 60) {
+            var criteria;
+            var probability;
+            if (this.id == 204) {
+                criteria = workSiteConfig.lastTime;
+                probability = workSiteConfig.brokenProbability;
+            } else {
+                criteria = gasSiteConfig.lastTime;
+                probability = gasSiteConfig.brokenProbability;
+            }
+            if (intervalTime > criteria * 60) {
                 var rand = Math.random();
-                if (rand < workSiteConfig.brokenProbability) {
+                if (rand < probability) {
                     this.isActive = false;
-                    utils.emitter.emit('onWorkSiteChange', this.isActive);
+                    Record.saveAll();
+                    if (this.id == 204) {
+                        utils.emitter.emit('onWorkSiteChange', this.isActive);
+                    } else {
+                        utils.emitter.emit('onGasSiteChange', this.isActive);
+                    }
                 }
             }
         }

@@ -22,25 +22,28 @@ var Storage = cc.Class.extend({
         }
     },
     getRandomItem: function() {
-        var randomIndex = utils.getRandomInt(0, index);
-        var keyArray = Object.keys(this.map);
-        var deleteItem = [1106013, 1305064, 1305053, 1305044, 1305034, 1305024, 1305023];
+        var keyArray = utils.clone(this.map);
+        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073];
         for (var a in deleteItem) {
-            delete keyArray[deleteItem[a]];
+            delete keyArray.a;
         }
+        keyArray = Object.keys(keyArray);
         if (!keyArray.length) {
             return null;
         }
         var randomIndex = utils.getRandomInt(0, keyArray.length - 1);
         var itemid = keyArray[randomIndex];
         var index = this.getNumByItemId(itemid);
-        if (index > 20) {
-            randomIndex = utils.getRandomInt(5, 15);
+        if (index > 10) {
+            randomIndex = utils.getRandomInt(5, 10);
         } else {
             randomIndex = utils.getRandomInt(1, index);
         }
         if (itemid == 1305011) {
             randomIndex *= 2;
+            if (randomIndex > index) {
+                randomIndex = index;
+            }
         }
         var result = [];
         result.push({itemId: itemid, num: randomIndex});
@@ -259,7 +262,7 @@ var Bag = Storage.extend({
         if (player.storage.getNumByItemId(1305024) > 0) {
             weight += 20;
         }
-        if (player.storage.getNumByItemId(1305044) > 0) {
+        if (player.storage.getNumByItemId(1305034) > 0) {
             weight += 30;
         }
         if (IAPPackage.isBigBagUnlocked()) {
@@ -282,8 +285,8 @@ var Bag = Storage.extend({
         return newBag;
     },
     testWeaponBroken: function (itemId, type) {
-        //新手保护, 3天内不会损坏武器
-        if (cc.timer.formatTime().d < 3) {
+        //新手保护, 2天内不会损坏武器
+        if (cc.timer.formatTime().d < -1) {
             return false;
         }
         if (itemConfig[itemId]) {
@@ -298,19 +301,18 @@ var Bag = Storage.extend({
             }          
             var rand = Math.random();
             var isBroken = (rand <= weaponBrokenProbability);
-            if (isBroken && player.weaponRound.itemId > 2) {
+            if (isBroken && player.weaponRound[itemId] > 2) {
                 player.equip.unequipByItemId(itemId);
                 this.decreaseItem(itemId, 1);
                 player.weaponRound[itemId] = 0;
                 player.log.addMsg(1205, stringUtil.getString(itemId).title);
-
-                Record.saveAll();
             } else if (isBroken) {
                 player.weaponRound[itemId] = 3;
                 isBroken = false;
             } else {
                 player.weaponRound[itemId]++;
             }
+            Record.saveAll();
             return isBroken;
         }
         return false;

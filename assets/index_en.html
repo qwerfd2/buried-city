@@ -37,7 +37,7 @@
 9. You can select multiple talents and the effects are combined.<br>
 10. If you're starving, HP will decrease. Power Plant won't be broken within 7 days of fixing. Reduced cost of generator parts.<br>
 11. NPC stealing functionality (see appendix).<br>
-12. "Survivor Bazaar" location (see appendix).<br>
+12. "Survivor Bazaar" location, with new sweepstakes. (see appendix).<br>
 13. "W. White" NPC, who loves guns and will sell chemical products. Unlockable locations: Bandit Den, High School<br>
 14. Bandit will steal from your home if you own too much stuff and leave for too long. Defense will reduce the chance of this.<br>
 15. Weather forcast after Radio is crafted (view at status bar - weather), 16% that the weather forcast is wrong.<br>
@@ -56,7 +56,8 @@
 28. Dog feeding is now like stove, with max duration of 3 days. Dog shed must be constructed and the dog is at the museum.<br>
 29. Bullet and coffee bean has weight (0.02, min 1).<br>
 30. NPCs will come at the end of day to buy stuff from you at a really good price.<br>
-31. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage, NPC value rounding error, multi-clickable crafting buttons, NPC ghost gun exploit, avoid zombie encounter by quitting the game).<br>
+31. Fuel mechanism (gas station pump, pump part, new travel speed boost system). See appendix.<br>
+32. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage, NPC value rounding error, multi-clickable crafting buttons, NPC ghost gun exploit, avoid zombie encounter by quitting the game).<br>
 </p>
 <h2>Appendix</h2>
 <h3>Moonlighting：</h3>
@@ -75,11 +76,13 @@
 <h3>NPC Stealing:</h3>
 <p>If stealing is successful, that NPC's alert increases by 1. If failed, the alert increases by 2, and friendship is reduced by 2 (Communicator -1, Cheat: All Unlocked: -0). Your luck is updated daily [35, 65], and it will affect the success rate. If not stolen from the NPC's alert will decrease by 1 per day.</p>
 <h3>Survivor Bazaar</h3>
-<p>A location where you can sell items in your bag for coins, and buy items which refreshes every day. Items can be previewed in map.</p>
+<p>A location where you can sell items in your bag for coins (cap 99999 coins), and buy items which refreshes every day. Items can be previewed in map.</p>
 <h3>Thirst:</h3>
 <p>The player will drink water automatically from storage or the bag, once every 6 hours. Each drink will provide thirst immunity for the next 6 hours. If there is no immunity, 3 thirsts are deducted every hour. If thirst is lower than 25, you will lose 20 hp per hour. If you obtain a water and thirst is not full, you will drink one. When arriving home, you will drink until your thirst is full. Excessive amounts will be converted to equivalent immune time.</p>
 <h3>Virus Load:</h3>
-<p>Every time you are hurt from a zombie combat with difficulty greater than 2, you risk gaining 1 virus (zombie encounters on the map during daytime: 1-2, nighttime: 3-4). If the virus is overloaded, you will die instantly. Virus will not decrease, but you can increase the upper bound of virus load by sacrificing other properties. All properties except hp can be exchanged for virus load 5:20, and hp can be exchanged 10:20.</p>
+<p>Every time you are hurt from a zombie combat with difficulty greater than 2, you risk gaining 1 virus (zombie encounters on the map during daytime: 1-2, nighttime: 3-4). If the virus is overloaded, you will die instantly. Virus will not decrease, but you can increase the upper bound of virus load by sacrificing other properties. All properties except hp can be exchanged for virus load 5:20, and hp can be exchanged 10:20. Wearing clothes can reduce the chance of gaining virus.</p>
+<h3>Fuel Mechanism</h3>
+<p>Player can fix the pump at the gas station with gas pump part. When fixed, pump will provide 1 fuel per hour. Fuel cannot be sold and have a cap of 99. fuel will be used during motorcycle travel, which will significantly boost the player's speed. Falcon has been removed, the engine/buffs repurposed for/to the normal motorcycle. Shoes now break after a fixed distance have been traveled. If the player have shoes, shoes will be automatically used to provide a small speed boost. If the player have motorcycles, motorcycle's storage space boost will be used. If the player also has fuel, speed boost will be provided.</p>
 <h2>Buried Town Factsheet</h2>
 <p>
 Buried Town, originally named Berry Town, was developed by Chengdu 点犀 (DianXi) (Dice7) Network Co.Ltd and published by Beijing 乐动卓越 (LeDongZhuoYue) (Locojoy) Technology Co.Ltd. First launched on the iOS on Sep. 23rd, 2015, The game started its Android beta phase on Sep. 25th, 2015, and was released at Google Play on Nov. 23rd, 2015. The last update (1.4.3) was released on Jun. 27th, 2018, and the game server was shut down around late June, 2019.</p><p>

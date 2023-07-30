@@ -223,7 +223,7 @@ var NPC = BaseSite.extend({
         } else {
             multiplier = this.reputation;
         }
-        multiplier = 1 + multiplier * 0.02;
+        multiplier = 0.8 + multiplier * 0.02;
         this.price = round(this.tradeItem[0].num * player.getPrice(this.tradeItem[0].itemId) * multiplier);
         var self = this;
         uiUtil.showNpcSaleDialog(this,

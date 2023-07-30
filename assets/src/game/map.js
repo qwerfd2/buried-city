@@ -35,7 +35,7 @@ var Map = cc.Class.extend({
                     site = new AdSite(siteId);
                 } else if (siteId == BOSS_SITE) {
                     site = new BossSite(siteId);
-                } else if (siteId == WORK_SITE) {
+                } else if (siteId == WORK_SITE || siteId == GAS_SITE) {
                     site = new WorkSite(siteId);
                 } else if (siteId == BAZAAR_SITE) {
                     site = new BazaarSite(siteId);
@@ -100,7 +100,7 @@ var Map = cc.Class.extend({
                 site = new AdSite(siteId);
             } else if (siteId == BOSS_SITE) {
                 site = new BossSite(siteId);
-            } else if (siteId == WORK_SITE) {
+            } else if (siteId == WORK_SITE || siteId == GAS_SITE) {
                 site = new WorkSite(siteId);
             } else if (siteId == BAZAAR_SITE) {
                 site = new BazaarSite(siteId);

@@ -57,7 +57,7 @@ var medalNode = cc.Node.extend({
         pb.midPoint = cc.p(0, 0);
         pb.barChangeRate = cc.p(1, 0);
         pb.setAnchorPoint(0, 0.5);
-        pb.setPosition(leftEdge + 180, 210);
+        pb.setPosition(leftEdge + 182, 210);
         pb.setPercentage(medalPercentage);
         pb.setName("pb");
         this.addChild(pb);

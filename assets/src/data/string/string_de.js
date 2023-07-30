@@ -9,6 +9,24 @@ var string = {
 "1336": "Erhöhe die obere Grenze der Last:",
 "1337": "Willkommen!",
 "1339": "Hallo, ich möchte diese gegen %s Münzen tauschen. Ist das in Ordnung für Sie?",
+"gachaponDialog": {
+    "title": {
+        "txt_1": "Preis: %s Münzen"
+    },
+    "content": {},
+    "action": {
+        "btn_1": {
+            "txt": "Spielen"
+        },
+        "btn_1": {
+            "txt": "Nicht jetzt"
+        }
+    }
+},
+"gachapon": {
+    "title": "Gewinnspiel",
+    "des": "Versuche dein Glück! Ein riesiger Preis erwartet dich! 100 % Gewinnchance!"
+},
 "1338": "Willkommen in Buried City, einer Buried Town-Modifikation von ArithSeq.\nWenn der Bildschirminhalt unvollständig ist, gehen Sie bitte zu den Einstellungen in der unteren rechten Ecke und ändern Sie Schrumpfen des Bildschirms.\nDiese Version wurde umfangreich überarbeitet und enthält zahlreiche Funktionen. Bitte lesen Sie die Dokumentation in der unteren linken Ecke für alle Informationen.\nOpen-Source-Software, bitte nicht für kommerzielle Zwecke verwenden. Genießen Sie Ihren Aufenthalt!",
     "1103094": {
         "title": "Käse",
@@ -484,10 +502,6 @@ var string = {
         "title": "Katana Teile",
         "des": "Ein kapputes Samuraischwert. Es muss repariert werden, um von Nutzen zu sein."
     },
-    "1102053": {
-        "title": "Falkenmotor",
-        "des": "Das ist der Kernbestandteil eines Kriegsfalken."
-    },
     "1103011": {
         "title": "Kartoffeln",
         "des": "Ein nährstoffreiches und einfach zu pflanzendes Gemüse, dass zuverlässig den Hunger stillt. Rohe Kartoffeln können zu Darminfektionen führen."
@@ -665,18 +679,28 @@ var string = {
         "title": "Rucksack",
         "des": "Entspricht dem Militärstandard eines Rucksacks.Mit ihm kann eine Last getragen werden, die an die Grenzen des körperlich Möglichen geht."
     },
-    "1305034": {
-        "title": "Motorrad",
-        "des": "Ein altes Motorradmodell, mit dessen Hilfe du schneller in Ruinen unterwegs bist."
-    },
-    "1305044": {
-        "title": "Kriegsfalke",
-        "des": "Das soll das Gefährt einer großen Persönlichkeit gewesen sein. Das Gefährt ist nicht nur schnell, sondern hat auch einen großen Stauraum. Es eignet sich hervorragend zum Erkunden von Ruinen."
-    },
-    "1305053": {
-        "title": "Taschenlampe",
-        "des": "Unterschätze sie bloß nicht! Damit kann man vielen Geheimnissen auf die Spur kommen. Erhöhe die Wahrscheinlichkeit, geheime Räume zu finden."
-    },
+        "1102053": {
+            "title": "Motorradmotor",
+            "des": "Die Kernkomponente zur Herstellung von Motorrädern."
+        },
+        "1305034": {
+            "title": "Motorrad",
+            "des": "Ein altmodisches Motorrad mit großer Tragfähigkeit, das Ihre Reisegeschwindigkeit erheblich erhöht."
+        },
+        "1305053": {
+            "title": "Starke Taschenlampe",
+            "des": "Unterschätze sie nicht; in ihrer Anwesenheit haben Zombies, die sich in Ecken verstecken, keine Chance zu entkommen. Reduziert die Chance, auf Zombies zu treffen, erheblich."
+        },
+        "1102073": {
+            "title": "Benzinpumpenkomponente",
+            "des": "Abgesehen von fehlender Keramik ist diese Komponente makellos. Benzin ist zu korrosiv, und Kunststoff wird innerhalb weniger Tage spröde."
+        },
+        "16": {
+            "title": "Benzin",
+            "des": "Ohne Benzin funktionieren motorisierte Fahrzeuge nicht. Diese kostbare Ressource sollte vor anderen Überlebenden geheim gehalten werden. Es ist hochentzündlich und explosiv und kann nur im Kraftstofftank gelagert werden."
+        },
+    "1340": "Kraftstoffbedarf:",
+    "1341": "Deine Stiefel sind kaputt.",
     "1305064": {
         "title": "Hochenergiedetektor",
         "des": "Darauf ist ein sensitives Kopfteil installiert mit automatischer Topografiemessfunktion. Erhöhe die Wahrscheinlichkeit, geheime Räume stark zu finden."
@@ -1292,12 +1316,12 @@ var string = {
     },
     "m_302": {
         "name": "Freiheitsmedaille（2. Grad）",
-        "condition": "Du hast in einem Szenario 10 Geheimräume geklärt",
+        "condition": "Du hast in einem Szenario 15 Geheimräume geklärt",
         "des": "Du erhältst zu Szenariobeginn eine Pistole"
     },
     "m_301": {
         "name": "Freiheitsmedaille（1. Grad）",
-        "condition": "Du hast in einem Szenario 20 Geheimräume geklärt",
+        "condition": "Du hast in einem Szenario 30 Geheimräume geklärt",
         "des": "Du erhältst zu Szenariobeginn eine M40"
     },
     "1260": "Errungenschaft",

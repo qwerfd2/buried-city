@@ -1,10 +1,3 @@
-var specialItemConfig = {
-    //强光手电,增加发现密室的几率
-    1305053: {probability: 0.08},
-    //高能探测器,增加发现密室的几率和数量
-    1305064: {probability: 0.16, maxCount: 1}
-};
-
 var itemConfig = {
     "1101011": {
         "id": "1101011",
@@ -87,8 +80,14 @@ var itemConfig = {
     "1102063": {
         "id": "1102063",
         "weight": 10,
-        "price": 70,
-        "value": 70
+        "price": 60,
+        "value": 60
+    },
+    "1102073": {
+        "id": "1102073",
+        "weight": 10,
+        "price": 20,
+        "value": 20
     },
     "1103011": {
         "id": "1103011",
@@ -594,6 +593,10 @@ var itemConfig = {
         "weight": 6,
         "price": 50,
         "value": 50,
+        "effect_tool": {
+            "id": "1302021",
+            "workingTime": 0
+        },
         "effect_weapon": {
             "id": "1302043",
             "atk": 100,
@@ -760,12 +763,6 @@ var itemConfig = {
         "weight": 16,
         "price": 64,
         "value": 62.374777777777774
-    },
-    "1305044": {
-        "id": 1305044,
-        "weight": 24,
-        "price": 108,
-        "value": 105.684333232323232
     },
     "1305053": {
         "id": "1305053",

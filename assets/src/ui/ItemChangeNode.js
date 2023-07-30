@@ -153,18 +153,19 @@ var ItemChangeNode = cc.Node.extend({
                 if (num < mod) {
                     fromData.decreaseItem(item.id, num);
                     toData.increaseItem(item.id, num);
-                }
-                //Process 50 by 50, until the amount left is below 50.
-                while (num > 50) {
-                    if (toData.validateItemWeight(item.id, 50)) {
-                        fromData.decreaseItem(item.id, 50);
-                        toData.increaseItem(item.id, 50);
+                } else {
+                    //Process 50 by 50, until the amount left is below 50.
+                    while (num > 50) {
+                        if (toData.validateItemWeight(item.id, 50)) {
+                            fromData.decreaseItem(item.id, 50);
+                            toData.increaseItem(item.id, 50);
+                        }
+                        num -= 50;
                     }
-                    num -= 50;
-                }
-                if (num < 50 && toData.validateItemWeight(item.id, num)) {
-                    fromData.decreaseItem(item.id, num);
-                    toData.increaseItem(item.id, num);
+                    if (num < 50 && toData.validateItemWeight(item.id, num)) {
+                        fromData.decreaseItem(item.id, num);
+                        toData.increaseItem(item.id, num);
+                    }
                 }
             } else {
                 for (var i = 0; i < num; i++) {

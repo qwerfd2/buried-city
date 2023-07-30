@@ -1,3 +1,4 @@
+var GLOBAL_DIALOGS = 0;
 var dialogManager = {
     dialogStack: [],
     showDialog: function (dialog) {
@@ -66,15 +67,11 @@ var virusExchangeDialog = function(tid, cd) {
 var bazaarNotEnoughDialog = function(str) {
     var config = {
         title: {},
-        content: {},
-        action: {
-            btn_1: {},
-            btn_2: {}
-        }
+        content: {des: str},
+        action: {btn_1: {}}
     };
 
-    config.content.des = String(str).toString();
-    config.action.btn_2.txt = stringUtil.getString(1073);
+    config.action.btn_1.txt = stringUtil.getString(1073);
     new DialogTiny(config).show();
 };
 
@@ -146,6 +143,7 @@ var Dialog = cc.Layer.extend({
         return this.bgNode.getContentSize();
     },
     show: function () {
+        GLOBAL_DIALOGS += 1;
         this.getChildByName('bgColor').setVisible(!dialogManager.isDialogShowing());
         cc.director.getRunningScene().addChild(this, 100);
         audioManager.playEffect(audioManager.sound.POPUP);
@@ -156,6 +154,7 @@ var Dialog = cc.Layer.extend({
         dialogManager.showDialog(this);
     },
     dismiss: function () {
+        GLOBAL_DIALOGS -= 1;
         dialogManager.dismissDialog(this);
         this.removeFromParent();
         var keyEventLayer = cc.director.getRunningScene().getChildByName("keyEventLayer");
@@ -171,8 +170,6 @@ var Dialog = cc.Layer.extend({
         this.onDismissListener = listener;
     }
 });
-
-
 
 var DialogCommon = Dialog.extend({
     ctor: function (config) {
@@ -678,10 +675,9 @@ var RandomBattleDialog = DialogBig.extend({
         this.log = this.contentNode.getChildByName("log");
         this.log.height = this.log.height + 70;
         this.createBattleBeginView();
-        this.getChildByName("bgColor").height = 1004;
         var screenFix = Record.getScreenFix();
         if (screenFix == 1) {
-            this.getChildByName("bgColor").height = 946;
+            this.getChildByName("bgColor").height = 947;
         } else {
             this.getChildByName("bgColor").height = 1004;
         }

@@ -20,10 +20,10 @@ var TopFrameNode = cc.Node.extend({
         this.firstLine.setContentSize(584, 50);
         bg.addChild(this.firstLine);
 
-        var btnSize = cc.size(this.firstLine.width / 5 - 10, this.firstLine.height);
-        var halfBtnSize = cc.size(this.firstLine.width / 9 - 4, this.firstLine.height);
+        var btnSize = cc.size(this.firstLine.width / 6, this.firstLine.height);
+        var halfBtnSize = cc.size(this.firstLine.width / 10, this.firstLine.height);
         
-        var day = new StatusButton(cc.size(this.firstLine.width / 7 + 6, this.firstLine.height), "#icon_day.png", "", {scale: 0.5});
+        var day = new StatusButton(cc.size(this.firstLine.width / 7, this.firstLine.height), "#icon_day.png", "", {scale: 0.4});
         day.setClickListener(this, function (sender) {
             var label = sender.getChildByName("label");
             showStatusDialog(1, cc.timer.getTimeDayStr(), sender.spriteFrameName);
@@ -34,7 +34,7 @@ var TopFrameNode = cc.Node.extend({
         this.firstLine.addChild(day);
         
         var season = new StatusButton(halfBtnSize, "#icon_season_0.png", "", {
-            scale: 0.5,
+            scale: 0.4,
             noLabel: true
         });
         season.setClickListener(this, function (sender) {
@@ -42,24 +42,24 @@ var TopFrameNode = cc.Node.extend({
             showStatusDialog(2, label.getString(), sender.spriteFrameName);
         });
         
-        season.setPosition(btnSize.width*1.05 + 7.8, this.firstLine.getContentSize().height / 2);
+        season.setPosition(btnSize.width*1.05 + 9.8, this.firstLine.getContentSize().height / 2);
         season.setName("season");
         this.firstLine.addChild(season);
         
-        var time = new StatusButton(btnSize, "#icon_time.png", "", {scale: 0.5});
+        var time = new StatusButton(btnSize, "#icon_time.png", "", {scale: 0.4});
         time.setClickListener(this, function (sender) {
             var label = sender.getChildByName("label");
             showStatusDialog(4, label.getString(), sender.spriteFrameName);
         });
         
-        time.setPosition(btnSize.width*1.83 + 8, this.firstLine.getContentSize().height / 2);
+        time.setPosition(btnSize.width*1.95, this.firstLine.getContentSize().height / 2);
         time.setName("time");
         this.firstLine.addChild(time);
 
         this.updateByTime();
 
         var weather = new StatusButton(halfBtnSize, "#icon_weather_" + player.weather.weatherId + ".png", player.weather.getWeatherName(), {
-            scale: 0.5,
+            scale: 0.4,
             noLabel: true
         });
         weather.setClickListener(this, function (sender) {
@@ -67,20 +67,20 @@ var TopFrameNode = cc.Node.extend({
             showStatusDialog(11, label.getString(), sender.spriteFrameName);
         });
         
-        weather.setPosition(btnSize.width*2.6 + 9.6, this.firstLine.getContentSize().height / 2);
+        weather.setPosition(btnSize.width*2.6 + 14.8, this.firstLine.getContentSize().height / 2);
         weather.setName("weather");
         this.firstLine.addChild(weather);
         utils.emitter.on("weather_change", function (weatherId) {
             weather.updateView("icon_weather_" + weatherId + ".png", player.weather.getWeatherName());
         });
 
-        var temperature = new StatusButton(cc.size(this.firstLine.width / 7 - 15, this.firstLine.height), "#icon_temperature_0.png", player.temperature, {scale: 0.5});
+        var temperature = new StatusButton(cc.size(this.firstLine.width / 7 - 12, this.firstLine.height), "#icon_temperature_0.png", player.temperature, {scale: 0.4});
         temperature.setClickListener(this, function (sender) {
             var label = sender.getChildByName("label");
             showStatusDialog(3, label.getString(), sender.spriteFrameName);
         });
         
-        temperature.setPosition(btnSize.width*3.3 - 0.8, this.firstLine.getContentSize().height / 2);
+        temperature.setPosition(btnSize.width*3.3 + 11.6, this.firstLine.getContentSize().height / 2);
         temperature.setName("temperature");
         this.firstLine.addChild(temperature);
         utils.emitter.on("temperature_change", function (value) {
@@ -95,8 +95,8 @@ var TopFrameNode = cc.Node.extend({
             eActive = "inactive";
             sid = 1127;
         }
-        var electric = new StatusButton(cc.size(this.firstLine.width / 9 - 8, this.firstLine.height), "#icon_electric_"+eActive+".png", stringUtil.getString(sid), {
-            scale: 0.7,
+        var electric = new StatusButton(cc.size(this.firstLine.width / 10, this.firstLine.height), "#icon_electric_"+eActive+".png", stringUtil.getString(sid), {
+            scale: 0.6,
             noLabel: true
         });
         electric.setClickListener(this, function (sender) {
@@ -104,7 +104,7 @@ var TopFrameNode = cc.Node.extend({
             showStatusDialog(12, label.getString(), sender.spriteFrameName);
         });
         
-        electric.setPosition(btnSize.width*4 - 13.2, this.firstLine.getContentSize().height / 2);
+        electric.setPosition(btnSize.width * 4 + 8.4, this.firstLine.getContentSize().height / 2);
         electric.setName("electric");
         this.firstLine.addChild(electric);
         utils.emitter.on("onWorkSiteChange", function (val) {
@@ -119,10 +119,8 @@ var TopFrameNode = cc.Node.extend({
             electric.updateView("icon_electric_" + val + ".png", stringUtil.getString(sid));
         });
         
-        var currency = new StatusButton(cc.size(this.firstLine.width / 6 - 5, this.firstLine.height),"#money_white.png"," "+Math.floor(player.currency),{
-            scale: 0.6
-        });
-        currency.setPosition(btnSize.width * 4.7 - 13.2, this.firstLine.getContentSize().height / 2);
+        var currency = new StatusButton(cc.size(this.firstLine.width / 7 + 14.6, this.firstLine.height),"#money_white.png"," "+Math.floor(player.currency),{scale: 0.5});
+        currency.setPosition(btnSize.width * 5 - 10.8, this.firstLine.getContentSize().height / 2);
         var self = this;
         currency.setClickListener(this, function(sender) {
             showStatusDialog(13, Math.floor(player.currency), "#money_black.png");
@@ -131,8 +129,34 @@ var TopFrameNode = cc.Node.extend({
         utils.emitter.on("onCurrencyChange", function(a) {
             currency.updateView(""," "+Math.floor(a));
         });
-
         this.firstLine.addChild(currency);
+        
+        var gActive = player.map.getSite(GAS_SITE).isActive;
+        if (gActive) {
+            gActive = "active";
+        } else {
+            gActive = "inactive";
+        }
+        var fuelGauge = new StatusButton(cc.size(this.firstLine.width / 9 - 6, this.firstLine.height),"#icon_oil_" + gActive + ".png"," "+Math.floor(player.fuel),{scale: 0.6});
+        fuelGauge.setPosition(btnSize.width * 5.7 - 0.4, this.firstLine.getContentSize().height / 2);
+        var self = this;
+        fuelGauge.setClickListener(this, function(sender) {
+            showStatusDialog(16, Math.floor(player.fuel), "#icon_oil_" + gActive + ".png");
+        });
+
+        utils.emitter.on("onFuelChange", function(a) {
+            fuelGauge.updateView(""," "+Math.floor(a));
+        });
+        utils.emitter.on("onGasSiteChange", function (val) {
+            if (val){
+                val = "active";
+            } else {
+                val = "inactive";
+            }
+            fuelGauge.updateView("icon_oil_" + val + ".png", Math.floor(player.fuel));
+        });
+
+        this.firstLine.addChild(fuelGauge);
 
         this.secondLine = new cc.Node();
         this.secondLine.setAnchorPoint(0, 0);

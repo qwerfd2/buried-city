@@ -8,6 +8,24 @@ var string = {
 "1335": "You exchanged %s %s for 20 virus load.",
 "1336": "Increase load upper limit: ",
 "1337": "Welcome!",
+"gachapon": {
+    "title": "Sweepstakes",
+    "des": "Come try your luck! Huge prize awaits! 100% Winning!"
+},
+"gachaponDialog": {
+    "title": {
+        "txt_1": "Price: %s Coins"
+    },
+    "content": {},
+    "action": {
+        "btn_1": {
+            "txt": "Play"
+        },
+        "btn_1": {
+            "txt": "Never Mind"
+        }
+    }
+},
 "1339": "Hi, I'd like to exchange these for %s coins. Are you good with it?",
 "1338": "Welcome to Buried City, a Buried Town mod made by ArithSeq.\n\nIf the screen content is incomplete, please go to Settings in the bottom right corner and modify Shrink Screen.\n\nThis version has undergone lots of tweaks and has received numerous features. Please read the documentation on the bottom left corner for all the information. \n\nOpen source software, please don't use for commercial gain. Enjoy your stay!",
  "1103094": {
@@ -493,10 +511,6 @@ var string = {
         "name": "Power Plant",
         "des": "The town's only backup power plant has been in disrepair for a long time. If started, problems are likely to arise."
     },
-    "1102053": {
-        "title": "Battle Falcon Engine ",
-        "des": "A core component used for building the Battle Falcon. "
-    },
     "1103011": {
         "title": "Potatoes",
         "des": "A nourishing and easily planted crop, potatoes became a staple for staving off hunger after their introduction to Europe in the 16th century. Eating raw potatoes can result in an intestinal infection."
@@ -678,14 +692,28 @@ var string = {
         "title": "Motorcycle ",
         "des": "An old-fashioned motorcycle. Greatly increases your movement speed while moving through rubble. "
     },
-    "1305044": {
-        "title": "Battle Falcon ",
-        "des": "It's said the car used to be the ride of some bigwig. With fast speed and enormous storage space, it's perfect for adventuring through rubble."
-    },
-    "1305053": {
-        "title": "Bright Flashlight ",
-        "des": "Don't underestimate it. Few secrets remain hidden before a bright flashlight. Increase the probability of finding secret rooms."
-    },
+    "1102053": {
+        "title": "Motorcycle Engine",
+        "des": "The core component for making motorcycles."
+        },
+        "1305034": {
+        "title": "Motorcycle",
+        "des": "An old-fashioned motorcycle with a large carrying capacity, significantly increasing your travel speed."
+        },
+        "1305053": {
+        "title": "Strong Flashlight",
+        "des": "Don't underestimate it; in its presence, zombies hiding in corners will have nowhere to hide. Greatly reduces the chance of encountering zombies."
+        },
+        "1102073": {
+        "title": "Gasoline Pump Component",
+        "des": "Apart from lacking ceramics, this component is flawless. Gasoline is too corrosive, and plastic becomes brittle within days."
+        },
+        "16": {
+        "title": "Gasoline",
+        "des": "Without gasoline, motor vehicles won't function. This precious resource is best kept a secret from other survivors. Highly flammable and explosive, it can only be stored in the fuel tank."
+        },
+        "1340": "Fuel Need:",
+    "1341": "Your boots are broken.",
     "1305064": {
         "title": "Hyper Detector ",
         "des": "Equipped with a sensitive probe and capable of automatic terrain surveying. In China, it even works better than a Luoyang shovel. Greatly increase the probability of finding secret rooms."
@@ -1294,12 +1322,12 @@ var string = {
     },
     "m_302": {
         "name": "Medal of Freedom (Grade 2)",
-        "condition": "Clear 10 secret chambers in a single game",
+        "condition": "Clear 15 secret chambers in a single game",
         "des": "Start with 1 × [pistol] at the beginning of a new game."
     },
     "m_301": {
         "name": "Medal of Freedom (Grade 1)",
-        "condition": "Clear 20 secret chambers in a single game",
+        "condition": "Clear 30 secret chambers in a single game",
         "des": "Start with 1 × [M40] at the beginning of a new game."
     },
 "bt_season_1": {

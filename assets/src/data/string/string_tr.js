@@ -9,6 +9,24 @@ var string = {
 "1336": "Yük sınırını arttır:",
 "1337": "Hoş Geldiniz!",
 "1339": "Merhaba, bunları %s sikke ile değiştirmek istiyorum. Sizce uygun mu?",
+"gachapon": {
+    "title": "Çekiliş",
+    "des": "Şansını denemeye gel! Büyük ödül seni bekliyor! 100% Kazanma Oranı!"
+},
+"gachaponDialog": {
+    "title": {
+        "txt_1": "Fiyat: %s Sikke"
+    },
+    "content": {},
+    "action": {
+        "btn_1": {
+            "txt": "Oyna"
+        },
+        "btn_1": {
+            "txt": "Şimdi değil"
+        }
+    }
+},
 "1338": "Buried Town tarafından yapılmış ArithSeq tarafından yapılan Buried City'e hoş geldiniz.\n\nEkran içeriği eksik ise, lütfen sağ alt köşedeki Ayarlar'a gidin ve Ekranı Küçült seçeneğini değiştirin.\n\nBu sürüm birçok ayarlamadan geçti ve birçok özellik kazandı. Tüm bilgiler için sol alt köşedeki belgelendirmeyi okuyun.\n\nAçık kaynaklı yazılımdır, ticari kazanç için kullanmayın. Konaklamanızı keyifli geçirin!",
     "1103094": {
         "title": "Peynir",
@@ -484,10 +502,6 @@ var string = {
         "title": "Katana parçası",
         "des": "Kırık Samurai kılıcı, kullanmadan önce tamir edilmesi gerekir."
     },
-    "1102053": {
-        "title": "Savaş Şahini Motoru",
-        "des": "Savaş şahininin çekirdek cihazıdır."
-    },
     "1103011": {
         "title": "Patates",
         "des": "Besleyici ve kolay dikilen bir bitki. Aç olduğunda işi görür. Çiğ patates bağırsak enfeksiyona sebep olabilir. "
@@ -665,18 +679,28 @@ var string = {
         "title": "Asker Çantası",
         "des": "Sırt çantasının askeri standart üretimine göre insan vücuduna yakın negatif ağırlıklıdır."
     },
-    "1305034": {
-        "title": "Motorsiklet",
-        "des": "Eski model motorsiklet, harabelerdeki seyahat hızını büyük oranda arttırır."
+    "1102053": {
+        "title": "Motosiklet Motoru",
+        "des": "Motosiklet yapımının temel bileşeni."
     },
-    "1305044": {
-        "title": "Savaş Şahini",
-        "des": "Söylentiye göre önemli birinin arabasıymış, sadece hızlı değil, aynı zamanda çok büyük yük alanı vardır, harabelerdeki macera ürünüdür."
+    "1305034": {
+        "title": "Motosiklet",
+        "des": "Büyük taşıma kapasitesine sahip eski tarzda bir motosiklet, seyahat hızınızı önemli ölçüde artırır."
     },
     "1305053": {
-        "title": "Güçlü Fener",
-        "des": "Onu küçümseme, önünde çok sayıda hiçbir yerde gizlenemeyen sırları vardır. Gizli odaları bulma olasılığını arttırın."
+        "title": "Güçlü El Feneri",
+        "des": "Onu küçümsemeyin; varlığında köşelerde saklanan zombilerin saklanacak yerleri olmayacak. Zombilerle karşılaşma şansını büyük ölçüde azaltır."
     },
+    "1102073": {
+        "title": "Benzin Pompası Bileşeni",
+        "des": "Seramik eksikliği dışında bu bileşen hatasızdır. Benzin çok aşındırıcıdır ve plastik birkaç günde kırılgan hale gelir."
+    },
+    "16": {
+        "title": "Benzin",
+        "des": "Benzinsiz motorlu araçlar çalışmaz. Bu değerli kaynağı diğer hayatta kalanlardan gizli tutmak en iyisidir. Yüksek derecede yanıcı ve patlayıcıdır, sadece yakıt deposunda saklanabilir."
+    },
+    "1340": "Yakıt İhtiyacı:",
+    "1341": "Botların kırıldı.",
     "1305064": {
         "title": "Enerji Dedektörü",
         "des": "Hassas arama sensörü vardır, otomatik arazi ölçüm fonksiyonunu barındırır. Çinde güneş batması kepçesinden daha etkilidir. Gizli odaları bulma olasılığını büyük ölçüde arttırın."
@@ -1291,12 +1315,12 @@ var string = {
     },
     "m_302": {
         "name": "Özgürlük Madalyası (2. sınıf)",
-        "condition": "Tek seferde 10 gizli odayı boşalt",
+        "condition": "Tek seferde 15 gizli odayı boşalt",
         "des": "Kendi getirdiğin 1 tabancayı aç"
     },
     "m_301": {
         "name": "Özgürlük Madalyası (1. sınıf)",
-        "condition": "Tek seferde 20 gizli odayı boşalt",
+        "condition": "Tek seferde 30 gizli odayı boşalt",
         "des": "Kendi getirdiğin 1 M40'ı aç"
     },
     "1260": "Başarı",

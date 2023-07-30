@@ -8,6 +8,24 @@ var string = {
 "1335": "Has intercambiado %s %s por 20 carga de virus.",
 "1336": "Aumentar el límite superior de carga:",
 "1337": "¡Bienvenido!",
+"gachaponDialog": {
+    "title": {
+        "txt_1": "Precio: %s monedas"
+    },
+    "content": {},
+    "action": {
+        "btn_1": {
+            "txt": "Jugar"
+        },
+        "btn_1": {
+            "txt": "Ahora no"
+        }
+    }
+},
+"gachapon": {
+    "title": "Sorteo",
+    "des": "¡Ven a probar tu suerte! ¡Un gran premio te espera! ¡100% de premios garantizados!"
+},
 "1339": "Hola, me gustaría intercambiar esto por %s monedas. ¿Estás de acuerdo?",
 "1338": "¡Bienvenido a Buried City, una modificación de Buried Town creada por ArithSeq!\n\nSi el contenido de la pantalla no está completo, ve a Configuración en la esquina inferior derecha y modifica Encoger Pantalla.\n\nEsta versión ha sido sometida a muchas modificaciones y ha recibido numerosas características. Lee la documentación en la esquina inferior izquierda para obtener toda la información.\n\nSoftware de código abierto, por favor, no lo uses con fines comerciales. ¡Disfruta de tu estadía!",
    "1103094": {
@@ -485,10 +503,6 @@ var string = {
         "title": "Parte de katana",
         "des": "\r\nEspada samurai rota, necesita reparar para utilizarla."
     },
-    "1102053": {
-        "title": "Motor de F-16",
-        "des": "Componente central de un F-16."
-    },
     "1103011": {
         "title": "Patata",
         "des": "Es nutritiva y fácil de plantar.  Después del siglo 16, fue introducido a Europa, para resistir la hambruna. Las patatas crudas pueden causar infección intestinal."
@@ -666,18 +680,28 @@ var string = {
         "title": "Mochila de militar",
         "des": "La mochila de militar,en la carga de peso cerca del límite del cuerpo humano."
     },
-    "1305034": {
-        "title": "Moto",
-        "des": "Vieja moto con la que podrás circular mucho más rápido entre las ruinas."
+    "1102053": {
+        "title": "Motor de Motocicleta",
+        "des": "El componente principal para fabricar motocicletas."
     },
-    "1305044": {
-        "title": "F-16",
-        "des": "Dicen que fue el avión de cierto gran personaje. No solo es ágil y veloz, sino que tiene amplio espacio para carga. A la hora de explorar las ruinas es inigualable."
+    "1305034": {
+        "title": "Motocicleta",
+        "des": "Una motocicleta antigua con una gran capacidad de carga que aumenta significativamente la velocidad de viaje."
     },
     "1305053": {
-        "title": "Linterna de alta potencia",
-        "des": "No la menosprecies. Pocos secretos pueden ocultarse ante ella. Aumenta la probabilidad de encontrar habitaciones secretas."
+        "title": "Linterna Potente",
+        "des": "No subestimes su poder; en su presencia, los zombis que se esconden en las esquinas no tendrán dónde ocultarse. Reduce en gran medida la posibilidad de encontrarse con zombis."
     },
+    "1102073": {
+        "title": "Componente de Bomba de Gasolina",
+        "des": "Aparte de la falta de cerámica, este componente es impecable. La gasolina es demasiado corrosiva y el plástico se vuelve quebradizo en cuestión de días."
+    },
+    "16": {
+        "title": "Gasolina",
+        "des": "Sin gasolina, los vehículos a motor no funcionarán. Este recurso precioso debe mantenerse en secreto para otros sobrevivientes. Altamente inflamable y explosiva, solo puede almacenarse en el tanque de combustible."
+    },
+    "1340": "Necesidad de combustible:",
+    "1341": "Tus botas están rotas.",
     "1305064": {
         "title": "Detector multifunción",
         "des": "Equipado con un sensor extremadamente sensible. Gracias a su sistema automático de mapeo topográfico, es mejor que cualquier herramienta arqueológica. Aumenta la probabilidad de encontrar habitaciones secretas."
@@ -1292,12 +1316,12 @@ var string = {
     },
     "m_302": {
         "name": "Medalla de libertad (segunda clase)",
-        "condition": "Vaciar 10 cámaras secretas en el juego",
+        "condition": "Vaciar 15 cámaras secretas en el juego",
         "des": "Viene con 1 pistola para empezar el juego"
     },
     "m_301": {
         "name": "Medalla de libertad (primara clase)",
-        "condition": "Vaciar 20 cámaras secretas en el juego",
+        "condition": "Vaciar 30 cámaras secretas en el juego",
         "des": "Viene con 1 M40 para empezar el juego"
     },
     "1260": "Logro",

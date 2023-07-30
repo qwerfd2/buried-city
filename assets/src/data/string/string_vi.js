@@ -9,6 +9,24 @@ var string = {
 "1327": ["Tắt","Một phần","Toàn bộ"],
 "1337": "Chào mừng!",
 "1339": "Xin chào, tôi muốn đổi những thứ này lấy %s đồng. Bạn đồng ý chứ?",
+"gachapon": {
+    "title": "Rút thăm may mắn",
+    "des": "Hãy thử vận may của bạn! Đang chờ đợi một phần thưởng lớn! 100% trúng thưởng!"
+},
+"gachaponDialog": {
+    "title": {
+        "txt_1": "Giá: %s xu"
+    },
+    "content": {},
+    "action": {
+        "btn_1": {
+            "txt": "Chơi"
+        },
+        "btn_1": {
+            "txt": "Không sao"
+        }
+    }
+},
 "1338": "Chào mừng đến với Buried City, một phiên bản mod của Buried Town được tạo bởi ArithSeq.\n\nNếu nội dung màn hình chưa hoàn chỉnh, vui lòng vào Cài đặt ở góc dưới bên phải và chỉnh sửa Thu nhỏ màn hình.\n\nPhiên bản này đã trải qua nhiều điều chỉnh và đã được trang bị nhiều tính năng. Vui lòng đọc tài liệu ở góc dưới bên trái để biết thêm thông tin.\n\nPhần mềm mã nguồn mở, xin vui lòng không sử dụng vì mục đích thương mại. Hãy thưởng thức thời gian ở đây!",
     "1103094": {
         "title": "Phô mai",
@@ -485,10 +503,6 @@ var string = {
         "title": "Tàn đao võ sỹ",
         "des": "Thanh đao võ sỹ đã bị hỏng, cần phải sửa chữa mới có thể phát huy tác dụng"
     },
-    "1102053": {
-        "title": "Động cơ chim chiến đấu",
-        "des": "Linh kiện chính để chế tạo Chim chiến đấu"
-    },
     "1103011": {
         "title": "Khoai tây",
         "des": "Dễ trồng, dinh dưỡng phong phú. Truyền vào Châu Âu vào thế kỷ 15, nhằm chống lại nạn đói khi đó. Ăn sống khoai tây có thể dẫn tới nhiễm trùng đường ruột."
@@ -666,18 +680,28 @@ var string = {
         "title": "Túi quân dụng",
         "des": "Thiết kế theo tiêu chuẩn quân đội, tải trọng gần với giới hạn của con người."
     },
-    "1305034": {
-        "title": "Xe máy",
-        "des": "Xe máy kiểu cũ, có thể tăng vận tốc di chuyển của bạn trên đống đổ nát"
-    },
-    "1305044": {
-        "title": "Chim chiến đấu",
-        "des": "Nghe nói đấy là thú cưỡi của một nhân vật lớn nào đó, không chỉ tốc độ nhanh mà còn có sức tải cực lớn, rất tốt để thám hiểm đống đổ nát"
-    },
-    "1305053": {
-        "title": "Đèn pin",
-        "des": "Đừng coi thường nó, nó có thể làm sáng tỏ rất nhiều bí mật đấy. Tăng khả năng tìm phòng bí mật."
-    },
+    "1102053": {
+    "title": "Động cơ Xe máy",
+    "des": "Bộ phận cốt lõi để sản xuất xe máy."
+},
+"1305034": {
+    "title": "Xe máy",
+    "des": "Một chiếc xe máy cổ điển với khả năng chở hàng lớn, tăng tốc độ di chuyển của bạn đáng kể."
+},
+"1305053": {
+    "title": "Đèn Pin Mạnh",
+    "des": "Đừng coi thường nó; khi có mặt, những xác sống ẩn náu ở góc không có nơi trốn. Giảm đáng kể khả năng gặp phải xác sống."
+},
+"1102073": {
+    "title": "Bộ Phận Bơm Xăng",
+    "des": "Ngoài việc thiếu gốm, bộ phận này hoàn hảo. Xăng quá ăn mòn và nhựa trở nên giòn trong vài ngày."
+},
+"16": {
+    "title": "Xăng",
+    "des": "Không có xăng, các phương tiện gắn máy sẽ không hoạt động. Tài nguyên quý giá này nên được giữ bí mật với những người sống sót khác. Dễ cháy và nổ, chỉ có thể lưu trữ trong bình xăng."
+},
+"1340": "Nhu cầu Nhiên liệu:",
+    "1341": "Đôi ủng của bạn bị hỏng.",
     "1305064": {
         "title": "Máy do thám",
         "des": "Được trang bị đầu do thám nhạy cảm, có chức năng tự động thăm dò địa hình. Tăng đáng kể khả năng tìm phòng bí mật."
@@ -1292,12 +1316,12 @@ var string = {
     },
     "m_302": {
         "name": "Huân chương tự do (cấp 2)",
-        "condition": "Xóa 10 mật thất ở trong 1 ván",
+        "condition": "Xóa 15 mật thất ở trong 1 ván",
         "des": "Mang theo một súng ngắn lúc bắt đầu ván"
     },
     "m_301": {
         "name": "Huân chương tự do (cấp 1)",
-        "condition": "Xóa 20 mật thất trong 1 ván",
+        "condition": "Xóa 30 mật thất trong 1 ván",
         "des": "Mang theo một khẩu M40 lúc bắt đầu ván"
     },
     "1260": "Thành tựu",

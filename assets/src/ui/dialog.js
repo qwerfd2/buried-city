@@ -154,6 +154,9 @@ var Dialog = cc.Layer.extend({
         dialogManager.showDialog(this);
     },
     dismiss: function () {
+        if (DISMISS_BLOCKED && this.tempName == "hotelDialog") {
+            return;
+        }
         GLOBAL_DIALOGS -= 1;
         dialogManager.dismissDialog(this);
         this.removeFromParent();
@@ -657,7 +660,7 @@ var RandomBattleDialog = DialogBig.extend({
             title: {},
             content: {log: true}
         };
-        config.title.title = stringUtil.getString(1080);
+        config.title.title = stringUtil.getString(1113);
         config.title.icon = "icon_warning_monster.png";
         config.content.des = stringUtil.getString(3009)[this.difficulty - 1];
         config.content.dig_des = "#monster_dig_" + this.difficulty + ".png";
@@ -700,13 +703,18 @@ var RandomBattleDialog = DialogBig.extend({
         this.log.addChild(label1);
 
         var iconList = uiUtil.createEquipedItemIconList(true);
-        iconList.setPosition(label1.x + label1.width + 5, label1.y - label1.height / 2);
+        iconList.setPosition(this.leftEdge, label1.y - label1.height - 20);
         this.log.addChild(iconList);
 
         var label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + this.difficulty, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label2.setAnchorPoint(0, 1);
-        label2.setPosition(this.leftEdge, label1.getPositionY() - label1.getContentSize().height);
-        label2.setColor(cc.color.RED);
+        label2.setPosition(this.leftEdge, iconList.getPositionY() - iconList.getContentSize().height - 25);
+        if (this.difficulty > 2) {
+            label2.setColor(cc.color.RED);
+        } else {
+            label2.setColor(cc.color.BLACK);
+        }
+
         this.log.addChild(label2);
 
         if (cc.RTL) {

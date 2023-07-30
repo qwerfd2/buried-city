@@ -7,12 +7,12 @@ var workSiteConfig = {
     brokenProbability: 0.02
 };
 var gasSiteConfig = {
-    costTime: 120,
+    costTime: 90,
     needItems: [
         {itemId: 1102073, num: 1}
     ],
-    lastTime: 96 * 60,
-    brokenProbability: 0.01
+    lastTime: 120 * 60,
+    brokenProbability: 0.02
 };
 
 var WorkSiteNode = BottomFrameNode.extend({

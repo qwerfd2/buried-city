@@ -141,7 +141,7 @@ var TopFrameNode = cc.Node.extend({
         fuelGauge.setPosition(btnSize.width * 5.7 - 0.4, this.firstLine.getContentSize().height / 2);
         var self = this;
         fuelGauge.setClickListener(this, function(sender) {
-            showStatusDialog(16, Math.floor(player.fuel), "#icon_oil_" + gActive + ".png");
+            showStatusDialog(16, Math.floor(player.fuel), sender.spriteFrameName);
         });
 
         utils.emitter.on("onFuelChange", function(a) {

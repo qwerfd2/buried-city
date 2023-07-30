@@ -135,7 +135,7 @@ var EquipNode = cc.Node.extend({
             itemIdList.push(0);
         }
         var vPadding = 10;
-        var size = cc.size(565, 108 * itemIdList.length + 2 * vPadding);
+        var size = cc.size(565, 82 * itemIdList.length + 2 * vPadding);
         var bg = autoSpriteFrameController.getScale9Sprite("frame_tab_content.png", cc.rect(14, 14, 1, 1));
         bg.setContentSize(size);
 
@@ -170,7 +170,7 @@ var EquipNode = cc.Node.extend({
     },
 
     createOneLineView: function (itemId, pos) {
-        var size = cc.size(520, 108);
+        var size = cc.size(520, 82);
         var node = new cc.Node();
         node.setContentSize(size);
 
@@ -199,9 +199,11 @@ var EquipNode = cc.Node.extend({
         node.addChild(btn);
 
         if (itemId) {
+            var scale = 1;
             var iconName, itemInfo;
             if (itemId === Equipment.HAND) {
                 iconName = "#icon_tab_content_hand.png";
+                scale = 0.8;
                 itemInfo = {
                     name: stringUtil.getString(1170),
                     weight: 0,
@@ -212,12 +214,14 @@ var EquipNode = cc.Node.extend({
                     iconName = "#icon_item_"+itemId+".png";
                 } else {
                     iconName = "#icon_tab_content_" + itemId + ".png";
+                    scale = 0.8;
                 }
                 itemInfo = itemConfig[itemId];
                 itemInfo.name = stringUtil.getString(itemId).title;
             }
 
             var icon = autoSpriteFrameController.getSpriteFromSpriteName(iconName);
+            icon.setScale(scale);
             icon.setAnchorPoint(0, 0.5);
             icon.setPosition(0, size.height / 2);
             node.addChild(icon);
@@ -233,8 +237,8 @@ var EquipNode = cc.Node.extend({
             node.addChild(weight);
 
             var num = new cc.LabelTTF(stringUtil.getString(1026) + player.bag.getNumByItemId(itemId), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-            num.setPosition(name.x, weight.y - weight.height - 5);
-            num.setAnchorPoint(0, 1);
+            num.setPosition(size.width - 20, name.y - 5);
+            num.setAnchorPoint(1, 1);
             node.addChild(num);
 
             if (itemInfo.effect_weapon) {

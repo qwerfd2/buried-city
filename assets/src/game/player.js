@@ -556,6 +556,7 @@ var Player = cc.Class.extend({
         }
         //Add fuel if site is active, then test whether it is still active
         if (this.map.getSite(GAS_SITE).isActive) {
+            this.map.getSite(GAS_SITE).checkActive();
             this.onFuelChange(1);
         }
         //Deduct water. If buff is in effect, don't deduct. 
@@ -597,6 +598,9 @@ var Player = cc.Class.extend({
         //在睡眠状态下的影响
         if (this.isInSleep) {
             var bedLevel = player.room.getBuildLevel(9);
+            if (this.isInSleepHotel) {
+                bedLevel = 1;
+            }
             var bedRate = buildActionConfig[9][bedLevel].rate;
 
             //睡眠等级=床等级值*0.5+饱食度/100*0.2+心情值/100*0.3

@@ -1,3 +1,4 @@
+var DISMISS_BLOCKED = false;
 var SiteNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -73,7 +74,12 @@ var SiteNode = BottomFrameNode.extend({
             var btn3 = uiUtil.createCommonBtnWhite(stringUtil.getString("gachapon").title, this, this.onClickBtn3);
             btn3.setPosition(this.bgRect.width / 2, 100);
             this.bg.addChild(btn3);
-            btn3.setName("btn_3")
+            btn3.setName("btn_3");
+            
+            var btn4 = uiUtil.createCommonBtnWhite(stringUtil.getString(1342), this, this.onClickBtn4);
+            btn4.setPosition(this.bgRect.width / 2, 170);
+            this.bg.addChild(btn4);
+            btn4.setName("btn_4");
         }
 
         if (userGuide.isStep(userGuide.stepName.ENTER_SITE)) {
@@ -118,15 +124,7 @@ var SiteNode = BottomFrameNode.extend({
         dialog.autoDismiss = false;
         this.btnPlay = uiUtil.createSpriteBtn({normal: "icon_ad_play.png"}, this, function () {
             if (player.currency < 8) {
-                var config = {
-                    title: {},
-                    content: {des: stringUtil.getString(9028, Number(player.currency.toFixed(2)))},
-                    action: {btn_1: {}}
-                };
-                config.action.btn_1.txt = stringUtil.getString(1073);
-                var d = new DialogTiny(config);
-                d.y = -94;
-                d.show();
+                this.displayNotEnough();
                 return;
             }
             player.onCurrencyChange(-8);
@@ -165,6 +163,181 @@ var SiteNode = BottomFrameNode.extend({
         itemTableView.setPosition(20, 100);
         dialog.contentNode.addChild(itemTableView);
         dialog.show();
+    },
+    onClickBtn4: function () {
+        var config = utils.clone(stringUtil.getString("gachaponDialog"));
+        config.title.txt_1 = "";
+        config.title.title = stringUtil.getString(1342);
+        config.content.des = stringUtil.getString(1343);
+        this.dialogHotel = new DialogSmall(config);
+        this.dialogHotel.tempName = "hotelDialog";
+        this.dialogHotel.autoDismiss = false;
+        var screenFix = Record.getScreenFix();
+        if (screenFix == 1) {
+            this.dialogHotel.getChildByName("bgColor").height = 827;
+        } else {
+            this.dialogHotel.getChildByName("bgColor").height = 864;
+        }
+        
+        this.hotelBtn1 = uiUtil.createCommonBtnBlack(stringUtil.getString(1344, 1, 1), this, this.hotelClickBtn1);
+        this.hotelBtn1.setPosition(this.dialogHotel.contentNode.width / 4, this.dialogHotel.contentNode.height / 2);
+        this.dialogHotel.contentNode.addChild(this.hotelBtn1);
+        this.hotelBtn1.setName("hotelBtn_1");
+        
+        this.hotelBtn2 = uiUtil.createCommonBtnBlack(stringUtil.getString(1344, 4, 3), this, this.hotelClickBtn2);
+        this.hotelBtn2.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2);
+        this.dialogHotel.contentNode.addChild(this.hotelBtn2);
+        this.hotelBtn2.setName("hotelBtn_2");
+        
+        this.hotelBtn3 = uiUtil.createCommonBtnBlack(stringUtil.getString(1345, 16), this, this.hotelClickBtn3);
+        this.hotelBtn3.setPosition(this.dialogHotel.contentNode.width / 4, this.dialogHotel.contentNode.height / 2 - 60);
+        this.dialogHotel.contentNode.addChild(this.hotelBtn3);
+        this.hotelBtn3.setName("hotelBtn_3");
+        
+        this.hotelBtn4 = uiUtil.createCommonBtnBlack(stringUtil.getString(1346, 12), this, this.hotelClickBtn4);
+        this.hotelBtn4.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2 - 60);
+        this.dialogHotel.contentNode.addChild(this.hotelBtn4);
+        this.hotelBtn4.setName("hotelBtn_4");
+    
+        var pbBg = autoSpriteFrameController.getSpriteFromSpriteName("#pb_bg.png");
+        pbBg.setAnchorPoint(0.5, 0);
+        pbBg.setPosition(this.dialogHotel.contentNode.width / 3 * 2, this.dialogHotel.contentNode.height + 30);
+        pbBg.setName("pbBg");
+        this.dialogHotel.contentNode.addChild(pbBg);
+
+        this.pb = new cc.ProgressTimer(autoSpriteFrameController.getSpriteFromSpriteName("#pb.png"));
+        this.pb.type = cc.ProgressTimer.TYPE_BAR;
+        this.pb.midPoint = cc.p(0, 0);
+        this.pb.barChangeRate = cc.p(1, 0);
+        this.pb.setPosition(pbBg.getPositionX() , pbBg.getPositionY() + pbBg.getContentSize().height / 2);
+        this.pb.setPercentage(0);
+        this.pb.setName("pb");
+        this.dialogHotel.contentNode.addChild(this.pb);
+                
+        this.dialogHotel.show();
+    },
+    displayNotEnough: function () {
+        var config = {
+            title: {},
+            content: {des: stringUtil.getString(9028, Number(player.currency.toFixed(2)))},
+            action: {btn_1: {}}
+        };
+        config.action.btn_1.txt = stringUtil.getString(1073);
+        var d = new DialogTiny(config);
+        d.y = -94;
+        d.show();
+    },
+    hotelClickBtn1: function () {
+        var time = 3600;
+        if (player.currency > 0) {
+            player.isInSleepHotel = true;
+            player.isInSleep = true;
+            player.onCurrencyChange(-1);
+            var currentTime = Number(cc.timer.time);
+            currentTime -= player.lastCoffeeTime;
+            if (currentTime <= 21600) {
+                var hint = Math.ceil((21600 - currentTime) / 3600);
+                player.log.addMsg(1324, hint);
+            } else {
+                player.log.addMsg(1098);
+            }
+            this.addTimer(time, function () {
+                player.isInSleep = false;
+                player.isInSleepHotel = false;
+                Record.saveAll();
+            });
+        } else {
+            this.displayNotEnough();
+        }
+    },
+    hotelClickBtn2: function () {
+        var time = 3600 * 4;
+        if (player.currency > 2) {
+            player.isInSleepHotel = true;
+            player.isInSleep = true;
+            player.onCurrencyChange(-3);
+            var currentTime = Number(cc.timer.time);
+            currentTime -= player.lastCoffeeTime;
+            if (currentTime <= 21600) {
+                var hint = Math.ceil((21600 - currentTime) / 3600);
+                player.log.addMsg(1324, hint);
+            } else {
+                player.log.addMsg(1098);
+            }
+            this.addTimer(time, function () {
+                player.isInSleep = false;
+                player.isInSleepHotel = false;
+                Record.saveAll();
+            });
+        } else {
+            this.displayNotEnough();
+        }
+    },
+    hotelClickBtn3: function () {
+        var time = 1800;
+        if (player.currency > 15) {
+            player.log.addMsg(1017);
+            this.addTimer(time, function () {
+                player.onCurrencyChange(-16);
+                player.lastCoffeeTime = Number(cc.timer.time);
+                player.applyEffect({"spirit": 100, "spirit_chance": 1});
+                Record.saveAll();
+            });
+        } else {
+            this.displayNotEnough();
+        }
+    },
+    hotelClickBtn4: function () {
+        var time = 1800;
+        if (player.currency > 11) {
+            player.log.addMsg(1307);
+            this.addTimer(time, function () {
+                player.onCurrencyChange(-12);
+                player.lastAlcoholTime = Number(cc.timer.time);
+                player.applyEffect({"spirit": 100, "spirit_chance": 1});
+                Record.saveAll();
+            });
+        } else {
+            this.displayNotEnough();
+        }
+    },
+    addTimer: function (time, endCb) {
+        if (this.isHotelActive) {
+            return;
+        }
+        DISMISS_BLOCKED = true;
+        this.hotelBtn1.setEnabled(false);
+        this.hotelBtn2.setEnabled(false);
+        this.hotelBtn3.setEnabled(false);
+        this.hotelBtn4.setEnabled(false);
+        this.dialogHotel.actionNode.getChildByName("btn_1").setEnabled(false);
+        this.pastTime = 0;
+        this.isHotelActive = true;
+        var self = this;
+        cc.timer.addTimerCallback(new TimerCallback(time, this, {
+            process: function (dt) {
+                self.pastTime += dt;
+                if (self.pb) {
+                    self.pb.setPercentage((time - self.pastTime) / time * 100);
+                }
+            },
+            end: function () {
+                if (self.dialogHotel) {
+                    DISMISS_BLOCKED = false;
+                    self.pastTime = 0;
+                    self.hotelBtn1.setEnabled(true);
+                    self.hotelBtn2.setEnabled(true);
+                    self.hotelBtn3.setEnabled(true);
+                    self.hotelBtn4.setEnabled(true);
+                    self.dialogHotel.actionNode.getChildByName("btn_1").setEnabled(true);
+                    self.isHotelActive = false;
+                }
+                if (endCb) {
+                    endCb();
+                }
+            }
+        }));
+        cc.timer.accelerateWorkTime(time);
     },
     onEnter: function () {
         this._super();

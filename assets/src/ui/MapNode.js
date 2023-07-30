@@ -114,7 +114,7 @@ var MapView = cc.ScrollView.extend({
         var startPos = this.actor.getPosition();
         var endPos = entity.baseSite.pos;
         var distance = cc.pDistance(startPos, endPos);
-        var fuelNeed = Math.ceil(distance / 50);
+        var fuelNeed = Math.ceil(distance / 70);
         var canAfford = false;
         if (player.fuel >= fuelNeed) {
             canAfford = true;
@@ -340,8 +340,8 @@ var Actor = cc.Node.extend({
             var dBetween = cc.pDistance(pos, newPos);
             this.lastDistance += dBetween;
             this.sumDistance += dBetween;
-            if (this.lastDistance > 50 && this.isUsingMoto) {
-                this.lastDistance -= 50;
+            if (this.lastDistance > 70 && this.isUsingMoto) {
+                this.lastDistance -= 70;
                 player.onFuelChange(-1);
             }
             this.setPosition(newPos);

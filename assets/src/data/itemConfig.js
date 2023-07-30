@@ -85,9 +85,9 @@ var itemConfig = {
     },
     "1102073": {
         "id": "1102073",
-        "weight": 10,
-        "price": 20,
-        "value": 20
+        "weight": 8,
+        "price": 0,
+        "value": 0
     },
     "1103011": {
         "id": "1103011",

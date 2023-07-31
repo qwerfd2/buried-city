@@ -13,6 +13,12 @@ var string = {
     "1344": "Dormir %sH (%s monedas)",
     "1345": "Café (%s monedas)",
     "1346": "Alcohol (%s monedas)",
+"1301091": {
+    "title": "Lanzallamas",
+    "des": "Inflige daño duradero a una gran cantidad de zombies, el único inconveniente es que requiere gasolina. ¡Mucha gasolina! Si te quedas sin gasolina a mitad de camino..."
+},
+"1347": "Encendiste a todos los zombies.",
+"1348": "¡Te quedaste sin gasolina!",
 "gachaponDialog": {
     "title": {
         "txt_1": "Precio: %s monedas"

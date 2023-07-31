@@ -14,6 +14,12 @@ var string = {
     "1345": "Kaffee (%s Münzen)",
     "1346": "Alkohol (%s Münzen)",
 "1339": "Hallo, ich möchte diese gegen %s Münzen tauschen. Ist das in Ordnung für Sie?",
+"1301091": {
+    "title": "Flammenwerfer",
+    "des": "Verursacht an einer großen Anzahl von Zombies anhaltenden Schaden, der einzige Nachteil ist, dass er Benzin benötigt. Viel Benzin. Wenn dir in der Hälfte der Strecke das Benzin ausgeht..."
+},
+"1347": "Du hast alle Zombies entzündet.",
+"1348": "Dir geht das Benzin aus!",
 "gachaponDialog": {
     "title": {
         "txt_1": "Preis: %s Münzen"

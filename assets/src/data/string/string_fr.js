@@ -18,6 +18,12 @@ var string = {
     "title": "Tirage au sort",
     "des": "Venez tenter votre chance ! Un énorme prix vous attend !"
 },
+"1301091": {
+    "title": "Lance-flammes",
+    "des": "Inflige des dégâts durables à un grand nombre de zombies, le seul inconvénient est qu'il nécessite de l'essence. Beaucoup d'essence. Si vous manquez d'essence à mi-chemin..."
+},
+"1347": "Vous avez enflammé tous les zombies.",
+"1348": "Vous êtes à court d'essence !",
 "gachaponDialog": {
     "title": {
         "txt_1": "Prix : %s pièces"

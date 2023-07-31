@@ -14,6 +14,12 @@ var string = {
     "1344": "Ngủ %s giờ (%s đồng)",
     "1345": "Cà phê (%s đồng)",
     "1346": "Rượu (%s đồng)",
+"1301091": {
+    "title": "Súng phun lửa",
+    "des": "Gây thiệt hại lâu dài cho một số lượng lớn xác sống, nhược điểm duy nhất là cần nhiều xăng. Rất nhiều xăng. Nếu bạn hết xăng ở giữa đường..."
+},
+"1347": "Bạn đã kích hoạt tất cả xác sống.",
+"1348": "Bạn đã hết xăng!",
 "gachapon": {
     "title": "Rút thăm may mắn",
     "des": "Hãy thử vận may của bạn! Đang chờ đợi một phần thưởng lớn! 100% trúng thưởng!"

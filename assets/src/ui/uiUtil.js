@@ -1008,7 +1008,7 @@ uiUtil.showNpcInMapDialog = function (entity, time, fuelNeed, canAfford, okCb, c
     log.addChild(label1);
     
     if (fuelNeed > 0) {
-        var label3 = new cc.LabelTTF(stringUtil.getString(1340) + " " + fuelNeed + "-" + (fuelNeed + 1), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        var label3 = new cc.LabelTTF(stringUtil.getString(1340) + " " + fuelNeed, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label3.setAnchorPoint(0, 1);
         label3.setPosition(dialog.leftEdge, label1.y - label1.height - 10);
         if (canAfford) {
@@ -1085,7 +1085,7 @@ uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     log.addChild(label);
     
     if (fuelNeed > 0) {
-        var str = stringUtil.getString(1340) + " " + fuelNeed + "-" + (fuelNeed + 1);
+        var str = stringUtil.getString(1340) + " " + fuelNeed;
         var label2 = new cc.LabelTTF(str, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label2.setAnchorPoint(0, 1);
         label2.setPosition(dialog.leftEdge, label.y - label.height - 10);
@@ -1156,7 +1156,7 @@ uiUtil.showHomeDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     log.addChild(label);
     
     if (fuelNeed > 0) {
-        var label2 = new cc.LabelTTF(stringUtil.getString(1340) + " " + fuelNeed + "-" + (fuelNeed + 1), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        var label2 = new cc.LabelTTF(stringUtil.getString(1340) + " " + fuelNeed, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label2.setAnchorPoint(0, 1);
         label2.setPosition(dialog.leftEdge, label.y - label.height - 10);
         if (canAfford) {

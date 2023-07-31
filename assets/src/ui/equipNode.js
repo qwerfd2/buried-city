@@ -135,7 +135,7 @@ var EquipNode = cc.Node.extend({
             itemIdList.push(0);
         }
         var vPadding = 10;
-        var size = cc.size(565, 82 * itemIdList.length + 2 * vPadding);
+        var size = cc.size(565, 72 * itemIdList.length + 2 * vPadding);
         var bg = autoSpriteFrameController.getScale9Sprite("frame_tab_content.png", cc.rect(14, 14, 1, 1));
         bg.setContentSize(size);
 
@@ -170,7 +170,7 @@ var EquipNode = cc.Node.extend({
     },
 
     createOneLineView: function (itemId, pos) {
-        var size = cc.size(520, 82);
+        var size = cc.size(520, 72);
         var node = new cc.Node();
         node.setContentSize(size);
 
@@ -237,13 +237,13 @@ var EquipNode = cc.Node.extend({
             node.addChild(weight);
 
             var num = new cc.LabelTTF(stringUtil.getString(1026) + player.bag.getNumByItemId(itemId), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-            num.setPosition(size.width - 20, name.y - 5);
+            num.setPosition(size.width - 10, name.y - 5);
             num.setAnchorPoint(1, 1);
             node.addChild(num);
 
             if (itemInfo.effect_weapon) {
                 var atkCD = new cc.LabelTTF(stringUtil.getString(1027) + itemInfo.effect_weapon.atkCD, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-                atkCD.setPosition(size.width - 20, name.y - name.height - 5);
+                atkCD.setPosition(size.width - 10, name.y - name.height - 5);
                 atkCD.setAnchorPoint(1, 1);
                 node.addChild(atkCD);
             }

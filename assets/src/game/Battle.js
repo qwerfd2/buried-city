@@ -88,6 +88,7 @@ var Battle = cc.Class.extend({
             weapon1: 0,
             weapon2: 0,
             bulletNum: 0,
+            fuel: 0,
             tools: 0,
             win: false,
             isDodge: this.isDodge,
@@ -457,6 +458,8 @@ var createEquipment = function (id, bPlayer) {
         case 1301071:
         case 1301082:
             return new ElectricGun(id, bPlayer);
+        case 1301091:
+            return new Flamethrower(id, bPlayer);
         default:
             return new Gun(id, bPlayer);
     }
@@ -540,6 +543,54 @@ var Bomb = BattleEquipment.extend({
             this.deadMonsterNum = 0;
             this.bPlayer.battle.checkGameEnd();
         }
+    },
+    afterCd: function () {
+        this._action();
+    }
+});
+
+var Flamethrower = BattleEquipment.extend({
+    ctor: function (id, bPlayer) {
+        this._super(id, bPlayer);
+        this.deadMonsterNum = 0;
+    },
+    _action: function () {
+        if (!this.isEnough()) {
+            console.log(this.id + " not enough");
+            return;
+        }
+        audioManager.playEffect(audioManager.sound.ESTOVE);
+        audioManager.playEffect(audioManager.sound.STOVE);
+        this.bPlayer.battle.sumRes.fuel++;
+        if (player.fuel <= 0) {
+            this.bPlayer.battle.processLog(stringUtil.getString(1348), cc.color.RED);
+        } else {      
+            var monsters = this.bPlayer.battle.monsters.concat();
+            var harm = this.attr.atk;
+            var self = this;
+            monsters.forEach(function (mon) {
+                mon.underAtk(self);
+            });
+            //todo: change cost structure
+            this.cost();
+            this.bPlayer.battle.processLog(stringUtil.getString(1347));
+            this.bPlayer.battle.processLog(stringUtil.getString(1053, harm));
+    
+            if (this.deadMonsterNum > 0) {
+                var logStr = stringUtil.getString(stringUtil.getString(1056, this.deadMonsterNum, ""));
+                if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_ENGLISH) {
+                    if (this.deadMonsterNum == 1) {
+                        logStr = logStr.replace('zombies', 'zombie');
+                    }
+                }
+                this.bPlayer.battle.processLog(logStr);
+                this.deadMonsterNum = 0;
+                this.bPlayer.battle.checkGameEnd();
+            }
+        }
+    },
+    cost: function () {
+        player.onChangeFuel(-1);
     },
     afterCd: function () {
         this._action();

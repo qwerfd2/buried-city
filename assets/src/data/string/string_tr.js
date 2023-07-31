@@ -14,6 +14,12 @@ var string = {
     "1344": "%s saat uyuma (%s madeni para)",
     "1345": "Kahve içme (%s madeni para)",
     "1346": "Alkol içme (%s madeni para)",
+"1301091": {
+    "title": "Alev Püskürtücü",
+    "des": "Birçok zombiye kalıcı hasar verir, tek dezavantajı benzin gerektirmesidir. Çok fazla benzin. Eğer yolun yarısında benzininiz biterse..."
+},
+"1347": "Tüm zombileri tutuşturdunuz.",
+"1348": "Benziniz tükendi!",
 "gachapon": {
     "title": "Çekiliş",
     "des": "Şansını denemeye gel! Büyük ödül seni bekliyor! 100% Kazanma Oranı!"

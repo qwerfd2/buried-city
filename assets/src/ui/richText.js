@@ -28,6 +28,7 @@ var ItemRichText = cc.Node.extend({
             var rowHeight = 0;
             for (var i = 0; i < this.items.length; i++) {
                 var itemInfo = this.items[i];
+                var str = 
                 var icon = autoSpriteFrameController.getSpriteFromSpriteName("#icon_item_" + itemInfo.itemId + ".png");
                 icon.setScale(this.itemIconScale);
                 this.addChild(icon);

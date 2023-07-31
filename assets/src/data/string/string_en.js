@@ -17,6 +17,12 @@ var string = {
     "title": "Sweepstakes",
     "des": "Come try your luck! Huge prize awaits! 100% Winning!"
 },
+"1301091": {
+    "title": "Flamethrower",
+    "des": "Inflicts lasting damage to a large number of zombies, the only drawback is that it requires gasoline. A lot of gasoline. If you run out of gasoline halfway through..."
+},
+"1347": "You ignited all the zombies.",
+"1348": "You are out of gasoline!",
 "gachaponDialog": {
     "title": {
         "txt_1": "Price: %s Coins"

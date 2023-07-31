@@ -206,6 +206,7 @@ var Player = cc.Class.extend({
     onCurrencyChange: function(value) {
         if (typeof value == "number") {
             player.currency += value;
+            player.currency = round(player.currency);
             if (player.currency >= 99999) {
                 player.currency = 99999;
             }
@@ -411,6 +412,7 @@ var Player = cc.Class.extend({
         }
         var beforeRangeInfo = this.getAttrRangeInfo(key, this[key]);
         this[key] += value;
+        this[key] = Math.round(this[key]);
         if (key == "temperature") {
         this[key] = cc.clampf(this[key], -2, this[key + "Max"]);
         } else {

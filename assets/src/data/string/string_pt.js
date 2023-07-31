@@ -14,6 +14,12 @@ var string = {
     "1344": "Dormir %sH (%s moedas)",
     "1345": "Café (%s moedas)",
     "1346": "Álcool (%s moedas)",
+"1301091": {
+    "title": "Lança-chamas",
+    "des": "Causa danos duradouros a um grande número de zumbis, a única desvantagem é que requer gasolina. Muita gasolina. Se ficar sem gasolina a meio caminho..."
+},
+"1347": "Você incendiou todos os zumbis.",
+"1348": "Você ficou sem gasolina!",
 "gachapon": {
     "title": "Sorteio",
     "des": "Venha tentar a sua sorte! Um grande prêmio o aguarda! 100% de prêmio garantido!"

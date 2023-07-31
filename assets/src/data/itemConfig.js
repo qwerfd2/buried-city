@@ -517,6 +517,27 @@ var itemConfig = {
             "brokenProbability": 0.04
         }
     },
+    "1301091": {
+        "id": "1301091",
+        "weight": 6,
+        "price": 40,
+        "value": 40,
+        "effect_weapon": {
+            "id": "1301091",
+            "atk": 30,
+            "atkCD": 1,
+            "range": 19,
+            "bulletMin": 0,
+            "bulletMax": 0,
+            "bulletNum": 0,
+            "reloadCD": 0.2,
+            "precise": 0,
+            "dtPrecise": 0,
+            "deathHit": 0,
+            "dtDeathHit": 0,
+            "brokenProbability": 0.05
+        }
+    },
     "1302011": {
         "id": "1302011",
         "weight": 2,

@@ -338,10 +338,10 @@ var Actor = cc.Node.extend({
             var dtPos = cc.pMult(this.velocity, dt);
             var newPos = cc.pAdd(pos, dtPos);
             var dBetween = cc.pDistance(pos, newPos);
-            this.lastDistance += dBetween;
+            this.lastDistance += Math.ceil(dBetween * 100000);
             this.sumDistance += dBetween;
-            if (this.lastDistance > 70 && this.isUsingMoto) {
-                this.lastDistance -= 70;
+            if (this.lastDistance >= 6970000 && this.isUsingMoto) {
+                this.lastDistance -= 6970000;
                 player.onFuelChange(-1);
             }
             this.setPosition(newPos);
@@ -354,6 +354,7 @@ var Actor = cc.Node.extend({
                 this.lastCheckPos = this.getPosition();
             } else if (cc.pDistanceSQ(this.targetPos, this.getPosition()) <= 10) {
                 //到达终点
+
                 if (player.storage.validateItem(1306001, 1) || player.bag.validateItem(1306001, 1)) {
                     player.shoeTime += this.sumDistance;
                 }

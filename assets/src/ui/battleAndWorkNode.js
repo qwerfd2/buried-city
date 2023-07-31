@@ -370,6 +370,12 @@ var BattleAndWorkNode = BottomFrameNode.extend({
                 num: sumRes.tools
             });
         }
+        if (sumRes.fuel > 0) {
+            items.push({
+                itemId: "gas",
+                num: sumRes.fuel
+            });
+        }
 
         var richText = new ItemRichText(items, this.rightEdge - this.leftEdge - label1.width, 5, 0.5);
         richText.setName("richText")

@@ -287,11 +287,10 @@ var Monster = cc.Class.extend({
             cc.director.getScheduler().unscheduleCallbackForTarget(this, this.atk);
         }
     },
-    underAtk: function (obj) {
+    underAtk: function (obj, providedHarm) {
         var harm = 0;
         if (obj instanceof Weapon) {
             harm = obj.getHarm(this);
-
             if (obj instanceof Gun) {
                 this.battle.processLog(stringUtil.getString(1048, obj.itemConfig.name, stringUtil.getString("monsterType_" + this.attr.prefixType)));
             } else {
@@ -312,6 +311,8 @@ var Monster = cc.Class.extend({
 
         } else if (obj instanceof Bomb) {
             harm = obj.attr.atk;
+        } else if (obj instanceof Flamethrower) {
+            harm = providedHarm;
         }
 
         this.attr.hp -= harm;
@@ -562,20 +563,25 @@ var Flamethrower = BattleEquipment.extend({
         audioManager.playEffect(audioManager.sound.ESTOVE);
         audioManager.playEffect(audioManager.sound.STOVE);
         this.bPlayer.battle.sumRes.fuel++;
+        this.bPlayer.battle.sumRes.weapon1++;
         if (player.fuel <= 0) {
             this.bPlayer.battle.processLog(stringUtil.getString(1348), cc.color.RED);
         } else {      
             var monsters = this.bPlayer.battle.monsters.concat();
+            var numMonster = monsters.length;
             var harm = this.attr.atk;
+            if (numMonster < 4) {
+                harm *= 2;     
+            }
+            if (numMonster < 2) {
+                harm *= 2;
+            }
             var self = this;
             monsters.forEach(function (mon) {
-                mon.underAtk(self);
+                mon.underAtk(self, harm);
             });
-            //todo: change cost structure
             this.cost();
-            this.bPlayer.battle.processLog(stringUtil.getString(1347));
-            this.bPlayer.battle.processLog(stringUtil.getString(1053, harm));
-    
+            this.bPlayer.battle.processLog(stringUtil.getString(1347) + stringUtil.getString(1053, harm));
             if (this.deadMonsterNum > 0) {
                 var logStr = stringUtil.getString(stringUtil.getString(1056, this.deadMonsterNum, ""));
                 if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_ENGLISH) {
@@ -590,7 +596,10 @@ var Flamethrower = BattleEquipment.extend({
         }
     },
     cost: function () {
-        player.onChangeFuel(-1);
+        player.onFuelChange(-1);
+    },
+    isEnough: function () {
+        return player.equip.isEquiped(1301091);
     },
     afterCd: function () {
         this._action();

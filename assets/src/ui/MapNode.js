@@ -114,7 +114,7 @@ var MapView = cc.ScrollView.extend({
         var startPos = this.actor.getPosition();
         var endPos = entity.baseSite.pos;
         var distance = cc.pDistance(startPos, endPos);
-        var fuelNeed = Math.ceil(distance / 70);
+        var fuelNeed = Math.ceil(distance / 80);
         var canAfford = false;
         if (player.fuel >= fuelNeed) {
             canAfford = true;
@@ -338,10 +338,10 @@ var Actor = cc.Node.extend({
             var dtPos = cc.pMult(this.velocity, dt);
             var newPos = cc.pAdd(pos, dtPos);
             var dBetween = cc.pDistance(pos, newPos);
-            this.lastDistance += Math.ceil(dBetween * 100000);
+            this.lastDistance += Math.ceil(dBetween * 10);
             this.sumDistance += dBetween;
-            if (this.lastDistance >= 6970000 && this.isUsingMoto) {
-                this.lastDistance -= 6970000;
+            if (this.lastDistance >= 795 && this.isUsingMoto) {
+                this.lastDistance -= 795;
                 player.onFuelChange(-1);
             }
             this.setPosition(newPos);
@@ -354,13 +354,14 @@ var Actor = cc.Node.extend({
                 this.lastCheckPos = this.getPosition();
             } else if (cc.pDistanceSQ(this.targetPos, this.getPosition()) <= 10) {
                 //到达终点
-
                 if (player.storage.validateItem(1306001, 1) || player.bag.validateItem(1306001, 1)) {
                     player.shoeTime += this.sumDistance;
                 }
                 this.setPosition(this.targetPos);
                 player.map.updatePos(this.getPosition());
-                player.onFuelChange(-1);
+                if (this.sumDistance > 10) {
+                    player.onFuelChange(-1);
+                }
                 this.isMoving = false;
                 this.afterMove();
             } else {

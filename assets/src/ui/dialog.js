@@ -915,6 +915,12 @@ var RandomBattleDialog = DialogBig.extend({
                 num: sumRes.tools
             });
         }
+        if (sumRes.fuel > 0) {
+            items.push({
+                itemId: "gas",
+                num: sumRes.fuel
+            });
+        }
 
         var richText = new ItemRichText(items, this.rightEdge - this.leftEdge - label1.width, 3, 0.5, cc.color.BLACK);
         richText.setName("richText")

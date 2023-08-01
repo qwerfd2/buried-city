@@ -118,16 +118,16 @@ var SiteNode = BottomFrameNode.extend({
         var strConfig = stringUtil.getString("gachapon");
         config.title.icon = "#site_202.png";
         config.title.title = strConfig.title;
-        config.title.txt_1 = cc.formatStr(config.title.txt_1, 8);
+        config.title.txt_1 = cc.formatStr(config.title.txt_1, 6);
         config.content.des = strConfig.des;
         var dialog = new DialogSmall(config);
         dialog.autoDismiss = false;
         this.btnPlay = uiUtil.createSpriteBtn({normal: "icon_ad_play.png"}, this, function () {
-            if (player.currency < 8) {
+            if (player.currency < 6) {
                 this.displayNotEnough();
                 return;
             }
-            player.onCurrencyChange(-8);
+            player.onCurrencyChange(-6);
             var rand = utils.getRandomInt(0, 399);
             var bound = 0;
             for (var i = 0; i < GachaponConfig.length; i++) {
@@ -277,8 +277,8 @@ var SiteNode = BottomFrameNode.extend({
         var time = 1800;
         if (player.currency > 15) {
             player.log.addMsg(1017);
+            player.onCurrencyChange(-16);
             this.addTimer(time, function () {
-                player.onCurrencyChange(-16);
                 player.lastCoffeeTime = Number(cc.timer.time);
                 player.applyEffect({"spirit": 100, "spirit_chance": 1});
                 Record.saveAll();
@@ -291,8 +291,8 @@ var SiteNode = BottomFrameNode.extend({
         var time = 1800;
         if (player.currency > 11) {
             player.log.addMsg(1307);
+            player.onCurrencyChange(-12);
             this.addTimer(time, function () {
-                player.onCurrencyChange(-12);
                 player.lastAlcoholTime = Number(cc.timer.time);
                 player.applyEffect({"spirit": 100, "spirit_chance": 1});
                 Record.saveAll();

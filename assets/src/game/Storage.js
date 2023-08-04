@@ -23,9 +23,9 @@ var Storage = cc.Class.extend({
     },
     getRandomItem: function() {
         var keyArray = utils.clone(this.map);
-        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073];
+        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091];
         for (var a in deleteItem) {
-            delete keyArray.a;
+            delete keyArray[a];
         }
         keyArray = Object.keys(keyArray);
         if (!keyArray.length) {
@@ -52,12 +52,19 @@ var Storage = cc.Class.extend({
     increaseItem: function (itemId, num) {
         num = Number(num);
         //Water check. If water not full, auto deduct and edit.
-        if (itemId == "1101061") {
-            if (!player.isAttrMax("water")) {
-                num = num - 1;
-                player.incrementWater();
-                player.log.addMsg(stringUtil.getString(1328));
+        var total = Math.ceil((player.waterMax - player.water) / 18);
+        var amount = 0;
+        for (var i = 0; i < total; i++) {
+            if (itemId == "1101061") {
+                if (!player.isAttrMax("water")) {
+                    num = num - 1;
+                    amount += 1;
+                    player.incrementWater();
+                }
             }
+        }
+        if (amount > 0) {
+            player.log.addMsg(stringUtil.getString(1328, amount));
         }
         if (num === 0) {
             return;

@@ -79,7 +79,7 @@ var NpcNode = BottomFrameNode.extend({
         btn2.setName("btn_2");
         
         var stealLogBtn = new ImageButton("res/new/stealLogBtn.png");
-        stealLogBtn.setPosition(this.bgRect.width / 4 * 3 + 88, 212);
+        stealLogBtn.setPosition(this.bgRect.width / 4 * 3 + 68, 212);
         this.bg.addChild(stealLogBtn, 1);
         stealLogBtn.setClickListener(this, function(a) {
             uiUtil.StealLog(self.userData)

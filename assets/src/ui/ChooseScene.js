@@ -48,7 +48,7 @@ var ChooseLayer = cc.Layer.extend({
 
             var strConfig = stringUtil.getString("p_" + purchaseId);
 
-            var name = new cc.LabelTTF(strConfig.name, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_1);
+            var name = new cc.LabelTTF(strConfig.name, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
             name.anchorY = 0;
             name.x = btn.width / 2;
             name.y = btn.height + 5;
@@ -67,8 +67,49 @@ var ChooseLayer = cc.Layer.extend({
         btn1.setName("btn_1");
 
         var btn2 = uiUtil.createCommonBtnWhite(stringUtil.getString(1030), this, function () {
-            var positionIndex = 0;
-            cc.director.runScene(new StoryScene());
+            var purchaseId = JSON.parse(cc.sys.localStorage.getItem("chosenTalent"));
+            if (purchaseId.length == 0) {
+                var config = {
+                    title: {},
+                    content: {},
+                    action: {
+                        btn_1: {},
+                        btn_2: {}
+                    }
+                };
+                config.title.title = stringUtil.getString(1351);
+                config.content.des = stringUtil.getString(1350);
+                config.action.btn_1.txt = stringUtil.getString(1193);
+                config.action.btn_2.txt = stringUtil.getString(1143);
+                config.action.btn_2.cb = function() {
+                    var positionIndex = 0;
+                    cc.director.runScene(new StoryScene());
+                };
+                var dialog = new DialogSmall(config);
+                dialog.show();     
+            } else if (purchaseId.length == 1) {
+                var config = {
+                    title: {},
+                    content: {},
+                    action: {
+                        btn_1: {},
+                        btn_2: {}
+                    }
+                };
+                config.title.title = stringUtil.getString(1351);
+                config.content.des = stringUtil.getString(1349);
+                config.action.btn_1.txt = stringUtil.getString(1193);
+                config.action.btn_2.txt = stringUtil.getString(1143);
+                config.action.btn_2.cb = function() {
+                    var positionIndex = 0;
+                    cc.director.runScene(new StoryScene());
+                };
+                var dialog = new DialogSmall(config);
+                dialog.show();
+            } else {
+                var positionIndex = 0;
+                cc.director.runScene(new StoryScene());
+            }
         });
         btn2.setPosition(cc.winSize.width / 4 * 3, 60);
         this.addChild(btn2);

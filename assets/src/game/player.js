@@ -73,7 +73,7 @@ var Player = cc.Class.extend({
         this.fuel = 0;
         this.shoeTime = 0;
         this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
-        this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
+        this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1301091": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
 
     save: function () {
@@ -528,14 +528,16 @@ var Player = cc.Class.extend({
     },
     fixWater: function () {
         var amount = Math.ceil((this.waterMax - this.water) / 18);
+        var total = 0;
         for (var i = 0; i < amount; i++) {
             if (this.storage.validateItem(1101061, 1)) {
                 this.storage.decreaseItem(1101061, 1);
                 this.incrementWater();
-                this.log.addMsg(stringUtil.getString(1330));
+                total += 1;
             }
         }
-        if (amount > 0) {
+        if (total > 0) {
+           this.log.addMsg(stringUtil.getString(1330, total));
            Record.saveAll();
         }
     },
@@ -545,15 +547,22 @@ var Player = cc.Class.extend({
         this.changeStarve(c[0][0]);
         var curTime = Number(cc.timer.time);
         //First fix any water deficiency issues.
+        var storageAmount = 0;
+        var bagAmount = 0;
         if (this.water < this.waterMax) {
             if (!this.isAtHome && this.bag.validateItem(1101061, 1)) {
                 this.bag.decreaseItem(1101061, 1);
                 this.incrementWater();
-                this.log.addMsg(stringUtil.getString(1329));
+                bagAmount += 1;
             } else if (this.isAtHome && this.storage.validateItem(1101061, 1)) {
                 this.storage.decreaseItem(1101061, 1);
                 this.incrementWater();
-                this.log.addMsg(stringUtil.getString(1330));
+                storageAmount += 1;
+            }
+            if (bagAmount) {
+                this.log.addMsg(stringUtil.getString(1329, bagAmount));
+            } else if (storageAmount) {
+                this.log.addMsg(stringUtil.getString(1330, storageAmount));
             }
         }
         //Add fuel if site is active, then test whether it is still active
@@ -1092,7 +1101,7 @@ var Player = cc.Class.extend({
         }
         var rray = [];
         var copyItem = utils.clone(itemConfig);
-        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073];
+        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091];
         for (var a in deleteItem) {
             delete copyItem[deleteItem[a]];
         }

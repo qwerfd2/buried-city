@@ -1,8 +1,7 @@
 var uiUtil = uiUtil || {};
 
 uiUtil.fontFamily = {
-    normal: cc.sys.isNative && ((cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE && !cc.sys.LANGUAGE_CHINESE_HANT) || cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_ENGLISH)
-        ? "FZDaHei-B02S" : ""
+    normal: "FZDaHei-B02S"
 };
 
 uiUtil.fontSize = {
@@ -17,7 +16,7 @@ uiUtil.bazaarItem = function(itemInfo, target, cb) {
 
     var item = new Item(itemInfo.itemId);
     //背景
-    var bg = autoSpriteFrameController.getSpriteFromSpriteName("frame_iap_bg_item.png");
+    var bg = autoSpriteFrameController.getSpriteFromSpriteName("frame_iap_bg_talent.png");
     node.setContentSize(bg.getContentSize());
     bg.x = node.width / 2;
     bg.y = node.height / 2;
@@ -1035,7 +1034,7 @@ uiUtil.showNpcInMapDialog = function (entity, time, fuelNeed, canAfford, okCb, c
         });
     });
     var showItemBtn = new ImageButton("res/new/tradelist.png");
-    showItemBtn.setPosition(cc.winSize.width / 2 + 200, label1.y + 180);
+    showItemBtn.setPosition(cc.winSize.width / 2 + 180, label1.y + 180);
     dialog.addChild(showItemBtn, 1);
     showItemBtn.setClickListener(this, function(a) {
         var d = new NpcTradeItemDialog(needItems);
@@ -1116,7 +1115,7 @@ uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
             }
         });
         var showItemBtn = new ImageButton("res/new/tradelist.png");
-        showItemBtn.setPosition(cc.winSize.width / 2 + 200, label.y + 180);
+        showItemBtn.setPosition(cc.winSize.width / 2 + 180, label.y + 180);
         dialog.addChild(showItemBtn, 1);
         showItemBtn.setClickListener(this, function(a) {
             var d = new NpcTradeItemDialog(needItems);
@@ -1284,12 +1283,22 @@ uiUtil.createEquipedItemIconList = function (dark) {
         }
         return res;
     });
-    var bulletNum = player.bag.getNumByItemId(BattleConfig.BULLET_ID);
-    if (bulletNum > 0) {
-        equipedItemList.unshift({
-            itemId: BattleConfig.BULLET_ID,
-            num: bulletNum
-        });
+    if (player.equip.isEquiped(1301091)) {
+        var fuelNum = player.fuel;
+        if (fuelNum > 0) {
+            equipedItemList.unshift({
+                itemId: "gas",
+                num: fuelNum
+            });
+        }
+    } else {
+        var bulletNum = player.bag.getNumByItemId(BattleConfig.BULLET_ID);
+        if (bulletNum > 0) {
+            equipedItemList.unshift({
+                itemId: BattleConfig.BULLET_ID,
+                num: bulletNum
+            });
+        }
     }
 
     var node = new cc.Node();
@@ -1596,35 +1605,6 @@ uiUtil.showPayDialog = function (purchaseId, cb) {
     }
     d.show();
     return d;
-};
-
-uiUtil.createLockNode = function (size, purchaseId, cb, isWhite) {
-    var n = new ButtonWithPressed(size);
-
-    if (!isWhite) {
-        var drawNode = new cc.DrawNode();
-        drawNode.setName("normalBg");
-        n.addChild(drawNode, -1);
-        drawNode.drawRect(cc.p(0, 0), cc.p(n.width, n.height), cc.color(0, 0, 0, 155), 1, cc.color(0, 0, 0, 10));
-
-        var lock = autoSpriteFrameController.getSpriteFromSpriteName('icon_iap_lock.png');
-        lock.x = n.width / 2;
-        lock.y = n.height / 2;
-        lock.scale = 0.6;
-        n.addChild(lock);
-        lock.setName("lock");
-    }
-
-    n.setClickListener(this, function () {
-        utils.updatePayInfo(this, function (err) {
-            if (!err) {
-                uiUtil.showPayDialog(purchaseId, function () {
-                    utils.pay(purchaseId, this, cb);
-                });
-            }
-        }, [purchaseId]);
-    });
-    return n;
 };
 
 var _labelTTF = cc.LabelTTF;

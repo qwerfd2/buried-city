@@ -409,7 +409,6 @@ var showAttrStatusDialog = function (stringId, attr) {
             buffLastTime.setVisible(false);
         }
     };
-
     updateBuff();
 
     var storage;
@@ -423,7 +422,6 @@ var showAttrStatusDialog = function (stringId, attr) {
         }
     }
 
-    //fix bug: NPC交易时快捷使用物品带来的不正确
     if (!player.tmpBag) {
         var itemList = [];
         if (attr === 'starve') {
@@ -458,10 +456,11 @@ var showAttrStatusDialog = function (stringId, attr) {
                 dialog.dismiss();
             }
         };
-
+        utils.emitter.on("entered_alter_node", function() {dialog.dismiss()});
         utils.emitter.on("btn_1_click", onItemUse);
         dialog.setOnDismissListener({
             target: dialog, cb: function () {
+                utils.emitter.off("entered_alter_node");
                 utils.emitter.off('btn_1_click', onItemUse);
             }
         });
@@ -476,9 +475,8 @@ var showAttrStatusDialog = function (stringId, attr) {
         showText.setColor(cc.color.RED);
     
         if (player.injuryMax > 14) {
-            var exchangeInjury = new ImageButton("res/new/injury.png");
-            exchangeInjury.setPosition(60, 40);
-            exchangeInjury.setScale(0.7);
+            var exchangeInjury = new ImageButton("res/new/injury.png", 0.7);
+            exchangeInjury.setPosition(40, 40);
             dialog.contentNode.addChild(exchangeInjury, 1);
             exchangeInjury.setClickListener(this, function(a) {
                 virusExchangeDialog(10, function() {
@@ -494,9 +492,8 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.infectMax > 14) {
-            var exchangeInfection = new ImageButton("res/new/infection.png");
-            exchangeInfection.setPosition(120, 40);
-            exchangeInfection.setScale(0.7);
+            var exchangeInfection = new ImageButton("res/new/infection.png", 0.7);
+            exchangeInfection.setPosition(100, 40);
             dialog.contentNode.addChild(exchangeInfection, 1);
             exchangeInfection.setClickListener(this, function(a) {
                 virusExchangeDialog(9, function() {
@@ -512,9 +509,8 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.starveMax > 14) {
-            var exchangeHunger = new ImageButton("res/new/hunger.png");
-            exchangeHunger.setPosition(180, 40);
-            exchangeHunger.setScale(0.7);
+            var exchangeHunger = new ImageButton("res/new/hunger.png", 0.7);
+            exchangeHunger.setPosition(160, 40);
             dialog.contentNode.addChild(exchangeHunger, 1);
             exchangeHunger.setClickListener(this, function(a) {
                 virusExchangeDialog(6, function() {
@@ -530,9 +526,8 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.vigourMax > 14) {
-            var exchangeVigour = new ImageButton("res/new/vigour.png");
-            exchangeVigour.setPosition(240, 40);
-            exchangeVigour.setScale(0.7);
+            var exchangeVigour = new ImageButton("res/new/vigour.png", 0.7);
+            exchangeVigour.setPosition(220, 40);
             dialog.contentNode.addChild(exchangeVigour, 1);
             exchangeVigour.setClickListener(this, function(a) {
                 virusExchangeDialog(7, function() {
@@ -548,9 +543,8 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.spiritMax > 14) {
-            var exchangeSpirit = new ImageButton("res/new/spirit.png");
-            exchangeSpirit.setPosition(300, 40);
-            exchangeSpirit.setScale(0.7);
+            var exchangeSpirit = new ImageButton("res/new/spirit.png", 0.7);
+            exchangeSpirit.setPosition(280, 40);
             dialog.contentNode.addChild(exchangeSpirit, 1);
             exchangeSpirit.setClickListener(this, function(a) {
                 virusExchangeDialog(8, function() {
@@ -566,9 +560,8 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.waterMax > 14) {
-            var exchangeWater = new ImageButton("res/new/water.png");
-            exchangeWater.setPosition(360, 40);
-            exchangeWater.setScale(0.7);
+            var exchangeWater = new ImageButton("res/new/water.png", 0.7);
+            exchangeWater.setPosition(340, 40);
             dialog.contentNode.addChild(exchangeWater, 1);
             exchangeWater.setClickListener(this, function(a) {
                 virusExchangeDialog(14, function() {
@@ -584,10 +577,8 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.hpMax > 29) {
-            var exchangeHp = new ImageButton("res/new/hp.png");
-            exchangeHp.setPosition(420, 40);
-            exchangeHp.setScale(0.7);
-            dialog.contentNode.addChild(exchangeHp, 1);
+            var exchangeHp = new ImageButton("res/new/hp.png", 0.7);
+            exchangeHp.setPosition(400, 40);
             exchangeHp.setClickListener(this, function(a) {
                 virusExchangeDialog(5, function() {
                     player.hpMax -= 10;
@@ -600,8 +591,8 @@ var showAttrStatusDialog = function (stringId, attr) {
                     dialog.dismiss();
                 })
             });
+            dialog.contentNode.addChild(exchangeHp, 1);
         }
     }
-
     dialog.show();
 };

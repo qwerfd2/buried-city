@@ -89,11 +89,12 @@ var Button = cc.Node.extend({
 });
 
 var ImageButton = Button.extend({
-    ctor: function (a,b) {
-        this._super(cc.size(66, 66));        
-        icon=new cc.Sprite(a);
-        icon.setScale(b || 1)      
-        icon.setPosition(this.width / 8, this.height / 2);
+    ctor: function (a, b) {
+        icon = new cc.Sprite(a);
+        icon.setScale(b || 1);
+        this._super(cc.size(icon.getContentSize().width, icon.getContentSize().height));  
+        icon.setPosition(this.width / 2, this.height / 2);
+
         this.addChild(icon);
     }
 })
@@ -541,7 +542,7 @@ var ButtonAtChooseScene = Button.extend({
         sprite.setScale(0.9);
         this.addChild(sprite);
 
-        var info = new SpriteButton(cc.size(100, 100), 'icon_iap_info.png');
+        var info = new SpriteButton(cc.size(60, 60), 'icon_iap_info.png');
         info.x = this.width - 27;
         info.y = this.height - 27;
         info.setName("info");
@@ -558,16 +559,6 @@ var ButtonAtChooseScene = Button.extend({
         this.addChild(mark);
         mark.setVisible(false);
 
-        var lock = new LockButton(bg.getContentSize(), 'icon_iap_lock.png');
-        lock.x = this.width / 2;
-        lock.y = this.height / 2;
-        lock.setName("lock");
-        this.addChild(lock);
-        lock.setVisible(false);
-        lock.setClickListener(this, function () {
-            uiUtil.showUnlockDialog(this.purchaseId);
-        });
-
         this.normalOpacity = 255;
         this.pressedOpacity = 127.5;
     },
@@ -576,14 +567,12 @@ var ButtonAtChooseScene = Button.extend({
         if (enabled) {
             this.getChildByName("bg").setOpacity(this.normalOpacity);
             this.getChildByName("normal").setOpacity(this.normalOpacity);
-            this.getChildByName("lock").setVisible(false);
             if (this.purchaseId != 0) {
                 this.getChildByName("info").setVisible(true);
             }
         } else {
             this.getChildByName("bg").setOpacity(this.pressedOpacity);
             this.getChildByName("normal").setOpacity(this.pressedOpacity);
-            this.getChildByName("lock").setVisible(true);
             this.getChildByName("info").setVisible(false);
         }
     },
@@ -632,23 +621,5 @@ var ButtonAtChooseScene = Button.extend({
             d.titleNode.getChildByName("icon").scale = 0.45;
         }
         d.show();
-    }
-});
-
-var LockButton = SpriteButton.extend({
-    ctor: function (size, normalName) {
-        this._super(size, normalName);
-
-        var normal = this.getChildByName("normal");
-        normal.x = 30;
-        normal.y = this.height - 30;
-    },
-    animPressed: function () {
-        var normal = this.getChildByName("normal");
-        normal.runAction(cc.scaleTo(0.1, 1.2));
-    },
-    animNormal: function () {
-        var normal = this.getChildByName("normal");
-        normal.runAction(cc.scaleTo(0.1, 1));
     }
 });

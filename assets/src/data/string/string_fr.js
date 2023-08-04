@@ -14,6 +14,9 @@ var string = {
     "1344": "Dormir %sH (%s pièces)",
     "1345": "Café (%s pièces)",
     "1346": "Alcool (%s pièces)",
+"1349": "Vous avez sélectionné seulement un talent. La Ville Enfouie est plus difficile que la version originale, mais elle supporte plusieurs talents. Voulez-vous re-sélectionner ?",
+"1350": "Vous n'avez sélectionné aucun talent. La Ville Enfouie est plus difficile que la version originale, il est recommandé de choisir au moins un talent. Voulez-vous re-sélectionner ?",
+"1351": "Avertissement",
 "gachapon": {
     "title": "Tirage au sort",
     "des": "Venez tenter votre chance ! Un énorme prix vous attend !"
@@ -72,9 +75,9 @@ var string = {
         "title": "Charge Virale",
         "des": "Vous n'êtes pas immunisé, et vous n'avez pas d'armure de scénario. Si vous êtes blessé au combat, la charge virale augmentera. Vous pouvez sacrifier d'autres attributs pour augmenter la limite de charge, mais une fois que le virus entre, il reste. Si la charge virale dépasse la limite, vous vous transformerez immédiatement en zombie."
     },
-    "1328": "Vous avez très soif et avez bu 1 verre d'eau que vous venez d'obtenir.",
-    "1329": "Vous avez très soif et avez bu 1 verre d'eau de votre sac à dos.",
-    "1330": "Vous avez très soif et avez bu 1 verre d'eau du stockage.",
+    "1328": "Vous avez très soif et avez bu %s verre d'eau que vous venez d'obtenir.",
+    "1329": "Vous avez très soif et avez bu %s verre d'eau de votre sac à dos.",
+    "1330": "Vous avez très soif et avez bu %s verre d'eau du stockage.",
     "1331": "Vous avez bu 1 verre d'eau de votre sac à dos.",
     "1332": "Vous avez bu 1 eau du stockage.",
 "9030": "Voulez-vous vendre?",

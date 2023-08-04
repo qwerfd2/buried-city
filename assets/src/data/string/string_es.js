@@ -13,6 +13,9 @@ var string = {
     "1344": "Dormir %sH (%s monedas)",
     "1345": "Café (%s monedas)",
     "1346": "Alcohol (%s monedas)",
+"1349": "Has seleccionado solo un talento. La Ciudad Enterrada es más difícil que la versión original, pero admite varios talentos. ¿Deseas volver a seleccionar?",
+"1350": "No has seleccionado ningún talento. La Ciudad Enterrada es más difícil que la versión original, se recomienda elegir al menos un talento. ¿Deseas volver a seleccionar?",
+"1351": "Advertencia",
 "1301091": {
     "title": "Lanzallamas",
     "des": "Inflige daño duradero a una gran cantidad de zombies, el único inconveniente es que requiere gasolina. ¡Mucha gasolina! Si te quedas sin gasolina a mitad de camino..."
@@ -69,9 +72,9 @@ var string = {
         "des": "No eres inmune, y no tienes protección de la trama. Si te lesionas en una batalla, la carga viral aumentará. Puedes sacrificar otros atributos para aumentar el límite de carga, pero una vez que el virus entra, se queda. Si la carga viral excede el límite, te convertirás inmediatamente en un zombie."
     },
 
-    "1328": "Tienes mucha sed y has bebido 1 vaso de agua que acabas de obtener.",
-    "1329": "Tienes mucha sed y has bebido 1 vaso de agua de tu mochila.",
-    "1330": "Tienes mucha sed y has bebido 1 vaso de agua del almacén.",
+    "1328": "Tienes mucha sed y has bebido %s vaso de agua que acabas de obtener.",
+    "1329": "Tienes mucha sed y has bebido %s vaso de agua de tu mochila.",
+    "1330": "Tienes mucha sed y has bebido %s vaso de agua del almacén.",
     "1331": "Bebiste 1 vaso de agua de tu mochila.",
     "1332": "Bebiste 1 agua del almacén.",
 "9030": "¿Quieres vender?",

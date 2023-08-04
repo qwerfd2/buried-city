@@ -525,7 +525,7 @@ var SettingLayer = cc.Layer.extend({
                             cc.RTL = false;
                         }
                     }
-                    uiUtil.fontFamily.normal = cc.sys.isNative && ((cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE && !cc.sys.LANGUAGE_CHINESE_HANT) || cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_ENGLISH) ? "FZDaHei-B02S" : ""
+
 
                     cc.director.runScene(new MenuScene(true));
                 }

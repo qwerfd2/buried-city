@@ -13,6 +13,9 @@ var string = {
     "1344": "Sleep %sH (%s coins)",
     "1345": "Coffee (%s coins)",
     "1346": "Alcohol (%s coins)",
+"1349": "You selected only one talent. Buried City is more difficult than the original version, but it supports multiple talents. Do you want to re-select?",
+"1350": "You haven't selected any talents. Buried City is more difficult than the original version, it is recommended to choose at least one talent. Do you want to re-select?",
+"1351": "Warning",
 "gachapon": {
     "title": "Sweepstakes",
     "des": "Come try your luck! Huge prize awaits! 100% Winning!"
@@ -75,9 +78,9 @@ var string = {
     "spirit_name": ["Breakdown", "Depressed", "Upset", "Confident"],
     "injury_name": ["No injury", "Injured", "Slightly injured", "Severely injured", "Fatally injured"],
     "infect_name": ["No infection", "Light infection", "Medium infection", "Severe infection", "Immune system collapse"],
-    "1328": "You are very thirsty and drank 1 water you just obtained.",
-    "1329": "You are very thirsty and drank 1 water from your backpack.",
-    "1330": "You are very thirsty and drank 1 water from the storeroom.",
+    "1328": "You are very thirsty and drank %s water you just obtained.",
+    "1329": "You are very thirsty and drank %s water from your backpack.",
+    "1330": "You are very thirsty and drank %s water from the storeroom.",
     "1331": "You drank 1 water from your backpack.",
     "1332": "You drank 1 water from the storeroom.",
 "9030": "Do you want to sell?",

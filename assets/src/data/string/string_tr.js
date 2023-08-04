@@ -14,6 +14,9 @@ var string = {
     "1344": "%s saat uyuma (%s madeni para)",
     "1345": "Kahve içme (%s madeni para)",
     "1346": "Alkol içme (%s madeni para)",
+"1349": "Sadece bir yetenek seçtiniz. Gömülü Şehir, orijinal sürümden daha zor, ancak birden fazla yeteneği destekliyor. Yeniden seçmek istiyor musunuz?",
+"1350": "Hiçbir yetenek seçmediniz. Gömülü Şehir, orijinal sürümden daha zor, en az bir yetenek seçmeniz önerilir. Yeniden seçmek istiyor musunuz?",
+"1351": "Uyarı",
 "1301091": {
     "title": "Alev Püskürtücü",
     "des": "Birçok zombiye kalıcı hasar verir, tek dezavantajı benzin gerektirmesidir. Çok fazla benzin. Eğer yolun yarısında benzininiz biterse..."
@@ -69,8 +72,8 @@ var string = {
         "des": "Bağışıklığınız yok ve kaderinizde bir kalkanınız da yok. Savaşta yaralanırsanız, virüs yükü artar. Diğer özellikleri feda ederek yük sınırını artırabilirsiniz, ancak virüs bir kez girdiğinde kalır. Eğer virüs yükü sınırı aşarsa, hemen bir zombiye dönüşürsünüz."
     },
 
-    "1328": "Çok susuzsunuz ve yeni elde ettiğiniz 1 suyu içtiniz.",
-    "1329": "Çok susuzsunuz ve sırt çantanızdan 1 su içtiniz.",
+    "1328": "Çok susuzsunuz ve yeni elde ettiğiniz %s suyu içtiniz.",
+    "1329": "Çok susuzsunuz ve sırt çantanızdan %s su içtiniz.",
     "1330": "Çok susuzsunuz ve depodan 1 su içtiniz.",
     "1331": "Sırt çantanızdan 1 su içtiniz.",
     "1332": "Depodan 1 su içtiniz.",

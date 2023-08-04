@@ -15,7 +15,6 @@ var SiteNode = BottomFrameNode.extend({
 
         var leftEdge = 40;
         var rightEdge = this.bgRect.width - leftEdge;
-
         this.title.anchorX = 0;
         this.title.anchorY = 1;
         this.title.x = this.leftBtn.x + this.leftBtn.width / 2 + 10;
@@ -140,12 +139,12 @@ var SiteNode = BottomFrameNode.extend({
             }
             var itemId = GachaponConfig[rand].itemId;
             var num = GachaponConfig[rand].num;
-            player.map.getSite(400).storage.increaseItem(itemId, num);
-            Record.saveAll();
-            player.map.getSite(400).haveNewItems = true;
-            this.notifyIcon.setVisible(true);
             var str = stringUtil.getString(1069) + stringUtil.getString(itemId).title + " x" + num;
             player.log.addMsg(str);
+            player.map.getSite(400).storage.increaseItem(itemId, num);
+            player.map.getSite(400).haveNewItems = true;
+            Record.saveAll();
+            this.notifyIcon.setVisible(true);
             var config = {
                 title: {},
                 content: {des: str},

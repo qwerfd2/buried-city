@@ -13,6 +13,9 @@ var string = {
     "1344": "Schlafen %s Std. (%s Münzen)",
     "1345": "Kaffee (%s Münzen)",
     "1346": "Alkohol (%s Münzen)",
+"1349": "Sie haben nur ein Talent ausgewählt. Die Verschüttete Stadt ist schwieriger als die Originalversion, unterstützt aber mehrere Talente. Möchten Sie neu wählen?",
+"1350": "Sie haben keine Talente ausgewählt. Die Verschüttete Stadt ist schwieriger als die Originalversion, es wird empfohlen, mindestens ein Talent auszuwählen. Möchten Sie neu wählen?",
+"1351": "Warnung",
 "1339": "Hallo, ich möchte diese gegen %s Münzen tauschen. Ist das in Ordnung für Sie?",
 "1301091": {
     "title": "Flammenwerfer",
@@ -68,9 +71,9 @@ var string = {
         "title": "Viruslast",
         "des": "Du bist nicht immun und hast keine Handlungspanzerung. Wenn du im Kampf verletzt wirst, wird die Viruslast steigen. Du kannst andere Attribute opfern, um das Lastlimit zu erhöhen, aber sobald das Virus eindringt, bleibt es. Wenn die Viruslast das Limit überschreitet, verwandelst du dich sofort in einen Zombie."
     },
-    "1328": "Du hast sehr Durst und hast 1 Wasser getrunken, das du gerade erhalten hast.",
-    "1329": "Du hast sehr Durst und hast 1 Wasser aus deinem Rucksack getrunken.",
-    "1330": "Du hast sehr Durst und hast 1 Wasser aus dem Lager getrunken.",
+    "1328": "Du hast sehr Durst und hast %s Wasser getrunken, das du gerade erhalten hast.",
+    "1329": "Du hast sehr Durst und hast %s Wasser aus deinem Rucksack getrunken.",
+    "1330": "Du hast sehr Durst und hast %s Wasser aus dem Lager getrunken.",
     "1331": "Du hast 1 Wasser aus deinem Rucksack getrunken.",
     "1332": "Du hast 1 Wasser aus dem Lager getrunken.",
 "9030": "Você quer vender?",

@@ -14,6 +14,9 @@ var string = {
     "1344": "Dormir %sH (%s moedas)",
     "1345": "Café (%s moedas)",
     "1346": "Álcool (%s moedas)",
+"1349": "Você selecionou apenas um talento. A Cidade Enterrada é mais difícil do que a versão original, mas suporta vários talentos. Deseja selecionar novamente?",
+"1350": "Você não selecionou nenhum talento. A Cidade Enterrada é mais difícil do que a versão original, é recomendado escolher pelo menos um talento. Deseja selecionar novamente?",
+"1351": "Aviso",
 "1301091": {
     "title": "Lança-chamas",
     "des": "Causa danos duradouros a um grande número de zumbis, a única desvantagem é que requer gasolina. Muita gasolina. Se ficar sem gasolina a meio caminho..."
@@ -68,9 +71,9 @@ var string = {
         "title": "Carga Viral",
         "des": "Você não é imune e não tem proteção de enredo. Se ficar ferido em batalha, a carga viral aumentará. Você pode sacrificar outros atributos para aumentar o limite de carga, mas uma vez que o vírus entre, ele permanece. Se a carga viral exceder o limite, você se transformará imediatamente em um zumbi."
     },
-    "1328": "Você está muito sedento e bebeu 1 copo de água que acabou de obter.",
-    "1329": "Você está muito sedento e bebeu 1 copo de água da sua mochila.",
-    "1330": "Você está muito sedento e bebeu 1 copo de água do depósito.",
+    "1328": "Você está muito sedento e bebeu %s copo de água que acabou de obter.",
+    "1329": "Você está muito sedento e bebeu %s copo de água da sua mochila.",
+    "1330": "Você está muito sedento e bebeu %s copo de água do depósito.",
     "1331": "Você bebeu 1 copo de água da sua mochila.",
     "11332": "Você bebeu 1 copo de água do depósito.",
 "9030": "Você quer vender?",

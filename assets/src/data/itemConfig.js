@@ -683,7 +683,7 @@ var itemConfig = {
         "value": 18,
         "effect_weapon": {
             "id": "1303033",
-            "atk": 60,
+            "atk": 100,
             "atkCD": 5,
             "range": 5,
             "bulletMin": 0,

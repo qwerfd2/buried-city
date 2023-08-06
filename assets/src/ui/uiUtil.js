@@ -997,7 +997,8 @@ uiUtil.showNpcInMapDialog = function (entity, time, fuelNeed, canAfford, okCb, c
     config.action.btn_2.txt = stringUtil.getString(1138);
     config.action.btn_2.target = entity;
     config.action.btn_2.cb = okCb;
-    var dialog = new NpcDialog(config);
+    var dialog = new NpcDialog(config, canAfford);
+    
     var log = dialog.contentNode.getChildByName("log");
 
     var label1 = new cc.LabelTTF(utils.getTimeDistanceStr(time), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
@@ -1033,6 +1034,14 @@ uiUtil.showNpcInMapDialog = function (entity, time, fuelNeed, canAfford, okCb, c
             color: cc.color.BLACK
         });
     });
+    
+    var transportNode = uiUtil.createTransportNode(canAfford);
+    transportNode.setAnchorPoint(1, 0.5);
+    transportNode.setPosition(cc.winSize.width / 2 + 210, label1.y + 580);
+    if (fuelNeed > 0) {
+        dialog.addChild(transportNode, 1);
+    }
+    
     var showItemBtn = new ImageButton("res/new/tradelist.png");
     showItemBtn.setPosition(cc.winSize.width / 2 + 180, label1.y + 180);
     dialog.addChild(showItemBtn, 1);
@@ -1065,7 +1074,15 @@ uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     config.action.btn_2.target = entity;
     config.action.btn_2.cb = okCb;
     var dialog = new DialogBig(config);
-
+    
+    var transportNode = uiUtil.createTransportNode(canAfford);
+    transportNode.setAnchorPoint(1, 0.5);
+    transportNode.x = dialog.rightEdge;
+    transportNode.y = dialog.titleNode.height / 2;
+    if (fuelNeed > 0) {
+        dialog.titleNode.addChild(transportNode);
+    }
+    
     var txt1 = dialog.titleNode.getChildByName("txt_1");
     var txt2 = dialog.titleNode.getChildByName("txt_2");
     var icon = dialog.titleNode.getChildByName('icon');
@@ -1143,6 +1160,15 @@ uiUtil.showHomeDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     config.action.btn_2.target = entity;
     config.action.btn_2.cb = okCb;
     var dialog = new DialogBig(config);
+    
+    var transportNode = uiUtil.createTransportNode(canAfford);
+    transportNode.setAnchorPoint(1, 0.5);
+    transportNode.x = dialog.rightEdge;
+    transportNode.y = dialog.titleNode.height / 2;
+    if (fuelNeed > 0) {
+        dialog.titleNode.addChild(transportNode);
+    }
+    
     dialog.contentNode.getChildByName("dig_des").setScale(0.8);
     var des = dialog.contentNode.getChildByName("des");
     des.y = des.y + 20;
@@ -1722,6 +1748,24 @@ uiUtil.createItemListSliders = function (itemList) {
     tableView.reloadData();
 
     return tableView;
+};
+
+uiUtil.createTransportNode = function (canAfford) {
+    var hasShoe = (player.bag.validateItem(1306001, 1)) || (player.storage.validateItem(1306001, 1));
+    var shoeBox = new CheckBox(!hasShoe, "icon_item_1306001.png", "icon_music_off.png", false);
+    var hasMoto = (player.bag.validateItem(1305034, 1)) || (player.storage.validateItem(1305034, 1));
+    var motoBox = new CheckBox(!hasMoto || !canAfford, "icon_item_1305034.png", "icon_music_off.png", false);
+        
+    var node = new cc.Node();
+    shoeBox.setScale(0.6);
+    motoBox.setScale(0.6);
+    node.setContentSize(70, 30)
+    player.log.addMsg("here");
+    shoeBox.setAnchorPoint(0, 0.5);
+    motoBox.setAnchorPoint(1, 0.5);
+    node.addChild(shoeBox);
+    node.addChild(motoBox);
+    return node;
 };
 
 uiUtil.createItemListSlidersViewOnly = function (itemList) {

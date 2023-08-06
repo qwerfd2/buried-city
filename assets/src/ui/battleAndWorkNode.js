@@ -76,7 +76,11 @@ var BattleAndWorkNode = BottomFrameNode.extend({
                     des.setString(stringUtil.getString(3009)[this.room.difficulty - 1]);
                     this.createBattleBeginView();
                 } else {
-                    des.setString(stringUtil.getString(3008)[this.room.workType]);
+                    if (this.userData == 666 && this.site.step == this.site.rooms.length - 1) {
+                        des.setString(stringUtil.getString(8102));
+                    } else {
+                        des.setString(stringUtil.getString(3008)[this.room.workType]);
+                    }
                     this.createWorkBeginView();
                 }
             }
@@ -446,7 +450,13 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         if (this.bg.getChildByName("dig_des")) {
             this.bg.removeChildByName("dig_des");
         }
-        var digDes = new cc.Sprite("res/new/work_dig_" + this.room.workType + ".png");
+        var digDes;
+        if (this.userData == 666 && this.site.step == this.site.rooms.length - 1) {
+            digDes = new cc.Sprite("res/new/work_dig_3.png");
+        } else {
+            digDes = new cc.Sprite("res/new/work_dig_" + this.room.workType + ".png");
+        }
+        new cc.Sprite("res/new/work_dig_" + this.room.workType + ".png");
         digDes.setAnchorPoint(0.5, 1);
         digDes.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - 20);
         digDes.setName("dig_des");
@@ -477,7 +487,12 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         for (var i = 0; i < itemList.length; i++) {
             var btn = uiUtil.createToolBtn(this, function (sender) {
                 node.removeFromParent();
-                self.createWorkProcessView(sender.time, sender.itemId);
+                if (this.userData == 666 && this.site.step == this.site.rooms.length - 1) {
+                    Record.saveAll();
+                    cc.director.runScene(new EndStoryScene());
+                } else {
+                    self.createWorkProcessView(sender.time, sender.itemId);
+                }
             });
             btn.setPosition((padding * 2 + iconWidth) * i + (padding + iconWidth / 2 ), 120);
             btn.setAnchorPoint(0.5, 0.5);

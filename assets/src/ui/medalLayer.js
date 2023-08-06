@@ -126,7 +126,7 @@ var medalLayer = cc.Layer.extend({
         bg.addChild(agreementLabel);
         agreementLabel.setName("text_dec");
 
-        var checkBox = new CheckBox(Record.getMedalCheat(), "checkbox_bg.png", "checkbox_on.png");
+        var checkBox = new CheckBox(Record.getMedalCheat(), "checkbox_bg.png", "checkbox_on.png", true);
         checkBox.setClickListener(this, function (sender) {
             var on = sender.on;
             Record.setMedalCheat(on);

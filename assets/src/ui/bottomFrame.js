@@ -260,6 +260,7 @@ var BottomFrameNode = cc.Node.extend({
     },
 
     forward: function (nodeName, userData) {
+
         utils.emitter.emit("entered_alter_node");
         var parent = this.getParent();
         this.removeFromParent();

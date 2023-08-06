@@ -70,6 +70,7 @@ var SiteNode = BottomFrameNode.extend({
         btn2.setEnabled(!this.site.isSiteEnd());
         
         if (this.site.id == 400) {
+
             var btn3 = uiUtil.createCommonBtnWhite(stringUtil.getString("gachapon").title, this, this.onClickBtn3);
             btn3.setPosition(this.bgRect.width / 2, 100);
             this.bg.addChild(btn3);
@@ -340,9 +341,18 @@ var SiteNode = BottomFrameNode.extend({
     },
     onEnter: function () {
         this._super();
+
+        if (this.userData == 400) {
+            player.isAtBazaar = true;
+            Record.saveAll();
+        }
     },
     onExit: function () {
         this._super();
+        if (player.isAtBazaar) {
+            player.isAtBazaar = false;
+            Record.saveAll();
+        }
     },
 
     onClickLeftBtn: function () {

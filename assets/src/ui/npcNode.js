@@ -228,11 +228,15 @@ var NpcNode = BottomFrameNode.extend({
     },
     onEnter: function () {
         this._super();
+        player.isAtBazaar = true;
+        Record.saveAll();
     },
     onExit: function () {
         this._super();
         utils.emitter.off("Steal");
         utils.emitter.off("Alert");
+        player.isAtBazaar = false;
+        Record.saveAll();
     },
 
     onClickLeftBtn: function () {

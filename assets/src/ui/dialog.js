@@ -1013,9 +1013,8 @@ var RandomBattleDialog = DialogBig.extend({
 });
 
 var NpcDialog = DialogBig.extend({
-    ctor: function (config) {
+    ctor: function (config, canAfford) {
         this._super(config);
-
         this.autoDismiss = false;
         var heartNode = uiUtil.createHeartNode();
         heartNode.setAnchorPoint(1, 0.5);

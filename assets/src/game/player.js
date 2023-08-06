@@ -42,6 +42,7 @@ var Player = cc.Class.extend({
         this.binded = false;
         //是否在家
         this.isAtHome = true;
+        this.isAtBazaar = false;
         //是否在副本
         this.isAtSite = false;
         this.nowSiteId = null;
@@ -97,6 +98,7 @@ var Player = cc.Class.extend({
             binded: this.binded,
             bindTime: this.bindTime,
             isAtHome: this.isAtHome,
+            isAtBazaar: this.isAtBazaar,
             isAtSite: this.isAtSite,
             nowSiteId: this.nowSiteId,
             deathCausedInfect: this.deathCausedInfect,
@@ -154,6 +156,7 @@ var Player = cc.Class.extend({
             this.binded = opt.binded;
             this.bindTime = opt.bindTime;
             this.isAtHome = opt.isAtHome;
+            this.isAtBazaar = opt.isAtBazaar;
             this.isAtSite = opt.isAtSite;
             this.nowSiteId = opt.nowSiteId;
             this.deathCausedInfect = opt.deathCausedInfect;
@@ -591,13 +594,13 @@ var Player = cc.Class.extend({
         }
          //白天家中，精力值	-1    白天野外，精力值	-2    夜晚家中，精力值	-3    夜晚野外，精力值	-4
         if (cc.timer.getStage() === "day") {
-            if (this.isAtHome) {
+            if (this.isAtHome || this.isAtBazaar) {
                 this.changeVigour(c[2][0]);
             } else {
                 this.changeVigour(c[3][0]);
             }
         } else {
-            if (this.isAtHome) {
+            if (this.isAtHome || this.isAtBazaar) {
                 this.changeVigour(c[4][0]);
             } else {
                 this.changeVigour(c[5][0]);

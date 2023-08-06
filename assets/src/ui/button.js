@@ -403,15 +403,19 @@ var ButtonAtSite = ButtonAtHome.extend({
 });
 
 var CheckBox = Button.extend({
-    ctor: function (on, bgSpriteName, checkedSpriteName) {
+    ctor: function (on, bgSpriteName, checkedSpriteName, changable) {
         var sprite = autoSpriteFrameController.getSpriteFromSpriteName(bgSpriteName);
         this._super(sprite.getContentSize());
+        this.changable = changable;
         sprite.x = this.width / 2;
         sprite.y = this.height / 2;
         sprite.setName("normal");
         this.addChild(sprite);
 
         var checkedSprite = autoSpriteFrameController.getSpriteFromSpriteName(checkedSpriteName);
+        if (checkedSpriteName == "icon_music_off.png") {
+            checkedSprite.setColor(cc.color.BLACK);
+        }
         checkedSprite.x = this.width / 2;
         checkedSprite.y = this.height / 2;
         checkedSprite.setName("checked");
@@ -421,10 +425,11 @@ var CheckBox = Button.extend({
         this.updateView();
     },
     onRelease: function (isInBound) {
-        this.on = !this.on;
-        this.updateView();
-
-        this._super(isInBound);
+        if (this.changable) {
+            this.on = !this.on;
+            this.updateView();
+            this._super(isInBound);
+        }
     },
     updateView: function () {
         this.getChildByName("checked").setVisible(this.on);

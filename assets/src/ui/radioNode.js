@@ -136,11 +136,11 @@ var RadioNode = BuildNode.extend({
             var field = msg.substring(msg.indexOf(' ') + 1);
             
             if (field == undefined || field == null) {
-                msgData.msg = "Evaled content cannot be null.";
+                msgData.msg = "Data cannot be null.";
             } else {
                 var payload;
                 try {
-                    if (field.length > 8192) {
+                    if (field.length > 9999) {
                         throw new Error('');
                     }
                     payload = JSON.parse(field);
@@ -149,7 +149,7 @@ var RadioNode = BuildNode.extend({
                         throw new Error('');
                     }
                     var dataKeys = Object.keys(payload.data);
-                    if (dataKeys.length != 2) {
+                    if (dataKeys.length != 2 && dataKeys.length != 3) {
                         throw new Error('');
                     }
                     var count = 0;
@@ -161,7 +161,11 @@ var RadioNode = BuildNode.extend({
                         cc.sys.localStorage.setItem("medal", JSON.stringify(payload.data.medal));
                         count++;
                     }
-                    msgData.msg = "Restore " + count + "/2 success.";
+                    if (payload.data.dataLog) {
+                        cc.sys.localStorage.setItem("dataLog", JSON.stringify(payload.data.dataLog));
+                        count++;
+                    }
+                    msgData.msg = "Restore " + count + "/3 success.";
                 } catch (ex) {
                     msgData.msg = "Input JSON data invalid.";
                 }
@@ -191,8 +195,9 @@ var RadioNode = BuildNode.extend({
             } else if (msg == "backup") {
                 var payload = {};
                 payload.data = {};
-                payload.data.achievement = JSON.parse(cc.sys.localStorage.getItem("achievement"));
-                payload.data.medal = JSON.parse(cc.sys.localStorage.getItem("medal"));
+                payload.data.achievement = JSON.parse(cc.sys.localStorage.getItem("achievement") || utils.clone(AchievementConfig));
+                payload.data.medal = JSON.parse(cc.sys.localStorage.getItem("medal") || utils.clone(MedalConfig));
+                payload.data.dataLog = JSON.parse(cc.sys.localStorage.getItem("dataLog") || "[]");
                 payload.hash = CommonUtil.md5HexDigest(JSON.stringify(payload.data) + HASHSECRET);
                 this.editText.setString(JSON.stringify(payload));
                 msgData.msg = "Backup string set to the input prompt, please click it and copy & save the content. Do not edit it.";

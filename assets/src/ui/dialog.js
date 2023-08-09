@@ -375,8 +375,10 @@ var DialogGuide = DialogCommon.extend({
 })
 
 var DialogSteal = DialogCommon.extend({
-    ctor: function (config, target, itemList) {
+    ctor: function (config, target, itemList, isShow, isSteal) {
         this.itemList = itemList;
+        this.isShow = isShow;
+        this.isSteal = isSteal;
         this._super(config);
 
         this.target = target;
@@ -410,6 +412,12 @@ var DialogSteal = DialogCommon.extend({
             this.contentNode.addChild(log);
         }
     },
+    dismiss: function () {
+        this._super();
+        if (this.isSteal) {
+            player.checkBreakdown(8112);
+        }
+    },
     onClickLayer: function () {
         this.dismiss();
     },
@@ -441,7 +449,7 @@ var DialogSteal = DialogCommon.extend({
         this.contentNode.setScale(0.9);
         this.bgNode.addChild(this.contentNode);
 
-        var richText = new ItemRichText(this.itemList, 480, 5, 0.6, cc.color.BLACK, uiUtil.fontSize.COMMON_2);
+        var richText = new ItemRichText(this.itemList, 480, 5, 0.6, cc.color.BLACK, uiUtil.fontSize.COMMON_2, this.isShow);
         richText.setName("richText");
         richText.setAnchorPoint(0, 1);
         richText.setPosition(-20, this.contentNode.y - 50);
@@ -692,6 +700,7 @@ var RandomBattleDialog = DialogBig.extend({
     dismiss: function () {
         this._super();
         player.mapBattle = {};
+        player.checkBreakdown(8111);
         Record.saveAll();
         cc.timer.resume();
     },

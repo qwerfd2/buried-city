@@ -432,7 +432,11 @@ var formulaConfig = {
         }],
         "cost": [{
             "itemId": 1101021,
-            "num": 3
+            "num": 2
+        },
+        {
+            "itemId": 1101031,
+            "num": 1
         }],
         "makeTime": 30
     },
@@ -444,7 +448,10 @@ var formulaConfig = {
         }],
         "cost": [{
             "itemId": 1101021,
-            "num": 2
+            "num": 1
+        },{
+            "itemId": 1101031,
+            "num": 1
         }],
         "makeTime": 30
     },
@@ -687,6 +694,21 @@ var formulaConfig = {
             "num": 16
         }],
         "makeTime": 120
+    },
+    "1305075": {
+        "id": "1305075",
+        "produce": [{
+            "itemId": 1305075,
+            "num": 1
+        }],
+        "cost": [{
+            "itemId": 1101031,
+            "num": 4
+        }, {
+            "itemId": 1101021,
+            "num": 1
+        }],
+        "makeTime": 30
     },
     "1305034": {
         "id": "1305034",

@@ -609,7 +609,7 @@ uiUtil.showGuideDialog = function(str, pic, target, isPicDown) {
     dialog.show();
 }
 
-uiUtil.showStolenDialog = function (str, pic, target, itemList) {
+uiUtil.showStolenDialog = function (str, pic, target, itemList, isShow) {
     var config = {
         title: {},
         content: {}
@@ -617,7 +617,11 @@ uiUtil.showStolenDialog = function (str, pic, target, itemList) {
     config.title.title = "";
     config.content.des = str;
     config.content.dig_des = pic;
-    var dialog = new DialogSteal(config, target, itemList);
+    var isSteal = false;
+    if (pic == "res/new/stealPrompt.png") {
+        isSteal = true;
+    }
+    var dialog = new DialogSteal(config, target, itemList, isShow, isSteal);
     dialog.show();
 }
 
@@ -1037,7 +1041,7 @@ uiUtil.showNpcInMapDialog = function (entity, time, fuelNeed, canAfford, okCb, c
     
     var transportNode = uiUtil.createTransportNode(canAfford);
     transportNode.setAnchorPoint(1, 0.5);
-    transportNode.setPosition(cc.winSize.width / 2 + 210, label1.y + 580);
+    transportNode.setPosition(cc.winSize.width / 2 + 230, label1.y + 580);
     if (fuelNeed > 0) {
         dialog.addChild(transportNode, 1);
     }
@@ -1077,7 +1081,7 @@ uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     
     var transportNode = uiUtil.createTransportNode(canAfford);
     transportNode.setAnchorPoint(1, 0.5);
-    transportNode.x = dialog.rightEdge;
+    transportNode.x = dialog.rightEdge + 30;
     transportNode.y = dialog.titleNode.height / 2;
     if (fuelNeed > 0) {
         dialog.titleNode.addChild(transportNode);
@@ -1163,7 +1167,7 @@ uiUtil.showHomeDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     
     var transportNode = uiUtil.createTransportNode(canAfford);
     transportNode.setAnchorPoint(1, 0.5);
-    transportNode.x = dialog.rightEdge;
+    transportNode.x = dialog.rightEdge + 30;
     transportNode.y = dialog.titleNode.height / 2;
     if (fuelNeed > 0) {
         dialog.titleNode.addChild(transportNode);
@@ -1755,12 +1759,47 @@ uiUtil.createTransportNode = function (canAfford) {
     var shoeBox = new CheckBox(!hasShoe, "icon_item_1306001.png", "icon_music_off.png", false);
     var hasMoto = (player.bag.validateItem(1305034, 1)) || (player.storage.validateItem(1305034, 1));
     var motoBox = new CheckBox(!hasMoto || !canAfford, "icon_item_1305034.png", "icon_music_off.png", false);
-        
+
+    shoeBox.onRelease = function () {
+        var str = stringUtil.getString(1306001).title + " " + stringUtil.getString(8103) + " ";
+        if (hasShoe) {
+            str += stringUtil.getString(8104);
+        } else {
+            str += stringUtil.getString(8105);
+        }
+        var config = {
+            title: {},
+            content: {des: str},
+            action: {btn_1: {}}
+        };
+        config.action.btn_1.txt = stringUtil.getString(1030);
+        var d = new DialogTiny(config);
+        d.y = -196;
+        d.show();
+    };
+    motoBox.onRelease = function () {
+        var str = stringUtil.getString(1305034).title + " " + stringUtil.getString(8103) + " ";
+        if (hasMoto && canAfford) {
+            str += stringUtil.getString(8104);
+        } else if (!hasMoto) {
+            str += stringUtil.getString(8105);
+        } else {
+            str += stringUtil.getString(8106);
+        }
+        var config = {
+            title: {},
+            content: {des: str},
+            action: {btn_1: {}}
+        };
+        config.action.btn_1.txt = stringUtil.getString(1030);
+        var d = new DialogTiny(config);
+        d.y = -196;
+        d.show();
+    };
     var node = new cc.Node();
     shoeBox.setScale(0.6);
     motoBox.setScale(0.6);
     node.setContentSize(70, 30)
-    player.log.addMsg("here");
     shoeBox.setAnchorPoint(0, 0.5);
     motoBox.setAnchorPoint(1, 0.5);
     node.addChild(shoeBox);

@@ -13,6 +13,23 @@ var string = {
     "1344": "Schlafen %s Std. (%s Münzen)",
     "1345": "Kaffee (%s Münzen)",
     "1346": "Alkohol (%s Münzen)",
+    "8103": "Beschleunigungsschub: ",
+"8104": "Aktiv",
+"8105": "Inaktiv (kein Gegenstand)",
+"8106": "Inaktiv (zu wenig Benzin)",
+"8107": "Du hast ein kaputtes Auto gefunden. Obwohl das rostige Auto selbst nutzlos ist, könnte noch etwas Benzin im Tank sein. Mit einem Siphon-Werkzeug kannst du etwas Benzin abzapfen.",
+"8108": "Du hast kein Siphon-Werkzeug ausgerüstet!",
+    "8109": "Ausgewählte Talente",
+    "8110": "Kann nur am Anfang gewählt werden.",
+    "8111": "Erschrocken durch die brutale Schlacht,",
+    "8112": "Erschrocken durch das Chaos zuhause,",
+    "8113": "Dein mentaler Zustand ist schließlich zusammengebrochen.",
+    "8114": "Du sprangst von einem nahegelegenen hohen Gebäude, in dem Versuch, dein eigenes Leben zu beenden.",
+    "8115": "Du hast einen Knoten gebunden, in dem Versuch, dein eigenes Leben zu beenden.",
+"1305075": {
+"title": "Siphon-Werkzeug",
+"des": "Einfache Schläuche und Behälter ermöglichen es dir, die Schwerkraft zu nutzen, um Benzin aus einem Auto zu entnehmen."
+},
 "8000": "Vorsichtig öffnet die Gruppe die Tür und befindet sich in einem breiten Versorgungsgang.",
 "8001": "Als sie sich umsehen, bemerken sie eine Reihe von Türen entlang des Ganges, die jeweils mit verschiedenen Zahlen markiert sind.",
 "8002": "Einen Blick über die Schulter werfend, entdecken sie die Tür, durch die sie gerade gegangen sind, mit der Nummer 081 gekennzeichnet.",
@@ -156,7 +173,7 @@ var string = {
     },
     "8": {
         "title": "Stimmung",
-        "des": "Schmerzen und Gütermangel beeinträchtigen deine Stimmung. Dies verschlechtert die TP und Kraft Wiederherstellung. Sich auszuruhen und einen Kaffee zu trinken ist hier hilfreich."
+        "des": "Schmerz, Hunger und Müdigkeit können sich auf deine Stimmung auswirken und dich schlaflos machen, was deine Lebenspunkte- und Energieregeneration verlangsamt und die Schussgenauigkeit verringert. Wenn du zusammenbrichst, sind die Konsequenzen schwerwiegend. Mach eine Pause und trink bei Gelegenheit etwas Kaffee."
     },
     "9": {
         "title": "Infektionsgrad",

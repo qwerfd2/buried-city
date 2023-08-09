@@ -95,12 +95,18 @@ var EquipNode = cc.Node.extend({
                 if (player.tmpBag.validateItem(1305064, 1)){
                     itemList.push("1305064");
                 }
+                if (player.tmpBag.validateItem(1305075, 1)){
+                    itemList.push("1305075");
+                }
             } else {
                 if (player.bag.validateItem(1305053, 1)){
                     itemList.push("1305053");
                 }
                 if (player.bag.validateItem(1305064, 1)){
                     itemList.push("1305064");
+                }
+                if (player.bag.validateItem(1305075, 1)){
+                    itemList.push("1305075");
                 }
             }
         } else {
@@ -210,7 +216,7 @@ var EquipNode = cc.Node.extend({
                     effect_weapon: {atkCD: 1}
                 };
             } else {
-                if (itemId == "1305053" || itemId == "1305064") {
+                if (itemId == "1305053" || itemId == "1305064" || itemId == "1305075") {
                     iconName = "#icon_item_"+itemId+".png";
                 } else {
                     iconName = "#icon_tab_content_" + itemId + ".png";
@@ -250,7 +256,7 @@ var EquipNode = cc.Node.extend({
         } else {
             var string;
             if (pos == EquipmentPos.SPECIAL) {
-                string = stringUtil.getString(1305053).title + " / " + stringUtil.getString(1305064).title;
+                string = stringUtil.getString(1305053).title + " / " + stringUtil.getString(1305064).title + " / " + stringUtil.getString(1305075).title;
             } else {
                 string = stringUtil.getString(1024);
             }
@@ -286,6 +292,8 @@ var EquipNode = cc.Node.extend({
                         iconName = "#icon_item_1305053.png";
                     } else if (itemId == "1305064") {
                         iconName = "#icon_item_1305064.png";
+                    } else if (itemId == "1305075") {
+                        iconName = "#icon_item_1305075.png";
                     } else {
                         iconName = "#icon_tab_" + itemId + ".png";
                     }

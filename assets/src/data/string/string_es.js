@@ -13,6 +13,23 @@ var string = {
     "1344": "Dormir %sH (%s monedas)",
     "1345": "Café (%s monedas)",
     "1346": "Alcohol (%s monedas)",
+"8103": "Accélération rapide : ",
+"8104": "Actif",
+"8105": "Inactif (aucun objet)",
+"8106": "Inactif (gaz insuffisant)",
+"8107": "Vous avez trouvé une voiture en mauvais état. Bien que la voiture rouillée en elle-même soit inutile, il peut y avoir un peu de gaz dans le réservoir. Si vous avez un siphon, vous pouvez récupérer du gaz.",
+"8108": "Vous n'avez pas équipé de siphon !",
+    "8109": "Talentos Seleccionados",
+    "8110": "Solo puede ser elegido al principio.",
+    "8111": "Sorprendido por la batalla brutal,",
+    "8112": "Sorprendido por el desorden en casa,",
+    "8113": "Tu estado mental finalmente ha colapsado.",
+    "8114": "Saltaste desde un edificio alto cercano, intentando poner fin a tu propia vida.",
+    "8115": "Hiciste un nudo, intentando poner fin a tu propia vida.",
+"1305075": {
+"title": "Siphon",
+"des": "Des tuyaux simples et des récipients vous permettent d'utiliser la gravité pour extraire le gaz d'une voiture."
+},
 "8000": "Mientras el grupo abre la puerta con cautela, se encuentran en un amplio pasillo de utilidad.",
 "8001": "Observan su entorno y notan una serie de puertas a lo largo del pasillo, cada una marcada con números distintos.",
 "8002": "Mirando por encima del hombro, ven la puerta por la que acaban de entrar, etiquetada con el número 081.",
@@ -157,7 +174,7 @@ var string = {
     },
     "8": {
         "title": "Humor",
-        "des": "La frustración, el cansancio, el hambre y el dolor pueden conducirar un mal estado de ánimo, causará insomnio, reducirá el valor del HP y el efecto de regeneración de HP y energía. Un descanso apropiado es necesario, si puede, toma una taza de café."
+        "des": "El dolor, el hambre y la fatiga pueden afectar tu estado de ánimo y dejarte privado de sueño, lo que reduce la regeneración de tus puntos de vida y energía, y disminuye la precisión de tu arma. Si te rompes, las consecuencias son graves. Tómate un descanso y, si está disponible, bebe un poco de café."
     },
     "9": {
         "title": "Infección",

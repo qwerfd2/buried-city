@@ -13,6 +13,23 @@ var string = {
     "1344": "Sleep %sH (%s coins)",
     "1345": "Coffee (%s coins)",
     "1346": "Alcohol (%s coins)",
+"8103": "Speed boost: ",
+"8104": "Active",
+"8105": "Inactive (no item)",
+"8106": "Inactive (insufficient gas)",
+"8107": "You found a broken car. Although the rusty car itself is useless, there may be some gas in the tank. As long as you have a siphon tool you can get some gas.",
+"8108": "You didn't equip a siphon tool!",
+"8109": "Selected Talents",
+"8110": "Can only be chosen at the beginning.",
+"8111": "Startled by the brutal battle,",
+"8112": "Startled by the mess at home,",
+"8113": "Your mental state has finally collapsed.",
+"8114": "You leaped from a tall building nearby, attempting to end your own life.",
+"8115": "You tied a knot, attempting to end your own life.",
+"1305075": {
+     "title": "Siphon Tool",
+     "des": "Simple hoses and containers allow you to use gravity to extract the gas in a car."
+},
 "8000": "As the group cautiously pushes open the door, they find themselves within a wide utility corridor.",
 "8001": "As they takes in their surroundings, they notice a series of doors lining the corridor, each marked with distinct numbers.",
 "8002": "Casting a glance over their shoulder, they spot the door they just stepped through, labeled with the number 081.",
@@ -154,7 +171,7 @@ var string = {
     },
     "8": {
         "title": "Mood",
-        "des": "Pain, hunger, and fatigue can affect your mood or make you sleep deprived, which slows down your HP and energy regeneration. Take a break to make sure your spirits stay high, and if it's available, drink some coffee as well."
+        "des": "Pain, hunger, and fatigue can affect your mood and make you sleep deprived, which slows down your HP and energy regeneration, and lowers gun accuracy. If you break down, the consequence is dire. Take a break, and if it's available, drink some coffee."
     },
     "9": {
         "title": "Infection",

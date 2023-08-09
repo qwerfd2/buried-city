@@ -393,7 +393,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         node.addChild(label2);
 
         if (sumRes.totalVirus) {
-                player.changeAttr("virus", sumRes.totalVirus);
+            player.changeAttr("virus", sumRes.totalVirus);
         }
 
         if (sumRes.brokenWeapon) {
@@ -434,6 +434,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         var btn = uiUtil.createCommonBtnWhite(stringUtil.getString(1060), this, function () {
             node.removeFromParent();
             self.updateView();
+            player.checkBreakdown(8112);
         });
 
         if (userGuide.isStep(userGuide.stepName.NEXT_ROOM)) {

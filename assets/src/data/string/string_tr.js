@@ -14,6 +14,23 @@ var string = {
     "1344": "%s saat uyuma (%s madeni para)",
     "1345": "Kahve içme (%s madeni para)",
     "1346": "Alkol içme (%s madeni para)",
+"8103": "Hız arttırıcı: ",
+"8104": "Aktif",
+"8105": "Pasif (hiçbir öğe)",
+"8106": "Pasif (yetersiz benzin)",
+"8107": "Kırık bir araba buldunuz. Paslı araba kendisi işe yaramasa da, tankta biraz benzin olabilir. Sifon aracınız varsa, biraz benzin alabilirsiniz.",
+"8108": "Sifon aracınızı donatmadınız!",
+    "8109": "Seçilmiş Yetenekler",
+    "8110": "Sadece başlangıçta seçilebilir.",
+    "8111": "Brutal savaşın etkisiyle ürperen,",
+    "8112": "Evdeki karışıklıktan ürperen,",
+    "8113": "Zihinsel durumunuz sonunda çöktü.",
+    "8114": "Yakındaki yüksek bir binadan atlayarak kendi yaşamını sonlandırmaya çalıştınız.",
+    "8115": "Kendi yaşamını sonlandırmaya çalışarak düğüm attınız.",
+"1305075": {
+"title": "Sifon Aracı",
+"des": "Basit hortumlar ve kaplar sayesinde bir arabada bulunan benzinleri çekmek için yerçekimini kullanabilirsiniz."
+},
 "8000": "Grup dikkatlice kapıyı açarak geniş bir yardımcı koridora girer.",
 "8001": "Çevreye bakarken, koridor boyunca sıralanan, her biri farklı numaralarla işaretlenmiş bir dizi kapı fark ederler.",
 "8002": "Omuzlarından bakarak, yeni geçtikleri kapıyı 081 numarasıyla işaretli olarak görürler.",
@@ -157,7 +174,7 @@ var string = {
     },
     "8": {
         "title": "Ruh hali",
-        "des": "Hayal kırıklığı, yorgunluk, açlık ve hastalık ruh halini etkiler , bu da HP enerji yenilenmesini yavaşlatır. Dinlenmek işe yarar, varsa kahve iç."
+        "des": "Ağrı, açlık ve yorgunluk ruh halinizi etkileyebilir, sizi uykusuz bırakabilir; bu da HP ve enerji yenilenmenizi yavaşlatır ve silah hassasiyetini düşürür. Eğer çökerseniz, sonuçları ciddi olur. Bir mola verin ve mümkünse biraz kahve için."
     },
     "9": {
         "title": "Enfeksiyon",

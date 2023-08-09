@@ -14,6 +14,23 @@ var string = {
     "1344": "Dormir %sH (%s pièces)",
     "1345": "Café (%s pièces)",
     "1346": "Alcool (%s pièces)",
+"8103": "Accélération rapide : ",
+"8104": "Actif",
+"8105": "Inactif (aucun objet)",
+"8106": "Inactif (gaz insuffisant)",
+"8107": "Vous avez trouvé une voiture en mauvais état. Bien que la voiture rouillée en elle-même soit inutile, il peut y avoir un peu de gaz dans le réservoir. Si vous avez un siphon, vous pouvez récupérer du gaz.",
+"8108": "Vous n'avez pas équipé de siphon !",
+    "8109": "Talents Sélectionnés",
+    "8110": "Peut seulement être choisi au début.",
+    "8111": "Stupéfait par la bataille brutale,",
+    "8112": "Stupéfait par le désordre à la maison,",
+    "8113": "Votre état mental s'est finalement effondré.",
+    "8114": "Vous avez sauté d'un immeuble élevé à proximité, tentant de mettre fin à votre vie.",
+    "8115": "Vous avez fait un nœud, tentant de mettre fin à votre vie.",
+"1305075": {
+"title": "Siphon",
+"des": "Des tuyaux simples et des récipients vous permettent d'utiliser la gravité pour extraire le gaz d'une voiture."
+},
 "8000": "En poussant prudemment la porte, le groupe se retrouve dans un large couloir utilitaire.",
 "8001": "Ils observent les environs et remarquent une série de portes le long du couloir, chacune marquée de numéros distincts.",
 "8002": "Jetant un coup d'œil par-dessus leur épaule, ils repèrent la porte par laquelle ils viennent de passer, étiquetée avec le numéro 081.",
@@ -160,7 +177,7 @@ var string = {
     },
     "8": {
         "title": "Humeur",
-        "des": "La frustration, la fatigue, la faim et les douleurs peuvent affecter votre humeur, conduire à l'insomnie et ralentir la régénération de PV et de l'énergie. Il est necéssaire de vous reposer un peu et prenez un café s'il est possible."
+        "des":  "La douleur, la faim et la fatigue peuvent affecter votre humeur et vous rendre privé de sommeil, ce qui ralentit la régénération de vos points de vie et d'énergie, et diminue la précision de votre arme. Si vous craquez, les conséquences sont graves. Faites une pause et, si possible, buvez un peu de café."
     },
     "9": {
         "title": "Niveau d'Infection",

@@ -340,9 +340,11 @@ var Actor = cc.Node.extend({
             var dBetween = cc.pDistance(pos, newPos);
             this.lastDistance += Math.ceil(dBetween * 10);
             this.sumDistance += dBetween;
+            this.totalFuel = 0;
             if (this.lastDistance >= 795 && this.isUsingMoto) {
                 this.lastDistance -= 795;
                 player.onFuelChange(-1);
+                this.totalFuel += 1;
             }
             this.setPosition(newPos);
             player.map.updatePos(this.getPosition());
@@ -360,10 +362,33 @@ var Actor = cc.Node.extend({
                 this.setPosition(this.targetPos);
                 player.map.updatePos(this.getPosition());
                 if (this.sumDistance > 10) {
-                    player.onFuelChange(-1);
+                    var rand = utils.getRandomInt(1, 79);
+                    var distanceRounded = Math.ceil(this.sumDistance / 80);
+                    if (rand < distanceRounded) {
+                        var winnings = utils.getRandomInt(5, 15);
+                        if (player.equip.isEquiped(1305075)) {
+                            var str = stringUtil.getString(8107) + "\n" + stringUtil.getString(9013);
+                            uiUtil.showStolenDialog(str, "res/new/car.png", self, [{itemId: "gas", num: winnings}], false);
+                            if (this.isUsingMoto) {
+                                player.onFuelChange(winnings - 1);
+                            } else {
+                                player.onFuelChange(winnings);
+                            }
+                        } else {
+                            var str = stringUtil.getString(8107) + "\n" + stringUtil.getString(8108);
+                            uiUtil.showStolenDialog(str, "res/new/car.png", self, {}, true);
+                            if (this.isUsingMoto) {
+                                player.onFuelChange(-1);
+                            }
+                        }
+                    } else {
+                        if (this.isUsingMoto) {
+                            player.onFuelChange(-1);
+                        }
+                    }
                 }
                 this.isMoving = false;
-                this.afterMove();
+                this.afterMove();         
             } else {
                 var distance = cc.pDistance(this.lastCheckPos, this.getPosition());
                 var self = this;

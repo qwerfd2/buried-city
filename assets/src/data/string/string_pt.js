@@ -14,6 +14,23 @@ var string = {
     "1344": "Dormir %sH (%s moedas)",
     "1345": "Café (%s moedas)",
     "1346": "Álcool (%s moedas)",
+    "8103": "Aumento de velocidade: ",
+"8104": "Ativo",
+"8105": "Inativo (sem item)",
+"8106": "Inativo (gás insuficiente)",
+"8107": "Você encontrou um carro quebrado. Embora o carro enferrujado em si seja inútil, pode haver um pouco de gasolina no tanque. Se você tiver uma ferramenta de sifão, pode obter um pouco de gasolina.",
+"8108": "Você não equipou uma ferramenta de sifão!",
+    "8109": "Talentos Selecionados",
+    "8110": "Só pode ser escolhido no início.",
+    "8111": "Surpreendido pela batalha brutal,",
+    "8112": "Surpreendido pela bagunça em casa,",
+    "8113": "Seu estado mental finalmente colapsou.",
+    "8114": "Você pulou de um prédio alto próximo, tentando acabar com sua própria vida.",
+    "8115": "Você fez um nó, tentando acabar com sua própria vida.",
+"1305075": {
+"title": "Ferramenta de sifão",
+"des": "Mangueiras simples e recipientes permitem que você use a gravidade para extrair a gasolina de um carro."
+},
 "8000": "Com cautela, o grupo abre a porta e se encontra em um amplo corredor de utilidade.",
 "8001": "Ao observarem ao redor, notam uma série de portas alinhando o corredor, cada uma marcada com números distintos.",
 "8002": "Lançando um olhar por cima do ombro, eles avistam a porta pela qual acabaram de passar, identificada com o número 081.",
@@ -156,7 +173,7 @@ var string = {
     },
     "8": {
         "title": "Humor",
-        "des": "Dores, cansaço e fome afetam seu humor, o que retarda a regeneração de HP e energia. Descansar é essencial."
+        "des": "Dor, fome e fadiga podem afetar seu humor e deixá-lo privado de sono, o que reduz a regeneração de seus pontos de vida e energia, e diminui a precisão da arma. Se você quebrar, as consequências são graves. Tire um intervalo e, se disponível, tome um pouco de café."
     },
     "9": {
         "title": "Infecção",

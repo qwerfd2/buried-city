@@ -475,7 +475,7 @@ var showAttrStatusDialog = function (stringId, attr) {
         showText.setColor(cc.color.RED);
     
         if (player.injuryMax > 14) {
-            var exchangeInjury = new ImageButton("res/new/injury.png", 0.7);
+            var exchangeInjury = new ImageButton("#icon_injury_0.png", 0.7);
             exchangeInjury.setPosition(40, 40);
             dialog.contentNode.addChild(exchangeInjury, 1);
             exchangeInjury.setClickListener(this, function(a) {
@@ -492,7 +492,7 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.infectMax > 14) {
-            var exchangeInfection = new ImageButton("res/new/infection.png", 0.7);
+            var exchangeInfection = new ImageButton("#icon_infect_0.png", 0.7);
             exchangeInfection.setPosition(100, 40);
             dialog.contentNode.addChild(exchangeInfection, 1);
             exchangeInfection.setClickListener(this, function(a) {
@@ -509,7 +509,7 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.starveMax > 14) {
-            var exchangeHunger = new ImageButton("res/new/hunger.png", 0.7);
+            var exchangeHunger = new ImageButton("#icon_starve_0.png", 0.7);
             exchangeHunger.setPosition(160, 40);
             dialog.contentNode.addChild(exchangeHunger, 1);
             exchangeHunger.setClickListener(this, function(a) {
@@ -526,7 +526,7 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.vigourMax > 14) {
-            var exchangeVigour = new ImageButton("res/new/vigour.png", 0.7);
+            var exchangeVigour = new ImageButton("#icon_vigour_0.png", 0.7);
             exchangeVigour.setPosition(220, 40);
             dialog.contentNode.addChild(exchangeVigour, 1);
             exchangeVigour.setClickListener(this, function(a) {
@@ -543,7 +543,7 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.spiritMax > 14) {
-            var exchangeSpirit = new ImageButton("res/new/spirit.png", 0.7);
+            var exchangeSpirit = new ImageButton("#icon_spirit_0.png", 0.7);
             exchangeSpirit.setPosition(280, 40);
             dialog.contentNode.addChild(exchangeSpirit, 1);
             exchangeSpirit.setClickListener(this, function(a) {
@@ -560,7 +560,7 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.waterMax > 14) {
-            var exchangeWater = new ImageButton("res/new/water.png", 0.7);
+            var exchangeWater = new ImageButton("#icon_water_0.png", 0.7);
             exchangeWater.setPosition(340, 40);
             dialog.contentNode.addChild(exchangeWater, 1);
             exchangeWater.setClickListener(this, function(a) {
@@ -577,11 +577,12 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         }
         if (player.hpMax > 29) {
-            var exchangeHp = new ImageButton("res/new/hp.png", 0.7);
+            var exchangeHp = new ImageButton("#icon_hp_0.png", 0.7);
             exchangeHp.setPosition(400, 40);
             exchangeHp.setClickListener(this, function(a) {
                 virusExchangeDialog(5, function() {
                     player.hpMax -= 10;
+                    player.hpMaxOrigin -= 10;
                     player.hp = cc.clampf(player.hp, 0, player.hpMax);
                     player.virusMax += 20;
                     player.changeHp(0);

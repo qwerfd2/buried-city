@@ -535,7 +535,7 @@ var itemConfig = {
             "dtPrecise": 0,
             "deathHit": 0,
             "dtDeathHit": 0,
-            "brokenProbability": 0.05
+            "brokenProbability": 0.08
         }
     },
     "1302011": {
@@ -796,5 +796,11 @@ var itemConfig = {
         "weight": 4,
         "price": 48,
         "value": 46.383444444444443
+    },
+    "1305075": {
+        "id": 1305075,
+        "weight": 2,
+        "price": 4,
+        "value": 3.333333
     }
 };

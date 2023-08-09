@@ -25,6 +25,7 @@ var MainScene = BaseScene.extend({
 
         cc.spriteFrameCache.removeSpriteFramesFromFile("res/menu.plist");
         autoSpriteFrameController.addSpriteFrames("res/new.plist");
+        autoSpriteFrameController.addSpriteFrames("res/new_temp.plist");
         autoSpriteFrameController.addSpriteFrames("res/dig_item.plist");
         autoSpriteFrameController.addSpriteFrames("res/dig_monster.plist");
         autoSpriteFrameController.addSpriteFrames("res/ui.plist");

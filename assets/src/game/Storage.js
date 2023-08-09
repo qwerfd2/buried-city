@@ -23,9 +23,9 @@ var Storage = cc.Class.extend({
     },
     getRandomItem: function() {
         var keyArray = utils.clone(this.map);
-        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091];
+        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091, 1305075];
         for (var a in deleteItem) {
-            delete keyArray[a];
+            delete keyArray[deleteItem[a]];
         }
         keyArray = Object.keys(keyArray);
         if (!keyArray.length) {
@@ -56,8 +56,8 @@ var Storage = cc.Class.extend({
         var amount = 0;
         for (var i = 0; i < total; i++) {
             if (itemId == "1101061") {
-                if (!player.isAttrMax("water")) {
-                    num = num - 1;
+                if (!player.isAttrMax("water") && num > 0) {
+                    num -= 1;
                     amount += 1;
                     player.incrementWater();
                 }
@@ -66,15 +66,20 @@ var Storage = cc.Class.extend({
         if (amount > 0) {
             player.log.addMsg(stringUtil.getString(1328, amount));
         }
-        if (num === 0) {
+        if (num <= 0) {
             return;
         }
         var cell = this.map[itemId];
         if (cell) {
             cell.num += num;
+            cell.num = Math.max(0, cell.num);
+            if (cell.num <= 0) {
+                delete this.map[itemId];
+            }
         } else {
-            this.map[itemId] = new StorageCell(new Item(itemId), num);
+            this.map[itemId] = new StorageCell(new Item(itemId), Math.max(0, num));
         }
+        this.validateWater();
         if (this.name === 'player') {
             Achievement.checkGetItem(itemId);
         }
@@ -84,12 +89,16 @@ var Storage = cc.Class.extend({
     },
     decreaseItem: function (itemId, num) {
         num = Number(num);
+        if (num <= 0) {
+            return;
+        }
         var cell = this.map[itemId];
         cell.num -= num;
-        if (cell.num === 0) {
+        cell.num = Math.max(0, cell.num);
+        this.validateWater();
+        if (cell.num <= 0) {
             delete this.map[itemId];
         }
-
         if (this.listener) {
             this.listener.call(this, itemId);
         }
@@ -101,6 +110,14 @@ var Storage = cc.Class.extend({
             return cell.num >= num;
         } else {
             return false;
+        }
+    },
+    validateWater: function () {
+        var cell = this.map["1101061"];
+        if (cell) {
+            if (this.map["1101061"].num <= 0) {
+                delete this.map["1101061"];
+            }
         }
     },
     getItemsByType: function (type) {
@@ -194,7 +211,7 @@ var Storage = cc.Class.extend({
     },
     setItem: function (itemId, num) {
         num = Number(num);
-        if (num === 0) {
+        if (num <= 0) {
             delete this.map[itemId];
         } else {
             var cell = this.map[itemId];
@@ -246,7 +263,7 @@ var Bag = Storage.extend({
             oldWeight = Math.ceil(oldWeight / 50);
             return weight + this.getCurrentWeight() - oldWeight <= this.getTotalWeight();
         } else {
-            var weight = Math.abs(itemConfig[itemId].weight) * Math.abs(num);
+            var weight = itemConfig[itemId].weight * Math.max(0, num);
             return weight + this.getCurrentWeight() <= this.getTotalWeight();
         }
     },
@@ -256,7 +273,7 @@ var Bag = Storage.extend({
         if (item.id == "1305011" || item.id == "1105011") {
             weight += Math.ceil(num / 50);
         } else {
-            weight += item.getWeight() * num;
+            weight += item.getWeight() * Math.max(0, num);
         }
         });
         return weight;

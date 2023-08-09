@@ -1,12 +1,12 @@
 var ItemRichText = cc.Node.extend({
-    ctor: function (itemInfos, width, col, itemIconScale, txtDefaultColor, txtSize) {
+    ctor: function (itemInfos, width, col, itemIconScale, txtDefaultColor, txtSize, leftEmpty) {
         this._super();
         this.width = width;
         this.col = col;
         this.itemIconScale = itemIconScale || 1;
         this.defaultColor = txtDefaultColor || cc.color.WHITE;
         this.txtSize = txtSize || uiUtil.fontSize.COMMON_3;
-
+        this.leftEmpty = leftEmpty;
         this.updateView(itemInfos);
     },
     updateView: function (itemInfos) {
@@ -47,7 +47,7 @@ var ItemRichText = cc.Node.extend({
                 txt.setPosition(c * colWidth + colWidth - 10, this.height - (r + 0.5) * rowHeight);
             }
             this.setContentSize(this.width, this.height);
-        } else {
+        } else if (!this.leftEmpty) {
             var none = new cc.LabelTTF(stringUtil.getString(1230), uiUtil.fontFamily.normal, this.txtSize);
             none.setColor(this.defaultColor);
             none.anchorX = 0;

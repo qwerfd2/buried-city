@@ -227,7 +227,7 @@ var Player = cc.Class.extend({
         utils.emitter.emit("onFuelChange", player.fuel);
         }
     },
-    trySteal: function() {
+    trySteal: function (bypass) {
         var saveFlag = false;
         if (this.shoeTime > 30000) {
             //break a shoe from storage
@@ -264,11 +264,16 @@ var Player = cc.Class.extend({
                 break;
             }
         }
-
-        if (timeIndex < 0 || weightIndex < 0) {
-            return;
+        var probability;
+        if (!bypass) {
+            if (timeIndex < 0 || weightIndex < 0) {
+                return;
+            }
+            probability = TheftConfig[weightIndex][timeIndex];     
+        } else {
+            probability = 999;
         }
-        var probability = TheftConfig[weightIndex][timeIndex];
+
         var def = this._getHomeDeter();
         probability = probability * def;
         var rand = Math.random();
@@ -278,13 +283,28 @@ var Player = cc.Class.extend({
             res = res.items;
             saveFlag = true;
             var self = this;
-            uiUtil.showStolenDialog(stringUtil.getString(9032), "#stealPrompt.png", self, res);
+            uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
         }
         if (saveFlag) {
             Record.saveAll();
         }
     },
-    getRandomOwnedItem: function() {
+    checkBreakdown: function (source) {
+        if (this.spirit < 5) {
+            var rand = utils.getRandomInt(0, this.spirit + 1);
+            if (rand == 0) {
+                var str = stringUtil.getString(source) + " " + stringUtil.getString(8113) + " ";
+                if (source == 8111) {
+                    str += stringUtil.getString(8115);
+                } else {
+                    str += stringUtil.getString(8114);
+                }
+                this.log.addMsg(str);
+                this.die();
+            }
+        }
+    },
+    getRandomOwnedItem: function () {
         return this.storage.getRandomItem();
     },
     getPrice: function(item) {
@@ -607,7 +627,7 @@ var Player = cc.Class.extend({
             }
         }
         if (!this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107042) && this.starve < 10) {
-            this.changeHp(-2);
+            this.changeHp(-8);
         }
         //在睡眠状态下的影响
         if (this.isInSleep) {
@@ -1104,7 +1124,7 @@ var Player = cc.Class.extend({
         }
         var rray = [];
         var copyItem = utils.clone(itemConfig);
-        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091];
+        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091, 1305075];
         for (var a in deleteItem) {
             delete copyItem[deleteItem[a]];
         }

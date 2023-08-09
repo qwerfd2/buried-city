@@ -147,5 +147,8 @@ var DayLayer = cc.Layer.extend({
     },
     dismiss: function () {
         this.removeFromParent();
+        if (this.res.happened && !this.res.win) {
+            player.checkBreakdown(8112);
+        }
     }
 });

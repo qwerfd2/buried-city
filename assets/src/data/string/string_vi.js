@@ -17,6 +17,23 @@ var string = {
     "1344": "Ngủ %s giờ (%s đồng)",
     "1345": "Cà phê (%s đồng)",
     "1346": "Rượu (%s đồng)",
+"8103": "Tăng tốc:",
+"8104": "Hoạt động",
+"8105": "Vô hiệu hóa (không có vật phẩm)",
+"8106": "Vô hiệu hóa (không đủ khí gas)",
+"8107": "Bạn đã tìm thấy một chiếc xe hỏng. Mặc dù chiếc xe gỉ sét không có ích, có thể có một ít xăng trong bình chứa. Nếu bạn có một công cụ hút xăng, bạn có thể lấy một ít xăng.",
+"8108": "Bạn chưa trang bị công cụ hút xăng!",
+    "8109": "Tài Năng Được Chọn",
+    "8110": "Chỉ có thể được chọn ở đầu.",
+    "8111": "Bị kinh ngạc bởi trận chiến tàn khốc,",
+    "8112": "Bị kinh ngạc bởi sự hỗn loạn tại nhà,",
+    "8113": "Tâm trạng của bạn cuối cùng đã sụp đổ.",
+    "8114": "Bạn đã nhảy từ một tòa nhà cao gần đó, cố gắng kết thúc cuộc đời của chính mình.",
+    "8115": "Bạn đã buộc một nút, cố gắng kết thúc cuộc đời của chính mình.",
+"1305075": {
+"title": "Công cụ hút xăng",
+"des": "Các ống dẫn đơn giản và các bình chứa cho phép bạn sử dụng trọng lực để hút xăng trong xe."
+},
 "8000": "Nhóm cẩn thận mở cửa và thấy mình đứng trong một lối đi tiện ích rộng.",
 "8001": "Nhìn quanh, họ nhận thấy một loạt cửa sổ dọc theo lối đi, mỗi cửa đánh dấu với những con số riêng biệt.",
 "8002": "Nhìn qua vai, họ phát hiện ra cánh cửa vừa bước qua, đánh dấu với số 081.",
@@ -157,7 +174,7 @@ var string = {
     },
     "8": {
         "title": "Tâm trạng",
-        "des": "Thất bại, mệt mỏi, đói khát và đau đơn đều sẽ dẫn tới những day dứt về tâm trạng, dẫn tới mất ngủ, giảm giá trị sinh mệnh và hiệu quả khôi phục sức mạnh. Cần thiết phải ngồi tinh tâm nghỉ ngơi, nếu có thể thì uống một tách café. "
+        "des": "Đau đớn, cảm giác đói và mệt mỏi có thể ảnh hưởng đến tâm trạng của bạn và làm bạn thiếu ngủ, điều này làm chậm quá trình tái tạo HP và năng lượng, và làm giảm độ chính xác của súng. Nếu bạn gặp sự cố, hậu quả rất nghiêm trọng. Hãy nghỉ ngơi, và nếu có thể, uống một chút cà phê."
     },
     "9": {
         "title": "Nhiễm trùng",

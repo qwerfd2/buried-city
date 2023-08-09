@@ -723,7 +723,7 @@ var Gun = Weapon.extend({
         precise = IAPPackage.getPreciseEffect(precise);
         precise += player.weather.getValue("gun_precise");
 
-        var decPrecise = (100 - player.spirit) * 0.0035;
+        var decPrecise = (100 - player.spirit) * 0.007;
         precise -= decPrecise;
         
         var currentTime = Number(cc.timer.time);

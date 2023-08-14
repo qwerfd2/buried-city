@@ -100,7 +100,7 @@ var AdSiteNode = BottomFrameNode.extend({
             var items = utils.convertItemIds2Item(itemIds);
             var self = this;
             items.forEach(function (item) {
-                self.site.increaseItem(item.itemId, item.num);
+                self.site.increaseItem(item.itemId, item.num, false);
             });
             Record.saveAll();
             cc.sys.localStorage.setItem("ad", "0");

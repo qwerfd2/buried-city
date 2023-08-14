@@ -1,3 +1,4 @@
+var EXCHANGE_ALL = false;
 var ItemChangeNode = cc.Node.extend({
     ctor: function (topStorage, topStorageName, bottomStorage, bottomStorageName, withTakeAll, smallSize, siteId) {
         this._super();
@@ -35,8 +36,10 @@ var ItemChangeNode = cc.Node.extend({
             var self = this;
             var section = bottomView.getChildByName("section");
             var btnTakeAll = uiUtil.createCommonBtnBlack(stringUtil.getString(1124), this, function () {
+                EXCHANGE_ALL = true;
                 self.exchangeAll("bottom");
                 self.updateView();
+                EXCHANGE_ALL = false;
                 audioManager.playEffect(audioManager.sound.LOOT);
 
                 if (userGuide.isStep(userGuide.stepName.ALL_GET)) {
@@ -76,7 +79,9 @@ var ItemChangeNode = cc.Node.extend({
         if (this.topData instanceof Bag) {
             var self = this;
             this.topData.setOnItemChangeListener(function () {
-                self.updateView();
+                if (!EXCHANGE_ALL) {
+                    self.updateView();
+                }
             });
         }
     },
@@ -125,7 +130,11 @@ var ItemChangeNode = cc.Node.extend({
         if (fromData.validateItem(itemId, num)) {
             if (toData.validateItemWeight(itemId, num)) {
                 fromData.decreaseItem(itemId, num);
-                toData.increaseItem(itemId, num);
+                if (id === "top") {
+                    toData.increaseItem(itemId, num, false);
+                } else {
+                    toData.increaseItem(itemId, num, true);
+                }
                 return true;
             } else {
                 uiUtil.showTinyInfoDialog(1131);
@@ -152,26 +161,30 @@ var ItemChangeNode = cc.Node.extend({
                 //amount does not exceed weight modulo, direct add.
                 if (num < mod) {
                     fromData.decreaseItem(item.id, num);
-                    toData.increaseItem(item.id, num);
+                    toData.increaseItem(item.id, num, false);
                 } else {
                     //Process 50 by 50, until the amount left is below 50.
-                    while (num > 50) {
+                    while (num >= 50) {
                         if (toData.validateItemWeight(item.id, 50)) {
                             fromData.decreaseItem(item.id, 50);
-                            toData.increaseItem(item.id, 50);
+                            toData.increaseItem(item.id, 50, false);
                         }
                         num -= 50;
                     }
-                    if (num < 50 && toData.validateItemWeight(item.id, num)) {
+                    if (num < 50 && num > 0 && toData.validateItemWeight(item.id, num)) {
                         fromData.decreaseItem(item.id, num);
-                        toData.increaseItem(item.id, num);
+                        toData.increaseItem(item.id, num, false);
                     }
                 }
             } else {
                 for (var i = 0; i < num; i++) {
                     if (toData.validateItemWeight(item.id, 1)) {
                         fromData.decreaseItem(item.id, 1);
-                        toData.increaseItem(item.id, 1);
+                        if (id === "top") {
+                            toData.increaseItem(item.id, 1, false);
+                        } else {
+                            toData.increaseItem(item.id, 1, true);
+                        }
                     }
                 }
             }
@@ -183,8 +196,10 @@ var ItemChangeNode = cc.Node.extend({
         var topItemList = this.topData.getItemsByType("");
         var weightLabel = this.getChildByName("top").getChildByName("section").getChildByName("weight");
         if (weightLabel) {
-            weightLabel.setString(stringUtil.getString(1028, this.topData.getCurrentWeight() + "/" + this.topData.getTotalWeight()));
-            weightLabel.setColor(this.topData.getCurrentWeight() === this.topData.getTotalWeight() ? cc.color.RED : cc.color.BLACK);
+            var currentWeight = this.topData.getCurrentWeight();
+            var totalWeight = this.topData.getTotalWeight();
+            weightLabel.setString(stringUtil.getString(1028, currentWeight + "/" + totalWeight));
+            weightLabel.setColor(currentWeight === totalWeight ? cc.color.RED : cc.color.BLACK);
         }
 
         var bottomTableView = this.getChildByName("bottom").getChildByName("tableView");

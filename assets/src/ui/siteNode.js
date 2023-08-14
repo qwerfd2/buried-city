@@ -142,7 +142,7 @@ var SiteNode = BottomFrameNode.extend({
             var num = GachaponConfig[rand].num;
             var str = stringUtil.getString(1069) + stringUtil.getString(itemId).title + " x" + num;
             player.log.addMsg(str);
-            player.map.getSite(400).storage.increaseItem(itemId, num);
+            player.map.getSite(400).storage.increaseItem(itemId, num, false);
             player.map.getSite(400).haveNewItems = true;
             Record.saveAll();
             this.notifyIcon.setVisible(true);

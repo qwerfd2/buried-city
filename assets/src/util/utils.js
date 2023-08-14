@@ -232,13 +232,6 @@ utils.convertItemIds2Item = function (itemIds) {
     return list;
 };
 
-utils.debugNode = function (node, color) {
-    var c = color || cc.color.GREEN;
-    var drawNode = new cc.DrawNode();
-    node.addChild(drawNode);
-    drawNode.drawRect(cc.p(0, 0), cc.p(node.width, node.height), null, 1, c);
-};
-
 utils.getStringLength = function (str) {
     ///中文2，英文1
     var realLength = 0, len = str.length, charCode = -1;
@@ -328,37 +321,16 @@ Date.prototype.format = function (format) {
     return format;
 };
 
-utils.doBridgeCall = function (jsonObj) {
-    var result = "";
-    if (jsonObj && typeof jsonObj === 'object') {
-        result = jsb.reflection.callStaticMethod("com/locojoytj/sdk/Bridge", "doJsCallJava", "(Ljava/lang/String;)Ljava/lang/String;", JSON.stringify(jsonObj));
-    }
-    return result;
-};
-
-utils.doBridgeReceive = function (jsonObj) {
-    var count = parseInt(jsonObj);
-    var effect = PurchaseList[201].effect;
-    effect.forEach(function (obj) {
-        player.storage.increaseItem(obj.itemId, obj.num*count);
-    });
-    Record.saveAll();
-}
-
 utils.pay = function (purchaseId, target, cb) {
     var purchaseTask = PurchaseTaskManager.newTask(purchaseId);
     purchaseTask.beforePay = function () {
-        if (cc.sys.isNative) {
-            uiUtil.showLoadingView();
-            if (cc.timer)
-                cc.timer.pause();
+        if (cc.sys.isNative && cc.timer) {
+            cc.timer.pause();
         }
     };
     purchaseTask.afterPay = function (purchaseId, payResult) {
-        if (cc.sys.isNative) {
-            uiUtil.dismissLoadingView();
-            if (cc.timer)
-                cc.timer.resume();
+        if (cc.sys.isNative && cc.timer) {
+            cc.timer.resume();
         }
         cb.call(target, purchaseId, payResult);
     };

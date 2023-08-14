@@ -105,7 +105,7 @@ var string = {
     },
     "19_0": {
         "title": "Clôture électrique",
-        "des": "En raison d'une tension insuffisante, la clôture électrique auto-construite ne peut pas éliminer immédiatement les zombies qui approchent, mais elle peut leur 'suggérer' de rester à l'écart."
+        "des": "Limité par une tension insuffisante, le réseau électrique auto-construit ne peut pas éliminer les zombies qui s'approchent, mais il peut 'suggérer' à certains de se perdre."
     },
         "14": {
         "title": "Niveau de Soif",
@@ -153,7 +153,7 @@ var string = {
     },
     "2": {
         "title": "Saison",
-        "des": "La température d'automne est de 10 ℃ et 0 ℃ en hiver. La basse température vous ferait grippe et les zombies fous à cause de la manque d'aliments."
+        "des": "La température d'automne est de 10 ℃ et 0 ℃ en hiver. La basse température vous ferait grippe et les zombies fous à cause de la manque d'aliments. N'oubliez pas d'apporter de l'eau en été - un coup de chaleur peut être mortel."
     },
     "3": {
         "title": "Température",
@@ -882,7 +882,7 @@ var string = {
     },
     "b_a_17": {
         "title": "Enterrer des explosifs",
-        "des": "Champ de Mines plein de explosifs peut résister à toute invasion de zombies"
+        "des": "Chargé d'explosifs en abondance, le champ de mines sert de dernière ligne de défense contre les zombies."
     },
     "b_a_10_1": {
         "title": "Pompette",
@@ -1298,19 +1298,19 @@ var string = {
   "p_107": {
     "name": "Discrétion",
     "des": "Vous êtes particulièrement doué pour cacher vos traces.",
-    "effect": "25% de moins de chances de rencontrer des zombies et de subir des raids nocturnes."
+    "effect": "25 % de moins de chances de rencontrer des zombies, des raids nocturnes et des visites de voleurs."
   },
-  "p_108": {
+  "p_109": {
     "name": "Cheat : Achats In-App gratuits",
     "des": "Achats gratuits illimités dans le magasin, et Radio CMD est ouverte.",
     "effect": "Fonction de triche, achats gratuits illimités dans le magasin et Radio CMD. (Les réalisations ne seront pas comptabilisées)"
   },
-  "p_109": {
+  "p_110": {
     "name": "Cheat : Tout débloquer",
     "des": "Débloquez tous les emplacements, PNJ, amitié maximale et emplacements répétables.",
     "effect": "Fonction de triche, débloque toutes les copies, PNJ, amitié maximale et emplacements répétables. (Les réalisations ne seront pas comptabilisées)"
   },
-"p_110": {
+"p_108": {
     "name": "Routard",
     "des": "Vous avez un sac à dos extra large.",
     "effect": "Taille du sac à dos +30."

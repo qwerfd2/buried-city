@@ -1133,7 +1133,7 @@ var NpcTradeItemDialog = DialogTiny.extend({
     }
 });
 
-var PayDialog = DialogBig.extend({
+var PayDialog = DialogSmall.extend({
     ctor: function (purchaseId, cb) {
         var config = {
             title: {},

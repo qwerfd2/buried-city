@@ -49,37 +49,34 @@ var Storage = cc.Class.extend({
         result.push({itemId: itemid, num: randomIndex});
         return result;
     },
-    increaseItem: function (itemId, num) {
+    increaseItem: function (itemId, num, includeWater, bypassCheck) {
         num = Number(num);
         //Water check. If water not full, auto deduct and edit.
-        var total = Math.ceil((player.waterMax - player.water) / 18);
-        var amount = 0;
-        for (var i = 0; i < total; i++) {
-            if (itemId == "1101061") {
-                if (!player.isAttrMax("water") && num > 0) {
-                    num -= 1;
-                    amount += 1;
-                    player.incrementWater();
+        if (includeWater && this.name == 'player') {
+            var total = Math.ceil((player.waterMax - player.water) / 18);
+            var amount = 0;
+            for (var i = 0; i < total; i++) {
+                if (itemId == "1101061") {
+                    if (!player.isAttrMax("water") && num > 0) {
+                        num -= 1;
+                        amount += 1;
+                        player.incrementWater();
+                    }
                 }
             }
+            if (amount > 0) {
+                player.log.addMsg(stringUtil.getString(1328, amount));
+            }
         }
-        if (amount > 0) {
-            player.log.addMsg(stringUtil.getString(1328, amount));
-        }
-        if (num <= 0) {
+        if (num <= 0 && !bypassCheck) {
             return;
         }
         var cell = this.map[itemId];
         if (cell) {
             cell.num += num;
-            cell.num = Math.max(0, cell.num);
-            if (cell.num <= 0) {
-                delete this.map[itemId];
-            }
         } else {
-            this.map[itemId] = new StorageCell(new Item(itemId), Math.max(0, num));
+            this.map[itemId] = new StorageCell(new Item(itemId), num);
         }
-        this.validateWater();
         if (this.name === 'player') {
             Achievement.checkGetItem(itemId);
         }
@@ -89,16 +86,12 @@ var Storage = cc.Class.extend({
     },
     decreaseItem: function (itemId, num) {
         num = Number(num);
-        if (num <= 0) {
-            return;
-        }
         var cell = this.map[itemId];
         cell.num -= num;
-        cell.num = Math.max(0, cell.num);
-        this.validateWater();
         if (cell.num <= 0) {
             delete this.map[itemId];
         }
+
         if (this.listener) {
             this.listener.call(this, itemId);
         }
@@ -112,14 +105,7 @@ var Storage = cc.Class.extend({
             return false;
         }
     },
-    validateWater: function () {
-        var cell = this.map["1101061"];
-        if (cell) {
-            if (this.map["1101061"].num <= 0) {
-                delete this.map["1101061"];
-            }
-        }
-    },
+
     getItemsByType: function (type) {
         type = "" + type;
         var items = Object.keys(this.map);
@@ -256,25 +242,27 @@ var Bag = Storage.extend({
         this._super(name);
     },
     validateItemWeight: function (itemId, num) {
-        if (itemId == "1305011" || itemId == "1105011") {
-            var weight = player.bag.getNumByItemId(itemId) + num;
-            var oldWeight = player.bag.getNumByItemId(itemId);
-            weight = Math.ceil(weight / 50);
-            oldWeight = Math.ceil(oldWeight / 50);
-            return weight + this.getCurrentWeight() - oldWeight <= this.getTotalWeight();
+        var w = itemConfig[itemId].weight;
+        if (w == 0) {
+            var oldAmount = player.bag.getNumByItemId(itemId);
+            var newAmount = oldAmount + num;
+            oldAmount = Math.ceil(oldAmount / 50);
+            newAmount = Math.ceil(newAmount / 50);
+            return newAmount + this.getCurrentWeight() - oldAmount <= this.getTotalWeight();
         } else {
-            var weight = itemConfig[itemId].weight * Math.max(0, num);
+            var weight = w * Math.max(0, num);
             return weight + this.getCurrentWeight() <= this.getTotalWeight();
         }
     },
     getCurrentWeight: function () {
         var weight = 0;
         this.forEach(function (item, num) {
-        if (item.id == "1305011" || item.id == "1105011") {
-            weight += Math.ceil(num / 50);
-        } else {
-            weight += item.getWeight() * Math.max(0, num);
-        }
+            var w = item.getWeight();
+            if (w == 0) {
+                weight += Math.ceil(num / 50);
+            } else {
+                weight += w * Math.max(0, num);
+            }
         });
         return weight;
     },
@@ -325,9 +313,16 @@ var Bag = Storage.extend({
             }          
             var rand = Math.random();
             var isBroken = (rand <= weaponBrokenProbability);
+
             if (isBroken && player.weaponRound[itemId] > 2) {
                 player.equip.unequipByItemId(itemId);
                 this.decreaseItem(itemId, 1);
+                var returnItem = WeaponReturn[itemId];
+                if (returnItem.length) {
+                    for (var i = 0; i < returnItem.length; i++) {
+                        this.increaseItem(returnItem[i], 1);
+                    }
+                }
                 player.weaponRound[itemId] = 0;
                 player.log.addMsg(1205, stringUtil.getString(itemId).title);
             } else if (isBroken) {

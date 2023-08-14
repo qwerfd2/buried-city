@@ -145,7 +145,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount) {
             } else {
                 bazaarSellDialog(vvv, stringUtil.getString(9026, round(v), a + "x " + config.title.title), function() {
                     if (player.currency >= v) {
-                        player.map.getSite(400).storage.increaseItem(itemId, a);
+                        player.map.getSite(400).storage.increaseItem(itemId, a, false);
                         player.map.getSite(400).haveNewItems = true;
                         player.onCurrencyChange(-v);
                         for (var i = 0; i < player.shopList.length; i++) {
@@ -1649,18 +1649,6 @@ cc.LabelTTF = function (text, fontName, fontSize, dimensions, hAlignment, vAlign
             defaultHAlignment = cc.TEXT_ALIGNMENT_RIGHT;
     }
     return _labelTTF(text, fontName, fontSize, dimensions, defaultHAlignment || hAlignment, vAlignment);
-};
-
-uiUtil.showLoadingView = function () {
-    if (this._dialog && cc.sys.isObjectValid(this._dialog)) {
-        this._dialog.dismiss();
-    }
-};
-
-uiUtil.dismissLoadingView = function () {
-    if (this._dialog && cc.sys.isObjectValid(this._dialog)) {
-        this._dialog.dismiss();
-    }
 };
 
 uiUtil.showBackMenuDialog = function (cb) {

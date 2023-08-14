@@ -194,7 +194,7 @@ var Player = cc.Class.extend({
                     itemId = Number(itemId);
                     var index = itemList.indexOf(itemId);
                     if (index != -1) {
-                        this.storage.increaseItem(itemId, amountList[index]);
+                        this.storage.increaseItem(itemId, amountList[index], false);
                     }
                 }
             }
@@ -279,11 +279,22 @@ var Player = cc.Class.extend({
         var rand = Math.random();
 
         if (rand <= probability) {
-            var res = this._getAttackResult(90, 0, this.storage);
-            res = res.items;
-            saveFlag = true;
-            var self = this;
-            uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
+            if (IAPPackage.isStealthUnlocked()) {
+                var rand = Math.random();
+                if (rand >= 0.25) {
+                    var res = this._getAttackResult(90, 0, this.storage);
+                    res = res.items;
+                    saveFlag = true;
+                    var self = this;
+                    uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
+                }
+            } else { 
+                var res = this._getAttackResult(90, 0, this.storage);
+                res = res.items;
+                saveFlag = true;
+                var self = this;
+                uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
+            }
         }
         if (saveFlag) {
             Record.saveAll();
@@ -537,15 +548,30 @@ var Player = cc.Class.extend({
     },
     incrementWater: function() {
         var diff = this.waterMax - this.water;
-        if (diff > 18) {
-            this.changeWater(18);
+        var season = cc.timer.getSeason(cc.timer.formatTime());
+        if (seaon != 3) {
+            if (diff > 18) {
+                this.changeWater(18);
+            } else {
+                this.changeWater(diff);
+                //Converted time of immunity
+                var given = (18 - diff) / 3 * 3600;
+                var temp = Number(cc.timer.time) - 21600 + given;
+                if (temp > this.lastWaterTime) {
+                    this.lastWaterTime = temp;
+                }
+            }
         } else {
-            this.changeWater(diff);
-            //Converted time of immunity
-            var given = (18 - diff) / 3 * 3600;
-            var temp = Number(cc.timer.time) - 21600 + given;
-            if (temp > this.lastWaterTime) {
-                this.lastWaterTime = temp;
+            if (diff > 18) {
+                this.changeWater(18);
+            } else {
+                this.changeWater(diff);
+                //Converted time of immunity
+                var given = (18 - diff) / 6 * 3600;
+                var temp = Number(cc.timer.time) - 10800 + given;
+                if (temp > this.lastWaterTime) {
+                    this.lastWaterTime = temp;
+                }
             }
         }
     },
@@ -569,6 +595,7 @@ var Player = cc.Class.extend({
         //扣减饥饿度
         this.changeStarve(c[0][0]);
         var curTime = Number(cc.timer.time);
+        var season = cc.timer.getSeason(cc.timer.formatTime());
         //First fix any water deficiency issues.
         var storageAmount = 0;
         var bagAmount = 0;
@@ -593,8 +620,12 @@ var Player = cc.Class.extend({
             this.map.getSite(GAS_SITE).checkActive();
             this.onFuelChange(1);
         }
-        //Deduct water. If buff is in effect, don't deduct. 
-        if (curTime - this.lastWaterTime >= 21600) {
+        //Deduct water. If buff is in effect, don't deduct.
+        var waterUpper = 21600;
+        if (season == 3) {
+            waterUpper = 10800;
+        }
+        if (curTime - this.lastWaterTime >= waterUpper) {
             //Deduct water from either the bag or storage
             if (!this.isAtHome && this.bag.validateItem(1101061, 1)) {
                 this.bag.decreaseItem(1101061, 1);
@@ -606,7 +637,11 @@ var Player = cc.Class.extend({
                 this.log.addMsg(stringUtil.getString(1332));
             } else {
                 //No water deducted, reduce water status.
-                this.changeWater(-3);
+                if (seaon != 3) {
+                    this.changeWater(-3);
+                } else {
+                    this.changeWater(-6);
+                }
             }
         }
         if (this.water < 25) {
@@ -843,14 +878,14 @@ var Player = cc.Class.extend({
     gainItems: function (items) {
         var self = this;
         items.forEach(function (item) {
-            self.storage.increaseItem(item.itemId, item.num);
+            self.storage.increaseItem(item.itemId, item.num, true);
         });
     },
 
     gainItemsInBag: function (items) {
         var self = this;
         items.forEach(function (item) {
-            self.bag.increaseItem(item.itemId, item.num);
+            self.bag.increaseItem(item.itemId, item.num, true);
         });
     },
 
@@ -1085,7 +1120,7 @@ var Player = cc.Class.extend({
                     var itemId = ids[utils.getRandomInt(0, ids.length - 1)];
                     if (causeStorage.validateItem(itemId, 1)) {
                         causeStorage.decreaseItem(itemId, 1);
-                        tmpStorage.increaseItem(itemId, 1);
+                        tmpStorage.increaseItem(itemId, 1, false);
                         var value = itemConfig[itemId].value;
                         produceValue -= value;
                     }

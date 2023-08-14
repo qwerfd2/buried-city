@@ -101,7 +101,8 @@ var string = {
     },
     "19_0": {
         "title": "Electric Fence",
-        "des": "Due to insufficient voltage, the self-built power Fence cannot immediately eliminate the approaching zombies, but it can 'suggest' them to stay away."
+        "des": "Limited by insufficient voltage, the self-built electrical grid is unable to eliminate approaching zombies, but it can 'suggest' some to get lost."
+
     },
     "14": {
         "title": "Thirst Level",
@@ -147,7 +148,7 @@ var string = {
     },
     "2": {
         "title": "Season",
-        "des": "Autumn average temperature: 10°C. Winter average temperature: 0°C. Low temperature makes it easier to catch a cold. Zombies become crazier in cold weather."
+        "des": "Autumn average temperature: 10°C. Winter average temperature: 0°C. Low temperature makes it easier to catch a cold. Zombies become crazier in cold weather. Remember to bring water in Summer - heat stroke can kill."
     },
     "3": {
         "title": "Temperature",
@@ -890,7 +891,7 @@ var string = {
     },
     "b_a_17": {
         "title": "Place explosive",
-        "des": "A mine field buried with suffient explosives can defend against any zombie invasion."
+        "des": "Loaded with ample explosives, the minefield serves as the final line of defense against zombies."
     },
     "b_a_10_1": {
         "title": "Time for being tipsy",
@@ -1300,19 +1301,19 @@ var string = {
      "p_107": {
          "name": "Stealth",
          "des": "You are particularly good at hiding your track. ",
-         "effect": "25% less chance of encountering zombies and night raids."
+         "effect": "25% less chance of encountering zombies, night raids, and thief visits."
      },
-     "p_108": {
+     "p_109": {
          "name": "Cheat: Free IAP",
          "des": "Unlimited free purchases in the store, and Radio CMD is open. ",
          "effect": "Cheat function, unlimited free purchases in the store, and Radio CMD. (Achievements will not be counted)"
      },
-     "p_109": {
+     "p_110": {
          "name": "Cheat: Unlock All",
          "des": "Unlock all locations, NPCs, max friendship, and repeatable locations.",
          "effect": "Cheat function, unlock all locations, NPCs, max friendship, and repeatable locations. (Achievements will not be counted)"
      },
-"p_110": {
+"p_108": {
     "name": "Backpacker",
     "des": "You have an extra large backpack.",
     "effect": "Backpack size +30."

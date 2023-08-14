@@ -101,7 +101,7 @@ var string = {
     },
     "19_0": {
         "title": "Elektrozaun",
-        "des": "Aufgrund unzureichender Spannung kann der selbstgebaute Stromzaun die herannahenden Zombies zwar nicht sofort vernichten, aber er kann sie „auffordern“, sich fernzuhalten."
+        "des": "Aufgrund unzureichender Spannung kann das selbstgebaute Stromnetz herannahende Zombies nicht eliminieren, es kann jedoch 'vorschlagen', dass sich einige verlaufen."
     },
     "14": {
         "title": "Durststufe",
@@ -149,7 +149,7 @@ var string = {
     },
     "2": {
         "title": "Jahreszeit",
-        "des": "Die Durchschnittstemperatur im Winter ist 10 Grad Celsius und im Winter 0 Grad Celsius. Kalte Temperaturen beeinflussen deine Situation enorm. Bei kalten Temperaturen werden die Zombies noch wahnsinniger."
+        "des": "Die Durchschnittstemperatur im Winter ist 10 Grad Celsius und im Winter 0 Grad Celsius. Kalte Temperaturen beeinflussen deine Situation enorm. Bei kalten Temperaturen werden die Zombies noch wahnsinniger. Denken Sie daran, Wasser im Sommer mitzubringen - ein Hitzschlag kann tödlich sein."
     },
     "3": {
         "title": "Temperatur",
@@ -877,7 +877,7 @@ var string = {
     },
     "b_a_17": {
         "title": "Vergrabener Sprengstoff",
-        "des": "Schneegebiet, in dem sich viel vergrabener Sprengstoff befindet.Hiermit kann man dem Ansturm von Zombies widerstehen."
+        "des": "Geladen mit reichlich Sprengstoff dient das Minenfeld als letzte Verteidigungslinie gegen Zombies."
     },
     "b_a_10_1": {
         "title": "Leicht betrunken",
@@ -1294,19 +1294,19 @@ var string = {
   "p_107": {
     "name": "Tarnung",
     "des": "Du bist besonders gut darin, deine Spuren zu verbergen.",
-    "effect": "25% weniger Chance, auf Zombies zu treffen und von nächtlichen Überfällen betroffen zu sein."
+    "effect": "25 % weniger Wahrscheinlichkeit, auf Zombies, nächtliche Überfälle und Diebesbesuche zu treffen."
   },
-  "p_108": {
+  "p_109": {
     "name": "Cheat: Kostenlose In-App-Käufe",
     "des": "Unbegrenzte kostenlose Einkäufe im Store und Radio CMD ist geöffnet.",
     "effect": "Cheat-Funktion, unbegrenzte kostenlose Einkäufe im Store und Radio CMD. (Erfolge werden nicht gezählt)"
   },
-  "p_109": {
+  "p_110": {
     "name": "Cheat: Alles freischalten",
     "des": "Schalte alle Orte, NPCs, maximale Freundschaft und wiederholbare Orte frei.",
     "effect": "Cheat-Funktion, schalte alle Kopien, NPCs, maximale Freundschaft und wiederholbare Orte frei. (Erfolge werden nicht gezählt)"
   },
-"p_110": {
+"p_108": {
     "name": "Rucksacktourist",
     "des": "Du hast einen extra großen Rucksack.",
     "effect": "Rucksackgröße +30."

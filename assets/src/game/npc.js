@@ -142,7 +142,7 @@ var NPC = BaseSite.extend({
             for (var i = 0; i < tradingList.length; i++) {
                 var itemInfo = tradingList[i];
                 if (itemInfo) {
-                    this.storage.increaseItem(itemInfo.itemId, itemInfo.num);
+                    this.storage.increaseItem(itemInfo.itemId, itemInfo.num, false);
                 }
             }
         }

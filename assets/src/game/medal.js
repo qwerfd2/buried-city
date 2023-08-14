@@ -131,7 +131,7 @@ var Medal = {
             var info = self._map[id];
             if (info.completed === 1 || Record.getMedalCheat()) {
                 info.effect.items.forEach(function (item) {
-                    player.storage.increaseItem(item.itemId, item.num);
+                    player.storage.increaseItem(item.itemId, item.num, true);
                 });
             }
         });

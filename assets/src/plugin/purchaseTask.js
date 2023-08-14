@@ -44,12 +44,10 @@ var PurchaseTaskAndroid = PurchaseTask.extend({
     onPayResult: function (result, data) {
         if (result == 1) {
             this.onPurchaseResult(1)
-            this.payLog(result, this.createAppOrderId(), data.productId);
             if (this.afterPay) {
                 this.afterPay(this.purchaseId, 1);
             }
         } else {
-            this.payLog(result, null, null, data.errorCode);
             if (this.afterPay) {
                 this.afterPay(this.purchaseId, 0);
             }

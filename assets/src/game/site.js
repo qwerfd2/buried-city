@@ -284,7 +284,7 @@ var Site = BaseSite.extend({
         return this.isSiteEnd() && this.storage.isEmpty();
     },
     increaseItem: function (itemId, num) {
-        this.storage.increaseItem(itemId, num);
+        this.storage.increaseItem(itemId, num, false);
         this.haveNewItems = true;
     },
     getAllItemNum: function () {

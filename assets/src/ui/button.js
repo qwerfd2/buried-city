@@ -97,7 +97,23 @@ var ImageButton = Button.extend({
 
         this.addChild(icon);
     }
-})
+});
+
+var TalentButton = Button.extend({
+    ctor: function (a) {
+        var icon = new cc.LabelTTF(String(a), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        if (IAPPackage.isAllIAPUnlocked() || IAPPackage.isAllItemUnlocked()) {
+            icon.setColor(cc.color.GRAY);
+        }
+        var bg = new cc.Sprite("#icon_iap_bg.png");
+        bg.setScale(0.2);
+        this._super(cc.size(35, 35));
+        icon.setPosition(this.width / 2, this.height / 2);
+        bg.setPosition(this.width / 2, this.height / 2);
+        this.addChild(icon);
+        this.addChild(bg);
+    }
+});
 
 var ButtonInScrollView = Button.extend({
     ctor: function (size) {
@@ -526,7 +542,8 @@ var SpriteButton = Button.extend({
 });
 
 var ButtonAtChooseScene = Button.extend({
-    ctor: function (spriteName) {
+    ctor: function (spriteName, mode) {
+        this.mode = mode;
         var bg = autoSpriteFrameController.getSpriteFromSpriteName("icon_iap_bg.png");
         this._super(bg.getContentSize());
         bg.x = this.width / 2;
@@ -541,17 +558,18 @@ var ButtonAtChooseScene = Button.extend({
         sprite.setName("normal");
         sprite.setScale(0.9);
         this.addChild(sprite);
-
-        var info = new SpriteButton(cc.size(60, 60), 'icon_iap_info.png');
-        info.x = this.width - 27;
-        info.y = this.height - 27;
-        info.setName("info");
-        this.addChild(info);
-        info.setVisible(true);
-        info.setClickListener(this, function () {
-            this.showInfoDialog(this.purchaseId);
-        });
-
+        
+        if (!this.mode) {
+            var info = new SpriteButton(cc.size(60, 60), 'icon_iap_info.png');
+            info.x = this.width - 27;
+            info.y = this.height - 27;
+            info.setName("info");
+            this.addChild(info);
+            info.setVisible(true);
+            info.setClickListener(this, function () {
+                this.showInfoDialog(this.purchaseId);
+            });
+        }
         var mark = autoSpriteFrameController.getSpriteFromSpriteName('icon_iap_mark.png');
         mark.x = this.width / 2;
         mark.y = this.height / 2;
@@ -606,9 +624,9 @@ var ButtonAtChooseScene = Button.extend({
         };
         if (purchaseId == 105) {
             config.title.icon = "icon_iap_201.png";
-        } else if (purchaseId == 110) {
+        } else if (purchaseId == 108) {
             config.title.icon = "icon_iap_105.png";
-        } else if (purchaseId > 107) {
+        } else if (purchaseId > 108) {
             config.title.icon = "";
         } else {
             config.title.icon = "icon_iap_" + purchaseId + ".png";
@@ -617,7 +635,7 @@ var ButtonAtChooseScene = Button.extend({
         config.title.title = strConfig.name;
         config.action.btn_1.txt = stringUtil.getString(1030);
         var d = new DialogSmall(config);
-        if (purchaseId != 108 && purchaseId != 109) {
+        if (purchaseId != 109 && purchaseId != 110) {
             d.titleNode.getChildByName("icon").scale = 0.45;
         }
         d.show();

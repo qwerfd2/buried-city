@@ -101,7 +101,7 @@ var string = {
     },
     "19_0": {
         "title": "Cerca elétrica",
-        "des": "Devido à voltagem insuficiente, a cerca de energia autoconstruída não pode eliminar imediatamente os zumbis que se aproximam, mas pode 'sugerir' que eles fiquem longe."
+        "des": "Limitada pela voltagem insuficiente, a rede elétrica autoconstruída não é capaz de eliminar zumbis que se aproximam, mas pode 'sugerir' que alguns se afastem."
     },
     "14": {
         "title": "Nível de Sede",
@@ -149,7 +149,7 @@ var string = {
     },
     "2": {
         "title": "Estação",
-        "des": "A temperatura média de outono é de 10 ℃, e de inverno, 0 ℃. Deviao a escassez de alimento, baixas temperaturas fazem os zumbis ficarem malucos."
+        "des": "A temperatura média de outono é de 10 ℃, e de inverno, 0 ℃. Deviao a escassez de alimento, baixas temperaturas fazem os zumbis ficarem malucos. Não se esqueça de trazer água no verão - um golpe de calor pode ser fatal."
     },
     "3": {
         "title": "Temperatura",
@@ -877,7 +877,7 @@ var string = {
     },
     "b_a_17": {
         "title": "Dinamite",
-        "des": "Pode-se enterrar dinamites para frear o avanço dos zumbis."
+        "des": "Carregado com explosivos abundantes, o campo minado serve como a última linha de defesa contra zumbis."
     },
     "b_a_10_1": {
         "title": "Tempo de Briaguez",
@@ -1293,19 +1293,19 @@ var string = {
   "p_107": {
     "name": "Furtividade",
     "des": "Você é especialmente bom em esconder suas trilhas.",
-    "effect": "25% menos chances de encontrar zumbis e sofrer ataques noturnos."
+    "effect": "25 % menos chance de encontrar zumbis, ataques noturnos e visitas de ladrões."
   },
-  "p_108": {
+  "p_109": {
     "name": "Trapaça: Compras IAP gratuitas",
     "des": "Compras gratuitas ilimitadas na loja e o Radio CMD está aberto.",
     "effect": "Função de trapaça, compras gratuitas ilimitadas na loja e Rádio CMD. (As conquistas não serão contabilizadas)"
   },
-  "p_109": {
+  "p_110": {
     "name": "Trapaça: Desbloquear Tudo",
     "des": "Desbloqueia todas as localizações, NPCs, amizade máxima e localizações repetíveis.",
     "effect": "Função de trapaça, desbloqueia todas as cópias, NPCs, amizade máxima e localizações repetíveis. (As conquistas não serão contabilizadas)"
   },
-"p_110": {
+"p_108": {
     "name": "Mochileiro",
     "des": "Você tem uma mochila extra grande.",
     "effect": "Tamanho da mochila +30."

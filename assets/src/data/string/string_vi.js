@@ -101,7 +101,7 @@ var string = {
     },
     "19_0": {
         "title": "Hàng rào điện",
-        "des": "Do không đủ điện áp nên Hàng rào điện tự dựng không thể loại bỏ ngay lũ zombie đang tiến đến, nhưng nó có thể 'gợi ý' chúng tránh xa."
+        "des": "Bị hạn chế bởi điện áp không đủ, lưới điện tự xây không thể tiêu diệt những xác sống đang tiến lại gần, nhưng có thể 'đề xuất' một số ít xa đi."
     },
     "14": {
         "title": "Mức Độ Khát Nước",
@@ -150,7 +150,7 @@ var string = {
     },
     "2": {
         "title": "Mùa",
-        "des": "Nhiệt độ trung bình của mùa thu là 10℃, mùa đông là 0℃. Ảnh hưởng của nhiệt độ thấp là rất lớn, bạn dễ bị cảm, cương thi vì thiếu thức ăn nên càng trở lên điên cuồng."
+        "des": "Nhiệt độ trung bình của mùa thu là 10℃, mùa đông là 0℃. Ảnh hưởng của nhiệt độ thấp là rất lớn, bạn dễ bị cảm, cương thi vì thiếu thức ăn nên càng trở lên điên cuồng. Đừng quên mang nước trong mùa hè - say nắng có thể gây tử vong."
     },
     "3": {
         "title": "Nhiệt độ trong phòng",
@@ -878,7 +878,7 @@ var string = {
     },
     "b_a_17": {
         "title": "Chôn thuốc nổ",
-        "des": "Chôn thuốc nổ để có thể ngăn ngừa bọn Cương Thi đến đánh úp"
+        "des": "Nạp đầy thuốc nổ, cánh đồng mìn trở thành đường phòng ngự cuối cùng chống lại xác sống"
     },
     "b_a_10_1": {
         "title": "Thời gian thư giãn",
@@ -1294,19 +1294,19 @@ var string = {
   "p_107": {
     "name": "Ẩn nấp",
     "des": "Bạn rất giỏi trong việc giấu dấu dấu vết của mình.",
-    "effect": "Giảm 25% khả năng gặp phải xác sống và bị tấn công vào ban đêm."
+    "effect": "Giảm 25% khả năng gặp phải xác sống, tấn công ban đêm và sự viếng thăm của trộm."
   },
-  "p_108": {
+  "p_109": {
     "name": "Cheat: Mua hàng miễn phí trong ứng dụng",
     "des": "Mua miễn phí không giới hạn trong cửa hàng và Radio CMD đang mở.",
     "effect": "Chức năng gian lận, mua hàng miễn phí không giới hạn trong cửa hàng và Radio CMD. (Thành tựu sẽ không được tính)"
   },
-  "p_109": {
+  "p_110": {
     "name": "Cheat: Mở khóa tất cả",
     "des": "Mở khóa tất cả các vị trí, NPC, tình bạn tối đa và các vị trí lặp lại.",
     "effect": "Chức năng gian lận, mở khóa tất cả các bản sao, NPC, tình bạn tối đa và các vị trí lặp lại. (Thành tựu sẽ không được tính)"
   },
-"p_110": {
+"p_108": {
     "name": "Du khách cắm trại",
     "des": "Bạn có một ba lô cỡ lớn.",
     "effect": "Kích thước ba lô +30."

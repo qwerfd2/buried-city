@@ -105,7 +105,7 @@ var RadioNode = BuildNode.extend({
                     player.onFuelChange(amount);
                     for (var itemId in itemConfig) {
                         itemId = Number(itemId);
-                        player.storage.increaseItem(itemId, amount);
+                        player.storage.increaseItem(itemId, amount, true, true);
                     }
                 } else {
                     if (itemName == stringUtil.getString(13).title) {
@@ -119,7 +119,7 @@ var RadioNode = BuildNode.extend({
                             itemId = Number(itemId);
                             var testItemName = stringUtil.getString(itemId).title;
                             if (itemName == testItemName) {
-                                player.storage.increaseItem(itemId, amount);
+                                player.storage.increaseItem(itemId, amount, true, true);
                                 found = true;   
                                 break;
                             }    

@@ -221,6 +221,24 @@ var TopFrameNode = cc.Node.extend({
         this.thirdLine.setPosition(6, 6);
         bg.addChild(this.thirdLine);
         this.createLogBar();
+        
+        var talentLength = JSON.parse(cc.sys.localStorage.getItem("chosenTalent")).length || 0;
+        this.talentButton = new TalentButton(talentLength, 0.7);
+        this.thirdLine.addChild(this.talentButton, 1);
+        this.talentButton.setPosition(this.thirdLine.width - 20, this.thirdLine.height - 20);
+        this.talentButton.setClickListener(this, function() {
+            var layer = cc.director.getRunningScene().getChildByName("main");
+            var node = layer.getChildByName("bottom");
+            if (node && node instanceof BottomFrameNode && node.uiConfig.leftBtn) {
+                if (node.leftBtn.isEnabled()){
+                    game.stop();
+                    cc.director.runScene(new ChooseScene(1));
+                }
+            } else {
+                game.stop();
+                cc.director.runScene(new ChooseScene(1));
+            }
+        });
 
         var self = this;
         utils.emitter.on("logChanged", function (msg) {

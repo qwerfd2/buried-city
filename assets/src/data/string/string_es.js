@@ -101,7 +101,7 @@ var string = {
     },
     "19_0": {
         "title": "Cerca eléctrica",
-        "des": "Debido a un voltaje insuficiente, la valla de energía autoconstruida no puede eliminar inmediatamente a los zombis que se acercan, pero puede 'sugerirles' que se mantengan alejados."
+        "des": "Limitada por la insuficiente tensión, la red eléctrica autoconstruida no puede eliminar a los zombies que se acercan, pero puede 'sugerir' que algunos se alejen."
     },
     "14": {
         "title": "Nivel de Sed",
@@ -150,7 +150,7 @@ var string = {
     },
     "2": {
         "title": "Temporada",
-        "des": "\r\nLa temperatura media de otoño es 10 ℃, la temperatura media de invierno es 0 ℃. baja temperatura tiene grande influencia, es más fácil resfriarse. Los zombies son más locas por falta de alimentos.\r\n"
+        "des": "\r\nLa temperatura media de otoño es 10 ℃, la temperatura media de invierno es 0 ℃. baja temperatura tiene grande influencia, es más fácil resfriarse. Los zombies son más locas por falta de alimentos. No olvides llevar agua en verano: un golpe de calor puede ser mortal."
     },
     "3": {
         "title": "Temperatura interior",
@@ -878,7 +878,7 @@ var string = {
     },
     "b_a_17": {
         "title": "Explosivos subterráneos",
-        "des": "Con un campo minado con suficientes explosivos enterrados podrás resistir cualquier ataque zombi."
+        "des": "Cargado con suficientes explosivos, el campo de minas sirve como la última línea de defensa contra los zombies."
     },
     "b_a_10_1": {
         "title": "Hora de la borrachera",
@@ -1294,19 +1294,19 @@ var string = {
   "p_107": {
     "name": "Sigilo",
     "des": "Eres particularmente bueno ocultando tus rastros.",
-    "effect": "Tienes un 25% menos de probabilidades de encontrar zombies y sufrir ataques nocturnos."
+    "effect": "25 % menos de probabilidad de encontrar zombies, incursiones nocturnas y visitas de ladrones."
   },
-  "p_108": {
+  "p_109": {
     "name": "Truco: Compras IAP gratuitas",
     "des": "Compras gratuitas ilimitadas en la tienda, y Radio CMD está abierta.",
     "effect": "Función de trucos, compras gratuitas ilimitadas en la tienda y Radio CMD. (Los logros no serán contados)"
   },
-  "p_109": {
+  "p_110": {
     "name": "Truco: Desbloqueo total",
     "des": "Desbloquea todas las ubicaciones, personajes no jugadores (NPC), máxima amistad y ubicaciones repetibles.",
     "effect": "Función de trucos, desbloquea todas las copias, NPC, máxima amistad y ubicaciones repetibles. (Los logros no serán contados)"
   },
-"p_110": {
+"p_108": {
     "name": "Mochilero",
     "des": "Tienes una mochila extra grande.",
     "effect": "Tamaño de la mochila +30."

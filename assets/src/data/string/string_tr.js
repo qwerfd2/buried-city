@@ -101,7 +101,7 @@ var string = {
     },
     "19_0": {
         "title": "Elektrikli çit",
-        "des": "Yetersiz voltaj nedeniyle, kendi kendine yapılan elektrikli Çit yaklaşan zombileri hemen ortadan kaldıramaz, ancak onlara uzak durmalarını 'önerebilir'."
+        "des": "Yetersiz voltaja bağlı olarak, öz yapımı elektrik şebekesi yaklaşan zombileri yok edemese de, bazılarının uzaklaşmasını 'önermek' mümkün.'"
     },
         "14": {
         "title": "Susuzluk Seviyesi",
@@ -150,7 +150,7 @@ var string = {
     },
     "2": {
         "title": "Sezon",
-        "des": "Sonbaharın ortalama derecesi 10 ℃,ve kış 0 ℃. Çabuk nezle olursun ve zombiler daha çılgın olur."
+        "des": "Sonbaharın ortalama derecesi 10 ℃,ve kış 0 ℃. Çabuk nezle olursun ve zombiler daha çılgın olur. Yazın su getirmeyi unutmayın - sıcak çarpması ölümcül olabilir."
     },
     "3": {
         "title": "Isı",
@@ -877,7 +877,7 @@ var string = {
     },
     "b_a_17": {
         "title": "Patlayıcı Döşe",
-        "des": "Mayın tarlalarına yeterli patlayıcı koyularak her zombi istilasına karşı dayanılabilir."
+        "des": "Bol miktarda patlayıcı yüklü olan mayın tarlası, zombilere karşı son savunma hattı olarak hizmet eder."
     },
     "b_a_10_1": {
         "title": "Sarhoş Zaman",
@@ -1293,19 +1293,19 @@ var string = {
   "p_107": {
     "name": "Gizlilik",
     "des": "İzlerinizi gizleme konusunda özellikle iyisiniz.",
-    "effect": "Zombi ve gece baskınlarına karşı %25 daha az karşılaşma şansı."
+    "effect": "Zombi, gece baskınları ve hırsız ziyaretleriyle karşılaşma olasılığı %25 daha az."
   },
-  "p_108": {
+  "p_109": {
     "name": "Hile: Ücretsiz IAP",
     "des": "Mağazada sınırsız ücretsiz satın alma ve Radyo CMD açık.",
     "effect": "Hile işlevi, mağazada sınırsız ücretsiz satın alma ve Radyo CMD. (Başarılar sayılmayacak)"
   },
-  "p_109": {
+  "p_110": {
     "name": "Hile: Her Şeyin Kilidini Aç",
     "des": "Tüm konumları, NPC'leri, maksimum arkadaşlığı ve tekrarlanabilir konumları açar.",
     "effect": "Hile işlevi, tüm kopyaları, NPC'leri, maksimum arkadaşlığı ve tekrarlanabilir konumları açar. (Başarılar sayılmayacak)"
   },
-"p_110": {
+"p_108": {
     "name": "Gezgin",
     "des": "Ekstra büyük bir sırt çantasına sahipsiniz.",
     "effect": "Sırt çantası boyutu +30."

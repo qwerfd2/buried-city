@@ -76,12 +76,13 @@ var DeathNode = BottomFrameNode.extend({
         var self = this;
         var purchaseId = 203;
         var payDialog = uiUtil.showPayDialog(purchaseId, function () {
-            utils.pay(purchaseId, self, function (purchaseId, payResult) {
-                if (payResult == 1) {
-                    player.storage.decreaseItem(RELIVE_ITEMID, 1);
-                    self.goHome();
-                }
-            });
+            utils.pay(purchaseId, self);
+            player.log.addMsg("trigg")
+            if (self.validateStorage()) {
+                player.storage.decreaseItem(RELIVE_ITEMID, 1);
+                self.goHome();
+                return;
+            }
         });
 
         var priceLabel = payDialog.titleNode.getChildByName("price");

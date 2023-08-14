@@ -47,15 +47,15 @@ var IAPPackage = {
         return this.isIAPUnlocked(107) && this.getChosenTalentPurchaseId(107);
     },
     
-    isAllIAPUnlocked: function () {
+    isBigBagUnlocked: function () {
         return this.isIAPUnlocked(108) && this.getChosenTalentPurchaseId(108);
     },
     
-    isAllItemUnlocked: function () {
+    isAllIAPUnlocked: function () {
         return this.isIAPUnlocked(109) && this.getChosenTalentPurchaseId(109);
     },
     
-    isBigBagUnlocked: function () {
+    isAllItemUnlocked: function () {
         return this.isIAPUnlocked(110) && this.getChosenTalentPurchaseId(110);
     },
 
@@ -92,7 +92,7 @@ var IAPPackage = {
             player.log.addMsg(1214, stringUtil.getString("p_" + purchaseId).name);
             var effect = PurchaseList[purchaseId].effect;
             effect.forEach(function (obj) {
-                player.storage.increaseItem(obj.itemId, obj.num);
+                player.storage.increaseItem(obj.itemId, obj.num, true);
             });
             Record.saveAll();
         }

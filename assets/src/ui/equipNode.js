@@ -1,7 +1,7 @@
+this.OCCUPIED_POS = new Set();
 var EquipNode = cc.Node.extend({
     ctor: function () {
         this._super();
-
         this.tabSize = 5;
         this.setContentSize(572, 100);
 
@@ -339,13 +339,17 @@ var EquipNode = cc.Node.extend({
             } else if (itemType == 1304) {
                 equipPos = EquipmentPos.EQUIP;
             }
-            self.updateIconWarnByPos(equipPos);
+            if (!OCCUPIED_POS.has(equipPos)) {
+                OCCUPIED_POS.add(equipPos);
+                self.updateIconWarnByPos(equipPos);
+            }
         });
     },
     onExit: function () {
         this._super();
         utils.emitter.off("equiped_item_decrease_in_bag");
         utils.emitter.off("equip_item_need_guide");
+        OCCUPIED_POS = new Set([]);
     },
 
     updateIconWarn: function () {

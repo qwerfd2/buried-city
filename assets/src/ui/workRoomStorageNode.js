@@ -1,3 +1,4 @@
+var IS_IN_WORKROOM_STORAGE_NODE = false;
 var WorkRoomStorageNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -21,7 +22,7 @@ var WorkRoomStorageNode = BottomFrameNode.extend({
         this.storage = new Storage();
         var self = this;
         this.workRoom.list.forEach(function (itemInfo) {
-            self.storage.increaseItem(itemInfo.itemId, itemInfo.num);
+            self.storage.increaseItem(itemInfo.itemId, itemInfo.num, false);
         });
 
         var itemChangeNode = new ItemChangeNode(player.bag, stringUtil.getString(1034), this.storage, this.uiConfig.title, true, true, siteId);
@@ -42,15 +43,17 @@ var WorkRoomStorageNode = BottomFrameNode.extend({
     },
     onEnter: function () {
         this._super();
+        IS_IN_WORKROOM_STORAGE_NODE = true;
     },
     onExit: function () {
         this._super();
+        IS_IN_WORKROOM_STORAGE_NODE = false;
         utils.emitter.off("guideNextRoom");
     },
     flushItems: function () {
         var self = this;
         this.storage.forEach(function (item, num) {
-            self.site.increaseItem(item.id, num);
+            self.site.increaseItem(item.id, num, false);
         });
         Record.saveAll();
     },

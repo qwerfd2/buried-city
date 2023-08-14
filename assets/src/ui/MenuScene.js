@@ -152,7 +152,7 @@ var MenuLayer = cc.Layer.extend({
 
     newGame: function () {
         game.newGame();
-        cc.director.runScene(new ChooseScene());
+        cc.director.runScene(new ChooseScene(0));
     }
 });
 

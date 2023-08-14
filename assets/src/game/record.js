@@ -6,8 +6,10 @@ var Record = {
         this.recordObj = JSON.parse(cc.sys.localStorage.getItem(recordName) || "{}");
     },
     saveAll: function () {
-        this.save("player", player.save());
-        this.save("time", cc.timer.save());
+        if (!IS_IN_WORKROOM_STORAGE_NODE) {
+            this.save("player", player.save());
+            this.save("time", cc.timer.save());
+        }
     },
     save: function (key, obj) {
         this.recordObj[key] = obj;

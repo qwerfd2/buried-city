@@ -23,7 +23,7 @@ var Player = cc.Class.extend({
         this.infect = 0;
         this.infectMax = 100;
         //
-        this.water = 82;
+        this.water = 100;
         this.waterMax = 100;
         this.lastWaterTime = -999999;
         //
@@ -52,6 +52,7 @@ var Player = cc.Class.extend({
         this.battleRecord = null;
 
         this.bag = new Bag('player');
+        this.safe = new Safe('player');
         this.storage = new Storage('player');
         this.room = new Room();
         this.equip = new Equipment();
@@ -73,6 +74,9 @@ var Player = cc.Class.extend({
         this.mapBattle = {};
         this.fuel = 0;
         this.shoeTime = 0;
+        this.useMoto = true;
+        this.useGoodBullet = true;
+        this.alcoholPrice = 1;
         this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1301091": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
@@ -106,6 +110,7 @@ var Player = cc.Class.extend({
             setting: this.setting,
 
             bag: this.bag.save(),
+            safe: this.safe.save(),
             storage: this.storage.save(),
             room: this.room.save(),
             equip: this.equip.save(),
@@ -129,7 +134,10 @@ var Player = cc.Class.extend({
             weaponRound: this.weaponRound,
             mapBattle: this.mapBattle,
             fuel: this.fuel,
-            shoeTime: this.shoeTime
+            shoeTime: this.shoeTime,
+            useMoto: this.useMoto,
+            useGoodBullet: this.useGoodBullet,
+            alcoholPrice: this.alcoholPrice
         };
         return opt;
     },
@@ -162,6 +170,7 @@ var Player = cc.Class.extend({
             this.deathCausedInfect = opt.deathCausedInfect;
             this.setting = opt.setting;
             this.bag.restore(opt.bag);
+            this.safe.restore(opt.safe);
             this.storage.restore(opt.storage);
             this.equip.restore(opt.equip);
             this.weather.restore(opt.weather);
@@ -182,20 +191,19 @@ var Player = cc.Class.extend({
             this.weaponRound = opt.weaponRound;
             this.mapBattle = opt.mapBattle;
             this.fuel = opt.fuel;
-            this.shoeTime = opt.shoeTime || 0;
+            this.shoeTime = opt.shoeTime;
+            this.useMoto = opt.useMoto;
+            this.useGoodBullet = opt.useGoodBullet;
+            this.alcoholPrice = opt.alcoholPrice;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
             if (IAPPackage.isHoarderUnlocked()) {
-            this.currency += 50;
+                this.currency += 50;
                 var itemList = [1101011,1101021,1101031,1101041,1101051,1101061,1101071,1101073,1103011,1103041,1103083,1104011,1104021,1104043,1105011,1105022,1105033,1105042,1105051,1301011,1301022,1301033,1301041,1301052,1302011,1302021,1303012,1304012,1306001,1305011,1305023,1106054];
                 var amountList = [160,160,100,100,80,80,80,60,20,20,10,10,10,5,40,30,20,60,60,3,2,2,3,2,5,5,10,2,2,300,2,1];
-                for (var itemId in itemConfig) {
-                    itemId = Number(itemId);
-                    var index = itemList.indexOf(itemId);
-                    if (index != -1) {
-                        this.storage.increaseItem(itemId, amountList[index], false);
-                    }
+                for (var i = 0; i < itemList.length; i++) {
+                    this.storage.increaseItem(itemList[i], amountList[i], false);
                 }
             }
         }
@@ -218,14 +226,21 @@ var Player = cc.Class.extend({
     },
     onFuelChange: function(value) {
         if (typeof value == "number") {
+            var upperbound = 0;
+            if (this.hasMotocycle()) {
+                upperbound = 99;
+            }
             player.fuel += value;
-            if (player.fuel >= 99) {
-                player.fuel = 99;
+            if (player.fuel >= upperbound) {
+                player.fuel = upperbound;
             } else if (player.fuel < 0) {
                 player.fuel = 0;
             }
-        utils.emitter.emit("onFuelChange", player.fuel);
+            utils.emitter.emit("onFuelChange", player.fuel);
         }
+    },
+    hasMotocycle: function () {
+        return (player.bag.validateItem(1305034, 1) || player.storage.validateItem(1305034, 1));
     },
     trySteal: function (bypass) {
         var saveFlag = false;
@@ -548,8 +563,11 @@ var Player = cc.Class.extend({
     },
     incrementWater: function() {
         var diff = this.waterMax - this.water;
-        var season = cc.timer.getSeason(cc.timer.formatTime());
-        if (seaon != 3) {
+        var season = 0;
+        if (cc.timer) {
+            season = cc.timer.getSeason()
+        }
+        if (season != 3) {
             if (diff > 18) {
                 this.changeWater(18);
             } else {
@@ -595,7 +613,10 @@ var Player = cc.Class.extend({
         //扣减饥饿度
         this.changeStarve(c[0][0]);
         var curTime = Number(cc.timer.time);
-        var season = cc.timer.getSeason(cc.timer.formatTime());
+        var season = 0;
+        if (cc.timer) {
+            season = cc.timer.getSeason()
+        }
         //First fix any water deficiency issues.
         var storageAmount = 0;
         var bagAmount = 0;
@@ -637,7 +658,7 @@ var Player = cc.Class.extend({
                 this.log.addMsg(stringUtil.getString(1332));
             } else {
                 //No water deducted, reduce water status.
-                if (seaon != 3) {
+                if (season != 3) {
                     this.changeWater(-3);
                 } else {
                     this.changeWater(-6);
@@ -1164,13 +1185,14 @@ var Player = cc.Class.extend({
             delete copyItem[deleteItem[a]];
         }
         var le = Object.keys(copyItem).length;
-        var result = myNum(6, 0, le - 1);
+        var dailyAmount = utils.getRandomInt(4, 6);
+        var result = myNum(dailyAmount, 0, le - 1);
         
         result.forEach(function(k) {
             var itemId = Number(Object.keys(copyItem)[k]);
-            var amount = 10;
-            if (itemId == 1305011) {
-                amount = 30;
+            var amount = 8;
+            if (itemId == 1305011 || itemId == 1305012) {
+                amount = 24;
             }
             var twentyList = [1101011, 1101021, 1101031, 1101041, 1101051, 1103011, 1105042];
             var fifteenList = [1101061, 1101071, 1101073];
@@ -1182,9 +1204,9 @@ var Player = cc.Class.extend({
             } else if (twoList.indexOf(itemId) !== -1) {
                 amount = 2;
             } else if (twentyList.indexOf(itemId) !== -1) {
-                amount = 20;
+                amount = 16;
             } else if (fifteenList.indexOf(itemId) !== -1) {
-                amount = 15;
+                amount = 12;
             } if (itemId == 1106054) {
                 amount = 1;
             }

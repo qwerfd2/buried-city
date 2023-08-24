@@ -723,9 +723,25 @@ var RandomBattleDialog = DialogBig.extend({
         } else {
             label2.setColor(cc.color.BLACK);
         }
-
         this.log.addChild(label2);
-
+        if (player.equip.getEquip(EquipmentPos.GUN) && !player.equip.isEquiped(1301091) && player.bag.getNumByItemId(BattleConfig.BULLET_ID) && player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID)) {
+            var bulletRichText = GetRichTextForBullet(cc.color.BLACK);
+            bulletRichText.setName("bulletPriority");
+            bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 55);
+            this.log.addChild(bulletRichText);
+    
+            var exchangeButton = uiUtil.createCommonBtnBlack(stringUtil.getString(1334), this, function () {
+                player.useGoodBullet = !player.useGoodBullet;
+                var bulletRichText = GetRichTextForBullet(cc.color.BLACK);
+                bulletRichText.setName("bulletPriority");
+                bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 55);
+                this.log.removeChildByName("bulletPriority");
+                this.log.addChild(bulletRichText);
+            });
+            exchangeButton.setName("exchangebutton");
+            exchangeButton.setPosition(250, label2.getPositionY() - label2.getContentSize().height - 35);
+            this.log.addChild(exchangeButton);
+        }
         if (cc.RTL) {
             label1.anchorX = 1;
             label1.x = this.rightEdge;
@@ -917,6 +933,9 @@ var RandomBattleDialog = DialogBig.extend({
         var items = [];
         if (sumRes.bulletNum > 0) {
             items.push({itemId: BattleConfig.BULLET_ID, num: sumRes.bulletNum});
+        }
+        if (sumRes.homemadeNum > 0) {
+            items.push({itemId: BattleConfig.HOMEMADE_ID, num: sumRes.homemadeNum});
         }
         if (sumRes.tools > 0) {
             items.push({

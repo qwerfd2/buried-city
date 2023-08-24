@@ -1,4 +1,24 @@
 var string = {
+"6669": "No tienes una motocicleta y no puedes almacenar el combustible extraído. ¡Arreglémoslo más tarde!",
+"6670": "No tienes una motocicleta y no puedes almacenar el combustible extraído.",
+    "20_0": {
+      "title": "Caja fuerte",
+      "des": "Protege tus suministros. Los objetos en la caja fuerte no serán robados ni dañados por los zombies."
+    },
+    "6668": "Los objetos son demasiado pesados. La caja fuerte no puede cargar más.",
+    "8116": "Montar en motocicleta",
+    "8117": "No montar en motocicleta",
+    "8118": "Inactivo (El jugador optó por no montar)",
+    "1305011": {
+      "title": "Bala estándar",
+      "des": "Producida antes del desastre, no dañará el arma y tiene una mejor precisión, lo que la hace más valiosa."
+    },
+    "1305012": {
+        "title": "Bala hecha a mano",
+        "des": "Bala hecha a mano con poca precisión. Podría dañar el arma."
+    },
+"6666": "Nueva actualización detectada: Versión %s. Por favor, actualiza a través de Github u otro canal.",
+"6667": "¡Gracias por jugar a Buried City! Únete a la comunidad del juego y a los canales de distribución del juego, listados a continuación. ¡También informa sobre errores!",
 "1324": "Problemas para dormir por el café. Descansa después de %s horas.",
 "1325": "¡Precisión reducida en %s% debido al alcohol!",
 "1326": "¡Por favor, vende desde la bolsa!",
@@ -20,7 +40,6 @@ var string = {
 "8107": "Vous avez trouvé une voiture en mauvais état. Bien que la voiture rouillée en elle-même soit inutile, il peut y avoir un peu de gaz dans le réservoir. Si vous avez un siphon, vous pouvez récupérer du gaz.",
 "8108": "Vous n'avez pas équipé de siphon !",
     "8109": "Talentos Seleccionados",
-    "8110": "Solo puede ser elegido al principio.",
     "8111": "Sorprendido por la batalla brutal,",
     "8112": "Sorprendido por el desorden en casa,",
     "8113": "Tu estado mental finalmente ha colapsado.",
@@ -699,10 +718,6 @@ var string = {
     "1306001": {
         "title": "Botas",
         "des": "Zapatos  reforzados, pueden proteger los pies, acelerar la velocidad de caminar  en los escombros."
-    },
-    "1305011": {
-        "title": "Munición",
-        "des": "Munición sin casquillo, armada a mano en condiciones precarias. De baja precisión, puede dañar el arma fácilmente."
     },
     "1305023": {
         "title": "Mochila mejorada",

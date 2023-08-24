@@ -120,7 +120,7 @@ var MapView = cc.ScrollView.extend({
             canAfford = true;
         }
         var time = distance / this.actor.getMaxVelocity(canAfford);
-        if (player.storage.getNumByItemId(1305034) <= 0) {
+        if ((!player.storage.validateItem(1305034, 1) && !player.bag.validateItem(1305034, 1)) || !player.useMoto) {
             fuelNeed = -1;
         }
         var okFunc = function () {
@@ -313,12 +313,14 @@ var Actor = cc.Node.extend({
     },
     getMaxVelocity: function (canAfford) {
         var v = this.MAX_VELOCITY;
-        if (player.storage.getNumByItemId(1305034) > 0 && canAfford) {
+        if ((player.storage.validateItem(1305034, 1) || player.bag.validateItem(1305034, 1)) && canAfford && player.useMoto) {
             v += this.MAX_VELOCITY_ENHANCE_MOTO;
             this.isUsingMoto = true;
+        } else {
+            this.isUsingMoto = false;
         }
         //靴子效果累加
-        if (player.storage.getNumByItemId(1306001) > 0) {
+        if (player.storage.validateItem(1306001, 1) || player.bag.validateItem(1306001, 1)) {
             v += this.MAX_VELOCITY_ENHANCE;
         }
         //天气影响
@@ -366,13 +368,20 @@ var Actor = cc.Node.extend({
                     var distanceRounded = Math.ceil(this.sumDistance / 80);
                     if (rand < distanceRounded) {
                         var winnings = utils.getRandomInt(5, 15);
-                        if (player.equip.isEquiped(1305075)) {
+                        if (player.equip.isEquiped(1305075) && player.hasMotocycle()) {
                             var str = stringUtil.getString(8107) + "\n" + stringUtil.getString(9013);
                             uiUtil.showStolenDialog(str, "res/new/car.png", self, [{itemId: "gas", num: winnings}], false);
                             if (this.isUsingMoto) {
                                 player.onFuelChange(winnings - 1);
                             } else {
                                 player.onFuelChange(winnings);
+                            }
+                        } else if (player.equip.isEquiped(1305075)) {
+                            //cannot extract due to no motorcycle
+                            var str = stringUtil.getString(8107) + "\n" + stringUtil.getString(6670);
+                            uiUtil.showStolenDialog(str, "res/new/car.png", self, {}, true);
+                            if (this.isUsingMoto) {
+                                player.onFuelChange(-1);
                             }
                         } else {
                             var str = stringUtil.getString(8107) + "\n" + stringUtil.getString(8108);

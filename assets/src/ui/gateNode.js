@@ -62,7 +62,6 @@ var GateNode = BottomFrameNode.extend({
     onClickRightBtn: function () {
         if (userGuide.isStep(userGuide.stepName.GATE_OUT)) {
             userGuide.step();
-            //player.room.createBuild(9, 0);
         }
         this.forward(Navigation.nodeName.GATE_OUT_NODE);
         player.log.addMsg(1110);

@@ -16,7 +16,6 @@ var BuildNode = BottomFrameNode.extend({
             leftBtn: true,
             rightBtn: false
         };
-
         var self = this;
         this.upgradeView = uiUtil.createCommonListItem(
             {
@@ -52,7 +51,6 @@ var BuildNode = BottomFrameNode.extend({
             }
             }
         );
-
         if (this.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
             if (player.room.getBuildLevel(9) > -1) {
                 userGuide.step();
@@ -64,7 +62,6 @@ var BuildNode = BottomFrameNode.extend({
         this.upgradeView.setAnchorPoint(0.5, 1);
         this.upgradeView.setPosition(this.bgRect.width / 2, this.contentTopLineHeight);
         this.bg.addChild(this.upgradeView, 1);
-        
         if (this.bid === 19) {
             this.fenceView = uiUtil.createCommonListItem(
                 {
@@ -99,9 +96,7 @@ var BuildNode = BottomFrameNode.extend({
         }
 
         this.updateUpgradeView();
-
-        this.sectionView = autoSpriteFrameController.getSpriteFromSpriteName("#frame_section_bg.png");
-        
+        this.sectionView = autoSpriteFrameController.getSpriteFromSpriteName("#frame_section_bg.png");    
         if (this.build.id === 19) {
             this.sectionView.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - this.upgradeView.getContentSize().height * 2);
         } else {
@@ -109,14 +104,20 @@ var BuildNode = BottomFrameNode.extend({
         }
         this.sectionView.setAnchorPoint(0.5, 1);
         this.bg.addChild(this.sectionView);
-
-        var operatorTxt = new cc.LabelTTF(stringUtil.getString(1004), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        operatorTxt.setAnchorPoint(0, 0.5);
-        operatorTxt.setPosition(20, this.sectionView.getContentSize().height / 2);
-        operatorTxt.setColor(cc.color.BLACK);
-        this.sectionView.addChild(operatorTxt);
-
-        this.createTableView();
+        if (this.build.id == 20 && this.build.level >= 0) {
+            var itemChangeNode = new ItemChangeNode(player.safe, stringUtil.getString("20_0").title, player.storage, stringUtil.getString(1035), false, false, 100);
+            itemChangeNode.setAnchorPoint(0, 0);
+            itemChangeNode.setPosition(0, 0);
+            this.bg.addChild(itemChangeNode);
+            this.createTableView();
+        } else {
+            var operatorTxt = new cc.LabelTTF(stringUtil.getString(1004), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
+            operatorTxt.setAnchorPoint(0, 0.5);
+            operatorTxt.setPosition(20, this.sectionView.getContentSize().height / 2);
+            operatorTxt.setColor(cc.color.BLACK);
+            this.sectionView.addChild(operatorTxt);
+            this.createTableView();
+        }
 
         if (this.build.id == 12) {
             audioManager.playEffect(audioManager.sound.BARK);
@@ -197,7 +198,12 @@ var BuildNode = BottomFrameNode.extend({
         if (this.bid === 19) {
             title += " & ";
             title += player.room.getBuildCurrentName(11);
-        }   
+        } else if (this.bid === 20) {
+            var itemChangeNode = new ItemChangeNode(player.safe, stringUtil.getString("20_0").title, player.storage, stringUtil.getString(1035), false, false, 100);
+            itemChangeNode.setAnchorPoint(0, 0);
+            itemChangeNode.setPosition(0, 0);
+            this.bg.addChild(itemChangeNode);
+        }
         this.title.setString(title);
     },
 
@@ -223,7 +229,7 @@ var BuildNode = BottomFrameNode.extend({
 
     createTableView: function () {
         this.updateData();
-
+        
         this.tableView = new cc.TableView(this, cc.size(596, 610));
         this.tableView.setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL);
         this.tableView.setVerticalFillOrder(cc.TABLEVIEW_FILL_TOPDOWN);
@@ -371,6 +377,7 @@ var BuildNode = BottomFrameNode.extend({
             case BuildUpgradeType.CONDITION:
             case BuildUpgradeType.COST:
                 var upgradeConfig = this.build.getUpgradeConfig();
+
                 if (IAPPackage.isHandyworkerUnlocked()) {
                     upgradeConfig.upgradeTime = Math.round(upgradeConfig.upgradeTime * 0.7);
                 }
@@ -390,6 +397,7 @@ var BuildNode = BottomFrameNode.extend({
                     });
                 }
                 action1Disabled = upgradeInfo.buildUpgradeType === BuildUpgradeType.UPGRADABLE ? false : true;
+
                 //当建筑物中有任何不是本btn的活跃动作时,则不能使用
                 if (this.build.anyBtnActive() && this.build.activeBtnIndex !== -1) {
                     action1Disabled = true;
@@ -401,8 +409,9 @@ var BuildNode = BottomFrameNode.extend({
                     action1Disabled = true;
                 }
 
+                var iconName = "#build_" + this.build.id + "_" + upgradeConfig.level + ".png";
                 this.upgradeView.updateView({
-                    iconName: "#build_" + this.build.id + "_" + upgradeConfig.level + ".png",
+                    iconName: iconName,
                     hint: hint,
                     hintColor: hint ? cc.color.RED : null,
                     items: items,
@@ -412,8 +421,9 @@ var BuildNode = BottomFrameNode.extend({
                 });
                 break;
             case BuildUpgradeType.MAX_LEVEL:
+                var iconName = "#build_" + this.build.id + "_" + this.build.level + ".png";
                 this.upgradeView.updateView({
-                    iconName: "#build_" + this.build.id + "_" + this.build.level + ".png",
+                    iconName: iconName,
                     hint: stringUtil.getString(1147),
                     percentage: 0
                 });

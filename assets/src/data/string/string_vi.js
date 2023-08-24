@@ -1,4 +1,24 @@
 var string = {
+"6669": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất. Chúng ta sẽ sửa nó sau.",
+"6670": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất!",
+    "20_0": {
+      "title": "Két sắt",
+      "des": "Bảo vệ nguồn cung cấp của bạn. Các món trong két sẽ không bị đánh cắp hoặc bị hỏng bởi xác sống."
+    },
+    "6668": "Các món đồ quá nặng. Két không thể tải thêm được nữa.",
+"8116": "Lái xe máy",
+    "8117": "Không lái xe máy",
+    "8118": "Không hoạt động (Người chơi chọn không lái)",
+    "1305011": {
+        "title": "Viên đạn tiêu chuẩn",
+        "des": "Sản xuất trước thảm họa, không gây hại cho súng và có độ chính xác cao hơn, làm cho nó có giá trị hơn."
+    },
+    "1305012": {
+        "title": "Viên đạn thủ công",
+        "des": "Viên đạn thủ công với độ chính xác thấp. Có thể gây hại cho súng."
+    },
+"6666": "Phát hiện cập nhật mới: Phiên bản %s. Vui lòng cập nhật qua Github hoặc kênh khác.",
+"6667": "Cảm ơn bạn đã chơi Buried City! Tham gia cộng đồng game và các kênh phân phối của trò chơi, được liệt kê dưới đây. Hãy báo cáo cả lỗi!",
 "1324": "Vì uống cà phê nên bạn gặp vấn đề về giấc ngủ. Nghỉ sau %s giờ.",
 "1325": "Độ chính xác giảm %s% do uống rượu!",
 "1326": "Vui lòng bán từ túi!",
@@ -24,7 +44,6 @@ var string = {
 "8107": "Bạn đã tìm thấy một chiếc xe hỏng. Mặc dù chiếc xe gỉ sét không có ích, có thể có một ít xăng trong bình chứa. Nếu bạn có một công cụ hút xăng, bạn có thể lấy một ít xăng.",
 "8108": "Bạn chưa trang bị công cụ hút xăng!",
     "8109": "Tài Năng Được Chọn",
-    "8110": "Chỉ có thể được chọn ở đầu.",
     "8111": "Bị kinh ngạc bởi trận chiến tàn khốc,",
     "8112": "Bị kinh ngạc bởi sự hỗn loạn tại nhà,",
     "8113": "Tâm trạng của bạn cuối cùng đã sụp đổ.",
@@ -699,10 +718,6 @@ var string = {
     "1306001": {
         "title": "Giày",
         "des": "Được tăng độ dày ở bề mặt và độ kiên cố ở đế nhằm bảo vệ chân và tăng tốc độ di chuyển trên đống đổ nát."
-    },
-    "1305011": {
-        "title": "Đạn",
-        "des": "Những viên đạn không vỏ được làm thủ công trong điều kiện nghèo nàn có độ chính xác thấp, dễ phá hoại súng ống."
     },
     "1305023": {
         "title": "Túi tăng cường",

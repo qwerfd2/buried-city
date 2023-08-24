@@ -8,7 +8,7 @@ var siteConfig = {
         "battleRoom": 2,
         "difficulty": [1, 2],
         "workRoom": 2,
-        "produceValue": 62,
+        "produceValue": 50,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -157,7 +157,7 @@ var siteConfig = {
         "battleRoom": 7,
         "difficulty": [2, 3],
         "workRoom": 8,
-        "produceValue": 347,
+        "produceValue": 278,
         "produceList": [{
             "itemId": "1101011",
             "weight": 15
@@ -309,7 +309,7 @@ var siteConfig = {
         "battleRoom": 4,
         "difficulty": [2, 3],
         "workRoom": 4,
-        "produceValue": 173,
+        "produceValue": 138,
         "produceList": [{
             "itemId": "1101011",
             "weight": 15
@@ -462,7 +462,7 @@ var siteConfig = {
         "battleRoom": 4,
         "difficulty": [3, 4],
         "workRoom": 3,
-        "produceValue": 96,
+        "produceValue": 77,
         "produceList": [{
             "itemId": "1101011",
             "weight": 5
@@ -610,7 +610,7 @@ var siteConfig = {
         "battleRoom": 6,
         "difficulty": [3, 4],
         "workRoom": 3,
-        "produceValue": 113,
+        "produceValue": 90,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -759,7 +759,7 @@ var siteConfig = {
         "battleRoom": 3,
         "difficulty": [4, 6],
         "workRoom": 2,
-        "produceValue": 64,
+        "produceValue": 51,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -908,7 +908,7 @@ var siteConfig = {
         "battleRoom": 6,
         "difficulty": [4, 6],
         "workRoom": 2,
-        "produceValue": 200,
+        "produceValue": 160,
         "produceList": [{
             "itemId": "1101011",
             "weight": 1
@@ -1058,7 +1058,7 @@ var siteConfig = {
         "battleRoom": 8,
         "difficulty": [4, 6],
         "workRoom": 6,
-        "produceValue": 240,
+        "produceValue": 192,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -1205,7 +1205,7 @@ var siteConfig = {
         "battleRoom": 10,
         "difficulty": [5, 7],
         "workRoom": 5,
-        "produceValue": 201,
+        "produceValue": 161,
         "produceList": [{
             "itemId": "1101011",
             "weight": 100
@@ -1356,7 +1356,7 @@ var siteConfig = {
         "battleRoom": 7,
         "difficulty": [2, 3],
         "workRoom": 4,
-        "produceValue": 141,
+        "produceValue": 113,
         "produceList": [{
             "itemId": "1101011",
             "weight": 20
@@ -1506,7 +1506,7 @@ var siteConfig = {
         "battleRoom": 9,
         "difficulty": [3, 4],
         "workRoom": 9,
-        "produceValue": 375,
+        "produceValue": 300,
         "produceList": [{
             "itemId": "1101011",
             "weight": 15
@@ -1654,7 +1654,7 @@ var siteConfig = {
         "battleRoom": 6,
         "difficulty": [4, 6],
         "workRoom": 4,
-        "produceValue": 169,
+        "produceValue": 135,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -1810,7 +1810,7 @@ var siteConfig = {
         "battleRoom": 8,
         "difficulty": [4, 6],
         "workRoom": 3,
-        "produceValue": 124,
+        "produceValue": 99,
         "produceList": [{
             "itemId": "1101011",
             "weight": 20
@@ -1961,7 +1961,7 @@ var siteConfig = {
         "battleRoom": 14,
         "difficulty": [5, 7],
         "workRoom": 7,
-        "produceValue": 314,
+        "produceValue": 251,
         "produceList": [{
             "itemId": "1101011",
             "weight": 50
@@ -2114,7 +2114,7 @@ var siteConfig = {
         "battleRoom": 4,
         "difficulty": [3, 4],
         "workRoom": 4,
-        "produceValue": 170,
+        "produceValue": 136,
         "produceList": [{
             "itemId": "1101011",
             "weight": 20
@@ -2267,7 +2267,7 @@ var siteConfig = {
         "battleRoom": 8,
         "difficulty": [3, 4],
         "workRoom": 3,
-        "produceValue": 117,
+        "produceValue": 94,
         "produceList": [{
             "itemId": "1101011",
             "weight": 50
@@ -2423,7 +2423,7 @@ var siteConfig = {
         "battleRoom": 10,
         "difficulty": [4, 6],
         "workRoom": 5,
-        "produceValue": 184,
+        "produceValue": 147,
         "produceList": [{
             "itemId": "1101011",
             "weight": 75
@@ -2577,7 +2577,7 @@ var siteConfig = {
         "battleRoom": 4,
         "difficulty": [3, 4],
         "workRoom": 4,
-        "produceValue": 170,
+        "produceValue": 136,
         "produceList": [{
             "itemId": "1101011",
             "weight": 60
@@ -2729,7 +2729,7 @@ var siteConfig = {
         "battleRoom": 6,
         "difficulty": [4, 6],
         "workRoom": 4,
-        "produceValue": 105,
+        "produceValue": 84,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -2880,7 +2880,7 @@ var siteConfig = {
         "battleRoom": 15,
         "difficulty": [4, 6],
         "workRoom": 4,
-        "produceValue": 158,
+        "produceValue": 126,
         "produceList": [{
             "itemId": "1101011",
             "weight": 25
@@ -3035,7 +3035,7 @@ var siteConfig = {
         "battleRoom": 45,
         "difficulty": [6, 7],
         "workRoom": 20,
-        "produceValue": 1018,
+        "produceValue": 814,
         "produceList": [{
             "itemId": "1101011",
             "weight": 150
@@ -3191,7 +3191,7 @@ var siteConfig = {
         "battleRoom": 5,
         "difficulty": [3, 4],
         "workRoom": 5,
-        "produceValue": 157,
+        "produceValue": 126,
         "produceList": [{
             "itemId": "1101011",
             "weight": 20
@@ -3343,7 +3343,7 @@ var siteConfig = {
         "battleRoom": 5,
         "difficulty": [3, 4],
         "workRoom": 4,
-        "produceValue": 204,
+        "produceValue": 163,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -3493,7 +3493,7 @@ var siteConfig = {
         "battleRoom": 12,
         "difficulty": [4, 6],
         "workRoom": 2,
-        "produceValue": 90,
+        "produceValue": 72,
         "produceList": [{
             "itemId": "1101011",
             "weight": 30
@@ -3644,7 +3644,7 @@ var siteConfig = {
         "battleRoom": 14,
         "difficulty": [4, 6],
         "workRoom": 10,
-        "produceValue": 683,
+        "produceValue": 546,
         "produceList": [{
             "itemId": "1101011",
             "weight": 20
@@ -3794,7 +3794,7 @@ var siteConfig = {
         "battleRoom": 7,
         "difficulty": [3, 4],
         "workRoom": 6,
-        "produceValue": 210,
+        "produceValue": 168,
         "produceList": [{
             "itemId": "1101011",
             "weight": 20
@@ -3981,7 +3981,7 @@ var siteConfig = {
             "num": 2
         }, {
             "itemId": "1101061",
-            "num": 5
+            "num": 3
         }, {
             "itemId": "1103083",
             "num": 1
@@ -4012,7 +4012,7 @@ var siteConfig = {
         "battleRoom": 9,
         "difficulty": [1, 3],
         "workRoom": 4,
-        "produceValue": 300,
+        "produceValue": 240,
         "produceList": [{
             "itemId": "1101*1",
             "weight": 10
@@ -5174,7 +5174,7 @@ var siteConfig = {
         "battleRoom": 6,
         "difficulty": [4, 6],
         "workRoom": 5,
-        "produceValue": 200,
+        "produceValue": 160,
         "produceList": [{
             "itemId": "1102011",
             "weight": 15
@@ -5319,7 +5319,7 @@ var siteConfig = {
         "battleRoom": 8,
         "difficulty": [4, 7],
         "workRoom": 7,
-        "produceValue": 224,
+        "produceValue": 179,
         "produceList": [{
             "itemId": "1101011",
             "weight": 30
@@ -5440,7 +5440,7 @@ var siteConfig = {
     "battleRoom": 600,
     "difficulty": [8, 12],
     "workRoom": 66,
-    "produceValue": 7260,
+    "produceValue": 6808,
     "produceList": [{
         "itemId": "1101011",
         "weight": 20

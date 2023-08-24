@@ -1,3 +1,10 @@
+var GetRichTextForBullet = function (color) {
+    var items = [{itemId: "1305012", txt: ">"}, {itemId: "1305011", txt: " "}];
+    if (player.useGoodBullet) {
+        items = [{itemId: "1305012", txt: "<"}, {itemId: "1305011", txt: " "}];
+    }
+    return new ItemRichText(items, 190, 2, 0.5, color, uiUtil.fontSize.COMMON_1);
+};
 var BattleAndWorkNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -151,6 +158,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         node.setPosition(this.bgRect.width / 2, 0);
         node.setName("node");
         this.bg.addChild(node);
+        
         if (this.bg.getChildByName("dig_des")) {
             this.bg.removeChildByName("dig_des");
         }
@@ -183,8 +191,28 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         label2.setAnchorPoint(0, 1);
         label2.setPosition(0, label1.getPositionY() - label1.getContentSize().height - 15);
         node.addChild(label2);
-        label2.setColor(cc.color.RED);
+        if (this.room.difficulty > 2) {
+            label2.setColor(cc.color.RED);
+        }     
+        if (player.equip.getEquip(EquipmentPos.GUN) && !player.equip.isEquiped(1301091) && player.bag.getNumByItemId(BattleConfig.BULLET_ID) && player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID)) {
+            //if gun is equipped, and not flamethrower, and has 2 bullets in the inventory to select.
+            var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
+            bulletRichText.setName("bulletPriority");
+            bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 95);
+            node.addChild(bulletRichText);
 
+            var exchangeButton = uiUtil.createCommonBtnWhite(stringUtil.getString(1334), this, function () {
+                player.useGoodBullet = !player.useGoodBullet;
+                var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
+                bulletRichText.setName("bulletPriority");
+                bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 95);
+                node.removeChildByName("bulletPriority");
+                node.addChild(bulletRichText);
+            });
+            exchangeButton.setName("exchangebutton");
+            exchangeButton.setPosition(250, label2.getPositionY() - label2.getContentSize().height - 75);
+            node.addChild(exchangeButton);
+        }
         if (cc.RTL) {
             label1.anchorX = 1;
             label1.x = node.width;
@@ -367,6 +395,9 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         var items = [];
         if (sumRes.bulletNum > 0) {
             items.push({itemId: BattleConfig.BULLET_ID, num: sumRes.bulletNum});
+        }
+        if (sumRes.homemadeNum > 0) {
+            items.push({itemId: BattleConfig.HOMEMADE_ID, num: sumRes.homemadeNum});
         }
         if (sumRes.tools > 0) {
             items.push({

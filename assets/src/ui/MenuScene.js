@@ -1,21 +1,50 @@
 var ClientData = {};
 var Musics = [audioManager.music.BATTLE, audioManager.music.DEATH, audioManager.music.HOME, audioManager.music.NPC, audioManager.music.HOME_REST, audioManager.music.MAIN_PAGE, audioManager.music.MAP, audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3];
 var MenuLayer = cc.Layer.extend({
-    ctor: function () {
+    ctor: function (checkVersion) {
         this._super();
         ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
-        ClientData.MOD_VERSION = 16;
+        ClientData.MOD_VERSION = 19;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
         Medal.init();
+        if (checkVersion) {
+            this.requestVersion(function (response) {
+                var number = Number(response);
+                if (number > ClientData.MOD_VERSION) {
+                    var config = {
+                        title: {title: ""},
+                        content: {des: stringUtil.getString(6666, number)},
+                        action: {btn_1: {txt: stringUtil.getString(1193)}}
+                    };
+                    var toast = new DialogTiny(config);
+                    toast.show();
+                }
+            });
+        }
+
         return true;
     },
 
     onExit: function () {
         this._super();
     },
-
+    
+    requestVersion: function (func) {
+        var xhr = cc.loader.getXMLHttpRequest();
+        xhr.open("GET", "https://studio.code.org/v3/sources/NP02DNkidhIYa_EcwdxRn4BOMeSI-9uY25BPILbpJuw/main.json", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {   
+                    var response = xhr.responseText;        
+                    func(JSON.parse(response).source);
+                } catch (error) {}
+            }
+        };
+        xhr.send();
+    },
+    
     onEnter: function () {
         this._super();
         if (Record.getScreenFix() == 1) {
@@ -119,7 +148,7 @@ var MenuLayer = cc.Layer.extend({
         bg.addChild(btn_chgmusic);
         
         var btn_rate = uiUtil.createSpriteBtn({normal: "btn_rate.png"}, this, function () {
-            CommonUtil.gotoUrl("https://github.com/qwerfd2/buried-city");
+            cc.director.runScene(new aboutScene());
         });
         btn_rate.setPosition(106, bg.height / 2 - 236);
         bg.addChild(btn_rate);
@@ -525,9 +554,7 @@ var SettingLayer = cc.Layer.extend({
                             cc.RTL = false;
                         }
                     }
-
-
-                    cc.director.runScene(new MenuScene(true));
+                    cc.director.runScene(new MenuScene(true, false));
                 }
             }, this)
             lanIndex++;
@@ -557,9 +584,10 @@ var SettingLayer = cc.Layer.extend({
 });
 
 var MenuScene = BaseScene.extend({
-    ctor: function (openSetting) {
+    ctor: function (openSetting, checkVersion) {
         this._super(APP_NAVIGATION.MENU);
         this.openSetting = openSetting;
+        this.checkVersion = checkVersion;
         this.sceneName = "MenuScene";
         autoSpriteFrameController.addSpriteFrames("res/ui.plist");
         autoSpriteFrameController.addSpriteFrames("res/icon.plist");
@@ -567,7 +595,7 @@ var MenuScene = BaseScene.extend({
     },
     onEnter: function () {
         this._super();
-        var layer = new MenuLayer();
+        var layer = new MenuLayer(this.checkVersion);
         this.addChild(layer);
 
         if (this.openSetting) {

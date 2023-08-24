@@ -639,8 +639,9 @@ var DrinkBuildAction = BuildAction.extend({
     },
     updateConfig: function () {
         var level = this.getCurrentBuildLevel();
-        level = level >= 0 ? level : 0;
-        this.config = this.configs[level][this.index];
+        this.level = level >= 0 ? level : 0;
+        this.config = this.configs[this.level][this.index];
+        this.config.cost = [{"itemId": 1105022, "num": player.alcoholPrice}];
     },
     clickIcon: function () {
         uiUtil.showBuildActionDialog(this.bid, this.index);
@@ -665,6 +666,10 @@ var DrinkBuildAction = BuildAction.extend({
             self.config.cost.forEach(function (item) {
                 Achievement.checkCost(item.itemId, item.num);
             });
+            var rand = Math.random();
+            if (rand < 0.3 && player.alcoholPrice < 9) {
+                player.alcoholPrice += 1;
+            }
             player.applyEffect(self.config["effect"]);
             var itemInfo = self.config.cost[0];
             var itemName = stringUtil.getString(itemInfo.itemId).title;

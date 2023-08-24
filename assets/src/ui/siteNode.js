@@ -194,10 +194,10 @@ var SiteNode = BottomFrameNode.extend({
         this.dialogHotel.contentNode.addChild(this.hotelBtn3);
         this.hotelBtn3.setName("hotelBtn_3");
         
-        this.hotelBtn4 = uiUtil.createCommonBtnBlack(stringUtil.getString(1346, 12), this, this.hotelClickBtn4);
+        this.hotelBtn4 = uiUtil.createCommonBtnBlack(stringUtil.getString(1346, (player.alcoholPrice * 4)), this, this.hotelClickBtn4);
         this.hotelBtn4.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2 - 60);
-        this.dialogHotel.contentNode.addChild(this.hotelBtn4);
         this.hotelBtn4.setName("hotelBtn_4");
+        this.dialogHotel.contentNode.addChild(this.hotelBtn4);
     
         var pbBg = autoSpriteFrameController.getSpriteFromSpriteName("#pb_bg.png");
         pbBg.setAnchorPoint(0.5, 0);
@@ -289,12 +289,18 @@ var SiteNode = BottomFrameNode.extend({
     },
     hotelClickBtn4: function () {
         var time = 1800;
-        if (player.currency > 11) {
+        var price = player.alcoholPrice * 4;
+        if (player.currency > price) {
             player.log.addMsg(1307);
-            player.onCurrencyChange(-12);
+            player.onCurrencyChange(-price);
+            var self = this;
             this.addTimer(time, function () {
                 player.lastAlcoholTime = Number(cc.timer.time);
                 player.applyEffect({"spirit": 100, "spirit_chance": 1});
+                var rand = Math.random();
+                if (rand < 0.3 && player.alcoholPrice < 9) {
+                    player.alcoholPrice += 1;
+                }
                 Record.saveAll();
             });
         } else {
@@ -334,6 +340,13 @@ var SiteNode = BottomFrameNode.extend({
                 }
                 if (endCb) {
                     endCb();
+                }
+                if (self.dialogHotel) {
+                    self.dialogHotel.contentNode.removeChildByName("hotelBtn_4");
+                    self.hotelBtn4 = uiUtil.createCommonBtnBlack(stringUtil.getString(1346, (player.alcoholPrice * 4)), self, self.hotelClickBtn4);
+                    self.hotelBtn4.setPosition(self.dialogHotel.contentNode.width / 4 * 3, self.dialogHotel.contentNode.height / 2 - 60);
+                    self.hotelBtn4.setName("hotelBtn_4");
+                    self.dialogHotel.contentNode.addChild(self.hotelBtn4);
                 }
             }
         }));

@@ -24,18 +24,6 @@ var achievementLayer = cc.Layer.extend({
         
         this.createTableView();
         this.requestData();
-        
-        var rankLogoName = "res/new/";
-        if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE) {
-            rankLogoName += "top_logo_zh.png";
-        } else {
-            rankLogoName += "top_logo_en.png";
-        }
-        var rankLogo = new cc.Sprite(rankLogoName);
-        rankLogo.x = cc.winSize.width / 2;
-        rankLogo.y = 1038;
-        rankLogo.scale = 0.5;
-        this.addChild(rankLogo);
 
         var btn = uiUtil.createCommonBtnBlack(stringUtil.getString(1193), this, function () {
             cc.director.runScene(new MenuScene());
@@ -50,7 +38,6 @@ var achievementLayer = cc.Layer.extend({
         btnInfo.x = 576;
         btnInfo.y = 1066;
         this.bg.addChild(btnInfo);
-
     },
 
     showInfoDialog: function () {

@@ -1,4 +1,24 @@
 var string = {
+"6669": "Vous n'avez pas de moto et ne pouvez pas stocker l'essence extraite. Réparons cela plus tard.",
+"6670": "Vous n'avez pas de moto et ne pouvez pas stocker l'essence extraite !",
+"20_0": {
+    "title": "Coffre-fort",
+    "des": "Protégez vos provisions. Les objets dans le coffre-fort ne seront ni volés ni endommagés par les zombies."
+},
+"6668": "Les objets sont trop lourds. Le coffre-fort ne peut pas charger davantage.",
+"8116": "Conduire une moto",
+    "8117": "Ne pas conduire de moto",
+    "8118": "Inactif (Le joueur a choisi de ne pas conduire)",
+    "1305011": {
+      "title": "Balle standard",
+      "des": "Produite avant la catastrophe, elle n'endommagera pas le pistolet et a une meilleure précision, ce qui la rend plus précieuse."
+    },
+    "1305012": {
+      "title": "Balle artisanale",
+      "des": "Balle artisanale avec une faible précision. Peut endommager le pistolet."
+    },
+"6666": "Nouvelle mise à jour détectée : Version %s. Veuillez mettre à jour via Github ou un autre canal.",
+"6667": "Merci d'avoir joué à Buried City ! Rejoignez la communauté de jeu et les canaux de distribution du jeu, répertoriés ci-dessous. Signalez également les bugs !",
 "1324": "Problèmes de sommeil à cause du café. Reposez-vous après %s heures.",
 "1325": "Précision réduite de %s% à cause de l'alcool !",
 "1326": "Veuillez vendre à partir du sac !",
@@ -21,7 +41,6 @@ var string = {
 "8107": "Vous avez trouvé une voiture en mauvais état. Bien que la voiture rouillée en elle-même soit inutile, il peut y avoir un peu de gaz dans le réservoir. Si vous avez un siphon, vous pouvez récupérer du gaz.",
 "8108": "Vous n'avez pas équipé de siphon !",
     "8109": "Talents Sélectionnés",
-    "8110": "Peut seulement être choisi au début.",
     "8111": "Stupéfait par la bataille brutale,",
     "8112": "Stupéfait par le désordre à la maison,",
     "8113": "Votre état mental s'est finalement effondré.",
@@ -702,10 +721,6 @@ var string = {
     "1306001": {
         "title": "Bottes",
         "des": "L'empeigne épaissie et la semelle renforcée peuvent protéger vos pieds et améliorer votre vitesse d'avancement dans les ruines."
-    },
-    "1305011": {
-        "title": "Balle",
-        "des": "Dans des conditions primitives, les balles sans obus collées à la main, la précision est faible et des armes sont facilement endommagées"
     },
     "1305023": {
         "title": "Sac à dos amélioré",

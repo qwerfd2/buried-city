@@ -18,24 +18,25 @@ var HomeNode = BottomFrameNode.extend({
 
         var infos = [
             {bid: 1, pos: {x: 64, y: 360}},
-            {bid: 2, pos: {x: 412, y: 780}},
+            {bid: 2, pos: {x: 425, y: 780}},
             {bid: 18, pos: {x: 200, y: 370}},
             {bid: 4, pos: {x: 477, y: 562}},
             {bid: 5, pos: {x: 310, y: 330}},
             {bid: 6, pos: {x: 177, y: 220}},
             {bid: 15, pos: {x: 250, y: 560}},
             {bid: 7, pos: {x: 250, y: 630}},
-            {bid: 8, pos: {x: 112, y: 780}},
+            {bid: 8, pos: {x: 84, y: 780}},
             {bid: 9, pos: {x: 70, y: 590}},
             {bid: 10, pos: {x: 480, y: 410}},
-            {bid: 11, pos: {x: 430, y: 85}},
+            {bid: 11, pos: {x: 436, y: 85}},
             {bid: 13, pos: {x: 125, y: 52}},
             {bid: 14, pos: {x: 425, y: 216}},
             {bid: 16, pos: {x: 500, y: 670}},
-            {bid: 19, pos: {x: 430, y: 85}},
-            {bid: 17, pos: {x: 410, y: 108}},
+            {bid: 19, pos: {x: 436, y: 85}},
+            {bid: 17, pos: {x: 416, y: 108}},
             {bid: 3, pos: {x: 545, y: 270}},
-            {bid: 12, pos: {x: 335, y: 125}}
+            {bid: 12, pos: {x: 335, y: 125}},
+            {bid: 20, pos: {x:196, y:780}}
         ];
         this.btnList = {};
 
@@ -43,12 +44,7 @@ var HomeNode = BottomFrameNode.extend({
         infos.forEach(function (info) {
             var buildLevel = player.room.getBuildLevel(info.bid);
             buildLevel = Math.max(0, buildLevel);
-            var btn;
-            if (info.bid == 17) {
-                btn = new ButtonAtHome("#iconstart_build_17_" + buildLevel + ".png");
-            } else {
-                btn = new ButtonAtHome("#icon_start_build_" + info.bid + "_" + buildLevel + ".png");
-            }
+            var btn = new ButtonAtHome("#icon_start_build_" + info.bid + "_" + buildLevel + ".png");
             btn.setClickListener(self, self.onClickBuild);
             btn.setPosition(info.pos);
             homeBg.addChild(btn);
@@ -141,7 +137,7 @@ var HomeNode = BottomFrameNode.extend({
 
     flushBag: function () {
         player.bag.forEach(function (item, num) {
-            if (!player.equip.isEquiped(item.id) && item.id != BattleConfig.BULLET_ID && item.id != "1101061") {
+            if (!player.equip.isEquiped(item.id) && item.id != BattleConfig.BULLET_ID && item.id != BattleConfig.HOMEMADE_ID && item.id != "1101061") {
                 player.storage.increaseItem(item.id, num, false);
                 player.bag.decreaseItem(item.id, num);
             } else if (item.id == "1101061") {

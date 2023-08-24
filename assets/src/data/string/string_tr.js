@@ -1,4 +1,24 @@
 var string = {
+"6669": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız. Sonra düzelteceğiz.",
+"6670": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız!",
+    "20_0": {
+      "title": "Kasa",
+      "des": "Malzemelerinizi koruyun. Kasada bulunan eşyalar zombiler tarafından çalınmaz veya zarar görmez."
+    },
+    "6668": "Eşyalar çok ağır. Kasa daha fazla yükleyemez.",
+    "8116": "Motosiklet sürmek",
+    "8117": "Motosiklet sürmemek",
+    "8118": "Pasif (Oyuncu sürmeyi tercih etmedi)",
+    "1305011": {
+      "title": "Standart Mermi",
+      "des": "Felaket öncesinde üretildi, silaha zarar vermez ve daha iyi hassasiyete sahip olduğundan daha değerli hale gelir."
+    },
+    "1305012": {
+      "title": "El yapımı Mermi",
+      "des": "Düşük hassasiyetli el yapımı mermi. Silaha zarar verebilir."
+    },
+"6666": "Yeni Güncelleme tespit edildi: Sürüm %s. Lütfen Github veya diğer kanaldan güncelleyin.",
+"6667": "Buried City oynadığınız için teşekkür ederiz! Oyun topluluğuna ve oyunun dağıtım kanallarına katılın. Aşağıda listelenen hataları da bildirin!",
 "1324": "Kahve nedeniyle uyku sorunu yaşadınız. %s saat sonra dinlenin.",
 "1325": "Alkolden dolayı hassasiyetiniz %s% azaldı!",
 "1326": "Lütfen çantadan satın alın!",
@@ -21,7 +41,6 @@ var string = {
 "8107": "Kırık bir araba buldunuz. Paslı araba kendisi işe yaramasa da, tankta biraz benzin olabilir. Sifon aracınız varsa, biraz benzin alabilirsiniz.",
 "8108": "Sifon aracınızı donatmadınız!",
     "8109": "Seçilmiş Yetenekler",
-    "8110": "Sadece başlangıçta seçilebilir.",
     "8111": "Brutal savaşın etkisiyle ürperen,",
     "8112": "Evdeki karışıklıktan ürperen,",
     "8113": "Zihinsel durumunuz sonunda çöktü.",
@@ -698,10 +717,6 @@ var string = {
     "1306001": {
         "title": "Bot",
         "des": "Ayağın üst kısmı kalındır ve tek desteklidir, molozlarda hızla ilerlemeni sağlar ve ayağını korur."
-    },
-    "1305011": {
-        "title": "Mermi",
-        "des": "İlkel şartlar altında el ile yapıştırılmış kabuksuz mermidir, isabeti düşüktür ve silaha kolay hasar verir."
     },
     "1305023": {
         "title": "Gelişmiş sırt çantası",

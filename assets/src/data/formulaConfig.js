@@ -614,10 +614,10 @@ var formulaConfig = {
         }],
         "makeTime": 30
     },
-    "1405011": {
-        "id": 1405011,
+    "1405012": {
+        "id": 1405012,
         "produce": [{
-            "itemId": 1305011,
+            "itemId": 1305012,
             "num": 24
         }],
         "cost": [{

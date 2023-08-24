@@ -15,7 +15,7 @@ var ItemChangeNode = cc.Node.extend({
         topView.setName("top");
         this.addChild(topView);
         topView.getChildByName("section").getChildByName("name").setString(topStorageName);
-        if (topStorage instanceof Bag) {
+        if (topStorage instanceof Bag || topStorage instanceof Safe) {
             var section = topView.getChildByName("section");
             var weightLabel = new cc.LabelTTF("", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2 + 4);
             weightLabel.setAnchorPoint(1, 0.5);
@@ -42,7 +42,7 @@ var ItemChangeNode = cc.Node.extend({
                 EXCHANGE_ALL = false;
                 audioManager.playEffect(audioManager.sound.LOOT);
 
-                if (userGuide.isStep(userGuide.stepName.ALL_GET)) {
+                if (userGuide.isStep(userGuide.stepName.ALL_GET) && topStorage instanceof Bag) {
                     userGuide.step();
                     uiUtil.removeIconWarn(btnTakeAll);
                     utils.emitter.emit("guideNextRoom");
@@ -56,7 +56,7 @@ var ItemChangeNode = cc.Node.extend({
             btnIcon.x = 27;
             btnIcon.y = btnTakeAll.height / 2;
             btnTakeAll.addChild(btnIcon);
-            if (userGuide.isStep(userGuide.stepName.ALL_GET)) {
+            if (userGuide.isStep(userGuide.stepName.ALL_GET) && topStorage instanceof Bag) {
                 uiUtil.createIconWarn(btnTakeAll);
             }
         }
@@ -137,7 +137,11 @@ var ItemChangeNode = cc.Node.extend({
                 }
                 return true;
             } else {
-                uiUtil.showTinyInfoDialog(1131);
+                if (this.topData instanceof Bag) {
+                    uiUtil.showTinyInfoDialog(1131);
+                } else {
+                    uiUtil.showTinyInfoDialog(6668);
+                }
                 return false;
             }
         } else {
@@ -262,6 +266,6 @@ var ItemChangeNode = cc.Node.extend({
         return node;
     },
     equipNeedGuide: function () {
-        return userGuide.isStepGuideFinish();
+        return userGuide.isStepGuideFinish() && this.topData instanceof Bag;
     }
 });

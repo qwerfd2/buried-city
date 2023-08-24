@@ -337,12 +337,12 @@ var NPCManager = cc.Class.extend({
             return;
         }      
         var rand = utils.getRandomInt(0, 100);
-        var criteria = 15;
+        var criteria = 20;
         var chatlog = JSON.parse(cc.sys.localStorage.getItem("radio") || "[]");
         if (chatlog.length > 0) {
             var addtime = cc.timer.time - 60*60*36;
             if (chatlog[0].time > addtime) {
-                criteria += 15;
+                criteria += 20;
             }
         }
         if (rand <= criteria) {

@@ -141,7 +141,11 @@ var TopFrameNode = cc.Node.extend({
         fuelGauge.setPosition(btnSize.width * 5.7 - 0.4, this.firstLine.getContentSize().height / 2);
         var self = this;
         fuelGauge.setClickListener(this, function(sender) {
-            showStatusDialog(16, Math.floor(player.fuel), sender.spriteFrameName);
+            var upperbound = 0;
+            if (player.hasMotocycle()) {
+                upperbound = 99;
+            }
+            showStatusDialog(16, Math.floor(player.fuel) + "/" + upperbound, sender.spriteFrameName);
         });
 
         utils.emitter.on("onFuelChange", function(a) {

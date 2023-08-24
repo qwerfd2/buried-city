@@ -35,14 +35,23 @@ var Storage = cc.Class.extend({
         var itemid = keyArray[randomIndex];
         var index = this.getNumByItemId(itemid);
         if (index > 10) {
-            randomIndex = utils.getRandomInt(5, 10);
+            randomIndex = utils.getRandomInt(3, 9);
         } else {
-            randomIndex = utils.getRandomInt(1, index);
+            var cap = Math.max((index - 2), 1);
+            randomIndex = utils.getRandomInt(1, cap);
         }
-        if (itemid == 1305011) {
+        var price = player.getPrice(itemid);
+        if (itemid == 1305011 || itemid == 1305012) {
             randomIndex *= 2;
             if (randomIndex > index) {
-                randomIndex = index;
+                randomIndex = index - 4;
+            }
+        } else if (price >= 15) {
+            //Expensive items, reduce amount.
+            if (price >= 30) {
+                randomIndex = Math.ceil(randomIndex / 3 * 2);
+            } else {
+                randomIndex = Math.ceil(randomIndex / 3);
             }
         }
         var result = [];
@@ -129,7 +138,7 @@ var Storage = cc.Class.extend({
             } else if ((itemIdA < min || itemIdA >= max) && (itemIdB >= min && itemIdB < max)) {
                 return 1;
             } else if ((itemIdA >= min && itemIdA < max) && (itemIdB >= min && itemIdB < max)) {
-                if (itemIdA === BattleConfig.BULLET_ID || itemIdB === BattleConfig.BULLET_ID) {
+                if (itemIdA === BattleConfig.BULLET_ID || itemIdB === BattleConfig.BULLET_ID || itemIdA === BattleConfig.HOMEMADE_ID || itemIdB === BattleConfig.HOMEMADE_ID) {
                     return 1;
                 }
                 return itemIdA - itemIdB;
@@ -296,15 +305,15 @@ var Bag = Storage.extend({
         }
         return newBag;
     },
-    testWeaponBroken: function (itemId, type) {
+    testWeaponBroken: function (itemId, type, multiplier) {
         //新手保护, 2天内不会损坏武器
-        if (cc.timer.formatTime().d < -1) {
+        if (cc.timer.formatTime().d < 2) {
             return false;
         }
         if (itemConfig[itemId]) {
             var weaponBrokenProbability;
             if (type == 0) {
-                weaponBrokenProbability = itemConfig[itemId].effect_weapon.brokenProbability;
+                weaponBrokenProbability = itemConfig[itemId].effect_weapon.brokenProbability * multiplier;
             } else {
                 weaponBrokenProbability = itemConfig[itemId].effect_arm.brokenProbability;
             }
@@ -313,10 +322,12 @@ var Bag = Storage.extend({
             }          
             var rand = Math.random();
             var isBroken = (rand <= weaponBrokenProbability);
-
             if (isBroken && player.weaponRound[itemId] > 2) {
-                player.equip.unequipByItemId(itemId);
                 this.decreaseItem(itemId, 1);
+                if (!this.validateItem(itemId, 1)) {
+                    //player has another item of this ID. reduce item by 1 and don't unequip.
+                    player.equip.unequipByItemId(itemId);
+                }
                 var returnItem = WeaponReturn[itemId];
                 if (returnItem.length) {
                     for (var i = 0; i < returnItem.length; i++) {
@@ -335,5 +346,53 @@ var Bag = Storage.extend({
             return isBroken;
         }
         return false;
+    }
+});
+
+var Safe = Storage.extend({
+    ctor: function (name) {
+        this._super(name);
+    },
+    validateItemWeight: function (itemId, num) {
+        var w = itemConfig[itemId].weight;
+        if (w == 0) {
+            var oldAmount = player.safe.getNumByItemId(itemId);
+            var newAmount = oldAmount + num;
+            oldAmount = Math.ceil(oldAmount / 50);
+            newAmount = Math.ceil(newAmount / 50);
+            return newAmount + this.getCurrentWeight() - oldAmount <= this.getTotalWeight();
+        } else {
+            var weight = w * Math.max(0, num);
+            return weight + this.getCurrentWeight() <= this.getTotalWeight();
+        }
+    },
+    getCurrentWeight: function () {
+        var weight = 0;
+        this.forEach(function (item, num) {
+            var w = item.getWeight();
+            if (w == 0) {
+                weight += Math.ceil(num / 50);
+            } else {
+                weight += w * Math.max(0, num);
+            }
+        });
+        return weight;
+    },
+    getTotalWeight: function () {
+        if (player.room.getBuildLevel(20) >= 0) {
+            return 50;
+        } else {
+            return 0;
+        }
+    },
+    decreaseItem: function (itemId, num) {
+        this._super(itemId, num);
+    },
+    clone: function () {
+        var newSafe = new Safe();
+        for (var itemId in this.map) {
+            newSafe.increaseItem(itemId, this.getNumByItemId(itemId));
+        }
+        return newSafe;
     }
 });

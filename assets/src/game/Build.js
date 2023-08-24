@@ -205,6 +205,17 @@ var TrapBuild = Build.extend({
     }
 });
 
+var SafeBuild = Build.extend({
+    ctor: function (bid, level, saveObj) {
+        this._super(bid, level, saveObj);
+    },
+    initBuildActions: function () {
+    },
+    isActive: function () {
+        return this.level >= 0;
+    }
+});
+
 var DogBuild = Build.extend({
     ctor: function (bid, level, saveObj) {
         this._super(bid, level, saveObj);
@@ -336,7 +347,8 @@ var Room = cc.Class.extend({
         this.createBuild(13, 0);
         //老式电台
         this.createBuild(15, -1);
-
+        //Safe
+        this.createBuild(20, -1);
         //新手引导解锁
         //工具箱
         this.createBuild(1, 0);
@@ -404,6 +416,8 @@ var Room = cc.Class.extend({
             case 19:
                 b = new ElectricFenceBuild(bid, level, obj);
                 break;
+            case 20:
+                b = new SafeBuild(bid, level, obj);
             default :
                 b = new Build(bid, level, obj);
                 break;

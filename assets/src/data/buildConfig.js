@@ -574,7 +574,7 @@ var buildConfig = {
             "bid": 1,
             "level": 1
         },
-        "produceList": [1405011, 1202073]
+        "produceList": [1405012, 1202073]
     }],
     "17": [{
         "id": 17,
@@ -630,6 +630,34 @@ var buildConfig = {
         "condition": {
             "bid": 1,
             "level": 0
+        },
+        "produceList": []
+    }],
+    "20": [{
+        "id": 20,
+        "cost": [{
+            "itemId": 1101011,
+            "num": 6
+        }, {
+            "itemId": 1101021,
+            "num": 70
+        }, {
+            "itemId": 1101031,
+            "num": 8
+        }, {
+            "itemId": 1101041,
+            "num": 16
+        }, {
+            "itemId": 1101071,
+            "num": 2
+        }, {
+            "itemId": 1101073,
+            "num": 5
+        }],
+        "createTime": 240,
+        "condition": {
+            "bid": 1,
+            "level": 2
         },
         "produceList": []
     }]

@@ -707,7 +707,7 @@ uiUtil.showItemSliderDialog = function (itemId, storage, siteId, cb) {
     var totalNum = storage.getNumByItemId(itemId);
     config.title.title = stringUtil.getString(itemId).title;
     var string;
-    if (itemId == "1305011" || itemId == "1105011") {
+    if (itemId == "1305011" || itemId == "1105011" || itemId == "1305012") {
         string = stringUtil.getString(1028, 1);
     } else {
         string = stringUtil.getString(1028, itemConfig[itemId].weight);
@@ -749,7 +749,7 @@ uiUtil.showItemSliderDialog = function (itemId, storage, siteId, cb) {
             valueStr += value;
         }
         var string;
-        if (itemId == "1305011" || itemId == "1105011") {
+        if (itemId == "1305011" || itemId == "1105011" || itemId == "1305012") {
             string = stringUtil.getString(1028, Math.ceil(0.02 * value));
         } else {
             string = stringUtil.getString(1028, value * itemConfig[itemId].weight)
@@ -1039,12 +1039,18 @@ uiUtil.showNpcInMapDialog = function (entity, time, fuelNeed, canAfford, okCb, c
         });
     });
     
-    var transportNode = uiUtil.createTransportNode(canAfford);
+    var transportNode = uiUtil.createTransportNode(canAfford, function() {
+        //stop using moto
+        player.useMoto = false;
+        dialog.dismiss();
+    }, function() {
+        //start using moto
+        player.useMoto = true;
+        dialog.dismiss();
+    });
     transportNode.setAnchorPoint(1, 0.5);
     transportNode.setPosition(cc.winSize.width / 2 + 230, label1.y + 580);
-    if (fuelNeed > 0) {
-        dialog.addChild(transportNode, 1);
-    }
+    dialog.addChild(transportNode, 1);
     
     var showItemBtn = new ImageButton("res/new/tradelist.png");
     showItemBtn.setPosition(cc.winSize.width / 2 + 180, label1.y + 180);
@@ -1079,13 +1085,19 @@ uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     config.action.btn_2.cb = okCb;
     var dialog = new DialogBig(config);
     
-    var transportNode = uiUtil.createTransportNode(canAfford);
+    var transportNode = uiUtil.createTransportNode(canAfford, function() {
+        //stop using moto
+        player.useMoto = false;
+        dialog.dismiss();
+    }, function() {
+        //start using moto
+        player.useMoto = true;
+        dialog.dismiss();
+    });
     transportNode.setAnchorPoint(1, 0.5);
     transportNode.x = dialog.rightEdge + 30;
     transportNode.y = dialog.titleNode.height / 2;
-    if (fuelNeed > 0) {
-        dialog.titleNode.addChild(transportNode);
-    }
+    dialog.titleNode.addChild(transportNode);
     
     var txt1 = dialog.titleNode.getChildByName("txt_1");
     var txt2 = dialog.titleNode.getChildByName("txt_2");
@@ -1165,13 +1177,19 @@ uiUtil.showHomeDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     config.action.btn_2.cb = okCb;
     var dialog = new DialogBig(config);
     
-    var transportNode = uiUtil.createTransportNode(canAfford);
+    var transportNode = uiUtil.createTransportNode(canAfford, function() {
+        //stop using moto
+        player.useMoto = false;
+        dialog.dismiss();
+    }, function() {
+        //start using moto
+        player.useMoto = true;
+        dialog.dismiss();
+    });
     transportNode.setAnchorPoint(1, 0.5);
     transportNode.x = dialog.rightEdge + 30;
     transportNode.y = dialog.titleNode.height / 2;
-    if (fuelNeed > 0) {
-        dialog.titleNode.addChild(transportNode);
-    }
+    dialog.titleNode.addChild(transportNode);
     
     dialog.contentNode.getChildByName("dig_des").setScale(0.8);
     var des = dialog.contentNode.getChildByName("des");
@@ -1321,12 +1339,19 @@ uiUtil.createEquipedItemIconList = function (dark) {
                 num: fuelNum
             });
         }
-    } else {
+    } else if (player.equip.getEquip(EquipmentPos.GUN)) {
         var bulletNum = player.bag.getNumByItemId(BattleConfig.BULLET_ID);
         if (bulletNum > 0) {
             equipedItemList.unshift({
                 itemId: BattleConfig.BULLET_ID,
                 num: bulletNum
+            });
+        }
+        var homemadeNum = player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID);
+        if (homemadeNum > 0) {
+            equipedItemList.unshift({
+                itemId: BattleConfig.HOMEMADE_ID,
+                num: homemadeNum
             });
         }
     }
@@ -1742,12 +1767,14 @@ uiUtil.createItemListSliders = function (itemList) {
     return tableView;
 };
 
-uiUtil.createTransportNode = function (canAfford) {
-    var hasShoe = (player.bag.validateItem(1306001, 1)) || (player.storage.validateItem(1306001, 1));
+uiUtil.createTransportNode = function (canAfford, cdone, cdtwo) {
+    var hasShoe = (player.bag.validateItem(1306001, 1) || player.storage.validateItem(1306001, 1));
     var shoeBox = new CheckBox(!hasShoe, "icon_item_1306001.png", "icon_music_off.png", false);
-    var hasMoto = (player.bag.validateItem(1305034, 1)) || (player.storage.validateItem(1305034, 1));
-    var motoBox = new CheckBox(!hasMoto || !canAfford, "icon_item_1305034.png", "icon_music_off.png", false);
-
+    var hasMoto = player.hasMotocycle();
+    var motoBox = new CheckBox(!hasMoto || !canAfford || !player.useMoto, "icon_item_1305034.png", "icon_music_off.png", false);
+    this.cdone = cdone;
+    this.cdtwo = cdtwo;
+    var self = this;
     shoeBox.onRelease = function () {
         var str = stringUtil.getString(1306001).title + " " + stringUtil.getString(8103) + " ";
         if (hasShoe) {
@@ -1767,18 +1794,29 @@ uiUtil.createTransportNode = function (canAfford) {
     };
     motoBox.onRelease = function () {
         var str = stringUtil.getString(1305034).title + " " + stringUtil.getString(8103) + " ";
+        var config = {
+            title: {},
+            content: {des: ""},
+            action: {btn_1: {}}
+        };
         if (hasMoto && canAfford) {
-            str += stringUtil.getString(8104);
+            if (player.useMoto) {
+                str += stringUtil.getString(8104);
+                config.action.btn_2 = {};
+                config.action.btn_2.txt = stringUtil.getString(8117);
+                config.action.btn_2.cb = self.cdone;
+            } else {
+                str += stringUtil.getString(8118);
+                config.action.btn_2 = {};
+                config.action.btn_2.txt = stringUtil.getString(8116);
+                config.action.btn_2.cb = self.cdtwo;
+            }
         } else if (!hasMoto) {
             str += stringUtil.getString(8105);
         } else {
             str += stringUtil.getString(8106);
         }
-        var config = {
-            title: {},
-            content: {des: str},
-            action: {btn_1: {}}
-        };
+        config.content.des = str;
         config.action.btn_1.txt = stringUtil.getString(1030);
         var d = new DialogTiny(config);
         d.y = -196;

@@ -82,7 +82,7 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
                         }
                     }
                 }
-                cc.director.runScene(new MenuScene());
+                cc.director.runScene(new MenuScene(false, true));
             });
             var searchPaths = jsb.fileUtils.getSearchPaths();
             searchPaths.pop();

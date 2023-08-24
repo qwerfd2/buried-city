@@ -524,7 +524,7 @@ var itemConfig = {
         "value": 40,
         "effect_weapon": {
             "id": "1301091",
-            "atk": 30,
+            "atk": 25,
             "atkCD": 1,
             "range": 19,
             "bulletMin": 0,
@@ -749,8 +749,29 @@ var itemConfig = {
     "1305011": {
         "id": "1305011",
         "weight": 0,
-        "price": 1,
-        "value": 1,
+        "price": 0.8,
+        "value": 0.7888,
+        "effect_weapon": {
+            "id": "1305011",
+            "atk": 50,
+            "atkCD": 0,
+            "range": 0,
+            "bulletMin": 0,
+            "bulletMax": 0,
+            "bulletNum": 0,
+            "reloadCD": 0,
+            "precise": 0,
+            "dtPrecise": 0,
+            "deathHit": 0,
+            "dtDeathHit": 0,
+            "brokenProbability": 0
+        }
+    },
+    "1305012": {
+        "id": "1305012",
+        "weight": 0,
+        "price": 0.8,
+        "value": 0.788888,
         "effect_weapon": {
             "id": "1305011",
             "atk": 50,

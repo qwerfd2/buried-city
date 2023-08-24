@@ -1,4 +1,24 @@
 var string = {
+"6669": "You don't have a motorcycle and cannot store the extracted gas. Let's fix it later.",
+"6670": "You don't have a motorcycle and cannot store the extracted gas!",
+"20_0": {
+    "title": "Safe",
+    "des": "Protect your supplies. Items in the Safe won't be stolen or damaged by zombies."
+},
+"6668": "The items are too heavy. The safe cannot load any more.",
+"1305011": {
+    "title": "Standard Bullet",
+    "des": "Produced before the disaster, it won't damage the gun and has better accuracy, making it more valuable."
+},
+"1305012": {
+    "title": "Handmade Bullet",
+    "des": "Handmade bullet with low accuracy. Might cause damage to the gun."
+},
+"8116": "Ride motorcycle",
+"8117": "Don't ride motorcycle",
+"8118": "Inactive (Player opted not to ride)",
+"6666": "New Update detected: Version %s. Please update via Github or other channel.",
+"6667": "Thanks for playing Buried City! Join the game community and the game's distribution channels, listed below. Report bugs as well!",
 "1324": "You had trouble sleeping because of the coffee. Rest after %s hours.",
 "1325": "Your accuracy decreased by %s% due to alcohol!",
 "1326": "Please sell from the bag!",
@@ -20,7 +40,6 @@ var string = {
 "8107": "You found a broken car. Although the rusty car itself is useless, there may be some gas in the tank. As long as you have a siphon tool you can get some gas.",
 "8108": "You didn't equip a siphon tool!",
 "8109": "Selected Talents",
-"8110": "Can only be chosen at the beginning.",
 "8111": "Startled by the brutal battle,",
 "8112": "Startled by the mess at home,",
 "8113": "Your mental state has finally collapsed.",
@@ -708,10 +727,6 @@ var string = {
     "1306001": {
         "title": "Boot",
         "des": "This boot has a thickened instep and a reinforced sole. It can protect your feet allowing you to move faster through rubble."
-    },
-    "1305011": {
-        "title": "Bullet",
-        "des": "Handmade bullet with low accuracy. Might cause damage to the gun."
     },
     "1305023": {
         "title": "Enhanced knapsack",

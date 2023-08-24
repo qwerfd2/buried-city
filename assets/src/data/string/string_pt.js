@@ -1,4 +1,24 @@
 var string = {
+"6669": "Você não tem uma motocicleta e não pode armazenar o combustível extraído. Vamos consertar isso mais tarde.",
+"6670": "Você não tem uma motocicleta e não pode armazenar o combustível extraído!",
+    "20_0": {
+      "title": "Cofre seguro",
+      "des": "Proteja seus suprimentos. Itens no cofre seguro não serão roubados nem danificados pelos zumbis."
+    },
+    "6668": "Os itens estão muito pesados. O cofre não pode carregar mais.",  
+    "8116": "Andar de motocicleta",
+    "8117": "Não andar de motocicleta",
+    "8118": "Inativo (Jogador optou por não andar)",
+    "1305011": {
+        "title": "Bala padrão",
+        "des": "Produzida antes do desastre, não danificará a arma e tem melhor precisão, tornando-a mais valiosa."
+    },
+    "1305012": {
+        "title": "Bala artesanal",
+        "des": "Bala artesanal com baixa precisão. Pode causar danos à arma."
+    },
+"6666": "Nova atualização detectada: Versão %s. Por favor, atualize via Github ou outro canal.",
+"6667": "Obrigado por jogar Buried City! Junte-se à comunidade de jogadores e aos canais de distribuição do jogo, listados abaixo. Relate também bugs!",
 "1324": "Problemas para dormir por causa do café. Descanse após %s horas.",
 "1325": "Precisão reduzida em %s% devido ao álcool!",
 "1326": "Por favor, venda a partir da bolsa!",
@@ -21,7 +41,6 @@ var string = {
 "8107": "Você encontrou um carro quebrado. Embora o carro enferrujado em si seja inútil, pode haver um pouco de gasolina no tanque. Se você tiver uma ferramenta de sifão, pode obter um pouco de gasolina.",
 "8108": "Você não equipou uma ferramenta de sifão!",
     "8109": "Talentos Selecionados",
-    "8110": "Só pode ser escolhido no início.",
     "8111": "Surpreendido pela batalha brutal,",
     "8112": "Surpreendido pela bagunça em casa,",
     "8113": "Seu estado mental finalmente colapsou.",
@@ -698,10 +717,6 @@ var string = {
     "1306001": {
         "title": "Botas",
         "des": "Espessamento do peito do pé, reforço da sola, pode proteger seus pés e aumentar a velocidade de locomoção nos escombros."
-    },
-    "1305011": {
-        "title": "Munição",
-        "des": "Simples e vulgar, a munição pode estragar a pistola facilmente."
     },
     "1305023": {
         "title": "Mochila Fortificada",

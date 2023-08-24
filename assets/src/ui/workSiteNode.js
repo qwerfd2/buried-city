@@ -3,7 +3,7 @@ var workSiteConfig = {
     needItems: [
         {itemId: 1102063, num: 1}
     ],
-    lastTime: 168 * 60,
+    lastTime: 96 * 60,
     brokenProbability: 0.02
 };
 var gasSiteConfig = {
@@ -11,7 +11,7 @@ var gasSiteConfig = {
     needItems: [
         {itemId: 1102073, num: 1}
     ],
-    lastTime: 120 * 60,
+    lastTime: 72 * 60,
     brokenProbability: 0.02
 };
 
@@ -20,6 +20,7 @@ var WorkSiteNode = BottomFrameNode.extend({
         this._super(userData);
     },
     _init: function () {
+        this.clickDisabled = false;
         this.site = player.map.getSite(this.userData);
         this.setName(Navigation.nodeName.SITE_NODE);
         this.uiConfig = {
@@ -97,7 +98,7 @@ var WorkSiteNode = BottomFrameNode.extend({
 
         if (this.site.isUnderAttacked) {
             this.site.isUnderAttacked = false;
-            this.showWarnDialog();
+            this.showWarnDialog(1264);
         }
 
         var self = this;
@@ -119,28 +120,37 @@ var WorkSiteNode = BottomFrameNode.extend({
     },
     
     onClickBtn1: function () {
-        this.forward(Navigation.nodeName.SITE_STORAGE_NODE, this.userData);
-        this.site.haveNewItems = false;
+        if (!this.clickDisabled) {
+            this.forward(Navigation.nodeName.SITE_STORAGE_NODE, this.userData);
+            this.site.haveNewItems = false;
+        } 
     },
     onClickBtn2: function () {
-        if (this.site.id == 400) {
-            this.forward(Navigation.nodeName.BAZAAR_NODE, this.userData);
-        } else {
-            this.forward(Navigation.nodeName.BATTLE_AND_WORK_NODE, this.userData);
+        if (!this.clickDisabled) {
+            if (this.site.id == 400) {
+                this.forward(Navigation.nodeName.BAZAAR_NODE, this.userData);
+            } else {
+                this.forward(Navigation.nodeName.BATTLE_AND_WORK_NODE, this.userData);
+            }
         }
     },
     onClickFix: function () {
         this.actionView.updateView({
             action1Disabled: true
         });
-        var pastTime = 0;
-        var self = this;
         var time;
         if (this.site.id == 204) {
             time = workSiteConfig.costTime * 60;
         } else {
             time = gasSiteConfig.costTime * 60;
+            if (!player.hasMotocycle()) {
+                this.showWarnDialog(6669);
+                return;
+            }
         }
+        this.clickDisabled = true;
+        var pastTime = 0;
+        var self = this;
         if (IAPPackage.isHandyworkerUnlocked()) {
             time = Math.round(time * 0.7);
         }
@@ -160,6 +170,7 @@ var WorkSiteNode = BottomFrameNode.extend({
                 }
                 player.costItemsInBag(items);
                 self.site.fix();
+                self.clickDisabled = false;
                 self.updateView(0);
             }
         }));
@@ -207,20 +218,21 @@ var WorkSiteNode = BottomFrameNode.extend({
     },
 
     onClickLeftBtn: function () {
-        if (this.site.canClose()) {
-            player.map.closeSite(this.site.id);
+        if (!this.clickDisabled) {
+            if (this.site.canClose()) {
+                player.map.closeSite(this.site.id);
+            }
+            this.back();
+            player.outSite();
         }
-        this.back();
-        player.outSite();
     },
-    showWarnDialog: function () {
+    showWarnDialog: function (num) {
         var config = {
-            content: {des: stringUtil.getString(1264)},
+            content: {des: stringUtil.getString(num)},
             action: {btn_1: {}}
         };
         config.action.btn_1.txt = stringUtil.getString(1030);
         var dialog = new DialogTiny(config);
         dialog.show();
     }
-    
 });

@@ -1,4 +1,24 @@
 var string = {
+"6669": "Du hast kein Motorrad und kannst das extrahierte Benzin nicht lagern. Lass uns das später reparieren.",
+"6670": "Du hast kein Motorrad und kannst das extrahierte Benzin nicht lagern!",
+    "20_0": {
+      "title": "Tresor",
+      "des": "Schützen Sie Ihre Vorräte. Gegenstände im Tresor werden weder gestohlen noch von Zombies beschädigt."
+    },
+    "6668": "Die Gegenstände sind zu schwer. Der Tresor kann nicht mehr laden.",
+"8116": "Motorrad fahren",
+    "8117": "Nicht Motorrad fahren",
+    "8118": "Inaktiv (Spieler hat sich gegen das Fahren entschieden)",
+    "1305011": {
+        "title": "Standardkugel",
+        "des": "Vor der Katastrophe hergestellt, beschädigt sie die Waffe nicht und hat eine bessere Genauigkeit, was sie wertvoller macht."
+    },
+    "1305012": {
+        "title": "Handgemachte Kugel",
+        "des": "Handgemachte Kugel mit geringer Genauigkeit. Kann die Waffe beschädigen."
+    },
+"6666": "Neues Update erkannt: Version %s. Bitte aktualisieren Sie über Github oder einen anderen Kanal.",
+"6667": "Vielen Dank, dass Sie Buried City spielen! Schließen Sie sich der Spielgemeinschaft und den Vertriebskanälen des Spiels an, die unten aufgeführt sind. Melden Sie auch Fehler!",
 "1324": "Schlafprobleme wegen des Kaffees. Ruhen Sie sich nach %s Stunden aus.",
 "1325": "Genauigkeit um %s% durch Alkohol reduziert!",
 "1326": "Bitte verkaufen Sie aus der Tasche!",
@@ -20,7 +40,6 @@ var string = {
 "8107": "Du hast ein kaputtes Auto gefunden. Obwohl das rostige Auto selbst nutzlos ist, könnte noch etwas Benzin im Tank sein. Mit einem Siphon-Werkzeug kannst du etwas Benzin abzapfen.",
 "8108": "Du hast kein Siphon-Werkzeug ausgerüstet!",
     "8109": "Ausgewählte Talente",
-    "8110": "Kann nur am Anfang gewählt werden.",
     "8111": "Erschrocken durch die brutale Schlacht,",
     "8112": "Erschrocken durch das Chaos zuhause,",
     "8113": "Dein mentaler Zustand ist schließlich zusammengebrochen.",
@@ -698,10 +717,6 @@ var string = {
     "1306001": {
         "title": "Schuhe",
         "des": "Festes Schuhwerk mit stabiler Sohle. Schützt die Füße und erhöht das Lauftempo beim Laufen in unwegsamen Gelände."
-    },
-    "1305011": {
-        "title": "Munition",
-        "des": "Unter einfachen Bedingungen von Hand hergestellte Munition ohne Hülse. Niedrige Qualität. Beschädigt leicht die Feuerwaffe."
     },
     "1305023": {
         "title": "Verbesserter Rucksack",

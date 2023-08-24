@@ -1,11 +1,3 @@
-if (!cc) {
-    var cc = require("../test/testBattle");
-    var utils = require("../util/utils");
-    var itemConfig = require("../data/itemConfig");
-    var monsterConfig = require("../data/monsterConfig");
-    var testBattleConfig;
-}
-
 var BattleConfig = {
     LINE_LENGTH: 6,
     //现实距离,m
@@ -13,7 +5,8 @@ var BattleConfig = {
     REAL_DISTANCE_PER_LINE: 100,
     //逃生时间
     ESCAPE_TIME: 1.5,
-    BULLET_ID: 1305011
+    BULLET_ID: 1305011,
+    HOMEMADE_ID: 1305012
 }
 
 var Battle = cc.Class.extend({
@@ -42,39 +35,25 @@ var Battle = cc.Class.extend({
         cc.director.getScheduler().scheduleCallbackForTarget(this, this.updateMonster, 1, cc.REPEAT_FOREVER);
         cc.director.getScheduler().scheduleCallbackForTarget(this, this.updatePlayer, 0.1, cc.REPEAT_FOREVER);
         if (this.isDodge) {
-            this.dodgeTime = 5;
+            this.dodgeTime = 6;
             this.dodgePassTime = 0;
             cc.director.getScheduler().scheduleCallbackForTarget(this, this.dodgeEnd, 0.1, cc.REPEAT_FOREVER);
         }
 
         var playerObj;
-        if (testBattleConfig) {
-            var pobj = testBattleConfig.player;
-            playerObj = {
-                bulletNum: Number(pobj["weapon1_num"]),
-                toolNum: Number(pobj["tool_num"]),
-                hp: pobj["hp"],
-                virus: pobj["virus"],
-                virusMax: pobj["virusMax"],
-                def: pobj["def"] || 0,
-                weapon1: pobj["weapon1"],
-                weapon2: pobj["weapon2"],
-                equip: pobj["tool"]
-            };
-        } else {
-            playerObj = {
-                bulletNum: player.bag.getNumByItemId(BattleConfig.BULLET_ID),
-                toolNum: player.bag.getNumByItemId(player.equip.getEquip(EquipmentPos.TOOL)),
-                hp: player.hp,
-                virus: player.virus,
-                virusMax: player.virusMax,
-                injury: player.injury,
-                weapon1: player.equip.getEquip(EquipmentPos.GUN),
-                weapon2: player.equip.getEquip(EquipmentPos.WEAPON),
-                equip: player.equip.getEquip(EquipmentPos.TOOL)
-            };
+        playerObj = {
+            bulletNum: player.bag.getNumByItemId(BattleConfig.BULLET_ID),
+            homemadeNum: player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID),
+            toolNum: player.bag.getNumByItemId(player.equip.getEquip(EquipmentPos.TOOL)),
+            hp: player.hp,
+            virus: player.virus,
+            virusMax: player.virusMax,
+            injury: player.injury,
+            weapon1: player.equip.getEquip(EquipmentPos.GUN),
+            weapon2: player.equip.getEquip(EquipmentPos.WEAPON),
+            equip: player.equip.getEquip(EquipmentPos.TOOL)
+        };
             playerObj.def = player.equip.getEquip(EquipmentPos.EQUIP) ? itemConfig[player.equip.getEquip(EquipmentPos.EQUIP)].effect_arm.def : 0;
-        }
 
         this.player = new BattlePlayer(this, playerObj);
 
@@ -88,6 +67,7 @@ var Battle = cc.Class.extend({
             weapon1: 0,
             weapon2: 0,
             bulletNum: 0,
+            homemadeNum: 0,
             fuel: 0,
             tools: 0,
             win: false,
@@ -104,7 +84,7 @@ var Battle = cc.Class.extend({
         this.dodgePassTime += dt;
         utils.emitter.emit("battleDodgePercentage", this.dodgePassTime / this.dodgeTime * 100);
         if (this.dodgePassTime >= this.dodgeTime) {
-
+            player.changeAttr("virus", this.sumRes.totalVirus);
             this.gameEnd(true);
         }
     },
@@ -158,14 +138,13 @@ var Battle = cc.Class.extend({
         monsterId = 0;
 
         //结算
-        if (!testBattleConfig) {
-            player.bag.setItem(BattleConfig.BULLET_ID, this.player.bulletNum);
-            if (this.player.equip) {
-                this.sumRes.toolItemId = player.equip.getEquip(EquipmentPos.TOOL);
-                player.bag.setItem(this.sumRes.toolItemId, this.player.toolNum);
-                if (this.player.toolNum == 0) {
-                    player.equip.unequip(EquipmentPos.TOOL);
-                }
+        player.bag.setItem(BattleConfig.BULLET_ID, this.player.bulletNum);
+        player.bag.setItem(BattleConfig.HOMEMADE_ID, this.player.homemadeNum);
+        if (this.player.equip) {
+            this.sumRes.toolItemId = player.equip.getEquip(EquipmentPos.TOOL);
+            player.bag.setItem(this.sumRes.toolItemId, this.player.toolNum);
+            if (this.player.toolNum == 0) {
+                player.equip.unequip(EquipmentPos.TOOL);
             }
         }
 
@@ -176,8 +155,16 @@ var Battle = cc.Class.extend({
 
             var brokenWeapon = [];
             var gunItemId = player.equip.getEquip(EquipmentPos.GUN);
-            if (gunItemId && this.sumRes.weapon1 > 0 && player.bag.testWeaponBroken(gunItemId, 0)) {
-                brokenWeapon.push(gunItemId);
+            if (gunItemId && this.sumRes.weapon1 > 0) {
+                var multiplier;
+                if (this.sumRes.homemadeNum) {
+                    multiplier = this.sumRes.homemadeNum / (this.sumRes.homemadeNum + this.sumRes.bulletNum);
+                } else {
+                    multiplier = 0;
+                }
+                if (player.bag.testWeaponBroken(gunItemId, 0, multiplier)) {
+                    brokenWeapon.push(gunItemId);
+                }
             }
             var weaponItemId = player.equip.getEquip(EquipmentPos.WEAPON);
             if (weaponItemId && weaponItemId != Equipment.HAND && this.sumRes.weapon2 > 0 && player.bag.testWeaponBroken(weaponItemId, 0)) {
@@ -360,6 +347,7 @@ var BattlePlayer = cc.Class.extend({
         this.def = playerObj.def;
 
         this.bulletNum = playerObj.bulletNum;
+        this.homemadeNum = playerObj.homemadeNum;
         this.toolNum = playerObj.toolNum;
 
         this.weapon1 = createEquipment(playerObj.weapon1, this);
@@ -388,11 +376,11 @@ var BattlePlayer = cc.Class.extend({
             player.changeAttr("hp", -harm);
             player.changeAttr("injury", 1);
             var rand = Math.random();
-            var threshold = 0.8;
+            var threshold = 0.85;
             if (player.equip.isEquiped(1304023)) {
-                threshold = 0.4;
+                threshold = 0.55;
             } else if (player.equip.isEquiped(1304012)) {
-                threshold = 0.6;
+                threshold = 0.7;
             }
             if (rand <= threshold && this.battle.difficulty > 2 && !player.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
                 this.battle.sumRes.totalVirus += 1;
@@ -685,7 +673,7 @@ var Gun = Weapon.extend({
     _action: function () {
         var monster = this.getTarget();
         if (monster && this.isInRange(monster)) {
-            if (this.isEnough()) {
+            if (this.isGoodBulletEnough() || this.isHomemadeBulletEnough()) {
                 this.bPlayer.battle.sumRes.weapon1++;
 
                 var soundName;
@@ -698,22 +686,37 @@ var Gun = Weapon.extend({
                 } else {
                     soundName = audioManager.sound.ATTACK_4;
                 }
+                player.log.addMsg()
                 this.playEffect(soundName);
 
             }
             this.atkTimes = 0;
             for (var i = 0; i < this.attr.bulletMax; i++) {
-                if (this.isEnough() && !monster.isDie()) {
+                var hasAnyBullet = this.isGoodBulletEnough() || this.isHomemadeBulletEnough();
+                if (hasAnyBullet && !monster.isDie()) {
                     this.atkTimes++;
-                    monster.underAtk(this);
-                    this.cost();
+                    if (this.isGoodBulletEnough()) {
+                        if (player.useGoodBullet || !this.isHomemadeBulletEnough()) {
+                            //use good bullet cause player wants to, or no homemade bullet left.
+                            this.cost(true);
+                            monster.underAtk(this, true);
+                        } else {
+                            //prioritize homemade bullet.
+                            this.cost(false);
+                            monster.underAtk(this, false);
+                        }
+                    } else {
+                        //use homemade bullet since no good bullet is in bag.
+                        this.cost(false);
+                        monster.underAtk(this, false);
+                    }
                 } else {
                     break;
                 }
             }
         }
     },
-    getHarm: function (monster) {
+    getHarm: function (monster, goodBullet) {
         var dtLineIndex = BattleConfig.LINE_LENGTH - 1 - monster.line.index;
         var precise = this.attr.precise + this.attr.dtPrecise * dtLineIndex;
         var deathHit = this.attr.deathHit + this.attr.dtDeathHit * dtLineIndex;
@@ -725,36 +728,44 @@ var Gun = Weapon.extend({
 
         var decPrecise = (100 - player.spirit) * 0.006;
         precise -= decPrecise;
-        
+        if (goodBullet) {
+            precise += 0.15;
+        }
         var currentTime = Number(cc.timer.time);
         currentTime -= player.lastAlcoholTime;
         if (currentTime <= 43200) {
             currentTime = 43200 - currentTime;
             currentTime = Math.ceil(currentTime / 3600);
-            precise -= 0.2 * currentTime;
+            precise -= 0.02 * currentTime;
         }
 
         var rand = Math.random();
         if (rand <= deathHit) {
             return Number.MAX_VALUE;
         }
-
         rand = Math.random();
         if (rand <= precise) {
             return this.getBulletHarm();
         }
         return 0;
     },
-    cost: function () {
-        this.bPlayer.bulletNum--;
-        this.bPlayer.battle.sumRes.bulletNum++;
-
-        if (this.bPlayer.bulletNum === 0) {
+    cost: function (isGoodBullet) {
+        if (isGoodBullet) {
+            this.bPlayer.bulletNum--;
+            this.bPlayer.battle.sumRes.bulletNum++;
+        } else {
+            this.bPlayer.homemadeNum--;
+            this.bPlayer.battle.sumRes.homemadeNum++;
+        }
+        if (this.bPlayer.bulletNum === 0 && this.bPlayer.homemadeNum === 0) {
             this.bPlayer.battle.processLog(stringUtil.getString(1164));
         }
     },
-    isEnough: function () {
+    isGoodBulletEnough: function () {
         return this.bPlayer.bulletNum > 0;
+    },
+    isHomemadeBulletEnough: function () {
+        return this.bPlayer.homemadeNum > 0;
     },
     getBulletHarm: function () {
         return this.bulletConfig.atk;
@@ -799,9 +810,3 @@ var ElectricGun = Gun.extend({
         return this.attr.atk;
     }
 });
-
-var B = module.exports;
-B.Battle = Battle;
-B.config = function (c) {
-    testBattleConfig = c;
-}

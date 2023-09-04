@@ -1,4 +1,5 @@
 var string = {
+"6671": "Virüs nihayet bağışıklık sistemini yendi ve insanlığınıza son verdi.",
 "6669": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız. Sonra düzelteceğiz.",
 "6670": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız!",
     "20_0": {
@@ -177,7 +178,7 @@ var string = {
     },
     "4": {
         "title": "Zaman",
-        "des": "Dışarda zamana dikkat et. Buried Town'da, güneş 6:00'da doğar, 20:00'de batar. Dikkatli ol, zombiler gece daha yırtıcı olur"
+        "des": "Dışarda zamana dikkat et. Güneş 6:00'da doğar, 20:00'de batar. Dikkatli ol, zombiler gece daha yırtıcı olur"
     },
     "5": {
         "title": "HP",
@@ -377,7 +378,7 @@ var string = {
     "1156": "Yeni bir oyuna mı başlayacaksın? Orijinal ilerleme silinecek.",
     "1157": "Tekrar düşün",
     "1158": "Sıralama listesi",
-    "1159": "Buried Town'da hayatta kaldın",
+    "1159": "Buried City'da hayatta kaldın",
     "1160": "D%s H%s M%s",
     "1161": "Adını yaz",
     "1162": "Paylaş",
@@ -816,7 +817,11 @@ var string = {
         "title": "Uyku Tulumu",
         "des": "Temel ısı ve rahat uyuma ortamını sağlar."
     },
-    "9_1": {
+"9_1": {
+"title": "Yatak Takımları",
+"des": "Bir uyku tulumundan daha rahat, ancak hala ideal değil."
+},
+    "9_2": {
         "title": "Yatak",
         "des": "Düz,rahat yatak, kaliteli uykuyu garantiler."
     },

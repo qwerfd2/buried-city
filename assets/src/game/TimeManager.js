@@ -1,4 +1,3 @@
-
 var TimerManager = cc.Class.extend({
     ctor: function () {
         //标准比例

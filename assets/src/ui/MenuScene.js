@@ -4,12 +4,12 @@ var MenuLayer = cc.Layer.extend({
     ctor: function (checkVersion) {
         this._super();
         ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
-        ClientData.MOD_VERSION = 19;
+        ClientData.MOD_VERSION = 20;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
         Medal.init();
-        if (checkVersion) {
+        if (checkVersion && ClientData.MOD_VARIANT == 1) {
             this.requestVersion(function (response) {
                 var number = Number(response);
                 if (number > ClientData.MOD_VERSION) {
@@ -61,13 +61,7 @@ var MenuLayer = cc.Layer.extend({
         bg.y = cc.winSize.height / 2;
         this.addChild(bg);
 
-        var logoName = "res/new/";
-        if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE) {
-            logoName += "top_logo_zh.png";
-        } else {
-            logoName += "top_logo_en.png";
-        }
-        var logo = new cc.Sprite(logoName);
+        var logo = new cc.Sprite("res/new/top_logo_en.png");
         logo.x = bg.width / 2;
         logo.y = 938;
         bg.addChild(logo);
@@ -82,7 +76,7 @@ var MenuLayer = cc.Layer.extend({
                 });
             }
         });
-        if (!cc.sys.localStorage.getItem("ftue")) {
+        if (!cc.sys.localStorage.getItem("ftue") && ClientData.MOD_VARIANT == 1) {
             var d = new FTUEDialog();
             d.show();
             cc.sys.localStorage.setItem("ftue", 1);
@@ -146,16 +140,12 @@ var MenuLayer = cc.Layer.extend({
         });
         btn_chgmusic.setPosition(bg.width - 106, bg.height / 2 - 236);
         bg.addChild(btn_chgmusic);
-        
-        var btn_rate = uiUtil.createSpriteBtn({normal: "btn_rate.png"}, this, function () {
-            cc.director.runScene(new aboutScene());
-        });
-        btn_rate.setPosition(106, bg.height / 2 - 236);
-        bg.addChild(btn_rate);
 
         var btn6 = uiUtil.createBtn2(ClientData.CLIENT_VERSION + "-" + ClientData.MOD_VARIANT + "-" + ClientData.MOD_VERSION, this, function () {
-            var d = new AboutUUIDDialog();
-            d.show();
+            if (ClientData.MOD_VARIANT == 1) {
+                var d = new AboutUUIDDialog();
+                d.show();
+            }
         });
         btn6.setPosition(bg.width / 2, 20);
         bg.addChild(btn6);
@@ -165,16 +155,23 @@ var MenuLayer = cc.Layer.extend({
         });
         btn7.setPosition(106, bg.height / 2 - 346);
         bg.addChild(btn7);
-
-        var btn8 = uiUtil.createSpriteBtn({normal: "btn_contact.png"}, this, function () {
-            if (cc.sys.localStorage.getItem("language") == 'zh' || cc.sys.localStorage.getItem("language") == 'zh-Hant') {
-                new DialogMoreGame("index_zh.html").show();      
-            } else {
-                new DialogMoreGame("index_en.html").show();
-            }
-        });
-        btn8.setPosition(106, 106);
-        bg.addChild(btn8);
+        if (ClientData.MOD_VARIANT == 1) {
+            var btn8 = uiUtil.createSpriteBtn({normal: "btn_contact.png"}, this, function () {
+                if (cc.sys.localStorage.getItem("language") == 'zh' || cc.sys.localStorage.getItem("language") == 'zh-Hant') {
+                    new DialogMoreGame("index_zh.html").show();      
+                } else {
+                    new DialogMoreGame("index_en.html").show();
+                }
+            });
+            btn8.setPosition(106, 106);
+            bg.addChild(btn8);
+            
+            var btn_rate = uiUtil.createSpriteBtn({normal: "btn_rate.png"}, this, function () {
+                cc.director.runScene(new aboutScene());
+            });
+            btn_rate.setPosition(106, bg.height / 2 - 236);
+            bg.addChild(btn_rate);
+        }
         
         Achievement.init();
     },
@@ -597,8 +594,7 @@ var MenuScene = BaseScene.extend({
         this._super();
         var layer = new MenuLayer(this.checkVersion);
         this.addChild(layer);
-
-        if (this.openSetting) {
+        if (this.openSetting && ClientData.MOD_VARIANT == 1) {
             var d = new FTUEDialog();
             d.show();
         }

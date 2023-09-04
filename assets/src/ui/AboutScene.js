@@ -18,14 +18,7 @@ var aboutLayer = cc.Layer.extend({
         this.bg.y = cc.winSize.height / 2;
         this.addChild(this.bg);
         
-        var rankLogoName = "res/new/";
-        if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_CHINESE) {
-            rankLogoName += "top_logo_zh.png";
-        } else {
-            rankLogoName += "top_logo_en.png";
-        }
-        
-        var rankLogo = new cc.Sprite(rankLogoName);
+        var rankLogo = new cc.Sprite("res/new/top_logo_en.png");
         rankLogo.x = cc.winSize.width / 2;
         rankLogo.y = 1038;
         rankLogo.scale = 0.5;

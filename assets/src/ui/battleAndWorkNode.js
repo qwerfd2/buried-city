@@ -184,12 +184,12 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         node.addChild(label1);
 
         var iconList = uiUtil.createEquipedItemIconList();
-        iconList.setPosition(label1.x + label1.width + 5, label1.y - label1.height / 2);
+        iconList.setPosition(0, label1.y - label1.height - 20);
         node.addChild(iconList);
 
         var label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + this.room.difficulty, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label2.setAnchorPoint(0, 1);
-        label2.setPosition(0, label1.getPositionY() - label1.getContentSize().height - 15);
+        label2.setPosition(0, iconList.getPositionY() - iconList.getContentSize().height - 25);
         node.addChild(label2);
         if (this.room.difficulty > 2) {
             label2.setColor(cc.color.RED);
@@ -198,19 +198,19 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             //if gun is equipped, and not flamethrower, and has 2 bullets in the inventory to select.
             var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
             bulletRichText.setName("bulletPriority");
-            bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 95);
+            bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 65);
             node.addChild(bulletRichText);
 
             var exchangeButton = uiUtil.createCommonBtnWhite(stringUtil.getString(1334), this, function () {
                 player.useGoodBullet = !player.useGoodBullet;
                 var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
                 bulletRichText.setName("bulletPriority");
-                bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 95);
+                bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 65);
                 node.removeChildByName("bulletPriority");
                 node.addChild(bulletRichText);
             });
             exchangeButton.setName("exchangebutton");
-            exchangeButton.setPosition(250, label2.getPositionY() - label2.getContentSize().height - 75);
+            exchangeButton.setPosition(80, bulletRichText.getPositionY() - bulletRichText.getContentSize().height - 5);
             node.addChild(exchangeButton);
         }
         if (cc.RTL) {

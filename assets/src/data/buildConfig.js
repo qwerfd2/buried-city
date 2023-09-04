@@ -325,21 +325,39 @@ var buildConfig = {
         "id": 9,
         "cost": [{
             "itemId": 1101011,
-            "num": 6
-        }, {
-            "itemId": 1101021,
-            "num": 6
+            "num": 2
         }, {
             "itemId": 1101031,
-            "num": 16
+            "num": 12
         }, {
             "itemId": 1101041,
-            "num": 8
+            "num": 4
         }],
         "createTime": 120,
         "condition": {
             "bid": 1,
             "level": 1
+        },
+        "produceList": []
+    }, {
+        "id": 9,
+        "cost": [{
+            "itemId": 1101011,
+            "num": 4
+        }, {
+            "itemId": 1101021,
+            "num": 6
+        }, {
+            "itemId": 1101031,
+            "num": 18
+        }, {
+            "itemId": 1101041,
+            "num": 8
+        }],
+        "createTime": 180,
+        "condition": {
+            "bid": 1,
+            "level": 2
         },
         "produceList": []
     }],

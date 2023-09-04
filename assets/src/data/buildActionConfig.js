@@ -11,7 +11,9 @@ var buildActionConfig = {
         "placedTime": [2880, 4320]
     }],
     "9": [{
-        "rate": 0.7
+        "rate": 0.6
+    }, {
+        "rate": 0.8
     }, {
         "rate": 1
     }],

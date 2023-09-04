@@ -67,7 +67,7 @@ var Player = cc.Class.extend({
         this.isBombActive = false;
         this.Steal = 50;
         this.totalDistance = 0;
-        this.currency = 50;
+        this.currency = 10;
         this.leftHomeTime = 0;
         this.lastCoffeeTime = -999999;
         this.lastAlcoholTime = -999999;
@@ -199,9 +199,9 @@ var Player = cc.Class.extend({
             IAPPackage.init(this);
             Medal.improve(this);
             if (IAPPackage.isHoarderUnlocked()) {
-                this.currency += 50;
+                this.currency += 10;
                 var itemList = [1101011,1101021,1101031,1101041,1101051,1101061,1101071,1101073,1103011,1103041,1103083,1104011,1104021,1104043,1105011,1105022,1105033,1105042,1105051,1301011,1301022,1301033,1301041,1301052,1302011,1302021,1303012,1304012,1306001,1305011,1305023,1106054];
-                var amountList = [160,160,100,100,80,80,80,60,20,20,10,10,10,5,40,30,20,60,60,3,2,2,3,2,5,5,10,2,2,300,2,1];
+                var amountList = [120,120,80,80,60,60,60,40,16,16,8,8,8,4,30,22,16,50,50,3,2,2,3,2,4,4,8,2,2,200,2,1];
                 for (var i = 0; i < itemList.length; i++) {
                     this.storage.increaseItem(itemList[i], amountList[i], false);
                 }
@@ -463,7 +463,7 @@ var Player = cc.Class.extend({
         this[key] += value;
         this[key] = Math.round(this[key]);
         if (key == "temperature") {
-        this[key] = cc.clampf(this[key], -2, this[key + "Max"]);
+            this[key] = cc.clampf(this[key], -2, this[key + "Max"]);
         } else {
             this[key] = cc.clampf(this[key], 0, this[key + "Max"]);
         }
@@ -512,7 +512,7 @@ var Player = cc.Class.extend({
         }
         if (key == "virus") {
             if (this.virus >= this.virusMax && this === player) {
-                player.log.addMsg("你体内的病毒终于战胜了你的免疫，结束了你的人性。");
+                player.log.addMsg(stringUtil.getString(6671));
                 this.changeAttr("hp", -this["hp"]);
             }
         }
@@ -689,7 +689,7 @@ var Player = cc.Class.extend({
         if (this.isInSleep) {
             var bedLevel = player.room.getBuildLevel(9);
             if (this.isInSleepHotel) {
-                bedLevel = 1;
+                bedLevel = 2;
             }
             var bedRate = buildActionConfig[9][bedLevel].rate;
 
@@ -873,7 +873,6 @@ var Player = cc.Class.extend({
         var config = playerAttrEffect[attr];
         if (config) {
             value = Number(this[attr] / this[attr + "Max"] * 100);
-            value = value;
             for (var rangeId in config) {
                 var range = new Range(config[rangeId].range);
                 if (range.isInRange(value)) {
@@ -1180,7 +1179,7 @@ var Player = cc.Class.extend({
         }
         var rray = [];
         var copyItem = utils.clone(itemConfig);
-        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091, 1305075];
+        var deleteItem = [1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091, 1305075];
         for (var a in deleteItem) {
             delete copyItem[deleteItem[a]];
         }
@@ -1296,7 +1295,15 @@ var Player = cc.Class.extend({
 
     randomAttack: function (cb, override) {
         var stage = cc.timer.getStage();
-        var config = RandomBattleConfig[stage];
+        var timeObj = cc.timer.formatTime();
+        var config;
+        for (var i = 0; i < RandomBattleConfig.strength.length; i++) {
+            var strengthObj = RandomBattleConfig.strength[i];
+            if (timeObj.d >= strengthObj.time[0] && timeObj.d <= (strengthObj.time[1] ? strengthObj.time[1] : Number.MAX_VALUE)) {
+                config = strengthObj[stage];
+                break;
+            }
+        }
         var rand = Math.random();
         var probability = config.probability;
         if (IAPPackage.isStealthUnlocked()) {

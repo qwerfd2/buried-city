@@ -4,6 +4,21 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>build_9_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{90,35}</string>
+                <key>spriteSourceSize</key>
+                <string>{90,35}</string>
+                <key>textureRect</key>
+                <string>{{85,87},{90,35}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
             <key>icon_item_1102073.png</key>
             <dict>
                 <key>aliases</key>
@@ -15,7 +30,7 @@
                 <key>spriteSourceSize</key>
                 <string>{68,68}</string>
                 <key>textureRect</key>
-                <string>{{1,45},{68,68}}</string>
+                <string>{{1,171},{68,68}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -30,7 +45,22 @@
                 <key>spriteSourceSize</key>
                 <string>{68,64}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{68,42}}</string>
+                <string>{{187,163},{68,42}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>icon_item_1305011.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{66,52}</string>
+                <key>spriteSourceSize</key>
+                <string>{66,52}</string>
+                <key>textureRect</key>
+                <string>{{71,179},{66,52}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -45,7 +75,7 @@
                 <key>spriteSourceSize</key>
                 <string>{68,68}</string>
                 <key>textureRect</key>
-                <string>{{1,115},{68,68}}</string>
+                <string>{{170,93},{68,68}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -60,7 +90,37 @@
                 <key>spriteSourceSize</key>
                 <string>{84,84}</string>
                 <key>textureRect</key>
-                <string>{{1,256},{84,84}}</string>
+                <string>{{1,1},{84,84}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_water_0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{46,66}</string>
+                <key>spriteSourceSize</key>
+                <string>{46,66}</string>
+                <key>textureRect</key>
+                <string>{{122,85},{46,66}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_water_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{46,66}</string>
+                <key>spriteSourceSize</key>
+                <string>{46,66}</string>
+                <key>textureRect</key>
+                <string>{{139,163},{46,66}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -71,13 +131,43 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{69,84}</string>
+                <string>{70,90}</string>
                 <key>spriteSourceSize</key>
-                <string>{69,84}</string>
+                <string>{70,90}</string>
                 <key>textureRect</key>
-                <string>{{1,185},{69,84}}</string>
+                <string>{{171,1},{70,90}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
+            </dict>
+            <key>item_basic_bg.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{82,82}</string>
+                <key>spriteSourceSize</key>
+                <string>{82,82}</string>
+                <key>textureRect</key>
+                <string>{{1,87},{82,82}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>item_bullet_bg.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{82,82}</string>
+                <key>spriteSourceSize</key>
+                <string>{82,82}</string>
+                <key>textureRect</key>
+                <string>{{87,1},{82,82}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
         </dict>
         <key>metadata</key>
@@ -91,9 +181,9 @@
             <key>realTextureFileName</key>
             <string>new_temp.png</string>
             <key>size</key>
-            <string>{86,341}</string>
+            <string>{242,240}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:753445bfdc821e3dc5512249a3982a8c:bed7ca0f398daf741d81851f45043c99:7949fdcbefe21226f7379e19e9bd5ccd$</string>
+            <string>$TexturePacker:SmartUpdate:ccee50ae4c2a0d5f6a6e9647133f2dc2:4e398675c40d86f58a08513aacbe1557:7949fdcbefe21226f7379e19e9bd5ccd$</string>
             <key>textureFileName</key>
             <string>new_temp.png</string>
         </dict>

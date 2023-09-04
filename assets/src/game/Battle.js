@@ -162,6 +162,9 @@ var Battle = cc.Class.extend({
                 } else {
                     multiplier = 0;
                 }
+                if (gunItemId == "1301091") {
+                    multiplier = 1;
+                }
                 if (player.bag.testWeaponBroken(gunItemId, 0, multiplier)) {
                     brokenWeapon.push(gunItemId);
                 }
@@ -268,9 +271,9 @@ var Monster = cc.Class.extend({
             return;
         }
         this.playEffect(audioManager.sound.MONSTER_ATTACK);
-        var player = this.battle.player;
-        player.underAtk(this);
-        if (player.isDie()) {
+        var playa = this.battle.player;
+        playa.underAtk(this);
+        if (playa.isDie()) {
             cc.director.getScheduler().unscheduleCallbackForTarget(this, this.atk);
         }
     },

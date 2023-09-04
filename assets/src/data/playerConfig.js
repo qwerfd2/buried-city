@@ -1,7 +1,36 @@
 var RandomBattleConfig = {
-    distance: 100,
-    day: {probability: 0.1, difficulty: [1, 3]},
-    night: {probability: 0.3, difficulty: [3, 6]}
+    strength: [
+        {
+            time: [1, 5],
+            distance: 100,
+            day: {probability: 0.1, difficulty: [1, 2]},
+            night: {probability: 0.2, difficulty: [2, 3]}
+        },
+        {
+            time: [6, 10],
+            distance: 100,
+            day: {probability: 0.1, difficulty: [1, 2]},
+            night: {probability: 0.2, difficulty: [3, 4]}
+        },
+        {
+            time: [11, 15],
+            distance: 100,
+            day: {probability: 0.1, difficulty: [1, 3]},
+            night: {probability: 0.3, difficulty: [2, 4]}
+        },
+        {
+            time: [16, 20],
+            distance: 100,
+            day: {probability: 0.1, difficulty: [1, 3]},
+            night: {probability: 0.3, difficulty: [3, 5]}
+        },
+        {
+            time: [21],
+            distance: 100,
+            day: {probability: 0.1, difficulty: [1, 3]},
+            night: {probability: 0.3, difficulty: [3, 6]}
+        },
+    ]
 };
 
 var playerConfig = {

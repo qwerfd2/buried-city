@@ -1,11 +1,12 @@
 var string = {
+"6671": "The virus finally defeted your immune system and ended your humanity.",
 "6669": "You don't have a motorcycle and cannot store the extracted gas. Let's fix it later.",
 "6670": "You don't have a motorcycle and cannot store the extracted gas!",
 "20_0": {
     "title": "Safe",
     "des": "Protect your supplies. Items in the Safe won't be stolen or damaged by zombies."
 },
-"6668": "The items are too heavy. The safe cannot load any more.",
+"6668": "The items are too heavy. The safe is full.",
 "1305011": {
     "title": "Standard Bullet",
     "des": "Produced before the disaster, it won't damage the gun and has better accuracy, making it more valuable."
@@ -175,7 +176,7 @@ var string = {
     },
     "4": {
         "title": "Time",
-        "des": "In Buried Town, the sun rises at 6:00 and sets at 20:00. Be careful, zombies become stronger at night, and deal several times as much damage as they do during the day."
+        "des": "the sun rises at 6:00 and sets at 20:00. Be careful, zombies become stronger at night, and deal several times as much damage as they do during the day."
     },
     "5": {
         "title": "HP",
@@ -348,7 +349,7 @@ var string = {
     "1128": "You are full, you cannot eat any more.",
     "1129": "You have rested. Try to do something productive today.",
     "1130": "The dog is full, feed it later.",
-    "1131": "The items are too heavy. The bag cannot load any more.",
+    "1131": "The items are too heavy. The bag is full.",
     "1132": "Your offer is too low! He/She won't accept!",
     "1133": "You are too tired to do anything. Go to bed.",
     "1134": "The stove is full of wood now.",
@@ -376,7 +377,7 @@ var string = {
     "1156": "Start a new game? Your original progress will be erased.",
     "1157": "Consider it",
     "1158": "Ranking list",
-    "1159": "You have survived in Buried Town.",
+    "1159": "You have survived in Buried City.",
     "1160": "D%s H%s M%s",
     "1161": "Enter your name",
     "1162": "Share",
@@ -830,7 +831,11 @@ var string = {
         "title": "Sleeping Bag",
         "des": "A warm and comfortable place where you can take a break."
     },
-    "9_1": {
+"9_1": {
+    "title": "Beddings",
+    "des": "More comfortable than a sleeping bag, but still not ideal."
+},
+    "9_2": {
         "title": "Bed",
         "des": "A flat and comfortable bed where you can have a good night's sleep."
     },
@@ -1056,7 +1061,7 @@ var string = {
     },
      "site_202": {
          "name": "Junkyard",
-         "des": "The town's garbage dump is so smelly that even zombies dare not approach it. Although there may be supplies in it, but... let's not talk about it, let's spit it out"
+         "des": "The town's garbage dump is so smelly that even zombies dare not approach it. Although there may be supplies in it, but... gimme a moment I need to volmit"
      },
      "site_400": {
          "name": "Survivor's Market",

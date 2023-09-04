@@ -1,4 +1,5 @@
 var string = {
+"6671": "Das Virus hat schließlich Ihr Immunsystem besiegt und Ihre Menschlichkeit beendet.",
 "6669": "Du hast kein Motorrad und kannst das extrahierte Benzin nicht lagern. Lass uns das später reparieren.",
 "6670": "Du hast kein Motorrad und kannst das extrahierte Benzin nicht lagern!",
     "20_0": {
@@ -176,7 +177,7 @@ var string = {
     },
     "4": {
         "title": "Zeit",
-        "des": "In Buried Town geht die Sonne 6:00 Uhr auf und um 20:00 Uhr unter. Sei vorsichtig, die Zombies sind bei Nacht noch brutaler."
+        "des": "Die Sonne 6:00 Uhr auf und um 20:00 Uhr unter. Sei vorsichtig, die Zombies sind bei Nacht noch brutaler."
     },
     "5": {
         "title": "TP",
@@ -377,7 +378,7 @@ var string = {
     "1156": "Willst du ein neues Spiel beginnen? Dein aktueller Spielstand wird gelöscht.",
     "1157": "Weiter nachdenken",
     "1158": "Rangliste",
-    "1159": "Du hast in Buried Town überlebt",
+    "1159": "Du hast in Buried City überlebt",
     "1160": "D%s H%s M%s",
     "1161": "Gib deinen Namen ein",
     "1162": "Teilen",
@@ -816,7 +817,11 @@ var string = {
         "title": "Schlafsack",
         "des": "Liefert grundlegende Wärme und eine angenehme Schlafumgebung."
     },
-    "9_1": {
+"9_1": {
+"title": "Bettwäsche",
+"des": "Bequemer als ein Schlafsack, aber immer noch nicht ideal."
+},
+    "9_2": {
         "title": "Bett",
         "des": "Flaches, bequemes Bett, dass einen angenehmen Schlaf gewährleistet. "
     },

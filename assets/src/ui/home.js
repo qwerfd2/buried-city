@@ -17,21 +17,21 @@ var HomeNode = BottomFrameNode.extend({
         this.bg.addChild(homeBg, 2);
 
         var infos = [
-            {bid: 1, pos: {x: 64, y: 360}},
+            {bid: 1, pos: {x: 65, y: 230}},
             {bid: 2, pos: {x: 425, y: 780}},
-            {bid: 18, pos: {x: 200, y: 370}},
+            {bid: 18, pos: {x: 205, y: 165}},
             {bid: 4, pos: {x: 477, y: 562}},
             {bid: 5, pos: {x: 310, y: 330}},
-            {bid: 6, pos: {x: 177, y: 220}},
+            {bid: 6, pos: {x: 75, y: 390}},
             {bid: 15, pos: {x: 250, y: 560}},
             {bid: 7, pos: {x: 250, y: 630}},
             {bid: 8, pos: {x: 84, y: 780}},
-            {bid: 9, pos: {x: 70, y: 590}},
+            {bid: 9, pos: {x: 75, y: 590}},
             {bid: 10, pos: {x: 480, y: 410}},
             {bid: 11, pos: {x: 436, y: 85}},
-            {bid: 13, pos: {x: 125, y: 52}},
+            {bid: 13, pos: {x: 124, y: 49}},
             {bid: 14, pos: {x: 425, y: 216}},
-            {bid: 16, pos: {x: 500, y: 670}},
+            {bid: 16, pos: {x: 203, y: 290}},
             {bid: 19, pos: {x: 436, y: 85}},
             {bid: 17, pos: {x: 416, y: 108}},
             {bid: 3, pos: {x: 545, y: 270}},
@@ -75,10 +75,18 @@ var HomeNode = BottomFrameNode.extend({
     updateBtn: function (bid) {
         var btn = this.btnList[bid];
         var build = player.room.getBuild(bid);
-        if (build.level >= 0) {
-            btn.changeType(ButtonAtHomeType.WHITE);
+        if (bid != 17) {
+            if (build.level >= 0) {
+                btn.changeType(ButtonAtHomeType.WHITE);
+            } else {
+                btn.changeType(ButtonAtHomeType.BLACK);
+            }
         } else {
-            btn.changeType(ButtonAtHomeType.BLACK);
+            if (player.isBombActive) {
+                btn.changeType(ButtonAtHomeType.WHITE);
+            } else {
+                btn.changeType(ButtonAtHomeType.BLACK);
+            }
         }
 
         uiUtil.removeIconWarn(btn);

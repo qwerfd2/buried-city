@@ -1,4 +1,5 @@
 var string = {
+"6671": "Le virus a finalement vaincu votre système immunitaire et a mis fin à votre humanité.",
 "6669": "Vous n'avez pas de moto et ne pouvez pas stocker l'essence extraite. Réparons cela plus tard.",
 "6670": "Vous n'avez pas de moto et ne pouvez pas stocker l'essence extraite !",
 "20_0": {
@@ -180,7 +181,7 @@ var string = {
     },
     "4": {
         "title": "Horaire",
-        "des": "Dans Buried Town, le soleil se lève à 06:00 et se couche à 20:00. Les zombies sont plus animés et brutaux dans la nuit."
+        "des": "Le soleil se lève à 06:00 et se couche à 20:00. Les zombies sont plus animés et brutaux dans la nuit."
     },
     "5": {
         "title": "PV",
@@ -381,7 +382,7 @@ var string = {
     "1156": "Voulez-vous commencer un nouveau jeu? Le cours original sera effacé.",
     "1157": "Estimez-le!",
     "1158": "Classement",
-    "1159": "Vous avez survécu à Buried Town",
+    "1159": "Vous avez survécu à Buried City",
     "1160": "D%s H%s M%s",
     "1161": "Surnom",
     "1162": "Partager",
@@ -821,7 +822,11 @@ var string = {
         "title": "Sac de couchage",
         "des": "Fournir le chaleur basique et un environnement confortable pour dormir."
     },
-    "9_1": {
+"9_1": {
+"title": "Literie",
+"des": "Plus confortable qu'un sac de couchage, mais toujours pas idéal."
+},
+    "9_2": {
         "title": "Lit",
         "des": "Lit plat et confortable pour vous assurer un sommeil de bonne qualité."
     },

@@ -1,4 +1,3 @@
-
 var stringUtil = {
     getString: function (stringId) {
         if (string[stringId]) {

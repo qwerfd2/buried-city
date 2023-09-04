@@ -1,4 +1,5 @@
 var string = {
+"6671" : "El virus finalmente derrotó a tu sistema inmunológico y puso fin a tu humanidad.",
 "6669": "No tienes una motocicleta y no puedes almacenar el combustible extraído. ¡Arreglémoslo más tarde!",
 "6670": "No tienes una motocicleta y no puedes almacenar el combustible extraído.",
     "20_0": {
@@ -177,7 +178,7 @@ var string = {
     },
     "4": {
         "title": "Tiempo",
-        "des": "Tenga en cuenta el momento de explorar, el sol salió a las 6:00 en Buried Town, puesta del sol a las 20:00. Los zombies son más brutal en la noche."
+        "des": "Tenga en cuenta el momento de explorar, el sol salió a las 6:00, puesta del sol a las 20:00. Los zombies son más brutal en la noche."
     },
     "5": {
         "title": "HP",
@@ -378,7 +379,7 @@ var string = {
     "1156": "¿Va a iniciar un nuevo juego? Se eliminará el progreso original.",
     "1157": "Consideralo",
     "1158": "Lista de clasificación",
-    "1159": "Has sobrevivido en Buried Town.",
+    "1159": "Has sobrevivido en Buried City.",
     "1160": "D%s H%s M%s",
     "1161": "Introduzca su nombre",
     "1162": "Compartir",
@@ -817,7 +818,11 @@ var string = {
         "title": "Saco de dormir",
         "des": "Proporcionar un básico ambiente confortable para dormir."
     },
-    "9_1": {
+"9_1": {
+"title": "Ropa de cama",
+"des": "Más cómodo que un saco de dormir, pero aún no es ideal."
+},
+    "9_2": {
         "title": "Cama",
         "des": "Cama plana, cómoda, asegura una calidad de sueño."
     },

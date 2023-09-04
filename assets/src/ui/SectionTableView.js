@@ -81,6 +81,10 @@ var ItemCell = cc.Node.extend({
         var bgName = "#item_bg.png";
         if (storageCell.item.getType(0) === ItemType.EQUIP && storageCell.item.getType(1) !== ItemType.OTHER) {
             bgName = "#item_equip_bg.png";
+        } else if (storageCell.item.id == "1102063" || storageCell.item.id == "1102073") {
+            bgName = "#item_basic_bg.png";
+        } else if (storageCell.item.id == "1305011" || storageCell.item.id == "1305012") {
+            bgName = "#item_bullet_bg.png";
         }
         this.btn = new TableViewButton(this.scrollView, {normal: bgName});
         this.btn.setClickListener(this, this.onItemClick);

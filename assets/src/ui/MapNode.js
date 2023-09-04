@@ -400,8 +400,17 @@ var Actor = cc.Node.extend({
                 this.afterMove();         
             } else {
                 var distance = cc.pDistance(this.lastCheckPos, this.getPosition());
+                var pDistance;
                 var self = this;
-                if (distance >= RandomBattleConfig.distance) {
+                var timeObj = cc.timer.formatTime();
+                for (var i = 0; i < RandomBattleConfig.strength.length; i++) {
+                    var strengthObj = RandomBattleConfig.strength[i];
+                    if (timeObj.d >= strengthObj.time[0] && timeObj.d <= (strengthObj.time[1] ? strengthObj.time[1] : Number.MAX_VALUE)) {
+                        pDistance = strengthObj.distance;
+                        break;
+                    }
+                }
+                if (distance >= pDistance) {
                     this.paused = player.randomAttack(function () {
                         self.paused = false;
                     }, false);

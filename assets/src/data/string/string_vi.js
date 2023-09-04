@@ -1,4 +1,5 @@
 var string = {
+"6671": "Vi rút cuối cùng đã đánh bại hệ thống miễn dịch của bạn và chấm dứt sự nhân tính của bạn.",
 "6669": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất. Chúng ta sẽ sửa nó sau.",
 "6670": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất!",
     "20_0": {
@@ -177,7 +178,7 @@ var string = {
     },
     "4": {
         "title": "Thời gian",
-        "des": "Ra ngoài tìm kiếm thì để ý thời gian. Ở Buried Town mặt trời mọc lúc 6:00 giờ, lặn lức 20:00 giờ. Cương thi rất nhạy bén về đêm, mức độ gây hại tăng gấp số nhân."
+        "des": "Ra ngoài tìm kiếm thì để ý thời gian. Mặt trời mọc lúc 6:00 giờ, lặn lức 20:00 giờ. Cương thi rất nhạy bén về đêm, mức độ gây hại tăng gấp số nhân."
     },
     "5": {
         "title": "Sinh mệnh",
@@ -378,7 +379,7 @@ var string = {
     "1156": "Chắc chắn bắt đầu game không? tiến độ vốn có sẽ bị xóa.",
     "1157": "Nghĩ thêm đã",
     "1158": "Bảng xếp hạng",
-    "1159": "Bạn đã sống sót trong Buried Town",
+    "1159": "Bạn đã sống sót trong Buried City",
     "1160": "D%s H%s M%s",
     "1161": "Nhập tên",
     "1162": "Chia sẻ",
@@ -817,7 +818,11 @@ var string = {
         "title": "Túi ngủ",
         "des": "Cung cấp môi trường ấm ấp và dễ chịu để ngủ"
     },
-    "9_1": {
+"9_1": {
+"title": "Chăn ga gối đệm",
+"des": "Thoải mái hơn so với túi ngủ, nhưng vẫn chưa phải là lựa chọn tốt nhất."
+},
+    "9_2": {
         "title": "Giường",
         "des": "Chiếc giường bằng phẳng và dễ chịu để bảo đảm giấc ngủ ngon."
     },

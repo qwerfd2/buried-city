@@ -1,4 +1,5 @@
 var string = {
+"6671": "O vírus finalmente derrotou seu sistema imunológico e pôs fim à sua humanidade.",
 "6669": "Você não tem uma motocicleta e não pode armazenar o combustível extraído. Vamos consertar isso mais tarde.",
 "6670": "Você não tem uma motocicleta e não pode armazenar o combustível extraído!",
     "20_0": {
@@ -176,7 +177,7 @@ var string = {
     },
     "4": {
         "title": "Tempo",
-        "des": "Em Buried Town, o sol nasce às 06:00 e se põe às 20:00. Tenha cuidado, os zumbis são mais brutais à noite."
+        "des": "O sol nasce às 06:00 e se põe às 20:00. Tenha cuidado, os zumbis são mais brutais à noite."
     },
     "5": {
         "title": "HP",
@@ -377,7 +378,7 @@ var string = {
     "1156": "Iniciar um novo jogo? O progresso original será apagado.",
     "1157": "Considerar",
     "1158": "Ranking",
-    "1159": "Você sobreviveu em Buried Town",
+    "1159": "Você sobreviveu em Buried City",
     "1160": "D%s H%s M%s",
     "1161": "Digite seu nome",
     "1162": "Compartilhar",
@@ -816,7 +817,11 @@ var string = {
         "title": "Saco de Dormir",
         "des": "Provê aquecimento básico e um ambiente confortável para dormir."
     },
-    "9_1": {
+"9_1": {
+"title": "Roupa de cama",
+"des": "Mais confortável do que um saco de dormir, mas ainda não é ideal."
+},
+    "9_2": {
         "title": "Cama",
         "des": "Larga, confortável, garante um sono de qualidade."
     },

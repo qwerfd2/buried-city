@@ -202,7 +202,7 @@ var RadioNode = BuildNode.extend({
                 this.editText.setString(JSON.stringify(payload));
                 msgData.msg = "Backup string set to the input prompt, please click it and copy & save the content. Do not edit it.";
             } else {
-                msgData.msg = "In case you don't know, the server for this game is dead, and Radio is no longer functional. But hey, feel free to try out the embedded Cheat Terminal! Just type 'help'.";
+                msgData.msg = "Type 'help' to learn about the cheat terminal.";
             }
         } 
         msgData.uid = utils.getRandomInt(1, 9999999);

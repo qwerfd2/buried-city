@@ -202,6 +202,11 @@ var TimerManager = cc.Class.extend({
     addTimerCallbackDayByDay: function (target, func, priority) {
         return this.addTimerCallbackByDay({h: 0}, target, func, priority);
     },
+    
+    //每天1点时
+    addTimerCallbackDayByDayOneAM: function (target, func, priority) {
+        return this.addTimerCallbackByDay({h: 1}, target, func, priority);
+    },
 
     removeTimerCallback: function (callback) {
         var index = this.callbackList.indexOf(callback);

@@ -34,9 +34,10 @@ var HomeNode = BottomFrameNode.extend({
             {bid: 16, pos: {x: 203, y: 290}},
             {bid: 19, pos: {x: 436, y: 85}},
             {bid: 17, pos: {x: 416, y: 108}},
-            {bid: 3, pos: {x: 545, y: 270}},
+            {bid: 3, pos: {x: 545, y: 268}},
             {bid: 12, pos: {x: 335, y: 125}},
-            {bid: 20, pos: {x:196, y:780}}
+            {bid: 20, pos: {x: 196, y: 780}},
+            {bid: 21, pos: {x: 515, y: 674}}
         ];
         this.btnList = {};
 

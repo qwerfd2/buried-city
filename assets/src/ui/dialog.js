@@ -1152,6 +1152,27 @@ var NpcTradeItemDialog = DialogTiny.extend({
     }
 });
 
+var FoodExpireDialog = DialogSmall.extend({
+    ctor: function (needItems, amountSite, amountHome) {
+        var config = {
+            title: {title: stringUtil.getString(6672)},
+            content: {},
+            action: {btn_1: {}}
+        };
+        config.action.btn_1.cb = function() {cc.timer.resume()};
+        config.action.btn_1.txt = stringUtil.getString(1030);
+        config.content.des = stringUtil.getString(6673, amountSite, amountHome);
+
+        this._super(config);
+        this.autoDismiss = false;
+        var richText = new ItemRichText(needItems, 420, 5, 0.4);
+        richText.setName("richText");
+        richText.setAnchorPoint(0, 1);
+        richText.setPosition(20, 80);
+        this.contentNode.addChild(richText);
+    }
+});
+
 var PayDialog = DialogSmall.extend({
     ctor: function (purchaseId, cb) {
         var config = {

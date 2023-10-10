@@ -1,4 +1,15 @@
 var string = {
+"6672": "Abgelaufene Lebensmittel",
+  "6674": "Beschleunigen (1 Dünger)",
+  "1101081": {
+    "title": "Dünger",
+    "des": "Es handelt sich tatsächlich nur um abgelaufene Lebensmittel, und die einzige Möglichkeit, sie zu verwenden, besteht darin, damit die Pflanzen zu düngen."
+  },
+"6673": "Gestern sind diese Lebensmittel abgelaufen und wurden zu Dünger (%s draußen, %s zu Hause) umgewandelt. Der Kühlschrank hält die Lebensmittel frisch!",
+  "21_0": {
+    "title": "Kühlschrank",
+    "des": "Wenn Strom vorhanden ist, verderben die Lebensmittel zu Hause nicht."
+  },
 "6671": "Das Virus hat schließlich Ihr Immunsystem besiegt und Ihre Menschlichkeit beendet.",
 "6669": "Du hast kein Motorrad und kannst das extrahierte Benzin nicht lagern. Lass uns das später reparieren.",
 "6670": "Du hast kein Motorrad und kannst das extrahierte Benzin nicht lagern!",

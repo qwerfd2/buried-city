@@ -104,8 +104,7 @@ var WorkSiteNode = BottomFrameNode.extend({
         var self = this;
         this.actionView = uiUtil.createCommonListItem(
             {
-                target: this, cb: function () {
-            }
+                target: this, cb: false
             },
             {
                 target: this, cb: self.onClickFix

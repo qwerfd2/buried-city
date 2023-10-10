@@ -1,4 +1,15 @@
 var string = {
+"6672": "Alimentos caducados",
+  "6674": "Acelerar (1 fertilizante)",
+  "1101081": {
+    "title": "Fertilizante",
+    "des": "En realidad, son solo alimentos caducados, y la única forma de usarlos es fertilizando los cultivos."
+  },
+  "6673": "Ayer, estos alimentos caducaron y se convirtieron en fertilizante (%s afuera, %s en casa). ¡El refrigerador puede mantener los alimentos frescos!",
+  "21_0": {
+    "title": "Refrigerador",
+    "des": "Si hay energía, los alimentos en casa no se echarán a perder."
+  },
 "6671" : "El virus finalmente derrotó a tu sistema inmunológico y puso fin a tu humanidad.",
 "6669": "No tienes una motocicleta y no puedes almacenar el combustible extraído. ¡Arreglémoslo más tarde!",
 "6670": "No tienes una motocicleta y no puedes almacenar el combustible extraído.",

@@ -678,5 +678,33 @@ var buildConfig = {
             "level": 2
         },
         "produceList": []
+    }],
+    "21": [{
+        "id": 21,
+        "cost": [{
+            "itemId": 1101021,
+            "num": 16
+        }, {
+            "itemId": 1101031,
+            "num": 4
+        }, {
+            "itemId": 1101041,
+            "num": 16
+        }, {
+            "itemId": 1101051,
+            "num": 10
+        }, {
+            "itemId": 1101073,
+            "num": 3
+        }, {
+            "itemId": 1101071,
+            "num": 2
+        }],
+        "createTime": 240,
+        "condition": {
+            "bid": 1,
+            "level": 2
+        },
+        "produceList": []
     }]
 };

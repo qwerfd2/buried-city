@@ -1,4 +1,15 @@
 var string = {
+  "6672": "Alimentos Vencidos",
+  "6674": "Acelerar (1 adubo)",
+  "1101081": {
+    "title": "Adubo",
+    "des": "Na verdade, são apenas alimentos vencidos, e a única maneira de usá-los é adubando as plantações."
+  },
+  "6673": "Ontem, esses alimentos caducaram e foram convertidos em adubo (%s fora, %s em casa). A geladeira pode manter os alimentos frescos!",
+  "21_0": {
+    "title": "Geladeira",
+    "des": "Se houver energia, os alimentos em casa não se estragarão."
+  },
 "6671": "O vírus finalmente derrotou seu sistema imunológico e pôs fim à sua humanidade.",
 "6669": "Você não tem uma motocicleta e não pode armazenar o combustível extraído. Vamos consertar isso mais tarde.",
 "6670": "Você não tem uma motocicleta e não pode armazenar o combustível extraído!",

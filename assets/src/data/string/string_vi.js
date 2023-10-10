@@ -1,4 +1,15 @@
 var string = {
+  "6672": "Thực phẩm hết hạn",
+  "6674": "Tăng tốc (1 phân bón)",
+  "1101081": {
+    "title": "Phân bón",
+    "des": "Thực tế, đó chỉ là thực phẩm hết hạn, và cách duy nhất để sử dụng chúng là làm phân bón cho cây trồng."
+  },
+"6673": "Hôm qua, những thực phẩm này đã hết hạn và đã được chuyển thành phân bón (%s bên ngoài, %s ở trong nhà). Tủ lạnh có thể giữ thực phẩm tươi!",
+  "21_0": {
+    "title": "Tủ lạnh",
+    "des": "Nếu có điện ở nhà, thực phẩm sẽ không bị hỏng."
+  },
 "6671": "Vi rút cuối cùng đã đánh bại hệ thống miễn dịch của bạn và chấm dứt sự nhân tính của bạn.",
 "6669": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất. Chúng ta sẽ sửa nó sau.",
 "6670": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất!",

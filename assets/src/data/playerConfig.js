@@ -1,34 +1,46 @@
 var RandomBattleConfig = {
     strength: [
         {
-            time: [1, 5],
+            time: [1, 10],
             distance: 100,
             day: {probability: 0.1, difficulty: [1, 2]},
             night: {probability: 0.2, difficulty: [2, 3]}
         },
         {
-            time: [6, 10],
+            time: [11, 20],
             distance: 100,
             day: {probability: 0.1, difficulty: [1, 2]},
             night: {probability: 0.2, difficulty: [3, 4]}
         },
         {
-            time: [11, 15],
+            time: [21, 30],
             distance: 100,
             day: {probability: 0.1, difficulty: [1, 3]},
-            night: {probability: 0.3, difficulty: [2, 4]}
+            night: {probability: 0.2, difficulty: [3, 4]}
         },
         {
-            time: [16, 20],
+            time: [31, 40],
             distance: 100,
             day: {probability: 0.1, difficulty: [1, 3]},
-            night: {probability: 0.3, difficulty: [3, 5]}
+            night: {probability: 0.2, difficulty: [4, 5]}
         },
         {
-            time: [21],
+            time: [41, 50],
             distance: 100,
             day: {probability: 0.1, difficulty: [1, 3]},
-            night: {probability: 0.3, difficulty: [3, 6]}
+            night: {probability: 0.2, difficulty: [4, 6]}
+        },
+        {
+            time: [51, 60],
+            distance: 100,
+            day: {probability: 0.15, difficulty: [1, 3]},
+            night: {probability: 0.2, difficulty: [4, 6]}
+        },
+        {
+            time: [61],
+            distance: 100,
+            day: {probability: 0.15, difficulty: [1, 3]},
+            night: {probability: 0.3, difficulty: [4, 6]}
         },
     ]
 };

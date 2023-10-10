@@ -15,10 +15,10 @@ var StoryLayer = cc.Layer.extend({
         bg.y = cc.winSize.height / 2;
         this.addChild(bg);
         bg.setClickListener(this, function () {
+            bg.setEnabled(false);
             game.init();
             game.start();
             cc.director.runScene(new MainScene());
-            bg.setEnabled(false);
         });
         bg.setEnabled(false);
 

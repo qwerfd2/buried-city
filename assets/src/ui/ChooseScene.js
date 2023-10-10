@@ -132,6 +132,7 @@ var ChooseLayer = cc.Layer.extend({
             btn2.setName("btn_2");
         } else {
             var btn1 = uiUtil.createCommonBtnWhite(stringUtil.getString(1193), this, function () {
+                btn1.setEnabled(false);
                 game.init();
                 game.start();
                 cc.director.runScene(new MainScene());

@@ -1,4 +1,15 @@
 var string = {
+"6672": "Süresi Geçmiş Yiyecekler",
+  "6674": "Hızlandır (1 gübre)",
+  "1101081": {
+    "title": "Gübre",
+    "des": "Aslında sadece süresi geçmiş yiyeceklerdir ve bunları kullanmanın tek yolu tarım ürünlerini gübrelemektir."
+  },
+  "6673": "Dün bu yiyecekler süresi geçti ve %s dışarıda, %s evde gübreye dönüştü. Buzdolabı yiyecekleri taze tutabilir!",
+  "21_0": {
+    "title": "Buzdolabı",
+    "des": "Evde elektrik varsa yiyecekler bozulmaz."
+  },
 "6671": "Virüs nihayet bağışıklık sistemini yendi ve insanlığınıza son verdi.",
 "6669": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız. Sonra düzelteceğiz.",
 "6670": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız!",

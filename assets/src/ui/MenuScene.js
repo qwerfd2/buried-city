@@ -23,7 +23,6 @@ var MenuLayer = cc.Layer.extend({
                 }
             });
         }
-
         return true;
     },
 
@@ -89,6 +88,7 @@ var MenuLayer = cc.Layer.extend({
         btn1.setName("btn_1");
 
         var btn2 = uiUtil.createBigBtnWhite(stringUtil.getString(1143), this, function () {
+            btn2.setEnabled(false);
             audioManager.stopMusic(Musics[curIndex]);
             game.init();
             game.start();
@@ -127,20 +127,18 @@ var MenuLayer = cc.Layer.extend({
         btn_setting.setPosition(bg.width - 106, bg.height / 2 - 346);
         bg.addChild(btn_setting);
         
-        var btn_chgmusic = uiUtil.createSpriteBtn({normal: "icon_music_on.png"}, this, function () {
-            
+        var btn_chgmusic = uiUtil.createSpriteBtn({normal: "icon_music_on.png"}, this, function () {        
             audioManager.stopMusic(Musics[curIndex], true);
             if (curIndex < Musics.length - 1) {
                 curIndex += 1;
             } else {
                 curIndex = 0;
-            }          
+            }
             cc.sys.localStorage.setItem("curMusic", curIndex);
             audioManager.playMusic(Musics[curIndex], true);
         });
         btn_chgmusic.setPosition(bg.width - 106, bg.height / 2 - 236);
         bg.addChild(btn_chgmusic);
-
         var btn6 = uiUtil.createBtn2(ClientData.CLIENT_VERSION + "-" + ClientData.MOD_VARIANT + "-" + ClientData.MOD_VERSION, this, function () {
             if (ClientData.MOD_VARIANT == 1) {
                 var d = new AboutUUIDDialog();

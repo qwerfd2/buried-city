@@ -1,7 +1,18 @@
 var string = {
+"6672": "Expired Food",
+"6673": "Yesterday, These food expired and is converted to fertilizer (%s outside, %s in home). Fridge can keep food fresh!",
+"6674": "Accelerate (1 fertilizer)",
 "6671": "The virus finally defeted your immune system and ended your humanity.",
 "6669": "You don't have a motorcycle and cannot store the extracted gas. Let's fix it later.",
 "6670": "You don't have a motorcycle and cannot store the extracted gas!",
+"1101081": {
+    "title": "Fertilizer",
+    "des": "It's actually just expired food, and the only way to use them is to fertilize the crops."
+},
+"21_0": {
+    "title": "Fridge",
+    "des": "If there is power, food in home will not go bad."
+},
 "20_0": {
     "title": "Safe",
     "des": "Protect your supplies. Items in the Safe won't be stolen or damaged by zombies."

@@ -80,7 +80,7 @@ var Player = cc.Class.extend({
         this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1301091": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
-
+    
     save: function () {
         var opt = {
             hp: this.hp,
@@ -201,7 +201,7 @@ var Player = cc.Class.extend({
             if (IAPPackage.isHoarderUnlocked()) {
                 this.currency += 10;
                 var itemList = [1101011,1101021,1101031,1101041,1101051,1101061,1101071,1101073,1103011,1103041,1103083,1104011,1104021,1104043,1105011,1105022,1105033,1105042,1105051,1301011,1301022,1301033,1301041,1301052,1302011,1302021,1303012,1304012,1306001,1305011,1305023,1106054];
-                var amountList = [120,120,80,80,60,60,60,40,16,16,8,8,8,4,30,22,16,50,50,3,2,2,3,2,4,4,8,2,2,200,2,1];
+                var amountList = [100,100,80,80,60,60,60,40,16,16,8,8,8,4,30,20,10,50,50,3,2,2,3,2,4,4,8,2,2,180,2,1];
                 for (var i = 0; i < itemList.length; i++) {
                     this.storage.increaseItem(itemList[i], amountList[i], false);
                 }
@@ -214,6 +214,77 @@ var Player = cc.Class.extend({
             this.room.createBuild(12, -1);
         }
     },
+    
+    calculateExpired: function(foodItem) {
+        var item = foodItem.item.id;
+        var numbers = foodItem.num;
+        var expire = ExpireRate[item];
+        var amount = expire * numbers;
+        var floorValue = Math.floor(amount);
+        var ceilValue = Math.ceil(amount);
+        var probDown = 1 - (amount - floorValue);
+        var probUp = 1 - probDown;
+        var random = Math.random();
+        if (random <= probDown) {
+            amount = floorValue;
+        } else {
+            amount = ceilValue;
+        }
+        return amount;
+    },
+
+    expireFoodCraft: function (homePower) {
+        var tmpStorage = new Storage();
+        var fertilizerSite = 0;
+        var fertilizerHome = 0;
+        for (var siteId in this.map.siteMap) {
+            var site = this.map.siteMap[siteId];
+            if (!site.closed && !site.storage.isEmpty()) {
+                var foodStorage = site.storage.getItemsByType("1103");
+                for (var i = 0; i < foodStorage.length; i++) {
+                    var amount = this.calculateExpired(foodStorage[i]);
+                    if (amount) {
+                        if (site.storage.validateItem(foodStorage[i].item.id, amount)) {
+                            site.storage.decreaseItem(foodStorage[i].item.id, amount);
+                            tmpStorage.increaseItem(foodStorage[i].item.id, amount, false);
+                            var fertilizerAmount = FertilizerRate[foodStorage[i].item.id] * amount;
+                            fertilizerSite += fertilizerAmount;
+                            site.storage.increaseItem("1101081", fertilizerAmount);
+                        }
+                    }
+                }    
+            }
+        }
+        if (!homePower) {
+            var foodStorage = this.storage.getItemsByType("1103");
+            for (var i = 0; i < foodStorage.length; i++) {
+                var amount = this.calculateExpired(foodStorage[i]);
+                if (amount) {
+                    if (this.storage.validateItem(foodStorage[i].item.id, amount)) {
+                        this.storage.decreaseItem(foodStorage[i].item.id, amount);
+                        tmpStorage.increaseItem(foodStorage[i].item.id, amount, false);
+                        var fertilizerAmount = FertilizerRate[foodStorage[i].item.id] * amount;
+                        fertilizerHome += fertilizerAmount;
+                        this.storage.increaseItem("1101081", fertilizerAmount);
+                    }
+                }
+            }    
+        }
+        if (fertilizerSite || fertilizerHome) {
+            Record.saveAll();
+            var lostItems = [];
+            tmpStorage.forEach(function (item, num) {
+                lostItems.push({itemId: item.id, num: num, color: cc.color.BLACK});
+            });
+            
+            if (lostItems.length) {
+                cc.timer.pause();
+                var d = new FoodExpireDialog(lostItems, fertilizerSite, fertilizerHome);
+                d.show();
+            }
+        }
+    },
+    
     onCurrencyChange: function(value) {
         if (typeof value == "number") {
             player.currency += value;
@@ -316,6 +387,12 @@ var Player = cc.Class.extend({
         }
     },
     checkBreakdown: function (source) {
+        //Newbie protection - won't break down on the first 2 day.
+        var day = cc.timer.formatTime().d;
+        if (day < 3 && this.spirit < 20) {
+            day = 20 - this.spirit;
+            this.changeSpirit(day);
+        }
         if (this.spirit < 5) {
             var rand = utils.getRandomInt(0, this.spirit + 1);
             if (rand == 0) {
@@ -360,7 +437,6 @@ var Player = cc.Class.extend({
     isInBind: function () {
         return this.binded;
     },
-
     //服药
     cure: function () {
         this.cured = true;
@@ -453,10 +529,8 @@ var Player = cc.Class.extend({
             }
         }
         if (key == "vigour" && this.isInSleep && this[key] >= this[key + "Max"]) {
-            if (this.hp < this.hpMax) {
+            if (this.hp >= this.hpMax) {
                 this.changeSpirit(-1);
-            } else {
-                this.changeSpirit(-2);
             }
         }
         var beforeRangeInfo = this.getAttrRangeInfo(key, this[key]);
@@ -1366,6 +1440,15 @@ var Player = cc.Class.extend({
             cc.timer.checkSeason();
             cc.sys.localStorage.setItem("ad", "1");
         });
+        cc.timer.addTimerCallbackDayByDayOneAM(this, function () {
+            var fridgeBuild = self.room.getBuild(21);
+            if (!fridgeBuild || !this.map.getSite(WORK_SITE).isActive) {
+                self.expireFoodCraft(false);
+            } else {
+                self.expireFoodCraft(true);
+            }
+        });
+
         cc.timer.addTimerCallbackHourByHour(this, function () {
             self.updateByTime();
             self.updateTemperature();

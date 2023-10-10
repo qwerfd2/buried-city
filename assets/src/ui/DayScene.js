@@ -46,7 +46,6 @@ var DayLayer = cc.Layer.extend({
         });
         btnBg.setEnabled(false);
 
-        var electricFenceBuild = player.room.getBuild(19);
         var bgName;
         if (this.res.happened) {
             if (this.res.win) {

@@ -38,7 +38,7 @@ uiUtil.bazaarItem = function(itemInfo, target, cb) {
     price.setString(stringUtil.getString(9021) + ee);
     price.setAnchorPoint(0, 1);
     node.addChild(price);
-    //图标 
+    //图标 1
     var icon = autoSpriteFrameController.getSpriteFromSpriteName("#dig_item_" + itemInfo.itemId + ".png");
     icon.x = bg.width / 2;
     icon.y = bg.height / 2;
@@ -369,23 +369,32 @@ uiUtil.createCommonToolIcon = function (contentIconName, target, cb) {
 uiUtil.createCommonListItem = function (clickIcon, action1, action2) {
     var bgNode = new cc.Node();
     bgNode.setContentSize(600, 100);
-
     var iconBg = uiUtil.createSpriteBtn({normal: "build_icon_bg.png"}, clickIcon.target, clickIcon.cb);
     iconBg.setPosition(20 + iconBg.getContentSize().width / 2, bgNode.getContentSize().height / 2);
     iconBg.setName("iconBg");
+    if (!clickIcon.cb) {
+        iconBg.setVisible(false);
+    }
     bgNode.addChild(iconBg);
 
     var hint = new cc.LabelTTF("", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(268, 0));
-    hint.setPosition(iconBg.getPositionX() + iconBg.getContentSize().width / 2 + 10, iconBg.getPositionY() + iconBg.getContentSize().height / 2);
-    hint.setAnchorPoint(0, 1);
+    hint.setAnchorPoint(0, 1);   
     hint.setName("hint");
     hint.setColor(cc.color.WHITE);
-    bgNode.addChild(hint);
 
     var pbBg = autoSpriteFrameController.getSpriteFromSpriteName("#pb_bg.png");
-    pbBg.setPosition(iconBg.getPositionX() + iconBg.getContentSize().width / 2 + 10, iconBg.getPositionY() - iconBg.getContentSize().height / 2);
     pbBg.setAnchorPoint(0, 0);
     pbBg.setName("pbBg");
+    
+    if (clickIcon.cb) {
+        hint.setPosition(iconBg.getPositionX() + iconBg.getContentSize().width / 2 + 10, iconBg.getPositionY() + iconBg.getContentSize().height / 2);
+        pbBg.setPosition(iconBg.getPositionX() + iconBg.getContentSize().width / 2 + 10, iconBg.getPositionY() - iconBg.getContentSize().height / 2);
+    } else {
+        hint.setPosition(70, bgNode.getContentSize().height / 2 + 20);
+        pbBg.setPosition(70, bgNode.getContentSize().height / 2 - 20);
+    }
+    
+    bgNode.addChild(hint);
     bgNode.addChild(pbBg);
 
     var pb = new cc.ProgressTimer(autoSpriteFrameController.getSpriteFromSpriteName("#pb.png"));
@@ -404,7 +413,11 @@ uiUtil.createCommonListItem = function (clickIcon, action1, action2) {
         }, action1.target, action1.cb);
         action1.setTitleColorForState(cc.color.BLACK, cc.CONTROL_STATE_NORMAL);
         action1.setTitleColorForState(cc.color.GRAY, cc.CONTROL_STATE_DISABLED);
-        action1.setPosition(bgNode.getContentSize().width - 10 - action1.getContentSize().width / 2, bgNode.getContentSize().height / 2);
+        if (clickIcon.cb) {
+            action1.setPosition(bgNode.getContentSize().width - 10 - action1.getContentSize().width / 2, bgNode.getContentSize().height / 2);
+        } else {
+            action1.setPosition(bgNode.getContentSize().width - 70 - action1.getContentSize().width / 2, bgNode.getContentSize().height / 2);
+        }
         action1.setName("action1");
         bgNode.addChild(action1);
     }
@@ -429,7 +442,12 @@ uiUtil.createCommonListItem = function (clickIcon, action1, action2) {
             richText = new ItemRichText(items, 268, 3, 0.3);
             richText.setName("richText");
             richText.setAnchorPoint(0, 1);
-            richText.setPosition(iconBg.getPositionX() + iconBg.getContentSize().width / 2 + 10, iconBg.getPositionY() + iconBg.getContentSize().height / 2);
+            if (clickIcon.cb) {
+                richText.setPosition(iconBg.getPositionX() + iconBg.getContentSize().width / 2 + 10, iconBg.getPositionY() + iconBg.getContentSize().height / 2);
+            } else {
+                richText.setPosition(70, bgNode.getContentSize().height / 2 + 30);
+            }
+
             bgNode.addChild(richText);
         }
         if (!richText.getChildByName("itemListBtn")) {

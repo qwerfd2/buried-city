@@ -1,4 +1,15 @@
 var string = {
+  "6672": "Aliments périmés",
+  "6674": "Accélérer (1 engrais)",
+  "1101081": {
+    "title": "Engrais",
+    "des": "En réalité, ce ne sont que des aliments périmés, et le seul moyen de les utiliser est de fertiliser les cultures."
+  },
+"6673": "Hier, ces aliments ont expiré et ont été transformés en engrais (%s à l'extérieur, %s à la maison). Le réfrigérateur peut conserver les aliments frais !",
+  "21_0": {
+    "title": "Réfrigérateur",
+    "des": "S'il y a de l'électricité, les aliments à la maison ne se gâteront pas."
+  },
 "6671": "Le virus a finalement vaincu votre système immunitaire et a mis fin à votre humanité.",
 "6669": "Vous n'avez pas de moto et ne pouvez pas stocker l'essence extraite. Réparons cela plus tard.",
 "6670": "Vous n'avez pas de moto et ne pouvez pas stocker l'essence extraite !",

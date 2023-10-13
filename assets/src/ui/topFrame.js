@@ -504,7 +504,7 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(10, function() {
                     player.injuryMax -= 5;
                     player.injury = cc.clampf(player.injury, 0, player.injuryMax);
-                    player.virusMax += 20;
+                    player.virusMax += 15;
                     player.changeInjury(0);
                     player.changeVirus(0);
                     Record.saveAll();
@@ -521,7 +521,7 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(9, function() {
                     player.infectMax -= 5;
                     player.infect = cc.clampf(player.infect, 0, player.infectMax);
-                    player.virusMax += 20;
+                    player.virusMax += 15;
                     player.changeInfect(0);
                     player.changeVirus(0);
                     Record.saveAll();
@@ -538,7 +538,7 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(6, function() {
                     player.starveMax -= 5;
                     player.starve = cc.clampf(player.starve, 0, player.starveMax);
-                    player.virusMax += 20;
+                    player.virusMax += 15;
                     player.changeStarve(0);
                     player.changeVirus(0);
                     Record.saveAll();
@@ -555,7 +555,7 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(7, function() {
                     player.vigourMax -= 5;
                     player.vigour = cc.clampf(player.vigour, 0, player.vigourMax);
-                    player.virusMax += 20;
+                    player.virusMax += 15;
                     player.changeVigour(0);
                     player.changeVirus(0);
                     Record.saveAll();
@@ -572,7 +572,7 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(8, function() {
                     player.spiritMax -= 5;
                     player.spirit = cc.clampf(player.spirit, 0, player.spiritMax);
-                    player.virusMax += 20;
+                    player.virusMax += 15;
                     player.changeSpirit(0);
                     player.changeVirus(0);
                     Record.saveAll();
@@ -589,7 +589,7 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(14, function() {
                     player.waterMax -= 5;
                     player.water = cc.clampf(player.water, 0, player.waterMax);
-                    player.virusMax += 20;
+                    player.virusMax += 15;
                     player.changeWater(0);
                     player.changeVirus(0);
                     Record.saveAll();
@@ -606,7 +606,7 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.hpMax -= 10;
                     player.hpMaxOrigin -= 10;
                     player.hp = cc.clampf(player.hp, 0, player.hpMax);
-                    player.virusMax += 20;
+                    player.virusMax += 15;
                     player.changeHp(0);
                     player.changeVirus(0);
                     Record.saveAll();

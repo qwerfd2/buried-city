@@ -9,6 +9,25 @@ var MenuLayer = cc.Layer.extend({
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
         Medal.init();
+        var lastVer = cc.sys.localStorage.getItem("modVer") || ClientData.MOD_VERSION;
+        if (lastVer > ClientData.MOD_VERSION) {
+            var config = {
+                title: {title: ""},
+                content: {des: stringUtil.getString(6675)},
+                action: {btn_1: {txt: stringUtil.getString(1193)}}
+            };
+            var toast = new DialogTiny(config);
+            toast.show();
+        } else if (lastVer < ClientData.MOD_VERSION) {
+            var config = {
+                title: {title: ""},
+                content: {des: stringUtil.getString(6676)},
+                action: {btn_1: {txt: stringUtil.getString(1193)}}
+            };
+            var toast = new DialogTiny(config);
+            toast.show();
+        }
+        cc.sys.localStorage.setItem("modVer", ClientData.MOD_VERSION);
         if (checkVersion && ClientData.MOD_VARIANT == 1) {
             this.requestVersion(function (response) {
                 var number = Number(response);
@@ -165,6 +184,7 @@ var MenuLayer = cc.Layer.extend({
             bg.addChild(btn8);
             
             var btn_rate = uiUtil.createSpriteBtn({normal: "btn_rate.png"}, this, function () {
+                audioManager.stopMusic(Musics[curIndex]);
                 cc.director.runScene(new aboutScene());
             });
             btn_rate.setPosition(106, bg.height / 2 - 236);

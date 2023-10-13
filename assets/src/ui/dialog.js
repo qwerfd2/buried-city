@@ -707,17 +707,17 @@ var RandomBattleDialog = DialogBig.extend({
     createBattleBeginView: function () {
         var label1 = new cc.LabelTTF(stringUtil.getString(1041), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label1.setAnchorPoint(0, 1);
-        label1.setPosition(this.leftEdge, this.log.getContentSize().height);
+        label1.setPosition(this.leftEdge, this.log.getContentSize().height + 10);
         label1.setColor(cc.color.BLACK);
         this.log.addChild(label1);
 
         var iconList = uiUtil.createEquipedItemIconList(true);
-        iconList.setPosition(this.leftEdge, label1.y - label1.height - 20);
+        iconList.setPosition(this.leftEdge - 10, label1.y - label1.height - 20);
         this.log.addChild(iconList);
 
         var label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + this.difficulty, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label2.setAnchorPoint(0, 1);
-        label2.setPosition(this.leftEdge, iconList.getPositionY() - iconList.getContentSize().height - 25);
+        label2.setPosition(label1.getPositionX() + 240, this.log.getContentSize().height + 10);
         if (this.difficulty > 2) {
             label2.setColor(cc.color.RED);
         } else {
@@ -727,19 +727,19 @@ var RandomBattleDialog = DialogBig.extend({
         if (player.equip.getEquip(EquipmentPos.GUN) && !player.equip.isEquiped(1301091) && player.bag.getNumByItemId(BattleConfig.BULLET_ID) && player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID)) {
             var bulletRichText = GetRichTextForBullet(cc.color.BLACK);
             bulletRichText.setName("bulletPriority");
-            bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 55);
+            bulletRichText.setPosition(0, label1.getPositionY() - label1.getContentSize().height - 140);
             this.log.addChild(bulletRichText);
     
             var exchangeButton = uiUtil.createCommonBtnBlack(stringUtil.getString(1334), this, function () {
                 player.useGoodBullet = !player.useGoodBullet;
                 var bulletRichText = GetRichTextForBullet(cc.color.BLACK);
                 bulletRichText.setName("bulletPriority");
-                bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 55);
+                bulletRichText.setPosition(0, label1.getPositionY() - label1.getContentSize().height - 140);
                 this.log.removeChildByName("bulletPriority");
                 this.log.addChild(bulletRichText);
             });
             exchangeButton.setName("exchangebutton");
-            exchangeButton.setPosition(250, label2.getPositionY() - label2.getContentSize().height - 35);
+            exchangeButton.setPosition(250, label1.getPositionY() - label1.getContentSize().height - 120);
             this.log.addChild(exchangeButton);
         }
         if (cc.RTL) {
@@ -758,7 +758,7 @@ var RandomBattleDialog = DialogBig.extend({
         if (!player.equip.haveWeapon()) {
             var label3 = new cc.LabelTTF(stringUtil.getString(1207), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
             label3.setAnchorPoint(0, 1);
-            label3.setPosition(this.leftEdge, label2.y - label2.height);
+            label3.setPosition(this.leftEdge, label1.y - label1.height - 40);
             this.log.addChild(label3);
             label3.setColor(cc.color.RED);
         } else if (currentTime <= 43200) {
@@ -767,7 +767,7 @@ var RandomBattleDialog = DialogBig.extend({
             currentTime = Number(2 * currentTime);
             var label3 = new cc.LabelTTF(stringUtil.getString(1325, currentTime), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
             label3.setAnchorPoint(0, 1);
-            label3.setPosition(this.leftEdge, label2.y - label2.height);
+            label3.setPosition(this.leftEdge, label1.y - label1.height - 40);
             this.log.addChild(label3);
             label3.setColor(cc.color.RED);
         }
@@ -779,7 +779,7 @@ var RandomBattleDialog = DialogBig.extend({
             if (label3) {
                 label4.setPosition(this.leftEdge, label3.y - label3.height);
             } else {
-                label4.setPosition(this.leftEdge, label2.y - label2.height);
+                label4.setPosition(this.leftEdge, label1.y - label1.height - 40);
             }
             this.log.addChild(label4);
             label4.setColor(cc.color.RED);
@@ -1168,7 +1168,7 @@ var FoodExpireDialog = DialogSmall.extend({
         var richText = new ItemRichText(needItems, 420, 5, 0.4);
         richText.setName("richText");
         richText.setAnchorPoint(0, 1);
-        richText.setPosition(20, 80);
+        richText.setPosition(10, 80);
         this.contentNode.addChild(richText);
     }
 });

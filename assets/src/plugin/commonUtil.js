@@ -13,6 +13,6 @@ var CommonUtil = {
     getMetaData: function (key) {
         return jsb.reflection.callStaticMethod("org/cocos2dx/javascript/CommonUtil", "getMetaData", "(Ljava/lang/String;)Ljava/lang/String;", key);
     },
-
+    
     adStatus: true
 };

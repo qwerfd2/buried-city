@@ -28,7 +28,7 @@ var Player = cc.Class.extend({
         this.lastWaterTime = -999999;
         //
         this.virus = 0;
-        this.virusMax = 100;
+        this.virusMax = 90;
         //温度
         this.temperature = this.initTemperature();
         this.temperature = this.temperature;
@@ -1142,8 +1142,11 @@ var Player = cc.Class.extend({
         }
         var electricFenceBuild = this.room.getBuild(19);
         //雷区抵御僵尸夜袭
-        if (electricFenceBuild && electricFenceBuild.isActive()) {  //电网抵御僵尸
-            homeDef += 40;
+        if (this.room.isBuildExist(19, 0)) {  //电网抵御僵尸
+            if (electricFenceBuild.isActive()) {
+                homeDef += 30;
+            }
+
         }
         return homeDef;
     },
@@ -1160,8 +1163,10 @@ var Player = cc.Class.extend({
         }
         var electricFenceBuild = this.room.getBuild(19);
         //雷区抵御僵尸夜袭
-        if (electricFenceBuild && electricFenceBuild.isActive()) {  //电网抵御僵尸
-            homeDef += 30;
+        if (this.room.isBuildExist(19, 0)) {  //电网抵御僵尸
+            if (electricFenceBuild.isActive()) {
+                homeDef += 30;
+            }
         }
         if (this.isBombActive) {
             homeDef += 30;
@@ -1347,7 +1352,6 @@ var Player = cc.Class.extend({
                 //ATK <= DEF, no lost.
                 if (attackStrength > origDef){
                     //Victory happened due to electric fense. view electric fense success.
-                    
                     homeRes = this._getAttackResult(attackStrength, homeDef, this.storage);
                     homeRes.isFence = true;
                     homeRes.happened = true;
@@ -1498,7 +1502,7 @@ var Player = cc.Class.extend({
         this.changeVigour(this.vigourMax - this.vigour);
         this.changeInjury(0 - this.injury);
         this.changeInfect(0 - this.infect);
-        this.changeWater(0 - this.water);
+        this.changeWater(this.waterMax - this.water);
         this.changeVirus(0 - Math.ceil(this.virus / 2));
         this.changeAttr("hp", this.hpMax);
         this.isInSleep = false;

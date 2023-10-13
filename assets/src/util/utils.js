@@ -117,17 +117,11 @@ utils.objToStr = function (obj) {
     var str = "";
     for (var key in obj) {
         if (obj[key]) {
-            if (key == "gameMoney") {
-                str += "电力 x" + obj[key] + " ";
-            } else if (key == "money") {
-                str += "钻石 x" + obj[key] + " ";
-            } else {
-                var items = obj[key];
-                items.forEach(function (item) {
-                    var itemD = itemData[item.itemId];
-                    str += itemD.name + " x" + item.num + " ";
-                });
-            }
+            var items = obj[key];
+            items.forEach(function (item) {
+                var itemD = itemData[item.itemId];
+                str += itemD.name + " x" + item.num + " ";
+            });
         }
     }
     return str;

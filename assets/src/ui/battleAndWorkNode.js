@@ -198,19 +198,19 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             //if gun is equipped, and not flamethrower, and has 2 bullets in the inventory to select.
             var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
             bulletRichText.setName("bulletPriority");
-            bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 65);
+            bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 130);
             node.addChild(bulletRichText);
 
             var exchangeButton = uiUtil.createCommonBtnWhite(stringUtil.getString(1334), this, function () {
                 player.useGoodBullet = !player.useGoodBullet;
                 var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
                 bulletRichText.setName("bulletPriority");
-                bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 65);
+                bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 130);
                 node.removeChildByName("bulletPriority");
                 node.addChild(bulletRichText);
             });
             exchangeButton.setName("exchangebutton");
-            exchangeButton.setPosition(80, bulletRichText.getPositionY() - bulletRichText.getContentSize().height - 5);
+            exchangeButton.setPosition(80, bulletRichText.getPositionY() - bulletRichText.getContentSize().height + 10);
             node.addChild(exchangeButton);
         }
         if (cc.RTL) {
@@ -229,7 +229,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         if (!player.equip.haveWeapon()) {
             var label3 = new cc.LabelTTF(stringUtil.getString(1207), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(node.width, 0));
             label3.setAnchorPoint(0, 1);
-            label3.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 15);
+            label3.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 10);
             node.addChild(label3);
             label3.setColor(cc.color.RED);
         } else if (currentTime <= 43200) {
@@ -238,7 +238,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             currentTime = Number(2 * currentTime);
             var label3 = new cc.LabelTTF(stringUtil.getString(1325, currentTime), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
             label3.setAnchorPoint(0, 1);
-            label3.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 15);
+            label3.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 10);
             node.addChild(label3);
             label3.setColor(cc.color.RED);
         }
@@ -247,9 +247,9 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             var label4 = new cc.LabelTTF(stringUtil.getString(1206), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(node.width, 0));
             label4.setAnchorPoint(0, 1);
             if (label3) {
-                label4.setPosition(0, label3.getPositionY() - label3.getContentSize().height - 15);
+                label4.setPosition(0, label3.getPositionY() - label3.getContentSize().height - 10);
             } else {
-                label4.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 15);
+                label4.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 10);
             }
             node.addChild(label4);
             label4.setColor(cc.color.RED);

@@ -152,18 +152,21 @@ var NpcNode = BottomFrameNode.extend({
         var success = false;
         this.npc.storage.forEach(function(i, n) {
             var b = utils.getRandomInt(0, 100);
+            var am = utils.getRandomInt(1, n);
+            var am2 = utils.getRandomInt(0, n);
+            am = Math.max(am + am2, n);
             if (b <= baseLine) {
                 success = true;
                 if (itemConfig[i.id].weight == 0) {
-                    self.npc.storage.decreaseItem(i.id, n);
-                    player.bag.increaseItem(i.id, n, true);
+                    self.npc.storage.decreaseItem(i.id, am);
+                    player.bag.increaseItem(i.id, am, true);
                     arr.push({
                         itemId: i.id,
                         num: n
                     })
                 } else {
                     var amount = 0;
-                    for (var a = 0; a < n; a++) {
+                    for (var a = 0; a < am; a++) {
                         if (player.bag.validateItemWeight(i.id, 1)) {
                             self.npc.storage.decreaseItem(i.id, 1);
                             player.bag.increaseItem(i.id, 1, true);

@@ -70,7 +70,7 @@ var BuildAction = cc.Class.extend({
                             endCb();
                         }
                         self._sendUpdageSignal();
-                        cc.timer.removeTimerCallback(self.tcb);
+                        cc.timer.removeTimerCallback(this.tcb);
                     }
                 }
             },
@@ -137,9 +137,11 @@ var Formula = BuildAction.extend({
             }, true, this.pastTime);
         } else {
             this.addTimer(time, time, function () {
-                self.step++;
-                player.log.addMsg(1091, player.room.getBuildCurrentName(self.bid), itemName);
-                utils.emitter.emit("placed_success", self.bid);
+                if (self.step < self.maxStep) {
+                    self.step++;
+                    player.log.addMsg(1091, player.room.getBuildCurrentName(self.bid), itemName);
+                    utils.emitter.emit("placed_success", self.bid);
+                }
             }, true, this.pastTime);
         }
     },

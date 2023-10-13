@@ -1,7 +1,5 @@
 var PurchaseAndroid = {
 
-    PAY_TYPE_GOOGLE_PLAY: "googleplay",
-
     init: function (payType, obj) {
         this.payType = payType;
         jsb.reflection.callStaticMethod("net/dice7/pay/PayHelper", "init", "(Ljava/lang/String;)V", JSON.stringify(obj));
@@ -20,7 +18,7 @@ var PurchaseAndroid = {
 
     getPurchaseList: function (purchaseIdList, cb) {
         this.getPurchaseListCb = cb;
-        if (!this.payType && this.payType === this.PAY_TYPE_GOOGLE_PLAY) {
+        if (!this.payType && this.payType === "googleplay") {
             this.onPurchaseInfo(null)
         }
     },

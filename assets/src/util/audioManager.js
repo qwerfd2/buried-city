@@ -45,7 +45,8 @@ var audioManager = {
         SITE_1: "res/music/site_1.mp3",
         SITE_2: "res/music/site_2.mp3",
         SITE_3: "res/music/site_3.mp3",
-        SITE_SECRET: "res/music/secret_room.mp3"
+        SITE_SECRET: "res/music/secret_room.mp3",
+        ARITHSEQ: "res/music/echoes.ogg"
     },
     lastMusic: null,
     playingMusic: null,

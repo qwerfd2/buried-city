@@ -11,7 +11,8 @@ var HomeNode = BottomFrameNode.extend({
 
         player.goHome();
 
-        var homeBg = autoSpriteFrameController.getSpriteFromSpriteName("#home_bg.png");
+        //var homeBg = autoSpriteFrameController.getSpriteFromSpriteName("#home_bg.png");
+        var homeBg = new cc.Sprite("res/new/home_bg.png");
         homeBg.setAnchorPoint(0.5, 0);
         homeBg.setPosition(this.bgRect.width / 2, 0);
         this.bg.addChild(homeBg, 2);
@@ -23,7 +24,7 @@ var HomeNode = BottomFrameNode.extend({
             {bid: 4, pos: {x: 477, y: 562}},
             {bid: 5, pos: {x: 310, y: 330}},
             {bid: 6, pos: {x: 75, y: 390}},
-            {bid: 15, pos: {x: 250, y: 560}},
+            {bid: 15, pos: {x: 408, y: 677}},
             {bid: 7, pos: {x: 250, y: 630}},
             {bid: 8, pos: {x: 84, y: 780}},
             {bid: 9, pos: {x: 75, y: 590}},
@@ -37,7 +38,7 @@ var HomeNode = BottomFrameNode.extend({
             {bid: 3, pos: {x: 545, y: 268}},
             {bid: 12, pos: {x: 335, y: 125}},
             {bid: 20, pos: {x: 196, y: 780}},
-            {bid: 21, pos: {x: 515, y: 674}}
+            {bid: 21, pos: {x: 525, y: 674}}
         ];
         this.btnList = {};
 

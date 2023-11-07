@@ -585,14 +585,17 @@ var formulaConfig = {
             "num": 1
         }],
         "cost": [{
+            "itemId": 1304012,
+            "num": 1
+        }, {
             "itemId": 1101021,
-            "num": 3
+            "num": 2
         }, {
             "itemId": 1101031,
-            "num": 7
+            "num": 3
         }, {
             "itemId": 1101041,
-            "num": 4
+            "num": 2
         }],
         "makeTime": 30
     },

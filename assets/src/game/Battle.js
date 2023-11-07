@@ -162,7 +162,7 @@ var Battle = cc.Class.extend({
                 } else {
                     multiplier = 0;
                 }
-                if (gunItemId == "1301091") {
+                if (gunItemId == "1301091" || gunItemId == "1301071" || gunItemId == "1301082") {
                     multiplier = 1;
                 }
                 if (player.bag.testWeaponBroken(gunItemId, 0, multiplier)) {
@@ -170,7 +170,7 @@ var Battle = cc.Class.extend({
                 }
             }
             var weaponItemId = player.equip.getEquip(EquipmentPos.WEAPON);
-            if (weaponItemId && weaponItemId != Equipment.HAND && this.sumRes.weapon2 > 0 && player.bag.testWeaponBroken(weaponItemId, 0)) {
+            if (weaponItemId && weaponItemId != Equipment.HAND && this.sumRes.weapon2 > 0 && player.bag.testWeaponBroken(weaponItemId, 0, 1)) {
                 brokenWeapon.push(weaponItemId);
             }
             if (this.sumRes.totalHarm > 0) {

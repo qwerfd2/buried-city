@@ -101,14 +101,17 @@ var ImageButton = Button.extend({
 
 var TalentButton = Button.extend({
     ctor: function (a) {
+
         var icon = new cc.LabelTTF(String(a), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         if (IAPPackage.isAllIAPUnlocked() || IAPPackage.isAllItemUnlocked()) {
             icon.setColor(cc.color.GRAY);
         }
+        
         var bg = new cc.Sprite("#icon_iap_bg.png");
         bg.setScale(0.2);
         this._super(cc.size(35, 35));
-        icon.setPosition(this.width / 2, this.height / 2);
+        icon.setPosition(this.width / 2 - 3, this.height / 2 + 2);
+
         bg.setPosition(this.width / 2, this.height / 2);
         this.addChild(icon);
         this.addChild(bg);

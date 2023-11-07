@@ -1,4 +1,7 @@
 var string = {
+"8027": "Trilha sonora",
+"8028": "Versão modificada usada - Autor",
+"8029": "Obrigado por jogar.",
   "6672": "Alimentos Vencidos",
   "6674": "Acelerar (1 adubo)",
   "6675": "Você rebaixou a versão do jogo. O arquivo de salvamento pode estar corrompido. Por favor, comece um novo jogo ou reverta para a versão anterior.",

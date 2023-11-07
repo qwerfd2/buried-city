@@ -31,7 +31,7 @@ var DeathNode = BottomFrameNode.extend({
         btn1.setPosition(this.bgRect.width / 2, 100);
         this.bg.addChild(btn1);
         btn1.setName("btn_1");
-        var reliveItemNum = player.bag.getNumByItemId(RELIVE_ITEMID) + player.storage.getNumByItemId(RELIVE_ITEMID);
+        var reliveItemNum = player.bag.getNumByItemId(RELIVE_ITEMID) + player.storage.getNumByItemId(RELIVE_ITEMID) + player.safe.getNumByItemId(RELIVE_ITEMID);
         var label1 = new cc.LabelTTF(stringUtil.getString(1087, reliveItemNum), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
         label1.setAnchorPoint(0.5, 0);
         label1.x = btn1.x;
@@ -72,12 +72,16 @@ var DeathNode = BottomFrameNode.extend({
             this.goHome();
             return;
         }
+        if (this.validateSafe()) {
+            player.safe.decreaseItem(RELIVE_ITEMID, 1);
+            this.goHome();
+            return;
+        }
 
         var self = this;
         var purchaseId = 203;
         var payDialog = uiUtil.showPayDialog(purchaseId, function () {
             utils.pay(purchaseId, self);
-            player.log.addMsg("trigg")
             if (self.validateStorage()) {
                 player.storage.decreaseItem(RELIVE_ITEMID, 1);
                 self.goHome();
@@ -109,12 +113,15 @@ var DeathNode = BottomFrameNode.extend({
 
         game.relive();
         cc.director.runScene(new MainScene());
-        player.log.addMsg(1123, player.getItemNumInPlayer(RELIVE_ITEMID));
+        player.log.addMsg(1123, player.bag.getNumByItemId(RELIVE_ITEMID) + player.storage.getNumByItemId(RELIVE_ITEMID) + player.safe.getNumByItemId(RELIVE_ITEMID));
     },
     validateBag: function () {
         return player.bag.validateItem(RELIVE_ITEMID, 1);
     },
     validateStorage: function () {
         return player.storage.validateItem(RELIVE_ITEMID, 1);
+    },
+    validateSafe: function () {
+        return player.safe.validateItem(RELIVE_ITEMID, 1);
     }
 });

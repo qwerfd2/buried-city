@@ -4,7 +4,7 @@ var workSiteConfig = {
         {itemId: 1102063, num: 1}
     ],
     lastTime: 96 * 60,
-    brokenProbability: 0.02
+    brokenProbability: 0.03
 };
 var gasSiteConfig = {
     costTime: 90,
@@ -12,7 +12,7 @@ var gasSiteConfig = {
         {itemId: 1102073, num: 1}
     ],
     lastTime: 72 * 60,
-    brokenProbability: 0.02
+    brokenProbability: 0.03
 };
 
 var WorkSiteNode = BottomFrameNode.extend({

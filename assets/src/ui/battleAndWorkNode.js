@@ -596,7 +596,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
                     self.site.testSecretRoomsBegin();
                 }
 
-                player.bag.testWeaponBroken(itemId, 0);
+                player.bag.testWeaponBroken(itemId, 0, 1);
 
                 self.gotoWorkRoomStorage();
                 utils.emitter.emit("left_btn_enabled", true);

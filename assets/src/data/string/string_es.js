@@ -1,4 +1,7 @@
 var string = {
+"8027": "Banda sonora",
+"8028": "Versión modificada utilizada - Autor",
+"8029": "Gracias por jugar.",
 "6672": "Alimentos caducados",
 "6675": "Has retrocedido la versión del juego. El archivo de guardado podría estar dañado. Por favor, comienza una nueva partida o regresa a la versión anterior.",
 "6676": "Has actualizado el juego. El archivo de guardado podría no ser compatible. Si encuentras problemas, por favor, comienza una nueva partida.",

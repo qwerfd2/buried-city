@@ -1,4 +1,7 @@
 var string = {
+"8027": "Müzik",
+"8028": "Kullanılan Modifiye Versiyon - Yazar",
+"8029": "Oynadığınız için teşekkür ederiz.",
 "6672": "Süresi Geçmiş Yiyecekler",
   "6674": "Hızlandır (1 gübre)",
   "6675": "Oyun sürümünü geri aldınız. Kayıt dosyası bozuk olabilir. Lütfen yeni bir oyun başlatın veya önceki sürüme geri dönün.",

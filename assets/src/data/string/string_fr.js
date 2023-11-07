@@ -1,4 +1,7 @@
 var string = {
+"8027": "Bande originale",
+"8028": "Version modifiée utilisée - Auteur",
+"8029": "Merci d'avoir joué.",
   "6672": "Aliments périmés",
   "6674": "Accélérer (1 engrais)",
   "6675": "Vous avez rétrogradé la version du jeu. Le fichier de sauvegarde pourrait être corrompu. Veuillez commencer une nouvelle partie ou revenir à la version précédente.",

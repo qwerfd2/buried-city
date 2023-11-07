@@ -1,4 +1,7 @@
 var string = {
+"8027": "Nhạc nền",
+"8028": "Phiên bản đã chỉnh sửa - Tác giả",
+"8029": "Cảm ơn bạn đã chơi.",
   "6672": "Thực phẩm hết hạn",
   "6674": "Tăng tốc (1 phân bón)",
   "6675": "Bạn đã quay lại phiên bản trò chơi. Tệp lưu có thể bị hỏng. Vui lòng bắt đầu trò chơi mới hoặc quay lại phiên bản trước.",

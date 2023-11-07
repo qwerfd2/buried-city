@@ -394,7 +394,7 @@ var Player = cc.Class.extend({
             this.changeSpirit(day);
         }
         if (this.spirit < 5) {
-            var rand = utils.getRandomInt(0, this.spirit + 1);
+            var rand = utils.getRandomInt(0, this.spirit + 6);
             if (rand == 0) {
                 var str = stringUtil.getString(source) + " " + stringUtil.getString(8113) + " ";
                 if (source == 8111) {
@@ -578,7 +578,6 @@ var Player = cc.Class.extend({
         if (key === "injury") {
             this.updateHpMax();
         }
-
         if (key === "hp") {
             if (this.hp == 0 && this === player) {
                 this.die();
@@ -660,7 +659,7 @@ var Player = cc.Class.extend({
                 this.changeWater(diff);
                 //Converted time of immunity
                 var given = (18 - diff) / 6 * 3600;
-                var temp = Number(cc.timer.time) - 10800 + given;
+                var temp = Number(cc.timer.time) - 14400 + given;
                 if (temp > this.lastWaterTime) {
                     this.lastWaterTime = temp;
                 }
@@ -718,7 +717,7 @@ var Player = cc.Class.extend({
         //Deduct water. If buff is in effect, don't deduct.
         var waterUpper = 21600;
         if (season == 3) {
-            waterUpper = 10800;
+            waterUpper = 14400;
         }
         if (curTime - this.lastWaterTime >= waterUpper) {
             //Deduct water from either the bag or storage
@@ -1141,7 +1140,6 @@ var Player = cc.Class.extend({
             homeDef += 10;
         }
         var electricFenceBuild = this.room.getBuild(19);
-        //雷区抵御僵尸夜袭
         if (this.room.isBuildExist(19, 0)) {  //电网抵御僵尸
             if (electricFenceBuild.isActive()) {
                 homeDef += 30;
@@ -1162,12 +1160,12 @@ var Player = cc.Class.extend({
             homeDef += 10;
         }
         var electricFenceBuild = this.room.getBuild(19);
-        //雷区抵御僵尸夜袭
         if (this.room.isBuildExist(19, 0)) {  //电网抵御僵尸
             if (electricFenceBuild.isActive()) {
                 homeDef += 30;
             }
         }
+        //雷区抵御僵尸夜袭
         if (this.isBombActive) {
             homeDef += 30;
         }
@@ -1384,6 +1382,7 @@ var Player = cc.Class.extend({
         }
         var rand = Math.random();
         var probability = config.probability;
+
         if (IAPPackage.isStealthUnlocked()) {
             probability -= probability * 0.25;
         }
@@ -1481,13 +1480,7 @@ var Player = cc.Class.extend({
         });
         cc.timer.addTimerCallbackByMinute(this.buffManager);
     },
-    //背包+仓库的物品数量
-    getItemNumInPlayer: function (itemId) {
-        var num = 0;
-        num += this.bag.getNumByItemId(itemId);
-        num += this.storage.getNumByItemId(itemId);
-        return num;
-    },
+
     die: function () {
         this.buffManager.abortBuff();
 

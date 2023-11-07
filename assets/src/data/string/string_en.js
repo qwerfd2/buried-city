@@ -1,4 +1,7 @@
 var string = {
+"8027": "Soundtrack",
+"8028": "Modded versions used - Author",
+"8029": "Thank you for playing.",
 "6672": "Expired Food",
 "6673": "Yesterday, These food expired and is converted to fertilizer (%s outside, %s in home). Fridge can keep food fresh!",
 "6674": "Accelerate (1 fertilizer)",

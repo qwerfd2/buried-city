@@ -25,6 +25,7 @@ var audioManager = {
         HARVEST: "res/sound/harvest.mp3",
         TOOLBOX: "res/sound/toolbox.mp3",
         CLOSE_DOOR: "res/sound/close_door.mp3",
+        OPEN_DOOR: "res/sound/open_door.mp3",
         FOOT_STEP: "res/sound/foot_step.mp3",
         RADIO: "res/sound/radio.mp3",
         BUBBLES: "res/sound/bubbles.mp3",
@@ -46,7 +47,10 @@ var audioManager = {
         SITE_2: "res/music/site_2.mp3",
         SITE_3: "res/music/site_3.mp3",
         SITE_SECRET: "res/music/secret_room.mp3",
-        ARITHSEQ: "res/music/echoes.ogg"
+        ARITHSEQ: "res/music/echoes.mp3",
+        CREDITS: "res/music/credits.mp3",
+        RECALL: "res/music/recall.mp3",
+        ABYSS: "res/music/abyss.mp3"
     },
     lastMusic: null,
     playingMusic: null,

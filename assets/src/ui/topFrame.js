@@ -339,7 +339,7 @@ var TopFrameNode = cc.Node.extend({
         this.bgNode.addChild(bgColor, 0);
         var screenFix = Record.getScreenFix();
         if (screenFix == 1) {
-            this.logTablebg.setPosition(cc.winSize.width / 2, 91);
+            this.logTablebg.setPosition(cc.winSize.width / 2, 90);
             this.logTablebg.setScale(0.87);
         } else {
             this.logTablebg.setPosition(cc.winSize.width / 2, 18);        

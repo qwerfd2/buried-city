@@ -23,11 +23,7 @@ var StorageNode = BottomFrameNode.extend({
         });
         btnShop.setPosition(this.bgRect.width - 60, this.actionBarBaseHeight);
         this.bg.addChild(btnShop);
-        var btnShopHighlight = autoSpriteFrameController.getSpriteFromSpriteName('btn_shop_highlight.png');
-        btnShopHighlight.x = btnShop.width / 2;
-        btnShopHighlight.y = btnShop.height / 2;
-        btnShop.addChild(btnShopHighlight);
-        btnShopHighlight.runAction(cc.repeatForever((cc.sequence(cc.fadeOut(1.5), cc.fadeIn(1.5)))));
+
         if (IAPPackage.isAllIAPUnlocked()) {
             btnShop.setEnabled(true);
             btnShop.setVisible(true);

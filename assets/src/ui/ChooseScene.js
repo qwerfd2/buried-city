@@ -1,4 +1,3 @@
-
 var ChooseLayer = cc.Layer.extend({
     ctor: function (mode) {
         this.mode = mode;
@@ -150,6 +149,7 @@ var ChooseLayer = cc.Layer.extend({
 
     onEnter: function () {
         this._super();
+        audioManager.playMusic(audioManager.music.ABYSS, false);
     }
 });
 

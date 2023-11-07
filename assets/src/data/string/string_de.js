@@ -1,4 +1,7 @@
 var string = {
+"8027": "Soundtrack",
+"8028": "Verwendete modifizierte Version - Autor",
+"8029": "Vielen Dank fürs Spielen.",
 "6672": "Abgelaufene Lebensmittel",
   "6674": "Beschleunigen (1 Dünger)",
   "6675": "Sie haben die Spielversion zurückgesetzt. Die Speicherdatei könnte beschädigt sein. Bitte starten Sie ein neues Spiel oder kehren Sie zur vorherigen Version zurück.",

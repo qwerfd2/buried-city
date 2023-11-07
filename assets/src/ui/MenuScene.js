@@ -3,8 +3,7 @@ var Musics = [audioManager.music.BATTLE, audioManager.music.DEATH, audioManager.
 var MenuLayer = cc.Layer.extend({
     ctor: function (checkVersion) {
         this._super();
-        ClientData.CLIENT_VERSION = CommonUtil.getMetaData("versionName");
-        ClientData.MOD_VERSION = 20;
+        ClientData.MOD_VERSION = 22;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
@@ -132,7 +131,7 @@ var MenuLayer = cc.Layer.extend({
         bg.addChild(btn4);
         btn4.setName("btn_4");
         
-        audioManager.playMusic(Musics[curIndex], true);   
+        audioManager.playMusic(Musics[curIndex], true);
 
         var btn_quit = uiUtil.createSpriteBtn({normal: "btn_ad_back.png"}, this, function () {
             PurchaseAndroid.exitGame();
@@ -158,11 +157,9 @@ var MenuLayer = cc.Layer.extend({
         });
         btn_chgmusic.setPosition(bg.width - 106, bg.height / 2 - 236);
         bg.addChild(btn_chgmusic);
-        var btn6 = uiUtil.createBtn2(ClientData.CLIENT_VERSION + "-" + ClientData.MOD_VARIANT + "-" + ClientData.MOD_VERSION, this, function () {
-            if (ClientData.MOD_VARIANT == 1) {
-                var d = new AboutUUIDDialog();
-                d.show();
-            }
+        var btn6 = uiUtil.createBtn2(ClientData.MOD_VARIANT + "-" + ClientData.MOD_VERSION, this, function () {
+            var d = new AboutUUIDDialog();
+            d.show();
         });
         btn6.setPosition(bg.width / 2, 20);
         bg.addChild(btn6);

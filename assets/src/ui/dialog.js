@@ -1117,7 +1117,10 @@ var AboutUUIDDialog = DialogTiny.extend({
         config.action.btn_1.txt = stringUtil.getString(1030);
 
         this._super(config);
-        var str = "UUID: " +Record.getUUID() + "\nBuried City, Modded by ArithSeq";
+        var str = "UUID: " +Record.getUUID();
+        if (ClientData.MOD_VARIANT == 1) {
+            str += "\nBuried City, Modded by ArithSeq";
+        }
         var label1 = new cc.LabelTTF(str, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
         label1.x = this.contentNode.width / 2;
         label1.y = this.contentNode.height / 2;

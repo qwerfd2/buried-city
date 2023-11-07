@@ -31,10 +31,10 @@ var EndStoryLayer = cc.Layer.extend({
                             txt6.runAction(cc.fadeIn(1));
                             setTimeout(function () {
                                 bg.setEnabled(true);
-                            }, 1500);
-                        }, 1500);
-                    }, 1500);
-                }, 1500);
+                            }, 2500);
+                        }, 2500);
+                    }, 2500);
+                }, 2500);
             } else if (this.sequence == 2) {
                 txt4.runAction(cc.fadeOut(1));
                 txt5.runAction(cc.fadeOut(1));
@@ -46,8 +46,8 @@ var EndStoryLayer = cc.Layer.extend({
                         endButtonTwo.setEnabled(1);
                         endButtonOne.runAction(cc.fadeIn(1));
                         endButtonTwo.runAction(cc.fadeIn(1));
-                    }, 1500);
-                }, 1500);
+                    }, 2500);
+                }, 2500);
             } else if (this.sequence == 3) {
                 txt1.runAction(cc.fadeOut(1));
                 txt2.runAction(cc.fadeOut(1));
@@ -60,10 +60,10 @@ var EndStoryLayer = cc.Layer.extend({
                             txt6.runAction(cc.fadeIn(1));
                             setTimeout(function () {
                                 bg.setEnabled(true);
-                            }, 1500);
-                        }, 1500);
-                    }, 1500);
-                }, 1500);
+                            }, 2500);
+                        }, 2500);
+                    }, 2500);
+                }, 2500);
             } else if (this.sequence == 4) {
                 txt4.runAction(cc.fadeOut(1));
                 txt5.runAction(cc.fadeOut(1));
@@ -71,10 +71,12 @@ var EndStoryLayer = cc.Layer.extend({
                 setTimeout(function () {
                     txt7.runAction(cc.fadeIn(1));
                     setTimeout(function () {
-                        endButtonThree.setEnabled(1);
                         endButtonThree.runAction(cc.fadeIn(1));
-                    }, 1500);
-                }, 1500);
+                        setTimeout(function () {
+                            endButtonThree.setEnabled(1);
+                        }, 2500);
+                    }, 2500);
+                }, 2500);
             }
         });
         bg.setEnabled(false);
@@ -128,6 +130,42 @@ var EndStoryLayer = cc.Layer.extend({
         txt7.setColor(cc.color.WHITE);
         txtNode.addChild(txt7);
         
+        var endtxt1 = new cc.LabelTTF("Dice7 (Buried Town)\n果农C    Lancelot", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        endtxt1.setAnchorPoint(0, 1);
+        endtxt1.setPosition(0, txtNode.height);
+        endtxt1.setColor(cc.color.WHITE);
+        txtNode.addChild(endtxt1);
+        
+        var endtxt2 = new cc.LabelTTF(stringUtil.getString(8027) + "\n罗杨", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        endtxt2.setAnchorPoint(0, 1);
+        endtxt2.setPosition(0, endtxt1.y - endtxt1.height - 60);
+        endtxt2.setColor(cc.color.WHITE);
+        txtNode.addChild(endtxt2);
+
+        var endtxt3 = new cc.LabelTTF(stringUtil.getString(8028) + "\ntrue    Miao", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        endtxt3.setAnchorPoint(0, 1);
+        endtxt3.setPosition(0, endtxt2.y - endtxt2.height - 60);
+        endtxt3.setColor(cc.color.WHITE);
+        txtNode.addChild(endtxt3);
+        
+        var endtxt4 = new cc.LabelTTF("Buried City\nArithSeq", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        endtxt4.setAnchorPoint(0, 1);
+        endtxt4.setPosition(0, endtxt3.y - endtxt3.height - 60);
+        endtxt4.setColor(cc.color.WHITE);
+        txtNode.addChild(endtxt4);
+
+        var endtxt5 = new cc.LabelTTF("Recall - ARForest\nDrowned Night - Max Anson", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        endtxt5.setAnchorPoint(0, 1);
+        endtxt5.setPosition(0, endtxt4.y - endtxt4.height - 60);
+        endtxt5.setColor(cc.color.WHITE);
+        txtNode.addChild(endtxt5);
+        
+        var endtxt6 = new cc.LabelTTF(stringUtil.getString(8029), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        endtxt6.setAnchorPoint(0, 1);
+        endtxt6.setPosition(0, endtxt5.y - endtxt5.height - 60);
+        endtxt6.setColor(cc.color.WHITE);
+        txtNode.addChild(endtxt6);
+        
         var endButtonOne = uiUtil.createBigBtnWhite(stringUtil.getString(8100), this, function () {
             endButtonOne.setVisible(false); 
             endButtonTwo.setVisible(false);
@@ -149,10 +187,10 @@ var EndStoryLayer = cc.Layer.extend({
                         txt3.runAction(cc.fadeIn(1));
                         setTimeout(function () {
                             bg.setEnabled(true);
-                        }, 1500);
-                    }, 1500);
-                }, 1500);
-            }, 1500);
+                        }, 2500);
+                    }, 2500);
+                }, 2500);
+            }, 2500);
         });
         endButtonOne.setAnchorPoint(0.5, 0.5);
         endButtonOne.setPosition(cc.winSize.width / 2 - 140, 150);
@@ -161,7 +199,7 @@ var EndStoryLayer = cc.Layer.extend({
         var endButtonTwo = uiUtil.createBigBtnWhite(stringUtil.getString(8101), this, function () {
             endButtonOne.setVisible(false); 
             endButtonTwo.setVisible(false);
-            endButtonOne.setEnabled(false); 
+            endButtonOne.setEnabled(false);
             endButtonTwo.setEnabled(false);
             txt7.runAction(cc.fadeOut(1));
             setTimeout(function () {
@@ -179,47 +217,86 @@ var EndStoryLayer = cc.Layer.extend({
                         txt3.runAction(cc.fadeIn(1));
                         setTimeout(function () {
                             bg.setEnabled(true);
-                        }, 1500);
-                    }, 1500);
-                }, 1500);
-            }, 1500);
+                        }, 2500);
+                    }, 2500);
+                }, 2500);
+            }, 2500);
         });
         endButtonTwo.setAnchorPoint(0.5, 0.5);
         endButtonTwo.setPosition(cc.winSize.width / 2 + 140, 150);
         this.addChild(endButtonTwo);
         
         var endButtonThree = uiUtil.createBigBtnWhite(stringUtil.getString(1030), this, function () {
-            cc.director.runScene(new MenuScene());
+            if (this.sequence == 4) {
+                audioManager.stopMusic(audioManager.music.RECALL);
+                txt7.setOpacity(0);
+                endButtonThree.setEnabled(0);
+                endButtonThree.setOpacity(0);
+                this.sequence++;
+                audioManager.playMusic(audioManager.music.CREDITS, false);
+                setTimeout(function () {
+                    endtxt1.runAction(cc.fadeIn(1));
+                    setTimeout(function () {
+                        endtxt2.runAction(cc.fadeIn(1));
+                        setTimeout(function () {
+                            endtxt3.runAction(cc.fadeIn(1));
+                            setTimeout(function () {
+                                endtxt4.runAction(cc.fadeIn(1));
+                                setTimeout(function () {
+                                    endtxt5.runAction(cc.fadeIn(1));
+                                    setTimeout(function () {
+                                        endtxt6.runAction(cc.fadeIn(1));
+                                        setTimeout(function () {
+                                            endButtonThree.setEnabled(1);
+                                            endButtonThree.runAction(cc.fadeIn(1));
+                                        }, 3000);
+                                    }, 3000);
+                                }, 3000);
+                            }, 3000);
+                        }, 3000);
+                    }, 3000);
+                }, 4000);
+            } else {
+                cc.director.runScene(new MenuScene());
+            }
         });
         endButtonThree.setAnchorPoint(0.5, 0.5);
         endButtonThree.setPosition(cc.winSize.width / 2, 150);
         this.addChild(endButtonThree);
         
         txt1.setOpacity(0);
-        txt1.runAction(cc.fadeIn(1));
         txt2.setOpacity(0);
         txt3.setOpacity(0);
         txt4.setOpacity(0);
         txt5.setOpacity(0);
         txt6.setOpacity(0);
         txt7.setOpacity(0);
+        endtxt1.setOpacity(0);
+        endtxt2.setOpacity(0);
+        endtxt3.setOpacity(0);
+        endtxt4.setOpacity(0);
+        endtxt5.setOpacity(0);
+        endtxt6.setOpacity(0);
         endButtonOne.setOpacity(0);
         endButtonTwo.setOpacity(0);
         endButtonThree.setOpacity(0);
         endButtonOne.setEnabled(0);
         endButtonTwo.setEnabled(0);
         endButtonThree.setEnabled(0);
+        audioManager.playEffect(audioManager.sound.OPEN_DOOR);
         setTimeout(function () {
-        txt2.runAction(cc.fadeIn(1));
-           setTimeout(function () {
-            txt3.runAction(cc.fadeIn(1));
-                txt3.runAction(cc.fadeIn(1));
+            txt1.runAction(cc.fadeIn(1));
+            audioManager.playMusic(audioManager.music.RECALL, false);
+            setTimeout(function () {
+                txt2.runAction(cc.fadeIn(1));
                 setTimeout(function () {
-                    bg.setEnabled(true);
-                }, 1500);
-            }, 1500);
-        }, 1500);
-        
+                    txt3.runAction(cc.fadeIn(1));
+                    setTimeout(function () {
+                        bg.setEnabled(true);
+                    }, 2500);
+                }, 2500);
+            }, 2500);
+        }, 2000);
         return true;
     }
 });

@@ -1,4 +1,40 @@
 var string = {
+"7000": "Check %s's condition",
+"7001": "Bring %s outdoor",
+"7002": "Let %s guard the home",
+"7003": "Dog's name",
+"7004":"%s feels very good and is ready for combat!",
+"7005":"%s feels hungry, he needs meat to fight.",
+"7006":"%s is feeling down and needs encouragement to fight.",
+"7007":"%s is hurt and needs treatment to heal.",
+"7011":"At home, click the attribute buttons to check status and use item for %s. Options outside is limited, as you cannot view detailed stats, play with %s, and name him.",
+"7012":"You healed %s with bandage",
+"7013":"%s happily chews the bone",
+"7014":"You played with %s, he seems happy",
+"7015":"%s attacked a zombie, the %s zombie has suffered %s damage.",
+"7016":"Zombies are attracted by %s and stop attacking you.",
+"7017":"%s found these on the zombie, stored in depository for now:",
+"7018":"Dog's goft",
+"17": {
+    "title": "Dog's injury",
+    "des": "Dog can get hurt from combat, and need timely treatment."
+},
+"18": {
+    "title": "Dog's hunger",
+    "des": "Dog needs meat. One meat is good for 12 hours, you can feed up to 4."
+},
+"19": {
+    "title": "Dog's mood",
+    "des": "Harsh condtions makes dog depressed too. Play with him at home every day, or use a dog bone."
+},
+"1106014": {
+    "title": "Dog bone",
+    "des": "Home-made dog bone can cheer up your dog, even in such harsh environment."
+},
+"6677": "You temporarily fixed the generator.",
+"6678": "You temporarily fixed the gas pump.",
+"6679": "The generator has malfunctioned.",
+"6680": "The gas pump has malfunctioned.",
 "8027": "Soundtrack",
 "8028": "Modded versions used - Author",
 "8029": "Thank you for playing.",
@@ -256,9 +292,6 @@ var string = {
     "1017": "With coffee and music, you feel like you've gone back to happier times.",
     "1018": "Sleep",
     "1019": "Falling asleep, your body and energy recover a little.",
-    "1020": "Feed",
-    "1022": "Dog is hungry and wants meat. 1 meat can sustain for 12 hours.",
-    "1021": "The dog is guarding the house. There are %s meat left for %s hours.",
     "1023": "Insufficient meat",
     "1024": "None",
     "1025": "Weight:",
@@ -316,7 +349,6 @@ var string = {
     "1077": "A wave of zombies is attacking, there are vicious zombies all over town. A few zombies have broken through your defense. They have entered your house and wreaking a havoc.",
     "1078": "A wave of zombies is attacking, there are vicious zombies all over town. Thanks to your sturdy defenses, your shelter was able to weather the attack without any losses.",
     "1079": "You have lost:",
-    "1080": "Zombie encounter!",
     "1081": "Escape",
     "1082": "You have escaped from the zombies.",
     "1083": "Dying",

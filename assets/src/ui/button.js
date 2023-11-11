@@ -118,6 +118,45 @@ var TalentButton = Button.extend({
     }
 });
 
+var DogButton = Button.extend({
+    ctor: function (a) {
+        var str;
+        if (player.dogState && player.room.getBuildLevel(12) >= 0) {
+            if (player.isDogActive()) {
+                str = "#icon_item_1106013.png";
+            } else {
+                str = "#dog_unable.png";
+            }
+            var bg = new cc.Sprite(str);
+            bg.setName("dogBg");
+            bg.setScale(0.4);
+            this._super(cc.size(35, 35));
+
+            bg.setPosition(this.width / 2, this.height / 2);
+            this.addChild(bg);
+        }
+    },
+    updateView: function () {
+        this.removeChildByName("dogBg");
+        var str;
+        if (player.dogState && player.room.getBuildLevel(12) >= 0) {
+            if (player.isDogActive()) {
+                //white icon
+                str = "#icon_item_1106013.png";
+            } else {
+                //gray icon
+                str = "#dog_unable.png";
+            }
+            var bg = new cc.Sprite(str);
+            bg.setName("dogBg");
+            bg.setScale(0.4);
+
+            bg.setPosition(this.width / 2, this.height / 2);
+            this.addChild(bg);
+        }
+    }
+});
+
 var ButtonInScrollView = Button.extend({
     ctor: function (size) {
         this._super(size);

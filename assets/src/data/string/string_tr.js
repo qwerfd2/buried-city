@@ -1,4 +1,40 @@
 var string = {
+    "7000": "%s'ın durumunu kontrol et",
+    "7001": "%s'ı dışarı çıkar",
+    "7002": "%s'ı evi korumak için bırak",
+    "7003": "Köpeğin adı",
+    "7004": "%s çok iyi hissediyor ve savaşmaya hazır!",
+    "7005": "%s aç hissediyor, savaşmak için ete ihtiyacı var.",
+    "7006": "%s moral bulmuyor ve savaşması için teşvik edilmeye ihtiyaç duyuyor.",
+    "7007": "%s yaralı ve iyileşmesi için tedaviye ihtiyaç duyuyor.",
+    "7011": "Evde, %s için durumu kontrol etmek ve öğeleri kullanmak için özellik düğmelerine tıklayın. Dışarıdaki seçenekler sınırlıdır, çünkü detaylı istatistikleri görüntüleyemez, %s ile oynayamaz ve ona isim veremezsiniz.",
+    "7012": "%s'ı bandaj ile iyileştirdiniz",
+    "7013": "%s kemikle mutlu bir şekilde çiğniyor",
+    "7014": "%s ile oynadınız, mutlu görünüyor",
+    "7015": "%s bir zombiye saldırdı, zombi %s hasar aldı.",
+    "7016": "Zombiler %s tarafından çekiliyor ve sizi saldırmayı bırakıyor.",
+    "7017": "%s bu zombide bunları buldu, şu anda depoda saklanıyor:",
+    "7018": "Köpeğin hediyesi",
+    "17": {
+      "title": "Köpeğin yaralanması",
+      "des": "Köpek savaştan zarar görebilir ve zamanında tedaviye ihtiyaç duyar."
+    },
+    "18": {
+      "title": "Köpeğin açlığı",
+      "des": "Köpek ete ihtiyaç duyar. Bir et 12 saat için iyidir, en fazla 4 adet besleyebilirsiniz."
+    },
+    "19": {
+      "title": "Köpeğin ruh hali",
+      "des": "Zorlu koşullar köpeği de bunalıma sokar. Onunla her gün evde oynayın veya bir köpek kemiği kullanın."
+    },
+    "1106014": {
+      "title": "Köpek kemiği",
+      "des": "Ev yapımı köpek kemiği, köpeğinizi bu kadar zorlu bir ortamda bile neşelendirebilir."
+    },      
+"6677": "Jeneratörü geçici olarak tamir ettiniz.",
+"6678": "Yakıt pompasını geçici olarak tamir ettiniz.",
+"6679": "Jeneratör arızalandı.",
+"6680": "Yakıt pompası arızalandı.",
 "8027": "Müzik",
 "8028": "Kullanılan Modifiye Versiyon - Yazar",
 "8029": "Oynadığınız için teşekkür ederiz.",
@@ -258,9 +294,6 @@ var string = {
     "1017": "Kahve ve müzikle tekrar dün gibi.",
     "1018": "Uyu",
     "1019": "Uyuyorsun, vücudun iyileşiyor.",
-    "1020": "Besle",
-    "1022": "Köpek aç ve et istiyor. 1 parça et, onu 12 saat boyunca doyurabilir.",
-    "1021": "Köpek evi koruyor. %s parça et %s saat için kaldı.",
     "1024": "Numara",
     "1025": "Ağırlık:",
     "1026": "Stokta:",
@@ -317,7 +350,6 @@ var string = {
     "1077": "Zombi dalga salgını, kasabanın heryeri sinirli zombilerle dolu. Birkaç zombi savunmayı aştı, sebepsizce evi parçaladı.",
     "1078": "Zombi dalga salgını, kasabanın heryeri sinirli zombilerle dolu.Dayanıklı savunmayla kabinin dalgayı atlattı. Herhangi bir kayıp yok",
     "1079": "Hasarın:",
-    "1080": "Zombiyle karşılaştın!",
     "1081": "Gizlen",
     "1082": "Başarıyla zombinin kuşatmasından kaçtın.",
     "1083": "Ölüyor",

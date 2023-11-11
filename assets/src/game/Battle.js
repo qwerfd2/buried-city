@@ -58,6 +58,7 @@ var Battle = cc.Class.extend({
         this.player = new BattlePlayer(this, playerObj);
 
         this.isMonsterStop = false;
+        this.isMonsterStopDog = false;
 
         this.sumRes = {
             id: this.battleInfo.id,
@@ -94,7 +95,7 @@ var Battle = cc.Class.extend({
         }
     },
     updateMonster: function (dt) {
-        if (!this.isMonsterStop) {
+        if (!this.isMonsterStop && !this.isMonsterStopDog) {
             this.monsters.forEach(function (mon) {
                 mon.move();
             });
@@ -187,6 +188,30 @@ var Battle = cc.Class.extend({
         }
         cc.timer.resume();
         audioManager.resumeMusic();
+        var rand = Math.random();
+        if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0 && player.nowSiteId != null && player.nowSiteId != 0 && rand > 0.7) {
+            //generate loot dialog for dog bonus
+            var config = utils.clone(stringUtil.getString("statusDialog"));
+            config.title.icon = "#icon_item_1106013.png";
+            config.title.title = stringUtil.getString(7018);
+            config.title.txt_1 = "";
+            config.content.des = stringUtil.getString(7017, player.getDogName());
+            var dialog = new DialogSmall(config);
+            dialog.autoDismiss = true;
+            var adc = utils.clone(adConfig);
+            var itemIds = utils.getFixedValueItemIds(adc.reward.produceValue, adc.reward.produceList);
+            var items = utils.convertItemIds2Item(itemIds);
+            var itemTableView = uiUtil.createItemListSlidersViewOnly(items, false);
+            itemTableView.setPosition(20, 50);
+            dialog.contentNode.addChild(itemTableView);
+            dialog.show();
+            var self = this;
+            items.forEach(function (item) {
+                player.map.getSite(player.nowSiteId).storage.increaseItem(item.itemId, item.num, false);
+            });
+            player.map.getSite(player.nowSiteId).haveNewItems = true;
+            Record.saveAll();
+        }
     },
 
     getLastLine: function () {
@@ -303,6 +328,9 @@ var Monster = cc.Class.extend({
             harm = obj.attr.atk;
         } else if (obj instanceof Flamethrower) {
             harm = providedHarm;
+        } else if (obj == "Dog") {
+            harm = 10;
+            this.battle.processLog(stringUtil.getString(7015, player.getDogName(), stringUtil.getString("monsterType_" + this.attr.prefixType), harm), cc.color.GREEN);
         }
 
         this.attr.hp -= harm;
@@ -348,6 +376,7 @@ var BattlePlayer = cc.Class.extend({
         this.maxHp = this.hp;
         this.injury = playerObj.injury;
         this.def = playerObj.def;
+        this.dogState = 0;
 
         this.bulletNum = playerObj.bulletNum;
         this.homemadeNum = playerObj.homemadeNum;
@@ -360,7 +389,42 @@ var BattlePlayer = cc.Class.extend({
     action: function (dt) {
         this.useWeapon1();
         this.useWeapon2();
+        if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0) {
+            this.dogState += 1;
+            this.useDog();
+        }
         this.useEquip();
+    },
+    useDog: function () {
+        if (this.dogState < 12) {
+            return;
+        } if (this.dogState > 12) {
+            this.dogState -= 12;
+        }
+        var rand = Math.random();
+        if (this.battle.isMonsterStopDog) {
+            this.battle.isMonsterStopDog = false;
+        }
+        if (rand < 0.3) {
+            //dog attack enemy
+            player.log.addMsg("1 happened");
+            var monster = this.battle.targetMon;
+            monster.underAtk("Dog");
+            audioManager.playEffect(audioManager.sound.SHORT_BARK);
+            if (rand < 0.1) {
+                //dog injury
+                player.changeAttr("dogInjury", 1);
+            }
+        } else if (rand > 0.7) {
+            //dog kite enemy
+            player.log.addMsg("2 happened");
+            this.battle.isMonsterStopDog = true;
+            this.battle.processLog(stringUtil.getString(7016, player.getDogName()), cc.color.GREEN);
+            if (rand > 0.9) {
+                //dog loses mood
+                player.changeAttr("dogMood", -1);
+            }
+        }
     },
     underAtk: function (monster) {
         var harm = monster.attr.attack - this.def;

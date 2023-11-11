@@ -15,7 +15,7 @@
                 <key>spriteSourceSize</key>
                 <string>{50,50}</string>
                 <key>textureRect</key>
-                <string>{{69,45},{50,50}}</string>
+                <string>{{205,447},{50,50}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -30,7 +30,172 @@
                 <key>spriteSourceSize</key>
                 <string>{90,35}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{90,35}}</string>
+                <string>{{93,1},{90,35}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>build_action_12_0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{88,57}</string>
+                <key>spriteSourceSize</key>
+                <string>{88,57}</string>
+                <key>textureRect</key>
+                <string>{{93,38},{88,57}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>dog_unable.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{64,64}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{139,434},{64,64}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_dogFood_0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,-1}</string>
+                <key>spriteSize</key>
+                <string>{68,68}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{185,1},{68,68}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_dogFood_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,-1}</string>
+                <key>spriteSize</key>
+                <string>{68,68}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{183,71},{68,68}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_dogFood_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{84,84}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{1,73},{84,84}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_dogInjury_0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{66,68}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{71,339},{66,68}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>icon_dogInjury_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{66,68}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{1,383},{66,68}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>icon_dogInjury_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{84,84}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{87,97},{84,84}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_dogMood_0.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{68,66}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{1,315},{68,66}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_dogMood_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{68,66}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{141,309},{68,66}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_dogMood_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{84,84}</string>
+                <key>spriteSourceSize</key>
+                <string>{84,84}</string>
+                <key>textureRect</key>
+                <string>{{1,159},{84,84}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -45,7 +210,7 @@
                 <key>spriteSourceSize</key>
                 <string>{68,59}</string>
                 <key>textureRect</key>
-                <string>{{189,49},{66,55}}</string>
+                <string>{{141,377},{66,55}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -60,7 +225,22 @@
                 <key>spriteSourceSize</key>
                 <string>{68,68}</string>
                 <key>textureRect</key>
-                <string>{{1,97},{68,68}}</string>
+                <string>{{1,245},{68,68}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>icon_item_1106014.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{64,64}</string>
+                <key>spriteSourceSize</key>
+                <string>{64,64}</string>
+                <key>textureRect</key>
+                <string>{{69,461},{64,64}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -75,9 +255,9 @@
                 <key>spriteSourceSize</key>
                 <string>{68,64}</string>
                 <key>textureRect</key>
-                <string>{{93,1},{68,42}}</string>
+                <string>{{211,309},{68,42}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>icon_item_1305011.png</key>
             <dict>
@@ -90,7 +270,7 @@
                 <key>spriteSourceSize</key>
                 <string>{66,52}</string>
                 <key>textureRect</key>
-                <string>{{121,49},{66,52}}</string>
+                <string>{{71,407},{66,52}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -105,7 +285,7 @@
                 <key>spriteSourceSize</key>
                 <string>{68,68}</string>
                 <key>textureRect</key>
-                <string>{{71,103},{68,68}}</string>
+                <string>{{71,269},{68,68}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -120,7 +300,7 @@
                 <key>spriteSourceSize</key>
                 <string>{84,84}</string>
                 <key>textureRect</key>
-                <string>{{169,178},{84,84}}</string>
+                <string>{{87,183},{84,84}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -135,9 +315,9 @@
                 <key>spriteSourceSize</key>
                 <string>{46,66}</string>
                 <key>textureRect</key>
-                <string>{{163,1},{46,66}}</string>
+                <string>{{209,379},{46,66}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>icon_water_1.png</key>
             <dict>
@@ -150,7 +330,7 @@
                 <key>spriteSourceSize</key>
                 <string>{46,66}</string>
                 <key>textureRect</key>
-                <string>{{1,38},{46,66}}</string>
+                <string>{{1,451},{46,66}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -165,7 +345,7 @@
                 <key>spriteSourceSize</key>
                 <string>{70,90}</string>
                 <key>textureRect</key>
-                <string>{{141,106},{70,90}}</string>
+                <string>{{1,1},{70,90}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -180,7 +360,7 @@
                 <key>spriteSourceSize</key>
                 <string>{82,82}</string>
                 <key>textureRect</key>
-                <string>{{1,173},{82,82}}</string>
+                <string>{{173,141},{82,82}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -195,7 +375,7 @@
                 <key>spriteSourceSize</key>
                 <string>{82,82}</string>
                 <key>textureRect</key>
-                <string>{{85,178},{82,82}}</string>
+                <string>{{173,225},{82,82}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -211,9 +391,9 @@
             <key>realTextureFileName</key>
             <string>new_temp.png</string>
             <key>size</key>
-            <string>{256,263}</string>
+            <string>{256,526}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d65814f96598cb6856333442dc3ce9b5:97ca7af2b616be7145eb5cf70bc5d3a0:7949fdcbefe21226f7379e19e9bd5ccd$</string>
+            <string>$TexturePacker:SmartUpdate:7f410060e39183e56dc992a9d7c20f1d:1d353153e1aae37042b7514f9bda39e4:7949fdcbefe21226f7379e19e9bd5ccd$</string>
             <key>textureFileName</key>
             <string>new_temp.png</string>
         </dict>

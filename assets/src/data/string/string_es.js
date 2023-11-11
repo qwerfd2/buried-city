@@ -1,4 +1,41 @@
 var string = {
+    "7000": "Verificar la condición de %s",
+    "7001": "Llevar a %s afuera",
+    "7002": "Dejar que %s cuide la casa",
+    "7003": "Nombre del perro",
+    "7004": "%s se siente muy bien y está listo para el combate.",
+    "7005": "%s tiene hambre, necesita carne para luchar.",
+    "7006": "%s se siente deprimido y necesita ánimos para luchar.",
+    "7007": "%s está herido y necesita tratamiento para curarse.",
+    "7011": "En casa, haga clic en los botones de atributos para verificar el estado y usar objetos para %s. Las opciones fuera de casa son limitadas, ya que no puede ver estadísticas detalladas, jugar con %s y ponerle un nombre.",
+    "7012": "Has curado a %s con una venda.",
+    "7013": "%s mastica felizmente el hueso.",
+    "7014": "Jugaste con %s, parece feliz.",
+    "7015": "%s atacó a un zombie, el zombie %s sufrió %s de daño.",
+    "7016": "Los zombies son atraídos por %s y dejan de atacarte.",
+    "7017": "%s encontró esto en el zombie, almacenado en el depósito por ahora:",
+    "7018": "Regalo del perro",
+    "17": {
+      "title": "Lesión del perro",
+      "des": "El perro puede resultar herido en combate y necesita tratamiento oportuno."
+    },
+    "18": {
+      "title": "Hambre del perro",
+      "des": "El perro necesita carne. Una porción es buena para 12 horas, puedes alimentarlo hasta 4 veces."
+    },
+    "19": {
+      "title": "Estado de ánimo del perro",
+      "des": "Las condiciones difíciles también deprimen al perro. Juega con él en casa todos los días o usa un hueso de perro."
+    },
+    "1106014": {
+      "title": "Hueso de perro",
+      "des": "Un hueso de perro casero puede animar a tu perro, incluso en un entorno tan difícil."
+    },
+      
+"6677": "Has reparado temporalmente el generador.",
+"6678": "Has reparado temporalmente la bomba de gasolina.",
+"6679": "El generador ha fallado.",
+"6680": "La bomba de gasolina ha fallado.",
 "8027": "Banda sonora",
 "8028": "Versión modificada utilizada - Autor",
 "8029": "Gracias por jugar.",
@@ -258,10 +295,6 @@ var string = {
     "1017": "Con el café y la música, es como la época pasada.",
     "1018": "Dormir",
     "1019": "Quedarse dormido, está recuperando el cuerpo y energía.",
-    "1020": "Alimentar",
-    "1022": "El perro tiene hambre y quiere carne. 1 trozo de carne puede mantenerlo durante 12 horas.",
-    "1021": "El perro está guardando la casa. Quedan %s trozo(s) de carne para %s horas.",
-
     "1024": "Ninguno",
     "1025": "Peso:",
     "1026": "Resto:",
@@ -318,7 +351,6 @@ var string = {
     "1077": "Brote del zombies, la ciudad está llena de zombies. Unos zombies rompieron la defensa y han destruido la casa.",
     "1078": "Brote del zombies, la ciudad está llena de zombies.  Con la sólida defensa, tu casa sobrevivió en el impacto sin ninguna pérdida.",
     "1079": "Sus pérdidas:",
-    "1080": "Encuentro de zombies",
     "1081": "Esconder",
     "1082": "Has escapado con éxito del asedio de zombies.",
     "1083": "Muriendo",

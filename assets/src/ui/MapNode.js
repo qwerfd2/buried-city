@@ -1,3 +1,4 @@
+var MAP_IS_MOVING = false;
 var MapNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -297,6 +298,7 @@ var Actor = cc.Node.extend({
         this.MAX_VELOCITY_ENHANCE_MOTO = this.MAX_VELOCITY * 1.5;
         this.isUsingMoto = false;
         this.isMoving = false;
+        MAP_IS_MOVING = false;
         this.targetPos = null;
         this.sumDistance = 0;
         this.paused = false;
@@ -397,6 +399,7 @@ var Actor = cc.Node.extend({
                     }
                 }
                 this.isMoving = false;
+                MAP_IS_MOVING = false;
                 this.afterMove();         
             } else {
                 var distance = cc.pDistance(this.lastCheckPos, this.getPosition());
@@ -430,9 +433,11 @@ var Actor = cc.Node.extend({
     },
     beforeMove: function () {
         this.isMoving = true;
+        MAP_IS_MOVING = true;
     },
     afterMove: function () {
         this.isMoving = false;
+        MAP_IS_MOVING = false;
         if (this.cb) {
             this.cb();
         }

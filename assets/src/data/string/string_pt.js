@@ -1,4 +1,40 @@
 var string = {
+    "7000": "Verificar a condição de %s",
+    "7001": "Levar %s para fora",
+    "7002": "Deixar %s guardar a casa",
+    "7003": "Nome do cachorro",
+    "7004": "%s se sente muito bem e está pronto para o combate!",
+    "7005": "%s está com fome, ele precisa de carne para lutar.",
+    "7006": "%s está se sentindo para baixo e precisa de encorajamento para lutar.",
+    "7007": "%s está machucado e precisa de tratamento para se curar.",
+    "7011": "Em casa, clique nos botões de atributo para verificar o status e usar itens para %s. As opções fora de casa são limitadas, pois você não pode ver estatísticas detalhadas, brincar com %s e dar a ele um nome.",
+    "7012": "Você curou %s com bandagem.",
+    "7013": "%s mastiga feliz o osso.",
+    "7014": "Você brincou com %s, ele parece feliz.",
+    "7015": "%s atacou um zumbi, o zumbi %s sofreu %s de dano.",
+    "7016": "Os zumbis são atraídos por %s e param de te atacar.",
+    "7017": "%s encontrou isso no zumbi, armazenado no depósito por enquanto:",
+    "7018": "Presente do cachorro",
+    "17": {
+      "title": "Lesão do cachorro",
+      "des": "O cachorro pode se machucar em combate e precisa de tratamento oportuno."
+    },
+    "18": {
+      "title": "Fome do cachorro",
+      "des": "O cachorro precisa de carne. Uma porção é boa por 12 horas, você pode alimentar até 4 vezes."
+    },
+    "19": {
+      "title": "Humor do cachorro",
+      "des": "Condições difíceis também deixam o cachorro deprimido. Brinque com ele em casa todos os dias ou use um osso de cachorro."
+    },
+    "1106014": {
+      "title": "Osso de cachorro",
+      "des": "Um osso de cachorro caseiro pode animar o seu cachorro, mesmo em um ambiente tão difícil."
+    },      
+"6677": "Você consertou temporariamente o gerador.",
+"6678": "Você consertou temporariamente a bomba de gasolina.",
+"6679": "O gerador apresentou uma avaria.",
+"6680": "A bomba de gasolina apresentou uma avaria.",
 "8027": "Trilha sonora",
 "8028": "Versão modificada usada - Autor",
 "8029": "Obrigado por jogar.",
@@ -257,10 +293,6 @@ var string = {
     "1017": "Com café e música, você se lembra dos dias passados.",
     "1018": "Dormir",
     "1019": "Ao dormir, sua energia será recuperada.",
-    "1020": "Alimentar",
-    "1022": "O cachorro está com fome e quer carne. 1 pedaço de carne pode sustentá-lo por 12 horas.",
-    "1021": "O cachorro está guardando a casa. Restam %s pedaço(s) de carne por mais %s horas.",
-
     "1024": "Vazio",
     "1025": "Peso:",
     "1026": "Abono:",
@@ -317,7 +349,6 @@ var string = {
     "1077": "Os zumbis estão tomando conta da cidade. Alguns zumbis passaram pela defesa e estão destruindo a casa.",
     "1078": "Os zumbis estão tomando conta da cidade. Devido a uma boa defesa, seu quarto não foi destruído.",
     "1079": "Seus danos:",
-    "1080": "Se deparou com zumbis!",
     "1081": "Esconder",
     "1082": "Você escapou com sucesso da vista dos zumbis!",
     "1083": "Morrendo",

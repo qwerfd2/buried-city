@@ -1,4 +1,40 @@
 var string = {
+    "7000": "Überprüfe den Zustand von %s",
+    "7001": "Bring %s nach draußen",
+    "7002": "Lass %s das Zuhause bewachen",
+    "7003": "Name des Hundes",
+    "7004": "%s fühlt sich sehr gut und ist bereit für den Kampf!",
+    "7005": "%s hat Hunger, er braucht Fleisch, um zu kämpfen.",
+    "7006": "%s fühlt sich niedergeschlagen und braucht Ermutigung zum Kampf.",
+    "7007": "%s ist verletzt und braucht Behandlung, um zu heilen.",
+    "7011": "Zu Hause klicken Sie auf die Attribut-Buttons, um den Status zu überprüfen und Gegenstände für %s zu verwenden. Die Optionen draußen sind begrenzt, da Sie keine detaillierten Statistiken anzeigen, mit %s spielen und ihn benennen können.",
+    "7012": "Sie haben %s mit einem Verband geheilt",
+    "7013": "%s kaut fröhlich am Knochen",
+    "7014": "Sie haben mit %s gespielt, er scheint glücklich",
+    "7015": "%s hat einen Zombie angegriffen, der Zombie hat %s Schaden erlitten.",
+    "7016": "Zombies werden von %s angezogen und hören auf, dich anzugreifen.",
+    "7017": "%s hat dies auf dem Zombie gefunden, vorerst im Depot gelagert:",
+    "7018": "Hundegeschenk",
+    "17": {
+      "title": "Verletzung des Hundes",
+      "des": "Der Hund kann im Kampf verletzt werden und benötigt rechtzeitige Behandlung."
+    },
+    "18": {
+      "title": "Hunger des Hundes",
+      "des": "Der Hund braucht Fleisch. Eine Portion reicht für 12 Stunden, Sie können bis zu 4 mal füttern."
+    },
+    "19": {
+      "title": "Stimmung des Hundes",
+      "des": "Schwierige Bedingungen machen auch den Hund depressiv. Spielen Sie jeden Tag mit ihm zu Hause oder verwenden Sie einen Hundeknochen."
+    },
+    "1106014": {
+      "title": "Hundeknochen",
+      "des": "Selbstgemachte Hundeknochen können Ihren Hund aufmuntern, selbst in solch rauer Umgebung."
+    },      
+"6677": "Sie haben den Generator vorübergehend repariert.",
+"6678": "Sie haben vorübergehend die Benzinpumpe repariert.",
+"6679": "Der Generator ist defekt.",
+"6680": "Die Benzinpumpe ist defekt.",
 "8027": "Soundtrack",
 "8028": "Verwendete modifizierte Version - Autor",
 "8029": "Vielen Dank fürs Spielen.",
@@ -257,10 +293,6 @@ var string = {
     "1017": "Mit Kaffee und Musik ist alles so wie früher",
     "1018": "Schlafen",
     "1019": "Du schläfst ein. Dein Körper stellt Kraft wieder her.",
-    "1020": "Füttern",
-    "1022": "Der Hund hat Hunger und möchte Fleisch. 1 Stück Fleisch reicht für 12 Stunden.",
-    "1021": "Der Hund bewacht das Haus. Es sind noch %s Stück(e) Fleisch für %s Stunden übrig.",
-
     "1024": "Nicht vorhanden",
     "1025": "Gewicht:",
     "1026": "Verfügbare Menge:",
@@ -317,7 +349,6 @@ var string = {
     "1077": "Ein Zombieaufmarsch! Vor dem Dorf wimmelt es von rasenden Zombies! Einige von ihnen haben schon die Verteidigung durchbrochen und wüten in den Häusern.",
     "1078": "Ein Zombieaufmarsch! Vor dem Dorf wimmelt es von rasenden Zombies! Dank der starken Verteidigung konnte dein Dorf dem Angriff widerstehen. Es gibt keine Schäden.",
     "1079": "Dein Schaden:",
-    "1080": "Du stösst auf Zombies!",
     "1081": "Verstecken",
     "1082": "Du bist der Belagerung der Zombies erfolgreich entkommen.",
     "1083": "Kurz vor dem Tod",

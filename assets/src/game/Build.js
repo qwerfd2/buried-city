@@ -221,14 +221,9 @@ var DogBuild = Build.extend({
         this._super(bid, level, saveObj);
     },
     initBuildActions: function () {
-        var action = new DogBuildAction(this.id);
-        this.actions.push(action);
     },
     isActive: function () {
-        if (this.level >= 0) {
-            return this.actions[0].fuel > 0;
-        }
-        return false;
+        return player.isDogActive() && this.level >= 0;
     }
 });
 

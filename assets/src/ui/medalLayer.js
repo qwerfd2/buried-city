@@ -135,7 +135,7 @@ var medalLayer = cc.Layer.extend({
         checkBox.setAnchorPoint(1, 0.5);
         checkBox.setPosition(title.x + 300, 1070);
         bg.addChild(checkBox);
-        checkBox.setName("agreement");
+        checkBox.setName("cheatbutton");
 
         var btnBack = uiUtil.createCommonBtnBlack(stringUtil.getString(1193), this, function () {
             cc.director.runScene(new MenuScene());

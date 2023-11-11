@@ -243,6 +243,32 @@ var TopFrameNode = cc.Node.extend({
                 cc.director.runScene(new ChooseScene(1));
             }
         });
+        
+        if (player.dogState) {
+            var dogButton = new DogButton(0.7);
+            this.thirdLine.addChild(dogButton, 1);
+            dogButton.setPosition(this.thirdLine.width - 20, this.thirdLine.height - 100);
+            dogButton.setClickListener(this, function() {
+                var layer = cc.director.getRunningScene().getChildByName("main");
+                var node = layer.getChildByName("bottom");
+                if (node && node instanceof BottomFrameNode && node.uiConfig.leftBtn) {
+                    if (node.leftBtn.isEnabled()) {
+                        Navigation.gotoDogNode();
+                    }
+                } else if (!MAP_IS_MOVING) {
+                    Navigation.gotoDogNode();
+                }
+            });
+            utils.emitter.on("dogStateChange", function (value) {
+                dogButton.updateBtn();
+            });
+            dogButton.updateBtn = function () {
+                if (cc.sys.isObjectValid(dogButton)) {
+                    dogButton.updateView();
+                }
+            };
+            
+        }
 
         var self = this;
         utils.emitter.on("logChanged", function (msg) {
@@ -431,21 +457,9 @@ var showAttrStatusDialog = function (stringId, attr) {
             buffLastTime.setVisible(false);
         }
     };
-    updateBuff();
-
-    var storage;
-    if (player.isAtHome) {
-        storage = player.storage;
-    } else {
-        if (player.tmpBag) {
-            storage = player.tmpBag;
-        } else {
-            storage = player.bag;
-        }
-    }
-
-    if (!player.tmpBag) {
-        var itemList = [];
+    var getItemList = function () {
+        itemList = [];
+        tempTest = false;
         if (attr === 'starve') {
             itemList = storage.getItemsByType("1103");
         } else if (attr === 'infect') {
@@ -460,29 +474,95 @@ var showAttrStatusDialog = function (stringId, attr) {
             });
         } else if (attr == 'hp') {
             itemList = storage.getItemsByType("1107");
+        } else if (attr == "dogFood") {
+            tempTest = true;
+            itemList = storage.getItemsByType("1103");
+            itemList = itemList.filter(function (storageCell) {
+                return storageCell.item.id == '1103041';
+            });
+        } else if (attr == "dogInjury") {
+            tempTest = true;
+            itemList = storage.getItemsByType("1104");
+            itemList = itemList.filter(function (storageCell) {
+                return storageCell.item.id == '1104011';
+            });
+        } else if (attr == "dogMood") {
+            tempTest = true;
+            itemList = storage.getItemsByType("1106");
+            itemList = itemList.filter(function (storageCell) {
+                return storageCell.item.id == '1106014';
+            });
+            if (player.hasDogPlay) {
+                itemList.push({item:{id:1, config: {id:1, weight: 1, price: 1, value: 2}}, num: 1});
+            }
         }
-
+        
+        return tempTest, itemList;
+    };
+    updateBuff();
+    var tempTest = false;
+    var storage;
+    if (player.isAtHome) {
+        storage = player.storage;
+    } else {
+        if (player.tmpBag) {
+            storage = player.tmpBag;
+        } else {
+            storage = player.bag;
+        }
+    }
+    if (!player.tmpBag) {
+        var itemList = [];
+        tempTest, itemList = getItemList();
         var itemTableView = uiUtil.createItemListSliders(itemList);
         itemTableView.x = 20;
         itemTableView.y = 2;
+        itemTableView.setName("itemTable");
         dialog.contentNode.addChild(itemTableView);
 
         var onItemUse = function (itemId, source) {
             if (source !== 'top')
                 return;
-            var res = player.useItem(storage, itemId);
+            var res;
+            if (tempTest) {
+                res = player.useItemForDog(storage, itemId);
+            } else {
+                res = player.useItem(storage, itemId);
+            }
             if (res.result) {
                 itemTableView.updateData();
                 itemTableView.reloadData();
                 Record.saveAll();
-                dialog.dismiss();
+                config = utils.clone(stringUtil.getString("statusDialog"));
+                if (attr === 'hp' || attr === 'virus') {
+                    config.title.txt_1 = cc.formatStr(config.title.txt_1, player[attr] + "/" + player[attr + "Max"]);
+                } else {
+                    config.title.txt_1 = cc.formatStr(player.getAttrStr(attr), config.title.txt_1, player[attr] + "/" + player[attr + "Max"]);
+                }
+                dialog.titleNode.getChildByName("txt_1").setString(config.title.txt_1);
             }
         };
-        utils.emitter.on("entered_alter_node", function() {dialog.dismiss()});
+        var dismissForMood = function () {
+        var configs = utils.clone(stringUtil.getString("statusDialog"));
+            itemList = storage.getItemsByType("1106");
+            itemList = itemList.filter(function (storageCell) {
+                return storageCell.item.id == '1106014';
+            });
+            dialog.contentNode.removeChildByName("itemTable");
+            var itemTableView = uiUtil.createItemListSliders(itemList);
+            itemTableView.x = 20;
+            itemTableView.y = 2;
+            itemTableView.setName("itemTable");
+            dialog.contentNode.addChild(itemTableView);
+            configs.title.txt_1 = cc.formatStr(player.getAttrStr(attr), configs.title.txt_1, player[attr] + "/" + player[attr + "Max"]);
+            dialog.titleNode.getChildByName("txt_1").setString(configs.title.txt_1);
+        };
+
+        utils.emitter.on("entered_alter_node", dismissForMood);
         utils.emitter.on("btn_1_click", onItemUse);
         dialog.setOnDismissListener({
             target: dialog, cb: function () {
-                utils.emitter.off("entered_alter_node");
+                utils.emitter.off("entered_alter_node", dismissForMood);
                 utils.emitter.off('btn_1_click', onItemUse);
             }
         });

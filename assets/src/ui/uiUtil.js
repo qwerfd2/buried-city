@@ -549,7 +549,7 @@ uiUtil.showItemDialog = function (itemId, showOnly, source) {
         stringId = "item_2";
     } else if (item.isType(ItemType.TOOL, ItemType.MEDICINE)) {
         stringId = "item_3";
-    } else if (item.isType(ItemType.TOOL, ItemType.BUFF)) {
+    } else if (item.isType(ItemType.TOOL, ItemType.BUFF) || itemId == 1106014) {
         stringId = "item_3";
     }
     var config = utils.clone(stringUtil.getString(stringId));
@@ -573,10 +573,20 @@ uiUtil.showItemDialog = function (itemId, showOnly, source) {
     config.title.icon = "#icon_item_" + itemId + ".png";
     config.content.des = strConfig.des;
     config.content.dig_des = "#dig_item_" + itemId + ".png";
-
     var dialog = new DialogBig(config);
     var txt1 = dialog.titleNode.getChildByName("txt_1");
-    txt1.setString(cc.formatStr(txt1.getString(), player.storage.getNumByItemId(itemId)));
+    
+    var storage;
+    if (player.isAtHome) {
+        storage = player.storage;
+    } else {
+        if (player.tmpBag) {
+            storage = player.tmpBag;
+        } else {
+            storage = player.bag;
+        }
+    }
+    txt1.setString(cc.formatStr(txt1.getString(), storage.getNumByItemId(itemId)));
     
     dialog.show();
     if (item.isType(ItemType.TOOL, ItemType.BUFF)) {
@@ -1287,6 +1297,15 @@ uiUtil.checkStarve = function () {
     }
 };
 
+uiUtil.checkDogStarve = function () {
+    if (player.isAttrMax("dogFood")) {
+        uiUtil.showTinyInfoDialog(player.getDogName() +  " " + stringUtil.getString(1128));
+        return false;
+    } else {
+        return true;
+    }
+};
+
 uiUtil.createHeartNode = function () {
     var heartPadding = 5;
     var heartNum = 5;
@@ -1754,7 +1773,11 @@ uiUtil.createItemListSliders = function (itemList) {
 
     var delegate = {
         tableCellTouched: function (table, cell) {
-            uiUtil.showItemDialog(cell.data.itemId, false, 'top');
+            if (cell.data.itemId == 1) {
+                player.redeemPlay();
+            } else {
+                uiUtil.showItemDialog(cell.data.itemId, false, 'top');
+            }
         },
         tableCellHighlight: function (table, cell) {
             cell.getChildByName('bg').runAction(cc.scaleTo(0.1, 1.2));
@@ -1771,13 +1794,14 @@ uiUtil.createItemListSliders = function (itemList) {
     tableView.setVerticalFillOrder(cc.TABLEVIEW_FILL_TOPDOWN);
     tableView.setDelegate(delegate);
     tableView.updateData = function () {
-        data = itemList.map(function (storageCell) {
+        data = itemList.filter(function(storageCell) {
+            return storageCell.num !== 0;
+        }).map(function(storageCell) {
             return {
-                itemId: storageCell.item.id,
-                num: storageCell.num
+              itemId: storageCell.item.id,
+              num: storageCell.num
             };
         });
-        console.log('data: ' + JSON.stringify(data));
     };
     tableView.updateData();
     tableView.reloadData();
@@ -1851,7 +1875,7 @@ uiUtil.createTransportNode = function (canAfford, cdone, cdtwo) {
     return node;
 };
 
-uiUtil.createItemListSlidersViewOnly = function (itemList) {
+uiUtil.createItemListSlidersViewOnly = function (itemList, state) {
     var data = [];
     var datasource = {
         tableCellSizeForIndex: function (table, idx) {
@@ -1893,7 +1917,12 @@ uiUtil.createItemListSlidersViewOnly = function (itemList) {
             icon.setName('icon');
             bg.addChild(icon);
             var probab = info.weight / 4;
-            bg.getChildByName('num').setString(probab.toFixed(2) + "%");
+            if (state) {
+                var probab = info.weight / 4;
+                bg.getChildByName('num').setString(probab.toFixed(2) + "%");
+            } else {
+                bg.getChildByName('num').setString(info.num);
+            }
             cell.data = info;
 
             return cell;

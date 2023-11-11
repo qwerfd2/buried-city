@@ -387,8 +387,10 @@ var WorkSite = Site.extend({
         this.fixedTime = cc.timer.time;
         if (this.id == 204) {
             utils.emitter.emit('onWorkSiteChange', this.isActive);
+            player.log.addMsg(6677);
         } else {
             utils.emitter.emit('onGasSiteChange', this.isActive);
+            player.log.addMsg(6678);
         }
     },
     checkActive: function () {
@@ -410,8 +412,10 @@ var WorkSite = Site.extend({
                     Record.saveAll();
                     if (this.id == 204) {
                         utils.emitter.emit('onWorkSiteChange', this.isActive);
+                        player.log.addMsg(6679);
                     } else {
                         utils.emitter.emit('onGasSiteChange', this.isActive);
+                        player.log.addMsg(6680);
                     }
                 }
             }

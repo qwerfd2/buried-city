@@ -11,7 +11,6 @@ var HomeNode = BottomFrameNode.extend({
 
         player.goHome();
 
-        //var homeBg = autoSpriteFrameController.getSpriteFromSpriteName("#home_bg.png");
         var homeBg = new cc.Sprite("res/new/home_bg.png");
         homeBg.setAnchorPoint(0.5, 0);
         homeBg.setPosition(this.bgRect.width / 2, 0);
@@ -50,6 +49,7 @@ var HomeNode = BottomFrameNode.extend({
             btn.setClickListener(self, self.onClickBuild);
             btn.setPosition(info.pos);
             homeBg.addChild(btn);
+            btn.setName("homeBtn_" + info.bid);
             btn.info = info;
             self.btnList[info.bid] = btn;
 
@@ -59,6 +59,18 @@ var HomeNode = BottomFrameNode.extend({
         utils.emitter.on("placed_success", function (bid) {
             self.updateBtn(bid);
         });
+        
+        utils.emitter.on("dogStateChange", function () {
+            if (cc.sys.isObjectValid(homeBg)) {
+                self.updateBtn(12);
+            }
+        });
+        
+        utils.emitter.on("bombUsed", function () {
+            if (cc.sys.isObjectValid(homeBg)) {
+                self.updateBtn(17);
+            }
+        });   
 
         if (!player.getSetting("initLog", false)) {
             player.setSetting("initLog", true);
@@ -77,14 +89,20 @@ var HomeNode = BottomFrameNode.extend({
     updateBtn: function (bid) {
         var btn = this.btnList[bid];
         var build = player.room.getBuild(bid);
-        if (bid != 17) {
+        if (bid != 17 && bid != 12) {
             if (build.level >= 0) {
                 btn.changeType(ButtonAtHomeType.WHITE);
             } else {
                 btn.changeType(ButtonAtHomeType.BLACK);
             }
-        } else {
+        } else if (bid == 17) {
             if (player.isBombActive) {
+                btn.changeType(ButtonAtHomeType.WHITE);
+            } else {
+                btn.changeType(ButtonAtHomeType.BLACK);
+            }
+        } else {
+            if (player.isDogActive() && build.level >= 0) {
                 btn.changeType(ButtonAtHomeType.WHITE);
             } else {
                 btn.changeType(ButtonAtHomeType.BLACK);

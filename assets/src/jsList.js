@@ -84,6 +84,7 @@ var jsList = [
     "src/ui/sliderBar.js",
     "src/ui/medalLayer.js",
     "src/ui/bazaarNode.js",
+    "src/ui/dogNode.js",
     "src/ui/EndStoryScene.js",
     "src/ui/AboutScene.js",
 

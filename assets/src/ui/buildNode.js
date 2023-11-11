@@ -117,6 +117,9 @@ var BuildNode = BottomFrameNode.extend({
             operatorTxt.setColor(cc.color.BLACK);
             this.sectionView.addChild(operatorTxt);
             this.createTableView();
+            if (this.build.id == 12 && this.build.level >= 0) {
+                this.initDogHouse();
+            }
         }
 
         if (this.build.id == 12) {
@@ -173,7 +176,95 @@ var BuildNode = BottomFrameNode.extend({
             audioManager.resumeMusic();
         }
     },
+    initDogHouse: function () {
+        var str;
+        if (player.isDogActive()) {
+            str = "icon_item_1106013.png";
+        } else {
+            str = "dog_unable.png";
+        }
+        var btnDog = new SpriteButton(cc.size(64, 64), str);
+        btnDog.setClickListener(this, function () {
+            this.forward(Navigation.nodeName.DOG_NODE);
+        });
+        btnDog.setPosition(this.bgRect.width / 3, this.contentTopLineHeight - 200);
+        this.bg.addChild(btnDog);
+        btnDog.setName("btnDog");
+        var self = this;
+        utils.emitter.on("dogStateChange", function () {
+            if (cc.sys.isObjectValid(btnDog)) {
+                self.bg.removeChildByName("btnDog");
+                if (player.isDogActive()) {
+                    str = "icon_item_1106013.png";
+                } else {
+                    str = "dog_unable.png";
+                }
+                btnDog = new SpriteButton(cc.size(64, 64), str);
+                btnDog.setClickListener(self, function () {
+                    self.forward(Navigation.nodeName.DOG_NODE);
+                });
+                btnDog.setPosition(self.bgRect.width / 3, self.contentTopLineHeight - 200);
+                self.bg.addChild(btnDog);
+                btnDog.setName("btnDog");
+            }
+        });
 
+        var dogTxt = new cc.LabelTTF(stringUtil.getString(7000, player.getDogName()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
+        dogTxt.setAnchorPoint(0, 0.5);
+        dogTxt.setPosition(this.bgRect.width / 3 + 50, this.contentTopLineHeight - 200);
+        dogTxt.setColor(cc.color.WHITE);
+        this.bg.addChild(dogTxt);
+
+        var goOutLabel = new cc.LabelTTF(stringUtil.getString(7001, player.getDogName()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3 + 4, cc.size(400, 0), cc.TEXT_ALIGNMENT_CENTER);
+        goOutLabel.setAnchorPoint(0.5, 0.5);
+        goOutLabel.setColor(cc.color.WHITE);
+        goOutLabel.setPosition(this.bgRect.width / 5, this.contentTopLineHeight - 300);
+        this.bg.addChild(goOutLabel);
+        goOutLabel.setName("goOutLabel");
+
+        this.checkBox1 = new CheckBox(player.dogState, "checkbox_bg.png", "checkbox_on.png", true);
+        this.checkBox2 = new CheckBox(!player.dogState, "checkbox_bg.png", "checkbox_on.png", true);
+        this.checkBox1.setClickListener(this, function (sender) {
+            this.checkBox2.on = false;
+            this.checkBox2.updateView();
+            if (!player.dogState) {
+                player.dogState = 1;
+                utils.emitter.emit("dogStateChange");
+                Record.saveAll();
+            } else {
+                this.checkBox1.on = true;
+                this.checkBox1.updateView();
+            }
+        });
+        this.checkBox1.setAnchorPoint(1, 0.5);
+        this.checkBox1.setPosition(this.bgRect.width / 5 + 400, this.contentTopLineHeight - 300);
+        this.bg.addChild(this.checkBox1);
+        this.checkBox1.setName("goOutCheckBtn");
+
+        var stayHomeLabel = new cc.LabelTTF(stringUtil.getString(7002, player.getDogName()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3 + 4, cc.size(400, 0), cc.TEXT_ALIGNMENT_CENTER);
+        stayHomeLabel.setAnchorPoint(0.5, 0.5);
+        stayHomeLabel.setColor(cc.color.WHITE);
+        stayHomeLabel.setPosition(this.bgRect.width / 5, this.contentTopLineHeight - 360);
+        this.bg.addChild(stayHomeLabel);
+        stayHomeLabel.setName("stayHomeLabel");
+
+        this.checkBox2.setClickListener(this, function (sender) {
+            this.checkBox1.on = false;
+            this.checkBox1.updateView();
+            if (player.dogState) {
+                player.dogState = 0;
+                utils.emitter.emit("dogStateChange");
+                Record.saveAll();
+            } else {
+                this.checkBox2.on = true;
+                this.checkBox2.updateView();
+            }
+        });
+        this.checkBox2.setAnchorPoint(1, 0.5);
+        this.checkBox2.setPosition(this.bgRect.width / 5 + 400, this.contentTopLineHeight - 360);
+        this.bg.addChild(this.checkBox2);
+        this.checkBox2.setName("stayHomeCheckBtn");
+    },
     cleanBuildAction: function () {
         this.data.forEach(function (buildAction, index) {
             buildAction.updateView(null, index);
@@ -197,7 +288,9 @@ var BuildNode = BottomFrameNode.extend({
             var itemChangeNode = new ItemChangeNode(player.safe, stringUtil.getString("20_0").title, player.storage, stringUtil.getString(1035), false, false, 100);
             itemChangeNode.setAnchorPoint(0, 0);
             itemChangeNode.setPosition(0, 0);
-            this.bg.addChild(itemChangeNode);
+            this.bg.addChild(itemChangeNode);            
+        } else if (this.bid === 12) {
+            this.initDogHouse();
         }
         this.title.setString(title);
     },

@@ -1,4 +1,40 @@
 var string = {
+    "7000": "Vérifiez l'état de %s",
+    "7001": "Amenez %s dehors",
+    "7002": "Laissez %s garder la maison",
+    "7003": "Nom du chien",
+    "7004": "%s se sent très bien et est prêt pour le combat!",
+    "7005": "%s a faim, il a besoin de viande pour combattre.",
+    "7006": "%s ne se sent pas bien et a besoin d'encouragements pour combattre.",
+    "7007": "%s est blessé et a besoin de traitement pour guérir.",
+    "7011": "À la maison, cliquez sur les boutons d'attributs pour vérifier l'état et utiliser un objet pour %s. Les options à l'extérieur sont limitées, vous ne pouvez pas voir les statistiques détaillées, jouer avec %s et le nommer.",
+    "7012": "Vous avez guéri %s avec un bandage",
+    "7013": "%s mâche joyeusement l'os",
+    "7014": "Vous avez joué avec %s, il semble heureux",
+    "7015": "%s a attaqué un zombie, le zombie %s a subi %s dégâts.",
+    "7016": "Les zombies sont attirés par %s et arrêtent de vous attaquer.",
+    "7017": "%s a trouvé cela sur le zombie, stocké dans le dépôt pour le moment :",
+    "7018": "Cadeau du chien",
+    "17": {
+      "title": "Blessure du chien",
+      "des": "Le chien peut être blessé au combat et nécessite un traitement rapide."
+    },
+    "18": {
+      "title": "Faim du chien",
+      "des": "Le chien a besoin de viande. Une portion est bonne pour 12 heures, vous pouvez en donner jusqu'à 4."
+    },
+    "19": {
+      "title": "Humeur du chien",
+      "des": "Les conditions difficiles rendent le chien déprimé aussi. Jouez avec lui à la maison tous les jours, ou utilisez un os de chien."
+    },
+    "1106014": {
+      "title": "Os de chien",
+      "des": "Un os de chien fait maison peut remonter le moral de votre chien, même dans un environnement aussi difficile."
+   },      
+"6677": "Vous avez temporairement réparé le générateur.",
+"6678": "Vous avez temporairement réparé la pompe à essence.",
+"6679": "Le générateur a dysfonctionné.",
+"6680": "La pompe à essence a dysfonctionné.",
 "8027": "Bande originale",
 "8028": "Version modifiée utilisée - Auteur",
 "8029": "Merci d'avoir joué.",
@@ -261,10 +297,6 @@ var string = {
     "1017": "Avec du café et de la musique, il s'agit que vous étiez dans les anciens jours.",
     "1018": "Dormir",
     "1019": "Le corps et l'énergie se restaurent en dormant.",
-    "1020": "Nourrir",
-    "1022": "Le chien a faim et veut de la viande. 1 morceau de viande peut le nourrir pendant 12 heures.",
-    "1021": "Le chien garde la maison. Il reste %s morceau(x) de viande pendant %s heures.",
-
     "1024": "Aucun",
     "1025": "Poids:",
     "1026": "Reste:",
@@ -321,7 +353,6 @@ var string = {
     "1077": "La marée de Zombies s'est présentée! La ville est pleine de zombies violents! Plusieurs zombies ont percé la défense et fait du mal dans des maisons. ",
     "1078": "La marée de Zombies s'est présentée! La ville est pleine de zombies violents! Grâce à la défense solide, votre cabine a survécu à l'impact sans aucune perte.",
     "1079": "Votre perte:",
-    "1080": "Rencontrez des zombies!",
     "1081": "Se cacher",
     "1082": "Vous avez échappé avec succès du siège des zombies",
     "1083": "En train de mourir",

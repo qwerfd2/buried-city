@@ -159,7 +159,7 @@ var SiteNode = BottomFrameNode.extend({
         this.btnPlay.x = dialog.contentNode.width / 2;
         this.btnPlay.y = dialog.contentNode.height / 2 - 70;
         dialog.contentNode.addChild(this.btnPlay);
-        var itemTableView = uiUtil.createItemListSlidersViewOnly(GachaponConfig);
+        var itemTableView = uiUtil.createItemListSlidersViewOnly(GachaponConfig, true);
         itemTableView.setPosition(20, 100);
         dialog.contentNode.addChild(itemTableView);
         dialog.show();

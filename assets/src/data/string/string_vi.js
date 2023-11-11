@@ -1,4 +1,40 @@
 var string = {
+    "7000": "Kiểm tra tình trạng của %s",
+    "7001": "Đưa %s ra ngoài",
+    "7002": "Để %s giữ nhà",
+    "7003": "Tên của chó",
+    "7004": "%s cảm thấy rất tốt và sẵn sàng chiến đấu!",
+    "7005": "%s đói, anh ấy cần thịt để chiến đấu.",
+    "7006": "%s đang buồn và cần sự động viên để chiến đấu.",
+    "7007": "%s bị thương và cần điều trị để lành.",
+    "7011": "Tại nhà, nhấn vào các nút thuộc tính để kiểm tra tình trạng và sử dụng vật phẩm cho %s. Tùy chọn bên ngoài bị hạn chế, vì bạn không thể xem chi tiết thống kê, chơi với %s và đặt tên cho nó.",
+    "7012": "Bạn đã chữa trị %s bằng băng dính",
+    "7013": "%s vui vẻ nhai xương",
+    "7014": "Bạn đã chơi với %s, anh ấy có vẻ hạnh phúc",
+    "7015": "%s tấn công một con zombie, zombie đã bị gặp %s thiệt hại.",
+    "7016": "Zombie bị thu hút bởi %s và ngừng tấn công bạn.",
+    "7017": "%s đã tìm thấy những thứ này trên zombie, được lưu trữ trong kho tạm thời:",
+    "7018": "Quà cho chó",
+    "17": {
+      "title": "Vết thương của chó",
+      "des": "Chó có thể bị thương từ chiến đấu và cần được điều trị kịp thời."
+    },
+    "18": {
+      "title": "Đói của chó",
+      "des": "Chó cần thịt. Một miếng thịt đủ cho 12 giờ, bạn có thể cho ăn tối đa 4 miếng."
+    },
+    "19": {
+      "title": "Tâm trạng của chó",
+      "des": "Điều kiện khắc nghiệt cũng làm cho chó buồn nữa. Chơi với nó mỗi ngày tại nhà hoặc sử dụng một cái xương chó."
+    },
+    "1106014": {
+      "title": "Xương chó",
+      "des": "Xương chó tự làm có thể làm vui vẻ chó của bạn, ngay cả trong môi trường khắc nghiệt như vậy."
+    },      
+"6677": "Bạn đã tạm thời sửa chữa máy phát điện.",
+"6678": "Bạn đã tạm thời sửa chữa bơm xăng.",
+"6679": "Máy phát điện đã gặp sự cố.",
+"6680": "Bơm xăng đã gặp sự cố.",
 "8027": "Nhạc nền",
 "8028": "Phiên bản đã chỉnh sửa - Tác giả",
 "8029": "Cảm ơn bạn đã chơi.",
@@ -258,10 +294,6 @@ var string = {
     "1017": "Cùng với hương café thơm nồng, bạn dường như đang trở về với những ngày xưa tươi đẹp",
     "1018": "Ngủ",
     "1019": "Đi vào giấc ngủ, cơ thể và sức mạnh được khôi phục.",
-    "1020": "Cho ăn",
-    "1022": "Chó đói và muốn thịt. 1 miếng thịt có thể nuôi nó trong 12 giờ.",
-    "1021": "Con chó đang giữ nhà. Còn lại %s miếng thịt trong %s giờ.",
-
     "1024": "Không",
     "1025": "Trọng lượng:",
     "1026": "Dư lượng:",
@@ -318,7 +350,6 @@ var string = {
     "1077": "Cương thi bùng phát, trong thị trấn chỗ nào cũng thấy bọn cương thi hoành hành. Đã có vài con phá vợ được tuyến phòng ngự để vào trong nhà phá phách.",
     "1078": "Cương thi bùng phát, trong thị trấn chỗ nào cũng thấy bọn cương thi hoành hành. Với tuyến phòng ngự kiên cố ngày, nhà của bạn đã chống chọi được sự tấn công của chúng mà không có bất cứ tổn hại nào.",
     "1079": "Tổn thất của bạn:",
-    "1080": "Gặp phải cương thi",
     "1081": "Trốn",
     "1082": "Bạn thoát khỏi vòng vây của cương thi",
     "1083": "Chết",

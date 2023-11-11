@@ -19,6 +19,7 @@ var audioManager = {
         TRAP: "res/sound/trap.mp3",
         UNDER_ATTACK_MIDNIGHT: "res/sound/under_attack_midnight.mp3",
         BARK: "res/sound/bark.mp3",
+        SHORT_BARK: "res/sound/short_bark.mp3",
         COOK: "res/sound/cook.mp3",
         ESTOVE: "res/sound/electricstove.mp3",
         STOVE: "res/sound/stove.mp3",

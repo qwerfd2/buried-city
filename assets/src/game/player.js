@@ -77,6 +77,15 @@ var Player = cc.Class.extend({
         this.useMoto = true;
         this.useGoodBullet = true;
         this.alcoholPrice = 1;
+        this.dogState = 0;
+        this.dogMood = 60;
+        this.dogInjury = 0;
+        this.dogFood = 240;
+        this.dogMoodMax = 60;
+        this.dogInjuryMax = 60;
+        this.dogFoodMax = 240;
+        this.dogName = "";
+        this.hasDogPlay = false;
         this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1301091": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
@@ -137,7 +146,16 @@ var Player = cc.Class.extend({
             shoeTime: this.shoeTime,
             useMoto: this.useMoto,
             useGoodBullet: this.useGoodBullet,
-            alcoholPrice: this.alcoholPrice
+            alcoholPrice: this.alcoholPrice,
+            dogState: this.dogState,
+            dogMood: this.dogMood,
+            dogInjury: this.dogInjury,
+            dogFood: this.dogFood,
+            dogMoodMax: this.dogMoodMax,
+            dogInjuryMax: this.dogInjuryMax,
+            dogFoodMax: this.dogFoodMax,
+            hasDogPlay: this.hasDogPlay,
+            dogName: this.dogName
         };
         return opt;
     },
@@ -195,6 +213,15 @@ var Player = cc.Class.extend({
             this.useMoto = opt.useMoto;
             this.useGoodBullet = opt.useGoodBullet;
             this.alcoholPrice = opt.alcoholPrice;
+            this.dogState = opt.dogState || 0;
+            this.dogMood = opt.dogMood || 60;
+            this.dogInjury = opt.dogInjury || 0;
+            this.dogFood = opt.dogFood || 60;
+            this.dogMoodMax = opt.dogMoodMax || 60;
+            this.dogInjuryMax = opt.dogInjuryMax || 60;
+            this.dogFoodMax = opt.dogFoodMax || 240;
+            this.hasDogPlay = opt.hasDogPlay || false;
+            this.dogName = opt.dogName || "";
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
@@ -215,7 +242,42 @@ var Player = cc.Class.extend({
         }
     },
     
-    calculateExpired: function(foodItem) {
+    getDogName: function () {
+        var dogName =this.dogName;
+        if (dogName == "") {
+            dogName = stringUtil.getString(1106013).title;
+        }
+        return dogName;
+    },
+    
+    updateDogFood: function () {
+        if (this.room.getBuildLevel(12) >= 0) {
+            this.changeAttr("dogFood", -5);
+        }
+    },
+ 
+    getStatStr: function () {
+        var dogStatusStr = stringUtil.getString(7004, player.getDogName());
+        if (!this.dogFood) {
+            dogStatusStr = stringUtil.getString(7005, player.getDogName());
+        } else if (!this.dogMood) {
+            dogStatusStr = stringUtil.getString(7006, player.getDogName());
+        } else if (this.dogInjury >= 60) {
+            dogStatusStr = stringUtil.getString(7007, player.getDogName());
+        }
+        return dogStatusStr;
+    },
+     
+    redeemPlay: function () {
+        this.changeAttr("spirit", 5);
+        this.changeAttr("dogMood", 20);
+        cc.timer.updateTime(600);
+        this.hasDogPlay = false;
+        Record.saveAll();
+        this.log.addMsg(7014, player.getDogName());
+        utils.emitter.emit("entered_alter_node");
+    },
+    calculateExpired: function (foodItem) {
         var item = foodItem.item.id;
         var numbers = foodItem.num;
         var expire = ExpireRate[item];
@@ -283,6 +345,13 @@ var Player = cc.Class.extend({
                 d.show();
             }
         }
+    },
+    
+    isDogActive: function () {
+        if (!this.dogFood || !this.dogMood || this.dogInjury == 60) {
+            return false;
+        }
+        return true;
     },
     
     onCurrencyChange: function(value) {
@@ -589,7 +658,11 @@ var Player = cc.Class.extend({
                 this.changeAttr("hp", -this["hp"]);
             }
         }
+        if (key.substring(0, 3) === "dog") {
+            utils.emitter.emit("dogStateChange");
+        }
     },
+
     changeHp: function (value) {
         this.changeAttr("hp", value);
     },
@@ -1019,21 +1092,56 @@ var Player = cc.Class.extend({
         });
         return res;
     },
-
+    
+    useItemForDog: function (storage, itemId) {
+        if (storage.validateItem(itemId, 1)) {
+            var item = storage.getItem(itemId);
+            var itemName = stringUtil.getString(itemId).title;
+            if (itemId == 1103041) {
+                //Meat
+                if (!uiUtil.checkDogStarve())
+                    return {result: false};
+                cc.timer.updateTime(600);
+                storage.decreaseItem(itemId, 1);
+                this.log.addMsg(1171);
+                this.changeAttr("dogFood", 60);
+                return {result: true};
+            } else if (itemId == 1104011) {
+                //Bandage
+                cc.timer.updateTime(600);
+                storage.decreaseItem(itemId, 1);
+                this.log.addMsg(7012, this.getDogName());
+                this.changeAttr("dogInjury", 0 - this.dogInjury);
+                return {result: true};
+            } else if (itemId == 1106014) {
+                //dog toy
+                cc.timer.updateTime(600);
+                storage.decreaseItem(itemId, 1);
+                this.log.addMsg(7013, this.getDogName());
+                this.changeAttr("dogMood", 60);
+                return {result: true};
+            } else {
+                return {result: false, type: 2, msg: "this type can't use"};
+            }
+        } else {
+            return {result: false, type: 1, msg: "not enough"};
+        }
+    },
+    
     useItem: function (storage, itemId) {
         if (storage.validateItem(itemId, 1)) {
-            cc.timer.updateTime(600);
-            
             var item = storage.getItem(itemId);
             var itemName = stringUtil.getString(itemId).title;
             if (item.isType(ItemType.TOOL, ItemType.FOOD)) {
                 if (!uiUtil.checkStarve())
                     return {result: false};
+                cc.timer.updateTime(600);
                 storage.decreaseItem(itemId, 1);
                 this.log.addMsg(1093, itemName, storage.getNumByItemId(itemId));
                 this.itemEffect(item, item.getFoodEffect());
                 return {result: true};
             } else if (item.isType(ItemType.TOOL, ItemType.MEDICINE)) {
+                cc.timer.updateTime(600);
                 if (itemId == 1104011) {
                     storage.decreaseItem(itemId, 1);
                     this.log.addMsg(1094, itemName, storage.getNumByItemId(itemId));
@@ -1054,6 +1162,7 @@ var Player = cc.Class.extend({
                 }
                 return {result: true};
             } else if (item.isType(ItemType.TOOL, ItemType.BUFF)) {
+                cc.timer.updateTime(600);
                 storage.decreaseItem(itemId, 1);
                 this.log.addMsg(1095, itemName, storage.getNumByItemId(itemId));
                 this.buffManager.applyBuff(itemId);
@@ -1341,6 +1450,7 @@ var Player = cc.Class.extend({
                     homeRes = this._getAttackResult(attackStrength, homeDef, this.storage);
                     homeRes.isBomb = true;
                     homeRes.happened = true;
+                    utils.emitter.emit("bombUsed");
                 } else {
                     //If bomb not active & loss, process per usual.
                     homeRes = this._getAttackResult(attackStrength, homeDef, this.storage);
@@ -1436,6 +1546,7 @@ var Player = cc.Class.extend({
                 }
             }
             self.Steal = utils.getRandomInt(35, 65);
+            self.hasDogPlay = true;
             utils.emitter.emit("Steal");
             self.updateBazaarList();
             self.underAttackInNight();
@@ -1460,6 +1571,7 @@ var Player = cc.Class.extend({
             self.updateInjure();
             self.updateInfect();
             self.updateVigour();
+            self.updateDogFood();
 
             var workSite = self.map.getSite(WORK_SITE);
             if (workSite) {

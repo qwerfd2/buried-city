@@ -25,7 +25,8 @@ var Navigation = {
         AD_STORAGE_NODE: "AdStorageNode",
         BAZAAR_SITE_NODE: "BazaarSiteNode",
         BAZAAR_STORAGE_NODE: "BazaarStorageNode",
-        BAZAAR_NODE: "BazaarNode"
+        BAZAAR_NODE: "BazaarNode",
+        DOG_NODE: "DogNode"
     },
     siteMusic: null,
     forward: function (nodeName, userData) {
@@ -118,6 +119,9 @@ var Navigation = {
                 case this.nodeName.BAZAAR_SITE_NODE:
                     musicName = audioManager.music.NPC;
                     break;
+                case this.nodeName.DOG_NODE:
+                    musicName = audioManager.music.NPC;
+                    break;
             }
             if ((musicName && musicName != this.currentMusic) || !this.currentMusic) {
                 audioManager.stopMusic(this.currentMusic);
@@ -176,6 +180,7 @@ var Navigation = {
         this._map["ShopNode"] = ShopNode.prototype.constructor;
         this._map["AdStorageNode"] = AdStorageNode.prototype.constructor;
         this._map["BazaarNode"] = BazaarNode.prototype.constructor;
+        this._map["DogNode"] = DogNode.prototype.constructor;
         this._map["BazaarSiteNode"] = BazaarSiteNode.prototype.constructor;
         this._map["BazaarStorageNode"] = BazaarStorageNode.prototype.constructor;
         this.restore();
@@ -189,6 +194,111 @@ var Navigation = {
         var layer = cc.director.getRunningScene().getChildByName("main")
         layer.addChild(Navigation.root(Navigation.nodeName.DEATH_NODE));
         layer.removeChildByName("bottom");
+    },
+    gotoDogNode: function () {
+        if (IS_IN_DOG_NODE) {
+            return;
+        }
+        if (player.isAtHome) {
+            var layer = cc.director.getRunningScene().getChildByName("main")
+            layer.addChild(Navigation.root(Navigation.nodeName.DOG_NODE));
+            layer.removeChildByName("bottom");
+        } else {
+            var config = utils.clone(stringUtil.getString("statusDialog"));
+            config.title.title = player.getDogName();
+            config.content.dig_des = "#dig_item_1106013.png";
+            config.title.txt_1 = "";
+            config.content.des = player.getStatStr();
+            var dialog = new DialogBig(config);
+            dialog.autoDismiss = true;
+            
+            var btnSize2 = cc.size(30, 30);
+            var createAttrButton = function (attr, needStatusStr, stringId, reversPercentage, warnRange) {
+                var btn = new AttrButton(btnSize2, attr, "", warnRange, {scale: 0.5});
+                btn.setName(attr);
+
+                utils.emitter.on(attr + "_change", function (value) {
+                    btn.updateAttrBtn();
+                });
+                btn.updateAttrBtn = function () {
+                    if (cc.sys.isObjectValid(btn)) {
+                        btn.updateView(reversPercentage ? 1 - player.getAttrPercentage(attr) : player.getAttrPercentage(attr), needStatusStr ? player.getAttrStr(attr) : null);
+                   }
+                };
+                btn.updateAttrBtn();
+                return btn;
+            };
+            
+            var injury = createAttrButton("dogInjury", false, 17, true, new Range("[0,0.3]"));
+            injury.setPosition(cc.winSize.width / 2 + 80, dialog.titleNode.y + 170);
+            dialog.addChild(injury, 1);
+        
+            var starve = createAttrButton("dogFood", false, 18, false, new Range("[0,0.3]"));
+            starve.setPosition(cc.winSize.width / 2 + 130, dialog.titleNode.y + 170);
+            dialog.addChild(starve, 1);
+        
+            var spirit = createAttrButton("dogMood", false, 19, false, new Range("[0,0.3]"));
+            spirit.setPosition(cc.winSize.width / 2 + 180, dialog.titleNode.y + 170);
+            dialog.addChild(spirit, 1);        
+
+            var getItemList = function () {
+                var itemList = [];
+                var itemList2 = [];
+                var itemList3 = [];
+                itemList = storage.getItemsByType("1103");
+                itemList = itemList.filter(function (storageCell) {
+                    return storageCell.item.id == '1103041';
+                });
+                itemList2 = storage.getItemsByType("1104");
+                itemList2 = itemList2.filter(function (storageCell) {
+                    return storageCell.item.id == '1104011';
+                });
+                itemList3 = storage.getItemsByType("1106");
+                itemList3 = itemList3.filter(function (storageCell) {
+                    return storageCell.item.id == '1106014';
+                });    
+                return itemList.concat(itemList2, itemList3);
+            };
+
+            var storage;
+            if (player.isAtHome) {
+                storage = player.storage;
+            } else {
+                if (player.tmpBag) {
+                    storage = player.tmpBag;
+                } else {
+                    storage = player.bag;
+                }
+            }
+
+            if (!player.tmpBag) {
+                var itemList = getItemList();
+                var itemTableView = uiUtil.createItemListSliders(itemList);
+                itemTableView.x = 20;
+                itemTableView.y = 2;
+                itemTableView.setName("itemTable");
+                dialog.contentNode.addChild(itemTableView, 1);
+
+                var onItemUse = function (itemId, source) {
+                    if (source !== 'top')
+                        return;
+                    var res = player.useItemForDog(storage, itemId);
+                    if (res.result) {
+                        itemTableView.updateData();
+                        itemTableView.reloadData();
+                        Record.saveAll();
+                    }
+                };
+
+                utils.emitter.on("btn_1_click", onItemUse);
+                dialog.setOnDismissListener({
+                    target: dialog, cb: function () {
+                        utils.emitter.off('btn_1_click', onItemUse);
+                    }
+                });
+            }
+        }
+        dialog.show();
     },
     save: function () {
         var saveObj = {
@@ -243,6 +353,7 @@ var BottomFrameNode = cc.Node.extend({
         this.title.setString(this.uiConfig.title);
         this.leftBtn.setVisible(this.uiConfig.leftBtn);
         this.rightBtn.setVisible(this.uiConfig.rightBtn);
+
         return true;
     },
     _init: function () {
@@ -260,7 +371,6 @@ var BottomFrameNode = cc.Node.extend({
     },
 
     forward: function (nodeName, userData) {
-
         utils.emitter.emit("entered_alter_node");
         var parent = this.getParent();
         this.removeFromParent();

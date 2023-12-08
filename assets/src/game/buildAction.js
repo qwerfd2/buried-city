@@ -62,10 +62,9 @@ var BuildAction = cc.Class.extend({
                     if (self.step && self.step === 1) {
                         self.view.updateHint(self.getPlacedTxt(self.totalTime - self.pastTime));
                     }
-                    if (percent >= 100 && self.bid == 2 && self.step == 1) {
+                    if (percent >= 100 && ((self.bid == 2 && self.step == 1) || (self.bid == 8 && self.step == 1))) {
                         self.isActioning = false;
                         self.pastTime = 0;
-
                         if (endCb) {
                             endCb();
                         }
@@ -131,7 +130,12 @@ var Formula = BuildAction.extend({
             this.tcb2 = this.addTimer(time, time, function () {
                 if (self.step < self.maxStep) {
                     self.step++;
-                    player.log.addMsg(1091, player.room.getBuildCurrentName(self.bid), itemName);
+                    var lan = cc.sys.localStorage.getItem("language");
+                    if (lan === 'zh' || lan === 'zh-Hant') {
+                        player.log.addMsg(1091, player.room.getBuildCurrentName(self.bid), itemName);
+                    } else {
+                        player.log.addMsg(1091, itemName, player.room.getBuildCurrentName(self.bid));
+                    }
                     utils.emitter.emit("placed_success", self.bid);
                 }
             }, true, this.pastTime);
@@ -139,7 +143,12 @@ var Formula = BuildAction.extend({
             this.addTimer(time, time, function () {
                 if (self.step < self.maxStep) {
                     self.step++;
-                    player.log.addMsg(1091, player.room.getBuildCurrentName(self.bid), itemName);
+                    var lan = cc.sys.localStorage.getItem("language");
+                    if (lan === 'zh' || lan === 'zh-Hant') {
+                        player.log.addMsg(1091, player.room.getBuildCurrentName(self.bid), itemName);
+                    } else {
+                        player.log.addMsg(1091, itemName, player.room.getBuildCurrentName(self.bid));
+                    }
                     utils.emitter.emit("placed_success", self.bid);
                 }
             }, true, this.pastTime);
@@ -224,7 +233,7 @@ var Formula = BuildAction.extend({
         } else if (this.step == 1 && this.bid == 2) {
             if (player.storage.validateItem(1101081, 1)) {
                 player.storage.decreaseItem(1101081, 1);
-                this.pastTime += 7200;
+                this.pastTime += 10800;
                 this.place(true);
             } else {
                 action1Disabled = true;
@@ -234,7 +243,6 @@ var Formula = BuildAction.extend({
     },
     getPlacedTxt: function (time) {
         var itemName = stringUtil.getString(this.config.produce[0].itemId).title;
-        //return stringUtil.getString(1008, itemName + Math.ceil(time / 60 / 60));
         return stringUtil.getString(1008, Math.ceil(time / 60 / 60));
     },
     _getUpdateViewInfo: function () {
@@ -247,7 +255,7 @@ var Formula = BuildAction.extend({
         if (!this.step) {
             action1Txt = stringUtil.getString(1002, time);
         } else if (this.step == 1 && this.bid == 2) {
-            action1Txt = stringUtil.getString(6674);
+            action1Txt = stringUtil.getString(6674, stringUtil.getString(1101081).title);
             
         } else if (this.step == 2) {
             action1Txt = stringUtil.getString(1003);
@@ -261,7 +269,6 @@ var Formula = BuildAction.extend({
             action1Disabled = true;
         } else if (this.isActioning) {
             if (this.step == 1 && this.bid == 2) {
-               //hint = stringUtil.getString(1008, itemName + Math.ceil(this.config["placedTime"] / 60));
                 hint = stringUtil.getString(1008, Math.ceil(this.config["placedTime"] / 60));
                 if (player.storage.validateItem(1101081, 1)) {
                     action1Disabled = false;
@@ -326,13 +333,27 @@ var TrapBuildAction = Formula.extend({
         var itemInfo = this.config.produce[0];
         var itemName = stringUtil.getString(itemInfo.itemId).title;
         var placedTimes = self.config["placedTime"];
-        var time = utils.getRandomInt(placedTimes[0], placedTimes[1]);
+        var time;
+        if (player.trapTime != -1) {
+            time = player.trapTime;
+        } else {
+            time = utils.getRandomInt(placedTimes[0], placedTimes[1]);
+            player.trapTime = time;
+            Record.saveAll();
+        }
         time *= 60;
-        var totalTime = placedTimes[1] * 60;
-        self.addTimer(time, totalTime, function () {
-            self.step++;
-            player.log.addMsg(1091, player.room.getBuildCurrentName(self.bid), itemName);
-            utils.emitter.emit("placed_success", self.id);
+        cc.timer.removeTimerCallback(this.tcb2);
+        this.tcb2 = this.addTimer(time, time, function () {
+            if (self.step < self.maxStep) {
+                self.step++;
+                var lan = cc.sys.localStorage.getItem("language");
+                if (lan === 'zh' || lan === 'zh-Hant') {
+                    player.log.addMsg(1091, player.room.getBuildCurrentName(self.bid), itemName);
+                } else {
+                    player.log.addMsg(1091, itemName, player.room.getBuildCurrentName(self.bid));
+                }
+                utils.emitter.emit("placed_success", self.bid);
+            }
         }, true, this.pastTime);
     },
     clickAction1: function () {
@@ -361,7 +382,7 @@ var TrapBuildAction = Formula.extend({
                 if (self.step == 1) {
                     //1. cost成功
                     player.costItems(self.config.cost);
-                    self.place();
+                    self.place(true);
                 } else {
                     //1. cost成功
                     player.costItems(self.config.cost);
@@ -372,6 +393,14 @@ var TrapBuildAction = Formula.extend({
                 utils.emitter.emit("left_btn_enabled", true);
                 Record.saveAll();
             });
+        } else if (this.step == 1) {
+            if (player.storage.validateItem(1103011, 1)) {
+                player.storage.decreaseItem(1103011, 1);
+                this.pastTime += 43200;
+                this.place();
+            } else {
+                action1Disabled = true;
+            }
         } else {
             //天气影响
             var produce = utils.clone(this.config.produce);
@@ -389,6 +418,7 @@ var TrapBuildAction = Formula.extend({
             this.step = 0;
             this.build.resetActiveBtnIndex();
             player.log.addMsg(1092, produce[0].num, itemName, player.storage.getNumByItemId(itemInfo.itemId));
+            player.trapTime = -1;
             Record.saveAll();
         }
         this._sendUpdageSignal();
@@ -402,7 +432,14 @@ var TrapBuildAction = Formula.extend({
         if (IAPPackage.isHandyworkerUnlocked()) {
             time = Math.round(time * 0.7);
         }
-        var action1Txt = (this.step == 1 || this.step == 2) ? stringUtil.getString(1003) : stringUtil.getString(1155, time);
+        var action1Txt;
+        if (!this.step) {
+           action1Txt = stringUtil.getString(1155, time); 
+        } else if (this.step == 1) {
+            action1Txt = stringUtil.getString(6674, stringUtil.getString(1103011).title);
+        } else {
+            action1Txt = stringUtil.getString(1003);
+        }
         var itemName = stringUtil.getString(this.config.produce[0].itemId).title;
 
         var hint, hintColor, items, action1Disabled;
@@ -413,11 +450,16 @@ var TrapBuildAction = Formula.extend({
         } else if (this.isActioning) {
             if (this.step == 1) {
                 hint = stringUtil.getString(1154);
+                if (player.storage.validateItem(1103011, 1)){
+                    action1Disabled = false;
+                } else {
+                    action1Disabled = false;
+                }
             } else {
                 hint = stringUtil.getString(1153);
+                action1Disabled = true;
             }
             hintColor = cc.color.WHITE;
-            action1Disabled = true;
         } else {
             if (this.step == 2) {
                 hint = stringUtil.getString(1009, itemName);
@@ -900,130 +942,32 @@ var DogBuildAction = BuildAction.extend({
     ctor: function (bid) {
         this._super(bid);
         this.config = utils.clone(buildActionConfig[this.id][0]);
-        this.fuel = 0;
-        this.pastTime = 0;
-        this.startTime = null;
-        this.fuelMax = this.config.max;
-        this.timePerFuel = this.config["makeTime"] * 60;
         this.needBuild = {bid: this.id, level: 0};
     },
     clickIcon: function () {
-            uiUtil.showBuildActionDialog(this.bid, 0);     
+        uiUtil.showBuildActionDialog(this.bid, 0);     
     },
     clickAction1: function () {
-        if (!uiUtil.checkVigour())
-            return;
-        if (player.validateItems(this.config.cost)) {
-            if (this.fuel >= this.fuelMax) {
-                uiUtil.showTinyInfoDialog(1130);
-            } else {
-                player.costItems(this.config.cost);
-                this.addFuel();
-            }
-        } else {
-            uiUtil.showTinyInfoDialog(1023);
-        }
+
     },
     addFuelTimer: function () {
-        var self = this;
-        this.addTimer(this.timePerFuel, function () {
-            self.fuel--;
-            if (self.fuel > 0) {
-                self.addFuelTimer();
-            } else {
-                //中断回复后,并不需要build resetActiveBtnIndex
-                if (self.build) {
-                    self.build.resetActiveBtnIndex();
-                }
-            }
-            Record.saveAll();
-        }, this.startTime);
+
     },
     addFuel: function () {
-        //燃料空的时候,注册timer
-        if (this.fuel == 0) {
-            this.addFuelTimer();
-            this.build.setActiveBtnIndex(this.idx);
-        }
-        this.fuel++;
 
-        player.updateTemperature();
-
-        this._sendUpdageSignal();
-        player.log.addMsg(1171);
-
-        Record.saveAll();
     },
     save: function () {
         return {
-            fuel: this.fuel,
-            pastTime: this.pastTime,
-            startTime: this.startTime
         };
     },
     restore: function (saveObj) {
-        if (saveObj) {
-            this.fuel = saveObj.fuel || 0;
-            this.pastTime = saveObj.pastTime || 0;
-            this.startTime = saveObj.startTime;
-        }
-        if (this.fuel > 0) {
-            this.addFuelTimer();
-        }
+
     },
     addTimer: function (time, endCb, startTime) {
-        this.isActioning = true;
-        var self = this;
-        var tcb = cc.timer.addTimerCallback(new TimerCallback(time, this, {
-            process: function (dt) {
-                self.pastTime += dt;
-                self.totalTime = self.fuel * self.timePerFuel;
-                if (self.view) {
-                    self.view.updatePercentage((self.totalTime - self.pastTime ) / self.totalTime * 100);
-                }
-            },
-            end: function () {
-                self.isActioning = false;
-                self.pastTime = 0;
-                self.startTime = null;
 
-                if (endCb) {
-                    endCb();
-                }
-
-                self._sendUpdageSignal();
-            }
-        }), startTime);
-        this.startTime = tcb.startTime;
     },
     _getUpdateViewInfo: function () {
-        var iconName = "#build_action_" + this.id + "_0" + ".png";
 
-        var action1Txt = stringUtil.getString(1020);
-
-        var hint, hintColor, items, action1Disabled;
-        if (this.needBuild.level > player.room.getBuildLevel(this.needBuild.bid)) {
-            hint = stringUtil.getString(1006, player.room.getBuildName(this.needBuild["bid"], this.needBuild["level"]));
-            hintColor = cc.color.RED;
-            action1Disabled = true;
-        } else if (this.isActioning) {
-            hint = stringUtil.getString(1021, this.fuel, Math.floor(this.fuel * this.config["makeTime"] / 60));
-            hintColor = cc.color.WHITE;
-        } else {
-            hint = stringUtil.getString(1022);
-            hintColor = cc.color.WHITE;
-        }
-
-        var res = {
-            iconName: iconName,
-            hint: hint,
-            hintColor: hintColor,
-            items: items,
-            action1: action1Txt,
-            action1Disabled: action1Disabled,
-            percentage: 0
-        };
-        return res;
     }
 });
 

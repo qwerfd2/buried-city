@@ -1,4 +1,6 @@
 var string = {
+"equip_needed":"Efectivo sólo cuando está equipado como herramienta.",
+"no_need_equip":"Equipo pasivo, no es necesario equipar.",
     "7000": "Verificar la condición de %s",
     "7001": "Llevar a %s afuera",
     "7002": "Dejar que %s cuide la casa",
@@ -42,7 +44,7 @@ var string = {
 "6672": "Alimentos caducados",
 "6675": "Has retrocedido la versión del juego. El archivo de guardado podría estar dañado. Por favor, comienza una nueva partida o regresa a la versión anterior.",
 "6676": "Has actualizado el juego. El archivo de guardado podría no ser compatible. Si encuentras problemas, por favor, comienza una nueva partida.",
-  "6674": "Acelerar (1 fertilizante)",
+  "6674": "Acelerar (1 %s)",
   "1101081": {
     "title": "Fertilizante",
     "des": "En realidad, son solo alimentos caducados, y la única forma de usarlos es fertilizando los cultivos."
@@ -199,12 +201,6 @@ var string = {
 "9036": "Pero tu mochila no puede contener las cosas que has robado. Las has vuelto a poner en silencio.",
     "1171": "El perro comiendo la carne fresca, está contento.",
 "1023": "Carne insuficiente",
-    "1218": "página principal",
-    "1219": "Predeterminado",
-    "1220": "Navidad",
-    "1209": "Mapa",
-    "1210": "Ciudad",
-    "1211": "Pueblo",
     "1169": "efecto de sonido",
     "1321": "Masako",
     "1322": "Ingeniero eléctrico",
@@ -1298,12 +1294,12 @@ var string = {
     "p_0": {
         "name": "Superviviente",
         "des": "Sin ningún tipo de dependencia, en la cara de un desastre repentino, sólo tienes que vivir.",
-        "effect": "Desgaste de armas reducido al 75%"
+        "effect": "Pérdida de armas reducida en un 75%"
     },
     "p_101": {
         "name": "Pistolero",
         "des": "Ha recibido una formación profesional, familiarizado con la pistola y la bala. ",
-        "effect": "Hit aumentó a 125%"
+        "effect": "Hit aumentó a 130%"
     },
     "p_102": {
         "name": "Gran hombre",
@@ -1313,7 +1309,7 @@ var string = {
     "p_103": {
         "name": "Carroñero",
         "des": "Eres bueno para encontrar el valor en la basura. ",
-        "effect": "Obtener recursos de Items 120%"
+        "effect": "Obtener recursos de Items 125%"
     },
     "p_104": {
         "name": "Comunicador",

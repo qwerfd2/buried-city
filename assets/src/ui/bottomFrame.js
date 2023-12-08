@@ -71,7 +71,23 @@ var Navigation = {
                     this.changeSiteMusic();
                     break;
                 case this.nodeName.MAP_NODE:
-                    musicName = audioManager.music.MAP;
+                    switch (Number(cc.sys.localStorage.getItem("weather")) || 0) {
+                        case 0:
+                            musicName = audioManager.music.MAP_CLOUDY;
+                            break;
+                        case 1:
+                            musicName = audioManager.music.MAP_SUNNY;
+                            break;
+                        case 2:
+                            musicName = audioManager.music.MAP_RAIN;
+                            break;
+                        case 3:
+                            musicName = audioManager.music.MAP_SNOW;
+                            break;
+                        case 4:
+                            musicName = audioManager.music.MAP_FOG;
+                            break;                
+                    };
                     this.changeSiteMusic();
                     break;
                 case this.nodeName.NPC_NODE:
@@ -120,7 +136,7 @@ var Navigation = {
                     musicName = audioManager.music.NPC;
                     break;
                 case this.nodeName.DOG_NODE:
-                    musicName = audioManager.music.NPC;
+                    musicName = audioManager.music.HOME;
                     break;
             }
             if ((musicName && musicName != this.currentMusic) || !this.currentMusic) {
@@ -139,6 +155,34 @@ var Navigation = {
             this.siteMusic = musicPool[utils.getRandomInt(0, musicPool.length - 1)];
         }
         return this.siteMusic;
+    },
+    updateMapMusic: function () {
+        if (this._array[this._array.length - 1].nodeName == this.nodeName.MAP_NODE) {
+            var musicName;
+            switch (Number(cc.sys.localStorage.getItem("weather")) || 0) {
+                case 0:
+                    musicName = audioManager.music.MAP_CLOUDY;
+                    break;
+                case 1:
+                    musicName = audioManager.music.MAP_SUNNY;
+                    break;
+                case 2:
+                    musicName = audioManager.music.MAP_RAIN;
+                    break;
+                case 3:
+                    musicName = audioManager.music.MAP_SNOW;
+                    break;
+                case 4:
+                    musicName = audioManager.music.MAP_FOG;
+                    break;                
+            };
+            this.changeSiteMusic();
+            if ((musicName && musicName != this.currentMusic) || !this.currentMusic) {
+                audioManager.stopMusic(this.currentMusic);
+                this.currentMusic = musicName;
+                audioManager.playMusic(this.currentMusic, true);
+            }
+        }
     },
     changeSiteMusic: function () {
         this.siteMusic = null;
@@ -196,7 +240,7 @@ var Navigation = {
         layer.removeChildByName("bottom");
     },
     gotoDogNode: function () {
-        if (IS_IN_DOG_NODE) {
+        if (IS_IN_DOG_NODE || player.isDead) {
             return;
         }
         if (player.isAtHome) {

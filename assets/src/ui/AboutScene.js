@@ -13,7 +13,6 @@ var aboutLayer = cc.Layer.extend({
         if (Record.getScreenFix() == 1) {
             this.setScale(0.83);
         }
-        setTimeout(function() {audioManager.playMusic(audioManager.music.ARITHSEQ, false)}, 1000);
         this.bg = new cc.Sprite("res/new/about_bg.png");
         this.bg.x = cc.winSize.width / 2;
         this.bg.y = cc.winSize.height / 2;
@@ -32,7 +31,6 @@ var aboutLayer = cc.Layer.extend({
         this.bg.addChild(nameLabel);
         
         var btn = uiUtil.createCommonBtnBlack(stringUtil.getString(1193), this, function () {
-            audioManager.stopMusic(audioManager.music.ARITHSEQ);
             cc.director.runScene(new MenuScene());
         });
         btn.setPosition(this.bg.width / 2, this.bg.height / 2 - 500);

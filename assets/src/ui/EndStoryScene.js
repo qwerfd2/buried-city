@@ -132,11 +132,11 @@ var EndStoryLayer = cc.Layer.extend({
         
         var endtxt1 = new cc.LabelTTF("Dice7 (Buried Town)\n果农C    Lancelot", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
         endtxt1.setAnchorPoint(0, 1);
-        endtxt1.setPosition(0, txtNode.height);
+        endtxt1.setPosition(0, txtNode.height + 20);
         endtxt1.setColor(cc.color.WHITE);
         txtNode.addChild(endtxt1);
         
-        var endtxt2 = new cc.LabelTTF(stringUtil.getString(8027) + "\n罗杨", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        var endtxt2 = new cc.LabelTTF(stringUtil.getString(8027) + "\nBlue Wizard Studio, Epidemic Sound", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
         endtxt2.setAnchorPoint(0, 1);
         endtxt2.setPosition(0, endtxt1.y - endtxt1.height - 60);
         endtxt2.setColor(cc.color.WHITE);

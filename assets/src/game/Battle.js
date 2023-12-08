@@ -191,6 +191,7 @@ var Battle = cc.Class.extend({
         var rand = Math.random();
         if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0 && player.nowSiteId != null && player.nowSiteId != 0 && rand > 0.7) {
             //generate loot dialog for dog bonus
+            player.changeAttr("dogMood", -1);
             var config = utils.clone(stringUtil.getString("statusDialog"));
             config.title.icon = "#icon_item_1106013.png";
             config.title.title = stringUtil.getString(7018);
@@ -389,25 +390,28 @@ var BattlePlayer = cc.Class.extend({
     action: function (dt) {
         this.useWeapon1();
         this.useWeapon2();
-        if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0) {
+        if (this.dogState < 1000) {
             this.dogState += 1;
+        }
+        if (this.dogState == 10) {
+            if (this.battle.isMonsterStopDog) {
+                this.battle.isMonsterStopDog = false;
+            }
+        }
+        if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0) {
             this.useDog();
         }
         this.useEquip();
     },
     useDog: function () {
-        if (this.dogState < 12) {
+        if (this.dogState < 10) {
             return;
-        } if (this.dogState > 12) {
-            this.dogState -= 12;
+        } if (this.dogState > 9) {
+            this.dogState = 0;
         }
         var rand = Math.random();
-        if (this.battle.isMonsterStopDog) {
-            this.battle.isMonsterStopDog = false;
-        }
         if (rand < 0.3) {
             //dog attack enemy
-            player.log.addMsg("1 happened");
             var monster = this.battle.targetMon;
             monster.underAtk("Dog");
             audioManager.playEffect(audioManager.sound.SHORT_BARK);
@@ -417,7 +421,6 @@ var BattlePlayer = cc.Class.extend({
             }
         } else if (rand > 0.7) {
             //dog kite enemy
-            player.log.addMsg("2 happened");
             this.battle.isMonsterStopDog = true;
             this.battle.processLog(stringUtil.getString(7016, player.getDogName()), cc.color.GREEN);
             if (rand > 0.9) {

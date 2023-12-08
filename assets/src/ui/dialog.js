@@ -1130,7 +1130,7 @@ var AboutUUIDDialog = DialogTiny.extend({
 });
 
 var NpcTradeItemDialog = DialogTiny.extend({
-    ctor: function (needItems) {
+    ctor: function (needItems, hasSales) {
         var config = {
             title: {},
             content: {},
@@ -1152,6 +1152,11 @@ var NpcTradeItemDialog = DialogTiny.extend({
         richText.setAnchorPoint(0, 1);
         richText.setPosition(10, label1.y - 30);
         this.contentNode.addChild(richText);
+        if (hasSales) {
+            var salesIcon = new ImageButton("#icon_sale.png", 0.5);
+            salesIcon.setPosition(400, 30);
+            this.contentNode.addChild(salesIcon);
+        }
     }
 });
 
@@ -1223,29 +1228,11 @@ var PayDialog = DialogSmall.extend({
 
         this.actionNode.getChildByName("btn_2").setEnabled(!IAPPackage.isIAPUnlocked(purchaseId));
 
-        var offIcon = uiUtil.createSaleOffIcon();
-        offIcon.x = this.titleNode.width - 20;
-        offIcon.y = this.titleNode.height;
-        this.titleNode.addChild(offIcon);
-        offIcon.setVisible(false);
-        offIcon.setName('offIcon');
-        this.updateOffIcon();
-
         if (purchaseId == 106) {
             var saleIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_sale.png');
             saleIcon.x = this.titleNode.width - 20;
             saleIcon.y = this.titleNode.height - 10;
             this.titleNode.addChild(saleIcon);
-        }
-    },
-    updateOffIcon: function () {
-        var offIcon = this.titleNode.getChildByName('offIcon');
-        var off = IAPPackage.getPriceOff(this.purchaseId);
-        if (off > 0) {
-            offIcon.setVisible(true);
-            offIcon.updateOff(off);
-        } else {
-            offIcon.setVisible(false);
         }
     },
     show: function () {

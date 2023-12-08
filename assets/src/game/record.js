@@ -97,38 +97,12 @@ var Record = {
     },
     
     getScreenFix: function () {
-       var value = cc.sys.localStorage.getItem("screenfix") || 0;
+       var value = cc.sys.localStorage.getItem("screenfix") || 1;
        return value;
     },
     
     setScreenFix: function (on) {
         cc.sys.localStorage.setItem("screenfix", Number(on));
-    },
-    
-    getCity: function () {
-       var value = cc.sys.localStorage.getItem("city") || 0;
-       return value == 1 ? true : false;
-    },
-    
-    setCity: function (on) {
-        var onVal = 2;
-        if (on) {
-            onVal = 1;
-        }
-        cc.sys.localStorage.setItem("city", onVal);
-    },
-    
-    getFestival: function () {
-       var value = cc.sys.localStorage.getItem("festival") || 0;
-       return value == 1 ? true : false;
-    },
-    
-    setFestival: function (on) {
-        var onVal = 2;
-        if (on) {
-            onVal = 1;
-        }
-        cc.sys.localStorage.setItem("festival", onVal);
     }
 };
 

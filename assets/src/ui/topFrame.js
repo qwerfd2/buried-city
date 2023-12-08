@@ -72,6 +72,7 @@ var TopFrameNode = cc.Node.extend({
         this.firstLine.addChild(weather);
         utils.emitter.on("weather_change", function (weatherId) {
             weather.updateView("icon_weather_" + weatherId + ".png", player.weather.getWeatherName());
+            Navigation.updateMapMusic();
         });
 
         var temperature = new StatusButton(cc.size(this.firstLine.width / 10 - 2, this.firstLine.height), "#icon_temperature_0.png", player.temperature, {scale: 0.4});
@@ -234,21 +235,21 @@ var TopFrameNode = cc.Node.extend({
             var layer = cc.director.getRunningScene().getChildByName("main");
             var node = layer.getChildByName("bottom");
             if (node && node instanceof BottomFrameNode && node.uiConfig.leftBtn) {
-                if (node.leftBtn.isEnabled()){
+                if (node.leftBtn.isEnabled() && !player.isDead){
                     game.stop();
                     cc.director.runScene(new ChooseScene(1));
                 }
-            } else {
+            } else if (!MAP_IS_MOVING && !player.isDead) {
                 game.stop();
                 cc.director.runScene(new ChooseScene(1));
             }
         });
         
-        if (player.dogState) {
-            var dogButton = new DogButton(0.7);
-            this.thirdLine.addChild(dogButton, 1);
-            dogButton.setPosition(this.thirdLine.width - 20, this.thirdLine.height - 100);
-            dogButton.setClickListener(this, function() {
+        var dogButton = new DogButton(0.7);
+        this.thirdLine.addChild(dogButton, 1);
+        dogButton.setPosition(this.thirdLine.width - 18, this.thirdLine.height - 100);
+        dogButton.setClickListener(this, function() {
+            if (player.dogState) {
                 var layer = cc.director.getRunningScene().getChildByName("main");
                 var node = layer.getChildByName("bottom");
                 if (node && node instanceof BottomFrameNode && node.uiConfig.leftBtn) {
@@ -258,17 +259,16 @@ var TopFrameNode = cc.Node.extend({
                 } else if (!MAP_IS_MOVING) {
                     Navigation.gotoDogNode();
                 }
-            });
-            utils.emitter.on("dogStateChange", function (value) {
-                dogButton.updateBtn();
-            });
-            dogButton.updateBtn = function () {
-                if (cc.sys.isObjectValid(dogButton)) {
-                    dogButton.updateView();
-                }
-            };
-            
-        }
+            }
+        });
+        utils.emitter.on("dogStateChange", function (value) {
+            dogButton.updateBtn();
+        });
+        dogButton.updateBtn = function () {
+            if (cc.sys.isObjectValid(dogButton)) {
+                dogButton.updateView();
+            }
+        };
 
         var self = this;
         utils.emitter.on("logChanged", function (msg) {

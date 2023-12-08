@@ -318,7 +318,7 @@ var Bag = Storage.extend({
                 weaponBrokenProbability = itemConfig[itemId].effect_arm.brokenProbability;
             }
             if (IAPPackage.isWeaponEffectUnlocked()){
-                weaponBrokenProbability -= weaponBrokenProbability * 0.25;
+                weaponBrokenProbability -= weaponBrokenProbability * 0.75;
             }          
             var rand = Math.random();
             var isBroken = (rand <= weaponBrokenProbability);

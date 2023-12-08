@@ -99,7 +99,7 @@ var DogNode = BottomFrameNode.extend({
         this.statLine.setContentSize(160, 50);
         this.bg.addChild(this.statLine);
         
-        var btnSize2 = cc.size(this.statLine.width / 3 - 5, this.statLine.height);
+        var btnSize2 = cc.size(this.statLine.width / 3 + 11, this.statLine.height);
         var createAttrButton = function (attr, needStatusStr, stringId, reversPercentage, warnRange) {
             var btn = new AttrButton(btnSize2, attr, "", warnRange, {scale: 0.5});
             btn.setName(attr);
@@ -127,7 +127,7 @@ var DogNode = BottomFrameNode.extend({
         this.statLine.addChild(starve);
         
         var spirit = createAttrButton("dogMood", false, 19, false, new Range("[0,0.3]"));
-        spirit.setPosition(this.statLine.width / 10 * 9, this.statLine.height / 2);
+        spirit.setPosition(this.statLine.width / 10 * 9 + 0.6, this.statLine.height / 2);
         this.statLine.addChild(spirit);
     },
 

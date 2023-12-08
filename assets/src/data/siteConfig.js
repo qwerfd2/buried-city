@@ -3972,7 +3972,7 @@ var siteConfig = {
         "produceList": [],
         "fixedProduceList": [{
             "itemId": "1101031",
-            "num": 6
+            "num": 7
         }, {
             "itemId": "1101041",
             "num": 2

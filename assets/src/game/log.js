@@ -11,6 +11,9 @@ var Log = cc.Class.extend({
                 }
                 msg = stringUtil.getString.apply(this, args);
             }
+            if (DAY == 12 && MONTH == 5) {
+                msg = msg + "🕯️";
+            }
             var msg = {
                 txt: msg,
                 time: cc.timer.getTimeDayStr() + " " + cc.timer.getTimeHourStr()

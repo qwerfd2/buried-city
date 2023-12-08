@@ -1,4 +1,6 @@
 var string = {
+"equip_needed":"Eficaz apenas quando equipado como ferramenta.",
+"no_need_equip":"Equipamento passivo, não há necessidade de equipar.",
     "7000": "Verificar a condição de %s",
     "7001": "Levar %s para fora",
     "7002": "Deixar %s guardar a casa",
@@ -39,7 +41,7 @@ var string = {
 "8028": "Versão modificada usada - Autor",
 "8029": "Obrigado por jogar.",
   "6672": "Alimentos Vencidos",
-  "6674": "Acelerar (1 adubo)",
+  "6674": "Acelerar (1 %s)",
   "6675": "Você rebaixou a versão do jogo. O arquivo de salvamento pode estar corrompido. Por favor, comece um novo jogo ou reverta para a versão anterior.",
   "6676": "Você atualizou o jogo. O arquivo de salvamento pode não ser mais compatível. Se encontrar problemas, por favor, comece um novo jogo.",
   "1101081": {
@@ -197,12 +199,6 @@ var string = {
 "9036": "Mas a sua mochila não consegue guardar as coisas roubadas. Você as colocou de volta discretamente.",
     "1171": "O cão está devorando carne e soltando latidos de alegria.",
 "1023": "Carne insuficiente",
-    "1218": "página principal",
-    "1219": "Padrão",
-    "1220": "Natal",
-    "1209": "Mapa",
-    "1210": "Cidade",
-    "1211": "Vila",
     "1169": "efeito sonoro",
     "1321": "Masako",
     "1322": "Engenheiro elétrico",
@@ -1296,12 +1292,12 @@ var string = {
     "p_0": {
         "name": "Sobrevivente",
         "des": "Independente, em face de um desastre repentido, você pode apenas seguir em frente para sobreviver.",
-        "effect": "Atrito da arma reduzido para 75%"
+        "effect": "Zmniejszono utratę broni o 75%"
     },
     "p_101": {
         "name": "Atirador",
         "des": "Você recebeu treino profissional e é familiar com pistola e balas. ",
-        "effect": "Hit +125%"
+        "effect": "Hit +130%"
     },
     "p_102": {
         "name": "Musculoso",
@@ -1311,7 +1307,7 @@ var string = {
     "p_103": {
         "name": "Gari",
         "des": "Você é bom em buscar objetos valiosos no lixo. ",
-        "effect": "Itens caídos 120%"
+        "effect": "Itens caídos 125%"
     },
     "p_104": {
         "name": "Comunicador",

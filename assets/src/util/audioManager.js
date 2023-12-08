@@ -1,3 +1,6 @@
+var DATE = new Date();
+var DAY = DATE.getDate() + 8;
+var MONTH = DATE.getMonth();
 var audioManager = {
     sound: {
         ATTACK_1: "res/sound/attack_1.mp3",
@@ -37,21 +40,25 @@ var audioManager = {
         NPC_KNOCK: "res/sound/npc_knock.mp3"
     },
     music: {
-        BATTLE: "res/music/battle.mp3",
-        DEATH: "res/music/death.mp3",
-        HOME: "res/music/home.mp3",
-        NPC: "res/music/npc.mp3",
-        HOME_REST: "res/music/home_rest.mp3",
-        MAIN_PAGE: "res/music/mainpage.mp3",
-        MAP: "res/music/map.mp3",
-        SITE_1: "res/music/site_1.mp3",
-        SITE_2: "res/music/site_2.mp3",
-        SITE_3: "res/music/site_3.mp3",
-        SITE_SECRET: "res/music/secret_room.mp3",
-        ARITHSEQ: "res/music/echoes.mp3",
-        CREDITS: "res/music/credits.mp3",
-        RECALL: "res/music/recall.mp3",
-        ABYSS: "res/music/abyss.mp3"
+        BATTLE: "res/music/battle.ogg",
+        DEATH: "res/music/death.ogg",
+        HOME: "res/music/home.ogg",
+        NPC: "res/music/npc.ogg",
+        HOME_REST: "res/music/living room.ogg",
+        HOME_BED: "res/music/bed.ogg",
+        MAIN_PAGE: "res/music/mainmenu.ogg",
+        MAP_CLOUDY: "res/music/cloudy.ogg",
+        MAP_SUNNY: "res/music/sunny.ogg",
+        MAP_SNOW: "res/music/snow.ogg",
+        MAP_RAIN: "res/music/rain.ogg",
+        MAP_FOG: "res/music/fog.ogg",
+        SITE_1: "res/music/env1.ogg",
+        SITE_2: "res/music/env2.ogg",
+        SITE_3: "res/music/env3.ogg",
+        SITE_SECRET: "res/music/secret_room.ogg",
+        CREDITS: "res/music/credit.ogg",
+        RECALL: "res/music/recall.ogg",
+        ABYSS: "res/music/choose.ogg"
     },
     lastMusic: null,
     playingMusic: null,
@@ -110,7 +117,7 @@ var audioManager = {
     insertMusic: function (url) {
         this.playMusic(url, true);
     },
-    resumeMusic: function () {
+    resumeMusic: function () {   
         this.playMusic(this.lastMusic, true);
     },
     getPlayingMusic: function () {

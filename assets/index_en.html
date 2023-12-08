@@ -17,7 +17,7 @@
 6. Screen shrink in settings to make the UI compatible with longer phones.<br>
 7. Hall of Fame works offline (will record prior deaths).<br>
 8. All edits supports 13 languages (except this page)(thx chatGPT...)<br>
-9. Music sound quality improvement.<br>
+9. Completely replaced the official soundtrack, tracks used is listed on the bottom.<br>
 10. Main scene music selection button, music logic improvement.<br> 
 11. Removed starting splash screen.<br>
 12. Change to Christmas background in Settings.<br>
@@ -64,7 +64,9 @@
 35. Weapon less prone to breaking early, and will return some parts if broken.<br>
 36. Food now has a chance of expiring. See appendix. <br>
 37. Player can bring dogs outside and aid in combat and resource gathering. See appendix.<br>
-38. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage, NPC value rounding error, multi-clickable crafting buttons, NPC ghost gun exploit, avoid zombie encounter by quitting the game).<br>
+38. You can accelerate the Hare Trap using potato (12 hours).<br>
+39. Alcohol addiction: drinking might increase requirement to drink in the future. Each season this will be reduced by 1.<br>
+40. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage, NPC value rounding error, multi-clickable crafting buttons, NPC ghost gun exploit, avoid zombie encounter by quitting the game).<br>
 </p>
 <h2>Appendix</h2>
 <h3>Moonlighting：</h3>
@@ -72,7 +74,7 @@
 <h3>Radio CMD:</h3>
 <dl>
 <p>Only available if Cheat: Free IAP is selected.</p>
-  <dt>heal - Heal the player on all aspect.</dt>
+  <dt>heal - Heal the player and dog on all aspect.</dt>
   <dt>kill - Kill the player.</dt>
   <dt>obtain Wood 100 - Obtain 100 wood.</dt>
   <dt>obtain everything 100 - Obtain 100 of everything.</dt>
@@ -83,17 +85,17 @@
 <h3>NPC Stealing:</h3>
 <p>If stealing is successful, that NPC's alert increases by 1. If failed, the alert increases by 2, and friendship is reduced by 2 (Communicator -1, Cheat: All Unlocked: -0). Your luck is updated daily [35, 65], and it will affect the success rate. If not stolen from the NPC's alert will decrease by 1 per day.</p>
 <h3>Survivor Bazaar:</h3>
-<p>A location where you can sell items in your bag for coins (cap 99999 coins), and buy items which refreshes every day. Items can be previewed in map. Sweepstakes are available in the Bazaar. Hostel allows you to sleep and rest at a fee.</p>
+<p>A location where you can sell items in your bag for coins (max 99999 coins), and buy items which refreshes every day. Items can be previewed in map. Sweepstakes are available in the Bazaar. Hostel allows you to sleep and rest at a fee. Items in the bazaar could be discounted. If so, on map page - location popup - item list popup, you will see a "sale" icon.</p>
 <h3>Thirst:</h3>
 <p>The player will drink water automatically from storage or the bag, once every 6 hours (Summer: 4 hours). Each drink will provide thirst immunity for the next 6 hours. If there is no immunity, 3 thirsts are deducted every hour. If thirst is lower than 25, you will lose 20 hp per hour. If you obtain a water and thirst is not full, you will drink one. When arriving home, you will drink until your thirst is full. Excessive amounts will be converted to equivalent immune time.</p>
 <h3>Virus Load:</h3>
-<p>Every time you are hurt from a zombie combat with difficulty greater than 2, you risk gaining 1 virus (zombie encounters on the map was changed as well - difficulty and chance will increase over time). If the virus is overloaded, you will die instantly. Virus will not decrease, but you can increase the upper bound of virus load by sacrificing other properties. All properties except hp can be exchanged for virus load 5:20, and hp can be exchanged 10:20. Wearing clothes can reduce the chance of gaining virus. Added Experimental Antidote: Provide immunity for virus load for 72 hours, obtainable at Dr. Jane. When dead and first aid kit is used, virus load will be halved.</p>
+<p>Every time you are hurt from a zombie combat with difficulty greater than 2, you risk gaining 1 virus (zombie encounters on the map was changed as well - difficulty and chance will increase over time). If the virus is overloaded, you will die instantly. Virus will not decrease, but you can increase the upper bound of virus load by sacrificing other properties. All properties except hp can be exchanged for virus load 5 to 15, and hp can be exchanged 10 to 15. Wearing clothes can reduce the chance of gaining virus. Added Experimental Antidote: Provide immunity for virus load for 72 hours, obtainable at Dr. Jane. When dead and first aid kit is used, virus load will be halved.</p>
 <h3>Fuel Mechanism:</h3>
 <p>Only applicable after the player obtains motorcycle. Player can fix the pump at the gas station with gas pump part. When fixed, pump will provide 1 fuel per hour. Fuel cannot be sold and have a cap of 99. fuel will be used during motorcycle travel, which will significantly boost the player's speed. Falcon has been removed, the engine/buffs repurposed for/to the normal motorcycle. Shoes now break after a fixed distance have been traveled. If the player have shoes, shoes will be automatically used to provide a small speed boost. If the player have motorcycles, motorcycle's storage space boost will be used. If the player also has fuel & wants to spend it (you can disable speed boost by clicking the motorcycle status icon on the travel dialog), speed boost will be provided. New weapon: Flamethrower, damage all enemies by consuming 1 fuel per turn. if >3 zombies are present, each are delt 25 damage. if more than 1 zombie is present, each are delt 50 damage. If 1 zombie is present, 100 damage is delt. You might encounter abandoned cars when traveling. If equipped with siphoning tool (craftable at the bench), you will receive fuel.</p>
 <h3>Standard Bullet:</h3>
 <p>Bullets obtained at locations and encounters will largely be standard bullets. Stanard bullet will not damage the gun, and has boosted accuracies. If you have standard bullets in your bag and it is set to priority, it will be used. If one kind of bullet is depleted, the other will be used automatically.</p>
 <h3>Food Expiration:</h3>
-<p>Different food have a different chance to expire every 1AM. Expired food will be converted to fertilizer to provide speed-up for crops or sold. Fridge with electricity can prevent food in home from expiring. Food in backpack and safe will not expire.</p>
+<p>Different food have a different chance to expire every 1AM. Expired food will be converted to fertilizer to provide speed-up for crops (3 hours) or sold. Fridge with electricity can prevent food in home from expiring. Food in backpack and safe will not expire.</p>
 <h3>Dog Outdoor:</h3>
 <p>Dogs now has 3 attributes: Hunger, injury, and mood. Dog hunger will deplete in 48 hours. Feed dog meat to gain 12 hours of time. Pat dog every day to receive mood bonus for both player and dog. Give dog toys to instantly gain dog mood. Dog can be injured during battle - use bandages to heal him. If any one of the three stats reaches 0, dog will not help guard the home or in battle. Dog will not die.</p>
 <p>You can bring dog outside in the Dog House furniture screen. If outside, dog cannot protect home. While outside, dog can distract zombies and attack them and help you find more supplies. If you decide to bring dog outside, a dog logo will show on the topbar. You can manage the dog's statistic there. If the logo is gray, dog is not providing benefit due to stat dificiency. If at home and dog house is grayed out, it means that dog will not defend your home due to stat difficiency. You can name your dog,</p>
@@ -101,13 +103,25 @@
 <p>
 Buried Town, originally named Berry Town, was developed by Chengdu 点犀 (DianXi) (Dice7) Network Co.Ltd and published by Beijing 乐动卓越 (LeDongZhuoYue) (Locojoy) Technology Co.Ltd. First launched on the iOS on Sep. 23rd, 2015, The game started its Android beta phase on Sep. 25th, 2015, and was released at Google Play on Nov. 23rd, 2015. The last update (1.4.3) was released on Jun. 27th, 2018, and the game server was shut down around late June, 2019.</p><p>
 Thanks to the game's weak online dependency, the majority of the functionality can be enjoyed offline, with the exception of leaderboards, In-App Purchases, and in-game radio.</p><p>
-Developed using Cocos2d-JS, the installation package of Buried Town is unprotected, source code not compiled nor obfuscated, making modifications extremely easy. Although the graphics have been encrypted, the process after obtaining the key (B29B3886-543224E4-71BDF6E3-9275C626) and edit tool (TexturePacker) is trivial (The encryption has been removed in this version). The game's save file is stored under root-only directory using an encrypted sqlite3 database, with the password (1a2b3c4d5fberrytown).</p><p>
- The Original Soundtrack is composed by 罗杨 (Luo Yang) and is released at Netease Cloud Music (The music in this installation package is the highest available sound quality).
-</p>
-<h2>Added Music</h2>
-<p>Secret room: Tensor Bandage - Blue Wizard Studio</p>
-<p>About page: May it Be - Indigo Days</p>
-<p>Choose page: Sleepwalker I - Sergey Cheremisinov</p>
+Developed using Cocos2d-JS, the installation package of Buried Town is unprotected, source code not compiled nor obfuscated, making modifications extremely easy. Although the graphics have been encrypted, the process after obtaining the key (B29B3886-543224E4-71BDF6E3-9275C626) and edit tool (TexturePacker) is trivial (The encryption has been removed in this version). The game's save file is stored under root-only directory using an encrypted sqlite3 database, with the password (1a2b3c4d5fberrytown).</p>
+<h2>Music List</h2>
+<p>battle: Destroyer - Sergey Cheremisinov</p>
+<p>bed: The Reunion - Trevor Kowalski</p>
+<p>death: Shapes of Shadows - Franz Gordon</p>
+<p>env1: She Came Back - David Celeste</p>
+<p>env2: Incandescence - Silver Maple</p>
+<p>env3: Search and Flight - Sergey Cheremisinov</p>
+<p>home: Secrets and Lies - David Celeste</p>
+<p>living room: April in Detroit - David Celeste</p>
+<p>mainmenu: There Must Be - So Vea</p>
+<p>npc: A New Creation  - David Celeste</p>
+<p>secret_room: Tensor Bandage - Blue Wizard Studio</p>
+<p>fog: Into the Forest I Go - David Celeste</p>
+<p>rain: Nordkap - Martin Landh</p>
+<p>snow: Planting the Seeds - David Celeste</p>
+<p>sunny: In the Waiting - Johannes Bornlof</p>
+<p>cloudy: The Slow Shift - Gavin Luke</p>
+<p>choose: Sleepwalker I - Sergey Cheremisinov</p>
 <h2>Contact</h2>
 <p>Menu - thumb button's contact methods.</p>
  </body>

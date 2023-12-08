@@ -188,6 +188,9 @@ var RadioNode = BuildNode.extend({
                 player.changeHp(player.hpMax);
                 player.changeWater(player.waterMax);
                 player.changeVirus(-player.virusMax);
+                player.changeAttr("dogFood", player.dogFoodMax);
+                player.changeAttr("dogInjury", -player.dogInjuryMax);
+                player.changeAttr("dogMood", player.dogMoodMax);
                 msgData.msg = "You are healed. Welcome.";
             } else if (msg == "kill") {
                 player.die();

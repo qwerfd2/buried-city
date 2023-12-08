@@ -1,4 +1,6 @@
 var string = {
+"equip_needed":"Nur wirksam, wenn es als Werkzeug ausgerüstet ist.",
+"no_need_equip":"Passive Ausrüstung, keine Ausrüstung erforderlich.",
     "7000": "Überprüfe den Zustand von %s",
     "7001": "Bring %s nach draußen",
     "7002": "Lass %s das Zuhause bewachen",
@@ -39,7 +41,7 @@ var string = {
 "8028": "Verwendete modifizierte Version - Autor",
 "8029": "Vielen Dank fürs Spielen.",
 "6672": "Abgelaufene Lebensmittel",
-  "6674": "Beschleunigen (1 Dünger)",
+  "6674": "Beschleunigen (1 %s)",
   "6675": "Sie haben die Spielversion zurückgesetzt. Die Speicherdatei könnte beschädigt sein. Bitte starten Sie ein neues Spiel oder kehren Sie zur vorherigen Version zurück.",
   "6676": "Sie haben das Spiel aktualisiert. Die Speicherdatei ist möglicherweise nicht mehr kompatibel. Wenn Sie Probleme haben, starten Sie bitte ein neues Spiel.",
   "1101081": {
@@ -197,12 +199,6 @@ var string = {
 "9036": "Aber dein Rucksack kann die gestohlenen Dinge nicht aufnehmen. Du hast sie leise zurückgelegt.",
     "1171": "Der Hund frisst gierig das frische Fleisch",
     "1023": "Unzureichendes Fleisch",
-    "1218": "Hauptseite",
-    "1219": "Standard",
-    "1220": "Weihnachten",
-    "1209": "Karte",
-    "1210": "Stadt",
-    "1211": "Dorf",
     "1169": "Soundeffekt",
     "1321": "Masako",
     "1322": "Elektroingenieur",
@@ -1296,12 +1292,12 @@ var string = {
     "p_0": {
         "name": "Überlebender",
         "des": "Ganz auf dich alleine gestellt und der Katastrophe ins Auge blickend bleibt dir nicht anderes übrig als weiter um dein Überleben zu kämpfen.",
-        "effect": "Waffenabnutzung auf 75 % reduziert"
+        "effect": "Waffenverlust um 75 % reduziert"
     },
     "p_101": {
         "name": "Schütze",
         "des": "Du bist ein trainierter Profi und geübt im Umgang mit Schusswaffen. ",
-        "effect": "Treffer erhöht auf 125%"
+        "effect": "Treffer erhöht auf 130%"
     },
     "p_102": {
         "name": "Bodybuilder",
@@ -1311,7 +1307,7 @@ var string = {
     "p_103": {
         "name": "Schnorrer",
         "des": "Du bist gut darin, wertvolle Ressourcen zu finden ",
-        "effect": "Erhaltene Ressourcen erhöht auf 120%"
+        "effect": "Erhaltene Ressourcen erhöht auf 125%"
     },
     "p_104": {
         "name": "Kommunikator",

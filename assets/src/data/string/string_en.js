@@ -1,4 +1,6 @@
 var string = {
+"equip_needed":"Effective only when equipped as tool.",
+"no_need_equip":"Passive equipment, no need to equip.",
 "7000": "Check %s's condition",
 "7001": "Bring %s outdoor",
 "7002": "Let %s guard the home",
@@ -14,7 +16,7 @@ var string = {
 "7015":"%s attacked a zombie, the %s zombie has suffered %s damage.",
 "7016":"Zombies are attracted by %s and stop attacking you.",
 "7017":"%s found these on the zombie, stored in depository for now:",
-"7018":"Dog's goft",
+"7018":"Dog's gift",
 "17": {
     "title": "Dog's injury",
     "des": "Dog can get hurt from combat, and need timely treatment."
@@ -40,7 +42,7 @@ var string = {
 "8029": "Thank you for playing.",
 "6672": "Expired Food",
 "6673": "Yesterday, These food expired and is converted to fertilizer (%s outside, %s in home). Fridge can keep food fresh!",
-"6674": "Accelerate (1 fertilizer)",
+"6674": "Accelerate (1 %s)",
 "6675": "You rolled back the game version. Save file might be broken. Please start a new game, or revert to previous version.",
 "6676": "You updated the game. Save file might no longer be compatible. If you encounter issues, please start a new game.",
 "6671": "The virus finally defeted your immune system and ended your humanity.",
@@ -204,12 +206,6 @@ var string = {
 "9035": "Stock: ",
 "9036": "But your backpack cannot hold the stolen items. You quitely put them back.",
     "1171": "The dog is happily eating the fresh meat.",
-    "1218": "main page",
-    "1219": "Default",
-    "1220": "Christmas",
-    "1209": "Map",
-    "1210": "City",
-    "1211": "Town",
     "1321": "Masako",
     "1322": "Electrical Engineer",
     "1323": "Repair (%s m)",
@@ -1305,12 +1301,12 @@ var string = {
     "p_0": {
         "name": "Survivor",
         "des": "Has nothing to rely on. In the face of disaster, you must fight your hardest to survive.",
-        "effect": "Weapon loss reduced to 75%"
+        "effect": "Weapon loss reduced by 75%"
     },
     "p_101": {
         "name": "Marksman",
         "des": "Well trained in shooting, and familiar with firearms. ",
-        "effect": "Hit increases to 125%"
+        "effect": "Hit increases to 130%"
     },
     "p_102": {
         "name": "Athlete",
@@ -1320,7 +1316,7 @@ var string = {
     "p_103": {
         "name": "Scavenger",
         "des": "Good at scavenging useful items from rubble. ",
-        "effect": "Item drops increased by 20%."
+        "effect": "Item drops increased by 25%."
     },
     "p_104": {
         "name": "Communicator",

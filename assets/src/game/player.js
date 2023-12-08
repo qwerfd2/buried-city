@@ -85,8 +85,11 @@ var Player = cc.Class.extend({
         this.dogInjuryMax = 60;
         this.dogFoodMax = 240;
         this.dogName = "";
+        this.dogDistance = 0;
         this.hasDogPlay = false;
-        this.shopList = [{"itemId": 1103011, "amount": 10}, {"itemId": 1105042, "amount": 10}, {"itemId": 1105051, "amount": 10}, {"itemId": 1301011, "amount": 5}, {"itemId": 1103033, "amount": 5}, {"itemId": 1105011, "amount": 30}];
+        this.isDead = false;
+        this.trapTime = -1;
+        this.shopList = [{"itemId": 1103011, "amount": 10, "discount": 0}, {"itemId": 1105042, "amount": 10, "discount": 0}, {"itemId": 1105051, "amount": 10, "discount": 0}, {"itemId": 1301011, "amount": 5, "discount": 0}, {"itemId": 1103033, "amount": 5, "discount": 0}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1301091": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
     
@@ -155,7 +158,10 @@ var Player = cc.Class.extend({
             dogInjuryMax: this.dogInjuryMax,
             dogFoodMax: this.dogFoodMax,
             hasDogPlay: this.hasDogPlay,
-            dogName: this.dogName
+            dogName: this.dogName,
+            dogDistance: this.dogDistance,
+            isDead: this.isDead,
+            trapTime: this.trapTime
         };
         return opt;
     },
@@ -214,14 +220,17 @@ var Player = cc.Class.extend({
             this.useGoodBullet = opt.useGoodBullet;
             this.alcoholPrice = opt.alcoholPrice;
             this.dogState = opt.dogState || 0;
-            this.dogMood = opt.dogMood || 60;
-            this.dogInjury = opt.dogInjury || 0;
-            this.dogFood = opt.dogFood || 60;
             this.dogMoodMax = opt.dogMoodMax || 60;
+            this.dogFood = (opt.dogFood !== undefined) ? opt.dogFood : 60;
+            this.dogInjury = (opt.dogInjury !== undefined) ? opt.dogInjury : 0;
+            this.dogMood = (opt.dogMood !== undefined) ? opt.dogMood : 60;
             this.dogInjuryMax = opt.dogInjuryMax || 60;
             this.dogFoodMax = opt.dogFoodMax || 240;
             this.hasDogPlay = opt.hasDogPlay || false;
             this.dogName = opt.dogName || "";
+            this.dogDistance = opt.dogDistance || 0;
+            this.isDead = opt.isDead || false;
+            this.trapTime = opt.trapTime || -1;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
@@ -1382,7 +1391,7 @@ var Player = cc.Class.extend({
             var twentyList = [1101011, 1101021, 1101031, 1101041, 1101051, 1103011, 1105042];
             var fifteenList = [1101061, 1101071, 1101073];
             var fiveList = [1102011, 1102022, 1102033, 1102042, 1103074, 1104032, 1301011, 1301022, 1301033, 1301041, 1301052, 1301063, 1301071, 1301082, 1302043, 1303033, 1303044, 1103094]
-            var twoList = [1102053, 1102063, 1104043, 1106054, 1107012, 1107022, 1107032, 1107042, 1107052];
+            var twoList = [1102053, 1102063, 1104043, 1106054, 1107012, 1107022, 1107032, 1107042, 1107052, 1106013];
             
             if (fiveList.indexOf(itemId) !== -1) {
                 amount = 5;
@@ -1395,7 +1404,17 @@ var Player = cc.Class.extend({
             } if (itemId == 1106054) {
                 amount = 1;
             }
-            rray.push({"itemId": itemId, "amount": amount});
+            var discountRand = Math.random();
+            if (discountRand < 0.05) {
+                discountRand = 15;
+            } else if (discountRand < 0.15) {
+                discountRand = 10;
+            } else if (discountRand < 0.3) {
+                discountRand = 5;
+            } else {
+                discountRand = 0;
+            }
+            rray.push({"itemId": itemId, "amount": amount, "discount": discountRand});
         })
         player.shopList = rray;
         
@@ -1545,7 +1564,7 @@ var Player = cc.Class.extend({
                     npc.isSteal = true;
                 }
             }
-            self.Steal = utils.getRandomInt(35, 65);
+            self.Steal = utils.getRandomInt(35, 60);
             self.hasDogPlay = true;
             utils.emitter.emit("Steal");
             self.updateBazaarList();
@@ -1574,7 +1593,9 @@ var Player = cc.Class.extend({
             self.updateDogFood();
 
             var workSite = self.map.getSite(WORK_SITE);
-            if (workSite) {
+            //we don't check worksite broken between 10pm and 1am for player protection
+            var h = cc.timer.formatTime().h;
+            if (workSite && h < 22 && h > 1) {
                 workSite.checkActive();
             }
 
@@ -1595,7 +1616,7 @@ var Player = cc.Class.extend({
 
     die: function () {
         this.buffManager.abortBuff();
-
+        this.isDead = true;
         game.stop();
         this.map.resetPos();
         Navigation.gotoDeathNode();
@@ -1617,6 +1638,7 @@ var Player = cc.Class.extend({
         this.room.forEach(function (build) {
             build.resetActiveBtnIndex();
         });
+        this.isDead = false;
         Record.saveAll();
     },
 

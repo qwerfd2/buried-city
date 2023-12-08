@@ -151,7 +151,11 @@ var NpcNode = BottomFrameNode.extend({
         var self = this;
         var success = false;
         this.npc.storage.forEach(function(i, n) {
-            var b = utils.getRandomInt(0, 100);
+            var rand = 100;
+            if (self.npc.id == 2) {
+                rand = 120;
+            }
+            var b = utils.getRandomInt(0, rand);
             var am = utils.getRandomInt(1, n);
             var am2 = utils.getRandomInt(0, n);
             am = Math.max(am + am2, n);

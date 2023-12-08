@@ -120,21 +120,21 @@ var TalentButton = Button.extend({
 
 var DogButton = Button.extend({
     ctor: function (a) {
-        var str;
+        var str = "#tab_content_btn_normal.png";
         if (player.dogState && player.room.getBuildLevel(12) >= 0) {
             if (player.isDogActive()) {
                 str = "#icon_item_1106013.png";
             } else {
                 str = "#dog_unable.png";
             }
-            var bg = new cc.Sprite(str);
-            bg.setName("dogBg");
-            bg.setScale(0.4);
-            this._super(cc.size(35, 35));
-
-            bg.setPosition(this.width / 2, this.height / 2);
-            this.addChild(bg);
         }
+        var bg = new cc.Sprite(str);
+        bg.setName("dogBg");
+        bg.setScale(0.5);
+        this._super(cc.size(35, 35));
+
+        bg.setPosition(this.width / 2, this.height / 2);
+        this.addChild(bg);
     },
     updateView: function () {
         this.removeChildByName("dogBg");
@@ -147,13 +147,15 @@ var DogButton = Button.extend({
                 //gray icon
                 str = "#dog_unable.png";
             }
-            var bg = new cc.Sprite(str);
-            bg.setName("dogBg");
-            bg.setScale(0.4);
-
-            bg.setPosition(this.width / 2, this.height / 2);
-            this.addChild(bg);
+        } else {
+            str = "#tab_content_btn_normal.png";
         }
+        var bg = new cc.Sprite(str);
+        bg.setName("dogBg");
+        bg.setScale(0.5);
+
+        bg.setPosition(this.width / 2, this.height / 2);
+        this.addChild(bg);
     }
 });
 

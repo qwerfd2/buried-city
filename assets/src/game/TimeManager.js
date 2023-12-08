@@ -205,7 +205,7 @@ var TimerManager = cc.Class.extend({
     
     //每天1点时
     addTimerCallbackDayByDayOneAM: function (target, func, priority) {
-        return this.addTimerCallbackByDay({h: 1}, target, func, priority);
+        return this.addTimerCallbackByDay({h: 1, m: 5}, target, func, priority);
     },
 
     removeTimerCallback: function (callback) {
@@ -297,6 +297,11 @@ var TimerManager = cc.Class.extend({
             this.currentSeason = s;
             player.log.addMsg(stringUtil.getString(3016)[this.currentSeason]);
             Achievement.checkSeason(this.currentSeason);
+            player.alcoholPrice -= 1;
+            if (player.alcoholPrice < 1) {
+                player.alcoholPrice = 1;
+            }
+            Record.saveAll();
         }
     },
 

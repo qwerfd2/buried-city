@@ -223,7 +223,7 @@ var DogBuild = Build.extend({
     initBuildActions: function () {
     },
     isActive: function () {
-        return player.isDogActive() && this.level >= 0;
+        return player.isDogActive() && this.level >= 0 && !player.dogState;
     }
 });
 

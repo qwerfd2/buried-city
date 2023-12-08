@@ -1,0 +1,8 @@
+codeHistories.git
+.vscode
+venv
+node_modules
+.bash_profile
+output.txt
+webData
+screencaptures

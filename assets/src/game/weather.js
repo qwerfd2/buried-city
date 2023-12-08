@@ -66,8 +66,8 @@ var WeatherSystem = cc.Class.extend({
         this.weatherConfig = weatherConfig[this.weatherId];
         this.lastDays = 0;
         this.Notice();
+        cc.sys.localStorage.setItem("weather", weatherId);
         utils.emitter.emit("weather_change", weatherId);
-
         if (sendLog) {
             player.log.addMsg(stringUtil.getString(3015)[this.weatherId]);
         }

@@ -1,4 +1,6 @@
 var string = {
+"equip_needed":"Yalnızca alet olarak donatıldığında etkilidir.",
+"no_need_equip":"Pasif ekipman, donatmaya gerek yok.",
     "7000": "%s'ın durumunu kontrol et",
     "7001": "%s'ı dışarı çıkar",
     "7002": "%s'ı evi korumak için bırak",
@@ -39,7 +41,7 @@ var string = {
 "8028": "Kullanılan Modifiye Versiyon - Yazar",
 "8029": "Oynadığınız için teşekkür ederiz.",
 "6672": "Süresi Geçmiş Yiyecekler",
-  "6674": "Hızlandır (1 gübre)",
+  "6674": "Hızlandır (1 %s)",
   "6675": "Oyun sürümünü geri aldınız. Kayıt dosyası bozuk olabilir. Lütfen yeni bir oyun başlatın veya önceki sürüme geri dönün.",
   "6676": "Oyunu güncellediniz. Kayıt dosyası artık uyumlu olmayabilir. Sorunlarla karşılaşırsanız lütfen yeni bir oyun başlatın.",
   "1101081": {
@@ -198,12 +200,6 @@ var string = {
 "9036": "Ancak çantanız çalıntı şeyleri koymak için yeterli alanı içermiyor. Onları sessizce geri koydunuz.",
     "1171": "Köpek aç gözlü şekilde taze eti çiğniyor",
     "1023": "Yetersiz et",
-    "1218": "ana sayfa",
-    "1219": "Varsayılan",
-    "1220": "Noel",
-    "1209": "Harita",
-    "1210": "Şehir",
-    "1211": "Kasaba",
     "1169": "ses efekti",
     "1321": "Masako",
     "1322": "Elektrik mühendisi",
@@ -1297,12 +1293,12 @@ var string = {
     "p_0": {
         "name": "Hayatta Kalan",
         "des": "Herhangi bir bağlılık olmadan felaketin ani yüzünde tek yapacağın şey hayatta kalmak.",
-        "effect": "Silah yıpranması %75'e düşürüldü"
+        "effect": "Silah kaybı %75 azaltıldı"
     },
     "p_101": {
         "name": "Nişancı",
         "des": "Profesyonel eğitim aldın, silah ve mermiye aşina oldun. ",
-        "effect": "Vuruş 125% arttı"
+        "effect": "Vuruş 130% arttı"
     },
     "p_102": {
         "name": "Büyük Adam",
@@ -1312,7 +1308,7 @@ var string = {
     "p_103": {
         "name": "Çöpçü",
         "des": "Çöpte değerli şeyler bulmada yeteneklisin. ",
-        "effect": "Öğe düşmesine 120% eklendi"
+        "effect": "Öğe düşmesine 125% eklendi"
     },
     "p_104": {
         "name": "İletişimci",

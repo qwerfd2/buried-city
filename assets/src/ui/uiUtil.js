@@ -24,7 +24,8 @@ uiUtil.bazaarItem = function(itemInfo, target, cb) {
     //商品名
     as = stringUtil.getString(itemInfo.itemId).title;
     ad = player.storage.getNumByItemId(itemInfo.itemId);
-    ee = round(player.getPrice(itemInfo.itemId));
+    var off = IAPPackage.getPriceOff(itemInfo.itemId);
+    ee = round(player.getPrice(itemInfo.itemId) * ((100 - off) / 100));
     var name = new cc.LabelTTF(as, uiUtil.fontFamily.normal, 26);
     name.x = bg.width / 2;
     name.y = bg.height / 1.15;
@@ -49,13 +50,25 @@ uiUtil.bazaarItem = function(itemInfo, target, cb) {
     btnIcon.x = bg.width / 2;
     btnIcon.y = bg.height / 2;
     node.addChild(btnIcon);
+    
+    var offIcon = uiUtil.createSaleOffIcon();
+    offIcon.x = node.width - 20;
+    offIcon.y = 40;
+    node.addChild(offIcon);
+    offIcon.setVisible(false);
+    offIcon.setName('offIcon');
+    if (off > 0) {
+        offIcon.setVisible(true);
+        offIcon.updateOff(off);
+    }
+    
     btnIcon.setClickListener(this, function() {
-        uiUtil.bazaarSell(itemInfo.itemId, false, itemInfo.amount);
+        uiUtil.bazaarSell(itemInfo.itemId, false, itemInfo.amount, off);
     });
     return node;
 };
 
-uiUtil.bazaarSell = function(itemId, vvv, amount) {
+uiUtil.bazaarSell = function(itemId, vvv, amount, discount) {
     var ee = player.getPrice(itemId);
     var config = {
         title: {},
@@ -84,7 +97,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount) {
     } else {
         ss = stringUtil.getString(9034);
         config.title.txt_1 = stringUtil.getString(9035) + amount;
-        z = 1;
+        z = (100 - discount) / 100;
         Nuw = 1;
     }
     ee *= z;
@@ -571,6 +584,15 @@ uiUtil.showItemDialog = function (itemId, showOnly, source) {
     }
     config.title.title = strConfig.title;
     config.title.icon = "#icon_item_" + itemId + ".png";
+    var itemToShowEquipNeeded = [1305053, 1305075, 1305064];
+    var itemToShowEquipNotNeeded = [1305034, 1305024, 1305023, 1306001];
+    if (itemToShowEquipNeeded.indexOf(Number(itemId)) !== -1) {
+        //Item needs equipping, add exp string to des
+        strConfig.des += "\n" + stringUtil.getString("equip_needed");
+    } else if (itemToShowEquipNotNeeded.indexOf(Number(itemId)) !== -1) {
+        //Item no need to equip. add exp string to des
+        strConfig.des += "\n" + stringUtil.getString("no_need_equip");
+    }
     config.content.des = strConfig.des;
     config.content.dig_des = "#dig_item_" + itemId + ".png";
     var dialog = new DialogBig(config);
@@ -1179,7 +1201,14 @@ uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
         showItemBtn.setPosition(cc.winSize.width / 2 + 180, label.y + 180);
         dialog.addChild(showItemBtn, 1);
         showItemBtn.setClickListener(this, function(a) {
-            var d = new NpcTradeItemDialog(needItems);
+            var hasSales = false;
+            for (var i = 0; i < player.shopList.length; i++) {
+                if (player.shopList[i].discount != 0) {
+                    hasSales = true;
+                    break;
+                }
+            }
+            var d = new NpcTradeItemDialog(needItems, hasSales);
             d.show();
         });
     }
@@ -1299,7 +1328,7 @@ uiUtil.checkStarve = function () {
 
 uiUtil.checkDogStarve = function () {
     if (player.isAttrMax("dogFood")) {
-        uiUtil.showTinyInfoDialog(player.getDogName() +  " " + stringUtil.getString(1128));
+        uiUtil.showTinyInfoDialog(stringUtil.getString(1130));
         return false;
     } else {
         return true;
@@ -1588,18 +1617,6 @@ uiUtil.createPayItemNode = function (purchaseId, target, cb) {
         icon.y = 118;
         node.addChild(icon);
     }
-    var offIcon = uiUtil.createSaleOffIcon();
-    offIcon.x = 6;
-    offIcon.y = 36;
-    node.addChild(offIcon);
-    offIcon.setVisible(false);
-
-    if (purchaseId == 106) {
-        var saleIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_sale.png');
-        saleIcon.x = 45;
-        saleIcon.y = 54;
-        node.addChild(saleIcon);
-    }
 
     var btnSize = cc.size(bg.width - 20, bg.height - 20);
     var btnIcon = new ButtonWithPressed(btnSize);
@@ -1632,14 +1649,6 @@ uiUtil.createPayItemNode = function (purchaseId, target, cb) {
             unlock.setVisible(true);
         } else {
             unlock.setVisible(false);
-        }
-
-        var off = IAPPackage.getPriceOff(purchaseId);
-        if (off > 0) {
-            offIcon.setVisible(true);
-            offIcon.updateOff(off);
-        } else {
-            offIcon.setVisible(false);
         }
     };
 

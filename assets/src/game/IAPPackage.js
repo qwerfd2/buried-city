@@ -21,7 +21,7 @@ var IAPPackage = {
 
     getDropEffect: function (produceValue) {
         if (this.isIAPUnlocked(103) && this.getChosenTalentPurchaseId(103)){
-            return produceValue * (1 + 0.2);
+            return produceValue * (1 + 0.25);
         }else{
             return produceValue;
         }
@@ -125,19 +125,11 @@ var IAPPackage = {
         return config;
     },
     getPriceOff: function (purchaseId) {
-        var purchaseInfo = PurchaseList[purchaseId];
-        if (purchaseInfo.multiPrice) {
-            var priceList = purchaseInfo.priceList;
-            var priceInfoIndex = 0;
-            priceInfoIndex = Math.min(priceInfoIndex, priceList.length - 1);
-            var off = Math.floor((priceList[priceList.length - 1].price - priceList[priceInfoIndex].price) / priceList[priceList.length - 1].price * 100);
-            return off;
-        } else {
-            if (purchaseId == 206 || purchaseId == 207) {
-                return 50;
-            } else {
-                return 0;
+        for (var i = 0; i < player.shopList.length; i++) {
+            if (player.shopList[i].discount > 0 && player.shopList[i].itemId == purchaseId) {
+                return player.shopList[i].discount;
             }
         }
+        return 0;
     }
 };

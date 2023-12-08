@@ -1,4 +1,6 @@
 var string = {
+"equip_needed":"Efficace uniquement lorsqu'il est équipé comme outil.",
+"no_need_equip":"Équipement passif, pas besoin d'équiper.",
     "7000": "Vérifiez l'état de %s",
     "7001": "Amenez %s dehors",
     "7002": "Laissez %s garder la maison",
@@ -39,7 +41,7 @@ var string = {
 "8028": "Version modifiée utilisée - Auteur",
 "8029": "Merci d'avoir joué.",
   "6672": "Aliments périmés",
-  "6674": "Accélérer (1 engrais)",
+  "6674": "Accélérer (1 %s)",
   "6675": "Vous avez rétrogradé la version du jeu. Le fichier de sauvegarde pourrait être corrompu. Veuillez commencer une nouvelle partie ou revenir à la version précédente.",
   "6676": "Vous avez mis à jour le jeu. Le fichier de sauvegarde pourrait ne plus être compatible. Si vous rencontrez des problèmes, veuillez commencer une nouvelle partie.",
   "1101081": {
@@ -201,12 +203,6 @@ var string = {
 "9036": "Mais votre sac à dos ne peut pas contenir les objets volés. Vous les avez discrètement remis en place.",
     "1171": "Le chien est en train de avaler de la viande fraîche et fait un ronronnement joyeux",
     "1023": "Viande insuffisante",
-    "1218": "page principale",
-    "1219": "Par défaut",
-    "1220": "Noël",
-    "1209": "Carte",
-    "1210": "Ville",
-    "1211": "Village",
     "1169": "effet sonore",
     "1321": "Masako",
     "1322": "Ingénieur éléctricien",
@@ -1301,12 +1297,12 @@ var string = {
     "p_0": {
         "name": "Survivant",
         "des": "Sans aucune dépendance, face à ime catastrophe soudaien, ce que vous pouvez faire c'est seulement aller vivre",
-        "effect": "Usure des armes réduite à 75%"
+        "effect": "Perte d'armes réduite de 75%"
     },
     "p_101": {
         "name": "Tireur d'élite",
         "des": "Vous avez reçu une formation professionnelle, vous connaissez bien les pistolets et des balles. ",
-        "effect": "Précision augmente à 125%"
+        "effect": "Précision augmente à 130%"
     },
     "p_102": {
         "name": "Culturiste",
@@ -1316,7 +1312,7 @@ var string = {
     "p_103": {
         "name": "Brocanteur",
         "des": "Vous êtes bon à trouver la valeur dans les ordures.",
-        "effect": "Butins d'instances augmentent à 120%"
+        "effect": "Butins d'instances augmentent à 125%"
     },
     "p_104": {
         "name": "Communicateur",

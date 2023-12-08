@@ -164,6 +164,8 @@ var BuildNode = BottomFrameNode.extend({
 
         if (this.build.id === 10) {
             audioManager.insertMusic(audioManager.music.HOME_REST);
+        } else if (this.build.id === 9) {
+            audioManager.insertMusic(audioManager.music.HOME_BED);
         }
     },
     onExit: function () {
@@ -172,7 +174,7 @@ var BuildNode = BottomFrameNode.extend({
 
         this.cleanBuildAction();
 
-        if (this.build.id === 10) {
+        if (this.build.id === 10 || this.build.id === 9) {
             audioManager.resumeMusic();
         }
     },
@@ -187,7 +189,7 @@ var BuildNode = BottomFrameNode.extend({
         btnDog.setClickListener(this, function () {
             this.forward(Navigation.nodeName.DOG_NODE);
         });
-        btnDog.setPosition(this.bgRect.width / 3, this.contentTopLineHeight - 200);
+        btnDog.setPosition(this.bgRect.width / 3 - 20, this.contentTopLineHeight - 200);
         this.bg.addChild(btnDog);
         btnDog.setName("btnDog");
         var self = this;
@@ -203,22 +205,22 @@ var BuildNode = BottomFrameNode.extend({
                 btnDog.setClickListener(self, function () {
                     self.forward(Navigation.nodeName.DOG_NODE);
                 });
-                btnDog.setPosition(self.bgRect.width / 3, self.contentTopLineHeight - 200);
+                btnDog.setPosition(self.bgRect.width / 3 - 20, self.contentTopLineHeight - 200);
                 self.bg.addChild(btnDog);
                 btnDog.setName("btnDog");
             }
         });
 
         var dogTxt = new cc.LabelTTF(stringUtil.getString(7000, player.getDogName()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2);
-        dogTxt.setAnchorPoint(0, 0.5);
-        dogTxt.setPosition(this.bgRect.width / 3 + 50, this.contentTopLineHeight - 200);
+        dogTxt.setAnchorPoint(0.4, 0.5);
+        dogTxt.setPosition(this.bgRect.width / 2 + 50, this.contentTopLineHeight - 200);
         dogTxt.setColor(cc.color.WHITE);
         this.bg.addChild(dogTxt);
 
-        var goOutLabel = new cc.LabelTTF(stringUtil.getString(7001, player.getDogName()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3 + 4, cc.size(400, 0), cc.TEXT_ALIGNMENT_CENTER);
+        var goOutLabel = new cc.LabelTTF(stringUtil.getString(7001, player.getDogName()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3 + 4, cc.size(400, 0), cc.TEXT_ALIGNMENT_LEFT);
         goOutLabel.setAnchorPoint(0.5, 0.5);
         goOutLabel.setColor(cc.color.WHITE);
-        goOutLabel.setPosition(this.bgRect.width / 5, this.contentTopLineHeight - 300);
+        goOutLabel.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - 300);
         this.bg.addChild(goOutLabel);
         goOutLabel.setName("goOutLabel");
 
@@ -241,10 +243,10 @@ var BuildNode = BottomFrameNode.extend({
         this.bg.addChild(this.checkBox1);
         this.checkBox1.setName("goOutCheckBtn");
 
-        var stayHomeLabel = new cc.LabelTTF(stringUtil.getString(7002, player.getDogName()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3 + 4, cc.size(400, 0), cc.TEXT_ALIGNMENT_CENTER);
+        var stayHomeLabel = new cc.LabelTTF(stringUtil.getString(7002, player.getDogName()), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3 + 4, cc.size(400, 0), cc.TEXT_ALIGNMENT_LEFT);
         stayHomeLabel.setAnchorPoint(0.5, 0.5);
         stayHomeLabel.setColor(cc.color.WHITE);
-        stayHomeLabel.setPosition(this.bgRect.width / 5, this.contentTopLineHeight - 360);
+        stayHomeLabel.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - 360);
         this.bg.addChild(stayHomeLabel);
         stayHomeLabel.setName("stayHomeLabel");
 

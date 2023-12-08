@@ -1,4 +1,6 @@
 var string = {
+"equip_needed":"Chỉ có hiệu quả khi được trang bị làm công cụ.",
+"no_need_equip":"Trang bị thụ động, không cần trang bị.",
     "7000": "Kiểm tra tình trạng của %s",
     "7001": "Đưa %s ra ngoài",
     "7002": "Để %s giữ nhà",
@@ -39,7 +41,7 @@ var string = {
 "8028": "Phiên bản đã chỉnh sửa - Tác giả",
 "8029": "Cảm ơn bạn đã chơi.",
   "6672": "Thực phẩm hết hạn",
-  "6674": "Tăng tốc (1 phân bón)",
+  "6674": "Tăng tốc (1 %s)",
   "6675": "Bạn đã quay lại phiên bản trò chơi. Tệp lưu có thể bị hỏng. Vui lòng bắt đầu trò chơi mới hoặc quay lại phiên bản trước.",
   "6676": "Bạn đã cập nhật trò chơi. Tệp lưu có thể không còn tương thích. Nếu gặp vấn đề, vui lòng bắt đầu trò chơi mới.",
   "1101081": {
@@ -197,12 +199,6 @@ var string = {
 "9036": "Nhưng cặp của bạn không đủ chỗ để chứa những thứ đã ăn cắp. Bạn đã để chúng trở lại một cách im lặng.",
     "1171": "Chú chó vui mừng ăn từng miếng thịt tươi.",
 "1023": "Thiếu thịt",
-    "1218": "trang chủ",
-    "1219": "Mặc định",
-    "1220": "Giáng sinh",
-    "1209": "Bản đồ",
-    "1210": "Thành phố",
-    "1211": "Thị trấn",
     "1169": "hiệu ứng âm thanh",
     "1321": "Masako",
     "1322": "Kĩ sư điện",
@@ -1297,12 +1293,12 @@ var string = {
     "p_0": {
         "name": "Người sống sót",
         "des": "Đối diện với tai ương đến đột ngột, lại không thể nhờ cậy vào ai, bạn chỉ có thể nỗ lực dựa vào chính mình mà sống",
-        "effect": "Mặc vũ khí giảm xuống 125%"
+        "effect": "Mất vũ khí giảm 75%"
     },
     "p_101": {
         "name": "Tay súng thần",
         "des": "Bạn từng được huấn luyện chuyên nghiệp, hiểu rất rõ về súng đạn. ",
-        "effect": "Xác suất bắn trúng tăng lên 125%"
+        "effect": "Xác suất bắn trúng tăng lên 130%"
     },
     "p_102": {
         "name": "Lực sỹ",
@@ -1312,7 +1308,7 @@ var string = {
     "p_103": {
         "name": "Người nhặt rác",
         "des": "Có sở trường tìm được đồ có giá trị trong đống rác. ",
-        "effect": "Tài nguyên nhận được trong phụ bản tăng lên 120%"
+        "effect": "Tài nguyên nhận được trong phụ bản tăng lên 125%"
     },
     "p_104": {
         "name": "Nhà ngoại giao",

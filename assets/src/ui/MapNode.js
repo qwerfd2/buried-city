@@ -21,11 +21,7 @@ var MapView = cc.ScrollView.extend({
     ctor: function (size) {
         var container = new cc.Layer();
         this._super(size, container);
-        if (!Record.getCity()) {
-            this.bg = new cc.Sprite("res/new/map_bg_new.png");
-        } else {
-            this.bg = new cc.Sprite("res/new/map_bg.png");
-        }
+        this.bg = new cc.Sprite("res/new/map_bg_new.png");
         this.bg.setAnchorPoint(0, 0);
         this.bg.setName("name");
         container.addChild(this.bg);
@@ -130,8 +126,12 @@ var MapView = cc.ScrollView.extend({
             player.log.addMsg(1112, entity.baseSite.getName());
             self.makeLine(startPos, endPos);
             self.actor.move(endPos, canAfford, function () {
-                self.enterEntity(entity);
                 player.totalDistance += Math.round(distance);
+                if (player.dogState) {
+                    player.dogDistance += Math.round(distance);
+                    //stub for future dog ideas - leveling mechanism for dog?
+                }
+                self.enterEntity(entity);
             });
 
             if (userGuide.isStep(userGuide.stepName.MAP_SITE_GO) && userGuide.isSite(entity.baseSite.id)) {

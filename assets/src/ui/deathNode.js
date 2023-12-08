@@ -103,7 +103,6 @@ var DeathNode = BottomFrameNode.extend({
         this._super();
         cc.timer.resume();
     },
-
     onClickLeftBtn: function () {
     },
     onClickRightBtn: function () {
@@ -114,6 +113,7 @@ var DeathNode = BottomFrameNode.extend({
         game.relive();
         cc.director.runScene(new MainScene());
         player.log.addMsg(1123, player.bag.getNumByItemId(RELIVE_ITEMID) + player.storage.getNumByItemId(RELIVE_ITEMID) + player.safe.getNumByItemId(RELIVE_ITEMID));
+        setTimeout(function () {audioManager.playMusic(audioManager.music.HOME)}, 200);
     },
     validateBag: function () {
         return player.bag.validateItem(RELIVE_ITEMID, 1);

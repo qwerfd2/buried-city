@@ -28,7 +28,9 @@ var userGuide = {
         HOME_TOOL: 24,
         TOOL_ALEX: 25,
         TOOL_BACK: 26,
-        HOME_GATE_AGAIN: 27
+        RADIO_PROMPT: 27,
+        HOME_GATE_AGAIN: 28,
+        MOTO_PROMPT: 29
     },
 
     isStep: function (step) {

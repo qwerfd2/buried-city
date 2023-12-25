@@ -459,10 +459,10 @@ var siteConfig = {
             "x": 40,
             "y": 222
         },
-        "battleRoom": 4,
+        "battleRoom": 6,
         "difficulty": [3, 4],
-        "workRoom": 3,
-        "produceValue": 77,
+        "workRoom": 4,
+        "produceValue": 102,
         "produceList": [{
             "itemId": "1101011",
             "weight": 5
@@ -607,10 +607,10 @@ var siteConfig = {
             "x": 410,
             "y": 127
         },
-        "battleRoom": 6,
+        "battleRoom": 10,
         "difficulty": [3, 4],
-        "workRoom": 3,
-        "produceValue": 90,
+        "workRoom": 5,
+        "produceValue": 150,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -756,10 +756,10 @@ var siteConfig = {
             "x": 223,
             "y": 217
         },
-        "battleRoom": 3,
+        "battleRoom": 4,
         "difficulty": [4, 6],
         "workRoom": 2,
-        "produceValue": 51,
+        "produceValue": 54,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -1651,10 +1651,10 @@ var siteConfig = {
             "x": 380,
             "y": 573
         },
-        "battleRoom": 6,
+        "battleRoom": 11,
         "difficulty": [4, 6],
-        "workRoom": 4,
-        "produceValue": 135,
+        "workRoom": 6,
+        "produceValue": 202,
         "produceList": [{
             "itemId": "1101011",
             "weight": 10
@@ -2264,10 +2264,10 @@ var siteConfig = {
             "x": 235,
             "y": 277
         },
-        "battleRoom": 8,
+        "battleRoom": 12,
         "difficulty": [3, 4],
-        "workRoom": 3,
-        "produceValue": 94,
+        "workRoom": 5,
+        "produceValue": 157,
         "produceList": [{
             "itemId": "1101011",
             "weight": 50
@@ -2574,10 +2574,10 @@ var siteConfig = {
             "x": 240,
             "y": 617
         },
-        "battleRoom": 4,
+        "battleRoom": 7,
         "difficulty": [3, 4],
-        "workRoom": 4,
-        "produceValue": 136,
+        "workRoom": 5,
+        "produceValue": 170,
         "produceList": [{
             "itemId": "1101011",
             "weight": 60
@@ -5171,10 +5171,10 @@ var siteConfig = {
             "x": 390,
             "y": 420
         },
-        "battleRoom": 6,
-        "difficulty": [4, 6],
-        "workRoom": 5,
-        "produceValue": 160,
+        "battleRoom": 13,
+        "difficulty": [1, 3],
+        "workRoom": 10,
+        "produceValue": 320,
         "produceList": [{
             "itemId": "1102011",
             "weight": 15
@@ -5307,7 +5307,6 @@ var siteConfig = {
             "num": 0
         }],
         "unlockValue": {},
-        "secretRoomsId": 3,
         "def": 40
     },
     "501": {
@@ -5430,6 +5429,127 @@ var siteConfig = {
         "unlockValue": {},
         "secretRoomsId": 3,
         "def": 50
+    },
+    "502": {
+        "id": 502,
+        "coordinate": {
+            "x": 400,
+            "y": 700
+        },
+        "battleRoom": 12,
+        "difficulty": [5, 8],
+        "workRoom": 8,
+        "produceValue": 199,
+        "produceList": [{
+            "itemId": "1101011",
+            "weight": 10
+        }, {
+            "itemId": "1101021",
+            "weight": 10
+        }, {
+            "itemId": "1101031",
+            "weight": 20
+        }, {
+            "itemId": "1101041",
+            "weight": 10
+        }, {
+            "itemId": "1101061",
+            "weight": 10
+        }, {
+            "itemId": "1101071",
+            "weight": 20
+        }, {
+            "itemId": "1101073",
+            "weight": 10
+        }, {
+            "itemId": "1103041",
+            "weight": 20
+        }, {
+            "itemId": "1103083",
+            "weight": 10
+        }, {
+            "itemId": "1104021",
+            "weight": 5
+        }, {
+            "itemId": "1105051",
+            "weight": 5
+        }, {
+            "itemId": "1302*1",
+            "weight": 5
+        }],
+        "fixedProduceList": [{
+            "itemId": "1107052",
+            "num": 1
+        }, {
+            "itemId": "1107042",
+            "num": 1
+        }, {
+            "itemId": "1107032",
+            "num": 1
+        }, {
+            "itemId": "1107022",
+            "num": 1
+        }, {
+            "itemId": "1107012",
+            "num": 1
+        }, {
+            "itemId": "1106014",
+            "num": 2
+        }, {
+            "itemId": "1101**",
+            "num": 0
+        }, {
+            "itemId": "1102011",
+            "num": 0
+        }, {
+            "itemId": "1103*1",
+            "num": 0
+        }, {
+            "itemId": "1104011",
+            "num": 0
+        }, {
+            "itemId": "1104021",
+            "num": 0
+        }, {
+            "itemId": "1104043",
+            "num": 0
+        }, {
+            "itemId": "1105011",
+            "num": 0
+        }, {
+            "itemId": "1105042",
+            "num": 0
+        }, {
+            "itemId": "1105**",
+            "num": 0
+        }, {
+            "itemId": "1305011",
+            "num": 0
+        }, {
+            "itemId": "1103083",
+            "num": 0
+        }, {
+            "itemId": "1102**",
+            "num": 0
+        }, {
+            "itemId": "1301**",
+            "num": 0
+        }, {
+            "itemId": "1105022",
+            "num": 0
+        }, {
+            "itemId": "1105033",
+            "num": 0
+        }, {
+            "itemId": "1302*1",
+            "num": 0
+        }, {
+            "itemId": "1106013",
+            "num": 0
+        }],
+        "unlockValue": {},
+        "secretRoomsId": 3,
+        "def": 60
     },
 "666": {
     "id": 666,

@@ -1,4 +1,34 @@
 var string = {
+      "banditType_1": "Sorrateiro",
+      "banditType_2": "Robusto",
+      "banditType_4": "Astúcia",
+      "banditType_5": "Ágil",
+      "9045": "%s bandidos descobriram você!",
+      "9046": "%s bandido está se aproximando de você! Distância %s",
+      "9047": "%s bandido atirou em você, HP %s",
+      "9048": "Você usa %s para atirar no bandido %s",
+      "9049": "Você empunha %s para atacar o bandido %s na sua frente",
+      "9050": "Você jogou %s no grupo de bandidos",
+      "9051": "Tiro preciso! A cabeça do bandido de %s foi estourada",
+      "9052": "%s bandido recebeu %s dano",
+      "9053": "Todos os bandidos receberam %s dano",
+      "9054": "%s %s bandidos morreram",
+      "9358": "Você colocou fogo em todos os bandidos,",
+      "9055":"%s atacou o bandido, e %s bandido recebeu %s dano",
+      "9056":"O bandido é atraído por %s e irá parar de atacar você temporariamente",
+      "9057":"%s coletou esses itens dos bandidos. Armazenados no depósito por enquanto.",
+      "9059": ["Bandidos avistados à frente!", "Vários bandidos patrulhando notaram você.", "Você está cercado por um grupo de bandidos."],
+      "9165": "Você deu um soco brutal no bandido %s.",
+      "9139": "Número de bandidos:",
+      "9118": "Você eliminou os bandidos com sucesso",
+      "9109": "O ataque do bandido causou danos fatais a você!",
+"radio_tut": "Para aumentar a chance de encontrar outros sobreviventes, você deve construir o rádio e transmitir-se todos os dias.",
+"motor_tut": "Você pode economizar combustível não pilotando a motocicleta. O bônus de peso ainda se aplica. Para fazer isso, clique no ícone da motocicleta nesta janela pop-up.",
+"site_502": {
+    "name": "Aquário",
+    "des": "Os peixes no aquário estão praticamente mortos. A água infestada de algas torna o interior estranhamente carmesim. É melhor não perturbar a cúpula de vidro, ou então, isso pode se tornar uma sepultura aquática.\nVocê não pode usar armas de fogo e explosivos aqui."
+},
+"1166": "Agora crescendo %s...",
 "equip_needed":"Eficaz apenas quando equipado como ferramenta.",
 "no_need_equip":"Equipamento passivo, não há necessidade de equipar.",
     "7000": "Verificar a condição de %s",
@@ -1097,7 +1127,7 @@ var string = {
       },
       "site_500": {
           "name": "Covil dos Bandidos",
-          "des": "Este edifício comum é na verdade o acampamento de uma gangue de ladrões. Já que você se atreve a me roubar, então você não deve ter medo de que eu o pegue de volta."
+          "des": "Este edifício comum é na verdade o acampamento de uma gangue de ladrões. Já que você se atreve a me roubar, então você não deve ter medo de que eu o pegue de volta.\nAviso: Os ladrões podem estar armados!"
       },
       "13": {
           "title": "Moedas",

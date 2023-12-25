@@ -56,12 +56,39 @@ var Equipment = cc.Class.extend({
         }
     },
 
-    getEquipedItemList: function () {
+    getEquipedItemList: function (isMelee) {
         var itemList = [];
-        for (var key in EquipmentPos) {
-            var itemId = this.equipPos[EquipmentPos[key]];
-            if (itemId) {
-                itemList.push(itemId);
+        if (!isMelee) {
+            for (var key in EquipmentPos) {
+                var itemId = this.equipPos[EquipmentPos[key]];
+                if (itemId) {
+                    itemList.push(itemId);
+                }
+            }
+        } else {    
+            for (var key in EquipmentPos) {
+                if (key != "GUN") {
+                    if (key != "TOOL") {
+                        var itemId = this.equipPos[EquipmentPos[key]];
+                        if (itemId) {
+                            itemList.push(itemId);
+                        }
+                    } else {
+                        var itemId = this.equipPos[EquipmentPos[key]];
+                        if (itemId) {
+                            if (!(itemId == "1303012" || itemId == "1303033" || itemId == "1303044")) {
+                                itemList.push(itemId);
+                            }
+                        }
+                    }
+                } else {
+                    var itemId = this.equipPos[EquipmentPos[key]];
+                    if (itemId) {
+                        if (itemId == "1301091") {
+                            itemList.push(itemId);
+                        }
+                    }
+                }
             }
         }
         if (itemList.length > 1) {

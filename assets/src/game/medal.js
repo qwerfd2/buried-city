@@ -1,57 +1,30 @@
 var MedalConfig = {
     103: {
-        aim: 5,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {items: [{itemId: 1103083, num: 6}]}
+        aim: 5, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1103083, num: 6}]}
     },
     102: {
-        aim: 60,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {items: [{itemId: 1104011, num: 2}]}
+        aim: 60, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1104011, num: 2}]}
     },
     101: {
-        aim: 120,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {items: [{itemId: 1104043, num: 1}]}
+        aim: 120, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1104043, num: 1}]}
     },
     203: {
-        aim: 20,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {attr: {hp: 10}}
+        aim: 20, aimCompleted: 0, completed: 0, effect: {attr: {hp: 10}}
     },
     202: {
-        aim: 200,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {attr: {hp: 20}}
+        aim: 200, aimCompleted: 0, completed: 0, effect: {attr: {hp: 20}}
     },
     201: {
-        aim: 2000,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {attr: {hp: 50}}
+        aim: 2000, aimCompleted: 0, completed: 0, effect: {attr: {hp: 50}}
     },
     303: {
-        aim: 5,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {items: [{itemId: 1305011, num: 30}]}
+        aim: 5, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1305011, num: 30}]}
     },
     302: {
-        aim: 15,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {items: [{itemId: 1301011, num: 1}]}
+        aim: 15, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1301011, num: 1}]}
     },
     301: {
-        aim: 30,
-        aimCompleted: 0,
-        completed: 0,
-        effect: {items: [{itemId: 1301052, num: 1}]}
+        aim: 30, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1301052, num: 1}]}
     }
 };
 var Medal = {

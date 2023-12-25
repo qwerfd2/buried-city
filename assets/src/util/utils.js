@@ -237,33 +237,6 @@ utils.getStringLength = function (str) {
     return realLength;
 };
 
-utils.timeToStr = function (time) {
-    var second = 1000;
-    var minutes = second * 60;
-    var hours = minutes * 60;
-    var days = hours * 24;
-    var months = days * 30;
-
-    var longtime = new Date().getTime() - time;
-
-    var timeStr = stringUtil.getString("time_str");
-    if (longtime > months) {
-        return timeStr[0];
-    } else if (longtime > days * 7) {
-        return timeStr[1];
-    } else if (longtime > days) {
-        return cc.formatStr(timeStr[2], Math.floor(longtime / days));
-    } else if (longtime > hours) {
-        return cc.formatStr(timeStr[3], Math.floor(longtime / hours));
-    } else if (longtime > minutes) {
-        return cc.formatStr(timeStr[4], Math.floor(longtime / minutes));
-    } else if (longtime > second) {
-        return cc.formatStr(timeStr[5], Math.floor(longtime / second));
-    } else {
-        return timeStr[6];
-    }
-};
-
 utils.getTimeDistanceStr = function (time) {
     var timeStr = "";
     var hour = Math.floor(time / 60 / 60);
@@ -274,31 +247,16 @@ utils.getTimeDistanceStr = function (time) {
     timeStr += minute + stringUtil.getString(1152);
     return stringUtil.getString(1136, timeStr);
 };
-utils.getTimeShareRetainStr = function (time) {
-    time = Math.floor(time / 1000);
-    var timeStr = "";
-    var hour = Math.floor(time / 60 / 60);
-    if (hour < 10)
-        hour = "0" + hour;
-    var minute = Math.floor(time / 60 % 60);
-    if (minute < 10)
-        minute = "0" + minute;
-    var second = Math.floor(time % 60);
-    if (second < 10)
-        second = "0" + second;
-    timeStr += hour + ":" + minute + ":" + second;
-    return timeStr;
-}
 
 Date.prototype.format = function (format) {
     var o = {
-        "M+": this.getMonth() + 1, // month
-        "d+": this.getDate(), // day
-        "h+": this.getHours(), // hour
-        "m+": this.getMinutes(), // minute
-        "s+": this.getSeconds(), // second
-        "q+": Math.floor((this.getMonth() + 3) / 3), // quarter
-        "S": this.getMilliseconds() // millisecond
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S": this.getMilliseconds()
     };
 
     if (/(Y+)/.test(format)) {
@@ -329,41 +287,6 @@ utils.pay = function (purchaseId, target, cb) {
         cb.call(target, purchaseId, payResult);
     };
     purchaseTask.pay();
-};
-
-utils.getProductIdMap = function () {
-    var productIdMap = {};
-    var purchaseIdList = Object.keys(PurchaseList);
-    purchaseIdList.forEach(function (purchaseId) {
-        var priceList = PurchaseList[purchaseId].priceList;
-        priceList.forEach(function (info) {
-            info.purchaseId = purchaseId;
-            productIdMap[info.productId] = info;
-        });
-    });
-    return productIdMap;
-};
-
-utils.getDateByTimezone = function (timezone) {
-    var d = new Date(); //创建一个Date对象
-    var localTime = d.getTime();
-    var localOffset = d.getTimezoneOffset() * 60000; //获得当地时间偏移的毫秒数
-    var utc = localTime + localOffset; //utc即GMT时间
-    var offset = timezone;
-    var timezoneTime = utc + (3600000 * offset);
-    return new Date(timezoneTime);
-};
-
-utils.getFlagName = function (countryCode) {
-    var flagName = "res/flags/" + countryCode + ".png";
-    try {
-        if (!jsb.fileUtils.isFileExist(flagName)) {
-            flagName = "res/flags/CN.png";
-        }
-    } catch (e) {
-        flagName = "res/flags/CN.png";
-    }
-    return flagName;
 };
 
 utils.splitLog = function (log, zhLen, enLen) {

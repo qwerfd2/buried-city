@@ -291,11 +291,11 @@ var Actor = cc.Node.extend({
         s.setPosition(this.getContentSize().width / 2, this.getContentSize().height / 2);
         this.addChild(s);
         this.lastDistance = 0;
-        this.MAX_VELOCITY = 97 / (1 * 60 * 60 ) * 0.8 * 1.1;
+        this.MAX_VELOCITY = 97 / (60 * 60) * 0.88;
         //靴子效果
-        this.MAX_VELOCITY_ENHANCE = this.MAX_VELOCITY * 0.3;
+        this.MAX_VELOCITY_ENHANCE = this.MAX_VELOCITY * 0.5;
         //摩托车效果
-        this.MAX_VELOCITY_ENHANCE_MOTO = this.MAX_VELOCITY * 1.5;
+        this.MAX_VELOCITY_ENHANCE_MOTO = this.MAX_VELOCITY * 2;
         this.isUsingMoto = false;
         this.isMoving = false;
         MAP_IS_MOVING = false;
@@ -464,11 +464,7 @@ var Entity = Button.extend({
 
         var iconName, icon;
         if (this.baseSite instanceof Site) {
-            if (this.baseSite.id == 202) {
-                iconName = "#site202.png";
-            } else {
-                iconName = "#site_" + this.baseSite.id + ".png";
-            }
+            iconName = "#site_" + this.baseSite.id + ".png";
         } else {
             iconName = "#npc_" + this.baseSite.id + ".png";
         }

@@ -297,7 +297,12 @@ var DialogGuide = DialogCommon.extend({
         this.leftEdge = 30;
         this.rightEdge = this.bgNode.getContentSize().width - this.leftEdge;
         if (config.content.dig_des) {
-            var digDes = new cc.Sprite(config.content.dig_des);
+            var digDes;
+            if (config.content.dig_des == "radio") {
+                digDes = autoSpriteFrameController.getSpriteFromSpriteName("#dig_build_15_0.png");
+            } else {
+                digDes = new cc.Sprite(config.content.dig_des);
+            }
             digDes.setAnchorPoint(0.5, 1);
             digDes.setPosition(this.contentNode.getContentSize().width / 2, this.contentNode.getContentSize().height + 10);
             this.contentNode.addChild(digDes);
@@ -711,7 +716,7 @@ var RandomBattleDialog = DialogBig.extend({
         label1.setColor(cc.color.BLACK);
         this.log.addChild(label1);
 
-        var iconList = uiUtil.createEquipedItemIconList(true);
+        var iconList = uiUtil.createEquipedItemIconList(true, false);
         iconList.setPosition(this.leftEdge - 10, label1.y - label1.height - 20);
         this.log.addChild(iconList);
 
@@ -1225,8 +1230,7 @@ var PayDialog = DialogSmall.extend({
         this.titleNode.addChild(price);
         price.setName("price");
         price.setColor(cc.color.BLACK);
-
-        this.actionNode.getChildByName("btn_2").setEnabled(!IAPPackage.isIAPUnlocked(purchaseId));
+        this.actionNode.getChildByName("btn_2").setEnabled(true);
 
         if (purchaseId == 106) {
             var saleIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_sale.png');

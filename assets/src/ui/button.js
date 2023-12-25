@@ -586,7 +586,7 @@ var SpriteButton = Button.extend({
 });
 
 var ButtonAtChooseScene = Button.extend({
-    ctor: function (spriteName, mode) {
+    ctor: function (purchaseId, mode) {
         this.mode = mode;
         var bg = autoSpriteFrameController.getSpriteFromSpriteName("icon_iap_bg.png");
         this._super(bg.getContentSize());
@@ -596,11 +596,15 @@ var ButtonAtChooseScene = Button.extend({
         bg.setScale(0.9);
         this.addChild(bg);
 
-        var sprite = autoSpriteFrameController.getSpriteFromSpriteName(spriteName);
+        var sprite = autoSpriteFrameController.getSpriteFromSpriteName("icon_iap_" + purchaseId + ".png");
         sprite.x = this.width / 2;
         sprite.y = this.height / 2 + 5;
         sprite.setName("normal");
-        sprite.setScale(0.9);
+        if (purchaseId > 104 && purchaseId < 109) {
+            sprite.setScale(0.8);
+        } else if (purchaseId < 105) {
+            sprite.setScale(0.9);
+        }
         this.addChild(sprite);
         
         if (!this.mode) {
@@ -611,7 +615,7 @@ var ButtonAtChooseScene = Button.extend({
             this.addChild(info);
             info.setVisible(true);
             info.setClickListener(this, function () {
-                this.showInfoDialog(this.purchaseId);
+                uiUtil.showChooseInfoDialog(this.purchaseId);
             });
         }
         var mark = autoSpriteFrameController.getSpriteFromSpriteName('icon_iap_mark.png');
@@ -655,33 +659,5 @@ var ButtonAtChooseScene = Button.extend({
     alternateChecked: function () {
         this.checked = !this.checked;
         this.getChildByName("mark").setVisible(this.checked);
-    },
-
-    showInfoDialog: function (purchaseId) {
-
-        var strConfig = stringUtil.getString("p_" + purchaseId);
-
-        var config = {
-            title: {},
-            content: {},
-            action: {btn_1: {}}
-        };
-        if (purchaseId == 105) {
-            config.title.icon = "icon_iap_201.png";
-        } else if (purchaseId == 108) {
-            config.title.icon = "icon_iap_105.png";
-        } else if (purchaseId > 108) {
-            config.title.icon = "";
-        } else {
-            config.title.icon = "icon_iap_" + purchaseId + ".png";
-        }
-        config.content.des = strConfig.des + "\n\n" +strConfig.effect;
-        config.title.title = strConfig.name;
-        config.action.btn_1.txt = stringUtil.getString(1030);
-        var d = new DialogSmall(config);
-        if (purchaseId != 109 && purchaseId != 110) {
-            d.titleNode.getChildByName("icon").scale = 0.45;
-        }
-        d.show();
     }
 });

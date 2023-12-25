@@ -1,4 +1,34 @@
 var string = {
+"banditType_1": "Lén lút",
+      "banditType_2": "Mạnh mẽ",
+      "banditType_4": "Xảo quyệt",
+      "banditType_5": "Nhanh nhẹn",
+      "9045": "%s kẻ cướp đã phát hiện ra bạn!",
+      "9046": "Tên cướp %s đang tiếp cận bạn! Khoảng cách %s",
+      "9047": "%s tên cướp đã bắn bạn, HP %s",
+      "9048": "Bạn dùng %s để bắn tên cướp %s",
+      "9049": "Bạn sử dụng %s để chém tên cướp %s trước mặt bạn",
+      "9050": "Bạn đã ném %s vào nhóm cướp",
+      "9051": "Bắn chính xác! Đầu tên cướp %s đã bị thổi bay",
+      "9052": "%s tên cướp đã nhận %s thiệt hại",
+      "9053": "Tất cả kẻ cướp đều nhận %s thiệt hại",
+      "9054": "%s %s tên cướp đã chết",
+      "9358": "Bạn đã đốt cháy tất cả bọn cướp,",
+      "9055": "%s tấn công tên cướp và %s tên cướp nhận %s sát thương",
+      "9056": "Tên cướp bị %s thu hút và sẽ tạm thời ngừng tấn công bạn",
+      "9057": "%s đã thu thập những vật phẩm này từ bọn cướp. Hiện được lưu trữ trong kho.",
+      "9059": ["Có bọn cướp phát hiện phía trước!", "Một số tên cướp tuần tra đã chú ý đến bạn.", "Bạn bị bao vây bởi một nhóm cướp."],
+      "9165": "Bạn đã đấm tên cướp %s một cách tàn nhẫn.",
+      "9139": "Số lượng kẻ cướp:",
+      "9118": "Bạn đã tiêu diệt thành công bọn cướp",
+      "9109": "Cuộc tấn công của tên cướp đã gây sát thương chí mạng cho bạn!",
+"radio_tut": "Để cải thiện khả năng gặp gỡ với những người sống sót khác, bạn nên xây dựng đài phát thanh và phát sóng bản thân mình mỗi ngày.",
+"motor_tut": "Bạn có thể tiết kiệm nhiên liệu bằng cách không lái mô-tô. Phần thưởng về trọng lượng vẫn áp dụng. Để làm điều này, hãy nhấp vào biểu tượng mô-tô trong cửa sổ bật lên này.",
+"site_502": {
+    "name": "Bể Cá",
+    "des": "Cá trong bể cá gần như đã chết hết. Nước bị rêu phong làm cho bên trong trở nên rực rỡ màu đỏ đậm. Tốt nhất là không làm phiền tới kính vòm, nếu không, đây có thể trở thành một nghĩa địa dưới nước.\nBạn không thể sử dụng vũ khí và chất nổ ở đây."
+},
+"1166": "Hiện đang trồng $s...",
 "equip_needed":"Chỉ có hiệu quả khi được trang bị làm công cụ.",
 "no_need_equip":"Trang bị thụ động, không cần trang bị.",
     "7000": "Kiểm tra tình trạng của %s",
@@ -454,7 +484,7 @@ var string = {
     "1214": "Đã mua",
     "1215": "Bạn có thể nhận được những đồ sau:",
     "1216": "Cửa hàng",
-    "1217": "Lựa chọn một khả năng thiên bẩm",
+    "1217": "Tuyển chọn nhân tài",
     "1221": "(mở khá % địa điểm mới)",
     "1222": "Nhận được:",
     "1223": "Tối nay thật yên tĩnh.",
@@ -1097,8 +1127,8 @@ var string = {
           "des": "Phiên chợ do những người sống sót tổ chức sẽ có sản phẩm mới mỗi ngày. Vui lòng bán nguồn cung cấp trong 'Nơi để đồ'. Chủ nghĩa tư bản thực sự hung dữ hơn cả thây ma."
       },
       "site_500": {
-          "name": "Bandit Den",
-          "des": "Tòa nhà không có gì nổi bật này kỳ thực là nơi đóng quân của một băng nhóm cướp, nếu bạn dám cướp của tôi, thì bạn đừng sợ tôi lấy lại."
+          "name": "Hang cướp",
+          "des": "Tòa nhà không có gì nổi bật này kỳ thực là nơi đóng quân của một băng nhóm cướp, nếu bạn dám cướp của tôi, thì bạn đừng sợ tôi lấy lại.\nCảnh báo: Kẻ cướp có thể mang theo vũ khí!"
       },
       "13": {
           "title": "Tiền xu",

@@ -1,4 +1,3 @@
-var UPDATE_PATH = "update/";
 var lanSupports = [];
 var stringName = {
     "fr": "français",

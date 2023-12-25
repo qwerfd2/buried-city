@@ -1,12 +1,12 @@
 var ClientData = {};
-var Musics = [audioManager.music.BATTLE, audioManager.music.DEATH, audioManager.music.HOME, audioManager.music.NPC, audioManager.music.HOME_REST, audioManager.music.HOME_BED, audioManager.music.MAIN_PAGE, audioManager.music.MAP_CLOUDY, audioManager.music.MAP_SUNNY, audioManager.music.MAP_SNOW, audioManager.music.MAP_RAIN, audioManager.music.MAP_FOG, audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3, audioManager.music.ABYSS, audioManager.music.SITE_SECRET];
+var Musics = [audioManager.music.BATTLE, audioManager.music.HOME, audioManager.music.HOME_REST, audioManager.music.HOME_BED, audioManager.music.MAIN_PAGE, audioManager.music.MAP_CLOUDY, audioManager.music.MAP_SUNNY, audioManager.music.MAP_SNOW, audioManager.music.MAP_RAIN, audioManager.music.MAP_FOG, audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3, audioManager.music.ABYSS, audioManager.music.SITE_SECRET, audioManager.music.AQUARIUM, audioManager.music.BANDITDEN, audioManager.music.SITE_4, audioManager.music.SITE_5, audioManager.music.SITE_6, audioManager.music.HOTEL, audioManager.music.NPC, audioManager.music.DEATH, audioManager.music.BATTLE_OLD];
 
-var MusicName = ["Destroyer - Sergey Cheremisinov","Shapes of Shadows - Franz Gordon","Secrets and Lies - David Celeste","A New Creation - David Celeste","April in Detroit - David Celeste","The Reunion - Trevor Kowalski","There Must Be - So Vea","The Slow Shift - Gavin Luke","In the Waiting - Johannes Bornlof","Planting the Seeds - David Celeste","Nordkap - Martin Landh","Into the Forest I Go - David Celeste","She Came Back - David Celeste","Incandescence - Silver Maple","Search and Flight - Sergey Cheremisinov","Sleepwalker I - Sergey Cheremisinov", "Tensor Bandage - Blue Wizard Studio"];
+var MusicName = ["Destroyer - Sergey Cheremisinov","Secrets and Lies - David Celeste","April in Detroit - David Celeste","The Reunion - Trevor Kowalski","There Must Be - So Vea","The Slow Shift - Gavin Luke","In the Waiting - Johannes Bornlof","Planting the Seeds - David Celeste","Nordkap - Martin Landh","Into the Forest I Go - David Celeste","She Came Back - David Celeste","Incandescence - Silver Maple","Isolation - Farrell Wooten","Sleepwalker I - Sergey Cheremisinov", "Tensor Bandage - Blue Wizard Studio", "Deep Corridor - Brambles", "Search and Flight - Sergey Cheremisinov", "恐惧边缘 - 罗杨", "死亡触手 - 罗杨", "废土 - 罗杨", "来一杯咖啡 - 罗杨", "最后的避难所 - 罗杨", "末路 - 罗杨","穷途 - 罗杨"];
 
 var MenuLayer = cc.Layer.extend({
     ctor: function (checkVersion) {
         this._super();
-        ClientData.MOD_VERSION = 26;
+        ClientData.MOD_VERSION = 27;
         ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
@@ -29,6 +29,9 @@ var MenuLayer = cc.Layer.extend({
             cc.sys.localStorage.removeItem("curMusic");
             var toast = new DialogTiny(config);
             toast.show();
+            if (lastVer < 27) {
+                game.newGame();
+            }
         }
         cc.sys.localStorage.setItem("modVer", ClientData.MOD_VERSION);
         if (checkVersion && ClientData.MOD_VARIANT == 1) {
@@ -108,7 +111,7 @@ var MenuLayer = cc.Layer.extend({
             cc.sys.localStorage.setItem("ftue", 1);
         }     
 
-        var curIndex = Number(cc.sys.localStorage.getItem("curMusic")) || 6;
+        var curIndex = Number(cc.sys.localStorage.getItem("curMusic")) || 4;
         
         btn1.setPosition(bg.width / 2, bg.height / 2 - 126);
         bg.addChild(btn1);
@@ -158,15 +161,15 @@ var MenuLayer = cc.Layer.extend({
         musicLabel.setPosition(bg.width / 2, 20);
         musicLabel.setColor(cc.color.GRAY)
         bg.addChild(musicLabel);
-        musicLabel.runAction(cc.sequence(cc.delayTime(2), cc.fadeOut(2)));
-        setTimeout(function(){CAN_CHG_MUSIC = true}, 4000);
+        musicLabel.runAction(cc.sequence(cc.delayTime(1), cc.fadeOut(0.7)));
+        setTimeout(function(){CAN_CHG_MUSIC = true}, 2000);
         
         var btn_chgmusic = uiUtil.createSpriteBtn({normal: "icon_music_on.png"}, this, function () {
             if (!CAN_CHG_MUSIC) {
                 return;
             }
             CAN_CHG_MUSIC = false;
-            setTimeout(function(){CAN_CHG_MUSIC = true}, 4000);
+            setTimeout(function(){CAN_CHG_MUSIC = true}, 2000);
             audioManager.stopMusic(Musics[curIndex], true);
             if (curIndex < Musics.length - 1) {
                 curIndex += 1;
@@ -175,7 +178,7 @@ var MenuLayer = cc.Layer.extend({
             }
             cc.sys.localStorage.setItem("curMusic", curIndex);
             musicLabel.setString(stringUtil.getString(1248) + ": " + MusicName[curIndex]);
-            musicLabel.runAction(cc.sequence(cc.fadeIn(1), cc.delayTime(1), cc.fadeOut(2)));
+            musicLabel.runAction(cc.sequence(cc.fadeIn(0.3), cc.delayTime(1), cc.fadeOut(0.7)));
             audioManager.playMusic(Musics[curIndex], true);
         });
         btn_chgmusic.setPosition(bg.width - 106, bg.height / 2 - 236);

@@ -371,6 +371,7 @@ var Player = cc.Class.extend({
                 player.currency = 99999;
             }
         utils.emitter.emit("onCurrencyChange", player.currency);
+        audioManager.playEffect(audioManager.sound.GOLD);
         }
     },
     onFuelChange: function(value) {
@@ -389,11 +390,11 @@ var Player = cc.Class.extend({
         }
     },
     hasMotocycle: function () {
-        return (player.bag.validateItem(1305034, 1) || player.storage.validateItem(1305034, 1));
+        return (player.bag.validateItem(1305034, 1) || player.storage.validateItem(1305034, 1) || player.safe.validateItem(1305034, 1));
     },
     trySteal: function (bypass) {
         var saveFlag = false;
-        if (this.shoeTime > 30000) {
+        if (this.shoeTime > 22500) {
             //break a shoe from storage
             if (this.storage.validateItem(1306001, 1)) {
                 this.storage.decreaseItem(1306001, 1);
@@ -543,6 +544,7 @@ var Player = cc.Class.extend({
     outSite: function () {
         this.isAtSite = false;
         this.nowSiteId = 0;
+        Record.saveAll();
     },
 
     sleep: function () {
@@ -1386,15 +1388,15 @@ var Player = cc.Class.extend({
             var itemId = Number(Object.keys(copyItem)[k]);
             var amount = 8;
             if (itemId == 1305011 || itemId == 1305012) {
-                amount = 24;
+                amount = 32;
             }
             var twentyList = [1101011, 1101021, 1101031, 1101041, 1101051, 1103011, 1105042];
             var fifteenList = [1101061, 1101071, 1101073];
             var fiveList = [1102011, 1102022, 1102033, 1102042, 1103074, 1104032, 1301011, 1301022, 1301033, 1301041, 1301052, 1301063, 1301071, 1301082, 1302043, 1303033, 1303044, 1103094]
-            var twoList = [1102053, 1102063, 1104043, 1106054, 1107012, 1107022, 1107032, 1107042, 1107052, 1106013];
+            var twoList = [1102053, 1102063, 1104043, 1106054, 1107012, 1107022, 1107032, 1107042, 1107052, 1106013, 1306001, 1305023, 1305024];
             
             if (fiveList.indexOf(itemId) !== -1) {
-                amount = 5;
+                amount = 4;
             } else if (twoList.indexOf(itemId) !== -1) {
                 amount = 2;
             } else if (twentyList.indexOf(itemId) !== -1) {
@@ -1574,8 +1576,8 @@ var Player = cc.Class.extend({
             cc.sys.localStorage.setItem("ad", "1");
         });
         cc.timer.addTimerCallbackDayByDayOneAM(this, function () {
-            var fridgeBuild = self.room.getBuild(21);
-            if (!fridgeBuild || !this.map.getSite(WORK_SITE).isActive) {
+            var fridgeBuild = self.room.getBuildLevel(21);
+            if (fridgeBuild < 0 || !this.map.getSite(WORK_SITE).isActive) {
                 self.expireFoodCraft(false);
             } else {
                 self.expireFoodCraft(true);

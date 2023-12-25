@@ -27,18 +27,8 @@ var ChooseLayer = cc.Layer.extend({
         }
         var self = this;
         this.btnList = [];
-        var purchase;
         data.forEach(function (purchaseId, index) {
-            if (purchaseId == 108) {
-                purchase ="icon_iap_105.png";
-            } else if (purchaseId == 105) {
-                purchase ="icon_iap_201.png";
-            } else if (purchaseId < 109) {
-                purchase ="icon_iap_" + purchaseId + ".png";
-            } else {
-                purchase = "icon_iap_bg.png";
-            }
-            var btn = new ButtonAtChooseScene(purchase, self.mode);
+            var btn = new ButtonAtChooseScene(purchaseId, self.mode);
             btn.anchorX = 0;
             btn.anchorY = 1;
             btn.x = widthPadding + (index % 3) * (widthPadding + NODE_WIDTH);
@@ -55,7 +45,7 @@ var ChooseLayer = cc.Layer.extend({
                 });
             } else {
                 btn.setClickListener(self, function (sender) {
-                    sender.showInfoDialog(sender.purchaseId);
+                    uiUtil.showChooseInfoDialog(sender.purchaseId);
                 });
             }
             btn.setChecked(false);
@@ -71,7 +61,7 @@ var ChooseLayer = cc.Layer.extend({
         if (!this.mode) {
             cc.sys.localStorage.setItem("chosenTalent", "[]");
             this.btnList.forEach(function (btn) {
-                btn.setEnabled(IAPPackage.isIAPUnlocked(btn.purchaseId));
+                btn.setEnabled(true);
             });
 
             var btn1 = uiUtil.createCommonBtnWhite(stringUtil.getString(1193), this, function () {
@@ -97,7 +87,6 @@ var ChooseLayer = cc.Layer.extend({
                     config.action.btn_1.txt = stringUtil.getString(1193);
                     config.action.btn_2.txt = stringUtil.getString(1143);
                     config.action.btn_2.cb = function() {
-                        var positionIndex = 0;
                         cc.director.runScene(new StoryScene());
                     };
                     var dialog = new DialogSmall(config);

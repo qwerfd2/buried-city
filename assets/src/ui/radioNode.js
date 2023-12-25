@@ -30,8 +30,8 @@ var RadioNode = BuildNode.extend({
         if (msg.uid == Record.getUUID() && flag) {
             var log = cc.sys.localStorage.getItem("radio") || "[]";
             log = JSON.parse(log);
-            if (msg.msg.length > 30) {
-               msg.msg = msg.msg.substring(0, 30);
+            if (msg.msg.length > 40) {
+               msg.msg = msg.msg.substring(0, 40);
                msg.msg += "...";
             }
             log.unshift(msg);
@@ -90,7 +90,7 @@ var RadioNode = BuildNode.extend({
             return;
         } 
         if (msg == "help"){
-            msgData.msg = "Welcome to the Cheat Terminal.\n\nCommand:\nobtain 'name' int: Obtain the item given name, amount.\nobtain everything int: Obtain everything given amount.\nheal: Heal the player on all aspect.\nkill: kill the player.\nbackup: Set achievement & medal data to input.\nRestore {data}: Restore backed-up data.";
+            msgData.msg = "Welcome to the Cheat Terminal.\n\nCommand:\nobtain 'name' int: Obtain item given name, amount.\nobtain everything int: Obtain everything given amount.\nheal: Heal the player on all aspect.\nkill: kill the player.\nfix: Fix generator and gas pump if fixable.\nbackup: Set achievement & medal data to input.\nRestore {data}: Restore backed-up data.";
         } else if (prefix == "obtain") {
             var field = msg.substring(msg.indexOf(' ') + 1);
             var itemName = field.substring(0, field.indexOf(' '));
@@ -195,6 +195,12 @@ var RadioNode = BuildNode.extend({
             } else if (msg == "kill") {
                 player.die();
                 msgData.msg = "Bye";
+            } else if (msg == "fix") {
+                player.map.getSite(204).fix();
+                if (player.hasMotocycle()) {
+                    player.map.getSite(201).fix();
+                }
+                msgData.msg = "Site fixed";
             } else if (msg == "backup") {
                 var payload = {};
                 payload.data = {};

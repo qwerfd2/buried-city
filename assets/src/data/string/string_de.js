@@ -1,4 +1,34 @@
 var string = {
+      "banditType_1": "Hinterhältig",
+      "banditType_2": "Robust",
+      "banditType_4": "Listig",
+      "banditType_5": "Agil",
+      "9045": "%s Banditen haben dich entdeckt!",
+      "9046": "%s Bandit nähert sich dir! Entfernung %s",
+      "9047": "%s Bandit hat dich erschossen, HP %s",
+      "9048": "Du benutzt %s, um auf %s Banditen zu schießen",
+      "9049": "Du schwingst %s, um den %s-Banditen vor dir anzugreifen",
+      "9050": "Du hast ein %s in die Banditengruppe geworfen",
+      "9051": "Präzises Schießen! %s Bandit wurde der Kopf weggeblasen",
+      "9052": "%s Bandit hat %s Schaden erlitten",
+      "9053": "Alle Banditen haben %s Schaden erlitten",
+      "9054": "%s %s Banditen sind gestorben",
+      "9358": "Du hast alle Banditen in Brand gesteckt",
+      "9055": "%s hat den Banditen angegriffen und %s Bandit hat %s Schaden erlitten",
+      "9056": "Bandit wird von %s angezogen und wird vorübergehend aufhören, dich anzugreifen",
+      "9057": "%s hat diese Gegenstände von den Banditen gesammelt. Vorerst im Depot aufbewahrt.",
+      "9059": ["Banditen wurden vorn entdeckt!", "Mehrere patrouillierende Banditen haben dich bemerkt.", "Du bist von einer Gruppe Banditen umzingelt."],
+      "9165": "Du hast den Banditen %s brutal geschlagen.",
+      "9139": "Anzahl der Banditen:",
+      "9118": "Sie haben die Banditen erfolgreich eliminiert",
+      "9109": "Der Angriff des Banditen hat dir tödlichen Schaden zugefügt!",
+"radio_tut": "Um die Chance, auf andere Überlebende zu stoßen, zu verbessern, solltest du das Radio bauen und dich jeden Tag selbst senden.",
+"motor_tut": "Du kannst Treibstoff sparen, indem du nicht mit dem Motorrad fährst. Der Gewichtsbonus gilt weiterhin. Klicke dazu auf das Motorrad-Symbol in diesem Popup.",
+"site_502": {
+    "name": "Aquarium",
+    "des": "Die Fische im Aquarium sind so gut wie tot. Das von Algen verseuchte Wasser verleiht dem Inneren eine unheimliche rote Färbung. Besser nicht die Glaskuppel stören, sonst könnte dies ein wässriges Grab werden.\nSie dürfen hier keine Schusswaffen und Sprengstoffe verwenden."
+},
+"1166": "Jetzt wachsend %s...",
 "equip_needed":"Nur wirksam, wenn es als Werkzeug ausgerüstet ist.",
 "no_need_equip":"Passive Ausrüstung, keine Ausrüstung erforderlich.",
     "7000": "Überprüfe den Zustand von %s",
@@ -453,7 +483,7 @@ var string = {
     "1214": "Bereits gekauft",
     "1215": "Du kannst die folgenden Gegenstände erhalten:",
     "1216": "Shop",
-    "1217": "Wähle ein spezielles Talent",
+    "1217": "Talentauswahl",
     "1221": "(der neue Ort %s ist freigeschaltet worden)",
     "1222": "Erhalte:",
     "1223": "Heute ist es ruhig",
@@ -1097,7 +1127,7 @@ var string = {
       },
       "site_500": {
           "name": "Banditenhöhle",
-          "des": "Dieses unauffällige Gebäude ist eigentlich das Lager einer Räuberbande. Da du es wagst, mich auszurauben, solltest du keine Angst davor haben, dass ich es zurücknehme."
+          "des": "Dieses unauffällige Gebäude ist eigentlich das Lager einer Räuberbande. Da du es wagst, mich auszurauben, solltest du keine Angst davor haben, dass ich es zurücknehme.\n Warnung: Einbrecher können bewaffnet sein!"
       },
       "13": {
           "title": "Münzen",

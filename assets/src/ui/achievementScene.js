@@ -13,10 +13,15 @@ var achievementLayer = cc.Layer.extend({
         if (Record.getScreenFix() == 1) {
             this.setScale(0.83);
         }
-        this.bg = new cc.Sprite("res/new/rank_bg.png");
+        this.bg = new cc.Sprite("res/new/about_bg.png");
         this.bg.x = cc.winSize.width / 2;
         this.bg.y = cc.winSize.height / 2;
         this.addChild(this.bg);
+        
+        var backdrop = new cc.Sprite("res/new/about_layer.png");
+        backdrop.x = cc.winSize.width / 2;
+        backdrop.y = 1030;
+        this.addChild(backdrop);
 
         this.data = [];
         this.skip = 0;

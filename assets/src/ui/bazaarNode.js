@@ -56,10 +56,14 @@ var BazaarNode = BottomFrameNode.extend({
         utils.emitter.on("pay", function() {
             self.pay();
         });
+        player.isAtBazaar = true;
+        cc.timer.pause();
+        Record.saveAll();
     },
 
     onExit: function() {
         this._super();
         utils.emitter.off("pay");
+        cc.timer.resume();
     }
 });

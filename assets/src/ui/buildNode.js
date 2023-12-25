@@ -35,12 +35,12 @@ var BuildNode = BottomFrameNode.extend({
                 utils.emitter.emit("left_btn_enabled", false);
                 self.build.upgrade(function (percentage) {
                     self.upgradeView.updatePercentage(percentage);
-                    if (this.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
+                    if (self.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
                         uiUtil.removeIconWarn(self.upgradeView.getChildByName("action1"));
                     }
                 }, function () {
                     utils.emitter.emit("left_btn_enabled", true);
-                    if (this.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
+                    if (self.bid === 9 && userGuide.isStep(userGuide.stepName.MAKE_BED)) {
                         userGuide.step();
                     }
                     BuildOccupied = false;

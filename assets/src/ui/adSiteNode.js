@@ -26,7 +26,7 @@ var AdSiteNode = BottomFrameNode.extend({
         this.txt2.setPosition(rightEdge + 20, this.actionBarBaseHeight - 4);
         this.bg.addChild(this.txt2);
 
-        var digDes = autoSpriteFrameController.getSpriteFromSpriteName("#ad_site.png");
+        var digDes = autoSpriteFrameController.getSpriteFromSpriteName("#site_dig_" + this.site.id + ".png");
         digDes.setAnchorPoint(0.5, 1);
         digDes.setPosition(this.bgRect.width / 2, this.contentTopLineHeight - 50);
         this.bg.addChild(digDes);

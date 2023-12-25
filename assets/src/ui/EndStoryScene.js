@@ -12,6 +12,7 @@ var EndStoryLayer = cc.Layer.extend({
         this._super();
         game.stop();
         this.sequence = 0;
+        this.endingSprite;
         var bg = new Button(cc.winSize);
         bg.x = cc.winSize.width / 2;
         bg.y = cc.winSize.height / 2;
@@ -69,6 +70,11 @@ var EndStoryLayer = cc.Layer.extend({
                 txt5.runAction(cc.fadeOut(1));
                 txt6.runAction(cc.fadeOut(1));
                 setTimeout(function () {
+                    if (ending == 1) {
+                        endingSpriteOne.runAction(cc.fadeIn(1));
+                    } else {
+                        endingSpriteTwo.runAction(cc.fadeIn(1));
+                    }
                     txt7.runAction(cc.fadeIn(1));
                     setTimeout(function () {
                         endButtonThree.runAction(cc.fadeIn(1));
@@ -126,17 +132,27 @@ var EndStoryLayer = cc.Layer.extend({
 
         var txt7 = new cc.LabelTTF(stringUtil.getString(8006), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
         txt7.setAnchorPoint(0, 1);
-        txt7.setPosition(0, txtNode.height);
+        txt7.setPosition(0, txt5.y - txt5.height - 120);
         txt7.setColor(cc.color.WHITE);
         txtNode.addChild(txt7);
         
-        var endtxt1 = new cc.LabelTTF("Dice7 (Buried Town)\n果农C    Lancelot", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        var endingSpriteOne = autoSpriteFrameController.getSpriteFromSpriteName("#ending_1.png");
+        endingSpriteOne.setAnchorPoint(0.5, 1);
+        endingSpriteOne.setPosition(cc.winSize.width / 3, txtNode.height - 50);
+        txtNode.addChild(endingSpriteOne);
+        
+        var endingSpriteTwo = autoSpriteFrameController.getSpriteFromSpriteName("#ending_2.png");
+        endingSpriteTwo.setAnchorPoint(0.5, 1);
+        endingSpriteTwo.setPosition(cc.winSize.width / 3, txtNode.height - 50);
+        txtNode.addChild(endingSpriteTwo);   
+        
+        var endtxt1 = new cc.LabelTTF("Dice7 (Buried Town)\n果农C    Lancelot    Alex", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
         endtxt1.setAnchorPoint(0, 1);
         endtxt1.setPosition(0, txtNode.height + 20);
         endtxt1.setColor(cc.color.WHITE);
         txtNode.addChild(endtxt1);
         
-        var endtxt2 = new cc.LabelTTF(stringUtil.getString(8027) + "\nBlue Wizard Studio, Epidemic Sound", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
+        var endtxt2 = new cc.LabelTTF(stringUtil.getString(8027) + "\nEpidemic Sound, 罗杨, Blue Wizard Studio, Brambles", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));
         endtxt2.setAnchorPoint(0, 1);
         endtxt2.setPosition(0, endtxt1.y - endtxt1.height - 60);
         endtxt2.setColor(cc.color.WHITE);
@@ -165,6 +181,8 @@ var EndStoryLayer = cc.Layer.extend({
         endtxt6.setPosition(0, endtxt5.y - endtxt5.height - 60);
         endtxt6.setColor(cc.color.WHITE);
         txtNode.addChild(endtxt6);
+
+        var ending = 0;
         
         var endButtonOne = uiUtil.createBigBtnWhite(stringUtil.getString(8100), this, function () {
             endButtonOne.setVisible(false); 
@@ -173,6 +191,7 @@ var EndStoryLayer = cc.Layer.extend({
             endButtonTwo.setEnabled(false);
             txt7.runAction(cc.fadeOut(1));
             setTimeout(function () {
+                ending = 1;
                 txt1.setString(stringUtil.getString(8010));
                 txt2.setString(stringUtil.getString(8011));
                 txt3.setString(stringUtil.getString(8012));
@@ -203,6 +222,7 @@ var EndStoryLayer = cc.Layer.extend({
             endButtonTwo.setEnabled(false);
             txt7.runAction(cc.fadeOut(1));
             setTimeout(function () {
+                ending = 2;
                 txt1.setString(stringUtil.getString(8020));
                 txt2.setString(stringUtil.getString(8021));
                 txt3.setString(stringUtil.getString(8022));
@@ -230,6 +250,8 @@ var EndStoryLayer = cc.Layer.extend({
             if (this.sequence == 4) {
                 audioManager.stopMusic(audioManager.music.RECALL);
                 txt7.setOpacity(0);
+                endingSpriteOne.setOpacity(0);
+                endingSpriteTwo.setOpacity(0);
                 endButtonThree.setEnabled(0);
                 endButtonThree.setOpacity(0);
                 this.sequence++;
@@ -271,6 +293,8 @@ var EndStoryLayer = cc.Layer.extend({
         txt5.setOpacity(0);
         txt6.setOpacity(0);
         txt7.setOpacity(0);
+        endingSpriteOne.setOpacity(0);
+        endingSpriteTwo.setOpacity(0);
         endtxt1.setOpacity(0);
         endtxt2.setOpacity(0);
         endtxt3.setOpacity(0);

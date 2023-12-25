@@ -3,7 +3,11 @@ var stringUtil = {
         if (string[stringId]) {
             if (arguments.length > 1) {
                 var args = [];
+                if (stringId == "site_502") {
+                    args.push(string[stringId].des);
+                } else {
                 args.push(string[stringId]);
+                }
                 for (var i = 1; i < arguments.length; i++) {
                     args.push(arguments[i]);
                 }

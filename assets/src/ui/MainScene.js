@@ -35,7 +35,6 @@ var MainScene = BaseScene.extend({
         autoSpriteFrameController.addSpriteFrames("res/site.plist");
         autoSpriteFrameController.addSpriteFrames("res/gate.plist");
         autoSpriteFrameController.addSpriteFrames("res/site.plist");
-        autoSpriteFrameController.addSpriteFrames("res/end.plist");
         autoSpriteFrameController.addSpriteFrames("res/new_site.plist");
 
         var layer = new MainLayer();

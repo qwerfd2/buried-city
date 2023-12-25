@@ -275,8 +275,11 @@ var Formula = BuildAction.extend({
                 } else {
                     action1Disabled = true;
                 }
-            } else {
+            } else if (this.bid != 2) {
                 hint = stringUtil.getString(1007, itemName);
+                action1Disabled = true;
+            } else {
+                hint = stringUtil.getString(1166, itemName);
                 action1Disabled = true;
             }
             hintColor = cc.color.WHITE;
@@ -655,6 +658,7 @@ var RestBuildAction = BuildAction.extend({
             time = Math.round(time * 0.7);
         }
         var self = this;
+        audioManager.playEffect(audioManager.sound.COFFEE_POUR);
         this.addTimer(time, time, function () {
             //1. cost成功
             player.costItems(self.config.cost);
@@ -662,6 +666,7 @@ var RestBuildAction = BuildAction.extend({
             self.config.cost.forEach(function (item) {
                 Achievement.checkCost(item.itemId, item.num);
             });
+            audioManager.playEffect(audioManager.sound.GOLP);
             player.applyEffect(self.config["effect"]);
             var itemInfo = self.config.cost[0];
             var itemName = stringUtil.getString(itemInfo.itemId).title;
@@ -754,6 +759,7 @@ var DrinkBuildAction = BuildAction.extend({
             time = Math.round(time * 0.7);
         }
         var self = this;
+        audioManager.playEffect(audioManager.sound.BOTTLE_OPEN);
         this.addTimer(time, time, function () {
             //1. cost成功
             player.costItems(self.config.cost);
@@ -761,6 +767,7 @@ var DrinkBuildAction = BuildAction.extend({
             self.config.cost.forEach(function (item) {
                 Achievement.checkCost(item.itemId, item.num);
             });
+            audioManager.playEffect(audioManager.sound.GOLP);
             var rand = Math.random();
             if (rand < 0.3 && player.alcoholPrice < 9) {
                 player.alcoholPrice += 1;

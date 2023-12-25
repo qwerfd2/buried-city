@@ -193,6 +193,9 @@ var HomeNode = BottomFrameNode.extend({
                 uiUtil.showGuideDialog(stringUtil.getString(1238), "res/new/guide_pic_2.png", self, true);
             } else if (userGuide.isStep(userGuide.stepName.WAKE_UP_WARN)) {
                 uiUtil.showGuideDialog(stringUtil.getString(1239), "res/new/guide_pic_1.png", self);
+            } else if (userGuide.isStep(userGuide.stepName.RADIO_PROMPT)) {
+                uiUtil.showGuideDialog(stringUtil.getString("radio_tut"), "radio", self);
+                userGuide.step();
             }
         }, 0.1);
     },

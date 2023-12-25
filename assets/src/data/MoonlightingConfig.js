@@ -30,3 +30,57 @@ var MoonlightingConfig = {
         {day: [136], strength: [65, 75], probability: 0.5}
     ]
 };
+var RandomBattleConfig = {
+    strength: [
+        {
+            time: [1, 10], distance: 100,
+            day: {probability: 0.1, difficulty: [1, 2]},
+            night: {probability: 0.2, difficulty: [1, 3]}
+        },
+        {
+            time: [11, 20], distance: 100,
+            day: {probability: 0.1, difficulty: [1, 2]},
+            night: {probability: 0.2, difficulty: [2, 3]}
+        },
+        {
+            time: [21, 30], distance: 100,
+            day: {probability: 0.1, difficulty: [1, 3]},
+            night: {probability: 0.2, difficulty: [2, 3]}
+        },
+        {
+            time: [31, 40], distance: 100,
+            day: {probability: 0.1, difficulty: [1, 3]},
+            night: {probability: 0.2, difficulty: [2, 4]}
+        },
+        {
+            time: [41, 50], distance: 100,
+            day: {probability: 0.1, difficulty: [1, 3]},
+            night: {probability: 0.2, difficulty: [3, 4]}
+        },
+        {
+            time: [51, 60], distance: 100,
+            day: {probability: 0.15, difficulty: [1, 3]},
+            night: {probability: 0.2, difficulty: [3, 4]}
+        },
+        {
+            time: [61, 70], distance: 100,
+            day: {probability: 0.15, difficulty: [1, 3]},
+            night: {probability: 0.2, difficulty: [3, 5]}
+        },
+        {
+            time: [71, 80], distance: 100,
+            day: {probability: 0.15, difficulty: [1, 3]},
+            night: {probability: 0.25, difficulty: [3, 5]}
+        },
+        {
+            time: [81, 90], distance: 100,
+            day: {probability: 0.15, difficulty: [1, 3]},
+            night: {probability: 0.25, difficulty: [3, 6]}
+        },
+        {
+            time: [91], distance: 100,
+            day: {probability: 0.15, difficulty: [1, 3]},
+            night: {probability: 0.25, difficulty: [4, 6]}
+        }
+    ]
+};

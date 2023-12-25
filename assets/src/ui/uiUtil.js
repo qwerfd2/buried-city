@@ -11,6 +11,20 @@ uiUtil.fontSize = {
     COMMON_3: 20
 };
 
+uiUtil.showChooseInfoDialog = function (purchaseId) {
+    var strConfig = stringUtil.getString("p_" + purchaseId);
+    var config = {
+        title: {},
+        content: {},
+        action: {btn_1: {}}
+    };
+    config.content.des = strConfig.des + "\n\n" +strConfig.effect;
+    config.title.title = strConfig.name;
+    config.action.btn_1.txt = stringUtil.getString(1030);
+    var d = new DialogSmall(config);
+    d.show();
+};
+
 uiUtil.bazaarItem = function(itemInfo, target, cb) {
     var node = new cc.Node();
 
@@ -36,7 +50,7 @@ uiUtil.bazaarItem = function(itemInfo, target, cb) {
     price.x = bg.width / 6 - 30;
     price.y = bg.height / 6;
     price.color = cc.color.BLACK;
-    price.setString(stringUtil.getString(9021) + ee);
+    price.setString(stringUtil.getString(1190) + ee);
     price.setAnchorPoint(0, 1);
     node.addChild(price);
     //图标 1
@@ -122,6 +136,16 @@ uiUtil.bazaarSell = function(itemId, vvv, amount, discount) {
     label2.setColor(cc.color.BLACK);
     label2.setName("label2");
     oo.addChild(label2);
+    
+    var info = new SpriteButton(cc.size(60, 60), 'icon_iap_info.png');
+    info.x = dialog.contentNode.width - 40;
+    info.y = dialog.contentNode.height - 40;
+    info.setName("info");
+    oo.addChild(info);
+    info.setVisible(true);
+    info.setClickListener(this, function () {
+        uiUtil.showItemDialog(itemId, true, "bazaar");
+    });
 
     var slider = new cc.ControlSlider("#slider_bg.png", "#slider_content.png", "#slider_cap.png");
     slider.setMinimumValue(Nuw);
@@ -587,29 +611,34 @@ uiUtil.showItemDialog = function (itemId, showOnly, source) {
     var itemToShowEquipNeeded = [1305053, 1305075, 1305064];
     var itemToShowEquipNotNeeded = [1305034, 1305024, 1305023, 1306001];
     if (itemToShowEquipNeeded.indexOf(Number(itemId)) !== -1) {
-        //Item needs equipping, add exp string to des
         strConfig.des += "\n" + stringUtil.getString("equip_needed");
     } else if (itemToShowEquipNotNeeded.indexOf(Number(itemId)) !== -1) {
-        //Item no need to equip. add exp string to des
         strConfig.des += "\n" + stringUtil.getString("no_need_equip");
     }
     config.content.des = strConfig.des;
     config.content.dig_des = "#dig_item_" + itemId + ".png";
     var dialog = new DialogBig(config);
     var txt1 = dialog.titleNode.getChildByName("txt_1");
-    
     var storage;
     if (player.isAtHome) {
         storage = player.storage;
+        txt1.setString(cc.formatStr(txt1.getString(), storage.getNumByItemId(itemId)));
+    } else if (player.isAtBazaar && source == "bazaar") {
+        for (var i = 0; i < player.shopList.length; i++) {
+            if (player.shopList[i].itemId == itemId) {
+                txt1.setString(cc.formatStr(txt1.getString(), player.shopList[i].amount));
+                break;
+            }
+        }
     } else {
         if (player.tmpBag) {
             storage = player.tmpBag;
         } else {
             storage = player.bag;
         }
+        txt1.setString(cc.formatStr(txt1.getString(), storage.getNumByItemId(itemId)));
     }
-    txt1.setString(cc.formatStr(txt1.getString(), storage.getNumByItemId(itemId)));
-    
+   
     dialog.show();
     if (item.isType(ItemType.TOOL, ItemType.BUFF)) {
         var des = dialog.contentNode.getChildByName('des');
@@ -626,36 +655,46 @@ uiUtil.showItemDialog = function (itemId, showOnly, source) {
     if (player.getSetting("inStorage", false) && userGuide.isStep(userGuide.stepName.STORAGE_EAT) && userGuide.isItemEat(itemId)) {
         uiUtil.createIconWarn(dialog.actionNode.getChildByName("btn_2"));
     }
-
 };
 
 uiUtil.showGuideDialog = function(str, pic, target, isPicDown) {
-    var config = {
-        title: {},
-        content: {},
-        action: {
-            btn_1: {},
-            btn_2: {}
-        }
-    };
+    var config;
+    if (!player.getSetting("step")) {
+        config = {
+            title: {},
+            content: {},
+            action: {
+                btn_1: {},
+                btn_2: {}
+            }
+        };
+    } else {
+        config = {
+            title: {},
+            content: {},
+            action: {}
+        };
+    }
 
     config.title.title = "";
     config.content.des = str;
     config.content.dig_des = pic;
-    config.action.btn_1.txt = stringUtil.getString(9000);
-    config.action.btn_1.target = null;
-    config.action.btn_1.cb = function() {
-        player.setSetting("step", 33)
-        player.buildWarn.setVisible(false);
-        player.log.addMsg(stringUtil.getString(9001));
-    };
-
-    config.action.btn_2.txt = stringUtil.getString(9002);
-
+    if (!player.getSetting("step")) {
+        config.action.btn_1.txt = stringUtil.getString(9000);
+        config.action.btn_1.target = null;
+        config.action.btn_1.cb = function() {
+            player.setSetting("step", 30)
+            player.buildWarn.setVisible(false);
+            player.log.addMsg(stringUtil.getString(9001));
+        };
+        config.action.btn_2.txt = stringUtil.getString(9002);
+    }
     var dialog = new DialogGuide(config, target, isPicDown);
-    dialog.actionNode.getChildByName('btn_1').setPosition(120, 36)
-    dialog.actionNode.getChildByName('btn_2').setPosition(dialog.contentNode.width - 120, 36)
-    dialog.titleNode.getChildByName('title').setPosition(dialog.contentNode.width / 2, dialog.contentNode.height + 66)
+    if (!player.getSetting("step")) {
+        dialog.actionNode.getChildByName('btn_1').setPosition(120, 36);
+        dialog.actionNode.getChildByName('btn_2').setPosition(dialog.contentNode.width - 120, 36);
+    }
+    dialog.titleNode.getChildByName('title').setPosition(dialog.contentNode.width / 2, dialog.contentNode.height + 66);
     dialog.show();
 }
 
@@ -1110,24 +1149,29 @@ uiUtil.showNpcInMapDialog = function (entity, time, fuelNeed, canAfford, okCb, c
         d.show();
     });
     dialog.show();
+    if (userGuide.isStep(userGuide.stepName.MOTO_PROMPT) && player.hasMotocycle()) {
+        var config = {
+            title: {title: ""},
+            content: {des: stringUtil.getString("motor_tut")},
+            action: {btn_1: {txt: stringUtil.getString(1193)}}
+        };
+        var toast = new DialogTiny(config);
+        toast.y = -196;
+        toast.show();
+        userGuide.step();
+    }
 };
 
 uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cancelCb) {
     var config = utils.clone(stringUtil.getString(5000));
-    if (entity.baseSite.id == 202) {
-        config.title.icon = "#site202.png";
-    } else {
-        config.title.icon = "#site_" + entity.baseSite.id + ".png";
-    }
+    config.title.icon = "#site_" + entity.baseSite.id + ".png";
+
     config.title.title = entity.baseSite.getName();
     config.title.txt_1 = cc.formatStr(config.title.txt_1, entity.baseSite.getProgressStr(1, entity.baseSite.id));
     config.title.txt_2 = cc.formatStr(config.title.txt_2, entity.baseSite.getAllItemNum());
     config.content.log = true;
-    if (entity.baseSite.id == 202) {
-        config.content.dig_des = "#ad_site.png";
-    } else {
-        config.content.dig_des = "#site_dig_" + entity.baseSite.id + ".png";
-    }
+    config.content.dig_des = "#site_dig_" + entity.baseSite.id + ".png";
+
     config.content.des = entity.baseSite.getDes();
     config.action.btn_1.target = entity;
     config.action.btn_1.cb = cancelCb;
@@ -1162,7 +1206,7 @@ uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     var log = dialog.contentNode.getChildByName("log");
     var label = new cc.LabelTTF(utils.getTimeDistanceStr(time), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
     label.setAnchorPoint(0, 1);
-    label.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
+    label.setPosition(dialog.leftEdge, log.getContentSize().height - 30);
     label.setColor(cc.color.BLACK);
     log.addChild(label);
     
@@ -1213,8 +1257,17 @@ uiUtil.showSiteDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
         });
     }
     dialog.show();
-
-    if (userGuide.isStep(userGuide.stepName.MAP_SITE_GO) && userGuide.isSite(entity.baseSite.id)) {
+    if (userGuide.isStep(userGuide.stepName.MOTO_PROMPT) && player.hasMotocycle()) {
+        var config = {
+            title: {title: ""},
+            content: {des: stringUtil.getString("motor_tut")},
+            action: {btn_1: {txt: stringUtil.getString(1193)}}
+        };
+        var toast = new DialogTiny(config);
+        toast.y = -196;
+        toast.show();
+        userGuide.step();
+    } else if (userGuide.isStep(userGuide.stepName.MAP_SITE_GO) && userGuide.isSite(entity.baseSite.id)) {
         uiUtil.createIconWarn(dialog.actionNode.getChildByName("btn_2"));
     }
 };
@@ -1255,7 +1308,7 @@ uiUtil.showHomeDialog = function (entity, time, fuelNeed, canAfford, okCb, cance
     var log = dialog.contentNode.getChildByName("log");
     var label = new cc.LabelTTF(utils.getTimeDistanceStr(time), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
     label.setAnchorPoint(0, 1);
-    label.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
+    label.setPosition(dialog.leftEdge, log.getContentSize().height - 30);
     label.setColor(cc.color.BLACK);
     log.addChild(label);
     
@@ -1381,9 +1434,9 @@ uiUtil.createHeartNode = function () {
     return node;
 };
 
-uiUtil.createEquipedItemIconList = function (dark) {
+uiUtil.createEquipedItemIconList = function (dark, isMelee) {
     var defaultColor = dark ? cc.color.BLACK : cc.color.WHITE;
-    var equipedItemList = player.equip.getEquipedItemList();
+    var equipedItemList = player.equip.getEquipedItemList(isMelee);
     equipedItemList = equipedItemList.map(function (itemId) {
         var res = {itemId: itemId};
         if (itemId !== Equipment.HAND) {
@@ -1405,7 +1458,7 @@ uiUtil.createEquipedItemIconList = function (dark) {
                 num: fuelNum
             });
         }
-    } else if (player.equip.getEquip(EquipmentPos.GUN)) {
+    } else if (player.equip.getEquip(EquipmentPos.GUN) && !isMelee) {
         var bulletNum = player.bag.getNumByItemId(BattleConfig.BULLET_ID);
         if (bulletNum > 0) {
             equipedItemList.unshift({
@@ -1524,7 +1577,7 @@ uiUtil.removeIconWarn = function (parent, name) {
         name = "warn";
     }
     if (parent.getChildByName(name)) {
-        parent.removeChildByName("warn");
+        parent.removeChildByName(name);
     }
 };
 
@@ -1564,8 +1617,8 @@ uiUtil.createSaleOffIcon = function () {
     node.addChild(icon);
 
     var offLabel = new cc.LabelTTF("", uiUtil.fontFamily.normal, 36);
-    offLabel.x = 26;
-    offLabel.y = 28;
+    offLabel.x = 20;
+    offLabel.y = 32;
     offLabel.color = cc.color.BLACK;
     icon.addChild(offLabel);
 
@@ -1644,12 +1697,7 @@ uiUtil.createPayItemNode = function (purchaseId, target, cb) {
 
     node.purchaseId = purchaseId;
     node.updateStatus = function () {
-        var isUnlocked = IAPPackage.isIAPUnlocked(purchaseId);
-        if (isUnlocked) {
-            unlock.setVisible(true);
-        } else {
-            unlock.setVisible(false);
-        }
+        unlock.setVisible(false);
     };
 
     node.updatePrice = function (priceStr) {
@@ -1756,7 +1804,6 @@ uiUtil.createItemListSliders = function (itemList) {
             }
             var info = data[idx];
 
-            console.log(JSON.stringify(info));
             var bg = cell.getChildByName('bg');
             if (bg.getChildByName('icon')) {
                 bg.removeChildByName('icon');

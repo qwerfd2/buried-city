@@ -67,7 +67,11 @@ var BattleAndWorkNode = BottomFrameNode.extend({
                 txt2.setString("");
                 this.room = this.site.secretRoomBegin();
                 if (this.room.type === "battle") {
-                    des.setString(stringUtil.getString(3009)[this.room.difficulty - 1]);
+                    if (player.nowSiteId == 500) {
+                        des.setString(stringUtil.getString(9059)[this.room.difficulty - 1]);
+                    } else {
+                        des.setString(stringUtil.getString(3009)[this.room.difficulty - 1]);
+                    }
                     this.createBattleBeginView();
                 } else {
                     des.setString(stringUtil.getString(3008)[this.room.workType]);
@@ -80,7 +84,11 @@ var BattleAndWorkNode = BottomFrameNode.extend({
                 txt2.setString(cc.formatStr(template.title.txt_2, this.site.storage.getAllItemNum()));
                 this.room = this.site.roomBegin();
                 if (this.room.type === "battle") {
-                    des.setString(stringUtil.getString(3009)[this.room.difficulty - 1]);
+                    if (player.nowSiteId == 500) {
+                        des.setString(stringUtil.getString(9059)[this.room.difficulty - 1]);
+                    } else {
+                        des.setString(stringUtil.getString(3009)[this.room.difficulty - 1]);
+                    }
                     this.createBattleBeginView();
                 } else {
                     if (this.userData == 666 && this.site.step == this.site.rooms.length - 1) {
@@ -173,8 +181,12 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         digDesBg.addChild(digDesMidBg);
 
         this.bg.getChildByName("des").setPosition(this.bgRect.width / 2, digDesBg.y - digDesBg.height - 20);
-
-        var digDes = autoSpriteFrameController.getSpriteFromSpriteName("#monster_dig_" + this.room.difficulty + ".png");
+        var digDes;
+        if (player.nowSiteId == 500) {
+            digDes = autoSpriteFrameController.getSpriteFromSpriteName("#bandit_dig_" + this.room.difficulty + ".png");
+        } else {
+            digDes = autoSpriteFrameController.getSpriteFromSpriteName("#monster_dig_" + this.room.difficulty + ".png");
+        }
         digDes.setPosition(digDesBg.width / 2, digDesBg.height / 2);
         digDesBg.addChild(digDes);
 
@@ -182,18 +194,26 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         label1.setAnchorPoint(0, 1);
         label1.setPosition(0, 400);
         node.addChild(label1);
-
-        var iconList = uiUtil.createEquipedItemIconList();
+        var isMelee = player.nowSiteId == 502;
+        var iconList = uiUtil.createEquipedItemIconList(false, isMelee);
         iconList.setPosition(0, label1.y - label1.height - 20);
         node.addChild(iconList);
+        var label2;
+        if (player.nowSiteId == 500) {
+            label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + (this.room.difficulty + 5), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+            label2.setAnchorPoint(0, 1);
+            label2.setPosition(0, iconList.getPositionY() - iconList.getContentSize().height - 25);
+            node.addChild(label2);
+        } else {
+            label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + this.room.difficulty, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+            label2.setAnchorPoint(0, 1);
+            label2.setPosition(0, iconList.getPositionY() - iconList.getContentSize().height - 25);
+            node.addChild(label2);
+            if (this.room.difficulty > 2) {
+                label2.setColor(cc.color.RED);
+            }     
+        }
 
-        var label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + this.room.difficulty, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-        label2.setAnchorPoint(0, 1);
-        label2.setPosition(0, iconList.getPositionY() - iconList.getContentSize().height - 25);
-        node.addChild(label2);
-        if (this.room.difficulty > 2) {
-            label2.setColor(cc.color.RED);
-        }     
         if (player.equip.getEquip(EquipmentPos.GUN) && !player.equip.isEquiped(1301091) && player.bag.getNumByItemId(BattleConfig.BULLET_ID) && player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID)) {
             //if gun is equipped, and not flamethrower, and has 2 bullets in the inventory to select.
             var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
@@ -371,16 +391,26 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         labelNum.setPosition(pbBg.x + pbBg.width / 2, pbBg.y + pbBg.height + 5);
         labelNum.setColor(cc.color.WHITE);
         node.addChild(labelNum);
-        labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLenTotal, monsterLenTotal));
-
+        if (player.nowSiteId == 500) {
+            labelNum.setString(stringUtil.getString(9139) + cc.formatStr("%s/%s", monsterLenTotal, monsterLenTotal));
+        } else {
+            labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLenTotal, monsterLenTotal));
+        }
         utils.emitter.on("battleMonsterLength", function (monsterLen) {
             pb.setPercentage((monsterLenTotal - monsterLen) / monsterLenTotal * 100);
-            labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLen, monsterLenTotal));
+            if (player.nowSiteId == 500) {
+                labelNum.setString(stringUtil.getString(9139) + cc.formatStr("%s/%s", monsterLen, monsterLenTotal));
+            } else {
+                labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLen, monsterLenTotal));
+            }
         });
     },
     createBattleEndView: function (sumRes) {
-        this.bg.getChildByName("des").setString(stringUtil.getString(1118));
-
+        if (player.nowSiteId == 500) {
+            this.bg.getChildByName("des").setString(stringUtil.getString(9118));
+        } else {
+            this.bg.getChildByName("des").setString(stringUtil.getString(1118));
+        }
         var node = new cc.Node();
         node.setContentSize(this.rightEdge - this.leftEdge, 600);
         node.setAnchorPoint(0.5, 0);

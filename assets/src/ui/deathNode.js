@@ -43,21 +43,12 @@ var DeathNode = BottomFrameNode.extend({
         this.bg.addChild(btn2);
         btn2.setName("btn_2")
 
-        if (this.validateStorage() || this.validateBag()) {
-
+        if (this.validateStorage() || this.validateBag() || this.validateSafe()) {
             btn2.setVisible(false);
-
         } else {
-
-            if (!IAPPackage.isIAPUnlocked(203)) {
-                btn2.x = this.bgRect.width / 4;
-                btn1.x = this.bgRect.width / 4 * 3;
-                label1.x = btn1.x;
-            } else {
-                btn1.setVisible(false);
-                label1.setVisible(false);
-            }
-
+            btn2.x = this.bgRect.width / 4;
+            btn1.x = this.bgRect.width / 4 * 3;
+            label1.x = btn1.x;
         }
         game.stop();
     },

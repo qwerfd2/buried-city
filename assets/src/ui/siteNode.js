@@ -70,7 +70,6 @@ var SiteNode = BottomFrameNode.extend({
         btn2.setEnabled(!this.site.isSiteEnd());
         
         if (this.site.id == 400) {
-
             var btn3 = uiUtil.createCommonBtnWhite(stringUtil.getString("gachapon").title, this, this.onClickBtn3);
             btn3.setPosition(this.bgRect.width / 2, 100);
             this.bg.addChild(btn3);
@@ -165,14 +164,19 @@ var SiteNode = BottomFrameNode.extend({
         dialog.show();
     },
     onClickBtn4: function () {
+        audioManager.insertMusic(audioManager.music.HOTEL);
         var config = utils.clone(stringUtil.getString("gachaponDialog"));
         config.title.txt_1 = "";
+        config.action.btn_1.cb = function(){audioManager.resumeMusic()};
         config.title.title = stringUtil.getString(1342);
         config.content.des = stringUtil.getString(1343);
-        this.dialogHotel = new DialogSmall(config);
+        config.content.dig_des = "#site_dig_400.png";
+        this.dialogHotel = new DialogBig(config);
         this.dialogHotel.tempName = "hotelDialog";
         this.dialogHotel.autoDismiss = false;
         var screenFix = Record.getScreenFix();
+        this.dialogHotel.contentNode.getChildByName("dig_des").setScale(0.8);
+        this.dialogHotel.contentNode.getChildByName("des").y += 30;
         if (screenFix == 1) {
             this.dialogHotel.getChildByName("bgColor").height = 827;
         } else {
@@ -180,22 +184,22 @@ var SiteNode = BottomFrameNode.extend({
         }
         
         this.hotelBtn1 = uiUtil.createCommonBtnBlack(stringUtil.getString(1344, 1, 1), this, this.hotelClickBtn1);
-        this.hotelBtn1.setPosition(this.dialogHotel.contentNode.width / 4, this.dialogHotel.contentNode.height / 2);
+        this.hotelBtn1.setPosition(this.dialogHotel.contentNode.width / 4, this.dialogHotel.contentNode.height / 2 - 130);
         this.dialogHotel.contentNode.addChild(this.hotelBtn1);
         this.hotelBtn1.setName("hotelBtn_1");
         
         this.hotelBtn2 = uiUtil.createCommonBtnBlack(stringUtil.getString(1344, 4, 3), this, this.hotelClickBtn2);
-        this.hotelBtn2.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2);
+        this.hotelBtn2.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2 - 130);
         this.dialogHotel.contentNode.addChild(this.hotelBtn2);
         this.hotelBtn2.setName("hotelBtn_2");
         
         this.hotelBtn3 = uiUtil.createCommonBtnBlack(stringUtil.getString(1345, 16), this, this.hotelClickBtn3);
-        this.hotelBtn3.setPosition(this.dialogHotel.contentNode.width / 4, this.dialogHotel.contentNode.height / 2 - 60);
+        this.hotelBtn3.setPosition(this.dialogHotel.contentNode.width / 4, this.dialogHotel.contentNode.height / 2 - 190);
         this.dialogHotel.contentNode.addChild(this.hotelBtn3);
         this.hotelBtn3.setName("hotelBtn_3");
         
         this.hotelBtn4 = uiUtil.createCommonBtnBlack(stringUtil.getString(1346, (player.alcoholPrice * 4)), this, this.hotelClickBtn4);
-        this.hotelBtn4.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2 - 60);
+        this.hotelBtn4.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2 - 190);
         this.hotelBtn4.setName("hotelBtn_4");
         this.dialogHotel.contentNode.addChild(this.hotelBtn4);
     
@@ -278,10 +282,12 @@ var SiteNode = BottomFrameNode.extend({
         if (player.currency > 15) {
             player.log.addMsg(1017);
             player.onCurrencyChange(-16);
+            audioManager.playEffect(audioManager.sound.COFFEE_POUR);
             this.addTimer(time, function () {
                 player.lastCoffeeTime = Number(cc.timer.time);
                 player.applyEffect({"spirit": 100, "spirit_chance": 1});
                 Record.saveAll();
+                audioManager.playEffect(audioManager.sound.GOLP);
             });
         } else {
             this.displayNotEnough();
@@ -294,6 +300,7 @@ var SiteNode = BottomFrameNode.extend({
             player.log.addMsg(1307);
             player.onCurrencyChange(-price);
             var self = this;
+            audioManager.playEffect(audioManager.sound.BOTTLE_OPEN);
             this.addTimer(time, function () {
                 player.lastAlcoholTime = Number(cc.timer.time);
                 player.applyEffect({"spirit": 100, "spirit_chance": 1});
@@ -301,6 +308,7 @@ var SiteNode = BottomFrameNode.extend({
                 if (rand < 0.3 && player.alcoholPrice < 9) {
                     player.alcoholPrice += 1;
                 }
+                audioManager.playEffect(audioManager.sound.GOLP);
                 Record.saveAll();
             });
         } else {
@@ -344,7 +352,7 @@ var SiteNode = BottomFrameNode.extend({
                 if (self.dialogHotel) {
                     self.dialogHotel.contentNode.removeChildByName("hotelBtn_4");
                     self.hotelBtn4 = uiUtil.createCommonBtnBlack(stringUtil.getString(1346, (player.alcoholPrice * 4)), self, self.hotelClickBtn4);
-                    self.hotelBtn4.setPosition(self.dialogHotel.contentNode.width / 4 * 3, self.dialogHotel.contentNode.height / 2 - 60);
+                    self.hotelBtn4.setPosition(self.dialogHotel.contentNode.width / 4 * 3, self.dialogHotel.contentNode.height / 2 - 190);
                     self.hotelBtn4.setName("hotelBtn_4");
                     self.dialogHotel.contentNode.addChild(self.hotelBtn4);
                 }
@@ -354,7 +362,6 @@ var SiteNode = BottomFrameNode.extend({
     },
     onEnter: function () {
         this._super();
-
         if (this.userData == 400) {
             player.isAtBazaar = true;
             Record.saveAll();

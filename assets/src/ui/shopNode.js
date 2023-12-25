@@ -32,14 +32,7 @@ var ShopNode = BottomFrameNode.extend({
         if (payResult == 1) {
             var payNode = this.nodeMap[purchaseId];
             payNode.updateStatus();
-
-            var purchaseConfig = IAPPackage.getPurchaseConfig(purchaseId);
-            var priceStr = purchaseConfig.productPriceStr;
-            if (priceStr) {
-                payNode.updatePrice(stringUtil.getString(1192));
-            } else {
-                payNode.updatePrice(stringUtil.getString(1191, purchaseConfig.price));
-            }
+            payNode.updatePrice(stringUtil.getString(1192));
         }
     },
 

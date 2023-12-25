@@ -1,4 +1,34 @@
 var string = {
+      "banditType_1": "Sinsi",
+      "banditType_2": "Sağlam",
+      "banditType_4": "Kurnaz",
+      "banditType_5": "Çevik",
+      "9045": "%s haydutları seni keşfetti!",
+      "9046": "%s haydutu size yaklaşıyor! Mesafe %s",
+      "9047": "%s haydutu sizi vurdu, HP %s",
+      "9048": "%s haydutuna ateş etmek için %s kullanıyorsunuz",
+      "9049": "Önünüzdeki %s haydutunu kesmek için %s'yi kullanın",
+      "9050": "Haydut grubuna %s attınız",
+      "9051": "Hassas atış! %s haydutun kafası uçtu",
+      "9052": "%s haydutu %s hasar aldı",
+      "9053": "Tüm haydutlar %s hasar aldı",
+      "9054": "%s %s haydut öldü",
+      "9358": "Bütün haydutları ateşe verdiniz",
+      "9055":"%s hayduta saldırdı ve %s haydut %s hasar aldı",
+      "9056":"Haydut %s'in ilgisini çekti ve geçici olarak size saldırmayı bırakacak",
+      "9057":"%s bu eşyaları haydutlardan topladı. Şimdilik depoda saklanıyor.",
+      "9059": ["İleride haydutlar görüldü!", "Devriye gezen birkaç haydut sizi fark etti.", "Etrafınız bir grup haydut tarafından çevrilmiş."],
+      "9165": "%s haydutuna vahşice yumruk attın.",
+      "9139": "Haydut sayısı:",
+      "9118": "Haydutları başarıyla ortadan kaldırdınız",
+      "9109": "Haydut saldırısı size ölümcül hasar verdi!",
+"radio_tut": "Diğer hayatta kalanlarla karşılaşma şansını artırmak için radyo kurmalı ve kendinizi düzenli aralıklarla yayınlamalısınız.",
+"motor_tut": "Motorsikleti kullanmamak yakıt tasarrufu yapmanıza yardımcı olabilir. Ağırlık bonusu hala geçerlidir. Bunun için bu açılır penceredeki motorsiklet simgesine tıklayın.",
+"site_502": {
+    "name": "Akvaryum",
+    "des": "Akvaryumdaki balıklar neredeyse ölmüş durumda. Alglerle dolu su içerisi gizemli bir şekilde kırmızıya dönmüş durumda. Cam kubbenin içerisini rahatsız etmemek daha iyi, aksi takdirde burası su altında bir mezar olabilir.\nBurada ateşli silah ve patlayıcı kullanamazsınız."
+},
+"1166": "Şimdi büyüyor %s...",
 "equip_needed":"Yalnızca alet olarak donatıldığında etkilidir.",
 "no_need_equip":"Pasif ekipman, donatmaya gerek yok.",
     "7000": "%s'ın durumunu kontrol et",
@@ -454,7 +484,7 @@ var string = {
     "1214": "Satın alındı",
     "1215": "Şuradaki öğeleri elde edebilirsin:",
     "1216": "Mağaza",
-    "1217": "Bir yetenek seç",
+    "1217": "Yetenek Seçimi",
     "1221": "(yeni bölge %s kilidi açıldı)",
     "1222": "Elde et:",
     "1223": "Bu gece sessiz.",
@@ -1098,7 +1128,7 @@ var string = {
       },
       "site_500": {
           "name": "Haydut İni",
-          "des": "Bu sıradan bina aslında bir soyguncu çetesinin kampı. Madem beni soymaya cüret ediyorsun, o zaman onu geri almamdan korkmamalısın."
+          "des": "Bu sıradan bina aslında bir soyguncu çetesinin kampı. Madem beni soymaya cüret ediyorsun, o zaman onu geri almamdan korkmamalısın.\nUyarı: Hırsızlar silah taşıyabilir!"
       },
       "13": {
           "title": "Paralar",

@@ -91,10 +91,10 @@ var Navigation = {
                     this.changeSiteMusic();
                     break;
                 case this.nodeName.NPC_NODE:
-                    musicName = audioManager.music.NPC;
+                    musicName = audioManager.music.NPC_OLD;
                     break;
                 case this.nodeName.NPC_STORAGE_NODE:
-                    musicName = audioManager.music.NPC;
+                    musicName = audioManager.music.NPC_OLD;
                     break;
                 case this.nodeName.SITE_NODE:
                     musicName = this.getSiteMusic();
@@ -117,14 +117,11 @@ var Navigation = {
                 case this.nodeName.WORK_ROOM_STORAGE_NODE:
                     musicName = this.getSiteMusic();
                     break;
-                case this.nodeName.WORK_ROOM_STORAGE_NODE:
-                    musicName = audioManager.music.NPC;
-                    break;
                 case this.nodeName.AD_STORAGE_NODE:
                     musicName = audioManager.music.NPC;
                     break;
                 case this.nodeName.SHOP_NODE:
-                    musicName = audioManager.music.HOME;
+                    musicName = audioManager.music.NPC;
                     break;
                 case this.nodeName.BAZAAR_NODE:
                     musicName = audioManager.music.NPC;
@@ -150,11 +147,32 @@ var Navigation = {
         }
     },
     getSiteMusic: function () {
-        if (!this.siteMusic) {
-            var musicPool = [audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3];
-            this.siteMusic = musicPool[utils.getRandomInt(0, musicPool.length - 1)];
+        var siteId = player.nowSiteId;
+        if (siteId == 502) {
+            this.siteMusic = audioManager.music.AQUARIUM;
+            return this.siteMusic;
+        } else if (siteId == 500) {
+            this.siteMusic = audioManager.music.BANDITDEN;
+            return this.siteMusic;
+        } else if (siteId == 33 || siteId == 61 || (siteId > 300 && siteId < 400)) {
+            if (!this.siteMusic) {
+                var musicPool = [audioManager.music.SITE_4, audioManager.music.SITE_5, audioManager.music.SITE_6];
+                this.siteMusic = musicPool[utils.getRandomInt(0, musicPool.length - 1)];
+            }
+            return this.siteMusic;
+        } else if (siteId == 666) {
+            if (!this.siteMusic) {
+                var musicPool = [audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3, audioManager.music.SITE_4, audioManager.music.SITE_5, audioManager.music.SITE_6];
+                this.siteMusic = musicPool[utils.getRandomInt(0, musicPool.length - 1)];
+            }
+            return this.siteMusic;
+        } else {
+            if (!this.siteMusic) {
+                var musicPool = [audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3];
+                this.siteMusic = musicPool[utils.getRandomInt(0, musicPool.length - 1)];
+            }
+            return this.siteMusic;
         }
-        return this.siteMusic;
     },
     updateMapMusic: function () {
         if (this._array[this._array.length - 1].nodeName == this.nodeName.MAP_NODE) {

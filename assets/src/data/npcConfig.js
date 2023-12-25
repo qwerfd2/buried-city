@@ -255,7 +255,7 @@ var npcConfig = {
             "itemId": "1305012",
             "num": "30"
         }, null, {
-            "siteId": "20"
+            "siteId": "203"
         }, null, {
             "itemId": "1303022",
             "num": "2"
@@ -266,7 +266,7 @@ var npcConfig = {
             "itemId": "1305012",
             "num": "80"
         }, {
-            "siteId": "21"
+            "siteId": "20"
         }],
         "gift_extra": [null, null, {
             "itemId": "1305012",
@@ -1722,7 +1722,7 @@ var npcConfig = {
             "itemId": "1105022",
             "num": "5"
         }, {
-            "siteId": "203"
+            "siteId": "21"
         }, null, {
             "itemId": "1105022",
             "num": "5"
@@ -1732,7 +1732,9 @@ var npcConfig = {
         }, null, {
             "itemId": "1105022",
             "num": "5"
-        }, null, {
+        }, {
+            "siteId": "502"
+        }, {
             "itemId": "1105022",
             "num": "30"
         }],

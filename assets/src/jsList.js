@@ -5,6 +5,9 @@ var jsList = [
     "src/util/stringUtil.js",
     "src/util/range.js",
     "src/util/audioManager.js",
+    "src/util/commonUtil.js",
+    "src/util/PurchaseAndroid.js",
+    "src/util/adHelper.js",
 
     "src/data/string/string.js",
     "src/data/blackList.js",
@@ -20,7 +23,6 @@ var jsList = [
     "src/data/secretRooms.js",
     "src/data/weatherConfig.js",
     "src/data/randomReward.js",
-    "src/data/purchaseList.js",
 
     "src/game/record.js",
     "src/game/achievement.js",
@@ -86,10 +88,5 @@ var jsList = [
     "src/ui/bazaarNode.js",
     "src/ui/dogNode.js",
     "src/ui/EndStoryScene.js",
-    "src/ui/AboutScene.js",
-
-    "src/plugin/commonUtil.js",
-    "src/plugin/PurchaseAndroid.js",
-    "src/plugin/purchaseTask.js",
-    "src/plugin/adHelper.js"
+    "src/ui/AboutScene.js"
 ]

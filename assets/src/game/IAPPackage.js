@@ -1,10 +1,60 @@
-var FoodList = ["1103011", "1103022", "1103033", "1103041", "1103052", "1103063", "1103074", "1103083", "1103094"];
+var PurchaseList = {
+    201: {
+        effect: [
+            {itemId: 1103011, num: 10},
+            {itemId: 1103041, num: 10},
+            {itemId: 1103083, num: 5}
+        ]
+    },
+    202: {
+        effect: [
+            {itemId: 1105011, num: 20},
+            {itemId: 1105022, num: 5}
+        ]
+    },
+    203: {
+        effect: [
+            {itemId: 1106054, num: 1}
+        ]
+    },
+    204: {
+        effect: [
+            {itemId: 1104011, num: 3},
+            {itemId: 1104021, num: 3}
+        ]
+    },
+    205: {
+        effect: [
+            {itemId: 1301033, num: 1},
+            {itemId: 1305011, num: 50}
+        ]
+    },
+    206: {
+        effect: [
+            {itemId: 1301052, num: 1},
+            {itemId: 1302021, num: 2},
+            {itemId: 1305011, num: 100},
+            {itemId: 1302011, num: 2},
+            {itemId: 1301011, num: 2}
+        ]
+    },
+    207: {
+        effect: [
+            {itemId: 1103083, num: 10},
+            {itemId: 1105011, num: 40},
+            {itemId: 1103041, num: 20},
+            {itemId: 1103011, num: 20},
+            {itemId: 1101011, num: 30}
+        ]
+    }
+};
+
 var IAPPackage = {
     _map: {},
     _record: {},
 
     init: function (player) {
-        if (this.isIAPUnlocked(102) && this.getChosenTalentPurchaseId(102)){
+        if (this.getChosenTalentPurchaseId(102)){
             player.hp += 60;
             player.hpMaxOrigin += 60;
             player.hpMax = player.hpMaxOrigin;
@@ -12,24 +62,24 @@ var IAPPackage = {
     },
 
     getPreciseEffect: function (precise) {
-        if (this.isIAPUnlocked(101) && this.getChosenTalentPurchaseId(101)){
+        if (this.getChosenTalentPurchaseId(101)){
             return precise + (1 - precise) * 0.3;
-        }else{
+        } else {
             return precise;
         }
     },
 
     getDropEffect: function (produceValue) {
-        if (this.isIAPUnlocked(103) && this.getChosenTalentPurchaseId(103)){
+        if (this.getChosenTalentPurchaseId(103)){
             return produceValue * (1 + 0.25);
-        }else{
+        } else {
             return produceValue;
         }
             
     },
 
     isSocialEffectUnlocked: function () {
-        return this.isIAPUnlocked(104) && this.getChosenTalentPurchaseId(104);
+        return this.getChosenTalentPurchaseId(104);
     },
     
     isWeaponEffectUnlocked: function() {
@@ -37,27 +87,27 @@ var IAPPackage = {
     },
 
     isHoarderUnlocked: function () {
-        return this.isIAPUnlocked(105) && this.getChosenTalentPurchaseId(105);
+        return this.getChosenTalentPurchaseId(105);
     },
 
     isHandyworkerUnlocked: function () {
-        return this.isIAPUnlocked(106) && this.getChosenTalentPurchaseId(106);
+        return this.getChosenTalentPurchaseId(106);
     },
 
     isStealthUnlocked: function () {
-        return this.isIAPUnlocked(107) && this.getChosenTalentPurchaseId(107);
+        return this.getChosenTalentPurchaseId(107);
     },
     
     isBigBagUnlocked: function () {
-        return this.isIAPUnlocked(108) && this.getChosenTalentPurchaseId(108);
+        return this.getChosenTalentPurchaseId(108);
     },
     
     isAllIAPUnlocked: function () {
-        return this.isIAPUnlocked(109) && this.getChosenTalentPurchaseId(109);
+        return this.getChosenTalentPurchaseId(109);
     },
     
     isAllItemUnlocked: function () {
-        return this.isIAPUnlocked(110) && this.getChosenTalentPurchaseId(110);
+        return this.getChosenTalentPurchaseId(110);
     },
 
     chooseTalent: function (id) {
@@ -98,30 +148,15 @@ var IAPPackage = {
             Record.saveAll();
         }
     },
-    isIAPUnlocked: function (purchaseId) {
-        if (purchaseId == 0) {
-            return true;
-        } else {
-            if (PurchaseList[purchaseId].multiPrice) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-    },
+    
     getPurchaseConfig: function (purchaseId) {
         var purchaseInfo = PurchaseList[purchaseId];
-        var priceInfoIndex = 0;
-        if (purchaseInfo.multiPrice) {
-            priceInfoIndex = 0;
-            priceInfoIndex = Math.min(priceInfoIndex, purchaseInfo.priceList.length - 1);
-        }
-        var config = utils.clone(purchaseInfo.priceList[priceInfoIndex]);
-        config.multiPrice = purchaseInfo.multiPrice;
+        var config = {};
+        config.multiPrice = false;
         if (purchaseInfo.effect) {
             config.effect = purchaseInfo.effect;
+            config.multiPrice = true;
         }
-        config.priceIndex = priceInfoIndex;
         return config;
     },
     getPriceOff: function (purchaseId) {

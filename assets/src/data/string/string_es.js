@@ -1,4 +1,34 @@
 var string = {
+     "banditType_1": "Astuto",
+      "banditType_2": "Robusto",
+      "banditType_4": "Astucia",
+      "banditType_5": "Ágil",
+      "9045": "¡%s bandidos te descubrieron!",
+      "9046": "¡%s bandido se acerca a ti! Distancia %s",
+      "9047": "%s bandido te disparó, HP %s",
+      "9048": "Usas %s para dispararle a %s bandido",
+      "9049": "Usas %s para atacar al bandido %s frente a ti",
+      "9050": "Lanzaste un %s al grupo de bandidos",
+      "9051": "¡Disparo preciso! A %s bandido le volaron la cabeza",
+      "9052": "%s bandido recibió %s daño",
+      "9053": "Todos los bandidos recibieron %s daño",
+      "9054": "%s %s bandidos murieron",
+      "9358": "Prendiste fuego a todos los bandidos",
+      "9055":"%s atacó al bandido y %s bandido recibió %s daño",
+      "9056":"Bandit se siente atraído por %s y dejará de atacarte temporalmente",
+      "9057":"%s recogió estos artículos de los bandidos. Almacenados en el depósito por ahora.",
+      "9059": ["¡Bandidos vistos más adelante!", "Varios bandidos que patrullaban te notaron.", "Estás rodeado por un grupo de bandidos."],
+      "9165": "Golpeaste brutalmente al bandido %s.",
+      "9139": "Número de bandidos:",
+      "9118": "Has eliminado con éxito a los bandidos",
+      "9109": "¡El ataque del bandido te causó un daño fatal!",
+"radio_tut": "Para mejorar la probabilidad de encontrarse con otros supervivientes, debes construir la radio y transmitirte a ti mismo todos los días.",
+"motor_tut": "Puedes ahorrar combustible si no conduces la motocicleta. El bono de peso sigue aplicándose. Para hacerlo, haz clic en el ícono de la motocicleta en esta ventana emergente.",
+"site_502": {
+    "name": "Acuario",
+    "des": "Los peces en el acuario están prácticamente muertos. El agua infestada de algas hace que el interior sea inquietantemente carmesí. Mejor no perturbar la cúpula de vidrio, o de lo contrario, esto podría convertirse en una tumba acuática.\No puedes usar armas de fuego y explosivos aquí."
+},
+"1166": "Ahora plantando $s...",
 "equip_needed":"Efectivo sólo cuando está equipado como herramienta.",
 "no_need_equip":"Equipo pasivo, no es necesario equipar.",
     "7000": "Verificar la condición de %s",
@@ -455,7 +485,7 @@ var string = {
     "1214": "Comprado",
     "1215": "Puedes obtener los siguientes objetos:",
     "1216": "Tienda",
-    "1217": "Seleccionar el talento",
+    "1217": "Selección de talento",
     "1221": "(Nuevo lugar %s desbloqueado)",
     "1222": "Obtener:",
     "1223": "Esta noche está tranquila.",
@@ -1091,15 +1121,15 @@ var string = {
     },
 "site_202": {
           "name": "Chatarrería",
-          "des": "El vertedero de basura de la ciudad huele tan mal que ni siquiera los zombis se atreven a acercarse. Aunque puede haber suministros en él, pero... no hablemos de eso, escupámoslo"
+          "des": "El vertedero de basura de la ciudad huele tan mal que ni siquiera los zombis se atreven a acercarse. Aunque puede haber suministros en él, pero... no hablemos de eso, escupámoslo."
       },
       "site_400": {
           "name": "Mercado de Supervivientes",
-          "des": "El bazar organizado por los sobrevivientes tendrá nuevos productos todos los días. Por favor venda suministros en 'Consigna'. El capitalismo es realmente más feroz que los zombis"
+          "des": "El bazar organizado por los sobrevivientes tendrá nuevos productos todos los días. Por favor venda suministros en 'Consigna'. El capitalismo es realmente más feroz que los zombis."
       },
       "site_500": {
           "name": "Guarida de bandidos",
-          "des": "Este edificio anodino es en realidad el campamento de una banda de ladrones. Ya que te atreves a robarme, entonces no debes tener miedo de que lo recupere"
+          "des": "Este edificio anodino es en realidad el campamento de una banda de ladrones. Ya que te atreves a robarme, entonces no debes tener miedo de que lo recupere.\n Advertencia: ¡Los ladrones pueden llevar armas!"
       },
       "13": {
           "title": "Monedas",

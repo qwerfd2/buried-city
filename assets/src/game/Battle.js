@@ -30,8 +30,11 @@ var Battle = cc.Class.extend({
         });
         this.updateTargetMonster();
         this.monsters[0].moveToLine(this.getLastLine());
-        this.processLog(stringUtil.getString(1045, this.monsters.length));
-
+        if (player.nowSiteId == 500) {
+            this.processLog(stringUtil.getString(9045, this.monsters.length));
+        } else {
+            this.processLog(stringUtil.getString(1045, this.monsters.length));
+        }
         cc.director.getScheduler().scheduleCallbackForTarget(this, this.updateMonster, 1, cc.REPEAT_FOREVER);
         cc.director.getScheduler().scheduleCallbackForTarget(this, this.updatePlayer, 0.1, cc.REPEAT_FOREVER);
         if (this.isDodge) {
@@ -75,10 +78,20 @@ var Battle = cc.Class.extend({
             isDodge: this.isDodge,
             monsterKilledNum: 0
         };
-
         cc.timer.pause();
-        audioManager.insertMusic(audioManager.music.BATTLE);
-
+        var siteId = player.nowSiteId;
+        if (siteId == 33 || siteId == 61 || (siteId > 300 && siteId < 400)) {
+            audioManager.insertMusic(audioManager.music.BATTLE_OLD);
+        } else if (siteId == 666) {
+            var rand = Math.random();
+            if (rand > 0.5) {
+                audioManager.insertMusic(audioManager.music.BATTLE);
+            } else {
+                audioManager.insertMusic(audioManager.music.BATTLE_OLD);
+            }
+        } else {
+            audioManager.insertMusic(audioManager.music.BATTLE);
+        }
         this.isBattleEnd = false;
     },
     dodgeEnd: function (dt) {
@@ -151,7 +164,11 @@ var Battle = cc.Class.extend({
 
         if (isWin) {
             if (!this.isDodge) {
-                player.log.addMsg(1118);
+                if (player.nowSiteId == 500) {
+                    player.log.addMsg(9118);
+                } else {
+                    player.log.addMsg(1118);
+                }
             }
 
             var brokenWeapon = [];
@@ -196,7 +213,11 @@ var Battle = cc.Class.extend({
             config.title.icon = "#icon_item_1106013.png";
             config.title.title = stringUtil.getString(7018);
             config.title.txt_1 = "";
-            config.content.des = stringUtil.getString(7017, player.getDogName());
+            if (player.nowSiteId == 500) {
+                config.content.des = stringUtil.getString(9057, player.getDogName());
+            } else {
+                config.content.des = stringUtil.getString(7017, player.getDogName());
+            }
             var dialog = new DialogSmall(config);
             dialog.autoDismiss = true;
             var adc = utils.clone(adConfig);
@@ -273,8 +294,7 @@ var Monster = cc.Class.extend({
         if (targetLine && !targetLine.monster) {
             this.moveToLine(targetLine);
         }
-
-        if (this.line && this.isInRange()) {
+        if ((this.line || player.nowSiteId == 500) && this.isInRange()) {
             cc.director.getScheduler().scheduleCallbackForTarget(this, this.atk, this.attr.attackSpeed, 1);
         }
     },
@@ -289,14 +309,22 @@ var Monster = cc.Class.extend({
         l.monster = this;
         this.line = l;
         if (this.id == this.battle.targetMon.id) {
-            this.battle.processLog(stringUtil.getString(1046, stringUtil.getString("monsterType_" + this.attr.prefixType), l.index));
+            if (player.nowSiteId != 500) {
+                this.battle.processLog(stringUtil.getString(1046, stringUtil.getString("monsterType_" + this.attr.prefixType), l.index));
+            } else {
+                this.battle.processLog(stringUtil.getString(9046, stringUtil.getString("banditType_" + this.attr.prefixType), l.index));
+            }
         }
     },
     atk: function () {
         if (this.battle.isBattleEnd || this.dead){
             return;
         }
-        this.playEffect(audioManager.sound.MONSTER_ATTACK);
+        if (player.nowSiteId == 500) {
+            this.playEffect(audioManager.sound.ATTACK_3);
+        } else {
+            this.playEffect(audioManager.sound.MONSTER_ATTACK);
+        }
         var playa = this.battle.player;
         playa.underAtk(this);
         if (playa.isDie()) {
@@ -308,30 +336,52 @@ var Monster = cc.Class.extend({
         if (obj instanceof Weapon) {
             harm = obj.getHarm(this);
             if (obj instanceof Gun) {
-                this.battle.processLog(stringUtil.getString(1048, obj.itemConfig.name, stringUtil.getString("monsterType_" + this.attr.prefixType)));
+                if (player.nowSiteId == 500) {
+                    this.battle.processLog(stringUtil.getString(9048, obj.itemConfig.name, stringUtil.getString("banditType_" + this.attr.prefixType)));
+                } else {
+                    this.battle.processLog(stringUtil.getString(1048, obj.itemConfig.name, stringUtil.getString("monsterType_" + this.attr.prefixType)));
+                }
             } else {
                 if (obj.id === Equipment.HAND) {
-                    this.battle.processLog(stringUtil.getString(1165, stringUtil.getString("monsterType_" + this.attr.prefixType)));
+                    if (player.nowSiteId != 500) {
+                        this.battle.processLog(stringUtil.getString(1165, stringUtil.getString("monsterType_" + this.attr.prefixType)));
+                    } else {
+                        this.battle.processLog(stringUtil.getString(9165, stringUtil.getString("banditType_" + this.attr.prefixType)));
+                    }
                 } else {
-                    this.battle.processLog(stringUtil.getString(1049, obj.itemConfig.name, stringUtil.getString("monsterType_" + this.attr.prefixType)));
+                    if (player.nowSiteId != 500) {
+                        this.battle.processLog(stringUtil.getString(1049, obj.itemConfig.name, stringUtil.getString("monsterType_" + this.attr.prefixType)));
+                    } else {
+                        this.battle.processLog(stringUtil.getString(9049, obj.itemConfig.name, stringUtil.getString("banditType_" + this.attr.prefixType)));
+                    }
                 }
             }
-
             if (harm === Number.MAX_VALUE) {
-                this.battle.processLog(stringUtil.getString(1051, stringUtil.getString("monsterType_" + this.attr.prefixType)));
+                if (player.nowSiteId == 500) {
+                    this.battle.processLog(stringUtil.getString(9051, stringUtil.getString("banditType_" + this.attr.prefixType)));
+                } else {
+                    this.battle.processLog(stringUtil.getString(1051, stringUtil.getString("monsterType_" + this.attr.prefixType)));
+                }
             } else if (harm === 0) {
                 this.battle.processLog(stringUtil.getString(1054));
             } else {
-                this.battle.processLog(stringUtil.getString(1052, stringUtil.getString("monsterType_" + this.attr.prefixType), harm));
+                if (player.nowSiteId == 500) {
+                    this.battle.processLog(stringUtil.getString(9052, stringUtil.getString("banditType_" + this.attr.prefixType), harm));
+                } else {
+                    this.battle.processLog(stringUtil.getString(1052, stringUtil.getString("monsterType_" + this.attr.prefixType), harm));
+                }
             }
-
         } else if (obj instanceof Bomb) {
             harm = obj.attr.atk;
         } else if (obj instanceof Flamethrower) {
             harm = providedHarm;
         } else if (obj == "Dog") {
             harm = 10;
-            this.battle.processLog(stringUtil.getString(7015, player.getDogName(), stringUtil.getString("monsterType_" + this.attr.prefixType), harm), cc.color.GREEN);
+            if (player.nowSiteId == 500) {
+                this.battle.processLog(stringUtil.getString(9055, player.getDogName(), stringUtil.getString("banditType_" + this.attr.prefixType), harm), cc.color.GREEN);
+            } else {
+                this.battle.processLog(stringUtil.getString(7015, player.getDogName(), stringUtil.getString("monsterType_" + this.attr.prefixType), harm), cc.color.GREEN);
+            }
         }
 
         this.attr.hp -= harm;
@@ -348,7 +398,12 @@ var Monster = cc.Class.extend({
         if (obj instanceof Bomb) {
             obj.deadMonsterNum++;
         } else {
-            var logStr = stringUtil.getString(1056, 1, stringUtil.getString("monsterType_" + this.attr.prefixType));
+            var logStr;
+            if (player.nowSiteId != 500) {
+                logStr = stringUtil.getString(1056, 1, stringUtil.getString("monsterType_" + this.attr.prefixType));
+            } else {
+                logStr = stringUtil.getString(9054, 1, stringUtil.getString("banditType_" + this.attr.prefixType));
+            }
             if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_ENGLISH) {
                 logStr = logStr.replace('zombies', 'zombie');
             }
@@ -358,9 +413,16 @@ var Monster = cc.Class.extend({
         if (this.line) {
             this.line.monster = null;
         }
-        audioManager.playEffect(audioManager.sound.MONSTER_DIE);
+        if (player.nowSiteId != 500) {
+            audioManager.playEffect(audioManager.sound.MONSTER_DIE);
+        } else {
+            audioManager.playEffect(audioManager.sound.BANDIT_DIE);
+        }
     },
     isInRange: function () {
+        if (player.nowSiteId == 500) {
+            return utils.getRandomInt(0, 2) < 2;
+        }
         return this.line.index == 0;
     },
     isDie: function () {
@@ -388,9 +450,7 @@ var BattlePlayer = cc.Class.extend({
         this.equip = createEquipment(playerObj.equip, this);
     },
     action: function (dt) {
-        this.useWeapon1();
-        this.useWeapon2();
-        if (this.dogState < 1000) {
+        if (this.dogState < 100) {
             this.dogState += 1;
         }
         if (this.dogState == 10) {
@@ -401,7 +461,18 @@ var BattlePlayer = cc.Class.extend({
         if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0) {
             this.useDog();
         }
-        this.useEquip();
+        if (player.equip.getEquip(EquipmentPos.GUN) == "1301091" || player.nowSiteId != 502) {
+            this.useWeapon1();
+        }
+        this.useWeapon2();
+        if (player.nowSiteId == 502) {
+            var toolEquip = player.equip.getEquip(EquipmentPos.TOOL);
+            if (!(toolEquip == "1303012" || toolEquip == "1303033" || toolEquip == "1303044")) {
+                this.useEquip();
+            }
+        } else {
+            this.useEquip();
+        }
     },
     useDog: function () {
         if (this.dogState < 10) {
@@ -415,15 +486,19 @@ var BattlePlayer = cc.Class.extend({
             var monster = this.battle.targetMon;
             monster.underAtk("Dog");
             audioManager.playEffect(audioManager.sound.SHORT_BARK);
-            if (rand < 0.1) {
+            if (rand < 0.15) {
                 //dog injury
                 player.changeAttr("dogInjury", 1);
             }
         } else if (rand > 0.7) {
             //dog kite enemy
             this.battle.isMonsterStopDog = true;
-            this.battle.processLog(stringUtil.getString(7016, player.getDogName()), cc.color.GREEN);
-            if (rand > 0.9) {
+            if (player.nowSiteId == 500) {
+                this.battle.processLog(stringUtil.getString(9056, player.getDogName()), cc.color.GREEN);
+            } else {
+                this.battle.processLog(stringUtil.getString(7016, player.getDogName()), cc.color.GREEN);
+            }
+            if (rand > 0.85) {
                 //dog loses mood
                 player.changeAttr("dogMood", -1);
             }
@@ -431,10 +506,15 @@ var BattlePlayer = cc.Class.extend({
     },
     underAtk: function (monster) {
         var harm = monster.attr.attack - this.def;
-        harm = Math.max(1, harm);
-        this.hp -= harm;
-
-        this.battle.processLog(stringUtil.getString(1047, stringUtil.getString("monsterType_" + monster.attr.prefixType), "-" + harm), cc.color.RED);
+        if (player.nowSiteId == 500) {
+            harm = Math.max(1, harm + 10);
+            this.hp -= harm;
+            this.battle.processLog(stringUtil.getString(9047, stringUtil.getString("banditType_" + monster.attr.prefixType), "-" + harm), cc.color.RED);
+        } else {
+            harm = Math.max(1, harm);
+            this.hp -= harm;
+            this.battle.processLog(stringUtil.getString(1047, stringUtil.getString("monsterType_" + monster.attr.prefixType), "-" + harm), cc.color.RED);
+        }
         this.battle.sumRes.totalHarm += harm;
         this.battle.sumRes.underAtk++;
         this.hp = Math.max(0, this.hp);
@@ -446,20 +526,24 @@ var BattlePlayer = cc.Class.extend({
             player.changeAttr("hp", -harm);
             player.changeAttr("injury", 1);
             var rand = Math.random();
-            var threshold = 0.85;
+            var threshold = 0.8;
             if (player.equip.isEquiped(1304023)) {
-                threshold = 0.55;
+                threshold = 0.4;
             } else if (player.equip.isEquiped(1304012)) {
-                threshold = 0.7;
+                threshold = 0.6;
             }
-            if (rand <= threshold && this.battle.difficulty > 2 && !player.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
+            if (rand <= threshold && player.nowSiteId != 500 && this.battle.difficulty > 2 && !player.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
                 this.battle.sumRes.totalVirus += 1;
             }
         }
         player.changeAttr("injury", 1);
     },
     die: function () {
-        player.log.addMsg(1109);
+        if (player.nowSiteId == 500) {
+            player.log.addMsg(9109);
+        } else {
+            player.log.addMsg(1109);
+        }
         this.battle.processLog(stringUtil.getString(1057));
         this.battle.gameEnd(false);
     },
@@ -576,7 +660,6 @@ var Bomb = BattleEquipment.extend({
     },
     _action: function () {
         if (!this.isEnough()) {
-            console.log(this.id + " not enough");
             return;
         }
         audioManager.playEffect(audioManager.sound.BOMB);
@@ -588,11 +671,20 @@ var Bomb = BattleEquipment.extend({
             mon.underAtk(self);
         });
         this.cost();
-        this.bPlayer.battle.processLog(stringUtil.getString(1050, this.itemConfig.name), cc.color(255, 128, 0));
-        this.bPlayer.battle.processLog(stringUtil.getString(1053, harm), cc.color(255, 128, 0));
-
+        if (player.nowSiteId == 500) {
+            this.bPlayer.battle.processLog(stringUtil.getString(9050, this.itemConfig.name), cc.color(255, 128, 0));
+            this.bPlayer.battle.processLog(stringUtil.getString(9053, harm), cc.color(255, 128, 0));
+        } else {
+            this.bPlayer.battle.processLog(stringUtil.getString(1050, this.itemConfig.name), cc.color(255, 128, 0));
+            this.bPlayer.battle.processLog(stringUtil.getString(1053, harm), cc.color(255, 128, 0));
+        }
         if (this.deadMonsterNum > 0) {
-            var logStr = stringUtil.getString(stringUtil.getString(1056, this.deadMonsterNum, ""));
+            var logStr;
+            if (player.nowSiteId == 500) {
+                logStr = stringUtil.getString(stringUtil.getString(9054, this.deadMonsterNum, ""));
+            } else {
+                logStr = stringUtil.getString(stringUtil.getString(1056, this.deadMonsterNum, ""));
+            }
             if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_ENGLISH) {
                 if (this.deadMonsterNum == 1) {
                     logStr = logStr.replace('zombies', 'zombie');
@@ -615,7 +707,6 @@ var Flamethrower = BattleEquipment.extend({
     },
     _action: function () {
         if (!this.isEnough()) {
-            console.log(this.id + " not enough");
             return;
         }
         audioManager.playEffect(audioManager.sound.ESTOVE);
@@ -639,9 +730,18 @@ var Flamethrower = BattleEquipment.extend({
                 mon.underAtk(self, harm);
             });
             this.cost();
-            this.bPlayer.battle.processLog(stringUtil.getString(1347) + stringUtil.getString(1053, harm));
+            if (player.nowSiteId == 500) {
+                this.bPlayer.battle.processLog(stringUtil.getString(9347) + stringUtil.getString(9053, harm));
+            } else {
+                this.bPlayer.battle.processLog(stringUtil.getString(1347) + stringUtil.getString(1053, harm));
+            }
             if (this.deadMonsterNum > 0) {
-                var logStr = stringUtil.getString(stringUtil.getString(1056, this.deadMonsterNum, ""));
+                var logStr;
+                if (player.nowSiteId == 500) {
+                    logStr = stringUtil.getString(stringUtil.getString(9054, this.deadMonsterNum, ""));
+                } else {
+                    logStr = stringUtil.getString(stringUtil.getString(1056, this.deadMonsterNum, ""));
+                }
                 if (cc.sys.localStorage.getItem("language") === cc.sys.LANGUAGE_ENGLISH) {
                     if (this.deadMonsterNum == 1) {
                         logStr = logStr.replace('zombies', 'zombie');
@@ -670,15 +770,19 @@ var Trap = BattleEquipment.extend({
     },
     _action: function () {
         if (!this.isEnough()) {
-            console.log(this.id + " not enough");
             return;
         }
         audioManager.playEffect(audioManager.sound.TRAP);
         this.bPlayer.battle.sumRes.tools++;
         this.bPlayer.battle.isMonsterStop = true;
         this.cost();
-        this.bPlayer.battle.processLog(stringUtil.getString(1050, this.itemConfig.name));
-        this.bPlayer.battle.processLog(stringUtil.getString(1055));
+        if (player.nowSiteId == 500) {
+            this.bPlayer.battle.processLog(stringUtil.getString(9050, this.itemConfig.name));
+            this.bPlayer.battle.processLog(stringUtil.getString(9055));
+        } else {
+            this.bPlayer.battle.processLog(stringUtil.getString(1050, this.itemConfig.name));
+            this.bPlayer.battle.processLog(stringUtil.getString(1055));
+        }
     },
     afterCd: function () {
         this._action();
@@ -756,7 +860,6 @@ var Gun = Weapon.extend({
                 } else {
                     soundName = audioManager.sound.ATTACK_4;
                 }
-                player.log.addMsg()
                 this.playEffect(soundName);
 
             }
@@ -796,7 +899,7 @@ var Gun = Weapon.extend({
         precise = IAPPackage.getPreciseEffect(precise);
         precise += player.weather.getValue("gun_precise");
 
-        var decPrecise = (100 - player.spirit) * 0.006;
+        var decPrecise = Math.max(0, 80 - player.spirit) * 0.006;
         precise -= decPrecise;
         if (goodBullet) {
             precise += 0.15;

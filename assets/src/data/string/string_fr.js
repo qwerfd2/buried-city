@@ -1,4 +1,34 @@
 var string = {
+      "banditType_1": "Sournois",
+      "banditType_2": "Robuste",
+      "banditType_4": "Ruse",
+      "banditType_5": "Agile",
+      "9045": "%s bandits vous ont découvert !",
+      "9046": "Le bandit %s s'approche de vous ! Distance %s",
+      "9047": "%s bandit vous a tiré dessus, HP %s",
+      "9048": "Vous utilisez %s pour tirer sur le bandit %s",
+      "9049": "Vous utilisez %s pour frapper le bandit %s devant vous",
+      "9050": "Vous avez lancé un %s dans le groupe de bandits",
+      "9051": "Tir précis ! La tête du bandit %s a été arrachée",
+      "9052": "%s bandit a reçu %s dégâts",
+      "9053": "Tous les bandits ont reçu %s dégâts",
+      "9054": "%s %s bandits sont morts",
+      "9358": "Vous avez mis le feu à tous les bandits",
+      "9055": "%s a attaqué le bandit et %s a reçu %s dégâts",
+      "9056": "Bandit est attiré par %s et cessera temporairement de vous attaquer",
+      "9057": "%s ont récupéré ces objets auprès des bandits. Stockés dans un dépôt pour l'instant.",
+      "9059": ["Des bandits repérés devant vous !", "Plusieurs bandits en patrouille vous ont remarqué.", "Vous êtes entouré par un groupe de bandits."],
+      "9165": "Vous avez frappé brutalement le bandit %s.",
+      "9139": "Nombre de bandits :",
+      "9118": "Vous avez réussi à éliminer les bandits",
+      "9109": "L'attaque du bandit vous a causé des dégâts mortels !",
+"radio_tut": "Pour augmenter les chances de rencontrer d'autres survivants, vous devriez construire la radio et vous diffuser tous les jours.",
+"motor_tut": "Vous pouvez économiser du carburant en ne conduisant pas la moto. Le bonus de poids s'applique toujours. Pour ce faire, cliquez sur l'icône de la moto dans cette fenêtre contextuelle.",
+"site_502": {
+    "name": "Aquarium",
+    "des": "Les poissons dans l'aquarium sont presque tous morts. L'eau infestée d'algues rend l'intérieur étrangement cramoisi. Mieux vaut ne pas déranger la coupole en verre, sinon, cela pourrait devenir une tombe aquatique.\Vous ne pouvez pas utiliser des armes à feu et des explosifs ici."
+},
+"1166": "en cours de culture $s...",
 "equip_needed":"Efficace uniquement lorsqu'il est équipé comme outil.",
 "no_need_equip":"Équipement passif, pas besoin d'équiper.",
     "7000": "Vérifiez l'état de %s",
@@ -457,7 +487,7 @@ var string = {
     "1214": "Acheté",
     "1215": "Vous pouvez obtenir les objets suivants: ",
     "1216": "Magasin",
-    "1217": "Choisir un talent",
+    "1217": "Sélection des talents",
     "1221": "(Nouveau lieu %s a été débloqué)",
     "1222": "Obtenir: ",
     "1223": "C'est tranquille ce soir",
@@ -1102,7 +1132,7 @@ var string = {
       },
       "site_500": {
           "name": "Le repaire des bandits",
-          "des": "Ce bâtiment banal est en fait le camp d'un gang de voleurs. Puisque vous osez me voler, alors vous ne devriez pas avoir peur que je le reprenne."
+          "des": "Ce bâtiment banal est en fait le camp d'un gang de voleurs. Puisque vous osez me voler, alors vous ne devriez pas avoir peur que je le reprenne.\n Attention: les cambrioleurs peuvent être armés!"
       },
       "13": {
           "title": "Pièces",

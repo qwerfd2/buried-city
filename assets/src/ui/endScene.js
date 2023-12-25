@@ -13,7 +13,7 @@ var EndLayer = cc.Layer.extend({
         if (Record.getScreenFix() == 1) {
             this.setScale(0.83);
         }
-        var bg = autoSpriteFrameController.getSpriteFromSpriteName("#end_bg.png");
+        var bg = new cc.Sprite("res/new/end_bg.png");
         bg.x = cc.winSize.width / 2;
         bg.y = cc.winSize.height / 2;
         this.addChild(bg);
@@ -29,18 +29,18 @@ var EndLayer = cc.Layer.extend({
         bg.addChild(label1);
 
         var labelDay = new cc.LabelTTF(cc.timer.formatTime().d || "0", uiUtil.fontFamily.normal, 110);
-        labelDay.setPosition(132, 630);
+        labelDay.setPosition(120, 630);
         labelDay.setColor(cc.color.BLACK);
         bg.addChild(labelDay);
 
         var timeStrArray = cc.timer.getTimeHourStr().split(':');
         var labelHour = new cc.LabelTTF(timeStrArray[0], uiUtil.fontFamily.normal, 110);
-        labelHour.setPosition(320, 630);
+        labelHour.setPosition(308, 630);
         labelHour.setColor(cc.color.BLACK);
         bg.addChild(labelHour);
 
         var labelMinute = new cc.LabelTTF(timeStrArray[1], uiUtil.fontFamily.normal, 110);
-        labelMinute.setPosition(508, 630);
+        labelMinute.setPosition(496, 630);
         labelMinute.setColor(cc.color.BLACK);
         bg.addChild(labelMinute);
         var editText = new cc.EditBox(cc.size(343, 46), autoSpriteFrameController.getScale9Sprite("edit_text_bg.png", cc.rect(4, 4, 1, 1)));
@@ -99,11 +99,6 @@ var EndLayer = cc.Layer.extend({
         bg.addChild(btn2);
         btn2.setName("btn2");
 
-        if (!CommonUtil.adStatus) {
-            btn1.setVisible(true);
-            btn2.x = leftEdge + (rightEdge - leftEdge) / 4 * 3;
-        }
-
         this.newGetMedal = Medal.getCompletedForOneGame();
         if (this.newGetMedal) {
             this.showMedalGet();
@@ -128,7 +123,6 @@ var EndLayer = cc.Layer.extend({
     },
 
     uploadGameData: function () {
-
         var self = this;
         var data = {};
         data.username = Record.getUsername();
@@ -143,7 +137,6 @@ var EndLayer = cc.Layer.extend({
 var EndScene = BaseScene.extend({
     ctor: function () {
         this._super(APP_NAVIGATION.GAME);
-        autoSpriteFrameController.addSpriteFrames("res/end.plist");
     },
     onEnter: function () {
         this._super();

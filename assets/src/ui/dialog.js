@@ -1,21 +1,4 @@
 var GLOBAL_DIALOGS = 0;
-var dialogManager = {
-    dialogStack: [],
-    showDialog: function (dialog) {
-        this.dialogStack.push(dialog);
-    },
-    dismissDialog: function (dialog) {
-        for (var i = 0; i < this.dialogStack.length; i++) {
-            if (dialog === this.dialogStack[i]) {
-                break;
-            }
-        }
-        this.dialogStack.splice(i, 1);
-    },
-    isDialogShowing: function () {
-        return this.dialogStack.length > 0;
-    }
-};
 
 var bazaarSellDialog = function(boolean, str, cd) {
     var config = {
@@ -26,7 +9,6 @@ var bazaarSellDialog = function(boolean, str, cd) {
             btn_2: {}
         }
     };
-
     config.action.btn_1.txt = stringUtil.getString(1031);
     if (boolean) {
         str += stringUtil.getString(9030);
@@ -60,7 +42,7 @@ var virusExchangeDialog = function(tid, cd) {
     config.content.des = String(str).toString();
     config.action.btn_2.cb = cd
     aa = new DialogTiny(config);
-    aa.y = -196;
+    aa.bgNode.y = 136;
     aa.show();
 };
 
@@ -80,13 +62,13 @@ var round = function(a) {
 };
 
 var Dialog = cc.Layer.extend({
-    ctor: function () {
+    ctor: function (extraBG, countOverride) {
         this._super();
-
+        this.countOverride = countOverride;
         this.setName("dialog");
 
         this.bgNode = new cc.Node();
-        this.initContentSize();
+        this.initContentSize(extraBG);
         var winSize = cc.winSize;
         var contentSize = this.bgNode.getContentSize();
         this.bgNode.setPosition((winSize.width - contentSize.width) / 2, 29 + (839 - contentSize.height) / 2);
@@ -143,22 +125,24 @@ var Dialog = cc.Layer.extend({
         return this.bgNode.getContentSize();
     },
     show: function () {
-        GLOBAL_DIALOGS += 1;
-        this.getChildByName('bgColor').setVisible(!dialogManager.isDialogShowing());
+        this.getChildByName('bgColor').setVisible(!GLOBAL_DIALOGS);
+        if (!this.countOverride) {
+            GLOBAL_DIALOGS += 1;
+        }
         cc.director.getRunningScene().addChild(this, 100);
         audioManager.playEffect(audioManager.sound.POPUP);
         var keyEventLayer = cc.director.getRunningScene().getChildByName("keyEventLayer");
         if (keyEventLayer) {
             cc.eventManager.pauseTarget(keyEventLayer);
         }
-        dialogManager.showDialog(this);
     },
     dismiss: function () {
         if (DISMISS_BLOCKED && this.tempName == "hotelDialog") {
             return;
         }
-        GLOBAL_DIALOGS -= 1;
-        dialogManager.dismissDialog(this);
+        if (!this.countOverride) {
+            GLOBAL_DIALOGS -= 1;
+        }
         this.removeFromParent();
         var keyEventLayer = cc.director.getRunningScene().getChildByName("keyEventLayer");
         if (keyEventLayer) {
@@ -175,8 +159,8 @@ var Dialog = cc.Layer.extend({
 });
 
 var DialogCommon = Dialog.extend({
-    ctor: function (config) {
-        this._super();
+    ctor: function (config, extraBG, countOverride) {
+        this._super(extraBG, countOverride);
 
         config.title = config.title || {};
         config.action = config.action || {};
@@ -466,9 +450,9 @@ var DialogSteal = DialogCommon.extend({
 })
 
 var DialogBig = DialogCommon.extend({
-    ctor: function (config) {
-        this._super(config);
-
+    ctor: function (config, extraBG, countOverride) {
+        this._super(config, extraBG, countOverride);
+        this.extraBG = extraBG;
         if (config.content.dig_des) {
             var digDes = autoSpriteFrameController.getSpriteFromSpriteName(config.content.dig_des);
             digDes.setAnchorPoint(0.5, 1)
@@ -480,10 +464,30 @@ var DialogBig = DialogCommon.extend({
         if (config.content.des) {
             var des = new cc.LabelTTF(config.content.des, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3, cc.size(this.rightEdge - this.leftEdge, 0));
             des.setAnchorPoint(0, 1);
-            des.setPosition(this.leftEdge, digDes ? this.contentNode.getContentSize().height - digDes.height * digDes.scale : this.contentNode.getContentSize().height - 20);
+            var y;
+            if (digDes) {
+                y = this.contentNode.getContentSize().height - digDes.height * digDes.scale;
+                if (this.extraBG) {
+                    y -= 30;
+                }
+            } else if (!digDes) {
+                y = this.contentNode.getContentSize().height - 20;
+            }
+            des.setPosition(this.leftEdge, y);
             this.contentNode.addChild(des, 1);
             des.setName("des");
             des.setColor(cc.color.BLACK);
+        }
+        if (this.extraBG) {
+            var btnClose = uiUtil.createSpriteBtn({
+                normal: "btn_ad_back.png"
+            }, this, function() {
+                this.dismiss();
+            });
+            btnClose.setName("btn_1");
+            btnClose.x = this.bgNode.width - 20;
+            btnClose.y = this.bgNode.height - 20;
+            this.bgNode.addChild(btnClose);
         }
 
         if (config.content.log) {
@@ -496,8 +500,15 @@ var DialogBig = DialogCommon.extend({
         }
     },
     
-    initContentSize: function () {
-        var bg = autoSpriteFrameController.getSpriteFromSpriteName("#dialog_big_bg.png");
+    initContentSize: function (extraBG) {
+        var bg;
+        var action = 72;
+        if (extraBG) {
+            bg = autoSpriteFrameController.getSpriteFromSpriteName("#frame_ad_bg.png");
+            action = 90;
+        } else {
+           bg = autoSpriteFrameController.getSpriteFromSpriteName("#dialog_big_bg.png");
+        }
         bg.setAnchorPoint(0, 0);
         bg.setPosition(0, 0);
         this.bgNode.addChild(bg, 0);
@@ -518,7 +529,7 @@ var DialogBig = DialogCommon.extend({
 
         this.contentNode = new cc.Node();
         this.contentNode.setAnchorPoint(0.5, 0);
-        this.contentNode.setPosition(this.bgNode.getContentSize().width / 2, 72);
+        this.contentNode.setPosition(this.bgNode.getContentSize().width / 2, action);
         this.contentNode.setContentSize(this.bgNode.getContentSize().width, this.bgNode.getContentSize().height - this.titleNode.getContentSize().height - this.actionNode.getContentSize().height);
         this.bgNode.addChild(this.contentNode);
     }
@@ -668,15 +679,23 @@ var RandomBattleDialog = DialogBig.extend({
 
         this.monsterList = battleInfo.list;
         this.difficulty = battleInfo.difficulty;
+        this.type = battleInfo.type;
+        this.banditList = battleInfo.banditList;
 
         var config = {
             title: {},
             content: {log: true}
         };
-        config.title.title = stringUtil.getString(1113);
         config.title.icon = "icon_warning_monster.png";
-        config.content.des = stringUtil.getString(3009)[this.difficulty - 1];
-        config.content.dig_des = "#monster_dig_" + this.difficulty + ".png";
+        if (this.type) {
+            config.title.title = stringUtil.getString(9113);
+            config.content.des = stringUtil.getString(9059)[this.difficulty - 1];
+            config.content.dig_des = "#bandit_dig_" + this.difficulty + ".png";
+        } else {
+            config.title.title = stringUtil.getString(1113);
+            config.content.des = stringUtil.getString(3009)[this.difficulty - 1];
+            config.content.dig_des = "#monster_dig_" + this.difficulty + ".png";
+        }
         this._super(config);
 
         var digDes = this.contentNode.getChildByName("dig_des");
@@ -702,10 +721,20 @@ var RandomBattleDialog = DialogBig.extend({
         this._super();
         cc.timer.pause();
     },
-    dismiss: function () {
+    dismiss: function (skipSanityCheck) {
         this._super();
+        if (this.cavedIn && this.type) {
+            //deduct wanted item, skip sanity check
+            if (player.mapBattle.d[0].itemId == "money") {
+                player.onCurrencyChange(-player.mapBattle.d[0].num);
+            } else {
+                player.bag.decreaseItem(player.mapBattle.d[0].itemId, player.mapBattle.d[0].num);
+            }
+            player.log.addMsg(9116);
+        } else if (!skipSanityCheck) {
+            player.checkBreakdown(8111);
+        }
         player.mapBattle = {};
-        player.checkBreakdown(8111);
         Record.saveAll();
         cc.timer.resume();
     },
@@ -719,15 +748,21 @@ var RandomBattleDialog = DialogBig.extend({
         var iconList = uiUtil.createEquipedItemIconList(true, false);
         iconList.setPosition(this.leftEdge - 10, label1.y - label1.height - 20);
         this.log.addChild(iconList);
-
-        var label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + this.difficulty, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        var label2;
+        if (this.type) {
+            label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + (this.difficulty + 5), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+            label2.setColor(cc.color.BLACK);
+        } else {
+            label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + this.difficulty, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+            if (this.difficulty > 2) {
+                label2.setColor(cc.color.RED);
+            } else {
+                label2.setColor(cc.color.BLACK);
+            }
+        }
         label2.setAnchorPoint(0, 1);
         label2.setPosition(label1.getPositionX() + 240, this.log.getContentSize().height + 10);
-        if (this.difficulty > 2) {
-            label2.setColor(cc.color.RED);
-        } else {
-            label2.setColor(cc.color.BLACK);
-        }
+        
         this.log.addChild(label2);
         if (player.equip.getEquip(EquipmentPos.GUN) && !player.equip.isEquiped(1301091) && player.bag.getNumByItemId(BattleConfig.BULLET_ID) && player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID)) {
             var bulletRichText = GetRichTextForBullet(cc.color.BLACK);
@@ -735,7 +770,7 @@ var RandomBattleDialog = DialogBig.extend({
             bulletRichText.setPosition(0, label1.getPositionY() - label1.getContentSize().height - 140);
             this.log.addChild(bulletRichText);
     
-            var exchangeButton = uiUtil.createCommonBtnBlack(stringUtil.getString(1334), this, function () {
+            var exchangeButton = uiUtil.createSpriteBtn({normal: "slider_cap.png", fontInfo: {txt: "⟳", color: cc.color.BLACK, fontSize: uiUtil.fontSize.COMMON_1}}, this, function () {
                 player.useGoodBullet = !player.useGoodBullet;
                 var bulletRichText = GetRichTextForBullet(cc.color.BLACK);
                 bulletRichText.setName("bulletPriority");
@@ -744,7 +779,7 @@ var RandomBattleDialog = DialogBig.extend({
                 this.log.addChild(bulletRichText);
             });
             exchangeButton.setName("exchangebutton");
-            exchangeButton.setPosition(250, label1.getPositionY() - label1.getContentSize().height - 120);
+            exchangeButton.setPosition(180, label1.getPositionY() - label1.getContentSize().height - 120);
             this.log.addChild(exchangeButton);
         }
         if (cc.RTL) {
@@ -790,30 +825,62 @@ var RandomBattleDialog = DialogBig.extend({
             label4.setColor(cc.color.RED);
         }
         var self = this;
-        var btn1 = uiUtil.createCommonBtnBlack(stringUtil.getString(1044), this, function () {
-            self.log.removeAllChildren();
-            self.actionNode.removeAllChildren();
-            self.createBattleProcessView();
-        });
-        btn1.setPosition(this.actionNode.getContentSize().width / 4, this.actionNode.getContentSize().height / 2);
-        this.actionNode.addChild(btn1);
+        if (this.type) {
+            //fight
+            var btn1 = uiUtil.createSmallBtnBlack(stringUtil.getString(1044), this, function () {
+                self.log.removeAllChildren();
+                self.actionNode.removeAllChildren();
+                self.createBattleProcessView();
+            });
+            btn1.setPosition(this.actionNode.getContentSize().width / 5 - 15, this.actionNode.getContentSize().height / 2);
+            this.actionNode.addChild(btn1);
+            //cave in
+            var btn2 = uiUtil.createCommonBtnBlack(stringUtil.getString(1172), this, function () {
+                var self = this;
+                var d = new RobCaveInDialog(function () {
+                    self.cavedIn = true;
+                    self.log.removeAllChildren();
+                    self.actionNode.removeAllChildren();
+                    self.createBattleEndView(false);
+                });
+                d.show();
+            });
+            btn2.setPosition(this.actionNode.getContentSize().width / 5 * 2 + 44, this.actionNode.getContentSize().height / 2);
+            this.actionNode.addChild(btn2);
+            //run
+            var btn3 = uiUtil.createSmallBtnBlack(stringUtil.getString(1081), this, function () {
+                self.log.removeAllChildren();
+                self.actionNode.removeAllChildren();
+                self.createBattleProcessView(true);
+            });
+            btn3.setPosition(this.actionNode.getContentSize().width / 5 * 4 + 15, this.actionNode.getContentSize().height / 2);
+            this.actionNode.addChild(btn3);
+        } else {
+            var btn1 = uiUtil.createCommonBtnBlack(stringUtil.getString(1044), this, function () {
+                self.log.removeAllChildren();
+                self.actionNode.removeAllChildren();
+                self.createBattleProcessView();
+            });
+            btn1.setPosition(this.actionNode.getContentSize().width / 4, this.actionNode.getContentSize().height / 2);
+            this.actionNode.addChild(btn1);
 
-        var btn2 = uiUtil.createCommonBtnBlack(stringUtil.getString(1081), this, function () {
-            self.log.removeAllChildren();
-            self.actionNode.removeAllChildren();
-            self.createBattleProcessView(true);
-        });
-        btn2.setPosition(this.actionNode.getContentSize().width / 4 * 3, this.actionNode.getContentSize().height / 2);
-        this.actionNode.addChild(btn2);
+            var btn2 = uiUtil.createCommonBtnBlack(stringUtil.getString(1081), this, function () {
+                self.log.removeAllChildren();
+                self.actionNode.removeAllChildren();
+                self.createBattleProcessView(true);
+            });
+            btn2.setPosition(this.actionNode.getContentSize().width / 4 * 3, this.actionNode.getContentSize().height / 2);
+            this.actionNode.addChild(btn2);
+        }
     },
-    createBattleProcessView: function (isDodge) {
+    createBattleProcessView: function (isDodge, isPay) {
         var des = this.contentNode.getChildByName("des");
         des.setString("");
 
         var battle = new Battle({
             id: 0,
             monsterList: this.monsterList
-        }, isDodge, this.difficulty);
+        }, isDodge, this.difficulty, this.type, true);
         var self = this;
         battle.setGameEndListener(function (sumRes) {
             utils.emitter.off("battleProcessLog");
@@ -827,13 +894,21 @@ var RandomBattleDialog = DialogBig.extend({
                 self.actionNode.removeAllChildren();
 
                 if (sumRes.isDodge) {
-                    player.log.addMsg(1114);
-                    self.dismiss();
+                    if (self.type) {
+                        player.log.addMsg(9114);
+                    } else {
+                        player.log.addMsg(1114);
+                    }
+                    self.dismiss(true);
                     if (self.cb) {
                         self.cb();
                     }
                 } else {
-                    player.log.addMsg(1115);
+                    if (self.type) {
+                        player.log.addMsg(9115);
+                    } else {
+                        player.log.addMsg(1115);
+                    }
                     self.createBattleEndView(sumRes);
                 }
             }, 2);
@@ -915,44 +990,67 @@ var RandomBattleDialog = DialogBig.extend({
             labelNum.setPosition(pbBg.x + pbBg.width / 2, pbBg.y + pbBg.height + 5);
             labelNum.setColor(cc.color.BLACK);
             this.actionNode.addChild(labelNum);
-            labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLenTotal, monsterLenTotal));
+            if (this.type) {
+                labelNum.setString(stringUtil.getString(9139) + cc.formatStr("%s/%s", monsterLenTotal, monsterLenTotal));
+            } else {
+                labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLenTotal, monsterLenTotal));
+            }
 
             utils.emitter.on("battleMonsterLength", function (monsterLen) {
                 pb.setPercentage((monsterLenTotal - monsterLen) / monsterLenTotal * 100);
-                labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLen, monsterLenTotal));
+                if (this.type) {
+                    labelNum.setString(stringUtil.getString(9139) + cc.formatStr("%s/%s", monsterLen, monsterLenTotal));
+                } else {
+                    labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLen, monsterLenTotal));
+                }
             });
         }
     },
     createBattleEndView: function (sumRes) {
         var des = this.contentNode.getChildByName("des");
-        des.setString(stringUtil.getString(1082));
+        if (!sumRes) {
+            des.setString(stringUtil.getString(9116));
+        } else if (this.type) {
+            des.setString(stringUtil.getString(9082));
+        } else {
+            des.setString(stringUtil.getString(1082));
+        }
 
         this.log.height += 10;
-
-        var label1 = new cc.LabelTTF(stringUtil.getString(1058), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        var tempStr = stringUtil.getString(1058);
+        if (!sumRes) {
+            tempStr = stringUtil.getString(9012);
+        }
+        var label1 = new cc.LabelTTF(tempStr, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label1.setAnchorPoint(0, 1);
         label1.setPosition(this.leftEdge, this.log.getContentSize().height);
         label1.setColor(cc.color.BLACK);
         this.log.addChild(label1);
 
         var items = [];
-        if (sumRes.bulletNum > 0) {
-            items.push({itemId: BattleConfig.BULLET_ID, num: sumRes.bulletNum});
-        }
-        if (sumRes.homemadeNum > 0) {
-            items.push({itemId: BattleConfig.HOMEMADE_ID, num: sumRes.homemadeNum});
-        }
-        if (sumRes.tools > 0) {
-            items.push({
-                itemId: sumRes.toolItemId,
-                num: sumRes.tools
-            });
-        }
-        if (sumRes.fuel > 0) {
-            items.push({
-                itemId: "gas",
-                num: sumRes.fuel
-            });
+        if (!sumRes) {
+            //special bandit cave-in item list
+            player.lastBanditCaveIn = cc.timer.getTimeNum();
+            items = player.mapBattle.d;
+        } else {
+            if (sumRes.bulletNum > 0) {
+                items.push({itemId: BattleConfig.BULLET_ID, num: sumRes.bulletNum});
+            }
+            if (sumRes.homemadeNum > 0) {
+                items.push({itemId: BattleConfig.HOMEMADE_ID, num: sumRes.homemadeNum});
+            }
+            if (sumRes.tools > 0) {
+                items.push({
+                    itemId: sumRes.toolItemId,
+                    num: sumRes.tools
+                });
+            }
+            if (sumRes.fuel > 0) {
+                items.push({
+                    itemId: "gas",
+                    num: sumRes.fuel
+                });
+            }
         }
 
         var richText = new ItemRichText(items, this.rightEdge - this.leftEdge - label1.width, 3, 0.5, cc.color.BLACK);
@@ -960,50 +1058,52 @@ var RandomBattleDialog = DialogBig.extend({
         richText.setAnchorPoint(0, 0.5);
         richText.setPosition(label1.x + label1.width, label1.y - label1.height / 2);
         this.log.addChild(richText);
-
-        var label2 = new cc.LabelTTF(stringUtil.getString(1059) + stringUtil.getString("hp") + " " + sumRes.totalHarm + ", " + stringUtil.getString("15").title + " " + sumRes.totalVirus, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-        label2.setAnchorPoint(0, 1);
-        label2.setPosition(this.leftEdge, label1.getPositionY() - label1.getContentSize().height - 10);
-        label2.setColor(cc.color.BLACK);
-        this.log.addChild(label2);
-
-        if (sumRes.totalVirus) {
-                player.changeAttr("virus", sumRes.totalVirus);
-        }
         
-        if (sumRes.brokenWeapon) {
-            var label3 = new cc.LabelTTF(stringUtil.getString(1208), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-            label3.setAnchorPoint(0, 1);
-            label3.setPosition(this.leftEdge, label2.getPositionY() - label2.getContentSize().height - 10);
-            label3.setColor(cc.color.BLACK);
-            this.log.addChild(label3);
-            var items2 = sumRes.brokenWeapon.map(function (itemId) {
-                return {itemId: itemId, num: 1};
-            });
-            var richText2 = new ItemRichText(items2, this.rightEdge - this.leftEdge - label3.width, 3, 0.5, cc.color.BLACK);
-            richText2.setName("richText2")
-            richText2.setAnchorPoint(0, 0.5);
-            richText2.setPosition(label3.x + label3.width, label3.y - label3.height / 2);
-            this.log.addChild(richText2);
-        }
-        if (sumRes.win) {
-            var randomRewardConfig = randomReward[this.difficulty];
-            var rand = Math.random();
-            if (rand <= randomRewardConfig.probability) {
-                var label4 = new cc.LabelTTF(stringUtil.getString(1222), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-                label4.setAnchorPoint(0, 1);
-                label4.setPosition(this.leftEdge, label3.getPositionY() - label3.getContentSize().height - 10);
-                label4.setColor(cc.color.BLACK);
-                this.log.addChild(label4);
-                var itemIds = utils.getFixedValueItemIds(randomRewardConfig["produceValue"], randomRewardConfig["produceList"]);
-                var items3 = utils.convertItemIds2Item(itemIds);
-                player.gainItemsInBag(items3);
+        if (sumRes) {
+            var label2 = new cc.LabelTTF(stringUtil.getString(1059) + stringUtil.getString("hp") + " " + sumRes.totalHarm + ", " + stringUtil.getString("15").title + " " + sumRes.totalVirus, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+            label2.setAnchorPoint(0, 1);
+            label2.setPosition(this.leftEdge, label1.getPositionY() - label1.getContentSize().height - 10);
+            label2.setColor(cc.color.BLACK);
+            this.log.addChild(label2);
 
-                var richText3 = new ItemRichText(items3, this.rightEdge - this.leftEdge - label4.width, 3, 0.5, cc.color.BLACK);
-                richText3.setName("richText3")
-                richText3.setAnchorPoint(0, 0.5);
-                richText3.setPosition(label4.x + label4.width, label4.y - label4.height / 2);
-                this.log.addChild(richText3);
+            if (sumRes.totalVirus) {
+                player.changeAttr("virus", sumRes.totalVirus);
+            }
+        
+            if (sumRes.brokenWeapon) {
+                var label3 = new cc.LabelTTF(stringUtil.getString(1208), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+                label3.setAnchorPoint(0, 1);
+                label3.setPosition(this.leftEdge, label2.getPositionY() - label2.getContentSize().height - 10);
+                label3.setColor(cc.color.BLACK);
+                this.log.addChild(label3);
+                var items2 = sumRes.brokenWeapon.map(function (itemId) {
+                    return {itemId: itemId, num: 1};
+                });
+                var richText2 = new ItemRichText(items2, this.rightEdge - this.leftEdge - label3.width, 3, 0.5, cc.color.BLACK);
+                richText2.setName("richText2")
+                richText2.setAnchorPoint(0, 0.5);
+                richText2.setPosition(label3.x + label3.width, label3.y - label3.height / 2);
+                this.log.addChild(richText2);
+            }
+            if (sumRes.win) {
+                var randomRewardConfig = randomReward[this.difficulty];
+                var rand = Math.random();
+                if (rand <= randomRewardConfig.probability) {
+                    var label4 = new cc.LabelTTF(stringUtil.getString(1222), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+                    label4.setAnchorPoint(0, 1);
+                    label4.setPosition(this.leftEdge, label3.getPositionY() - label3.getContentSize().height - 10);
+                    label4.setColor(cc.color.BLACK);
+                    this.log.addChild(label4);
+                    var itemIds = utils.getFixedValueItemIds(randomRewardConfig["produceValue"], randomRewardConfig["produceList"]);
+                    var items3 = utils.convertItemIds2Item(itemIds);
+                    player.gainItemsInBag(items3);
+
+                    var richText3 = new ItemRichText(items3, this.rightEdge - this.leftEdge - label4.width, 3, 0.5, cc.color.BLACK);
+                    richText3.setName("richText3")
+                    richText3.setAnchorPoint(0, 0.5);
+                    richText3.setPosition(label4.x + label4.width, label4.y - label4.height / 2);
+                    this.log.addChild(richText3);
+                }
             }
         }
 
@@ -1013,24 +1113,25 @@ var RandomBattleDialog = DialogBig.extend({
 
             richText.anchorX = 1;
             richText.x = label1.x - label1.width;
+            if (sumRes) {
+                label2.anchorX = 1;
+                label2.x = this.rightEdge;
 
-            label2.anchorX = 1;
-            label2.x = this.rightEdge;
+                if (label3) {
+                    label3.anchorX = 1;
+                    label3.x = this.rightEdge;
 
-            if (label3) {
-                label3.anchorX = 1;
-                label3.x = this.rightEdge;
+                    richText2.anchorX = 1;
+                    richText2.x = label3.x - label3.width;
+                }
 
-                richText2.anchorX = 1;
-                richText2.x = label3.x - label3.width;
-            }
+                if (label4) {
+                    label4.anchorX = 1;
+                   label4.x = this.rightEdge;
 
-            if (label4) {
-                label4.anchorX = 1;
-                label4.x = this.rightEdge;
-
-                richText3.anchorX = 1;
-                richText3.x = label4.x - label4.width;
+                    richText3.anchorX = 1;
+                    richText3.x = label4.x - label4.width;
+                }
             }
         }
         var self = this;
@@ -1144,7 +1245,7 @@ var NpcTradeItemDialog = DialogTiny.extend({
         config.action.btn_1.txt = stringUtil.getString(1030);
 
         this._super(config);
-        this.y = -196;
+        this.bgNode.y = 136;
         
         var label1 = new cc.LabelTTF(stringUtil.getString(1039) + ": ", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label1.setAnchorPoint(0, 1);
@@ -1162,6 +1263,31 @@ var NpcTradeItemDialog = DialogTiny.extend({
             salesIcon.setPosition(400, 30);
             this.contentNode.addChild(salesIcon);
         }
+    }
+});
+
+var RobCaveInDialog = DialogTiny.extend({
+    ctor: function (cb) {
+        var config = {
+            title: {},
+            content: {},
+            action: {btn_1: {}, btn_2: {}}
+        };
+        config.content.des = stringUtil.getString(9039);
+        config.action.btn_2.txt = stringUtil.getString(1157);
+        config.action.btn_2.target = null;
+        config.action.btn_2.cb = null;
+
+        config.action.btn_1.txt = "";
+        config.action.btn_1.cb = cb;
+        this._super(config);
+        this.bgNode.y = 136;
+
+        var richText = new ItemRichText(player.mapBattle.d, 420, 5, 0.4, cc.color.WHITE, uiUtil.fontSize.COMMON_3);
+        richText.setName("richText");
+        richText.setAnchorPoint(0, 1);
+        richText.setPosition(50, -20);
+        this.contentNode.addChild(richText);
     }
 });
 
@@ -1349,5 +1475,72 @@ var FTUEDialog = DialogBig.extend({
         };
         config.action.btn_1.txt = stringUtil.getString(1030);
         this._super(config);
+    }
+});
+
+var UpdateDialog = DialogBig.extend({
+    ctor: function (versionConfig) {
+        var self = this;
+
+        var titleStr = stringUtil.getString(1267, versionConfig["version"]);
+        var config = {
+            title: {title: titleStr},
+            action: {btn_1: {}}
+        };
+
+        config.action.btn_1.txt = stringUtil.getString(1073);
+        config.action.btn_1.target = this;
+        this._super(config, false, true);
+
+        contentPositionY = 450;
+        
+        var updateContent = versionConfig["changeLog"]["en"];
+        var localLanguage = cc.sys.localStorage.getItem("language")
+        if (versionConfig["changeLog"][localLanguage]) {
+            updateContent = versionConfig["changeLog"][localLanguage];
+        }
+        
+        var strNum = 1269;
+        if (ClientData.MOD_VERSION < versionConfig["minVer"]) {
+            strNum = 1271;
+        } else if (ClientData.MOD_VERSION < versionConfig["recVer"]) {
+            strNum = 1270;
+        }
+        var notUpdateWarn = new cc.LabelTTF(stringUtil.getString(strNum) + " " + stringUtil.getString(6666) + "\n" + stringUtil.getString(1268), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(400, 0));
+        notUpdateWarn.setColor(cc.color.BLACK);
+        notUpdateWarn.setAnchorPoint(0, 1);
+        notUpdateWarn.setPosition(20, contentPositionY);
+        this.contentNode.addChild(notUpdateWarn);
+        
+        contentPositionY -= notUpdateWarn.height - 10;
+        var totalHeight = contentPositionY - 30;
+        var mycontainer = new cc.Layer();
+        
+        var scrollView = new cc.ScrollView(cc.size(410, totalHeight), mycontainer);
+        scrollView.setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL);
+        scrollView.setBounceable(false);
+        scrollView.setClippingToBounds(true);
+        scrollView.setPosition(10, 10);
+        this.contentNode.addChild(scrollView);
+
+        contentY = 0;
+        for (var i = updateContent.length; i >= 0; i--) {
+            var updateInfo = new cc.LabelTTF(updateContent[i], uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(400, 0));
+            updateInfo.setColor(cc.color.BLACK);
+            updateInfo.setAnchorPoint(0, 0);
+            updateInfo.setPosition(10, contentY);
+            mycontainer.addChild(updateInfo);
+            contentY += updateInfo.height + 10;
+        }
+        mycontainer.height = contentY - 10;
+        
+        var offset = scrollView.getContentOffset();
+        offset.y = scrollView.getViewSize().height - mycontainer.height;
+        scrollView.setContentOffset(offset);
+
+        this.onClickLayer = function () {}
+    },
+    onEnter: function () {
+        this._super();
     }
 });

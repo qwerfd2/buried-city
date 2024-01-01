@@ -250,9 +250,9 @@ var StatusButton = ButtonWithPressed.extend({
         if (opt.noLabel) {
             label.setVisible(false);
         }
-        this.reposition();
+        this.reposition(spriteFrameName);
     },
-    reposition: function () {
+    reposition: function (name) {
         var midPadding = 0;
         var icon = this.getChildByName("icon");
         var label = this.getChildByName("label");
@@ -262,8 +262,12 @@ var StatusButton = ButtonWithPressed.extend({
             icon.setAnchorPoint(0, 0.5);
             icon.x = 0;
             icon.y = this.height / 2;
-
-            label.setAnchorPoint(1.1, 0.5);
+            
+            if (name == "#icon_item_money.png") {
+                label.setAnchorPoint(1.2, 0.5);
+            } else {
+                label.setAnchorPoint(1.1, 0.5);
+            }
             label.x = this.width;
             label.y = this.height / 2;
         } else {

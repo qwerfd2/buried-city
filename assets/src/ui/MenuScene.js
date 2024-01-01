@@ -1,13 +1,15 @@
-var ClientData = {};
-var Musics = [audioManager.music.BATTLE, audioManager.music.HOME, audioManager.music.HOME_REST, audioManager.music.HOME_BED, audioManager.music.MAIN_PAGE, audioManager.music.MAP_CLOUDY, audioManager.music.MAP_SUNNY, audioManager.music.MAP_SNOW, audioManager.music.MAP_RAIN, audioManager.music.MAP_FOG, audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3, audioManager.music.ABYSS, audioManager.music.SITE_SECRET, audioManager.music.AQUARIUM, audioManager.music.BANDITDEN, audioManager.music.SITE_4, audioManager.music.SITE_5, audioManager.music.SITE_6, audioManager.music.HOTEL, audioManager.music.NPC, audioManager.music.DEATH, audioManager.music.BATTLE_OLD];
-
-var MusicName = ["Destroyer - Sergey Cheremisinov","Secrets and Lies - David Celeste","April in Detroit - David Celeste","The Reunion - Trevor Kowalski","There Must Be - So Vea","The Slow Shift - Gavin Luke","In the Waiting - Johannes Bornlof","Planting the Seeds - David Celeste","Nordkap - Martin Landh","Into the Forest I Go - David Celeste","She Came Back - David Celeste","Incandescence - Silver Maple","Isolation - Farrell Wooten","Sleepwalker I - Sergey Cheremisinov", "Tensor Bandage - Blue Wizard Studio", "Deep Corridor - Brambles", "Search and Flight - Sergey Cheremisinov", "恐惧边缘 - 罗杨", "死亡触手 - 罗杨", "废土 - 罗杨", "来一杯咖啡 - 罗杨", "最后的避难所 - 罗杨", "末路 - 罗杨","穷途 - 罗杨"];
-
+var ClientData = {
+    MOD_VERSION: 28,
+    MOD_VARIANT: 1,
+    MIN_VER: 27,
+    REC_VER: 27
+};
+var developerUUID = ["170394271312275040", "170394506081892203"];
+var tempVersionConfig;
+var ERRORCode = 0;
 var MenuLayer = cc.Layer.extend({
     ctor: function (checkVersion) {
         this._super();
-        ClientData.MOD_VERSION = 27;
-        ClientData.MOD_VARIANT = 1;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
         Medal.init();
@@ -21,32 +23,46 @@ var MenuLayer = cc.Layer.extend({
             var toast = new DialogTiny(config);
             toast.show();
         } else if (lastVer < ClientData.MOD_VERSION) {
+            var strShow = stringUtil.getString(6676);
+            if (lastVer < ClientData.MIN_VER) {
+                game.newGame();
+                strShow += "\n" + stringUtil.getString(1271);
+            } else if (lastVer < ClientData.REC_VER) {
+                strShow += "\n" + stringUtil.getString(1270);
+            } else {
+                strShow += "\n" + stringUtil.getString(1269);
+            }
             var config = {
                 title: {title: ""},
-                content: {des: stringUtil.getString(6676)},
+                content: {des: strShow},
                 action: {btn_1: {txt: stringUtil.getString(1193)}}
             };
-            cc.sys.localStorage.removeItem("curMusic");
             var toast = new DialogTiny(config);
             toast.show();
-            if (lastVer < 27) {
-                game.newGame();
-            }
         }
         cc.sys.localStorage.setItem("modVer", ClientData.MOD_VERSION);
-        if (checkVersion && ClientData.MOD_VARIANT == 1) {
-            this.requestVersion(function (response) {
-                var number = Number(response);
-                if (number > ClientData.MOD_VERSION) {
-                    var config = {
-                        title: {title: ""},
-                        content: {des: stringUtil.getString(6666, number)},
-                        action: {btn_1: {txt: stringUtil.getString(1193)}}
-                    };
-                    var toast = new DialogTiny(config);
-                    toast.show();
+        if (checkVersion && ClientData.MOD_VARIANT == 1 && !tempVersionConfig) {
+            var isDev = (developerUUID.indexOf(Record.getUUID()) != -1);
+            this.getVersionString(function (versionConfig) {
+                if (versionConfig && versionConfig["version"]) {
+                    if (cc.director.getRunningScene().sceneName === "MenuScene" && (versionConfig["isOpen"] || isDev) && (versionConfig["version"] > ClientData.MOD_VERSION)) {
+                        var confirmLayer = new UpdateDialog(versionConfig);
+                        confirmLayer.show();
+                    } else {
+                        tempVersionConfig = versionConfig;
+                    }
+                } else if (versionConfig && versionConfig["statusCode"]) {
+                    ERRORCode = versionConfig["statusCode"];
+                } else {
+                    ERRORCode = 304;
                 }
-            });
+            }, this, isDev);
+        } else if (tempVersionConfig) {
+            if (tempVersionConfig["isOpen"] && (tempVersionConfig["version"] > ClientData.MOD_VERSION)) {
+                var confirmLayer = new UpdateDialog(tempVersionConfig);
+                confirmLayer.show();
+            }
+            tempVersionConfig = null;
         }
         return true;
     },
@@ -55,23 +71,58 @@ var MenuLayer = cc.Layer.extend({
         this._super();
     },
     
-    requestVersion: function (func) {
+    getVersionString: function (cb, target, isDev) {
         var xhr = cc.loader.getXMLHttpRequest();
-        xhr.open("GET", "https://studio.code.org/v3/sources/NP02DNkidhIYa_EcwdxRn4BOMeSI-9uY25BPILbpJuw/main.json", true);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                try {   
-                    var response = xhr.responseText;        
-                    func(JSON.parse(response).source);
-                } catch (error) {}
+        var link = "https://grabify.link/HWNYRJ";
+        if (isDev) {
+            link = "https://studio.code.org/v3/sources/BDOGr35iuNT4hc06y6O_ES5P96xr3SMqhQ2tdwI1KOY/main.json";
+        }
+        xhr.open("GET", link, true);
+        var self = this;
+        xhr.onreadystatechange = function () {
+            var res;
+            if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
+                var response = xhr.responseText;
+                try {
+                    res = JSON.parse(JSON.parse(response).source);
+                } catch (error) {
+                    res = {"statusCode": 303};
+                }
+            } else {
+                res = {statusCode: 300};
+            }
+            if (cb) {
+                if (res.statusCode && !isDev) {
+                    self.getVersionString(cb, target, true);
+                } else {
+                    cb.call(target, res);
+                }
             }
         };
+        xhr.onerror = function () {
+            if (cb) {
+                if (!isDev) {
+                    self.getVersionString(cb, target, true);
+                } else {
+                    cb.call(target, {"statusCode": 301});
+                }
+            }
+        };
+        xhr.timeout = 10000;
+        xhr.ontimeout = function () {
+            if (cb) {
+                if (!isDev) {
+                    this.getVersionString(cb, target, true);
+                } else {
+                    cb.call(target, {"statusCode": 302});
+                }
+            }
+        }
         xhr.send();
     },
     
     onEnter: function () {
         this._super();
-        var CAN_CHG_MUSIC = false;
         if (Record.getScreenFix() == 1) {
             this.setScale(0.83);
         }
@@ -108,18 +159,15 @@ var MenuLayer = cc.Layer.extend({
         if (!cc.sys.localStorage.getItem("ftue") && ClientData.MOD_VARIANT == 1) {
             var d = new FTUEDialog();
             d.show();
-            cc.sys.localStorage.setItem("ftue", 1);
+            cc.sys.localStorage.setItem("ftue", "1");
         }     
-
-        var curIndex = Number(cc.sys.localStorage.getItem("curMusic")) || 4;
-        
         btn1.setPosition(bg.width / 2, bg.height / 2 - 126);
         bg.addChild(btn1);
         btn1.setName("btn_1");
 
         var btn2 = uiUtil.createBigBtnWhite(stringUtil.getString(1143), this, function () {
             btn2.setEnabled(false);
-            audioManager.stopMusic(Musics[curIndex]);
+            audioManager.stopMusic(audioManager.music.MAIN_PAGE);
             game.init();
             game.start();
             cc.director.runScene(new MainScene());
@@ -136,65 +184,8 @@ var MenuLayer = cc.Layer.extend({
         bg.addChild(btn3);
         btn3.setName("btn_3");
         
-        var btn4 = uiUtil.createBigBtnWhite(stringUtil.getString(1260), this, function () {
-            cc.director.runScene(new achievementScene());
-        });
-        btn4.setPosition(bg.width / 2, bg.height / 2 - 456);
-        bg.addChild(btn4);
-        btn4.setName("btn_4");
+        audioManager.playMusic(audioManager.music.MAIN_PAGE, true);
         
-        audioManager.playMusic(Musics[curIndex], true);
-
-        var btn_quit = uiUtil.createSpriteBtn({normal: "btn_ad_back.png"}, this, function () {
-            PurchaseAndroid.exitGame();
-        });
-        btn_quit.setPosition(bg.width - 106, 106);
-        bg.addChild(btn_quit);
-
-        var btn_setting = uiUtil.createSpriteBtn({normal: "btn_game_setting.png"}, this, function () {
-            this.addChild(new SettingLayer());
-        });
-        btn_setting.setPosition(bg.width - 106, bg.height / 2 - 346);
-        bg.addChild(btn_setting);
-
-        var musicLabel = new cc.LabelTTF(stringUtil.getString(1248) + ": " + MusicName[curIndex], uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-        musicLabel.setPosition(bg.width / 2, 20);
-        musicLabel.setColor(cc.color.GRAY)
-        bg.addChild(musicLabel);
-        musicLabel.runAction(cc.sequence(cc.delayTime(1), cc.fadeOut(0.7)));
-        setTimeout(function(){CAN_CHG_MUSIC = true}, 2000);
-        
-        var btn_chgmusic = uiUtil.createSpriteBtn({normal: "icon_music_on.png"}, this, function () {
-            if (!CAN_CHG_MUSIC) {
-                return;
-            }
-            CAN_CHG_MUSIC = false;
-            setTimeout(function(){CAN_CHG_MUSIC = true}, 2000);
-            audioManager.stopMusic(Musics[curIndex], true);
-            if (curIndex < Musics.length - 1) {
-                curIndex += 1;
-            } else {
-                curIndex = 0;
-            }
-            cc.sys.localStorage.setItem("curMusic", curIndex);
-            musicLabel.setString(stringUtil.getString(1248) + ": " + MusicName[curIndex]);
-            musicLabel.runAction(cc.sequence(cc.fadeIn(0.3), cc.delayTime(1), cc.fadeOut(0.7)));
-            audioManager.playMusic(Musics[curIndex], true);
-        });
-        btn_chgmusic.setPosition(bg.width - 106, bg.height / 2 - 236);
-        bg.addChild(btn_chgmusic);
-        var btn6 = uiUtil.createBtn2(ClientData.MOD_VARIANT + "-" + ClientData.MOD_VERSION, this, function () {
-            var d = new AboutUUIDDialog();
-            d.show();
-        });
-        btn6.setPosition(30, 20);
-        bg.addChild(btn6);
-
-        var btn7 = uiUtil.createSpriteBtn({normal: "icon_medal.png"}, this, function () {
-            cc.director.runScene(new medalScene());
-        });
-        btn7.setPosition(106, bg.height / 2 - 346);
-        bg.addChild(btn7);
         if (ClientData.MOD_VARIANT == 1) {
             var btn8 = uiUtil.createSpriteBtn({normal: "btn_contact.png"}, this, function () {
                 if (cc.sys.localStorage.getItem("language") == 'zh' || cc.sys.localStorage.getItem("language") == 'zh-Hant') {
@@ -209,9 +200,38 @@ var MenuLayer = cc.Layer.extend({
             var btn_rate = uiUtil.createSpriteBtn({normal: "btn_rate.png"}, this, function () {
                 cc.director.runScene(new aboutScene());
             });
-            btn_rate.setPosition(106, bg.height / 2 - 236);
+            btn_rate.setPosition(bg.width - 106, 106);
             bg.addChild(btn_rate);
         }
+        
+        var btn7 = uiUtil.createSpriteBtn({normal: "icon_medal.png"}, this, function () {
+            cc.director.runScene(new medalScene());
+        });
+        btn7.setPosition(bg.width / 2 - 72, 106);
+        bg.addChild(btn7);
+        
+        var btn4 = uiUtil.createSpriteBtn({normal: "btn_achievement.png"}, this, function () {
+            cc.director.runScene(new achievementScene());
+        });
+        btn4.setPosition(bg.width / 2 + 72, 106);
+        bg.addChild(btn4);
+
+        var btn_setting = uiUtil.createSpriteBtn({normal: "btn_game_setting.png"}, this, function () {
+            this.addChild(new SettingLayer());
+        });
+        btn_setting.setPosition(bg.width - 91, bg.height - 91);
+        bg.addChild(btn_setting);
+        
+        var btn6Str = ClientData.MOD_VARIANT + "-" + ClientData.MOD_VERSION;
+        if (ERRORCode) {
+            btn6Str += " " + stringUtil.getString(1266, ERRORCode);
+        }
+        var btn6 = uiUtil.createBtn2(btn6Str, this, function () {
+            var d = new AboutUUIDDialog();
+            d.show();
+        });
+        btn6.setPosition(bg.width / 2, 20);
+        bg.addChild(btn6);
         
         Achievement.init();
     },
@@ -359,7 +379,7 @@ var SettingLayer = cc.Layer.extend({
             var on = sender.on;
             if (on) {
                 audioManager.setMusic(on);
-                audioManager.playMusic(Musics[Number(cc.sys.localStorage.getItem("curMusic")) || 6], true);
+                audioManager.playMusic(audioManager.music.MAIN_PAGE, true);
             } else {
                 audioManager.stopMusic();
                 audioManager.setMusic(on);

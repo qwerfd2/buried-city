@@ -26,19 +26,19 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
     loadGame: function () {
         var self = this;
         cc.director.getScheduler().scheduleCallbackForTarget(this, function () {
-            lanSupports.push(cc.sys.LANGUAGE_CHINESE);
             lanSupports.push(cc.sys.LANGUAGE_ENGLISH);
-            lanSupports.push(cc.sys.LANGUAGE_ARABIC);
+            lanSupports.push(cc.sys.LANGUAGE_CHINESE);
             lanSupports.push(cc.sys.LANGUAGE_SPANISH);
+            lanSupports.push(cc.sys.LANGUAGE_ARABIC);
             lanSupports.push(cc.sys.LANGUAGE_FRENCH);
-            lanSupports.push(cc.sys.LANGUAGE_JAPANESE);
-            lanSupports.push(cc.sys.LANGUAGE_KOREAN);
-            lanSupports.push(cc.sys.LANGUAGE_PORTUGUESE);
             lanSupports.push(cc.sys.LANGUAGE_RUSSIAN);
+            lanSupports.push(cc.sys.LANGUAGE_PORTUGUESE);
+            lanSupports.push(cc.sys.LANGUAGE_GERMAN);
+            lanSupports.push(cc.sys.LANGUAGE_JAPANESE);
             lanSupports.push(cc.sys.LANGUAGE_TURKISH);
             lanSupports.push(cc.sys.LANGUAGE_VIETNAMESE);
-            lanSupports.push(cc.sys.LANGUAGE_GERMAN);
-
+            lanSupports.push(cc.sys.LANGUAGE_KOREAN);
+            
             cc.loader.loadJs(["src/jsList.js"], function (err) {
                 var storagePaths = jsb.fileUtils.getSearchPaths();
                 for (var key1 in jsList) {

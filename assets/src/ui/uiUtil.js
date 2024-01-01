@@ -45,12 +45,10 @@ uiUtil.bazaarItem = function(itemInfo, target, cb) {
     name.y = bg.height / 1.15;
     name.color = cc.color.BLACK;
     node.addChild(name);
-
-    var price = new cc.LabelTTF("", uiUtil.fontFamily.normal, 23);
+    
+    var price = new ItemRichText([{itemId: "money", num: ee}], 120, 1, 0.5, cc.color.BLACK, uiUtil.fontSize.COMMON_2);
     price.x = bg.width / 6 - 30;
     price.y = bg.height / 6;
-    price.color = cc.color.BLACK;
-    price.setString(stringUtil.getString(1190) + ee);
     price.setAnchorPoint(0, 1);
     node.addChild(price);
     //图标 1
@@ -106,19 +104,17 @@ uiUtil.bazaarSell = function(itemId, vvv, amount, discount) {
     var z = 1;
     if (vvv) {
         ss = stringUtil.getString(9033);
-        config.title.txt_1 = stringUtil.getString(9035) + Num;
+        config.title.txt_1 = cc.formatStr(stringUtil.getString("item_1").title.txt_1, Num);
         z = 0.8;
     } else {
         ss = stringUtil.getString(9034);
-        config.title.txt_1 = stringUtil.getString(9035) + amount;
+        config.title.txt_1 = cc.formatStr(stringUtil.getString("item_1").title.txt_1, amount);
         z = (100 - discount) / 100;
         Nuw = 1;
     }
     ee *= z;
-    config.title.txt_2 = stringUtil.getString(9021) + round(ee);
     config.action.btn_2.txt = ss;
     var dialog = new DialogBig(config);
-
     config.action.btn_2.target = dialog;
     dialog.show();
 
@@ -294,11 +290,13 @@ uiUtil.createSpriteBtn = function (spriteState, target, cb, rect) {
     var txt = fontInfo.txt || "";
     var font = fontInfo.font || uiUtil.fontFamily.normal;
     var fontSize = fontInfo.fontSize || uiUtil.fontSize.COMMON_2;
+    var color = fontInfo.color || cc.color.WHITE;
 
     fontSize -= 4;
 
     var normalSprite = autoSpriteFrameController.getScale9Sprite(spriteState.normal, rect);
     var label = new cc.LabelTTF(txt, font, fontSize, cc.size(normalSprite.width, 0), cc.TEXT_ALIGNMENT_CENTER);
+    label.setColor(color);
 
     var btn = new cc.ControlButton(label, normalSprite);
     btn.setContentSize(normalSprite.getSprite().getContentSize());
@@ -352,6 +350,16 @@ uiUtil.createSpriteBtn = function (spriteState, target, cb, rect) {
 uiUtil.createCommonBtnBlack = function (txt, target, cb) {
     var btn = uiUtil.createSpriteBtn({
         normal: "btn_common_black_normal.png",
+        fontInfo: {txt: txt, fontSize: uiUtil.fontSize.COMMON_2}
+    }, target, cb);
+    btn.setTitleColorForState(cc.color.WHITE, cc.CONTROL_STATE_NORMAL);
+    btn.setTitleColorForState(cc.color.GRAY, cc.CONTROL_STATE_DISABLED);
+    return btn;
+}
+
+uiUtil.createSmallBtnBlack = function (txt, target, cb) {
+    var btn = uiUtil.createSpriteBtn({
+        normal: "btn_dark_short.png",
         fontInfo: {txt: txt, fontSize: uiUtil.fontSize.COMMON_2}
     }, target, cb);
     btn.setTitleColorForState(cc.color.WHITE, cc.CONTROL_STATE_NORMAL);
@@ -683,9 +691,11 @@ uiUtil.showGuideDialog = function(str, pic, target, isPicDown) {
         config.action.btn_1.txt = stringUtil.getString(9000);
         config.action.btn_1.target = null;
         config.action.btn_1.cb = function() {
-            player.setSetting("step", 30)
+            player.setSetting("step", 30);
+            player.map.unlockSite(400);
             player.buildWarn.setVisible(false);
             player.log.addMsg(stringUtil.getString(9001));
+            Record.saveAll();
         };
         config.action.btn_2.txt = stringUtil.getString(9002);
     }
@@ -1631,15 +1641,8 @@ uiUtil.createSaleOffIcon = function () {
 uiUtil.createPayItemNode = function (purchaseId, target, cb) {
     var node = new cc.Node();
     var strConfig = stringUtil.getString("p_" + purchaseId);
-    var purchaseConfig = IAPPackage.getPurchaseConfig(purchaseId);
-    var bgName = "";
-    if (purchaseId <= 109) {
-        bgName = "frame_iap_bg_formula.png";
-    } else {
-        bgName = "frame_iap_bg_item.png";
-    }
 
-    var bg = autoSpriteFrameController.getSpriteFromSpriteName(bgName);
+    var bg = autoSpriteFrameController.getSpriteFromSpriteName("frame_iap_bg_item.png");
     node.setContentSize(bg.getContentSize());
     bg.x = node.width / 2;
     bg.y = node.height / 2;
@@ -1658,18 +1661,10 @@ uiUtil.createPayItemNode = function (purchaseId, target, cb) {
     price.color = cc.color.BLACK;
     node.addChild(price);
 
-    if (purchaseId == 108 || purchaseId == 109) {
-        var icon = autoSpriteFrameController.getSpriteFromSpriteName('icon_iap_bg.png');
-        icon.x = bg.width / 2;
-        icon.y = 118;
-        icon.scale = 0.55;
-        node.addChild(icon);
-    } else {
-        var icon = autoSpriteFrameController.getSpriteFromSpriteName("icon_iap_" + purchaseId + ".png");
-        icon.x = bg.width / 2;
-        icon.y = 118;
-        node.addChild(icon);
-    }
+    var icon = autoSpriteFrameController.getSpriteFromSpriteName("icon_iap_" + purchaseId + ".png");
+    icon.x = bg.width / 2;
+    icon.y = 118;
+    node.addChild(icon);
 
     var btnSize = cc.size(bg.width - 20, bg.height - 20);
     var btnIcon = new ButtonWithPressed(btnSize);
@@ -1682,13 +1677,7 @@ uiUtil.createPayItemNode = function (purchaseId, target, cb) {
         });
     });
 
-    var unlockName;
-    if (purchaseId < 200) {
-        unlockName = stringUtil.getString(1232);
-    } else {
-        unlockName = stringUtil.getString(1233);
-    }
-    var unlock = new cc.LabelTTF(unlockName, uiUtil.fontFamily.normal, 40, cc.size(node.width, 0), cc.TEXT_ALIGNMENT_CENTER);
+    var unlock = new cc.LabelTTF(stringUtil.getString(1233), uiUtil.fontFamily.normal, 40, cc.size(node.width, 0), cc.TEXT_ALIGNMENT_CENTER);
     unlock.x = icon.x;
     unlock.y = icon.y;
     node.addChild(unlock);

@@ -770,6 +770,7 @@ var DrinkBuildAction = BuildAction.extend({
             audioManager.playEffect(audioManager.sound.GOLP);
             var rand = Math.random();
             if (rand < 0.3 && player.alcoholPrice < 9) {
+                player.log.addMsg(1344);
                 player.alcoholPrice += 1;
             }
             player.applyEffect(self.config["effect"]);

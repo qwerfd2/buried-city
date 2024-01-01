@@ -1,36 +1,43 @@
 var string = {
-"banditType_1": "Lén lút",
-      "banditType_2": "Mạnh mẽ",
-      "banditType_4": "Xảo quyệt",
-      "banditType_5": "Nhanh nhẹn",
-      "9045": "%s kẻ cướp đã phát hiện ra bạn!",
-      "9046": "Tên cướp %s đang tiếp cận bạn! Khoảng cách %s",
-      "9047": "%s tên cướp đã bắn bạn, HP %s",
-      "9048": "Bạn dùng %s để bắn tên cướp %s",
-      "9049": "Bạn sử dụng %s để chém tên cướp %s trước mặt bạn",
-      "9050": "Bạn đã ném %s vào nhóm cướp",
-      "9051": "Bắn chính xác! Đầu tên cướp %s đã bị thổi bay",
-      "9052": "%s tên cướp đã nhận %s thiệt hại",
-      "9053": "Tất cả kẻ cướp đều nhận %s thiệt hại",
-      "9054": "%s %s tên cướp đã chết",
-      "9358": "Bạn đã đốt cháy tất cả bọn cướp,",
-      "9055": "%s tấn công tên cướp và %s tên cướp nhận %s sát thương",
-      "9056": "Tên cướp bị %s thu hút và sẽ tạm thời ngừng tấn công bạn",
-      "9057": "%s đã thu thập những vật phẩm này từ bọn cướp. Hiện được lưu trữ trong kho.",
-      "9059": ["Có bọn cướp phát hiện phía trước!", "Một số tên cướp tuần tra đã chú ý đến bạn.", "Bạn bị bao vây bởi một nhóm cướp."],
-      "9165": "Bạn đã đấm tên cướp %s một cách tàn nhẫn.",
-      "9139": "Số lượng kẻ cướp:",
-      "9118": "Bạn đã tiêu diệt thành công bọn cướp",
-      "9109": "Cuộc tấn công của tên cướp đã gây sát thương chí mạng cho bạn!",
-"radio_tut": "Để cải thiện khả năng gặp gỡ với những người sống sót khác, bạn nên xây dựng đài phát thanh và phát sóng bản thân mình mỗi ngày.",
-"motor_tut": "Bạn có thể tiết kiệm nhiên liệu bằng cách không lái mô-tô. Phần thưởng về trọng lượng vẫn áp dụng. Để làm điều này, hãy nhấp vào biểu tượng mô-tô trong cửa sổ bật lên này.",
-"site_502": {
-    "name": "Bể Cá",
-    "des": "Cá trong bể cá gần như đã chết hết. Nước bị rêu phong làm cho bên trong trở nên rực rỡ màu đỏ đậm. Tốt nhất là không làm phiền tới kính vòm, nếu không, đây có thể trở thành một nghĩa địa dưới nước.\nBạn không thể sử dụng vũ khí và chất nổ ở đây."
-},
-"1166": "Hiện đang trồng $s...",
-"equip_needed":"Chỉ có hiệu quả khi được trang bị làm công cụ.",
-"no_need_equip":"Trang bị thụ động, không cần trang bị.",
+    "9114": "Bạn đã chạy trốn khỏi bọn cướp. tiếp tục đi về phía trước",
+    "9115": "Bạn đã giết chết bọn cướp. tiếp tục đi về phía trước",
+    "9116": "Bạn đã đồng ý với yêu cầu của bandid và hắn đã để bạn đi.",
+    "9082": "Bạn đã thoát khỏi bọn cướp.",
+    "1172": "Chầu tr surrenderộn",
+    "9113": "Gặp bọn cướp!",
+    "9039": "Hắn hứa nếu bạn chầu tr surrenderộn, họ sẽ để bạn đi hôm nay. Họ muốn:",
+    "banditType_1": "Lén lút",
+    "banditType_2": "Mạnh mẽ",
+    "banditType_4": "Xảo quyệt",
+    "banditType_5": "Nhanh nhẹn",
+    "9045": "%s kẻ cướp đã phát hiện ra bạn!",
+    "9046": "Tên cướp %s đang tiếp cận bạn! Khoảng cách %s",
+    "9047": "%s tên cướp đã bắn bạn, HP %s",
+    "9048": "Bạn dùng %s để bắn tên cướp %s",
+    "9049": "Bạn sử dụng %s để chém tên cướp %s trước mặt bạn",
+    "9050": "Bạn đã ném %s vào nhóm cướp",
+    "9051": "Bắn chính xác! Đầu tên cướp %s đã bị thổi bay",
+    "9052": "%s tên cướp đã nhận %s thiệt hại",
+    "9053": "Tất cả kẻ cướp đều nhận %s thiệt hại",
+    "9054": "%s %s tên cướp đã chết",
+    "9358": "Bạn đã đốt cháy tất cả bọn cướp,",
+    "9055": "%s tấn công tên cướp và %s tên cướp nhận %s sát thương",
+    "9056": "Tên cướp bị %s thu hút và sẽ tạm thời ngừng tấn công bạn",
+    "9057": "%s đã thu thập những vật phẩm này từ bọn cướp. Hiện được lưu trữ trong kho.",
+    "9059": ["Có bọn cướp phát hiện phía trước!", "Một số tên cướp tuần tra đã chú ý đến bạn.", "Bạn bị bao vây bởi một nhóm cướp."],
+    "9165": "Bạn đã đấm tên cướp %s một cách tàn nhẫn.",
+    "9139": "Số lượng kẻ cướp:",
+    "9118": "Bạn đã tiêu diệt thành công bọn cướp",
+    "9109": "Cuộc tấn công của tên cướp đã gây sát thương chí mạng cho bạn!",
+    "radio_tut": "Để cải thiện khả năng gặp gỡ với những người sống sót khác, bạn nên xây dựng đài phát thanh và phát sóng bản thân mình mỗi ngày.",
+    "motor_tut": "Bạn có thể tiết kiệm nhiên liệu bằng cách không lái mô-tô. Phần thưởng về trọng lượng vẫn áp dụng. Để làm điều này, hãy nhấp vào biểu tượng mô-tô trong cửa sổ bật lên này.",
+    "site_502": {
+        "name": "Bể Cá",
+        "des": "Cá trong bể cá gần như đã chết hết. Nước bị rêu phong làm cho bên trong trở nên rực rỡ màu đỏ đậm. Tốt nhất là không làm phiền tới kính vòm, nếu không, đây có thể trở thành một nghĩa địa dưới nước.\nBạn không thể sử dụng vũ khí và chất nổ ở đây."
+    },
+    "1166": "Hiện đang trồng $s...",
+    "equip_needed": "Chỉ có hiệu quả khi được trang bị làm công cụ.",
+    "no_need_equip": "Trang bị thụ động, không cần trang bị.",
     "7000": "Kiểm tra tình trạng của %s",
     "7001": "Đưa %s ra ngoài",
     "7002": "Để %s giữ nhà",
@@ -44,154 +51,159 @@ var string = {
     "7013": "%s vui vẻ nhai xương",
     "7014": "Bạn đã chơi với %s, anh ấy có vẻ hạnh phúc",
     "7015": "%s tấn công một con zombie, zombie đã bị gặp %s thiệt hại.",
-    "7016": "Zombie bị thu hút bởi %s và ngừng tấn công bạn.",
     "7017": "%s đã tìm thấy những thứ này trên zombie, được lưu trữ trong kho tạm thời:",
     "7018": "Quà cho chó",
     "17": {
-      "title": "Vết thương của chó",
-      "des": "Chó có thể bị thương từ chiến đấu và cần được điều trị kịp thời."
+        "title": "Vết thương của chó",
+        "des": "Chó có thể bị thương từ chiến đấu và cần được điều trị kịp thời."
     },
     "18": {
-      "title": "Đói của chó",
-      "des": "Chó cần thịt. Một miếng thịt đủ cho 12 giờ, bạn có thể cho ăn tối đa 4 miếng."
+        "title": "Đói của chó",
+        "des": "Chó cần thịt. Một miếng thịt đủ cho 12 giờ, bạn có thể cho ăn tối đa 4 miếng."
     },
     "19": {
-      "title": "Tâm trạng của chó",
-      "des": "Điều kiện khắc nghiệt cũng làm cho chó buồn nữa. Chơi với nó mỗi ngày tại nhà hoặc sử dụng một cái xương chó."
+        "title": "Tâm trạng của chó",
+        "des": "Điều kiện khắc nghiệt cũng làm cho chó buồn nữa. Chơi với nó mỗi ngày tại nhà hoặc sử dụng một cái xương chó."
     },
     "1106014": {
-      "title": "Xương chó",
-      "des": "Xương chó tự làm có thể làm vui vẻ chó của bạn, ngay cả trong môi trường khắc nghiệt như vậy."
-    },      
-"6677": "Bạn đã tạm thời sửa chữa máy phát điện.",
-"6678": "Bạn đã tạm thời sửa chữa bơm xăng.",
-"6679": "Máy phát điện đã gặp sự cố.",
-"6680": "Bơm xăng đã gặp sự cố.",
-"8027": "Nhạc nền",
-"8028": "Phiên bản đã chỉnh sửa - Tác giả",
-"8029": "Cảm ơn bạn đã chơi.",
-  "6672": "Thực phẩm hết hạn",
-  "6674": "Tăng tốc (1 %s)",
-  "6675": "Bạn đã quay lại phiên bản trò chơi. Tệp lưu có thể bị hỏng. Vui lòng bắt đầu trò chơi mới hoặc quay lại phiên bản trước.",
-  "6676": "Bạn đã cập nhật trò chơi. Tệp lưu có thể không còn tương thích. Nếu gặp vấn đề, vui lòng bắt đầu trò chơi mới.",
-  "1101081": {
-    "title": "Phân bón",
-    "des": "Thực tế, đó chỉ là thực phẩm hết hạn, và cách duy nhất để sử dụng chúng là làm phân bón cho cây trồng."
-  },
-"6673": "Hôm qua, những thực phẩm này đã hết hạn và đã được chuyển thành phân bón (%s bên ngoài, %s ở trong nhà). Tủ lạnh có thể giữ thực phẩm tươi!",
-  "21_0": {
-    "title": "Tủ lạnh",
-    "des": "Nếu có điện ở nhà, thực phẩm sẽ không bị hỏng."
-  },
-"6671": "Vi rút cuối cùng đã đánh bại hệ thống miễn dịch của bạn và chấm dứt sự nhân tính của bạn.",
-"6669": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất. Chúng ta sẽ sửa nó sau.",
-"6670": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất!",
+        "title": "Xương chó",
+        "des": "Xương chó tự làm có thể làm vui vẻ chó của bạn, ngay cả trong môi trường khắc nghiệt như vậy."
+    },
+    "6677": "Bạn đã tạm thời sửa chữa máy phát điện.",
+    "6678": "Bạn đã tạm thời sửa chữa bơm xăng.",
+    "6679": "Máy phát điện đã gặp sự cố.",
+    "6680": "Bơm xăng đã gặp sự cố.",
+    "8027": "Nhạc nền",
+    "8028": "Phiên bản đã chỉnh sửa - Tác giả",
+    "8029": "Cảm ơn bạn đã chơi.",
+    "6672": "Thực phẩm hết hạn",
+    "6674": "Tăng tốc (1 %s)",
+    "6675": "Bạn đã quay lại phiên bản trò chơi. Tệp lưu có thể bị hỏng. Vui lòng bắt đầu trò chơi mới hoặc quay lại phiên bản trước.",
+    "6676": "Chúc mừng, bạn đã cập nhật trò chơi.",
+    "1266": "Lỗi kiểm tra phiên bản:",
+    "1267": "Phiên bản mới %s có sẵn",
+    "1268": "Cập nhật:",
+    "1269": "Cập nhật này sẽ không ảnh hưởng đến tiến trình sống sót hiện tại.",
+    "1270": "Một số nội dung cập nhật chỉ có thể trải nghiệm khi bắt đầu một sống sót mới.",
+    "1271": "Cập nhật này sẽ bắt buộc xóa tiến trình sống sót hiện tại.",
+    "1101081": {
+        "title": "Phân bón",
+        "des": "Thực tế, đó chỉ là thực phẩm hết hạn, và cách duy nhất để sử dụng chúng là làm phân bón cho cây trồng."
+    },
+    "6673": "Hôm qua, những thực phẩm này đã hết hạn và đã được chuyển thành phân bón (%s bên ngoài, %s ở trong nhà). Tủ lạnh có thể giữ thực phẩm tươi!",
+    "21_0": {
+        "title": "Tủ lạnh",
+        "des": "Nếu có điện ở nhà, thực phẩm sẽ không bị hỏng."
+    },
+    "6671": "Vi rút cuối cùng đã đánh bại hệ thống miễn dịch của bạn và chấm dứt sự nhân tính của bạn.",
+    "6669": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất. Chúng ta sẽ sửa nó sau.",
+    "6670": "Bạn không có xe máy và không thể lưu trữ xăng đã trích xuất!",
     "20_0": {
-      "title": "Két sắt",
-      "des": "Bảo vệ nguồn cung cấp của bạn. Các món trong két sẽ không bị đánh cắp hoặc bị hỏng bởi xác sống."
+        "title": "Két sắt",
+        "des": "Bảo vệ nguồn cung cấp của bạn. Các món trong két sẽ không bị đánh cắp hoặc bị hỏng bởi xác sống."
     },
     "6668": "Các món đồ quá nặng. Két không thể tải thêm được nữa.",
-"8116": "Lái xe máy",
+    "8116": "Lái xe máy",
     "8117": "Không lái xe máy",
     "8118": "Không hoạt động (Người chơi chọn không lái)",
     "1305011": {
         "title": "Viên đạn tiêu chuẩn",
-        "des": "Sản xuất trước thảm họa, không gây hại cho súng và có độ chính xác cao hơn, làm cho nó có giá trị hơn."
+        "des": "Sản xuất trước thảm họa, nó khó bị hỏng và có độ chính xác cao hơn, làm cho nó trở nên quý giá hơn."
     },
     "1305012": {
         "title": "Viên đạn thủ công",
         "des": "Viên đạn thủ công với độ chính xác thấp. Có thể gây hại cho súng."
     },
-"6666": "Phát hiện cập nhật mới: Phiên bản %s. Vui lòng cập nhật qua Github hoặc kênh khác.",
-"6667": "Cảm ơn bạn đã chơi Buried City! Tham gia cộng đồng game và các kênh phân phối của trò chơi, được liệt kê dưới đây. Hãy báo cáo cả lỗi!",
-"1324": "Vì uống cà phê nên bạn gặp vấn đề về giấc ngủ. Nghỉ sau %s giờ.",
-"1325": "Độ chính xác giảm %s% do uống rượu!",
-"1326": "Vui lòng bán từ túi!",
-"1333": "Trao đổi %s x%s lấy 15 lượng virus? Hành động này không thể hoàn tác.",
-"1334": "Trao đổi",
-"1335": "Bạn đã trao đổi %s %s lấy 15 lượng virus.",
-"1336": "Tăng giới hạn tải lên:",
-"1327": ["Tắt","Một phần","Toàn bộ"],
-"1337": "Chào mừng!",
-"1339": "Xin chào, tôi muốn đổi những thứ này lấy %s đồng. Bạn đồng ý chứ?",
-"1342": "Nhà trọ",
-"1349": "Bạn chỉ đã chọn một khả năng. Thành phố Chôn Vùi khó hơn phiên bản gốc, nhưng hỗ trợ nhiều khả năng. Bạn có muốn chọn lại không?",
-"1350": "Bạn chưa chọn bất kỳ khả năng nào. Thành phố Chôn Vùi khó hơn phiên bản gốc, nên nên chọn ít nhất một khả năng. Bạn có muốn chọn lại không?",
-"1351": "Cảnh báo",
+    "6666": "Vui lòng cập nhật qua Github hoặc kênh khác.",
+    "6667": "Cảm ơn bạn đã chơi Buried City! Tham gia cộng đồng game và các kênh phân phối của trò chơi, được liệt kê dưới đây. Hãy báo cáo cả lỗi!",
+    "1324": "Vì uống cà phê nên bạn gặp vấn đề về giấc ngủ. Nghỉ sau %s giờ.",
+    "1325": "Độ chính xác giảm %s% do uống rượu!",
+    "1326": "Vui lòng bán từ túi!",
+    "1333": "Trao đổi %s x%s lấy 15 lượng virus? Hành động này không thể hoàn tác.",
+    "1334": "Trao đổi",
+    "1335": "Bạn đã trao đổi %s %s lấy 15 lượng virus.",
+    "1336": "Tăng giới hạn tải lên:",
+    "1327": ["Tắt", "Một phần", "Toàn bộ"],
+    "1337": "Chào mừng!",
+    "1339": "Xin chào, tôi muốn đổi những thứ này lấy %s đồng. Bạn đồng ý chứ?",
+    "1342": "Nhà trọ",
+    "1349": "Bạn chỉ đã chọn một khả năng. Thành phố Chôn Vùi khó hơn phiên bản gốc, nhưng hỗ trợ nhiều khả năng. Bạn có muốn chọn lại không?",
+    "1350": "Bạn chưa chọn bất kỳ khả năng nào. Thành phố Chôn Vùi khó hơn phiên bản gốc, nên nên chọn ít nhất một khả năng. Bạn có muốn chọn lại không?",
+    "1351": "Cảnh báo",
     "1343": "Nhà trọ có thể cung cấp một số tiện nghi như ở nhà. Nếu bạn có đủ khả năng tài chính.",
-    "1344": "Ngủ %s giờ (%s đồng)",
-    "1345": "Cà phê (%s đồng)",
-    "1346": "Rượu (%s đồng)",
-"8103": "Tăng tốc:",
-"8104": "Hoạt động",
-"8105": "Vô hiệu hóa (không có vật phẩm)",
-"8106": "Vô hiệu hóa (không đủ khí gas)",
-"8107": "Bạn đã tìm thấy một chiếc xe hỏng. Mặc dù chiếc xe gỉ sét không có ích, có thể có một ít xăng trong bình chứa. Nếu bạn có một công cụ hút xăng, bạn có thể lấy một ít xăng.",
-"8108": "Bạn chưa trang bị công cụ hút xăng!",
+    "1344": "Bạn cảm thấy như đó không đủ. Phải uống nhiều hơn lần sau.",
+    "1345": "Uống cà phê",
+    "1346": "Uống rượu",
+    "8103": "Tăng tốc:",
+    "8104": "Hoạt động",
+    "8105": "Vô hiệu hóa (không có vật phẩm)",
+    "8106": "Vô hiệu hóa (không đủ khí gas)",
+    "8107": "Bạn đã tìm thấy một chiếc xe hỏng. Mặc dù chiếc xe gỉ sét không có ích, có thể có một ít xăng trong bình chứa. Nếu bạn có một công cụ hút xăng, bạn có thể lấy một ít xăng.",
+    "8108": "Bạn chưa trang bị công cụ hút xăng!",
     "8109": "Tài Năng Được Chọn",
     "8111": "Bị kinh ngạc bởi trận chiến tàn khốc,",
     "8112": "Bị kinh ngạc bởi sự hỗn loạn tại nhà,",
     "8113": "Tâm trạng của bạn cuối cùng đã sụp đổ.",
     "8114": "Bạn đã nhảy từ một tòa nhà cao gần đó, cố gắng kết thúc cuộc đời của chính mình.",
     "8115": "Bạn đã buộc một nút, cố gắng kết thúc cuộc đời của chính mình.",
-"1305075": {
-"title": "Công cụ hút xăng",
-"des": "Các ống dẫn đơn giản và các bình chứa cho phép bạn sử dụng trọng lực để hút xăng trong xe."
-},
-"8000": "Nhóm cẩn thận mở cửa và thấy mình đứng trong một lối đi tiện ích rộng.",
-"8001": "Nhìn quanh, họ nhận thấy một loạt cửa sổ dọc theo lối đi, mỗi cửa đánh dấu với những con số riêng biệt.",
-"8002": "Nhìn qua vai, họ phát hiện ra cánh cửa vừa bước qua, đánh dấu với số 081.",
-"8003": "Ánh mắt quét qua lối đi, hai con đường tương phản được tiết lộ.",
-"8004": "Ở một đầu, một cổng trang trí với tấm biển thoát hiểm màu xanh lá cây phát ra một ánh sáng hấp dẫn trên một cửa an toàn vững chắc, gợi ý về cứu rỗi tiềm năng.",
-"8005": "Ở phía bên kia, một đường hầm vô tận, bí ẩn kéo dài vào vô định, che phủ bởi sự không chắc chắn và lôi cuốn.",
-"8006": "'Chúng ta gần đến rồi. Chúng ta nên đi hướng nào?'",
-"8010": "'Bạn nói đúng. Chúng ta cần thoát ra khỏi đây, nhanh.'",
-"8011": "Họ đã đứng trước cánh cổng trong chốc lát, xoay nhanh bánh xe. Tuy nhiên, nó không kéo dài lâu.",
-"8012": "Một giọng nói ám ảnh vang khắp hành lang, làm rung động nhân vật chính đến xương tủy. 'Những người sống sót. Thật hiếm thấy. Cuộc sống thực sự đáng kinh ngạc.'",
-"8013": "'Thật không may, tôi không thể để cho các bạn ra đi. Cuối cùng, các bạn đã nên chết rồi.' Những lời này nặng nề trong không khí, mang đầy cảm giác sự tận diệt đang đến gần.",
-"8014": "'Vậy thì, hãy làm như vậy đi.' Khí ga màu đỏ tươi bắt đầu tỏa ra từ bức tường, từ từ lấp đầy lối đi với một màn sương độc hại.",
-"8015": "Gương mặt của Bill tái nhợt như hồn ma. 'Đó là hắn. Chết tiệt,' anh lẩm bẩm, giọng nói run rẩy vì sợ hãi và ám ảnh.",
-"8016": "Nỗi đau là to lớn nhưng lại nhanh chóng qua đi. Chẳng bao lâu sau, chỉ còn yên lặng.",
-"8020": "Mắt của những người sống sót quét qua lối đi. Dấu vết tuyệt vọng rõ rệt - một số cửa sổ mang dấu vết móng vuốt, dấu tích của những nỗ lực điên cuồng để thoát khỏi.",
-"8021": "Mảng máu lão hóa tràn ngập từ kẽ hở của một số cửa, một lời nhắc nhở đáng sợ về những kinh hoàng đã diễn ra bên trong.",
-"8022": "Hiển nhiên nơi này đã chứng kiến những sự kiện không thể tả nổi, nhưng giữa bóng tối, vẫn còn một chút lạc quan - một số cửa trông vẫn còn nguyên vẹn.",
-"8023": "'Rõ ràng, chúng ta đang ở một trụ sở nào đó. Chúng ta không thể rời khỏi đây bằng cách bình thường.'",
-"8024": "Có lẽ phía sau những cánh cửa không bị chạm vào đó vẫn tồn tại một vẻ vang của nền văn minh. Có lẽ còn nhiều người sống sót đang cố gắng sinh tồn trước khó khăn.",
-"8025": "Có lẽ ngày tận thế vẫn chưa đến nơi đó. Có thể vẫn còn cơ hội để ngăn họ.",
-"8026": "Những người sống sót nhanh chóng bước qua một cánh cửa và bi ến mất vào không gian vô tận.",
-"8100": "Cửa chắn",
-"8101": "Độ sâu của lối đi",
-"8102": "Cuối cùng, mọi thứ đã kết thúc. Một cánh cửa ở cuối phòng. Với thành phố bị phong tỏa, đây là cách duy nhất để ra ngoài.",
-"1301091": {
-    "title": "Súng phun lửa",
-    "des": "Gây thiệt hại lâu dài cho một số lượng lớn xác sống, nhược điểm duy nhất là cần nhiều xăng. Rất nhiều xăng. Nếu bạn hết xăng ở giữa đường..."
-},
-"1347": "Bạn đã kích hoạt tất cả xác sống.",
-"1348": "Bạn đã hết xăng!",
-"gachapon": {
-    "title": "Rút thăm may mắn",
-    "des": "Hãy thử vận may của bạn! Đang chờ đợi một phần thưởng lớn! 100% trúng thưởng!"
-},
-"gachaponDialog": {
-    "title": {
-        "txt_1": "Giá: %s xu"
+    "1305075": {
+        "title": "Công cụ hút xăng",
+        "des": "Các ống dẫn đơn giản và các bình chứa cho phép bạn sử dụng trọng lực để hút xăng trong xe."
     },
-    "content": {},
-    "action": {
-        "btn_1": {
-            "txt": "Chơi"
+    "8000": "Nhóm cẩn thận mở cửa và thấy mình đứng trong một lối đi tiện ích rộng.",
+    "8001": "Nhìn quanh, họ nhận thấy một loạt cửa sổ dọc theo lối đi, mỗi cửa đánh dấu với những con số riêng biệt.",
+    "8002": "Nhìn qua vai, họ phát hiện ra cánh cửa vừa bước qua, đánh dấu với số 081.",
+    "8003": "Ánh mắt quét qua lối đi, hai con đường tương phản được tiết lộ.",
+    "8004": "Ở một đầu, một cổng trang trí với tấm biển thoát hiểm màu xanh lá cây phát ra một ánh sáng hấp dẫn trên một cửa an toàn vững chắc, gợi ý về cứu rỗi tiềm năng.",
+    "8005": "Ở phía bên kia, một đường hầm vô tận, bí ẩn kéo dài vào vô định, che phủ bởi sự không chắc chắn và lôi cuốn.",
+    "8006": "'Chúng ta gần đến rồi. Chúng ta nên đi hướng nào?'",
+    "8010": "'Bạn nói đúng. Chúng ta cần thoát ra khỏi đây, nhanh.'",
+    "8011": "Họ đã đứng trước cánh cổng trong chốc lát, xoay nhanh bánh xe. Tuy nhiên, nó không kéo dài lâu.",
+    "8012": "Một giọng nói ám ảnh vang khắp hành lang, làm rung động nhân vật chính đến xương tủy. 'Những người sống sót. Thật hiếm thấy. Cuộc sống thực sự đáng kinh ngạc.'",
+    "8013": "'Thật không may, tôi không thể để cho các bạn ra đi. Cuối cùng, các bạn đã nên chết rồi.' Những lời này nặng nề trong không khí, mang đầy cảm giác sự tận diệt đang đến gần.",
+    "8014": "'Vậy thì, hãy làm như vậy đi.' Khí ga màu đỏ tươi bắt đầu tỏa ra từ bức tường, từ từ lấp đầy lối đi với một màn sương độc hại.",
+    "8015": "Gương mặt của Bill tái nhợt như hồn ma. 'Đó là hắn. Chết tiệt,' anh lẩm bẩm, giọng nói run rẩy vì sợ hãi và ám ảnh.",
+    "8016": "Nỗi đau là to lớn nhưng lại nhanh chóng qua đi. Chẳng bao lâu sau, chỉ còn yên lặng.",
+    "8020": "Mắt của những người sống sót quét qua lối đi. Dấu vết tuyệt vọng rõ rệt - một số cửa sổ mang dấu vết móng vuốt, dấu tích của những nỗ lực điên cuồng để thoát khỏi.",
+    "8021": "Mảng máu lão hóa tràn ngập từ kẽ hở của một số cửa, một lời nhắc nhở đáng sợ về những kinh hoàng đã diễn ra bên trong.",
+    "8022": "Hiển nhiên nơi này đã chứng kiến những sự kiện không thể tả nổi, nhưng giữa bóng tối, vẫn còn một chút lạc quan - một số cửa trông vẫn còn nguyên vẹn.",
+    "8023": "'Rõ ràng, chúng ta đang ở một trụ sở nào đó. Chúng ta không thể rời khỏi đây bằng cách bình thường.'",
+    "8024": "Có lẽ phía sau những cánh cửa không bị chạm vào đó vẫn tồn tại một vẻ vang của nền văn minh. Có lẽ còn nhiều người sống sót đang cố gắng sinh tồn trước khó khăn.",
+    "8025": "Có lẽ ngày tận thế vẫn chưa đến nơi đó. Có thể vẫn còn cơ hội để ngăn họ.",
+    "8026": "Những người sống sót nhanh chóng bước qua một cánh cửa và bi ến mất vào không gian vô tận.",
+    "8100": "Cửa chắn",
+    "8101": "Độ sâu của lối đi",
+    "8102": "Cuối cùng, mọi thứ đã kết thúc. Một cánh cửa ở cuối phòng. Với thành phố bị phong tỏa, đây là cách duy nhất để ra ngoài.",
+    "1301091": {
+        "title": "Súng phun lửa",
+        "des": "Gây thiệt hại lâu dài cho một số lượng lớn xác sống, nhược điểm duy nhất là cần nhiều xăng. Rất nhiều xăng. Nếu bạn hết xăng ở giữa đường..."
+    },
+    "1347": "Bạn đã kích hoạt tất cả xác sống.",
+    "1348": "Bạn đã hết xăng!",
+    "gachapon": {
+        "title": "Rút thăm may mắn",
+        "des": "Hãy thử vận may của bạn! Đang chờ đợi một phần thưởng lớn! 100% trúng thưởng!"
+    },
+    "gachaponDialog": {
+        "title": {
+            "txt_1": "Giá: %s xu"
         },
-        "btn_1": {
-            "txt": "Không sao"
+        "content": {},
+        "action": {
+            "btn_1": {
+                "txt": "Chơi"
+            },
+            "btn_1": {
+                "txt": "Không sao"
+            }
         }
-    }
-},
-"1338": "Chào mừng đến với Buried City, một phiên bản mod của Buried Town được tạo bởi ArithSeq.\n\nNếu nội dung màn hình chưa hoàn chỉnh, vui lòng vào Cài đặt ở góc dưới bên phải và chỉnh sửa Thu nhỏ màn hình.\n\nPhiên bản này đã trải qua nhiều điều chỉnh và đã được trang bị nhiều tính năng. Vui lòng đọc tài liệu ở góc dưới bên trái để biết thêm thông tin.\n\nPhần mềm mã nguồn mở, xin vui lòng không sử dụng vì mục đích thương mại. Hãy thưởng thức thời gian ở đây!",
+    },
+    "1338": "Chào mừng đến với Buried City, một phiên bản mod của Buried Town được tạo bởi ArithSeq.\n\nNếu nội dung màn hình chưa hoàn chỉnh, vui lòng vào Cài đặt ở góc dưới bên phải và chỉnh sửa Thu nhỏ màn hình.\n\nPhiên bản này đã trải qua nhiều điều chỉnh và đã được trang bị nhiều tính năng. Vui lòng đọc tài liệu ở góc dưới bên trái để biết thêm thông tin.\n\nPhần mềm mã nguồn mở, xin vui lòng không sử dụng vì mục đích thương mại. Hãy thưởng thức thời gian ở đây!",
     "1103094": {
         "title": "Phô mai",
         "des": "Cảm giác mềm mại và tan chảy cùng hương vị sữa thơm ngon có thể khiến bạn quên đi những áp lực trong cuộc sống."
     },
-"site_501": {
+    "site_501": {
         "name": "Trường Trung học",
         "des": "Hành lang trường trung học, trước đây nhộn nhịp với người đông, giờ đây yên tĩnh đến mức bạn có thể nghe thấy tiếng kim rơi. Nếu không có sách rải rác và vết máu, người ta có thể tưởng như đó là một ngày nghỉ."
     },
@@ -221,17 +233,15 @@ var string = {
     "1330": "Bạn đang rất khát và đã uống %s ly nước từ phòng chứa.",
     "1331": "Bạn đã uống 1 ly nước từ balo của bạn.",
     "1332": "Bạn đã uống 1 ly nước từ phòng chứa.",
-"9030": "Bạn có muốn bán?",
-"9031": "Bạn có muốn mua?",
-"9033": "Bán",
-"9034": "Mua",
-"9035": "Hàng tồn: ",
-"9036": "Nhưng cặp của bạn không đủ chỗ để chứa những thứ đã ăn cắp. Bạn đã để chúng trở lại một cách im lặng.",
+    "9030": "Bạn có muốn bán?",
+    "9031": "Bạn có muốn mua?",
+    "9033": "Bán",
+    "9034": "Mua",
+    "9035": "Hàng tồn: ",
+    "9036": "Nhưng cặp của bạn không đủ chỗ để chứa những thứ đã ăn cắp. Bạn đã để chúng trở lại một cách im lặng.",
     "1171": "Chú chó vui mừng ăn từng miếng thịt tươi.",
-"1023": "Thiếu thịt",
+    "1023": "Thiếu thịt",
     "1169": "hiệu ứng âm thanh",
-    "1321": "Masako",
-    "1322": "Kĩ sư điện",
     "1323": "Sửa (%s điểm)",
     "site_204": {
         "name": "Nhà máy điện",
@@ -289,17 +299,17 @@ var string = {
     "12": {
         "title": "Điện",
         "des": "Các thiết bị gia dụng và vũ khí EMP của bạn cần điện để hoạt động. Đảm bảo hoạt động liên tục của nhà máy điện là quan trọng để tồn tại."
-      },
-      "1301071": {
+    },
+    "1301071": {
         "title": "Súng EMP",
         "des": "Có thể tạo ra dòng điện mạnh mẽ ngang ngửa súng cầm tay thông thường. Tuy nhiên, nếu không có điện, nó sẽ vô dụng."
-      },
-      "1301082": {
+    },
+    "1301082": {
         "title": "Súng EMP",
         "des": "Sử dụng dòng điện cao áp để tạo ra điện xuyên qua bất kỳ vật liệu hữu cơ nào. Điều kiện cần là có điện, tất nhiên."
-      },
-      "1126": "Có nguồn điện",
-      "1127": "Hết nguồn điện",
+    },
+    "1126": "Có nguồn điện",
+    "1127": "Hết nguồn điện",
     "1000": "Ngày thứ %s",
     "1001": "Nâng lên (%s điểm)",
     "1002": "Chế tác (%s điểm)",
@@ -351,7 +361,7 @@ var string = {
     "1052": "cương %s thi bị thương %s điểm",
     "1053": "Tất cả cương thi bị thương %s điểm",
     "1054": "Trượt",
-    "1055": "Cương thi bị miếng mồi thu hút, tạm thời ngừng tấn công bạn",
+    "1055": "Cương thi bị miếng %s thu hút, tạm thời ngừng tấn công bạn",
     "1056": "%s con cương %s thi gục xuống",
     "1057": "Bạn bất tỉnh nhân sự vì mất nhiều máu",
     "1058": "Tiêu hao:",
@@ -372,7 +382,6 @@ var string = {
     "1073": "Biết rồi",
     "1074": "Đồ có thể được",
     "1075": "Cương thi đe dọa",
-    "1076": "Cương thi tấn công đêm",
     "1077": "Cương thi bùng phát, trong thị trấn chỗ nào cũng thấy bọn cương thi hoành hành. Đã có vài con phá vợ được tuyến phòng ngự để vào trong nhà phá phách.",
     "1078": "Cương thi bùng phát, trong thị trấn chỗ nào cũng thấy bọn cương thi hoành hành. Với tuyến phòng ngự kiên cố ngày, nhà của bạn đã chống chọi được sự tấn công của chúng mà không có bất cứ tổn hại nào.",
     "1079": "Tổn thất của bạn:",
@@ -452,8 +461,6 @@ var string = {
     "1156": "Chắc chắn bắt đầu game không? tiến độ vốn có sẽ bị xóa.",
     "1157": "Nghĩ thêm đã",
     "1158": "Bảng xếp hạng",
-    "1159": "Bạn đã sống sót trong Buried City",
-    "1160": "D%s H%s M%s",
     "1161": "Nhập tên",
     "1162": "Chia sẻ",
     "1163": "Quay về trang chủ",
@@ -462,9 +469,6 @@ var string = {
     "1167": "Thông báo:",
     "1168": "Bạn vượt qua khu phố bị cương thi chiếm đóng, tìm tới nơi tránh nạn này, hiện nay đạn dược lương thảo đã cạn kiệt. Mau tới đống đổ nát tìm kiếm thức ăn, vũ khí và thuốc men, có được những thứ đó bạn mới sống sót được. Sống thêm một ngày là thêm một chút hy vọng, mau đi đi!",
     "1170": "Nắm đấm",
-    "1173": "Tăng cường:",
-    "1190": "Giá:",
-    "1191": "%s tiền",
     "1192": "Miễn phí",
     "1193": "Trở lại",
     "1195": "Bị dục vọng dẫn lỗi ",
@@ -494,15 +498,12 @@ var string = {
     "1228": "Rời đi",
     "1229": "Một khi đã rời mật thất thì không thể vào lại được, bạn chắc chắn muốn rời chứ?",
     "1230": "Không",
-    "1231": "Bạn có thể sống sót bao lâu trong thành phố bị vây hãm bởi cương thi?",
-    "1232": "Đã mở khóa",
     "1233": "Đã mua",
     "1234": "Nick name không được bao gồm ký tự “,” hoặc “|”",
     "1235": "Danh nhân đường",
     "1237": "Bạn vượt qua được con phố bị cương thi xâu xé, cuối cùng cũng tìm được một ngôi nhà nhỏ làm nơi tránh nạn. Mặc dù lương thảo đạn được đã hết, nhưng vì sinh tồn bạn phải quay trở lại thị trấn, tìm tới những ngôi nhà bỏ hoang để tìm đồ tiếp tế.",
     "1238": "Bạn để đồ ăn và nguyên liệu tìm được vào kho ở góc bên trái phía dưới. Bây giờ tới kho tìm cái gì để ăn rồi chui vào túi ngủ ngủ một giấc đi. ( Click vào biểu tượng ở phía trên cùng của màn hình để kiểm tra thuộc tính sinh tồn bất cứ lúc nào)",
     "1239": "Sau một giấc ngủ đủ, giá trị sinh mệnh của bạn đã được khôi phục rồi. Nhưng chỉ là tạm thời thôi, đói khát, bệnh tật, sự xâm nhập và tấn công của cương thi đều có thể lấy mạng bạn. Bạn cần phải tìm càng nhiều đồ càng tốt, tất nhiên khi ra khỏi nhà tốt nhất là mang theo vũ khí.",
-    "1241": "Người này lặng lẽ rời đi, không để lại lời nhắn nào cả",
     "1245": "Tài năng không được chọn, cửa hàng không thể vào.",
     "1246": "Tường huân chương",
     "1247": "Huân chương vinh dự",
@@ -721,8 +722,8 @@ var string = {
     },
     "b_1107052": "Bạn sẽ không tích lũy virus trong một thời gian.",
     "1107052": {
-      "title": "Giải độc thử nghiệm",
-      "des": "Trong khi vẫn chưa đạt được tiến bộ trong việc chữa trị virus zombie, việc ngăn chặn xâm nhập của virus tạm thời vẫn có thể thực hiện được."
+        "title": "Giải độc thử nghiệm",
+        "des": "Trong khi vẫn chưa đạt được tiến bộ trong việc chữa trị virus zombie, việc ngăn chặn xâm nhập của virus tạm thời vẫn có thể thực hiện được."
     },
     "1301011": {
         "title": "Súng ngắn  ",
@@ -769,8 +770,8 @@ var string = {
         "des": "Vũ khí tự chế mạnh mẽ, có thể tạo ra sức nổ trong một tích tắc, giết chết cả bầy cương thi."
     },
     "1303022": {
-        "title": "Mồi nhử cương thi",
-        "des": "Dùng âm thanh và nhiệt lượng tỏa ra từ những cục pin, làm cho những tảng thịt gần đó phát ra mùi thơm để thu hút sự chú ý của cương thi."
+        "title": "Bom khói",
+        "des": "Sử dụng pin để làm nóng hóa chất và tạo ra nhiều khói. Thêm một số thịt, và cả zombies lẫn tên trộm đều sẽ bị xao lạc."
     },
     "1303033": {
         "title": "Tên lửa",
@@ -801,26 +802,26 @@ var string = {
         "des": "Thiết kế theo tiêu chuẩn quân đội, tải trọng gần với giới hạn của con người."
     },
     "1102053": {
-    "title": "Động cơ Xe máy",
-    "des": "Bộ phận cốt lõi để sản xuất xe máy."
-},
-"1305034": {
-    "title": "Xe máy",
-    "des": "Một chiếc xe máy cổ điển với khả năng chở hàng lớn, tăng tốc độ di chuyển của bạn đáng kể."
-},
-"1305053": {
-    "title": "Đèn Pin Mạnh",
-    "des": "Đừng coi thường nó; khi có mặt, những xác sống ẩn náu ở góc không có nơi trốn. Giảm đáng kể khả năng gặp phải xác sống."
-},
-"1102073": {
-    "title": "Bộ Phận Bơm Xăng",
-    "des": "Ngoài việc thiếu gốm, bộ phận này hoàn hảo. Xăng quá ăn mòn và nhựa trở nên giòn trong vài ngày."
-},
-"16": {
-    "title": "Xăng",
-    "des": "Không có xăng, các phương tiện gắn máy sẽ không hoạt động. Tài nguyên quý giá này nên được giữ bí mật với những người sống sót khác. Dễ cháy và nổ, chỉ có thể lưu trữ trong bình xăng."
-},
-"1340": "Nhu cầu Nhiên liệu:",
+        "title": "Động cơ Xe máy",
+        "des": "Bộ phận cốt lõi để sản xuất xe máy."
+    },
+    "1305034": {
+        "title": "Xe máy",
+        "des": "Một chiếc xe máy cổ điển với khả năng chở hàng lớn, tăng tốc độ di chuyển của bạn đáng kể."
+    },
+    "1305053": {
+        "title": "Đèn Pin Mạnh",
+        "des": "Đừng coi thường nó; khi có mặt, những xác sống ẩn náu ở góc không có nơi trốn. Giảm đáng kể khả năng gặp phải xác sống."
+    },
+    "1102073": {
+        "title": "Bộ Phận Bơm Xăng",
+        "des": "Ngoài việc thiếu gốm, bộ phận này hoàn hảo. Xăng quá ăn mòn và nhựa trở nên giòn trong vài ngày."
+    },
+    "16": {
+        "title": "Xăng",
+        "des": "Không có xăng, các phương tiện gắn máy sẽ không hoạt động. Tài nguyên quý giá này nên được giữ bí mật với những người sống sót khác. Dễ cháy và nổ, chỉ có thể lưu trữ trong bình xăng."
+    },
+    "1340": "Nhu cầu Nhiên liệu:",
     "1341": "Đôi ủng của bạn bị hỏng.",
     "1305064": {
         "title": "Máy do thám",
@@ -890,10 +891,10 @@ var string = {
         "title": "Túi ngủ",
         "des": "Cung cấp môi trường ấm ấp và dễ chịu để ngủ"
     },
-"9_1": {
-"title": "Chăn ga gối đệm",
-"des": "Thoải mái hơn so với túi ngủ, nhưng vẫn chưa phải là lựa chọn tốt nhất."
-},
+    "9_1": {
+        "title": "Chăn ga gối đệm",
+        "des": "Thoải mái hơn so với túi ngủ, nhưng vẫn chưa phải là lựa chọn tốt nhất."
+    },
     "9_2": {
         "title": "Giường",
         "des": "Chiếc giường bằng phẳng và dễ chịu để bảo đảm giấc ngủ ngon."
@@ -1118,50 +1119,50 @@ var string = {
         "name": "Trạm xăng",
         "des": "Trong trạm xăng, xe hơi đỗ la liệt, lộn xộn, tiến không được, lùi cũng không xong. Kỳ lạ là hỗn loạn như thế nhưng không gây ra cháy nổ."
     },
-"site_202": {
-          "name": "Bãi rác",
-          "des": "Bãi rác của thị trấn hôi thối đến mức zombie cũng không dám lại gần. Mặc dù có thể có đồ tiếp tế trong đó, nhưng... đừng nói về nó, hãy nhổ nó đi"
-      },
-      "site_400": {
-          "name": "Survivor's Market",
-          "des": "Phiên chợ do những người sống sót tổ chức sẽ có sản phẩm mới mỗi ngày. Vui lòng bán nguồn cung cấp trong 'Nơi để đồ'. Chủ nghĩa tư bản thực sự hung dữ hơn cả thây ma."
-      },
-      "site_500": {
-          "name": "Hang cướp",
-          "des": "Tòa nhà không có gì nổi bật này kỳ thực là nơi đóng quân của một băng nhóm cướp, nếu bạn dám cướp của tôi, thì bạn đừng sợ tôi lấy lại.\nCảnh báo: Kẻ cướp có thể mang theo vũ khí!"
-      },
-      "13": {
-          "title": "Tiền xu",
-          "des": "Mặc dù hòn đảo đang bị bao vây bởi thây ma, nhưng tiền xu vẫn là phương tiện duy nhất để trao đổi với mọi người."
-      },
-      "npc_7": {
-          "name": "W. Trắng",
-          "des": "Trước thảm họa, anh ấy là giáo viên hóa học tại trường trung học của thị trấn, nhưng xét theo thiết bị ở nhà, hóa chất ở đây thậm chí còn không được các trường đại học giảng dạy.",
-          "dialogs": ["Cough..Cough..Cough.. Xin lỗi, bệnh nghề nghiệp. Đồ bảo hộ ngày càng khó kiếm.", "Jesse! Jesse! Này, cuộc sống ngày càng căng thẳng khi không có Jesse." , "Tôi cũng có thể tạo ra một số chất hóa học 'ngoài quầy', hehehe...", "Dừng lại! Giơ tay lên! Này, bạn không phải là kẻ trộm ... Vậy thì xin lỗi", "Tôi vẫn nhớ khoảng thời gian đấu trí với vợ và bạn bè. Bây giờ, tôi phải chiến đấu với mọi người."]
-      },
-      "actionDialog2": {
-          "title": {
-              "txt_1": "Hiện tại: %s"
-          },
-          "content": {"des2":"Tiền xu là đơn vị tiền tệ duy nhất được công nhận trong Chợ người sống sót. Bạn có thể mua và bán vật tư ở đó và kiếm xu."
-          },
-          "action": {
-              "btn_1": {
-                  "txt": "Hiểu rồi"
-              }
-          }
-      },
-      "9019": "Tìm kiếm (30 phút)",
-      "9020": "Bán",
-      "9021": "Đơn giá: ",
-      "9022": "Chọn Số lượng: ",
-      "9023": "Tổng giá: ",
-      "9024": "Bạn sắp bán (%s) lấy %s xu",
-      "9025": "Bạn đã bán (%s) và nhận được %s xu",
-      "9026": "Bạn sắp chi %s xu để mua (%s)",
-      "9027": "Bạn đã chi %s xu để mua (%s)",
-      "9028": "Xu của bạn không đủ để trả phí! Xu hiện tại là: %s",
-      "9032": "Bạn trở về nhà và thấy mọi thứ trong tình trạng hỗn loạn. Bị thu hút bởi sự giàu có của bạn và thiếu sự bảo vệ, trộm cướp đã cướp nhà bạn và bạn đã mất:",
+    "site_202": {
+        "name": "Bãi rác",
+        "des": "Bãi rác của thị trấn hôi thối đến mức zombie cũng không dám lại gần. Mặc dù có thể có đồ tiếp tế trong đó, nhưng... đừng nói về nó, hãy nhổ nó đi"
+    },
+    "site_400": {
+        "name": "Survivor's Market",
+        "des": "Phiên chợ do những người sống sót tổ chức sẽ có sản phẩm mới mỗi ngày. Vui lòng bán nguồn cung cấp trong 'Nơi để đồ'. Chủ nghĩa tư bản thực sự hung dữ hơn cả thây ma."
+    },
+    "site_500": {
+        "name": "Hang cướp",
+        "des": "Tòa nhà không có gì nổi bật này kỳ thực là nơi đóng quân của một băng nhóm cướp, nếu bạn dám cướp của tôi, thì bạn đừng sợ tôi lấy lại.\nCảnh báo: Kẻ cướp có thể mang theo vũ khí!"
+    },
+    "13": {
+        "title": "Tiền xu",
+        "des": "Mặc dù hòn đảo đang bị bao vây bởi thây ma, nhưng tiền xu vẫn là phương tiện duy nhất để trao đổi với mọi người."
+    },
+    "npc_7": {
+        "name": "W. Trắng",
+        "des": "Trước thảm họa, anh ấy là giáo viên hóa học tại trường trung học của thị trấn, nhưng xét theo thiết bị ở nhà, hóa chất ở đây thậm chí còn không được các trường đại học giảng dạy.",
+        "dialogs": ["Cough..Cough..Cough.. Xin lỗi, bệnh nghề nghiệp. Đồ bảo hộ ngày càng khó kiếm.", "Jesse! Jesse! Này, cuộc sống ngày càng căng thẳng khi không có Jesse.", "Tôi cũng có thể tạo ra một số chất hóa học 'ngoài quầy', hehehe...", "Dừng lại! Giơ tay lên! Này, bạn không phải là kẻ trộm ... Vậy thì xin lỗi", "Tôi vẫn nhớ khoảng thời gian đấu trí với vợ và bạn bè. Bây giờ, tôi phải chiến đấu với mọi người."]
+    },
+    "statusDialog2": {
+        "title": {
+            "txt_1": "Hiện tại: %s"
+        },
+        "content": {
+            "des2": "Tiền xu là đơn vị tiền tệ duy nhất được công nhận trong Chợ người sống sót. Bạn có thể mua và bán vật tư ở đó và kiếm xu."
+        },
+        "action": {
+            "btn_1": {
+                "txt": "Hiểu rồi"
+            }
+        }
+    },
+    "9019": "Tìm kiếm (30 phút)",
+    "9020": "Bán",
+    "9022": "Chọn Số lượng: ",
+    "9023": "Tổng giá: ",
+    "9024": "Bạn sắp bán (%s) lấy %s xu",
+    "9025": "Bạn đã bán (%s) và nhận được %s xu",
+    "9026": "Bạn sắp chi %s xu để mua (%s)",
+    "9027": "Bạn đã chi %s xu để mua (%s)",
+    "9028": "Xu của bạn không đủ để trả phí! Xu hiện tại là: %s",
+    "9032": "Bạn trở về nhà và thấy mọi thứ trong tình trạng hỗn loạn. Bị thu hút bởi sự giàu có của bạn và thiếu sự bảo vệ, trộm cướp đã cướp nhà bạn và bạn đã mất:",
     "site_61": {
         "name": "Phòng nghiên cứu 081",
         "des": "Thật không ngờ ở cái thị trấn này sâu dưới lòng đất 30m lại có một công trình to lớn đến vậy, rốt cục là ai đã tạo ra nó? Ở đây đã xảy ra điều gì?"
@@ -1229,13 +1230,13 @@ var string = {
     "b_1107022": "Giúp bạn không bị ảnh hưởng của việc lây nhiễm nữa",
     "b_1107032": "Giúp bạn không còn cảm thấy mệt nữa",
     "b_1107042": "Giúp bạn không còn cảm thấy đói nữa",
-"water_name": ["Khát nặng", "Rất khát", "Hơi khát", "Không khát nước"],
+    "water_name": ["Khát nặng", "Rất khát", "Hơi khát", "Không khát nước"],
     "starve_name": ["Đói đến nỗi nguy kịch", "Đói", "Đói", "Không đói"],
     "vigour_name": ["Kiệt sức", "Mệt mỏi", "Mệt mỏi", "Năng động"],
     "spirit_name": ["Suy sụp", "Chán nản", "Buồn", "Tự tin"],
     "injury_name": ["Không bị thương", "Bị thương", "Bị thương nhẹ", "Bị thương nặng", "Bị thương tử vong"],
     "infect_name": ["Không nhiễm trùng", "Nhiễm trùng nhẹ", "Nhiễm trùng vừa", "Nhiễm trùng nặng", "Suy kiệt hệ miễn dịch"],
-"water_down": ["Bạn đang cực kỳ khát - tầm nhìn của bạn đang mờ đi.", "Bạn rất khát - khi bạn nhắm mắt, bạn nghĩ đến nước.", "Bạn muốn uống nước."],
+    "water_down": ["Bạn đang cực kỳ khát - tầm nhìn của bạn đang mờ đi.", "Bạn rất khát - khi bạn nhắm mắt, bạn nghĩ đến nước.", "Bạn muốn uống nước."],
     "infect_up": [null, "Vi khuẩn đang phát triển trong cơ thể bạn", "Nhiễm trùng đã lan ra nhanh chóng, bạn cảm thấy toàn thân đau nhức", "Nhiễm trùng nặng làm cho toàn thân bạn nóng lên, bạn cảm thấy cuộc sống của mình đang mất dần đi"],
     "infect_down": [null, null, "Nhiễm trùng tạm thời đã được khống chế, ít nhất sẽ không lan ra nữa.", "Tình hình nhiễm trùng đã được giảm bớt nhưng vẫn chưa thể lạc quan được", "Thuốc đã có tác dụng nhưng tình hình nhiễm trùng vẫn rất nghiêm trọng"],
     "injury_up": [null, "Vết thương của bạn đang rộng ra", "Vết thương của bạn xấu đi, có thể bị nhiễm trùng bất cứ lúc nào", "Vết thương của bạn vô cùng nghiêm trọng, gần như mất khả năng vận động"],
@@ -1343,7 +1344,7 @@ var string = {
     "p_104": {
         "name": "Nhà ngoại giao",
         "des": "Bạn giỏi về việc kết bạn với người khác và nhận được sự để ý, giúp đỡ của người khác.",
-"effect": "Nhận được một khoản thưởng lớn khi tương tác với NPC. Từ chối yêu cầu của một NPC sẽ không làm giảm điểm quan hệ. Việc trộm cắp thất bại sẽ gây ảnh hưởng giảm."
+        "effect": "Nhận được một khoản thưởng lớn khi tương tác với NPC. Từ chối yêu cầu của một NPC sẽ không làm giảm điểm quan hệ. Việc trộm cắp thất bại sẽ gây ảnh hưởng giảm."
     },
     "p_201": {
         "name": "Túi thức ăn",
@@ -1373,36 +1374,36 @@ var string = {
         "name": "Gói quà sinh mệnh",
         "des": "Nhận ngay gói quà sinh mệnh. \\n(hãy kiểm tra trong kho)"
     },
-  "p_105": {
-    "name": "Người tích trữ",
-    "des": "Những nguồn cung cấp được tích trữ trước khi thảm họa cuối cùng cũng có tác dụng.",
-    "effect": "Nhận được nhiều vật liệu ở đầu trò chơi."
-  },
-  "p_106": {
-    "name": "Tài tình",
-    "des": "Thủ công là sở trường của bạn.",
-    "effect": "Tạo đồ và nâng cấp nội thất nhanh hơn 30%."
-  },
-  "p_107": {
-    "name": "Ẩn nấp",
-    "des": "Bạn rất giỏi trong việc giấu dấu dấu vết của mình.",
-    "effect": "Giảm 25% khả năng gặp phải xác sống, tấn công ban đêm và sự viếng thăm của trộm."
-  },
-  "p_109": {
-    "name": "Cheat: Mua hàng miễn phí trong ứng dụng",
-    "des": "Mua miễn phí không giới hạn trong cửa hàng và Radio CMD đang mở.",
-    "effect": "Chức năng gian lận, mua hàng miễn phí không giới hạn trong cửa hàng và Radio CMD. (Thành tựu sẽ không được tính)"
-  },
-  "p_110": {
-    "name": "Cheat: Mở khóa tất cả",
-    "des": "Mở khóa tất cả các vị trí, NPC, tình bạn tối đa và các vị trí lặp lại.",
-    "effect": "Chức năng gian lận, mở khóa tất cả các bản sao, NPC, tình bạn tối đa và các vị trí lặp lại. (Thành tựu sẽ không được tính)"
-  },
-"p_108": {
-    "name": "Du khách cắm trại",
-    "des": "Bạn có một ba lô cỡ lớn.",
-    "effect": "Kích thước ba lô +30."
-},
+    "p_105": {
+        "name": "Người tích trữ",
+        "des": "Những nguồn cung cấp được tích trữ trước khi thảm họa cuối cùng cũng có tác dụng.",
+        "effect": "Nhận được nhiều vật liệu ở đầu trò chơi."
+    },
+    "p_106": {
+        "name": "Tài tình",
+        "des": "Thủ công là sở trường của bạn.",
+        "effect": "Tạo đồ và nâng cấp nội thất nhanh hơn 30%."
+    },
+    "p_107": {
+        "name": "Ẩn nấp",
+        "des": "Bạn rất giỏi trong việc giấu dấu dấu vết của mình.",
+        "effect": "Giảm 25% khả năng gặp phải xác sống, tấn công ban đêm và sự viếng thăm của trộm."
+    },
+    "p_109": {
+        "name": "Cheat: Mua hàng miễn phí trong ứng dụng",
+        "effect": "",
+        "des": "Chức năng gian lận, mua hàng miễn phí không giới hạn trong cửa hàng và Radio CMD. (Thành tựu sẽ không được tính)"
+    },
+    "p_110": {
+        "name": "Cheat: Mở khóa tất cả",
+        "effect": "",
+        "des": "Chức năng gian lận, mở khóa tất cả các bản sao, NPC, tình bạn tối đa và các vị trí lặp lại. (Thành tựu sẽ không được tính)"
+    },
+    "p_108": {
+        "name": "Du khách cắm trại",
+        "des": "Bạn có một ba lô cỡ lớn.",
+        "effect": "Kích thước ba lô +30."
+    },
     "m_103": {
         "name": "Huân chương người sắt (cấp 3)",
         "condition": "Sống sót hơn 5 ngày trong 1 ván",
@@ -1449,154 +1450,154 @@ var string = {
         "des": "Mang theo một khẩu M40 lúc bắt đầu ván"
     },
     "1260": "Thành tựu",
-"1261": "Bạn có thể mở khóa và xem thành tựu Google trong chế độ ngoại tuyến tại đây. Bạn có thể sao lưu và khôi phục tiến trình bất cứ lúc nào bằng cách sử dụng lệnh radio: 'backup', 'restore {}'.",
-"1272": "Bạn đã mở khóa thành tích: ",
-"bt_season_1": {
-"title": "Vào mùa đông",
-"des": "Vượt qua mùa thu."
-},
-"bt_season_2": {
-"title": "Vào mùa xuân",
-"des": "Vượt qua mùa đông."
-},
-"bt_season_3": {
-"title": "Vào mùa hè",
-"des": "Vượt qua mùa xuân."
-},
-"bt_season_4": {
-"title": "Vào mùa thu",
-"des": "Vượt qua mùa hè."
-},
-"bt_produce_1": {
-"title": "Nông dân",
-"des": "Trồng 50 củ khoai tây."
-},
-"bt_produce_2": {
-"title": "Thợ săn",
-"des": "Chế tạo 25 miếng thịt."
-},
-"bt_produce_3": {
-"title": "Câu cá",
-"des": "Chế tạo 100 đơn vị nước."
-},
-"bt_produce_4": {
-"title": "Người nghiện rượu",
-"des": "Chế tạo 50 chai Vodka."
-},
-"bt_make_1": {
-"title": "Đây là cuộc chiến!",
-"des": "Chế tạo một khẩu AK47."
-},
-"bt_make_2": {
-"title": "Phòng thủ chủ động",
-"des": "Chế tạo một bộ áo giáp chống bạo động."
-},
-"bt_make_3": {
-"title": "Thủ quỹ",
-"des": "Chế tạo một ba lô quân sự."
-},
-"bt_make_4": {
-"title": "Ninja",
-"des": "Chế tạo một cây kiếm Katana."
-},
-"bt_npc_1": {
-"title": "Xin chào, ông Luo!",
-"des": "Gặp ông Luo."
-},
-"bt_npc_2": {
-"title": "Rất tốt ông, Luo!",
-"des": "Tình bạn với ông Luo tăng lên 100%."
-},
-"bt_npc_3": {
-"title": "Xin chào, Jeff!",
-"des": "Gặp Jeff."
-},
-"bt_npc_4": {
-"title": "Rất tốt ông, Jeff!",
-"des": "Tình bạn với Jeff tăng lên 100%."
-},
-"bt_npc_5": {
-"title": "Xin chào, Tiến sĩ Jean!",
-"des": "Gặp Tiến sĩ Jean."
-},
-"bt_npc_6": {
-"title": "Rất tốt ông, Tiến sĩ!",
-"des": "Tình bạn với Tiến sĩ Jean tăng lên 100%."
-},
-"bt_npc_7": {
-"title": "Xin chào, Masasko!",
-"des": "Gặp Masako."
-},
-"bt_npc_8": {
-"title": "Rất tốt ông, Masako!",
-"des": "Tình bạn với Masako tăng lên 100%."
-},
-"bt_npc_9": {
-"title": "Xin chào, Bill!",
-"des": "Gặp Bill."
-},
-"bt_npc_10": {
-"title": "Rất tốt ông, Bill!",
-"des": "Tình bạn với Bill tăng lên 100%."
-},
-"bt_npc_11": {
-"title": "Xin chào, ngài... Người lạ!",
-"des": "Gặp Người lạ."
-},
-"bt_npc_12": {
-"title": "Rất tốt ông, ngài!",
-"des": "Tình bạn với Người lạ tăng lên 100%."
-},
-"bt_npc_13": {
-"title": "Xin chào, ông White!",
-"des": "Gặp gỡ W.White."
-},
-"bt_npc_14": {
-"title": "Rất tử tế của ông, Walter!",
-"des": "Mức độ tình bạn với W.White tăng lên 100%."
-},
-"bt_item_1": {
-"title": "Bắn nào!",
-"des": "Nhận một khẩu súng Magnum."
-},
-"bt_item_2": {
-"title": "Búng nào!",
-"des": "Nhận một khẩu súng M40."
-},
-"bt_item_3": {
-"title": "Dadada!",
-"des": "Nhận một khẩu súng FAMAS."
-},
-"bt_item_4": {
-"title": "Người hâm mộ phim kinh dị",
-"des": "Nhận một máy cưa xích."
-},
-"bt_item_5": {
-"title": "Lạc quan",
-"des": "Nhận một mồi bắt xác sống."
-},
-"bt_item_6": {
-"title": "Khủng bố",
-"des": "Nhận một mìn nổ tự chế."
-},
-"bt_cost_1": {
-"title": "Hào hứng",
-"des": "Uống cà phê 50 lần."
-},
-"bt_cost_2": {
-"title": "Hào hứng hơn",
-"des": "Uống cà phê 100 lần."
-},
-"bt_cost_3": {
-"title": "Cố lên",
-"des": "Uống cà phê 150 lần."
-},
-"bt_special_1": {
-"title": "Điện năng!",
-"des": "Sửa chữa máy phát điện 5 lần."
-},
-"bt_special_2": {
-"title": "Fort Knox",
-"des": "Đạt đến mức phòng thủ nhà tối đa một lần."
-}
+    "1261": "Bạn có thể mở khóa và xem thành tựu Google trong chế độ ngoại tuyến tại đây. Bạn có thể sao lưu và khôi phục tiến trình bất cứ lúc nào bằng cách sử dụng lệnh radio: 'backup', 'restore {}'.",
+    "1272": "Bạn đã mở khóa thành tích: ",
+    "bt_season_1": {
+        "title": "Vào mùa đông",
+        "des": "Vượt qua mùa thu."
+    },
+    "bt_season_2": {
+        "title": "Vào mùa xuân",
+        "des": "Vượt qua mùa đông."
+    },
+    "bt_season_3": {
+        "title": "Vào mùa hè",
+        "des": "Vượt qua mùa xuân."
+    },
+    "bt_season_4": {
+        "title": "Vào mùa thu",
+        "des": "Vượt qua mùa hè."
+    },
+    "bt_produce_1": {
+        "title": "Nông dân",
+        "des": "Trồng 50 củ khoai tây."
+    },
+    "bt_produce_2": {
+        "title": "Thợ săn",
+        "des": "Chế tạo 25 miếng thịt."
+    },
+    "bt_produce_3": {
+        "title": "Câu cá",
+        "des": "Chế tạo 100 đơn vị nước."
+    },
+    "bt_produce_4": {
+        "title": "Người nghiện rượu",
+        "des": "Chế tạo 50 chai Vodka."
+    },
+    "bt_make_1": {
+        "title": "Đây là cuộc chiến!",
+        "des": "Chế tạo một khẩu AK47."
+    },
+    "bt_make_2": {
+        "title": "Phòng thủ chủ động",
+        "des": "Chế tạo một bộ áo giáp chống bạo động."
+    },
+    "bt_make_3": {
+        "title": "Thủ quỹ",
+        "des": "Chế tạo một ba lô quân sự."
+    },
+    "bt_make_4": {
+        "title": "Ninja",
+        "des": "Chế tạo một cây kiếm Katana."
+    },
+    "bt_npc_1": {
+        "title": "Xin chào, ông Luo!",
+        "des": "Gặp ông Luo."
+    },
+    "bt_npc_2": {
+        "title": "Rất tốt ông, Luo!",
+        "des": "Tình bạn với ông Luo tăng lên 100%."
+    },
+    "bt_npc_3": {
+        "title": "Xin chào, Jeff!",
+        "des": "Gặp Jeff."
+    },
+    "bt_npc_4": {
+        "title": "Rất tốt ông, Jeff!",
+        "des": "Tình bạn với Jeff tăng lên 100%."
+    },
+    "bt_npc_5": {
+        "title": "Xin chào, Tiến sĩ Jean!",
+        "des": "Gặp Tiến sĩ Jean."
+    },
+    "bt_npc_6": {
+        "title": "Rất tốt ông, Tiến sĩ!",
+        "des": "Tình bạn với Tiến sĩ Jean tăng lên 100%."
+    },
+    "bt_npc_7": {
+        "title": "Xin chào, Masasko!",
+        "des": "Gặp Masako."
+    },
+    "bt_npc_8": {
+        "title": "Rất tốt ông, Masako!",
+        "des": "Tình bạn với Masako tăng lên 100%."
+    },
+    "bt_npc_9": {
+        "title": "Xin chào, Bill!",
+        "des": "Gặp Bill."
+    },
+    "bt_npc_10": {
+        "title": "Rất tốt ông, Bill!",
+        "des": "Tình bạn với Bill tăng lên 100%."
+    },
+    "bt_npc_11": {
+        "title": "Xin chào, ngài... Người lạ!",
+        "des": "Gặp Người lạ."
+    },
+    "bt_npc_12": {
+        "title": "Rất tốt ông, ngài!",
+        "des": "Tình bạn với Người lạ tăng lên 100%."
+    },
+    "bt_npc_13": {
+        "title": "Xin chào, ông White!",
+        "des": "Gặp gỡ W.White."
+    },
+    "bt_npc_14": {
+        "title": "Rất tử tế của ông, Walter!",
+        "des": "Mức độ tình bạn với W.White tăng lên 100%."
+    },
+    "bt_item_1": {
+        "title": "Bắn nào!",
+        "des": "Nhận một khẩu súng Magnum."
+    },
+    "bt_item_2": {
+        "title": "Búng nào!",
+        "des": "Nhận một khẩu súng M40."
+    },
+    "bt_item_3": {
+        "title": "Dadada!",
+        "des": "Nhận một khẩu súng FAMAS."
+    },
+    "bt_item_4": {
+        "title": "Người hâm mộ phim kinh dị",
+        "des": "Nhận một máy cưa xích."
+    },
+    "bt_item_5": {
+        "title": "Lạc quan",
+        "des": "Nhận một mồi bắt xác sống."
+    },
+    "bt_item_6": {
+        "title": "Khủng bố",
+        "des": "Nhận một mìn nổ tự chế."
+    },
+    "bt_cost_1": {
+        "title": "Hào hứng",
+        "des": "Uống cà phê 50 lần."
+    },
+    "bt_cost_2": {
+        "title": "Hào hứng hơn",
+        "des": "Uống cà phê 100 lần."
+    },
+    "bt_cost_3": {
+        "title": "Cố lên",
+        "des": "Uống cà phê 150 lần."
+    },
+    "bt_special_1": {
+        "title": "Điện năng!",
+        "des": "Sửa chữa máy phát điện 5 lần."
+    },
+    "bt_special_2": {
+        "title": "Fort Knox",
+        "des": "Đạt đến mức phòng thủ nhà tối đa một lần."
+    }
 };

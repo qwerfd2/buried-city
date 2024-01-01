@@ -154,21 +154,9 @@ var Navigation = {
         } else if (siteId == 500) {
             this.siteMusic = audioManager.music.BANDITDEN;
             return this.siteMusic;
-        } else if (siteId == 33 || siteId == 61 || (siteId > 300 && siteId < 400)) {
-            if (!this.siteMusic) {
-                var musicPool = [audioManager.music.SITE_4, audioManager.music.SITE_5, audioManager.music.SITE_6];
-                this.siteMusic = musicPool[utils.getRandomInt(0, musicPool.length - 1)];
-            }
-            return this.siteMusic;
-        } else if (siteId == 666) {
-            if (!this.siteMusic) {
-                var musicPool = [audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3, audioManager.music.SITE_4, audioManager.music.SITE_5, audioManager.music.SITE_6];
-                this.siteMusic = musicPool[utils.getRandomInt(0, musicPool.length - 1)];
-            }
-            return this.siteMusic;
         } else {
             if (!this.siteMusic) {
-                var musicPool = [audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3];
+                var musicPool = [audioManager.music.SITE_1, audioManager.music.SITE_2, audioManager.music.SITE_3, audioManager.music.SITE_4];
                 this.siteMusic = musicPool[utils.getRandomInt(0, musicPool.length - 1)];
             }
             return this.siteMusic;

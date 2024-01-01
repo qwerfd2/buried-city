@@ -1,36 +1,43 @@
 var string = {
-      "banditType_1": "Sorrateiro",
-      "banditType_2": "Robusto",
-      "banditType_4": "Astúcia",
-      "banditType_5": "Ágil",
-      "9045": "%s bandidos descobriram você!",
-      "9046": "%s bandido está se aproximando de você! Distância %s",
-      "9047": "%s bandido atirou em você, HP %s",
-      "9048": "Você usa %s para atirar no bandido %s",
-      "9049": "Você empunha %s para atacar o bandido %s na sua frente",
-      "9050": "Você jogou %s no grupo de bandidos",
-      "9051": "Tiro preciso! A cabeça do bandido de %s foi estourada",
-      "9052": "%s bandido recebeu %s dano",
-      "9053": "Todos os bandidos receberam %s dano",
-      "9054": "%s %s bandidos morreram",
-      "9358": "Você colocou fogo em todos os bandidos,",
-      "9055":"%s atacou o bandido, e %s bandido recebeu %s dano",
-      "9056":"O bandido é atraído por %s e irá parar de atacar você temporariamente",
-      "9057":"%s coletou esses itens dos bandidos. Armazenados no depósito por enquanto.",
-      "9059": ["Bandidos avistados à frente!", "Vários bandidos patrulhando notaram você.", "Você está cercado por um grupo de bandidos."],
-      "9165": "Você deu um soco brutal no bandido %s.",
-      "9139": "Número de bandidos:",
-      "9118": "Você eliminou os bandidos com sucesso",
-      "9109": "O ataque do bandido causou danos fatais a você!",
-"radio_tut": "Para aumentar a chance de encontrar outros sobreviventes, você deve construir o rádio e transmitir-se todos os dias.",
-"motor_tut": "Você pode economizar combustível não pilotando a motocicleta. O bônus de peso ainda se aplica. Para fazer isso, clique no ícone da motocicleta nesta janela pop-up.",
-"site_502": {
-    "name": "Aquário",
-    "des": "Os peixes no aquário estão praticamente mortos. A água infestada de algas torna o interior estranhamente carmesim. É melhor não perturbar a cúpula de vidro, ou então, isso pode se tornar uma sepultura aquática.\nVocê não pode usar armas de fogo e explosivos aqui."
-},
-"1166": "Agora crescendo %s...",
-"equip_needed":"Eficaz apenas quando equipado como ferramenta.",
-"no_need_equip":"Equipamento passivo, não há necessidade de equipar.",
+    "9114": "Você fugiu dos bandidos. Continue em frente.",
+    "9115": "Você matou os bandidos. Continue em frente.",
+    "9116": "Você cedeu à exigência do bandido e ele deixou você ir.",
+    "9082": "Você escapou dos bandidos.",
+    "1172": "Capitular",
+    "9113": "Encontro com bandidos!",
+    "9039": "Ele prometeu que se você capitular, eles vão deixar você ir hoje. Eles querem:",
+    "banditType_1": "Sorrateiro",
+    "banditType_2": "Robusto",
+    "banditType_4": "Astúcia",
+    "banditType_5": "Ágil",
+    "9045": "%s bandidos descobriram você!",
+    "9046": "%s bandido está se aproximando de você! Distância %s",
+    "9047": "%s bandido atirou em você, HP %s",
+    "9048": "Você usa %s para atirar no bandido %s",
+    "9049": "Você empunha %s para atacar o bandido %s na sua frente",
+    "9050": "Você jogou %s no grupo de bandidos",
+    "9051": "Tiro preciso! A cabeça do bandido de %s foi estourada",
+    "9052": "%s bandido recebeu %s dano",
+    "9053": "Todos os bandidos receberam %s dano",
+    "9054": "%s %s bandidos morreram",
+    "9358": "Você colocou fogo em todos os bandidos,",
+    "9055": "%s atacou o bandido, e %s bandido recebeu %s dano",
+    "9056": "O bandido é atraído por %s e irá parar de atacar você temporariamente",
+    "9057": "%s coletou esses itens dos bandidos. Armazenados no depósito por enquanto.",
+    "9059": ["Bandidos avistados à frente!", "Vários bandidos patrulhando notaram você.", "Você está cercado por um grupo de bandidos."],
+    "9165": "Você deu um soco brutal no bandido %s.",
+    "9139": "Número de bandidos:",
+    "9118": "Você eliminou os bandidos com sucesso",
+    "9109": "O ataque do bandido causou danos fatais a você!",
+    "radio_tut": "Para aumentar a chance de encontrar outros sobreviventes, você deve construir o rádio e transmitir-se todos os dias.",
+    "motor_tut": "Você pode economizar combustível não pilotando a motocicleta. O bônus de peso ainda se aplica. Para fazer isso, clique no ícone da motocicleta nesta janela pop-up.",
+    "site_502": {
+        "name": "Aquário",
+        "des": "Os peixes no aquário estão praticamente mortos. A água infestada de algas torna o interior estranhamente carmesim. É melhor não perturbar a cúpula de vidro, ou então, isso pode se tornar uma sepultura aquática.\nVocê não pode usar armas de fogo e explosivos aqui."
+    },
+    "1166": "Agora crescendo %s...",
+    "equip_needed": "Eficaz apenas quando equipado como ferramenta.",
+    "no_need_equip": "Equipamento passivo, não há necessidade de equipar.",
     "7000": "Verificar a condição de %s",
     "7001": "Levar %s para fora",
     "7002": "Deixar %s guardar a casa",
@@ -44,150 +51,155 @@ var string = {
     "7013": "%s mastiga feliz o osso.",
     "7014": "Você brincou com %s, ele parece feliz.",
     "7015": "%s atacou um zumbi, o zumbi %s sofreu %s de dano.",
-    "7016": "Os zumbis são atraídos por %s e param de te atacar.",
     "7017": "%s encontrou isso no zumbi, armazenado no depósito por enquanto:",
     "7018": "Presente do cachorro",
     "17": {
-      "title": "Lesão do cachorro",
-      "des": "O cachorro pode se machucar em combate e precisa de tratamento oportuno."
+        "title": "Lesão do cachorro",
+        "des": "O cachorro pode se machucar em combate e precisa de tratamento oportuno."
     },
     "18": {
-      "title": "Fome do cachorro",
-      "des": "O cachorro precisa de carne. Uma porção é boa por 12 horas, você pode alimentar até 4 vezes."
+        "title": "Fome do cachorro",
+        "des": "O cachorro precisa de carne. Uma porção é boa por 12 horas, você pode alimentar até 4 vezes."
     },
     "19": {
-      "title": "Humor do cachorro",
-      "des": "Condições difíceis também deixam o cachorro deprimido. Brinque com ele em casa todos os dias ou use um osso de cachorro."
+        "title": "Humor do cachorro",
+        "des": "Condições difíceis também deixam o cachorro deprimido. Brinque com ele em casa todos os dias ou use um osso de cachorro."
     },
     "1106014": {
-      "title": "Osso de cachorro",
-      "des": "Um osso de cachorro caseiro pode animar o seu cachorro, mesmo em um ambiente tão difícil."
-    },      
-"6677": "Você consertou temporariamente o gerador.",
-"6678": "Você consertou temporariamente a bomba de gasolina.",
-"6679": "O gerador apresentou uma avaria.",
-"6680": "A bomba de gasolina apresentou uma avaria.",
-"8027": "Trilha sonora",
-"8028": "Versão modificada usada - Autor",
-"8029": "Obrigado por jogar.",
-  "6672": "Alimentos Vencidos",
-  "6674": "Acelerar (1 %s)",
-  "6675": "Você rebaixou a versão do jogo. O arquivo de salvamento pode estar corrompido. Por favor, comece um novo jogo ou reverta para a versão anterior.",
-  "6676": "Você atualizou o jogo. O arquivo de salvamento pode não ser mais compatível. Se encontrar problemas, por favor, comece um novo jogo.",
-  "1101081": {
-    "title": "Adubo",
-    "des": "Na verdade, são apenas alimentos vencidos, e a única maneira de usá-los é adubando as plantações."
-  },
-  "6673": "Ontem, esses alimentos caducaram e foram convertidos em adubo (%s fora, %s em casa). A geladeira pode manter os alimentos frescos!",
-  "21_0": {
-    "title": "Geladeira",
-    "des": "Se houver energia, os alimentos em casa não se estragarão."
-  },
-"6671": "O vírus finalmente derrotou seu sistema imunológico e pôs fim à sua humanidade.",
-"6669": "Você não tem uma motocicleta e não pode armazenar o combustível extraído. Vamos consertar isso mais tarde.",
-"6670": "Você não tem uma motocicleta e não pode armazenar o combustível extraído!",
-    "20_0": {
-      "title": "Cofre seguro",
-      "des": "Proteja seus suprimentos. Itens no cofre seguro não serão roubados nem danificados pelos zumbis."
+        "title": "Osso de cachorro",
+        "des": "Um osso de cachorro caseiro pode animar o seu cachorro, mesmo em um ambiente tão difícil."
     },
-    "6668": "Os itens estão muito pesados. O cofre não pode carregar mais.",  
+    "6677": "Você consertou temporariamente o gerador.",
+    "6678": "Você consertou temporariamente a bomba de gasolina.",
+    "6679": "O gerador apresentou uma avaria.",
+    "6680": "A bomba de gasolina apresentou uma avaria.",
+    "8027": "Trilha sonora",
+    "8028": "Versão modificada usada - Autor",
+    "8029": "Obrigado por jogar.",
+    "6672": "Alimentos Vencidos",
+    "6674": "Acelerar (1 %s)",
+    "6675": "Você rebaixou a versão do jogo. O arquivo de salvamento pode estar corrompido. Por favor, comece um novo jogo ou reverta para a versão anterior.",
+    "6676": "Parabéns, você atualizou o jogo.",
+    "1266": "Erro na verificação de versão:",
+    "1267": "Nova versão %s disponível",
+    "1268": "Atualizações:",
+    "1269": "Esta atualização não afetará o progresso atual na sobrevivência.",
+    "1270": "Alguns conteúdos atualizados só podem ser experimentados ao iniciar uma nova sobrevivência.",
+    "1271": "Esta atualização deletará forçosamente o progresso atual na sobrevivência.",
+    "1101081": {
+        "title": "Adubo",
+        "des": "Na verdade, são apenas alimentos vencidos, e a única maneira de usá-los é adubando as plantações."
+    },
+    "6673": "Ontem, esses alimentos caducaram e foram convertidos em adubo (%s fora, %s em casa). A geladeira pode manter os alimentos frescos!",
+    "21_0": {
+        "title": "Geladeira",
+        "des": "Se houver energia, os alimentos em casa não se estragarão."
+    },
+    "6671": "O vírus finalmente derrotou seu sistema imunológico e pôs fim à sua humanidade.",
+    "6669": "Você não tem uma motocicleta e não pode armazenar o combustível extraído. Vamos consertar isso mais tarde.",
+    "6670": "Você não tem uma motocicleta e não pode armazenar o combustível extraído!",
+    "20_0": {
+        "title": "Cofre seguro",
+        "des": "Proteja seus suprimentos. Itens no cofre seguro não serão roubados nem danificados pelos zumbis."
+    },
+    "6668": "Os itens estão muito pesados. O cofre não pode carregar mais.",
     "8116": "Andar de motocicleta",
     "8117": "Não andar de motocicleta",
     "8118": "Inativo (Jogador optou por não andar)",
     "1305011": {
         "title": "Bala padrão",
-        "des": "Produzida antes do desastre, não danificará a arma e tem melhor precisão, tornando-a mais valiosa."
+        "des": "Produzida antes do desastre, é mais difícil danificar a arma e possui melhor precisão, tornando-a mais valiosa."
     },
     "1305012": {
         "title": "Bala artesanal",
         "des": "Bala artesanal com baixa precisão. Pode causar danos à arma."
     },
-"6666": "Nova atualização detectada: Versão %s. Por favor, atualize via Github ou outro canal.",
-"6667": "Obrigado por jogar Buried City! Junte-se à comunidade de jogadores e aos canais de distribuição do jogo, listados abaixo. Relate também bugs!",
-"1324": "Problemas para dormir por causa do café. Descanse após %s horas.",
-"1325": "Precisão reduzida em %s% devido ao álcool!",
-"1326": "Por favor, venda a partir da bolsa!",
-"1327": ["Desligado","Parcial","Completo"],
-"1333": "Trocar %s x%s por 15 Cargas de Vírus? Esta ação é irreversível.",
-"1334": "Trocar",
-"1335": "Você trocou %s %s por 15 Cargas de Vírus.",
-"1336": "Aumentar o limite superior de carga:",
-"1337": "Bem-vindo!",
-"1339": "Olá, gostaria de trocar isso por %s moedas. Você concorda?",
-"1342": "Albergue",
+    "6666": "Por favor, atualize via Github ou outro canal.",
+    "6667": "Obrigado por jogar Buried City! Junte-se à comunidade de jogadores e aos canais de distribuição do jogo, listados abaixo. Relate também bugs!",
+    "1324": "Problemas para dormir por causa do café. Descanse após %s horas.",
+    "1325": "Precisão reduzida em %s% devido ao álcool!",
+    "1326": "Por favor, venda a partir da bolsa!",
+    "1327": ["Desligado", "Parcial", "Completo"],
+    "1333": "Trocar %s x%s por 15 Cargas de Vírus? Esta ação é irreversível.",
+    "1334": "Trocar",
+    "1335": "Você trocou %s %s por 15 Cargas de Vírus.",
+    "1336": "Aumentar o limite superior de carga:",
+    "1337": "Bem-vindo!",
+    "1339": "Olá, gostaria de trocar isso por %s moedas. Você concorda?",
+    "1342": "Albergue",
     "1343": "O albergue pode oferecer algumas comodidades como em casa. Se você puder pagar, é claro.",
-    "1344": "Dormir %sH (%s moedas)",
-    "1345": "Café (%s moedas)",
-    "1346": "Álcool (%s moedas)",
+    "1344": "Sentiu que isso não foi suficiente. Terá que beber mais da próxima vez.",
+    "1345": "Tomar café",
+    "1346": "Tomar álcool",
     "8103": "Aumento de velocidade: ",
-"8104": "Ativo",
-"8105": "Inativo (sem item)",
-"8106": "Inativo (gás insuficiente)",
-"8107": "Você encontrou um carro quebrado. Embora o carro enferrujado em si seja inútil, pode haver um pouco de gasolina no tanque. Se você tiver uma ferramenta de sifão, pode obter um pouco de gasolina.",
-"8108": "Você não equipou uma ferramenta de sifão!",
+    "8104": "Ativo",
+    "8105": "Inativo (sem item)",
+    "8106": "Inativo (gás insuficiente)",
+    "8107": "Você encontrou um carro quebrado. Embora o carro enferrujado em si seja inútil, pode haver um pouco de gasolina no tanque. Se você tiver uma ferramenta de sifão, pode obter um pouco de gasolina.",
+    "8108": "Você não equipou uma ferramenta de sifão!",
     "8109": "Talentos Selecionados",
     "8111": "Surpreendido pela batalha brutal,",
     "8112": "Surpreendido pela bagunça em casa,",
     "8113": "Seu estado mental finalmente colapsou.",
     "8114": "Você pulou de um prédio alto próximo, tentando acabar com sua própria vida.",
     "8115": "Você fez um nó, tentando acabar com sua própria vida.",
-"1305075": {
-"title": "Ferramenta de sifão",
-"des": "Mangueiras simples e recipientes permitem que você use a gravidade para extrair a gasolina de um carro."
-},
-"8000": "Com cautela, o grupo abre a porta e se encontra em um amplo corredor de utilidade.",
-"8001": "Ao observarem ao redor, notam uma série de portas alinhando o corredor, cada uma marcada com números distintos.",
-"8002": "Lançando um olhar por cima do ombro, eles avistam a porta pela qual acabaram de passar, identificada com o número 081.",
-"8003": "Seu olhar percorre o corredor, revelando duas trajetórias contrastantes.",
-"8004": "Numa extremidade, um portão adornado com uma brilhante placa verde de saída emite um brilho convidativo acima de uma resistente porta de segurança, sugerindo uma possível salvação.",
-"8005": "Na outra extremidade, um túnel infinito e misterioso se estende rumo ao desconhecido, envolto em incerteza e intriga.",
-"8006": "'Estamos quase lá. Qual caminho devemos seguir?'",
-"8010": "'Você está certo. Precisamos sair daqui, rápido.'",
-"8011": "Em pouco tempo, eles estavam na frente do portão, girando freneticamente a roda. No entanto, não iria durar.",
-"8012": "Uma voz assombrosa ecoa pelo corredor, arrepiando o protagonista até os ossos. 'Sobreviventes. Que visão rara. A vida é verdadeiramente incrível.'",
-"8013": "'Infelizmente, não posso deixá-los ir. Afinal, vocês deveriam estar mortos.' As palavras pairam pesadamente no ar, carregadas com um sentimento de destino iminente.",
-"8014": "'Bem, vamos tornar isso realidade.' Um gás vermelho-carmim começa a se infiltrar pelas paredes, preenchendo lentamente o corredor com uma névoa mortal.",
-"8015": "O rosto de Bill está pálido como o de um espectro fantasmagórico. 'É ele. Droga', murmura ele, com a voz trêmula de medo e temor.",
-"8016": "A dor foi imensa, mas rápida. Logo, só restou o silêncio.",
-"8020": "Os olhos dos sobreviventes percorrem o corredor. Rastros de desespero são evidentes - algumas portas têm marcas de garras, vestígios de tentativas frenéticas de escapar.",
-"8021": "Manchas de sangue envelhecido se infiltram pelas frestas de algumas portas, um lembrete sinistro dos horrores que ocorreram no interior.",
-"8022": "É evidente que esse local testemunhou eventos inomináveis, mas no meio da escuridão, um brilho de otimismo permanece - algumas portas parecem intactas.",
-"8023": "'Obviamente, estamos em uma espécie de sede. Não podemos sair daqui de forma convencional.'",
-"8024": "Talvez atrás dessas portas intocadas, ainda exista uma aparência de civilização. Talvez mais sobreviventes estejam lutando pela vida diante da adversidade.",
-"8025": "Talvez o apocalipse ainda não tenha acontecido lá. Talvez ainda haja uma chance de detê-los.",
-"8026": "Os sobreviventes passaram rapidamente por uma porta e desapareceram no vazio sem fim.",
-"8100": "O portão de segurança",
-"8101": "A profundidade do corredor",
-"8102": "Finalmente, acabou. Uma porta está no final da sala. Com a cidade bloqueada, esta é a única saída possível.",
-"1349": "Você selecionou apenas um talento. A Cidade Enterrada é mais difícil do que a versão original, mas suporta vários talentos. Deseja selecionar novamente?",
-"1350": "Você não selecionou nenhum talento. A Cidade Enterrada é mais difícil do que a versão original, é recomendado escolher pelo menos um talento. Deseja selecionar novamente?",
-"1351": "Aviso",
-"1301091": {
-    "title": "Lança-chamas",
-    "des": "Causa danos duradouros a um grande número de zumbis, a única desvantagem é que requer gasolina. Muita gasolina. Se ficar sem gasolina a meio caminho..."
-},
-"1347": "Você incendiou todos os zumbis.",
-"1348": "Você ficou sem gasolina!",
-"gachapon": {
-    "title": "Sorteio",
-    "des": "Venha tentar a sua sorte! Um grande prêmio o aguarda! 100% de prêmio garantido!"
-},
-"gachaponDialog": {
-    "title": {
-        "txt_1": "Preço: %s moedas"
+    "1305075": {
+        "title": "Ferramenta de sifão",
+        "des": "Mangueiras simples e recipientes permitem que você use a gravidade para extrair a gasolina de um carro."
     },
-    "content": {},
-    "action": {
-        "btn_1": {
-            "txt": "Jogar"
+    "8000": "Com cautela, o grupo abre a porta e se encontra em um amplo corredor de utilidade.",
+    "8001": "Ao observarem ao redor, notam uma série de portas alinhando o corredor, cada uma marcada com números distintos.",
+    "8002": "Lançando um olhar por cima do ombro, eles avistam a porta pela qual acabaram de passar, identificada com o número 081.",
+    "8003": "Seu olhar percorre o corredor, revelando duas trajetórias contrastantes.",
+    "8004": "Numa extremidade, um portão adornado com uma brilhante placa verde de saída emite um brilho convidativo acima de uma resistente porta de segurança, sugerindo uma possível salvação.",
+    "8005": "Na outra extremidade, um túnel infinito e misterioso se estende rumo ao desconhecido, envolto em incerteza e intriga.",
+    "8006": "'Estamos quase lá. Qual caminho devemos seguir?'",
+    "8010": "'Você está certo. Precisamos sair daqui, rápido.'",
+    "8011": "Em pouco tempo, eles estavam na frente do portão, girando freneticamente a roda. No entanto, não iria durar.",
+    "8012": "Uma voz assombrosa ecoa pelo corredor, arrepiando o protagonista até os ossos. 'Sobreviventes. Que visão rara. A vida é verdadeiramente incrível.'",
+    "8013": "'Infelizmente, não posso deixá-los ir. Afinal, vocês deveriam estar mortos.' As palavras pairam pesadamente no ar, carregadas com um sentimento de destino iminente.",
+    "8014": "'Bem, vamos tornar isso realidade.' Um gás vermelho-carmim começa a se infiltrar pelas paredes, preenchendo lentamente o corredor com uma névoa mortal.",
+    "8015": "O rosto de Bill está pálido como o de um espectro fantasmagórico. 'É ele. Droga', murmura ele, com a voz trêmula de medo e temor.",
+    "8016": "A dor foi imensa, mas rápida. Logo, só restou o silêncio.",
+    "8020": "Os olhos dos sobreviventes percorrem o corredor. Rastros de desespero são evidentes - algumas portas têm marcas de garras, vestígios de tentativas frenéticas de escapar.",
+    "8021": "Manchas de sangue envelhecido se infiltram pelas frestas de algumas portas, um lembrete sinistro dos horrores que ocorreram no interior.",
+    "8022": "É evidente que esse local testemunhou eventos inomináveis, mas no meio da escuridão, um brilho de otimismo permanece - algumas portas parecem intactas.",
+    "8023": "'Obviamente, estamos em uma espécie de sede. Não podemos sair daqui de forma convencional.'",
+    "8024": "Talvez atrás dessas portas intocadas, ainda exista uma aparência de civilização. Talvez mais sobreviventes estejam lutando pela vida diante da adversidade.",
+    "8025": "Talvez o apocalipse ainda não tenha acontecido lá. Talvez ainda haja uma chance de detê-los.",
+    "8026": "Os sobreviventes passaram rapidamente por uma porta e desapareceram no vazio sem fim.",
+    "8100": "O portão de segurança",
+    "8101": "A profundidade do corredor",
+    "8102": "Finalmente, acabou. Uma porta está no final da sala. Com a cidade bloqueada, esta é a única saída possível.",
+    "1349": "Você selecionou apenas um talento. A Cidade Enterrada é mais difícil do que a versão original, mas suporta vários talentos. Deseja selecionar novamente?",
+    "1350": "Você não selecionou nenhum talento. A Cidade Enterrada é mais difícil do que a versão original, é recomendado escolher pelo menos um talento. Deseja selecionar novamente?",
+    "1351": "Aviso",
+    "1301091": {
+        "title": "Lança-chamas",
+        "des": "Causa danos duradouros a um grande número de zumbis, a única desvantagem é que requer gasolina. Muita gasolina. Se ficar sem gasolina a meio caminho..."
+    },
+    "1347": "Você incendiou todos os zumbis.",
+    "1348": "Você ficou sem gasolina!",
+    "gachapon": {
+        "title": "Sorteio",
+        "des": "Venha tentar a sua sorte! Um grande prêmio o aguarda! 100% de prêmio garantido!"
+    },
+    "gachaponDialog": {
+        "title": {
+            "txt_1": "Preço: %s moedas"
         },
-        "btn_1": {
-            "txt": "Agora não"
+        "content": {},
+        "action": {
+            "btn_1": {
+                "txt": "Jogar"
+            },
+            "btn_1": {
+                "txt": "Agora não"
+            }
         }
-    }
-},
-"1338": "Bem-vindo ao Buried City, uma modificação do Buried Town feita por ArithSeq.\n\nSe o conteúdo da tela estiver incompleto, vá para Configurações no canto inferior direito e modifique Reduzir Tela.\n\nEsta versão passou por muitos ajustes e recebeu inúmeras funcionalidades. Por favor, leia a documentação no canto inferior esquerdo para obter todas as informações.\n\nSoftware de código aberto, por favor, não use para fins comerciais. Aproveite a sua estadia!",
-"1103094": {
+    },
+    "1338": "Bem-vindo ao Buried City, uma modificação do Buried Town feita por ArithSeq.\n\nSe o conteúdo da tela estiver incompleto, vá para Configurações no canto inferior direito e modifique Reduzir Tela.\n\nEsta versão passou por muitos ajustes e recebeu inúmeras funcionalidades. Por favor, leia a documentação no canto inferior esquerdo para obter todas as informações.\n\nSoftware de código aberto, por favor, não use para fins comerciais. Aproveite a sua estadia!",
+    "1103094": {
         "title": "Queijo",
         "des": "A textura suave e derretida e o rico sabor lácteo podem fazer você esquecer as pressões da sobrevivência."
     },
@@ -220,18 +232,16 @@ var string = {
     "1329": "Você está muito sedento e bebeu %s copo de água da sua mochila.",
     "1330": "Você está muito sedento e bebeu %s copo de água do depósito.",
     "1331": "Você bebeu 1 copo de água da sua mochila.",
-    "11332": "Você bebeu 1 copo de água do depósito.",
-"9030": "Você quer vender?",
-"9031": "Você quer comprar?",
-"9033": "Vender",
-"9034": "Comprar",
-"9035": "Estoque: ",
-"9036": "Mas a sua mochila não consegue guardar as coisas roubadas. Você as colocou de volta discretamente.",
+    "1332": "Você bebeu 1 copo de água do depósito.",
+    "9030": "Você quer vender?",
+    "9031": "Você quer comprar?",
+    "9033": "Vender",
+    "9034": "Comprar",
+    "9035": "Estoque: ",
+    "9036": "Mas a sua mochila não consegue guardar as coisas roubadas. Você as colocou de volta discretamente.",
     "1171": "O cão está devorando carne e soltando latidos de alegria.",
-"1023": "Carne insuficiente",
+    "1023": "Carne insuficiente",
     "1169": "efeito sonoro",
-    "1321": "Masako",
-    "1322": "Engenheiro elétrico",
     "1323": "Repair (%s m)",
     "site_204": {
         "name": "Usina elétrica",
@@ -288,17 +298,17 @@ var string = {
     "12": {
         "title": "Eletricidade",
         "des": "Seus eletrodomésticos e armas EMP precisam de eletricidade para funcionar. Garantir a operação contínua da usina de energia é crucial para a sobrevivência."
-      },
-      "1301071": {
+    },
+    "1301071": {
         "title": "Pistola EMP",
         "des": "Pode produzir correntes poderosas que rivalizam com pistolas convencionais. Sem eletricidade, no entanto, é inútil."
-      },
-      "1301082": {
+    },
+    "1301082": {
         "title": "Rifle EMP",
         "des": "Utiliza corrente de alta voltagem para atravessar qualquer material orgânico. Desde que haja eletricidade, é claro."
-      },
-      "1126": "Com energia",
-      "1127": "Sem energia",
+    },
+    "1126": "Com energia",
+    "1127": "Sem energia",
     "1000": "Dias %s",
     "1001": "UP (%s m)",
     "1002": "Fabricar (%s m)",
@@ -339,7 +349,7 @@ var string = {
     "1041": "Seus equipamentos",
     "1042": "Nv. de Ameaça",
     "1043": "Tempo estimado",
-    "1044": "Combate",
+    "1044": "Luta",
     "1045": "%s zumbis lhe descobriram!",
     "1046": "%s zumbis estão se aproximando! Distância de %s.",
     "1047": "Você foi atingido por %s zumbis. Qt. de vida %s.",
@@ -350,7 +360,7 @@ var string = {
     "1052": "%s zumbis sofreram danos de %s.",
     "1053": "Todos os zumbis sofreram danos de %s.",
     "1054": "miss",
-    "1055": "Os zumbis foram atraídos pela armadilha e param de lhe atacar.",
+    "1055": "Os zumbis foram atraídos pela %s e param de lhe atacar.",
     "1056": "%s %s zumbis morreram.",
     "1057": "Você desmaiou devido a perda de sangue em excesso",
     "1058": "Consumo:",
@@ -371,7 +381,6 @@ var string = {
     "1073": "OK",
     "1074": "Itens possíveis:",
     "1075": "Ameaça Zumbi:",
-    "1076": "Ataque zumbi noturno!",
     "1077": "Os zumbis estão tomando conta da cidade. Alguns zumbis passaram pela defesa e estão destruindo a casa.",
     "1078": "Os zumbis estão tomando conta da cidade. Devido a uma boa defesa, seu quarto não foi destruído.",
     "1079": "Seus danos:",
@@ -451,8 +460,6 @@ var string = {
     "1156": "Iniciar um novo jogo? O progresso original será apagado.",
     "1157": "Considerar",
     "1158": "Ranking",
-    "1159": "Você sobreviveu em Buried City",
-    "1160": "D%s H%s M%s",
     "1161": "Digite seu nome",
     "1162": "Compartilhar",
     "1163": "Voltar à Página Inicial",
@@ -461,9 +468,6 @@ var string = {
     "1167": "Dicas:",
     "1168": "Você passou por uma rua massacrada por zumbis. Apesar dos zumbis estarem por toda parte, você ainda tem que procurar por alimentos, medicamentos e armas. A esperança é a última que morre, vá logo!",
     "1170": "Soco.",
-    "1173": "Reforço:",
-    "1190": "Preço:",
-    "1191": "%s ouro",
     "1192": "Grátis",
     "1193": "Retornar",
     "1195": "Compelido pelo desejo",
@@ -475,6 +479,7 @@ var string = {
     "1201": "——Cissy Liu",
     "1203": "%s Dias %s Horas %s Minutos",
     "1204": "Entrar",
+    "1205": "%s está quebrado!",
     "1206": "Energia baixa, ataque mais lento.",
     "1207": "Sem arma, só o punho!",
     "1207": "Sem armas, você pode apenas dar socos!",
@@ -493,15 +498,12 @@ var string = {
     "1228": "Sair",
     "1229": "Ao sair da Sala Secreta não é possível entrar novamente, tem certeza que deseja sair?",
     "1230": "Vazio",
-    "1231": "Quanto tempo você pode viver na cidade dos zumbis?",
-    "1232": "Desbloqueou",
     "1233": "Comprou",
     "1234": "Não pode haver \",\" ou “|”no nome!",
     "1235": "Salão",
     "1237": "Você passou pela rua dos zumbis e finalmente encontrou uma salinha para se esconder.Mesmo com suprimentos, você ainda precisa voltar para a cidade.",
     "1238": "Você trouxe todos os suprimentos para o canto inferior esquerdo do depósito. Vá para lá comer e depois durma (Clique na parte superior da tela para mostrar os atributos de existência)",
     "1239": "Após dormir seus pontos e vida foram recuperados. Contudo, fome, doenças e ataques de zumbis irão lhe perseguir. Vá em busca de mais itens.",
-    "1241": "Essa pessoa saiu nas escuras, não deixou nenhuma mensagem.",
     "1245": "O talento não foi selecionado, a loja não pode ser acessada.",
     "1246": "Medalha de Parede",
     "1247": "Medalha de Condecoração",
@@ -768,8 +770,8 @@ var string = {
         "des": "Muito poderoso, causa um impacto imediato e poderoso que pode matar grupos de zombis."
     },
     "1303022": {
-        "title": "Isca para Zumbis",
-        "des": "Coloque carne em pilhas secas que produzem barulho e calor que atrai zumbis."
+        "title": "Bomba de fumaça",
+        "des": "Use pilhas para aquecer produtos químicos e produzir muita fumaça. Adicione um pouco de carne, e tanto zumbis quanto ladrões ficarão distraídos."
     },
     "1303033": {
         "title": "Basuca",
@@ -889,10 +891,10 @@ var string = {
         "title": "Saco de Dormir",
         "des": "Provê aquecimento básico e um ambiente confortável para dormir."
     },
-"9_1": {
-"title": "Roupa de cama",
-"des": "Mais confortável do que um saco de dormir, mas ainda não é ideal."
-},
+    "9_1": {
+        "title": "Roupa de cama",
+        "des": "Mais confortável do que um saco de dormir, mas ainda não é ideal."
+    },
     "9_2": {
         "title": "Cama",
         "des": "Larga, confortável, garante um sono de qualidade."
@@ -1117,50 +1119,50 @@ var string = {
         "name": "Posto de Gasolina",
         "des": "Dentro do posto há todo tipo de veículos, sendo impossível entrar e sair. Como que aqui não há explosivos!?"
     },
-      "site_202": {
-          "name": "Ferro-velho",
-          "des": "O depósito de lixo da cidade é tão fedorento que nem mesmo os zumbis ousam se aproximar dele. Embora possa haver suprimentos nele, mas... não vamos falar sobre isso, vamos cuspir."
-      },
-      "site_400": {
-          "name": "Mercado do Sobrevivente",
-          "des": "O bazar organizado pelos sobreviventes terá novos produtos todos os dias. Por favor, venda suprimentos em 'Depósito'. O capitalismo é realmente mais feroz que os zumbis."
-      },
-      "site_500": {
-          "name": "Covil dos Bandidos",
-          "des": "Este edifício comum é na verdade o acampamento de uma gangue de ladrões. Já que você se atreve a me roubar, então você não deve ter medo de que eu o pegue de volta.\nAviso: Os ladrões podem estar armados!"
-      },
-      "13": {
-          "title": "Moedas",
-          "des": "Embora a ilha esteja sob o cerco de zumbis, as moedas ainda são o único meio de troca com as pessoas."
-      },
-      "npc_7": {
-          "name": "W. White",
-          "des": "Antes do desastre, Ele era professor de química na escola secundária da cidade, mas a julgar pelo equipamento em casa, os produtos químicos aqui nem são ensinados nas universidades.",
-          "dialogs": ["Tosse..Tosse..Tosse.. Desculpe, doença ocupacional. Materiais de proteção estão ficando cada vez mais difíceis de conseguir.", "Jesse! Jesse! Ei, a vida está ficando cada vez mais estressante sem Jesse." , "Também posso fazer algumas substâncias químicas que estão 'fora do balcão', hehehe...", "Pare! Levante as mãos! Ei, você não é ladrão... Desculpe então." , "Eu ainda saudades da época em que eu brigava com minha esposa e amigos. Agora, tenho que brigar com todo mundo."]
-      },
-      "statusDialog2": {
-          "title": {
-              "txt_1": "Atual: %s"
-          },
-          "content": {"des2":"Moedas são a única moeda reconhecida no Survivor Market. Você pode comprar e vender suprimentos lá e ganhar moedas."
-          },
-          "action": {
-              "btn_1": {
-                  "txt": "Entendi"
-              }
-          }
-      },
-      "9019": "Pesquisar (30 minutos)",
-      "9020": "Vender",
-      "9021": "Preço unitário: ",
-      "9022": "Selecione a quantidade: ",
-      "9023": "Preço total: ",
-      "9024": "Você está prestes a vender (%s) por %s moedas",
-      "9025": "Você vendeu (%s) e ganhou %s moedas",
-      "9026": "Você está prestes a gastar %s moedas para comprar (%s)",
-      "9027": "Você gastou %s moedas para comprar (%s)",
-      "9028": "Suas moedas não são suficientes para pagar a taxa! A moeda atual é: %s",
-      "9032": "Você voltou para casa e encontrou tudo bagunçado. Atraídos pela sua riqueza e falta de guarda, ladrões saquearam sua casa e você perdeu:",
+    "site_202": {
+        "name": "Ferro-velho",
+        "des": "O depósito de lixo da cidade é tão fedorento que nem mesmo os zumbis ousam se aproximar dele. Embora possa haver suprimentos nele, mas... não vamos falar sobre isso, vamos cuspir."
+    },
+    "site_400": {
+        "name": "Mercado do Sobrevivente",
+        "des": "O bazar organizado pelos sobreviventes terá novos produtos todos os dias. Por favor, venda suprimentos em 'Depósito'. O capitalismo é realmente mais feroz que os zumbis."
+    },
+    "site_500": {
+        "name": "Covil dos Bandidos",
+        "des": "Este edifício comum é na verdade o acampamento de uma gangue de ladrões. Já que você se atreve a me roubar, então você não deve ter medo de que eu o pegue de volta.\nAviso: Os ladrões podem estar armados!"
+    },
+    "13": {
+        "title": "Moedas",
+        "des": "Embora a ilha esteja sob o cerco de zumbis, as moedas ainda são o único meio de troca com as pessoas."
+    },
+    "npc_7": {
+        "name": "W. White",
+        "des": "Antes do desastre, Ele era professor de química na escola secundária da cidade, mas a julgar pelo equipamento em casa, os produtos químicos aqui nem são ensinados nas universidades.",
+        "dialogs": ["Tosse..Tosse..Tosse.. Desculpe, doença ocupacional. Materiais de proteção estão ficando cada vez mais difíceis de conseguir.", "Jesse! Jesse! Ei, a vida está ficando cada vez mais estressante sem Jesse.", "Também posso fazer algumas substâncias químicas que estão 'fora do balcão', hehehe...", "Pare! Levante as mãos! Ei, você não é ladrão... Desculpe então.", "Eu ainda saudades da época em que eu brigava com minha esposa e amigos. Agora, tenho que brigar com todo mundo."]
+    },
+    "statusDialog2": {
+        "title": {
+            "txt_1": "Atual: %s"
+        },
+        "content": {
+            "des2": "Moedas são a única moeda reconhecida no Survivor Market. Você pode comprar e vender suprimentos lá e ganhar moedas."
+        },
+        "action": {
+            "btn_1": {
+                "txt": "Entendi"
+            }
+        }
+    },
+    "9019": "Pesquisar (30 minutos)",
+    "9020": "Vender",
+    "9022": "Selecione a quantidade: ",
+    "9023": "Preço total: ",
+    "9024": "Você está prestes a vender (%s) por %s moedas",
+    "9025": "Você vendeu (%s) e ganhou %s moedas",
+    "9026": "Você está prestes a gastar %s moedas para comprar (%s)",
+    "9027": "Você gastou %s moedas para comprar (%s)",
+    "9028": "Suas moedas não são suficientes para pagar a taxa! A moeda atual é: %s",
+    "9032": "Você voltou para casa e encontrou tudo bagunçado. Atraídos pela sua riqueza e falta de guarda, ladrões saquearam sua casa e você perdeu:",
     "site_61": {
         "name": "081Centro de Pesquisa",
         "des": "Nunca imaginei que nesta vila, há 30m de profundidade, ainda descobriria uma construção tão grande! Quem construiu isso e o que aconteceu aqui?"
@@ -1233,8 +1235,8 @@ var string = {
     "vigour_name": ["Esgotado", "Fatigado", "Cansado", "Energético"],
     "spirit_name": ["Colapso", "Deprimido", "Chateado", "Confiante"],
     "injury_name": ["Sem ferimentos", "Ferido", "Ligeiramente ferido", "Gravemente ferido", "Fatalmente ferido"],
-"infect_name": ["Sem infecção", "Infecção leve", "Infecção moderada", "Infecção grave", "Colapso do sistema imunológico"],
-"water_down": ["Você está extremamente sedento - sua visão está ficando embaçada.", "Você está com muita sede - quando você fecha os olhos, pensa em água.", "Você quer beber água."],
+    "infect_name": ["Sem infecção", "Infecção leve", "Infecção moderada", "Infecção grave", "Colapso do sistema imunológico"],
+    "water_down": ["Você está extremamente sedento - sua visão está ficando embaçada.", "Você está com muita sede - quando você fecha os olhos, pensa em água.", "Você quer beber água."],
     "infect_up": [null, "Bactérias estão se multiplicando em seu corpo.", "Infecções estão se espalhando rapidamente. Todo seu corpo dói.", "Infecção severa causou febre. Você se sente como se sua vida estivesse se perdendo."],
     "infect_down": [null, null, "A infecção está temporariamente controlada e não irá se espalhar.", "A infecção está sendo retardada, mas a situação não é otimista.", "Os medicamentos tiveram algum efeito, mas a infecção é ainda grave."],
     "injury_up": [null, "Seu ferimendo está maior.", "O ferimento está pior e você poderá ser infectado a qualuqer instante.", "Seus ferimentos são muito graves, você quase não consegue se mover."],
@@ -1342,7 +1344,7 @@ var string = {
     "p_104": {
         "name": "Comunicador",
         "des": "Você é bom em lidar com as pessoas, e recebeu ajuda e favores delas.",
-"effect": "Obtenha um grande bônus nas interações com NPCs. Recusar o pedido de um NPC não fará com que os pontos de relacionamento diminuam. Falhas no roubo terão um impacto reduzido."
+        "effect": "Obtenha um grande bônus nas interações com NPCs. Recusar o pedido de um NPC não fará com que os pontos de relacionamento diminuam. Falhas no roubo terão um impacto reduzido."
     },
     "p_201": {
         "name": "Sacola de Alimentos",
@@ -1372,36 +1374,36 @@ var string = {
         "name": "Grande Bolsa de HP",
         "des": "Obter Grande Bolsa de HP.\\n (coloque no Depósito)"
     },
-  "p_105": {
-    "name": "Acumulador",
-    "des": "Os suprimentos acumulados antes do desastre finalmente entram em jogo.",
-    "effect": "Obtenha muitos materiais no início."
-  },
-  "p_106": {
-    "name": "Engenhosidade",
-    "des": "Trabalho manual é sua especialidade.",
-    "effect": "A criação de itens e melhorias de móveis é 30% mais rápida."
-  },
-  "p_107": {
-    "name": "Furtividade",
-    "des": "Você é especialmente bom em esconder suas trilhas.",
-    "effect": "25 % menos chance de encontrar zumbis, ataques noturnos e visitas de ladrões."
-  },
-  "p_109": {
-    "name": "Trapaça: Compras IAP gratuitas",
-    "des": "Compras gratuitas ilimitadas na loja e o Radio CMD está aberto.",
-    "effect": "Função de trapaça, compras gratuitas ilimitadas na loja e Rádio CMD. (As conquistas não serão contabilizadas)"
-  },
-  "p_110": {
-    "name": "Trapaça: Desbloquear Tudo",
-    "des": "Desbloqueia todas as localizações, NPCs, amizade máxima e localizações repetíveis.",
-    "effect": "Função de trapaça, desbloqueia todas as cópias, NPCs, amizade máxima e localizações repetíveis. (As conquistas não serão contabilizadas)"
-  },
-"p_108": {
-    "name": "Mochileiro",
-    "des": "Você tem uma mochila extra grande.",
-    "effect": "Tamanho da mochila +30."
-},
+    "p_105": {
+        "name": "Acumulador",
+        "des": "Os suprimentos acumulados antes do desastre finalmente entram em jogo.",
+        "effect": "Obtenha muitos materiais no início."
+    },
+    "p_106": {
+        "name": "Engenhosidade",
+        "des": "Trabalho manual é sua especialidade.",
+        "effect": "A criação de itens e melhorias de móveis é 30% mais rápida."
+    },
+    "p_107": {
+        "name": "Furtividade",
+        "des": "Você é especialmente bom em esconder suas trilhas.",
+        "effect": "25 % menos chance de encontrar zumbis, ataques noturnos e visitas de ladrões."
+    },
+    "p_109": {
+        "name": "Trapaça: Compras IAP gratuitas",
+        "effect": "",
+        "des": "Função de trapaça, compras gratuitas ilimitadas na loja e Rádio CMD. (As conquistas não serão contabilizadas)"
+    },
+    "p_110": {
+        "name": "Trapaça: Desbloquear Tudo",
+        "effect": "",
+        "des": "Função de trapaça, desbloqueia todas as cópias, NPCs, amizade máxima e localizações repetíveis. (As conquistas não serão contabilizadas)"
+    },
+    "p_108": {
+        "name": "Mochileiro",
+        "des": "Você tem uma mochila extra grande.",
+        "effect": "Tamanho da mochila +30."
+    },
     "m_103": {
         "name": "Medalha Homem de Ferro (Nv. 3)",
         "condition": "Sobreviveu por mais de 5 dias",
@@ -1448,154 +1450,154 @@ var string = {
         "des": "Ao abrir o jogo, trazer consigo 1 M40"
     },
     "1260": "Realização",
-"1261": "As realizações do Google podem ser desbloqueadas e visualizadas offline aqui. Você pode fazer backup e restaurar o progresso a qualquer momento usando o comando de rádio: 'backup', 'restore {}'.",
-"1272": "Você desbloqueou a conquista: ",
-"bt_season_1": {
-"title": "No inverno",
-"des": "Passar pelo outono."
-},
-"bt_season_2": {
-"title": "Na primavera",
-"des": "Passar pelo inverno."
-},
-"bt_season_3": {
-"title": "No verão",
-"des": "Passar pela primavera."
-},
-"bt_season_4": {
-"title": "No outono",
-"des": "Passar pelo verão."
-},
-"bt_produce_1": {
-"title": "Agricultor",
-"des": "Plantar 50 batatas."
-},
-"bt_produce_2": {
-"title": "Caçador",
-"des": "Fazer 25 peças de carne."
-},
-"bt_produce_3": {
-"title": "Pescar",
-"des": "Fazer 100 águas."
-},
-"bt_produce_4": {
-"title": "Alcoólatra",
-"des": "Fazer 50 garrafas de vodka."
-},
-"bt_make_1": {
-"title": "Isso é uma guerra!",
-"des": "Fazer uma AK47."
-},
-"bt_make_2": {
-"title": "Defesa passiva",
-"des": "Fazer uma roupa anti-motim."
-},
-"bt_make_3": {
-"title": "Quartel-mestre",
-"des": "Fazer uma mochila militar."
-},
-"bt_make_4": {
-"title": "Ninja",
-"des": "Fazer uma katana."
-},
-"bt_npc_1": {
-"title": "Oi, Sr. Luo!",
-"des": "Encontrar o Sr. Luo."
-},
-"bt_npc_2": {
-"title": "Tão gentil de sua parte, Luo!",
-"des": "Amizade com o Sr. Luo aumenta para 100%."
-},
-"bt_npc_3": {
-"title": "Oi, Jeff!",
-"des": "Encontrar o Jeff."
-},
-"bt_npc_4": {
-"title": "Tão gentil de sua parte, Jeff!",
-"des": "Amizade com o Jeff aumenta para 100%."
-},
-"bt_npc_5": {
-"title": "Oi, Dr. Jean!",
-"des": "Encontrar o Dr. Jean."
-},
-"bt_npc_6": {
-"title": "Tão gentil de sua parte, Dr. Jean!",
-"des": "Amizade com o Dr. Jean aumenta para 100%."
-},
-"bt_npc_7": {
-"title": "Oi, Masako!",
-"des": "Encontrar a Masako."
-},
-"bt_npc_8": {
-"title": "Tão gentil de sua parte, Masako!",
-"des": "Amizade com a Masako aumenta para 100%."
-},
-"bt_npc_9": {
-"title": "Oi, Bill!",
-"des": "Encontrar o Bill."
-},
-"bt_npc_10": {
-"title": "Tão gentil de sua parte, Bill!",
-"des": "Amizade com o Bill aumenta para 100%."
-},
-"bt_npc_11": {
-"title": "Oi, Sr... Estranho!",
-"des": "Encontrar o Estranho."
-},
-"bt_npc_12": {
-"title": "Tão gentil de sua parte, Senhor!",
-"des": "Amizade com o Estranho aumenta para 100%."
-},
-"bt_npc_13": {
-"title": "Oi, Sr. White!",
-"des": "Conheça W.White."
-},
-"bt_npc_14": {
-"title": "Tão gentil da sua parte, Walter!",
-"des": "A amizade com W.White aumenta para 100%."
-},
-"bt_item_1": {
-"title": "Bang!",
-"des": "Obter uma Magnum."
-},
-"bt_item_2": {
-"title": "Bam!",
-"des": "Obter um M40."
-},
-"bt_item_3": {
-"title": "Dadada!",
-"des": "Obter um FAMAS."
-},
-"bt_item_4": {
-"title": "Fãs de terror",
-"des": "Obter uma motosserra."
-},
-"bt_item_5": {
-"title": "Capricho",
-"des": "Obter uma isca de zumbi."
-},
-"bt_item_6": {
-"title": "Terrorista",
-"des": "Obter um explosivo caseiro."
-},
-"bt_cost_1": {
-"title": "Animado",
-"des": "Tomar café 50 vezes."
-},
-"bt_cost_2": {
-"title": "Mais animado",
-"des": "Tomar café 100 vezes."
-},
-"bt_cost_3": {
-"title": "Animar-se",
-"des": "Tomar café 150 vezes."
-},
-"bt_special_1": {
-"title": "Eletricidade!",
-"des": "Consertar o gerador de energia 5 vezes."
-},
-"bt_special_2": {
-"title": "Fort Knox",
-"des": "Alcançar a defesa máxima da casa uma vez."
-}
+    "1261": "As realizações do Google podem ser desbloqueadas e visualizadas offline aqui. Você pode fazer backup e restaurar o progresso a qualquer momento usando o comando de rádio: 'backup', 'restore {}'.",
+    "1272": "Você desbloqueou a conquista: ",
+    "bt_season_1": {
+        "title": "No inverno",
+        "des": "Passar pelo outono."
+    },
+    "bt_season_2": {
+        "title": "Na primavera",
+        "des": "Passar pelo inverno."
+    },
+    "bt_season_3": {
+        "title": "No verão",
+        "des": "Passar pela primavera."
+    },
+    "bt_season_4": {
+        "title": "No outono",
+        "des": "Passar pelo verão."
+    },
+    "bt_produce_1": {
+        "title": "Agricultor",
+        "des": "Plantar 50 batatas."
+    },
+    "bt_produce_2": {
+        "title": "Caçador",
+        "des": "Fazer 25 peças de carne."
+    },
+    "bt_produce_3": {
+        "title": "Pescar",
+        "des": "Fazer 100 águas."
+    },
+    "bt_produce_4": {
+        "title": "Alcoólatra",
+        "des": "Fazer 50 garrafas de vodka."
+    },
+    "bt_make_1": {
+        "title": "Isso é uma guerra!",
+        "des": "Fazer uma AK47."
+    },
+    "bt_make_2": {
+        "title": "Defesa passiva",
+        "des": "Fazer uma roupa anti-motim."
+    },
+    "bt_make_3": {
+        "title": "Quartel-mestre",
+        "des": "Fazer uma mochila militar."
+    },
+    "bt_make_4": {
+        "title": "Ninja",
+        "des": "Fazer uma katana."
+    },
+    "bt_npc_1": {
+        "title": "Oi, Sr. Luo!",
+        "des": "Encontrar o Sr. Luo."
+    },
+    "bt_npc_2": {
+        "title": "Tão gentil de sua parte, Luo!",
+        "des": "Amizade com o Sr. Luo aumenta para 100%."
+    },
+    "bt_npc_3": {
+        "title": "Oi, Jeff!",
+        "des": "Encontrar o Jeff."
+    },
+    "bt_npc_4": {
+        "title": "Tão gentil de sua parte, Jeff!",
+        "des": "Amizade com o Jeff aumenta para 100%."
+    },
+    "bt_npc_5": {
+        "title": "Oi, Dr. Jean!",
+        "des": "Encontrar o Dr. Jean."
+    },
+    "bt_npc_6": {
+        "title": "Tão gentil de sua parte, Dr. Jean!",
+        "des": "Amizade com o Dr. Jean aumenta para 100%."
+    },
+    "bt_npc_7": {
+        "title": "Oi, Masako!",
+        "des": "Encontrar a Masako."
+    },
+    "bt_npc_8": {
+        "title": "Tão gentil de sua parte, Masako!",
+        "des": "Amizade com a Masako aumenta para 100%."
+    },
+    "bt_npc_9": {
+        "title": "Oi, Bill!",
+        "des": "Encontrar o Bill."
+    },
+    "bt_npc_10": {
+        "title": "Tão gentil de sua parte, Bill!",
+        "des": "Amizade com o Bill aumenta para 100%."
+    },
+    "bt_npc_11": {
+        "title": "Oi, Sr... Estranho!",
+        "des": "Encontrar o Estranho."
+    },
+    "bt_npc_12": {
+        "title": "Tão gentil de sua parte, Senhor!",
+        "des": "Amizade com o Estranho aumenta para 100%."
+    },
+    "bt_npc_13": {
+        "title": "Oi, Sr. White!",
+        "des": "Conheça W.White."
+    },
+    "bt_npc_14": {
+        "title": "Tão gentil da sua parte, Walter!",
+        "des": "A amizade com W.White aumenta para 100%."
+    },
+    "bt_item_1": {
+        "title": "Bang!",
+        "des": "Obter uma Magnum."
+    },
+    "bt_item_2": {
+        "title": "Bam!",
+        "des": "Obter um M40."
+    },
+    "bt_item_3": {
+        "title": "Dadada!",
+        "des": "Obter um FAMAS."
+    },
+    "bt_item_4": {
+        "title": "Fãs de terror",
+        "des": "Obter uma motosserra."
+    },
+    "bt_item_5": {
+        "title": "Capricho",
+        "des": "Obter uma isca de zumbi."
+    },
+    "bt_item_6": {
+        "title": "Terrorista",
+        "des": "Obter um explosivo caseiro."
+    },
+    "bt_cost_1": {
+        "title": "Animado",
+        "des": "Tomar café 50 vezes."
+    },
+    "bt_cost_2": {
+        "title": "Mais animado",
+        "des": "Tomar café 100 vezes."
+    },
+    "bt_cost_3": {
+        "title": "Animar-se",
+        "des": "Tomar café 150 vezes."
+    },
+    "bt_special_1": {
+        "title": "Eletricidade!",
+        "des": "Consertar o gerador de energia 5 vezes."
+    },
+    "bt_special_2": {
+        "title": "Fort Knox",
+        "des": "Alcançar a defesa máxima da casa uma vez."
+    }
 };

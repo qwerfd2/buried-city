@@ -1,0 +1,1 @@
+This is a short python script that checks for missing/duplicate/extraneous localization key value pairs using "zh" as the reference.

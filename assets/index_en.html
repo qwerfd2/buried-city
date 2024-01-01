@@ -1,113 +1,208 @@
 <!doctype html>
-<html>
- <head></head>
+<html lang="en">
+<head>
+  <style>
+    p {
+      margin: 10px 0;
+    }
+
+    h3 {
+      position: relative;
+      margin: 0;
+    }
+    h2 {
+      position: relative;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      margin: 0;
+    }
+
+    .button2 {
+      position: absolute;
+      right: 0;
+    }
+</style>
+</head>
  <body style="background-color: #e8eae7;">
   <meta charset="utf-8"> 
-  <h1>Buried City</h1>
+  <h1 id="hub">Buried City</h1>
   <p>Modded by ArithSeq, based on BuriedTown 1.4.3. Commercial use is prohibited.</p>
-  <p style="color:red">Buried City is very different from the official version, and player feedback generally says it is more difficult. Please carefully read the change log if you played the official version before.</p>
-<h2>Peripheral Edits</h2>
+  <p style="color:red;">Buried City is very different from the official version, and player feedback generally says it is more difficult. Please carefully read the change log if you played the official version before.</p>
+  <h2>
+    <button onclick="scrollToSection('external')">Peripheral Edits</button>
+    <button onclick="scrollToSection('internal')">Game Edits</button>
+    <button onclick="scrollToSection('appendix')">Appendix</button>
+    <button onclick="scrollToSection('faq')">FAQ</button>
+    <button onclick="scrollToSection('music')">Music List</button>
+    <button onclick="scrollToSection('factsheet')">BuriedTown Factsheet</button>
+    <button onclick="scrollToSection('contact')">Contact and Update Info</button>
+  </h2>
+<h2 id="external">Peripheral Edits<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
 <p>
-0. Renamed APK package and changed the icon for compatibility.<br>
-1. Removed all Google Play functionalities.<br>
-2. IAP features are now free.<br>
-3. Wall of Medals cheat function (Cheat affects UI and perks only, does not affect normal progression).<br>
-4. Earn and view Google Play achievements in-game (unavailable if cheat talents are chosen).<br>
-5. Music and SFX toggles in settings.<br>
-6. Screen shrink in settings to make the UI compatible with modern phone's aspect ratio.<br>
-7. Hall of Fame works offline (will record prior deaths).<br>
-8. All edits supports 13 languages, just like the official version (except this page).<br>
-9. Replaced the official soundtrack. Credits are displayed at the bottom of the main menu. Original battle music is preserved for Secret Base, 081, and Portal.<br>
-10. Main menu music selection button, music logic improvement.<br> 
-11. Removed splash screen.<br>
+1. Renamed APK package and changed the icon for compatibility.<br>
+2. Removed all Google Play functionalities.<br>
+3. IAP talents are now free.<br>
+4. Wall of Medals cheat function (Cheat affects UI and perks only, does not affect normal progression).<br>
+5. Earn and view Google Play achievements in-game (unavailable if cheat talents are chosen).<br>
+6. Music and SFX toggles in settings.<br>
+7. Screen shrink in settings to make the UI compatible with modern phone's aspect ratio.<br>
+8. Hall of Fame works offline (will record prior deaths).<br>
+9. All edits supports 13 languages, just like the official version (except this page).<br>
+10. Replaced some music of the official soundtrack and added additional music. Credits are at the bottom of this page.<br>
+11. Music logic improvement, removed splash screen.<br>
 12. Christmas background when the festival arrives.<br>
 13. Replaced in-game map for city aesthetic.<br>
 14. All pvr.ccz asset packs are unencrypted.<br>
 15. Removed unused codes and functionality.<br>
 </p>
-<h2>Game Edits</h2>
-<p>
-1. Removed character selection mechanism. You are now playing as a 3rd party member, with every npc unlockable.<br>
-2. Unlocked previously character-exclusive appliances (machine tool, electric fence & stove, and minefield). Combined electric fence and fence.<br>
-3. New survival attributes: Thirst and Virus Load. See appendix.<br>
-4. Unlocked exclusive/unused items and drinking.<br>
-5. Mood affects gun accuracy (up to -48%), mood less than 5 can lead to suicide after fight, moonlighting, or bandit raid.<br>
-6. Clothes can be damaged if hurt in combat. Excessive sleep will result in mood damage.<br>
-7. Home defense across appliances now adds up, locations and some defences are no longer invincible to moonlighting. See appendix.<br>
-8. New talent: Survivor (reduced weapon damage), Hoarder (extra supply on start), Ingenuity (faster crafting & upgrading), Stealth (reduced zombie encounter, moonlighting, and bandit raids), Backpacker (backpack capacity +30).<br>
-9. New cheat talent: Free IAP (unlimited free purchase from shop, radio CMD (see appendix)), All Unlock (all locations, all NPCs, full friendship, repeatable locations).<br>
-10. You can select multiple talents and the effects are combined.<br>
-11. If you're in extreme starvation, HP will decrease.<br>
-12. Power Plant won't break within the first 4 days, nor will it break between 9PM and 1AM. Reduced cost of generator parts.<br>
-13. NPC stealing functionality. See appendix.<br>
-14. "Survivor Bazaar" location, with new sweepstakes, hostel, and item sell/buy functionality. See appendix.<br>
-15. "W. White" NPC, who loves guns and will sell chemical products. Unlockable locations: Bandit Den (armed bandits inside), High School.<br>
-16. Bandit will steal from your home if you own too much stuff and left home for too long. Defense will reduce the chance of raids.<br>
-17. Weather forecast after Radio is crafted (view at top bar - weather), 16% chance that the weather forecast is wrong.<br>
-18. Ability to skip tutorial at the beginning.<br>
-19. "Portal" location unlock after 081-12 (Bedroom) is completed. Completing this location will unlock endings.<br>
-20. Using item will take 10 minutes. Consuming coffee will make you reduce sleep quality for the next 6 hours. Consuming alcohol will reduce your gun accuracy for the next 12 hours (hours * 2%).<br>
-21. Ad location is fixed and changed to "junkyard" where you can obtain free items by spending time.<br>
-22. Sending messages every 36 hours in Radio increases chance to find NPCs [20 -> 40%], messages now uses in-game time and will be saved.<br>
-23. Use Buff items from top bar - HP (heart).<br>
-24. View trade items for NPCs and Bazaar at map - location popup.<br>
-25. New item - Cheese: Obtainable at select locations and survivor bazaar. Effect is the reverse of soup - a lot of spirit and a bit of food.<br>
-26. Item weight & formula minor tweaks. Some locations have been lengthened.<br>
-27. Storeroom now pauses the timer.<br>
-28. Status bar shows electricity status.<br>
-29. Flashlight and detector must be equipped in the new equipment slot for the buff to take effect.<br>
-30. Dog shed must be constructed and the dog is at the museum. Player can bring dogs outside and aid in combat and resource gathering once the shed is constructed. See appendix.<br>
-31. Bullet and coffee bean has weight (0.02, minimum weight 1).<br>
-32. NPCs will come at the end of day to buy stuff from you. If your friendship level is high, you will get a good deal.<br>
-33. Fuel mechanism (gas station pump, pump part, new travel speed boost system, flamethrower). See appendix.<br>
-34. Top bar's talent button to show selected talents. If the number is gray, one or more cheat is activated.<br>
-35. New item: Standard bullet (see appendix).<br>
-36. New appliance: Safe. Deposit items to prevent stealing & moonlighting.<br>
-37. Weapon less prone to breaking early, and will return some parts if broken.<br>
-38. Food now has a chance of expiring, turning into fertilizer. See appendix. <br>
-39. You can accelerate the Hare Trap using potato (12 hours).<br>
-40. Zombie encounter while traveling will get more difficult as time progresses.<br>
-41. Alcohol addiction: drinking might increase requirement to drink in the future. Each season this will be reduced by 1.<br>
-42. New location when reached high favorability with The Stranger：Aquarium，where you cannot use guns or explosive devices.<br>
-42. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage, NPC value rounding error, multi-clickable crafting buttons, NPC ghost gun exploit, avoid zombie encounter by quitting the game, tutorial visual bugs).<br>
-</p>
-<h2>Appendix</h2>
-<h3>Moonlighting：</h3>
-<p>Max difficulty: 131+ days, [65, 75], probability 50%. Formula: [ fence(30) + dog(10) + electric fence(40) ] + minefield(40). Location's defense has been improved accordingly, but no location is invincible.</p>
-<h3>Radio CMD:</h3>
-<dl>
-<p>Only available if Cheat: Free IAP is selected:</p>
-  <dt>heal - Heal the player and dog on all aspect.</dt>
-  <dt>kill - Kill the player.</dt>
-  <dt>fix - Fix generator and gas pump (if fixable).</dt>
-  <dt>obtain Wood 100 - Obtain 100 wood.</dt>
-  <dt>obtain everything 100 - Obtain 100 of everything.</dt>
-<p>Available all times:</p>
-  <dt>backup - Set the backup string for Achievement and Medal to the input prompt, ready to be copied.</dt>
-  <dt>restore {JSON} - Restore the JSON string to Achievement and Medal.</dt>
-</dl>
-<h3>NPC Stealing:</h3>
-<p>You can steal from NPC at their home. If stealing is successful, that NPC's alert increases by 1, and you keep the stolen goods. If failed, the alert increases by 2, and friendship is reduced by 2 (Communicator talent: -1, Cheat: All Unlocked: -0). Your luck is updated daily, and will affect the success rate. NPC's alert will decrease by 1 per day if you don't steal from them.</p>
-<h3>Survivor Bazaar:</h3>
-<p>A location where you can sell items in your bag for coins (max 99999 coins), and buy items which refreshes every day. Items can be previewed in map. If an item is discounted, a "sale" icon will appear in the popup. Sweepstakes are available in the Bazaar. Hostel allows you to sleep and rest for a fee.</p>
-<h3>Thirst:</h3>
-<p>The player will drink water automatically from storage or from the bag, once every 6 hours (Summer: 4 hours). Each drink will provide thirst immunity for the next time frame. If there is no immunity, 3 thirsts are deducted every hour. If thirst is lower than 25, you will lose 20 hp per hour. If you obtain water and thirst is not full, you will drink until it is replenished. When arriving at home, you will drink until your thirst is quenched. Excessive amounts will be converted to equivalent immune time.</p>
-<h3>Virus Load:</h3>
-<p>Every time you are hurt from a zombie combat with difficulty greater than 2, you risk gaining 1 virus. If the virus is overloaded, you will die instantly. Virus will not decrease, but you can increase the upper bound of virus load by sacrificing other attributes. All attributes except HP can be exchanged for virus load 5 to 15, and HP can be exchanged 10 to 15. Wearing clothes can reduce the chance of gaining virus. Added Experimental Antidote: Provide immunity for virus load for 72 hours, obtainable at Dr. Jane. When dead and first aid kit is used, virus load will be halved.</p>
-<h3>Fuel Mechanism:</h3>
-<p>Only applicable after the player obtains motorcycle. Player can fix the pump at the gas station with gas pump part. When fixed, pump will provide 1 fuel per hour. Fuel cannot be sold and have a cap of 99. fuel can be used during motorcycle travel, which will significantly boost the player's speed. Falcon has been removed, the engine/buffs repurposed for/to the normal motorcycle. Shoes now break after a fixed distance have been traveled. If the player have shoes, shoes will be automatically used to provide a small speed boost. If the player have motorcycles, motorcycle's storage space boost will be used. If the player also has fuel & wants to spend it (you can disable speed boost by clicking the motorcycle status icon on the travel dialog), speed boost will be provided. New weapon: Flamethrower, damage all enemies by consuming 1 fuel per turn. if >3 zombies are present, each are delt 25 damage. if more than 1 zombie is present, each are delt 50 damage. If 1 zombie is present, 100 damage is delt. You might encounter abandoned cars when traveling. If equipped with siphoning tool (craftable at the bench), you will receive some fuel.</p>
-<h3>Standard Bullet:</h3>
-<p>Bullets obtained at locations and encounters will largely be standard bullets. Stanard bullet will not damage the gun, has boosted accuracies, but can't be crafted. If you have standard bullets in your bag and it is set to priority, it will be used. If one kind of bullet is depleted, the other will be used automatically. </p>
-<h3>Food Expiration:</h3>
-<p>Different food have a different chance to expire every 1AM. Expired food will be converted to fertilizer to provide speed-up for crops (3 hours) or sold. Fridge with electricity can prevent food in home from expiring. Food in backpack and safe will not expire.</p>
-<h3>Dog Outdoor:</h3>
-<p>Dogs now has 3 attributes: Hunger, injury, and mood. Dog hunger will deplete in 48 hours. 1 meat gives 12 hours of time. Pat dog every day to receive mood bonus for both player and dog. Give dog toys to instantly gain dog mood. Dog can be injured during battle - use bandages to heal him. If any one of the three stats is depleted, dog will not help guard the home or in battle. Dog will not die.</p>
-<p>You can bring dog outside in the Dog House furniture screen. If outside, dog cannot protect home. While outside, dog can distract zombies, attack them, and help you find more supplies. If you decide to bring dog outside, a dog logo will appear on the topbar, allowing you to use item for dog. If the logo is gray, dog is not providing benefit due to stat depletion. If at home and dog house is grayed out, it means that dog will not defend your home due to stat depletion. You can name your dog.</p>
-<h2>Buried Town Factsheet</h2>
-<p>Buried Town, originally named Berry Town, was developed by Chengdu 点犀 (DianXi) (Dice7) Network Co.Ltd and published by Beijing 乐动卓越 (LeDongZhuoYue) (Locojoy) Technology Co.Ltd. First launched on the iOS on Sep. 23rd, 2015, The game started its Android beta phase on Sep. 25th, 2015, and was released at Google Play on Nov. 23rd, 2015. The last update (1.4.3) was released on Jun. 27th, 2018, and the game server was shut down around late June, 2019.</p><p>
-Thanks to the game's weak online dependency, the majority of the functionality can be enjoyed offline, with the exception of leaderboards, In-App Purchases, and in-game radio.</p><p>
-Developed using Cocos2d-JS, the installation package of Buried Town is unprotected, source code not compiled nor obfuscated, making modifications extremely easy. Although the graphics have been encrypted, the process after obtaining the key (B29B3886-543224E4-71BDF6E3-9275C626) and edit tool (TexturePacker) is trivial (The encryption has been removed in this version). The game's save file is stored under root-only directory using an encrypted sqlite3 database, with the password (1a2b3c4d5fberrytown).</p>
-<h2>Contact Info and Game Updates</h2>
-<p>Main Menu - Thumb button contains all the information.</p>
- </body>
+
+    <h2 id="internal">Game Edits<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
+    <p>
+        1. Removed character selection mechanism. You are now playing as a 3rd party member, with every npc unlockable.<br>
+        2. Unlocked previously character-exclusive appliances (machine tool, electric fence & stove, and minefield). Combined electric fence and fence.<br>
+        3. <button id="thirst_return" onclick="scrollToSection('thirst')">See appendix</button> New survival attributes: Thirst and Virus Load.<br>
+        4. Unlocked exclusive/unused items and drinking.<br>
+        5. Mood affects gun accuracy (up to -48%), mood less than 5 can lead to suicide after moonlighting, fight, or bandit raid.<br>
+        6. Clothes can be damaged if hurt in combat. Excessive sleep will result in mood damage.<br>
+        7. <button id="moonlight_return" onclick="scrollToSection('moonlight')">See appendix</button> Home defense across appliances now adds up, locations and some defences are no longer invincible to moonlighting. <br>
+        8. New talent: Survivor (reduced weapon damage), Hoarder (extra supply on start), Ingenuity (faster crafting & upgrading), Stealth (reduced zombie encounter, moonlighting, and bandit raids), Backpacker (backpack capacity +30).<br>
+        9. <button id="cmd_return" onclick="scrollToSection('cmd')">See appendix</button> New cheat talent: Free IAP (unlimited free purchase from shop, radio CMD), All Unlock (all locations, all NPCs, full friendship, repeatable locations).<br>
+        10. You can select multiple talents and the effects are combined.<br>
+        11. If you're in extreme starvation, HP will decrease.<br>
+        12. Power Plant won't break within the first 4 days, nor will it break between 9PM and 1AM. Reduced cost of generator parts.<br>
+        13. <button id="steal_return" onclick="scrollToSection('steal')">See appendix</button> NPC stealing functionality.<br>
+        14. <button id="bazaar_return" onclick="scrollToSection('bazaar')">See appendix</button> "Survivor Bazaar" location, with new sweepstakes, hostel, and item sell/buy functionality. Unlocked after tutorial.<br>
+        15. "W. White" NPC, who loves guns and will sell chemical products. Unlockable locations: Bandit Den (armed bandits inside), High School.<br>
+        16. Bandit will raid your home if you own too much stuff and left home for too long. Defense will reduce the chance of raids. If all defenses are active, you won't be raided.<br>
+        17. Weather forecast after Radio is crafted (view at top bar - weather), 16% chance that the weather forecast is wrong.<br>
+        18. Ability to skip tutorial at the beginning.<br>
+        19. "Portal" ultra hard location unlock after 081-12 (Bedroom) is completed. Completing this location will unlock endings.<br>
+        20. Using item will take 10 minutes. Consuming coffee will make you reduce sleep quality for the next 6 hours. Consuming alcohol will reduce your gun accuracy for the next 12 hours (hours * 2%).<br>
+        21. Ad location now "junkyard" where you can obtain free items by spending time.<br>
+        22. Sending messages every 36 hours in Radio increases chance to find NPCs [20 -> 40%], messages now uses in-game time and will be saved.<br>
+        23. Use Buff items from top bar - HP (heart).<br>
+        24. View trade items for NPCs and Bazaar at map - location popup.<br>
+        25. New item - Cheese: Obtainable at select locations and survivor bazaar. Effect is the reverse of soup - a lot of spirit and a bit of food.<br>
+        26. Storeroom now pauses the timer.<br>
+        27. Item weight & formula minor tweaks. Some locations have been lengthened.<br>
+        28. Status bar shows electricity status.<br>
+        29. Flashlight and detector must be equipped in the new equipment slot for the buff to take effect.<br>
+        30. <button id="dog_return" onclick="scrollToSection('dog')">See appendix</button> Dog shed must be constructed and the dog is at the museum. Player can bring dogs outside and aid in combat and resource gathering once the shed is constructed.<br>
+        31. Bullet and coffee bean has weight (0.02, minimum weight 1).<br>
+        32. NPCs will come at the end of day to buy stuff from you. If your friendship level is high, you will get a good deal.<br>
+        33. <button id="gas_return" onclick="scrollToSection('gas')">See appendix</button> Fuel mechanism (gas station pump, pump part, new travel speed boost system, flamethrower).<br>
+        34. Top bar's talent button that shows selected talents for this game. If the number is gray, one or more cheat is activated.<br>
+        35. <button id="bullet_return" onclick="scrollToSection('bullet')">See appendix</button> New item: Standard bullet.<br>
+        36. New appliance: Safe. Deposit items to prevent stealing and moonlighting.<br>
+        37. Weapon less prone to breaking early, and will return some parts if broken.<br>
+        38. <button id="expire_return" onclick="scrollToSection('expire')">See appendix</button> Food now has a chance of expiring, turning into fertilizer.<br>
+        39. You can accelerate the Hare Trap using potato (12 hours).<br>
+        40. Zombie encounter while traveling will get more difficult and frequent as time progresses. You might encounter bandits, who will demand items/money. You can fight, capitulate, or escape.<br>
+        41. Alcohol addiction: drinking might increase requirement to drink in the future. Each season this will be reduced by 1.<br>
+        42. New location when reached high favorability with The Stranger：Aquarium，where you cannot use guns or explosive devices.<br>
+        43. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage, NPC value rounding error, multi-clickable crafting buttons, NPC ghost gun exploit, avoid zombie encounter by quitting the game, tutorial visual bugs).br>
+        </p>
+
+    <h2 id="appendix">Appendix<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
+    <h3 id="moonlight">Moonlighting<button class="button2" onclick="scrollToSection('moonlight_return')">Return</button></h3>
+    <p>Max difficulty: 131+ days, [65, 75], probability 50%. Formula: [ fence(30) + dog(10) + electric fence(40) ] + minefield(last line of defense, 40). Location's defense has been improved accordingly, but no location is invincible.</p>
+    <h3 id="cmd">Radio CMD<button class="button2" onclick="scrollToSection('cmd_return')">Return</button></h3>
+    <dl>
+      <p>Only available if Cheat: Free IAP is selected:</p>
+        <dt>heal - Heal the player and dog on all aspect.</dt>
+        <dt>kill - Kill the player.</dt>
+        <dt>fix - Fix generator and gas pump (if fixable).</dt>
+        <dt>obtain Wood 100 - Obtain 100 wood.</dt>
+        <dt>obtain everything 100 - Obtain 100 of everything.</dt>
+      <p>Available all times:</p>
+        <dt>backup - Set the backup string for Achievement and Medal to the input prompt, ready to be copied.</dt>
+        <dt>restore {JSON} - Restore the JSON string to Achievement and Medal.</dt>
+      </dl>
+    <h3 id="steal">NPC Stealing<button class="button2" onclick="scrollToSection('steal_return')">Return</button></h3>
+    <p>You can steal from NPC at their home. If stealing is successful, that NPC's alert increases by 1, and you keep the stolen goods. If failed, the alert increases by 2, and friendship is reduced by 2 (Communicator talent: -1, Cheat: All Unlocked: -0). Your luck is updated daily, and will affect the success rate. NPC's alert will decrease by 1 per day if you don't steal from them.</p>
+    <h3 id="bazaar">Survivor Bazaar<button class="button2" onclick="scrollToSection('bazaar_return')">Return</button></h3>
+    <p>A location where you can sell items in your bag for coins (max 99999 coins), and buy items which refreshes every day. Items can be previewed in map. If an item is discounted, a "sale" icon will appear in the popup. Sweepstakes are available in the Bazaar. Hostel allows you to sleep and rest for a fee.</p>
+    <h3 id="thirst">Thirst<button class="button2" onclick="scrollToSection('thirst_return')">Return</button></h3>
+    <p>The player will drink water automatically from storage or from the bag, once every 6 hours (Summer: 4 hours). Each drink will provide thirst immunity for the next time frame. If there is no immunity, 3 thirsts are deducted every hour. If thirst is lower than 25, you will lose 20 hp per hour. If you obtain water and thirst is not full, you will drink until it is replenished. When arriving at home, you will drink until your thirst is quenched. Excessive amounts will be converted to equivalent immune time.</p>
+    <h3>Virus Load</h3>
+    <p>Every time you are hurt from a zombie combat with difficulty greater than 2, you risk gaining 1 virus. If the virus is overloaded, you will die instantly. Virus will not decrease, but you can increase the upper bound of virus load by sacrificing other attributes. All attributes except HP can be exchanged for virus load 5 to 15, and HP can be exchanged 10 to 15. Wearing clothes can reduce the chance of gaining virus. Added Experimental Antidote: Provide immunity for virus load for 72 hours, obtainable at Dr. Jane. When dead and first aid kit is used, virus load will be halved.</p>
+    <h3 id="gas">Fuel Mechanism<button class="button2" onclick="scrollToSection('gas_return')">Return</button></h3>
+    <p>Only applicable after the player obtains motorcycle. Player can fix the pump at the gas station with gas pump part. When fixed, pump will provide 1 fuel per hour. Fuel cannot be sold and have a cap of 99. fuel can be used during motorcycle travel, which will significantly boost the player's speed. Falcon has been removed, the engine/buffs repurposed for/to the normal motorcycle. Shoes now break after a fixed distance have been traveled. If the player have shoes, shoes will be automatically used to provide a small speed boost. If the player have motorcycles, motorcycle's storage space boost will be used. If the player also has fuel & want to use it (you can disable speed boost by clicking the motorcycle status icon on the travel dialog), speed boost will be provided. New weapon: Flamethrower, damage all enemies by consuming 1 fuel per turn. if more than 3 zombies are present, each are delt 25 damage. if more than 1 zombie is present, each are delt 50 damage. If 1 zombie is present, 100 damage is delt. You might encounter abandoned cars when traveling. If equipped with siphoning tool (craftable at the bench), you will receive some fuel.</p>
+    <h3 id="bullet">Standard Bullet<button class="button2" onclick="scrollToSection('bullet_return')">Return</button></h3>
+    <p>Bullets obtained at locations and encounters will largely be standard bullets. Stanard bullet are unlikely to break the gun, has boosted accuracies, but can't be crafted. If you have standard bullets in your bag and it is set to priority, it will be used. If one kind of bullet is depleted, the other will be used automatically.</p>
+    <h3 id="expire">Food Expiration<button class="button2" onclick="scrollToSection('expire_return')">Return</button></h3>
+    <p>Different food have a different chance to expire at 1AM. Expired food will be converted to fertilizer to provide speed-up for crops (3 hours) or sold. Fridge with electricity can prevent food in home from expiring. Food in backpack and safe will not expire.</p>
+    <h3 id="dog">Dog Outdoor<button class="button2" onclick="scrollToSection('dog_return')">Return</button></h3>
+    <p>Dogs now has 3 attributes: Hunger, injury, and mood. Hunger will deplete in 48 hours. 1 meat gives 12 hours of food. Pat dog every day to receive mood bonus for both player and dog. Give dog toys to instantly gain mood. Dog can be injured during battle - use bandages to heal him. If any one of the three attributes is depleted, dog will not help guard the home or in battle. Dog will not die.</p>
+    <p>You can bring dog outside in the Dog House appliance screen. If outside, dog cannot protect home. While outside, dog can distract zombies, attack them, and help you find more supplies. If you decide to bring dog outside, a dog logo will appear on the topbar, allowing you to check their stats. If the logo is gray, dog is not providing benefit due to low attribute. If at home and dog house is grayed out, it means that dog will not defend your home due to low attribute. You can name your dog.</p>
+
+    <h2 id="faq">FAQ<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
+    <b>Q: I don't like the design of virus load! Can you make a version without it?</b>
+    <p>A: No. Virus Load has been carefully balanced. If you play normally and sacrifice attributes accordingly, It will not be a barrier towards completion. If you want to be invincible, select the cheat talent and heal yourself using Radio CMD.</p>
+    <b>Q: What's updated in this version?</b>
+    <p>A: A common problem with my personal projects is that I don't do enough documentation. If you ask me what is updated for a specific version, I'm sorry, I don't know. This document is an accurate (?) description of everything that is new.</p>
+    <b>Q: Why did you remove character selection and Falcon Bike?</b>
+    <p>A: Offical game's design of multiple playable characters is largely for profit. Each IAP characters have deadly drawbacks yet contains unique content. Rather than sustaining the poorly thought out system, I decided to use the exclusive contents to support a cohesive user experience. Falcon was probably designed as an IAP item, and was removed during the designing of Fuel Mechanism due to its conflict with the Mororcycle and general incoherence with the world setting.</p>
+    <b>Q: Can you play Buried City on IOS and PC?</b>
+    <p>A: Unfortunately, The official version released on these platforms have always been compiled by SpiderMonkey. I cannot obtain the platform-specific part of code, so I cannot make Buried City compatible. You can use Android emulators such as BlueStacks, or purchase an Android device.</p>    
+    <b>Q: This game is so hard, I'm always in need of materials! Can you make it easier?</b>
+    <p>A: I will rebalance the affected features every time something new is added. As updates have been gradual, I believe the current balance is appropriate. The game is designed to be challenging, as you are in a zombie apocolypse. If you believe that something is not balanced, please let me know - just be ready for my rebuttal.</p>
+    <b>Q: Can you add this item, or this location?</b>
+    <p>A: Unless the items and locations have new functionality or unique attributes, they will not be added. Adding these things can take a lot of time (photoshopping, translating, balancing, etc). I believe in quality over quantity, so I won't design something if I do not have the willpower needed to do so.</p>
+    <b>Q: Can you add more stories to the gameplay?</b>
+    <p>A: I have 5+ years of game design experience, and I believe that traditional story structure is incompatible with survival games. It will only divide players - distracting survival-oriented players and barring story-oriented players with survival difficulties. Lore is okay, but unless I have the resource to do branching storyline, any more story will not help with the player experience.</p>
+    <b>Q: How do I update the game?</b>
+    <p>A: Visit the Rentry post, or GitHub Release, located in Main Menu - Thumb button. Install the downloaded APK and have fun!</p>
+    <b>Q: I can write code/make artworks/do QA, is there anything I can help?</b>
+    <p>A: There is so much. New functionality, locaion-specific maps like 081, unit testing for bugs... If you are passionate about this game, please contact me.</p>
+    <b>Q: I want to make my own mod version, where should I start?</b>
+    <p>A: APK is a ZIP file. Take a look inside, all the code is in the js files, easily editable. You can use png for assets, or use TexturePacker to compile spritesheets. I recommend the Diff Folder plugin for VSCode, you can use it to compare code differences between mods. At the end, don't forget to sign the APK using Apktool or MT Manager.</p>
+    <b>Q: Can you mod the game according to my specification, or help me crack another game?</b>
+    <p>A: No. These requests takes a lot of time to complete. I usually charge people for this, but I don't want to profit from this project. I might be able to help with other games depending on mood.</p>
+    <b>Q: I have suggestions, opinions, or other requests. Can I contact you?</b>
+    <p>A: Of course. If your questions are unanswered, you are welcomed to contact me through any methods inside Main Menu - Thumb button.</p>
+
+    <h2 id="music">Music List<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
+    <p>
+        Destroyer - Sergey Cheremisinov<br>
+        Secrets and Lies - David Celeste<br>
+        The Reunion - Trevor Kowalski<br>
+        There Must Be - So Vea<br>
+        The Slow Shift - Gavin Luke<br>
+        In the Waiting - Johannes Bornlof<br>
+        Planting the Seeds - David Celeste<br>
+        Nordkap - Martin Landh<br>
+        Into the Forest I Go - David Celeste<br>
+        Incandescence - Silver Maple<br>
+        Sleepwalker I - Sergey Cheremisinov<br>
+        Tensor Bandage - Blue Wizard Studio<br>
+        Deep Corridor - Brambles<br>
+        Search and Flight - Sergey Cheremisinov<br>
+        恐惧边缘 - 罗杨<br>
+        死亡触手 - 罗杨<br>
+        废土 - 罗杨<br>
+        来一杯咖啡 - 罗杨<br>
+        最后的避难所 - 罗杨<br>
+        孤岛 - 罗杨<br>
+        穷途 - 罗杨<br>
+        末路 - 罗杨<br>
+    </p>
+
+    <h2 id="factsheet">BuriedTown Factsheet<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
+    <p>BuriedTown, originally named BerryTown, was developed by Chengdu 点犀 (DianXi) (Dice7) Network Co.Ltd and published by Beijing 乐动卓越 (LeDongZhuoYue) (Locojoy) Technology Co.Ltd. First launched on the iOS on Sep. 23rd, 2015, The game started its Android beta phase on Sep. 25th, 2015, and was released at Google Play on Nov. 23rd, 2015. The last update (1.4.3) was released on Jun. 27th, 2018, and the game server was shut down around late June, 2019.</p><p>
+    Thanks to the game's weak online dependency, the majority of the functionality can be enjoyed offline, with the exception of leaderboards, In-App Purchases, and in-game radio.</p><p>
+    Developed using Cocos2d-JS, the installation package of Buried Town is unprotected, source code not compiled nor obfuscated, making modifications extremely easy. Although the graphics have been encrypted, the process after obtaining the key (B29B3886-543224E4-71BDF6E3-9275C626) and edit tool (TexturePacker) is trivial (The encryption has been removed in this version). The game's save file is stored under root-only directory using an encrypted sqlite3 database, with the password (1a2b3c4d5fberrytown).</p>
+    <h2 id="contact">Contact and Update Info<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
+    <p>Main Menu - Thumb button contains all the information.</p>
+
+<script>
+    function scrollToSection(sectionId) {
+        var section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'instant' });
+        }
+    }
+</script>
+
+</body>
 </html>

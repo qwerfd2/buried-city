@@ -115,7 +115,7 @@ var SiteNode = BottomFrameNode.extend({
     onClickBtn3: function () {
         var config = utils.clone(stringUtil.getString("gachaponDialog"));
         var strConfig = stringUtil.getString("gachapon");
-        config.title.icon = "#site_202.png";
+        config.title.icon = "#gacha.png";
         config.title.title = strConfig.title;
         config.title.txt_1 = cc.formatStr(config.title.txt_1, 6);
         config.content.des = strConfig.des;
@@ -164,17 +164,17 @@ var SiteNode = BottomFrameNode.extend({
         dialog.show();
     },
     onClickBtn4: function () {
-        audioManager.insertMusic(audioManager.music.HOTEL);
         var config = utils.clone(stringUtil.getString("gachaponDialog"));
         config.title.txt_1 = "";
-        config.action.btn_1.cb = function(){audioManager.resumeMusic()};
+        config.action = {};
         config.title.title = stringUtil.getString(1342);
         config.content.des = stringUtil.getString(1343);
         config.content.dig_des = "#site_dig_400.png";
-        this.dialogHotel = new DialogBig(config);
+        this.dialogHotel = new DialogBig(config, true);
         this.dialogHotel.tempName = "hotelDialog";
         this.dialogHotel.autoDismiss = false;
         var screenFix = Record.getScreenFix();
+
         this.dialogHotel.contentNode.getChildByName("dig_des").setScale(0.8);
         this.dialogHotel.contentNode.getChildByName("des").y += 30;
         if (screenFix == 1) {
@@ -182,32 +182,84 @@ var SiteNode = BottomFrameNode.extend({
         } else {
             this.dialogHotel.getChildByName("bgColor").height = 864;
         }
-        
-        this.hotelBtn1 = uiUtil.createCommonBtnBlack(stringUtil.getString(1344, 1, 1), this, this.hotelClickBtn1);
-        this.hotelBtn1.setPosition(this.dialogHotel.contentNode.width / 4, this.dialogHotel.contentNode.height / 2 - 130);
+        this.hotelBtn1 = uiUtil.createSmallBtnBlack(stringUtil.getString(1213), this, this.hotelClickBtn1);
+        this.hotelBtn1.setPosition(this.dialogHotel.contentNode.width - 80, this.dialogHotel.contentNode.height / 2 - 120);
         this.dialogHotel.contentNode.addChild(this.hotelBtn1);
         this.hotelBtn1.setName("hotelBtn_1");
         
-        this.hotelBtn2 = uiUtil.createCommonBtnBlack(stringUtil.getString(1344, 4, 3), this, this.hotelClickBtn2);
-        this.hotelBtn2.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2 - 130);
+        this.hotelBtn2 = uiUtil.createSmallBtnBlack(stringUtil.getString(1213), this, this.hotelClickBtn2);
+        this.hotelBtn2.setPosition(this.dialogHotel.contentNode.width - 80, this.dialogHotel.contentNode.height / 2 - 175);
         this.dialogHotel.contentNode.addChild(this.hotelBtn2);
         this.hotelBtn2.setName("hotelBtn_2");
         
-        this.hotelBtn3 = uiUtil.createCommonBtnBlack(stringUtil.getString(1345, 16), this, this.hotelClickBtn3);
-        this.hotelBtn3.setPosition(this.dialogHotel.contentNode.width / 4, this.dialogHotel.contentNode.height / 2 - 190);
+        this.hotelBtn3 = uiUtil.createSmallBtnBlack(stringUtil.getString(1213), this, this.hotelClickBtn3);
+        this.hotelBtn3.setPosition(this.dialogHotel.contentNode.width - 80, this.dialogHotel.contentNode.height / 2 - 230);
         this.dialogHotel.contentNode.addChild(this.hotelBtn3);
         this.hotelBtn3.setName("hotelBtn_3");
         
-        this.hotelBtn4 = uiUtil.createCommonBtnBlack(stringUtil.getString(1346, (player.alcoholPrice * 4)), this, this.hotelClickBtn4);
-        this.hotelBtn4.setPosition(this.dialogHotel.contentNode.width / 4 * 3, this.dialogHotel.contentNode.height / 2 - 190);
+        this.hotelBtn4 = uiUtil.createSmallBtnBlack(stringUtil.getString(1213), this, this.hotelClickBtn4);
+        this.hotelBtn4.setPosition(this.dialogHotel.contentNode.width - 80, this.dialogHotel.contentNode.height / 2 - 285);
         this.hotelBtn4.setName("hotelBtn_4");
         this.dialogHotel.contentNode.addChild(this.hotelBtn4);
     
         var pbBg = autoSpriteFrameController.getSpriteFromSpriteName("#pb_bg.png");
         pbBg.setAnchorPoint(0.5, 0);
-        pbBg.setPosition(this.dialogHotel.contentNode.width / 3 * 2, this.dialogHotel.contentNode.height + 30);
+        pbBg.setPosition(this.dialogHotel.contentNode.width / 2, this.dialogHotel.contentNode.height - 220);
         pbBg.setName("pbBg");
         this.dialogHotel.contentNode.addChild(pbBg);
+                
+        var items = [{itemId: "money", num: 1}];
+        
+        var richTextOne = new ItemRichText(items, 80, 1, 0.5, cc.color.BLACK);
+        richTextOne.setAnchorPoint(0, 0.5);
+        richTextOne.setPosition(this.dialogHotel.contentNode.width - 230, this.dialogHotel.contentNode.height / 2 - 120);
+        this.dialogHotel.contentNode.addChild(richTextOne);  
+        
+        items = [{itemId: "money", num: 3}];
+        
+        var richTextTwo = new ItemRichText(items, 80, 1, 0.5, cc.color.BLACK);
+        richTextTwo.setAnchorPoint(0, 0.5);
+        richTextTwo.setPosition(this.dialogHotel.contentNode.width - 230, this.dialogHotel.contentNode.height / 2 - 175);
+        this.dialogHotel.contentNode.addChild(richTextTwo);
+        
+        items = [{itemId: "money", num: 16}];
+        
+        var richTextThr = new ItemRichText(items, 80, 1, 0.5, cc.color.BLACK);
+        richTextThr.setAnchorPoint(0, 0.5);
+        richTextThr.setPosition(this.dialogHotel.contentNode.width - 230, this.dialogHotel.contentNode.height / 2 - 230);
+        this.dialogHotel.contentNode.addChild(richTextThr);
+
+        items = [{itemId: "money", num: (player.alcoholPrice * 4)}];
+        
+        this.richTextFor = new ItemRichText(items, 80, 1, 0.5, cc.color.BLACK);
+        this.richTextFor.setAnchorPoint(0, 0.5);
+        this.richTextFor.setPosition(this.dialogHotel.contentNode.width - 230, this.dialogHotel.contentNode.height / 2 - 285);
+        this.dialogHotel.contentNode.addChild(this.richTextFor);
+        this.richTextFor.setName("RTChange");
+        
+        var label1 = new cc.LabelTTF(stringUtil.getString(1144, 1), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label1.setAnchorPoint(0, 0);
+        label1.setPosition(this.dialogHotel.contentNode.x - 220, this.dialogHotel.contentNode.height / 2 - 130);
+        this.dialogHotel.contentNode.addChild(label1);
+        label1.setColor(cc.color.BLACK);
+        
+        var label2 = new cc.LabelTTF(stringUtil.getString(1144, 4), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label2.setAnchorPoint(0, 0);
+        label2.setPosition(this.dialogHotel.contentNode.x - 220, this.dialogHotel.contentNode.height / 2 - 185);
+        this.dialogHotel.contentNode.addChild(label2);
+        label2.setColor(cc.color.BLACK);
+
+        var label3 = new cc.LabelTTF(stringUtil.getString(1345), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label3.setAnchorPoint(0, 0);
+        label3.setPosition(this.dialogHotel.contentNode.x - 220, this.dialogHotel.contentNode.height / 2 - 240);
+        this.dialogHotel.contentNode.addChild(label3);
+        label3.setColor(cc.color.BLACK);
+        
+        var label4 = new cc.LabelTTF(stringUtil.getString(1346), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label4.setAnchorPoint(0, 0);
+        label4.setPosition(this.dialogHotel.contentNode.x - 220, this.dialogHotel.contentNode.height / 2 - 295);
+        this.dialogHotel.contentNode.addChild(label4);
+        label4.setColor(cc.color.BLACK);
 
         this.pb = new cc.ProgressTimer(autoSpriteFrameController.getSpriteFromSpriteName("#pb.png"));
         this.pb.type = cc.ProgressTimer.TYPE_BAR;
@@ -306,6 +358,7 @@ var SiteNode = BottomFrameNode.extend({
                 player.applyEffect({"spirit": 100, "spirit_chance": 1});
                 var rand = Math.random();
                 if (rand < 0.3 && player.alcoholPrice < 9) {
+                    player.log.addMsg(1344);
                     player.alcoholPrice += 1;
                 }
                 audioManager.playEffect(audioManager.sound.GOLP);
@@ -324,7 +377,8 @@ var SiteNode = BottomFrameNode.extend({
         this.hotelBtn2.setEnabled(false);
         this.hotelBtn3.setEnabled(false);
         this.hotelBtn4.setEnabled(false);
-        this.dialogHotel.actionNode.getChildByName("btn_1").setEnabled(false);
+        this.dialogHotel.bgNode.getChildByName("btn_1").setEnabled(false);
+        this.dialogHotel.bgNode.getChildByName("btn_1").setVisible(false);
         this.pastTime = 0;
         this.isHotelActive = true;
         var self = this;
@@ -343,18 +397,21 @@ var SiteNode = BottomFrameNode.extend({
                     self.hotelBtn2.setEnabled(true);
                     self.hotelBtn3.setEnabled(true);
                     self.hotelBtn4.setEnabled(true);
-                    self.dialogHotel.actionNode.getChildByName("btn_1").setEnabled(true);
+                    self.dialogHotel.bgNode.getChildByName("btn_1").setEnabled(true);
+                    self.dialogHotel.bgNode.getChildByName("btn_1").setVisible(true);
                     self.isHotelActive = false;
                 }
                 if (endCb) {
                     endCb();
                 }
                 if (self.dialogHotel) {
-                    self.dialogHotel.contentNode.removeChildByName("hotelBtn_4");
-                    self.hotelBtn4 = uiUtil.createCommonBtnBlack(stringUtil.getString(1346, (player.alcoholPrice * 4)), self, self.hotelClickBtn4);
-                    self.hotelBtn4.setPosition(self.dialogHotel.contentNode.width / 4 * 3, self.dialogHotel.contentNode.height / 2 - 190);
-                    self.hotelBtn4.setName("hotelBtn_4");
-                    self.dialogHotel.contentNode.addChild(self.hotelBtn4);
+                    var items = [{itemId: "money", num: (player.alcoholPrice * 4)}];
+                    self.dialogHotel.contentNode.removeChildByName("RTChange");
+                    self.richTextFor = new ItemRichText(items, 80, 1, 0.5, cc.color.BLACK);
+                    self.richTextFor.setAnchorPoint(0, 0.5);
+                    self.richTextFor.setPosition(self.dialogHotel.contentNode.width - 230, self.dialogHotel.contentNode.height / 2 - 285);
+                    self.dialogHotel.contentNode.addChild(self.richTextFor);
+                    self.richTextFor.setName("RTChange");
                 }
             }
         }));

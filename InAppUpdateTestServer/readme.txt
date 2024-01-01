@@ -1,0 +1,3 @@
+This is a small flask server that hosts a configuration and apk file so that the game can self-update. This feature is present in the original game, if it thinks it is not Google Play version. To use, simply change the url in menuscene to where this server is running on the local network. You have to modify storagepath to somewhere that is accessable by the program.
+
+There is, however, a critical issue with the smali implementation of updatepackage inside commonutils that results in permission crash upon installation attempt. In-game updates are possible, but since I don't have the CDN capacity to host this feature reliability I decided to update the script for someone else to try in the future.

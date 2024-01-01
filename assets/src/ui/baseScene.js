@@ -39,6 +39,7 @@ var BaseLayer = cc.Layer.extend({
                                     break;
                                 }
                             }
+                            player.log.addMsg("found");
                             uiUtil.showBackMenuDialog(function () {
                                 game.stop();
                                 cc.director.runScene(new MenuScene());

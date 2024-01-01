@@ -395,7 +395,7 @@ var WorkSite = Site.extend({
     },
     checkActive: function () {
         if (this.isActive) {
-            var intervalTime = cc.timer.time - this.fixedTime;
+            var intervalTime = parseInt(cc.timer.time - this.fixedTime);
             var criteria;
             var probability;
             if (this.id == 204) {

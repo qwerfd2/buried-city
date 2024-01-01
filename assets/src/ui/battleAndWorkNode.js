@@ -221,7 +221,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             bulletRichText.setPosition(0, label2.getPositionY() - label2.getContentSize().height - 130);
             node.addChild(bulletRichText);
 
-            var exchangeButton = uiUtil.createCommonBtnWhite(stringUtil.getString(1334), this, function () {
+            var exchangeButton = uiUtil.createSpriteBtn({normal: "slider_cap.png", fontInfo: {txt: "⟳", color: cc.color.BLACK, fontSize: uiUtil.fontSize.COMMON_1}}, this, function () {
                 player.useGoodBullet = !player.useGoodBullet;
                 var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
                 bulletRichText.setName("bulletPriority");
@@ -230,7 +230,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
                 node.addChild(bulletRichText);
             });
             exchangeButton.setName("exchangebutton");
-            exchangeButton.setPosition(80, bulletRichText.getPositionY() - bulletRichText.getContentSize().height + 10);
+            exchangeButton.setPosition(180, bulletRichText.getPositionY() + 20);
             node.addChild(exchangeButton);
         }
         if (cc.RTL) {
@@ -292,7 +292,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         this.bg.getChildByName("des").setString("");
 
         utils.emitter.emit("left_btn_enabled", false);
-        var battle = new Battle({id: 0, monsterList: this.room.list}, false, this.room.difficulty);
+        var battle = new Battle({id: 0, monsterList: this.room.list}, false, this.room.difficulty, false, false);
         var self = this;
         battle.setGameEndListener(function (sumRes) {
             utils.emitter.off("battleProcessLog");

@@ -23,7 +23,7 @@ var Storage = cc.Class.extend({
     },
     getRandomItem: function() {
         var keyArray = utils.clone(this.map);
-        var deleteItem = [1106013, 1305064, 1305053, 1305034, 1305024, 1305023, 1102073, 1301091, 1305075];
+        var deleteItem = [1106013, 1305034, 1102073, 1301091, 1305075];
         for (var a in deleteItem) {
             delete keyArray[deleteItem[a]];
         }
@@ -48,8 +48,10 @@ var Storage = cc.Class.extend({
             }
         } else if (price >= 15) {
             //Expensive items, reduce amount.
-            if (price >= 30) {
+            if (price < 30) {
                 randomIndex = Math.ceil(randomIndex / 3 * 2);
+            } else if (price > 45) {
+                randomIndex = Math.ceil(randomIndex / 4);
             } else {
                 randomIndex = Math.ceil(randomIndex / 3);
             }
@@ -57,6 +59,57 @@ var Storage = cc.Class.extend({
         var result = [];
         result.push({itemId: itemid, num: randomIndex});
         return result;
+    },
+    getRobItem: function () {
+        var keyArray = utils.clone(this.map);
+        var deleteItem = [1106013, 1305034, 1102073, 1301091, 1305075];
+        for (var a in deleteItem) {
+            delete keyArray[deleteItem[a]];
+        }
+        keyArray = Object.keys(keyArray);
+        var goForMoney = -1;
+        if (player.currency > 10) {
+            goForMoney = 0.3;
+        }
+        var moneyRand = Math.random();
+        if (!keyArray.length || moneyRand <= goForMoney) {
+            //player don't have any stealable item in bag. return money instead.
+            if (player.currency) {
+                var randomNum = Math.min(player.currency, utils.getRandomInt(4, 8));
+                return [{itemId: "money", num: randomNum}];
+            }
+        }
+        var randomIndex = utils.getRandomInt(0, keyArray.length - 1);
+        var itemid = keyArray[randomIndex];
+        var index = this.getNumByItemId(itemid);
+        if (index > 10) {
+            randomIndex = utils.getRandomInt(3, 7);
+        } else {
+            var cap = Math.max((index - 4), 1);
+            randomIndex = utils.getRandomInt(1, cap);
+        }
+        var price = player.getPrice(itemid);
+        if (itemid == 1305011 || itemid == 1305012) {
+            randomIndex *= 2;
+            if (randomIndex > index) {
+                randomIndex = index - 4;
+            }
+        } else if (price >= 5) {
+            //Expensive items, reduce amount.
+            if (price < 10) {
+                randomIndex = Math.ceil(randomIndex / 2);
+            } else if (price < 15) {
+                randomIndex = Math.ceil(randomIndex / 3);
+            } else if (price < 20) {
+                randomIndex = Math.ceil(randomIndex / 4);
+            } else {
+                randomIndex = Math.ceil(randomIndex / 5);
+            }
+        }
+        var result = [];
+        result.push({itemId: itemid, num: randomIndex});
+        return result;
+
     },
     increaseItem: function (itemId, num, includeWater, bypassCheck) {
         num = Number(num);

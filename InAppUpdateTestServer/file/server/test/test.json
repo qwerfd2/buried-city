@@ -1,0 +1,11 @@
+{
+  "version": "1.4.4",
+  "isOpen": true,
+  "necessary": false,
+  "md5": "md5 of actual apk file",
+  "url": "http://172.27.107.215:5000/file/server/test/buriedtown.zip",
+  "changeLog": {
+    "en": ["1", "2"],
+    "zh": ["1", "2"]
+  }
+}

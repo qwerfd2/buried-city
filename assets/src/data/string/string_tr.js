@@ -1,36 +1,43 @@
 var string = {
-      "banditType_1": "Sinsi",
-      "banditType_2": "Sağlam",
-      "banditType_4": "Kurnaz",
-      "banditType_5": "Çevik",
-      "9045": "%s haydutları seni keşfetti!",
-      "9046": "%s haydutu size yaklaşıyor! Mesafe %s",
-      "9047": "%s haydutu sizi vurdu, HP %s",
-      "9048": "%s haydutuna ateş etmek için %s kullanıyorsunuz",
-      "9049": "Önünüzdeki %s haydutunu kesmek için %s'yi kullanın",
-      "9050": "Haydut grubuna %s attınız",
-      "9051": "Hassas atış! %s haydutun kafası uçtu",
-      "9052": "%s haydutu %s hasar aldı",
-      "9053": "Tüm haydutlar %s hasar aldı",
-      "9054": "%s %s haydut öldü",
-      "9358": "Bütün haydutları ateşe verdiniz",
-      "9055":"%s hayduta saldırdı ve %s haydut %s hasar aldı",
-      "9056":"Haydut %s'in ilgisini çekti ve geçici olarak size saldırmayı bırakacak",
-      "9057":"%s bu eşyaları haydutlardan topladı. Şimdilik depoda saklanıyor.",
-      "9059": ["İleride haydutlar görüldü!", "Devriye gezen birkaç haydut sizi fark etti.", "Etrafınız bir grup haydut tarafından çevrilmiş."],
-      "9165": "%s haydutuna vahşice yumruk attın.",
-      "9139": "Haydut sayısı:",
-      "9118": "Haydutları başarıyla ortadan kaldırdınız",
-      "9109": "Haydut saldırısı size ölümcül hasar verdi!",
-"radio_tut": "Diğer hayatta kalanlarla karşılaşma şansını artırmak için radyo kurmalı ve kendinizi düzenli aralıklarla yayınlamalısınız.",
-"motor_tut": "Motorsikleti kullanmamak yakıt tasarrufu yapmanıza yardımcı olabilir. Ağırlık bonusu hala geçerlidir. Bunun için bu açılır penceredeki motorsiklet simgesine tıklayın.",
-"site_502": {
-    "name": "Akvaryum",
-    "des": "Akvaryumdaki balıklar neredeyse ölmüş durumda. Alglerle dolu su içerisi gizemli bir şekilde kırmızıya dönmüş durumda. Cam kubbenin içerisini rahatsız etmemek daha iyi, aksi takdirde burası su altında bir mezar olabilir.\nBurada ateşli silah ve patlayıcı kullanamazsınız."
-},
-"1166": "Şimdi büyüyor %s...",
-"equip_needed":"Yalnızca alet olarak donatıldığında etkilidir.",
-"no_need_equip":"Pasif ekipman, donatmaya gerek yok.",
+    "9114": "Haydutlardan kaçtın. Devam et.",
+    "9115": "Haydutları öldürdün. Devam et.",
+    "9116": "Haydutun talebine boyun eğdin ve seni serbest bıraktı.",
+    "9082": "Haydutlardan kaçtın.",
+    "1172": "Teslim olmak",
+    "9113": "Haydut karşılaşması!",
+    "9039": "Sana şunu vaat etti: Eğer teslim olursan, seni bugün serbest bırakacaklar. İstekleri:",
+    "banditType_1": "Sinsi",
+    "banditType_2": "Sağlam",
+    "banditType_4": "Kurnaz",
+    "banditType_5": "Çevik",
+    "9045": "%s haydutları seni keşfetti!",
+    "9046": "%s haydutu size yaklaşıyor! Mesafe %s",
+    "9047": "%s haydutu sizi vurdu, HP %s",
+    "9048": "%s haydutuna ateş etmek için %s kullanıyorsunuz",
+    "9049": "Önünüzdeki %s haydutunu kesmek için %s'yi kullanın",
+    "9050": "Haydut grubuna %s attınız",
+    "9051": "Hassas atış! %s haydutun kafası uçtu",
+    "9052": "%s haydutu %s hasar aldı",
+    "9053": "Tüm haydutlar %s hasar aldı",
+    "9054": "%s %s haydut öldü",
+    "9358": "Bütün haydutları ateşe verdiniz",
+    "9055": "%s hayduta saldırdı ve %s haydut %s hasar aldı",
+    "9056": "Haydut %s'in ilgisini çekti ve geçici olarak size saldırmayı bırakacak",
+    "9057": "%s bu eşyaları haydutlardan topladı. Şimdilik depoda saklanıyor.",
+    "9059": ["İleride haydutlar görüldü!", "Devriye gezen birkaç haydut sizi fark etti.", "Etrafınız bir grup haydut tarafından çevrilmiş."],
+    "9165": "%s haydutuna vahşice yumruk attın.",
+    "9139": "Haydut sayısı:",
+    "9118": "Haydutları başarıyla ortadan kaldırdınız",
+    "9109": "Haydut saldırısı size ölümcül hasar verdi!",
+    "radio_tut": "Diğer hayatta kalanlarla karşılaşma şansını artırmak için radyo kurmalı ve kendinizi düzenli aralıklarla yayınlamalısınız.",
+    "motor_tut": "Motorsikleti kullanmamak yakıt tasarrufu yapmanıza yardımcı olabilir. Ağırlık bonusu hala geçerlidir. Bunun için bu açılır penceredeki motorsiklet simgesine tıklayın.",
+    "site_502": {
+        "name": "Akvaryum",
+        "des": "Akvaryumdaki balıklar neredeyse ölmüş durumda. Alglerle dolu su içerisi gizemli bir şekilde kırmızıya dönmüş durumda. Cam kubbenin içerisini rahatsız etmemek daha iyi, aksi takdirde burası su altında bir mezar olabilir.\nBurada ateşli silah ve patlayıcı kullanamazsınız."
+    },
+    "1166": "Şimdi büyüyor %s...",
+    "equip_needed": "Yalnızca alet olarak donatıldığında etkilidir.",
+    "no_need_equip": "Pasif ekipman, donatmaya gerek yok.",
     "7000": "%s'ın durumunu kontrol et",
     "7001": "%s'ı dışarı çıkar",
     "7002": "%s'ı evi korumak için bırak",
@@ -44,149 +51,154 @@ var string = {
     "7013": "%s kemikle mutlu bir şekilde çiğniyor",
     "7014": "%s ile oynadınız, mutlu görünüyor",
     "7015": "%s bir zombiye saldırdı, zombi %s hasar aldı.",
-    "7016": "Zombiler %s tarafından çekiliyor ve sizi saldırmayı bırakıyor.",
     "7017": "%s bu zombide bunları buldu, şu anda depoda saklanıyor:",
     "7018": "Köpeğin hediyesi",
     "17": {
-      "title": "Köpeğin yaralanması",
-      "des": "Köpek savaştan zarar görebilir ve zamanında tedaviye ihtiyaç duyar."
+        "title": "Köpeğin yaralanması",
+        "des": "Köpek savaştan zarar görebilir ve zamanında tedaviye ihtiyaç duyar."
     },
     "18": {
-      "title": "Köpeğin açlığı",
-      "des": "Köpek ete ihtiyaç duyar. Bir et 12 saat için iyidir, en fazla 4 adet besleyebilirsiniz."
+        "title": "Köpeğin açlığı",
+        "des": "Köpek ete ihtiyaç duyar. Bir et 12 saat için iyidir, en fazla 4 adet besleyebilirsiniz."
     },
     "19": {
-      "title": "Köpeğin ruh hali",
-      "des": "Zorlu koşullar köpeği de bunalıma sokar. Onunla her gün evde oynayın veya bir köpek kemiği kullanın."
+        "title": "Köpeğin ruh hali",
+        "des": "Zorlu koşullar köpeği de bunalıma sokar. Onunla her gün evde oynayın veya bir köpek kemiği kullanın."
     },
     "1106014": {
-      "title": "Köpek kemiği",
-      "des": "Ev yapımı köpek kemiği, köpeğinizi bu kadar zorlu bir ortamda bile neşelendirebilir."
-    },      
-"6677": "Jeneratörü geçici olarak tamir ettiniz.",
-"6678": "Yakıt pompasını geçici olarak tamir ettiniz.",
-"6679": "Jeneratör arızalandı.",
-"6680": "Yakıt pompası arızalandı.",
-"8027": "Müzik",
-"8028": "Kullanılan Modifiye Versiyon - Yazar",
-"8029": "Oynadığınız için teşekkür ederiz.",
-"6672": "Süresi Geçmiş Yiyecekler",
-  "6674": "Hızlandır (1 %s)",
-  "6675": "Oyun sürümünü geri aldınız. Kayıt dosyası bozuk olabilir. Lütfen yeni bir oyun başlatın veya önceki sürüme geri dönün.",
-  "6676": "Oyunu güncellediniz. Kayıt dosyası artık uyumlu olmayabilir. Sorunlarla karşılaşırsanız lütfen yeni bir oyun başlatın.",
-  "1101081": {
-    "title": "Gübre",
-    "des": "Aslında sadece süresi geçmiş yiyeceklerdir ve bunları kullanmanın tek yolu tarım ürünlerini gübrelemektir."
-  },
-  "6673": "Dün bu yiyecekler süresi geçti ve %s dışarıda, %s evde gübreye dönüştü. Buzdolabı yiyecekleri taze tutabilir!",
-  "21_0": {
-    "title": "Buzdolabı",
-    "des": "Evde elektrik varsa yiyecekler bozulmaz."
-  },
-"6671": "Virüs nihayet bağışıklık sistemini yendi ve insanlığınıza son verdi.",
-"6669": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız. Sonra düzelteceğiz.",
-"6670": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız!",
+        "title": "Köpek kemiği",
+        "des": "Ev yapımı köpek kemiği, köpeğinizi bu kadar zorlu bir ortamda bile neşelendirebilir."
+    },
+    "6677": "Jeneratörü geçici olarak tamir ettiniz.",
+    "6678": "Yakıt pompasını geçici olarak tamir ettiniz.",
+    "6679": "Jeneratör arızalandı.",
+    "6680": "Yakıt pompası arızalandı.",
+    "8027": "Müzik",
+    "8028": "Kullanılan Modifiye Versiyon - Yazar",
+    "8029": "Oynadığınız için teşekkür ederiz.",
+    "6672": "Süresi Geçmiş Yiyecekler",
+    "6674": "Hızlandır (1 %s)",
+    "6675": "Oyun sürümünü geri aldınız. Kayıt dosyası bozuk olabilir. Lütfen yeni bir oyun başlatın veya önceki sürüme geri dönün.",
+    "6676": "Tebrikler, oyunu güncellediniz.",
+    "1266": "Sürüm kontrol hatası:",
+    "1267": "Yeni sürüm %s mevcut",
+    "1268": "Güncellemeler:",
+    "1269": "Bu güncelleme mevcut hayatta kalma ilerlemesini etkilemeyecek.",
+    "1270": "Bazı güncellenmiş içerikler yalnızca yeni bir hayatta başlandığında deneyimlenebilir.",
+    "1271": "Bu güncelleme mevcut hayatta kalma ilerlemesini zorla silecektir.",
+    "1101081": {
+        "title": "Gübre",
+        "des": "Aslında sadece süresi geçmiş yiyeceklerdir ve bunları kullanmanın tek yolu tarım ürünlerini gübrelemektir."
+    },
+    "6673": "Dün bu yiyecekler süresi geçti ve %s dışarıda, %s evde gübreye dönüştü. Buzdolabı yiyecekleri taze tutabilir!",
+    "21_0": {
+        "title": "Buzdolabı",
+        "des": "Evde elektrik varsa yiyecekler bozulmaz."
+    },
+    "6671": "Virüs nihayet bağışıklık sistemini yendi ve insanlığınıza son verdi.",
+    "6669": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız. Sonra düzelteceğiz.",
+    "6670": "Bir motosikletiniz yok ve çıkarılan gazı depolayamazsınız!",
     "20_0": {
-      "title": "Kasa",
-      "des": "Malzemelerinizi koruyun. Kasada bulunan eşyalar zombiler tarafından çalınmaz veya zarar görmez."
+        "title": "Kasa",
+        "des": "Malzemelerinizi koruyun. Kasada bulunan eşyalar zombiler tarafından çalınmaz veya zarar görmez."
     },
     "6668": "Eşyalar çok ağır. Kasa daha fazla yükleyemez.",
     "8116": "Motosiklet sürmek",
     "8117": "Motosiklet sürmemek",
     "8118": "Pasif (Oyuncu sürmeyi tercih etmedi)",
     "1305011": {
-      "title": "Standart Mermi",
-      "des": "Felaket öncesinde üretildi, silaha zarar vermez ve daha iyi hassasiyete sahip olduğundan daha değerli hale gelir."
+        "title": "Standart Mermi",
+        "des": "Felaketten önce üretilen, silahı daha zor hasar verilebilir ve daha iyi hassasiyete sahip olması nedeniyle daha değerlidir."
     },
     "1305012": {
-      "title": "El yapımı Mermi",
-      "des": "Düşük hassasiyetli el yapımı mermi. Silaha zarar verebilir."
+        "title": "El yapımı Mermi",
+        "des": "Düşük hassasiyetli el yapımı mermi. Silaha zarar verebilir."
     },
-"6666": "Yeni Güncelleme tespit edildi: Sürüm %s. Lütfen Github veya diğer kanaldan güncelleyin.",
-"6667": "Buried City oynadığınız için teşekkür ederiz! Oyun topluluğuna ve oyunun dağıtım kanallarına katılın. Aşağıda listelenen hataları da bildirin!",
-"1324": "Kahve nedeniyle uyku sorunu yaşadınız. %s saat sonra dinlenin.",
-"1325": "Alkolden dolayı hassasiyetiniz %s% azaldı!",
-"1326": "Lütfen çantadan satın alın!",
-"1327": ["Kapalı","Kısmi","Tam"],
-"1333": "%s x%s'i 15 Virüs Yükü için değiştirmek istiyor musunuz? Bu işlem geri alınamaz.",
-"1334": "Değiştir",
-"1335": "%s %s'yi 15 virüs yükü için değiştirdiniz.",
-"1336": "Yük sınırını arttır:",
-"1337": "Hoş Geldiniz!",
-"1339": "Merhaba, bunları %s sikke ile değiştirmek istiyorum. Sizce uygun mu?",
+    "6666": "Lütfen Github veya diğer kanaldan güncelleyin.",
+    "6667": "Buried City oynadığınız için teşekkür ederiz! Oyun topluluğuna ve oyunun dağıtım kanallarına katılın. Aşağıda listelenen hataları da bildirin!",
+    "1324": "Kahve nedeniyle uyku sorunu yaşadınız. %s saat sonra dinlenin.",
+    "1325": "Alkolden dolayı hassasiyetiniz %s% azaldı!",
+    "1326": "Lütfen çantadan satın alın!",
+    "1327": ["Kapalı", "Kısmi", "Tam"],
+    "1333": "%s x%s'i 15 Virüs Yükü için değiştirmek istiyor musunuz? Bu işlem geri alınamaz.",
+    "1334": "Değiştir",
+    "1335": "%s %s'yi 15 virüs yükü için değiştirdiniz.",
+    "1336": "Yük sınırını arttır:",
+    "1337": "Hoş Geldiniz!",
+    "1339": "Merhaba, bunları %s sikke ile değiştirmek istiyorum. Sizce uygun mu?",
     "1342": "Hostel",
     "1343": "Hostel, evdeki bazı konforları sunabilir. Eğer karşılayabiliyorsanız, tabii ki.",
-    "1344": "%s saat uyuma (%s madeni para)",
-    "1345": "Kahve içme (%s madeni para)",
-    "1346": "Alkol içme (%s madeni para)",
-"8103": "Hız arttırıcı: ",
-"8104": "Aktif",
-"8105": "Pasif (hiçbir öğe)",
-"8106": "Pasif (yetersiz benzin)",
-"8107": "Kırık bir araba buldunuz. Paslı araba kendisi işe yaramasa da, tankta biraz benzin olabilir. Sifon aracınız varsa, biraz benzin alabilirsiniz.",
-"8108": "Sifon aracınızı donatmadınız!",
+    "1344": "Bunu yeterli bulmadın. Bir dahaki sefere daha fazla içmelisin.",
+    "1345": "Kahve iç",
+    "1346": "Alkol iç",
+    "8103": "Hız arttırıcı: ",
+    "8104": "Aktif",
+    "8105": "Pasif (hiçbir öğe)",
+    "8106": "Pasif (yetersiz benzin)",
+    "8107": "Kırık bir araba buldunuz. Paslı araba kendisi işe yaramasa da, tankta biraz benzin olabilir. Sifon aracınız varsa, biraz benzin alabilirsiniz.",
+    "8108": "Sifon aracınızı donatmadınız!",
     "8109": "Seçilmiş Yetenekler",
     "8111": "Brutal savaşın etkisiyle ürperen,",
     "8112": "Evdeki karışıklıktan ürperen,",
     "8113": "Zihinsel durumunuz sonunda çöktü.",
     "8114": "Yakındaki yüksek bir binadan atlayarak kendi yaşamını sonlandırmaya çalıştınız.",
     "8115": "Kendi yaşamını sonlandırmaya çalışarak düğüm attınız.",
-"1305075": {
-"title": "Sifon Aracı",
-"des": "Basit hortumlar ve kaplar sayesinde bir arabada bulunan benzinleri çekmek için yerçekimini kullanabilirsiniz."
-},
-"8000": "Grup dikkatlice kapıyı açarak geniş bir yardımcı koridora girer.",
-"8001": "Çevreye bakarken, koridor boyunca sıralanan, her biri farklı numaralarla işaretlenmiş bir dizi kapı fark ederler.",
-"8002": "Omuzlarından bakarak, yeni geçtikleri kapıyı 081 numarasıyla işaretli olarak görürler.",
-"8003": "Gözleri koridoru süpürdüğünde, iki zıt yol ortaya çıkar.",
-"8004": "Bir uçta, canlı bir yeşil çıkış işareti ile donatılmış bir kapı, sağlam bir patlamaya dayanıklı kapının üzerinde çekici bir ışık yayarak, potansiyel kurtuluşa işaret eder.",
-"8005": "Diğer uçta, belirsizlik ve merak içinde bilinmeyene uzanan sonsuz, gizemli bir tünel vardır.",
-"8006": "'Neredeyse oradayız. Hangi yolu seçmeliyiz?'",
-"8010": "'Haklısın. Buradan hızlıca çıkmalıyız.'",
-"8011": "Bir anda kapının önündeler, tekerleği umutsuzca çeviriyorlar. Ancak uzun sürmez.",
-"8012": "Hayalet gibi bir ses koridorda yankılanır, kahramanı kemiklerine kadar ürpertir. 'Hayatta kalanlar. Ne nadir bir manzara. Hayat gerçekten inanılmaz.'",
-"8013": "'Maalesef, sizi serbest bırakamam. Sonuçta, siz ölü olmalıydınız.' Bu sözler havada ağırca asılı kalır, yaklaşan bir felaket duygusuyla dolu.",
-"8014": "'Peki, öyle yapalım.' Kızıl gaz duvarlardan sızmaya başlar, koridoru yavaşça ölümcül bir dumanla doldurur.",
-"8015": "Bill'in yüzü hayaletvari soluktur. 'O, işte o. Lanet olsun,' diye mırıldanır, korku ve dehşetle titreyen sesi.",
-"8016": "Acı büyüktü ama hızlıydı. Yakında, sadece sessizlik kalmıştı.",
-"8020": "Hayatta kalanların gözleri koridoru süzüyor. Umutsuzluğun izleri belirgin - bazı kapılarda pençe izleri, kaçma çabalarının çılgınca izleri.",
-"8021": "Bazı kapıların çatlaklarından yaşlı kan sızar, içeride yaşanan korkunç olayların ürkütücü bir hatırlatıcısı.",
-"8022": "Bu yerin tarifsiz olaylara tanıklık ettiği açık, ancak karanlığın arasında bir umut parıltısı kalır - bazı kapılar dokunulmamış gibi görünür.",
-"8023": "'Açıkça bir tür merkezdeyiz. Normal yoldan buradan çıkamayız.'",
-"8024": "Belki de o dokunulmamış kapıların arkasında hala bir uygarlık izi vardır. Belki de daha fazla hayatta kalan, zorluklarla yüzleşiyor.",
-"8025": "Belki de o apokalips henüz orada olmamıştır. Belki de onları durdurma şansı hala vardır.",
-"8026": "Hayatta kalanlar hızlıca bir kapıdan geçerek sonsuz boşluğa kayboldu.",
-"8100": "Patlamaya dayanıklı kapı",
-"8101": "Koridorun derinliği",
-"8102": "Sonunda, her şey bitti. Odanın sonunda bir kapı var. Şehir kuşatma altında olduğu için, bu tek çıkış yolu.",
-"1349": "Sadece bir yetenek seçtiniz. Gömülü Şehir, orijinal sürümden daha zor, ancak birden fazla yeteneği destekliyor. Yeniden seçmek istiyor musunuz?",
-"1350": "Hiçbir yetenek seçmediniz. Gömülü Şehir, orijinal sürümden daha zor, en az bir yetenek seçmeniz önerilir. Yeniden seçmek istiyor musunuz?",
-"1351": "Uyarı",
-"1301091": {
-    "title": "Alev Püskürtücü",
-    "des": "Birçok zombiye kalıcı hasar verir, tek dezavantajı benzin gerektirmesidir. Çok fazla benzin. Eğer yolun yarısında benzininiz biterse..."
-},
-"1347": "Tüm zombileri tutuşturdunuz.",
-"1348": "Benziniz tükendi!",
-"gachapon": {
-    "title": "Çekiliş",
-    "des": "Şansını denemeye gel! Büyük ödül seni bekliyor! 100% Kazanma Oranı!"
-},
-"gachaponDialog": {
-    "title": {
-        "txt_1": "Fiyat: %s Sikke"
+    "1305075": {
+        "title": "Sifon Aracı",
+        "des": "Basit hortumlar ve kaplar sayesinde bir arabada bulunan benzinleri çekmek için yerçekimini kullanabilirsiniz."
     },
-    "content": {},
-    "action": {
-        "btn_1": {
-            "txt": "Oyna"
+    "8000": "Grup dikkatlice kapıyı açarak geniş bir yardımcı koridora girer.",
+    "8001": "Çevreye bakarken, koridor boyunca sıralanan, her biri farklı numaralarla işaretlenmiş bir dizi kapı fark ederler.",
+    "8002": "Omuzlarından bakarak, yeni geçtikleri kapıyı 081 numarasıyla işaretli olarak görürler.",
+    "8003": "Gözleri koridoru süpürdüğünde, iki zıt yol ortaya çıkar.",
+    "8004": "Bir uçta, canlı bir yeşil çıkış işareti ile donatılmış bir kapı, sağlam bir patlamaya dayanıklı kapının üzerinde çekici bir ışık yayarak, potansiyel kurtuluşa işaret eder.",
+    "8005": "Diğer uçta, belirsizlik ve merak içinde bilinmeyene uzanan sonsuz, gizemli bir tünel vardır.",
+    "8006": "'Neredeyse oradayız. Hangi yolu seçmeliyiz?'",
+    "8010": "'Haklısın. Buradan hızlıca çıkmalıyız.'",
+    "8011": "Bir anda kapının önündeler, tekerleği umutsuzca çeviriyorlar. Ancak uzun sürmez.",
+    "8012": "Hayalet gibi bir ses koridorda yankılanır, kahramanı kemiklerine kadar ürpertir. 'Hayatta kalanlar. Ne nadir bir manzara. Hayat gerçekten inanılmaz.'",
+    "8013": "'Maalesef, sizi serbest bırakamam. Sonuçta, siz ölü olmalıydınız.' Bu sözler havada ağırca asılı kalır, yaklaşan bir felaket duygusuyla dolu.",
+    "8014": "'Peki, öyle yapalım.' Kızıl gaz duvarlardan sızmaya başlar, koridoru yavaşça ölümcül bir dumanla doldurur.",
+    "8015": "Bill'in yüzü hayaletvari soluktur. 'O, işte o. Lanet olsun,' diye mırıldanır, korku ve dehşetle titreyen sesi.",
+    "8016": "Acı büyüktü ama hızlıydı. Yakında, sadece sessizlik kalmıştı.",
+    "8020": "Hayatta kalanların gözleri koridoru süzüyor. Umutsuzluğun izleri belirgin - bazı kapılarda pençe izleri, kaçma çabalarının çılgınca izleri.",
+    "8021": "Bazı kapıların çatlaklarından yaşlı kan sızar, içeride yaşanan korkunç olayların ürkütücü bir hatırlatıcısı.",
+    "8022": "Bu yerin tarifsiz olaylara tanıklık ettiği açık, ancak karanlığın arasında bir umut parıltısı kalır - bazı kapılar dokunulmamış gibi görünür.",
+    "8023": "'Açıkça bir tür merkezdeyiz. Normal yoldan buradan çıkamayız.'",
+    "8024": "Belki de o dokunulmamış kapıların arkasında hala bir uygarlık izi vardır. Belki de daha fazla hayatta kalan, zorluklarla yüzleşiyor.",
+    "8025": "Belki de o apokalips henüz orada olmamıştır. Belki de onları durdurma şansı hala vardır.",
+    "8026": "Hayatta kalanlar hızlıca bir kapıdan geçerek sonsuz boşluğa kayboldu.",
+    "8100": "Patlamaya dayanıklı kapı",
+    "8101": "Koridorun derinliği",
+    "8102": "Sonunda, her şey bitti. Odanın sonunda bir kapı var. Şehir kuşatma altında olduğu için, bu tek çıkış yolu.",
+    "1349": "Sadece bir yetenek seçtiniz. Gömülü Şehir, orijinal sürümden daha zor, ancak birden fazla yeteneği destekliyor. Yeniden seçmek istiyor musunuz?",
+    "1350": "Hiçbir yetenek seçmediniz. Gömülü Şehir, orijinal sürümden daha zor, en az bir yetenek seçmeniz önerilir. Yeniden seçmek istiyor musunuz?",
+    "1351": "Uyarı",
+    "1301091": {
+        "title": "Alev Püskürtücü",
+        "des": "Birçok zombiye kalıcı hasar verir, tek dezavantajı benzin gerektirmesidir. Çok fazla benzin. Eğer yolun yarısında benzininiz biterse..."
+    },
+    "1347": "Tüm zombileri tutuşturdunuz.",
+    "1348": "Benziniz tükendi!",
+    "gachapon": {
+        "title": "Çekiliş",
+        "des": "Şansını denemeye gel! Büyük ödül seni bekliyor! 100% Kazanma Oranı!"
+    },
+    "gachaponDialog": {
+        "title": {
+            "txt_1": "Fiyat: %s Sikke"
         },
-        "btn_1": {
-            "txt": "Şimdi değil"
+        "content": {},
+        "action": {
+            "btn_1": {
+                "txt": "Oyna"
+            },
+            "btn_1": {
+                "txt": "Şimdi değil"
+            }
         }
-    }
-},
-"1338": "Buried Town tarafından yapılmış ArithSeq tarafından yapılan Buried City'e hoş geldiniz.\n\nEkran içeriği eksik ise, lütfen sağ alt köşedeki Ayarlar'a gidin ve Ekranı Küçült seçeneğini değiştirin.\n\nBu sürüm birçok ayarlamadan geçti ve birçok özellik kazandı. Tüm bilgiler için sol alt köşedeki belgelendirmeyi okuyun.\n\nAçık kaynaklı yazılımdır, ticari kazanç için kullanmayın. Konaklamanızı keyifli geçirin!",
+    },
+    "1338": "Buried Town tarafından yapılmış ArithSeq tarafından yapılan Buried City'e hoş geldiniz.\n\nEkran içeriği eksik ise, lütfen sağ alt köşedeki Ayarlar'a gidin ve Ekranı Küçült seçeneğini değiştirin.\n\nBu sürüm birçok ayarlamadan geçti ve birçok özellik kazandı. Tüm bilgiler için sol alt köşedeki belgelendirmeyi okuyun.\n\nAçık kaynaklı yazılımdır, ticari kazanç için kullanmayın. Konaklamanızı keyifli geçirin!",
     "1103094": {
         "title": "Peynir",
         "des": "Düz ve eriyen dokusu ile zengin süt aroması, hayatta kalma baskılarını unutmanıza neden olabilir."
@@ -207,7 +219,7 @@ var string = {
         "title": "Elektrikli çit",
         "des": "Yetersiz voltaja bağlı olarak, öz yapımı elektrik şebekesi yaklaşan zombileri yok edemese de, bazılarının uzaklaşmasını 'önermek' mümkün.'"
     },
-        "14": {
+    "14": {
         "title": "Susuzluk Seviyesi",
         "des": "Uzun süreli susuzluk hayati tehlike oluşturabilir. Eğer depoda su varsa (veya dışarıdaysanız sırt çantanızda), düzenli aralıklarla otomatik olarak su içeceksiniz. Özellikle susuz hissettiğinizde daha fazla su içeceksiniz."
     },
@@ -222,17 +234,15 @@ var string = {
     "1330": "Çok susuzsunuz ve depodan 1 su içtiniz.",
     "1331": "Sırt çantanızdan 1 su içtiniz.",
     "1332": "Depodan 1 su içtiniz.",
-"9030": "Satmak istiyor musunuz?",
-"9031": "Satın almak istiyor musunuz?",
-"9033": "Sat",
-"9034": "Satın al",
-"9035": "Stok: ",
-"9036": "Ancak çantanız çalıntı şeyleri koymak için yeterli alanı içermiyor. Onları sessizce geri koydunuz.",
+    "9030": "Satmak istiyor musunuz?",
+    "9031": "Satın almak istiyor musunuz?",
+    "9033": "Sat",
+    "9034": "Satın al",
+    "9035": "Stok: ",
+    "9036": "Ancak çantanız çalıntı şeyleri koymak için yeterli alanı içermiyor. Onları sessizce geri koydunuz.",
     "1171": "Köpek aç gözlü şekilde taze eti çiğniyor",
     "1023": "Yetersiz et",
     "1169": "ses efekti",
-    "1321": "Masako",
-    "1322": "Elektrik mühendisi",
     "1323": "Tamirat (%s dk)",
     "site_204": {
         "name": "Enerji santrali",
@@ -289,17 +299,17 @@ var string = {
     "12": {
         "title": "Elektrik",
         "des": "Ev aletleriniz ve EMP silahları, çalışabilmek için elektriğe ihtiyaç duyar. Hayatta kalmak için Enerji Santrali'nin sürekli çalışması önemlidir."
-      },
-      "1301071": {
+    },
+    "1301071": {
         "title": "EMP Tabanca",
         "des": "Geleneksel tabancalarla rekabet edebilecek güçlü akımlar üretebilir. Ancak elektrik olmadan işe yaramaz."
-      },
-      "1301082": {
+    },
+    "1301082": {
         "title": "EMP Tüfek",
         "des": "Herhangi bir organik malzemeyi geçmek için yüksek voltajlı akım kullanır. Tabii ki, elektrik olduğu sürece."
-      },
-      "1126": "Enerjili",
-      "1127": "Enerji yok",
+    },
+    "1126": "Enerjili",
+    "1127": "Enerji yok",
     "1000": "Gün %s",
     "1001": "Yukarı  (%s dk) ",
     "1002": "Yap (%s dk)",
@@ -351,7 +361,7 @@ var string = {
     "1052": " %s zombi %s hasar aldı.",
     "1053": "Tüm zombiler %s hasar aldı.",
     "1054": "Iskaladın",
-    "1055": "Zombiler yemini yuttu ve sana saldırmayı bıraktılar",
+    "1055": "Zombiler %s yuttu ve sana saldırmayı bıraktılar",
     "1056": "%s %s zombiler öldü",
     "1057": "Kan kaybından bayıldın",
     "1058": "Kullan:",
@@ -372,7 +382,6 @@ var string = {
     "1073": "Anladım.",
     "1074": "Mümkün mallar:",
     "1075": "Zombi tehditleri:",
-    "1076": "Zombilerin gece istilası",
     "1077": "Zombi dalga salgını, kasabanın heryeri sinirli zombilerle dolu. Birkaç zombi savunmayı aştı, sebepsizce evi parçaladı.",
     "1078": "Zombi dalga salgını, kasabanın heryeri sinirli zombilerle dolu.Dayanıklı savunmayla kabinin dalgayı atlattı. Herhangi bir kayıp yok",
     "1079": "Hasarın:",
@@ -452,8 +461,6 @@ var string = {
     "1156": "Yeni bir oyuna mı başlayacaksın? Orijinal ilerleme silinecek.",
     "1157": "Tekrar düşün",
     "1158": "Sıralama listesi",
-    "1159": "Buried City'da hayatta kaldın",
-    "1160": "D%s H%s M%s",
     "1161": "Adını yaz",
     "1162": "Paylaş",
     "1163": "Anasayfa",
@@ -462,9 +469,6 @@ var string = {
     "1167": "İpuçları",
     "1168": "Bir şehir kabinini ele geçirdin. Zombiler heryerde ama açlıktan kurtulmak için hala dışarı çıkıp yemek, ilaç ve silah aramalısın! Ancak bunlarla hayatta kalabilirsin, bir gün fazla yaşamak bir dilektir, hadi git!",
     "1170": "Yumruk",
-    "1173": "Gelişmiş:",
-    "1190": "Ücret:",
-    "1191": "%s yuan",
     "1192": "Ücretsiz",
     "1193": "Dön",
     "1195": "Şehvete kapılmış,",
@@ -494,15 +498,12 @@ var string = {
     "1228": "Ayrıl",
     "1229": "Gizli odaya tekrar girilemez, ayrılmak istediğinden emin misin?",
     "1230": "Hiçbiri",
-    "1231": "Zombilerin şehirinde ne kadar süre hayatta kalabilirsin?",
-    "1232": "Kilidi açık",
     "1233": "Satın alındı",
     "1234": "Rumuzda “,” veya “|” karakterleri olamaz!",
     "1235": "Şöhret Meydanı",
     "1237": "Zombilerin hüküm sürdüğü sokaktan geçiyorsun, sonunda açık halde kabin halinde bir sığınak buldun. Yorgunluktan tükendin ama hayatta kalmak için kasabaya dönmen gerekiyor. Atık binasına gidip materyal ara.",
     "1238": "Getirdiğin tüm yemek ve materyalleri sağ alt köşedeki depoya koy. Şimdi depoya gidip yiyecek birşeyler ara, sonra uyku tulumuna girip biraz uyu. (İstediğin zaman ekranın üzerindeki simgeye tıklayarak hayatta kalma niteliklerine bakabilirsin)",
     "1239": "Yeterince uyuduktan sonra canın iyileşti. Fakat bu sadece şu an için geçerlidir. Açlık, hastalık, zombi istilalarının tamamı canını alabilir. Daha fazla materyal bulman gerekir, tabiki en iyisi silah bulmak.",
-    "1241": "Bu kişi sessizce ayrıldı, geriye tek bir söz bile bırakmadı.",
     "1245": "Yetenek seçilmez, mağazaya girilemez.",
     "1246": "Madalya duvarı",
     "1247": "Onur madalyası",
@@ -721,8 +722,8 @@ var string = {
     },
     "b_1107052": "Bir süre boyunca virüs birikmeyecek.",
     "1107052": {
-      "title": "Deneysel Antidot",
-      "des": "Hâlâ zombi virüsünün tedavisinde bir ilerleme kaydedilmese de, virüsün geçici olarak istilasını önlemek mümkündür."
+        "title": "Deneysel Antidot",
+        "des": "Hâlâ zombi virüsünün tedavisinde bir ilerleme kaydedilmese de, virüsün geçici olarak istilasını önlemek mümkündür."
     },
     "1301011": {
         "title": "Tabanca",
@@ -769,8 +770,8 @@ var string = {
         "des": "Çok güçlü, ani ve güçlü bir etkiyle zombi gruplarını öldürür"
     },
     "1303022": {
-        "title": "Yem",
-        "des": "Kuru hücrelere et koyarak ses çıkarıp ısı yayarak zombileri çek"
+        "title": "Duman Bombası",
+        "des": "Kimyasalları ısıtmak için piller kullanın ve çok fazla duman üretin. Biraz et ekleyin ve hem zombiler hem de hırsızlar dikkatlerini dağıtacak."
     },
     "1303033": {
         "title": "Bazuka",
@@ -890,10 +891,10 @@ var string = {
         "title": "Uyku Tulumu",
         "des": "Temel ısı ve rahat uyuma ortamını sağlar."
     },
-"9_1": {
-"title": "Yatak Takımları",
-"des": "Bir uyku tulumundan daha rahat, ancak hala ideal değil."
-},
+    "9_1": {
+        "title": "Yatak Takımları",
+        "des": "Bir uyku tulumundan daha rahat, ancak hala ideal değil."
+    },
     "9_2": {
         "title": "Yatak",
         "des": "Düz,rahat yatak, kaliteli uykuyu garantiler."
@@ -1118,50 +1119,50 @@ var string = {
         "name": "Benzin istasyonu",
         "des": "Benzin istasyonunda yatay yedi dikey sekiz arazide her çeşit araba bulunuyor, birbirilerini çıkartmayacak şekilde duruyorlar. Bu kadar karışık bir sahnede ateşlenip patlamamak gerçekten bir mucize!"
     },
-      "site_202": {
-          "name": "Hurdalık",
-          "des": "Kasabanın çöplüğü o kadar pis kokuyor ki zombiler bile yaklaşmaya cesaret edemiyor. İçinde erzak olsa da... bunun hakkında konuşmayalım, tükürelim"
-      },
-      "site_400": {
-          "name": "Survivor's Market",
-          "des": "Hayatta kalanların düzenlediği çarşıda her gün yeni ürünler olacak. Lütfen malzemeleri 'Depolananlar' içinde satın. Kapitalizm gerçekten de zombilerden daha vahşi."
-      },
-      "site_500": {
-          "name": "Haydut İni",
-          "des": "Bu sıradan bina aslında bir soyguncu çetesinin kampı. Madem beni soymaya cüret ediyorsun, o zaman onu geri almamdan korkmamalısın.\nUyarı: Hırsızlar silah taşıyabilir!"
-      },
-      "13": {
-          "title": "Paralar",
-          "des": "Ada zombilerin kuşatması altında olmasına rağmen, madeni paralar hala insanlarla takas yapmak için tek araç."
-      },
-      "npc_7": {
-          "name": "W. Beyaz",
-          "des": "Felaketten önce kasabanın lisesinde kimya öğretmeniydi ama evdeki donanıma bakılırsa buradaki kimyasallar üniversitelerde bile öğretilmiyor.",
-          "dialogs": ["Öhö..Öksürük..Öf.. Üzgünüm meslek hastalığı. Koruyucu malzemelere ulaşmak gittikçe zorlaşıyor.", "Jesse! Jesse! Hey, Jesse olmadan hayat giderek daha stresli hale geliyor." , "'Reçetesiz' bazı kimyasal maddeler de yapabilirim, hehehe...", "Dur! Ellerini kaldır! Hey, sen hırsız değilsin... Üzgünüm o zaman." , "Hala yaptım. karım ve arkadaşlarımla akıl kavgası yaptığım zamanları özlüyorum. şimdi herkesle savaşmak zorundayım."]
-      },
-      "statusDialog2": {
-          "title": {
-              "txt_1": "Geçerli: %s"
-          },
-          "content": {"des2":"Survivor Market'te tanınan tek para birimi jetondur. Orada malzemeleri alıp satabilir ve jeton kazanabilirsiniz."
-          },
-          "action": {
-              "btn_1": {
-                  "txt": "Anladım"
-              }
-          }
-      },
-      "9019": "Ara (30 dakika)",
-      "9020": "Sat",
-      "9021": "Birim fiyatı: ",
-      "9022": "Miktar Seçiniz: ",
-      "9023": "Toplam fiyat: ",
-      "9024": "%s coin karşılığında (%s) satmak üzeresiniz",
-      "9025": " (%s) sattınız ve %s coin aldınız",
-      "9026": "Satın almak için %s coin harcamak üzeresiniz (%s)",
-      "9027": "Satın almak için %s coin harcadınız (%s)",
-      "9028": "Coinleriniz ücreti ödemeye yetmiyor! Mevcut coin: %s",
-      "9032": "Eve döndüğünde her şeyin bir karmaşa içinde olduğunu gördün. Zenginliğin ve güvenlik önlemlerinin eksikliğiyle çekicilik uyandıran hırsızlar evini yağmaladı ve şunları kaybettin:",
+    "site_202": {
+        "name": "Hurdalık",
+        "des": "Kasabanın çöplüğü o kadar pis kokuyor ki zombiler bile yaklaşmaya cesaret edemiyor. İçinde erzak olsa da... bunun hakkında konuşmayalım, tükürelim"
+    },
+    "site_400": {
+        "name": "Survivor's Market",
+        "des": "Hayatta kalanların düzenlediği çarşıda her gün yeni ürünler olacak. Lütfen malzemeleri 'Depolananlar' içinde satın. Kapitalizm gerçekten de zombilerden daha vahşi."
+    },
+    "site_500": {
+        "name": "Haydut İni",
+        "des": "Bu sıradan bina aslında bir soyguncu çetesinin kampı. Madem beni soymaya cüret ediyorsun, o zaman onu geri almamdan korkmamalısın.\nUyarı: Hırsızlar silah taşıyabilir!"
+    },
+    "13": {
+        "title": "Paralar",
+        "des": "Ada zombilerin kuşatması altında olmasına rağmen, madeni paralar hala insanlarla takas yapmak için tek araç."
+    },
+    "npc_7": {
+        "name": "W. Beyaz",
+        "des": "Felaketten önce kasabanın lisesinde kimya öğretmeniydi ama evdeki donanıma bakılırsa buradaki kimyasallar üniversitelerde bile öğretilmiyor.",
+        "dialogs": ["Öhö..Öksürük..Öf.. Üzgünüm meslek hastalığı. Koruyucu malzemelere ulaşmak gittikçe zorlaşıyor.", "Jesse! Jesse! Hey, Jesse olmadan hayat giderek daha stresli hale geliyor.", "'Reçetesiz' bazı kimyasal maddeler de yapabilirim, hehehe...", "Dur! Ellerini kaldır! Hey, sen hırsız değilsin... Üzgünüm o zaman.", "Hala yaptım. karım ve arkadaşlarımla akıl kavgası yaptığım zamanları özlüyorum. şimdi herkesle savaşmak zorundayım."]
+    },
+    "statusDialog2": {
+        "title": {
+            "txt_1": "Geçerli: %s"
+        },
+        "content": {
+            "des2": "Survivor Market'te tanınan tek para birimi jetondur. Orada malzemeleri alıp satabilir ve jeton kazanabilirsiniz."
+        },
+        "action": {
+            "btn_1": {
+                "txt": "Anladım"
+            }
+        }
+    },
+    "9019": "Ara (30 dakika)",
+    "9020": "Sat",
+    "9022": "Miktar Seçiniz: ",
+    "9023": "Toplam fiyat: ",
+    "9024": "%s coin karşılığında (%s) satmak üzeresiniz",
+    "9025": " (%s) sattınız ve %s coin aldınız",
+    "9026": "Satın almak için %s coin harcamak üzeresiniz (%s)",
+    "9027": "Satın almak için %s coin harcadınız (%s)",
+    "9028": "Coinleriniz ücreti ödemeye yetmiyor! Mevcut coin: %s",
+    "9032": "Eve döndüğünde her şeyin bir karmaşa içinde olduğunu gördün. Zenginliğin ve güvenlik önlemlerinin eksikliğiyle çekicilik uyandıran hırsızlar evini yağmaladı ve şunları kaybettin:",
     "site_61": {
         "name": "Enstitü",
         "des": "Böyle olacağını hiç düşünmemiştim, bu küçük kasabanın 30 m altında gizli üssün alt tarafında bu kadar büyük bir inşaat var, bunu buraya kim inşa etti? Burada ne oldu?"
@@ -1229,14 +1230,14 @@ var string = {
     "b_1107022": "Tekrar enfeksiyondan etkilenmemeni sağlar",
     "b_1107032": "Tekrar yorulmamanı sağlar",
     "b_1107042": "Tekrar acıkmazsın",
-"water_name": ["Ciddi Susuzluk", "Çok Susuz", "Hafif Susuz", "Susuz Değil"],
+    "water_name": ["Ciddi Susuzluk", "Çok Susuz", "Hafif Susuz", "Susuz Değil"],
     "starve_name": ["Ciddi Açlık", "Aç", "Aç Hissediyor", "Aç Değil"],
     "vigour_name": ["Tükenmiş", "Yorgun", "Bitkin", "Enerjik"],
     "spirit_name": ["Çöküş", "Depresif", "Üzgün", "Kendine Güvenen"],
     "injury_name": ["Yaralanma Yok", "Yaralı", "Hafif Yaralı", "Ciddi Yaralı", "Ölümcül Yaralı"],
     "infect_name": ["Enfeksiyon Yok", "Hafif Enfeksiyon", "Orta Düzeyde Enfeksiyon", "Ağır Enfeksiyon", "Bağışıklık Sistemi Çöküşü"],
-"water_down": ["Çok susuzsunuz - görmeniz bulanıklaşıyor.","Çok susuzsunuz - gözlerinizi kapattığınızda su düşünüyorsunuz.","Su içmek istiyorsunuz."],
-"infect_up": [null, "Vücudunda bakteri büyüyor.", "Enfeksiyon hızla yayılıyor. Heryerin kaşındı.", "Ciddi enfeksiyon ateşe sebep oldu. Hayatın emiliyor gibi hissediyorsun."],
+    "water_down": ["Çok susuzsunuz - görmeniz bulanıklaşıyor.", "Çok susuzsunuz - gözlerinizi kapattığınızda su düşünüyorsunuz.", "Su içmek istiyorsunuz."],
+    "infect_up": [null, "Vücudunda bakteri büyüyor.", "Enfeksiyon hızla yayılıyor. Heryerin kaşındı.", "Ciddi enfeksiyon ateşe sebep oldu. Hayatın emiliyor gibi hissediyorsun."],
     "infect_down": [null, null, "Enfeksiyon geçici olarak kontrol altında. En azından yayılmayacak.", "Enfeksiyon remisyona girdi, görünüş pek iç açıcı değil.", "İlaçların biraz etkisi oldu ama enfeksiyon hala ciddi."],
     "injury_up": [null, "Yaran büyüyor.", "Yaran kötüleşti. Enfeksiyon kapabilirsin.", "Yaraların çok şiddetli, zar zor hareket ediyorsun."],
     "injury_down": [null, null, "Yaran stabilize oldu. Neredeyse güvendesin.", "Yaran hala kanıyor ama durum kötüleşmedi.", "Yaran hala şiddetli. Daha fazla bakıma ihtiyacın var."],
@@ -1373,36 +1374,36 @@ var string = {
         "name": "Büyük Can Çantası",
         "des": "Hemen Büyük Can Çantasını elde et. \\n(lütfen depoyu kontrol edin)"
     },
-  "p_105": {
-    "name": "Stokçuluk",
-    "des": "Felaket öncesi biriktirilen malzemeler nihayet devreye giriyor.",
-    "effect": "Başlangıçta çok miktarda malzeme elde edin."
-  },
-  "p_106": {
-    "name": "Yaratıcılık",
-    "des": "El işi sizin uzmanlık alanınızdır.",
-    "effect": "Eşya yapımı ve mobilya yükseltmeleri %30 daha hızlıdır."
-  },
-  "p_107": {
-    "name": "Gizlilik",
-    "des": "İzlerinizi gizleme konusunda özellikle iyisiniz.",
-    "effect": "Zombi, gece baskınları ve hırsız ziyaretleriyle karşılaşma olasılığı %25 daha az."
-  },
-  "p_109": {
-    "name": "Hile: Ücretsiz IAP",
-    "des": "Mağazada sınırsız ücretsiz satın alma ve Radyo CMD açık.",
-    "effect": "Hile işlevi, mağazada sınırsız ücretsiz satın alma ve Radyo CMD. (Başarılar sayılmayacak)"
-  },
-  "p_110": {
-    "name": "Hile: Her Şeyin Kilidini Aç",
-    "des": "Tüm konumları, NPC'leri, maksimum arkadaşlığı ve tekrarlanabilir konumları açar.",
-    "effect": "Hile işlevi, tüm kopyaları, NPC'leri, maksimum arkadaşlığı ve tekrarlanabilir konumları açar. (Başarılar sayılmayacak)"
-  },
-"p_108": {
-    "name": "Gezgin",
-    "des": "Ekstra büyük bir sırt çantasına sahipsiniz.",
-    "effect": "Sırt çantası boyutu +30."
-},
+    "p_105": {
+        "name": "Stokçuluk",
+        "des": "Felaket öncesi biriktirilen malzemeler nihayet devreye giriyor.",
+        "effect": "Başlangıçta çok miktarda malzeme elde edin."
+    },
+    "p_106": {
+        "name": "Yaratıcılık",
+        "des": "El işi sizin uzmanlık alanınızdır.",
+        "effect": "Eşya yapımı ve mobilya yükseltmeleri %30 daha hızlıdır."
+    },
+    "p_107": {
+        "name": "Gizlilik",
+        "des": "İzlerinizi gizleme konusunda özellikle iyisiniz.",
+        "effect": "Zombi, gece baskınları ve hırsız ziyaretleriyle karşılaşma olasılığı %25 daha az."
+    },
+    "p_109": {
+        "name": "Hile: Ücretsiz IAP",
+        "effect": "",
+        "des": "Hile işlevi, mağazada sınırsız ücretsiz satın alma ve Radyo CMD. (Başarılar sayılmayacak)"
+    },
+    "p_110": {
+        "name": "Hile: Her Şeyin Kilidini Aç",
+        "effect": "",
+        "des": "Hile işlevi, tüm kopyaları, NPC'leri, maksimum arkadaşlığı ve tekrarlanabilir konumları açar. (Başarılar sayılmayacak)"
+    },
+    "p_108": {
+        "name": "Gezgin",
+        "des": "Ekstra büyük bir sırt çantasına sahipsiniz.",
+        "effect": "Sırt çantası boyutu +30."
+    },
     "m_103": {
         "name": "Demir adam madalyası (3. sınıf)",
         "condition": "Tek seferde 5 günden fazla hayatta kal",
@@ -1449,158 +1450,158 @@ var string = {
         "des": "Kendi getirdiğin 1 M40'ı aç"
     },
     "1260": "Başarı",
-"1261": "Google başarılarını burada çevrimdışı olarak açabilir ve izleyebilirsiniz. Radyo CMD kullanarak herhangi bir zamanda ilerlemeyi yedekleyip geri yükleyebilirsiniz: 'backup', 'restore {}'.",
-"1272": "Başarı kilidini açtınız: ",
-"bt_season_1": {
-"title": "Kışın İçinde",
-"des": "Sonbaharı atlat."
-},
-"bt_season_2": {
-"title": "İlkbaharda",
-"des": "Kışı atlat."
-},
-"bt_season_3": {
-"title": "Yazın İçinde",
-"des": "İlkbaharı atlat."
-},
-"bt_season_4": {
-"title": "Sonbaharda",
-"des": "Yazı atlat."
-},
-"bt_produce_1": {
-"title": "Çiftçi",
-"des": "50 patates dik."
-},
-"bt_produce_2": {
-"title": "Avcı",
-"des": "25 et parçası yap."
-},
-"bt_produce_3": {
-"title": "Balıkçı",
-"des": "100 su yap."
-},
-"bt_produce_4": {
-"title": "Alkollü",
-"des": "50 şişe Votka yap."
-},
-"bt_make_1": {
-"title": "Bu Bir Savaş!",
-"des": "Bir AK47 yap."
-},
-"bt_make_2": {
-"title": "Pasif Savunma",
-"des": "Bir Anti-ayaklanma kıyafeti yap."
-},
-"bt_make_3": {
-"title": "Malzeme Memuru",
-"des": "Bir askeri sırt çantası yap."
-},
-"bt_make_4": {
-"title": "Ninja",
-"des": "Bir katana yap."
-},
-"bt_npc_1": {
-"title": "Merhaba, Bay Luo!",
-"des": "Bay Luo ile tanış."
-},
-"bt_npc_2": {
-"title": "Çok naziksiniz, Luo!",
-"des": "Bay Luo ile olan arkadaşlık seviyesini %100'e çıkar."
-},
-"bt_npc_3": {
-"title": "Merhaba, Jeff!",
-"des": "Jeff ile tanış."
-},
-"bt_npc_4": {
-"title": "Çok naziksiniz, Jeff!",
-"des": "Jeff ile olan arkadaşlık seviyesini %100'e çıkar."
-},
-"bt_npc_5": {
-"title": "Merhaba, Dr. Jean!",
-"des": "Dr. Jean ile tanış."
-},
-"bt_npc_6": {
-"title": "Çok naziksiniz, Doktor!",
-"des": "Dr. Jean ile olan arkadaşlık seviyesini %100'e çıkar."
-},
-"bt_npc_7": {
-"title": "Merhaba, Masasko!",
-"des": "Masako ile tanış."
-},
-"bt_npc_7": {
-    "title": "Merhaba, Masako!",
-    "des": "Masako ile tanış."
+    "1261": "Google başarılarını burada çevrimdışı olarak açabilir ve izleyebilirsiniz. Radyo CMD kullanarak herhangi bir zamanda ilerlemeyi yedekleyip geri yükleyebilirsiniz: 'backup', 'restore {}'.",
+    "1272": "Başarı kilidini açtınız: ",
+    "bt_season_1": {
+        "title": "Kışın İçinde",
+        "des": "Sonbaharı atlat."
+    },
+    "bt_season_2": {
+        "title": "İlkbaharda",
+        "des": "Kışı atlat."
+    },
+    "bt_season_3": {
+        "title": "Yazın İçinde",
+        "des": "İlkbaharı atlat."
+    },
+    "bt_season_4": {
+        "title": "Sonbaharda",
+        "des": "Yazı atlat."
+    },
+    "bt_produce_1": {
+        "title": "Çiftçi",
+        "des": "50 patates dik."
+    },
+    "bt_produce_2": {
+        "title": "Avcı",
+        "des": "25 et parçası yap."
+    },
+    "bt_produce_3": {
+        "title": "Balıkçı",
+        "des": "100 su yap."
+    },
+    "bt_produce_4": {
+        "title": "Alkollü",
+        "des": "50 şişe Votka yap."
+    },
+    "bt_make_1": {
+        "title": "Bu Bir Savaş!",
+        "des": "Bir AK47 yap."
+    },
+    "bt_make_2": {
+        "title": "Pasif Savunma",
+        "des": "Bir Anti-ayaklanma kıyafeti yap."
+    },
+    "bt_make_3": {
+        "title": "Malzeme Memuru",
+        "des": "Bir askeri sırt çantası yap."
+    },
+    "bt_make_4": {
+        "title": "Ninja",
+        "des": "Bir katana yap."
+    },
+    "bt_npc_1": {
+        "title": "Merhaba, Bay Luo!",
+        "des": "Bay Luo ile tanış."
+    },
+    "bt_npc_2": {
+        "title": "Çok naziksiniz, Luo!",
+        "des": "Bay Luo ile olan arkadaşlık seviyesini %100'e çıkar."
+    },
+    "bt_npc_3": {
+        "title": "Merhaba, Jeff!",
+        "des": "Jeff ile tanış."
+    },
+    "bt_npc_4": {
+        "title": "Çok naziksiniz, Jeff!",
+        "des": "Jeff ile olan arkadaşlık seviyesini %100'e çıkar."
+    },
+    "bt_npc_5": {
+        "title": "Merhaba, Dr. Jean!",
+        "des": "Dr. Jean ile tanış."
+    },
+    "bt_npc_6": {
+        "title": "Çok naziksiniz, Doktor!",
+        "des": "Dr. Jean ile olan arkadaşlık seviyesini %100'e çıkar."
+    },
+    "bt_npc_7": {
+        "title": "Merhaba, Masasko!",
+        "des": "Masako ile tanış."
+    },
+    "bt_npc_7": {
+        "title": "Merhaba, Masako!",
+        "des": "Masako ile tanış."
     },
     "bt_npc_8": {
-    "title": "Çok naziksiniz, Masako!",
-    "des": "Masako ile olan arkadaşlığınız %100'e yükseldi."
+        "title": "Çok naziksiniz, Masako!",
+        "des": "Masako ile olan arkadaşlığınız %100'e yükseldi."
     },
     "bt_npc_9": {
-    "title": "Merhaba, Bill!",
-    "des": "Bill ile tanış."
+        "title": "Merhaba, Bill!",
+        "des": "Bill ile tanış."
     },
     "bt_npc_10": {
-    "title": "Çok naziksiniz, Bill!",
-    "des": "Bill ile olan arkadaşlığınız %100'e yükseldi."
+        "title": "Çok naziksiniz, Bill!",
+        "des": "Bill ile olan arkadaşlığınız %100'e yükseldi."
     },
     "bt_npc_11": {
-    "title": "Merhaba, Bay... Yabancı!",
-    "des": "Bir yabancı ile tanış."
+        "title": "Merhaba, Bay... Yabancı!",
+        "des": "Bir yabancı ile tanış."
     },
     "bt_npc_12": {
-    "title": "Çok naziksiniz, Beyefendi!",
-    "des": "Bir yabancı ile olan arkadaşlığınız %100'e yükseldi."
+        "title": "Çok naziksiniz, Beyefendi!",
+        "des": "Bir yabancı ile olan arkadaşlığınız %100'e yükseldi."
     },
-"bt_npc_13": {
-"title": "Merhaba, Bay White!",
-"des": "W.White ile tanışın."
-},
-"bt_npc_14": {
-"title": "Çok naziksiniz, Walter!",
-"des": "W.White ile olan arkadaşlık 100%'e yükseldi."
-},
+    "bt_npc_13": {
+        "title": "Merhaba, Bay White!",
+        "des": "W.White ile tanışın."
+    },
+    "bt_npc_14": {
+        "title": "Çok naziksiniz, Walter!",
+        "des": "W.White ile olan arkadaşlık 100%'e yükseldi."
+    },
     "bt_item_1": {
-    "title": "Patlat!",
-    "des": "Bir Magnum elde et."
+        "title": "Patlat!",
+        "des": "Bir Magnum elde et."
     },
     "bt_item_2": {
-    "title": "Pam!",
-    "des": "Bir M40 elde et."
+        "title": "Pam!",
+        "des": "Bir M40 elde et."
     },
     "bt_item_3": {
-    "title": "Dadada!",
-    "des": "Bir FAMAS elde et."
+        "title": "Dadada!",
+        "des": "Bir FAMAS elde et."
     },
     "bt_item_4": {
-    "title": "Korku hayranları",
-    "des": "Bir testere elde et."
+        "title": "Korku hayranları",
+        "des": "Bir testere elde et."
     },
     "bt_item_5": {
-    "title": "Espritüel",
-    "des": "Bir zombi tuzak elde et."
+        "title": "Espritüel",
+        "des": "Bir zombi tuzak elde et."
     },
     "bt_item_6": {
-    "title": "Terörist",
-    "des": "Ev yapımı bir patlayıcı elde et."
+        "title": "Terörist",
+        "des": "Ev yapımı bir patlayıcı elde et."
     },
     "bt_cost_1": {
-    "title": "Heyecanlı",
-    "des": "50 kez kahve iç."
+        "title": "Heyecanlı",
+        "des": "50 kez kahve iç."
     },
     "bt_cost_2": {
-    "title": "Daha da heyecanlı",
-    "des": "100 kez kahve iç."
+        "title": "Daha da heyecanlı",
+        "des": "100 kez kahve iç."
     },
     "bt_cost_3": {
-    "title": "Moral bul",
-    "des": "150 kez kahve iç."
+        "title": "Moral bul",
+        "des": "150 kez kahve iç."
     },
     "bt_special_1": {
-    "title": "Elektrik!",
-    "des": "Enerji jeneratörünü 5 kez tamir et."
+        "title": "Elektrik!",
+        "des": "Enerji jeneratörünü 5 kez tamir et."
     },
     "bt_special_2": {
-    "title": "Fort Knox",
-    "des": "Ev savunmasını en üst düzeye çıkar."
+        "title": "Fort Knox",
+        "des": "Ev savunmasını en üst düzeye çıkar."
     }
 };

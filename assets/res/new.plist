@@ -4,21 +4,6 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>site_dig_202.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{526,230}</string>
-                <key>spriteSourceSize</key>
-                <string>{526,230}</string>
-                <key>textureRect</key>
-                <string>{{1,1},{526,230}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
             <key>dig_build_20_0.png</key>
             <dict>
                 <key>aliases</key>
@@ -304,36 +289,6 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>money_black.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{52,52}</string>
-                <key>spriteSourceSize</key>
-                <string>{52,52}</string>
-                <key>textureRect</key>
-                <string>{{565,1332},{52,52}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>money_white.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{52,52}</string>
-                <key>spriteSourceSize</key>
-                <string>{52,52}</string>
-                <key>textureRect</key>
-                <string>{{849,1353},{52,52}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
             <key>npc_7.png</key>
             <dict>
                 <key>aliases</key>
@@ -405,7 +360,7 @@
                 <key>spriteSourceSize</key>
                 <string>{56,56}</string>
                 <key>textureRect</key>
-                <string>{{903,1353},{40,40}}</string>
+                <string>{{565,1332},{40,40}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -435,7 +390,7 @@
                 <key>spriteSourceSize</key>
                 <string>{56,56}</string>
                 <key>textureRect</key>
-                <string>{{945,1353},{40,40}}</string>
+                <string>{{849,1353},{40,40}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -451,6 +406,21 @@
                 <string>{56,56}</string>
                 <key>textureRect</key>
                 <string>{{993,97},{30,42}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>site_dig_202.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{526,230}</string>
+                <key>spriteSourceSize</key>
+                <string>{526,230}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{526,230}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -526,9 +496,9 @@
             <key>realTextureFileName</key>
             <string>new.pvr.ccz</string>
             <key>size</key>
-            <string>{1024,1406}</string>
+            <string>{1024,1401}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e8c43dbc17f85be19addbb0df3b24c76:7685a4ba6f3ff646c0f2c8b0edbe22e6:b90d2237a64a04ee4a3b28e0d742cbc9$</string>
+            <string>$TexturePacker:SmartUpdate:c003e8a3567ede53011b88c3a10bcfe1:e74c3f602f062ff8bd90b22beb0dd37d:b90d2237a64a04ee4a3b28e0d742cbc9$</string>
             <key>textureFileName</key>
             <string>new.pvr.ccz</string>
         </dict>

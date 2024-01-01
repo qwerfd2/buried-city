@@ -5557,10 +5557,10 @@ var siteConfig = {
         "x": 185,
         "y": 690
     },
-    "battleRoom": 600,
-    "difficulty": [8, 12],
-    "workRoom": 66,
-    "produceValue": 6808,
+    "battleRoom": 500,
+    "difficulty": [6, 12],
+    "workRoom": 166,
+    "produceValue": 17123,
     "produceList": [{
         "itemId": "1101011",
         "weight": 20

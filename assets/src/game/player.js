@@ -89,6 +89,7 @@ var Player = cc.Class.extend({
         this.hasDogPlay = false;
         this.isDead = false;
         this.trapTime = -1;
+        this.lastBanditCaveIn = 10;
         this.shopList = [{"itemId": 1103011, "amount": 10, "discount": 0}, {"itemId": 1105042, "amount": 10, "discount": 0}, {"itemId": 1105051, "amount": 10, "discount": 0}, {"itemId": 1301011, "amount": 5, "discount": 0}, {"itemId": 1103033, "amount": 5, "discount": 0}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1301091": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
@@ -161,7 +162,8 @@ var Player = cc.Class.extend({
             dogName: this.dogName,
             dogDistance: this.dogDistance,
             isDead: this.isDead,
-            trapTime: this.trapTime
+            trapTime: this.trapTime,
+            lastBanditCaveIn: this.lastBanditCaveIn
         };
         return opt;
     },
@@ -231,6 +233,7 @@ var Player = cc.Class.extend({
             this.dogDistance = opt.dogDistance || 0;
             this.isDead = opt.isDead || false;
             this.trapTime = opt.trapTime || -1;
+            this.lastBanditCaveIn = opt.lastBanditCaveIn || 10;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
@@ -398,12 +401,12 @@ var Player = cc.Class.extend({
             //break a shoe from storage
             if (this.storage.validateItem(1306001, 1)) {
                 this.storage.decreaseItem(1306001, 1);
-                player.log.addMsg(stringUtil.getString(1341));
+                this.log.addMsg(stringUtil.getString(1341));
                 this.shoeTime = 0;
                 saveFlag = true;
             } else if (this.bag.validateItem(1306001, 1)) {
                 this.bag.decreaseItem(1306001, 1);
-                player.log.addMsg(stringUtil.getString(1341));
+                this.log.addMsg(stringUtil.getString(1341));
                 this.shoeTime = 0;
                 saveFlag = true;
             }
@@ -414,7 +417,7 @@ var Player = cc.Class.extend({
         var timeIndex = -1;
         var weightIndex = -1;
         var timeGrade = [28800, 57600, 86400, 115200, 144400];
-        var weightGrade = [200, 600, 1200, 2000, 3000, 4200];
+        var weightGrade = [300, 800, 1500, 2400, 3500, 4800];
         for (var i = 0; i < timeGrade.length; i++) {
             if (dtTime >= timeGrade[i]) {
                 timeIndex++;
@@ -436,7 +439,7 @@ var Player = cc.Class.extend({
             }
             probability = TheftConfig[weightIndex][timeIndex];     
         } else {
-            probability = 999;
+            probability = 2;
         }
 
         var def = this._getHomeDeter();
@@ -466,9 +469,9 @@ var Player = cc.Class.extend({
         }
     },
     checkBreakdown: function (source) {
-        //Newbie protection - won't break down on the first 2 day.
+        //Newbie protection - won't break down on the first 5 day.
         var day = cc.timer.formatTime().d;
-        if (day < 3 && this.spirit < 20) {
+        if (day < 6 && this.spirit < 20) {
             day = 20 - this.spirit;
             this.changeSpirit(day);
         }
@@ -665,7 +668,7 @@ var Player = cc.Class.extend({
         }
         if (key == "virus") {
             if (this.virus >= this.virusMax && this === player) {
-                player.log.addMsg(stringUtil.getString(6671));
+                this.log.addMsg(stringUtil.getString(6671));
                 this.changeAttr("hp", -this["hp"]);
             }
         }
@@ -1447,7 +1450,7 @@ var Player = cc.Class.extend({
         }
         if (rand <= probability) {
 
-            player.log.addMsg(1099);
+            this.log.addMsg(1099);
             var attackStrength = this._getAttackInNightStrength();
             //This value = normal + dog + electic (if active) (30 + 10 + 30)
             var origDef = this._getOrigDef();
@@ -1520,22 +1523,53 @@ var Player = cc.Class.extend({
         if (player.equip.isEquiped(1305053)) {
             probability -= probability * 0.25;
         }
+
         if (rand <= probability || override) {
-            player.log.addMsg(1113);
             var diff;
             var list;
+            var type = 0;
+            var banditList = null;
             if (!override) {
-                diff = utils.getRandomInt(config.difficulty[0], config.difficulty[1]);
-                list = utils.getMonsterListByDifficulty(diff);
-                this.mapBattle = {"a": diff, "b": list};
+                //no saved battle. Start new one. First, determine if this should be a bandit battle.
+                var banditRand = Math.random();
+                if (banditRand <= 0.2) {
+                    //bandit battle. check if day is immune
+                    if (this.lastBanditCaveIn >= cc.timer.getTimeNum()) {
+                        return false;
+                    }
+                    diff = utils.getRandomInt(1, 2);
+                    list = utils.getMonsterListByDifficulty(diff);
+                    banditList = this.bag.getRobItem();
+                    type = 1;
+                    this.mapBattle = {"a": diff, "b": list, "c": 1, "d": banditList};
+                } else {
+                    //zombie battle per usual.
+                    diff = utils.getRandomInt(config.difficulty[0], config.difficulty[1]);
+                    list = utils.getMonsterListByDifficulty(diff);
+                    this.mapBattle = {"a": diff, "b": list, "c": 0, "d": null};
+                }
                 Record.saveAll();
             } else {
+                //We have saved battle. Process it first.
                 diff = this.mapBattle.a;
+                //Compatibility check - if user is from previous versions assume is zombie battle once.
+                if (this.mapBattle.hasOwnProperty('c')) {
+                    type = this.mapBattle.c;
+                    banditList = this.mapBattle.d;
+                }
                 list = utils.getMonsterListByDifficulty(diff);
             }
+            if (type) {
+                this.log.addMsg(9113);
+            } else {
+                this.log.addMsg(1113);
+            }
+
             uiUtil.showRandomBattleDialog({
                 difficulty: diff,
-                list: list
+                list: list,
+                type: type,
+                banditList: banditList
             }, cb);
             return true;
         }

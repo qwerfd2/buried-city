@@ -195,7 +195,9 @@ var HomeNode = BottomFrameNode.extend({
                 uiUtil.showGuideDialog(stringUtil.getString(1239), "res/new/guide_pic_1.png", self);
             } else if (userGuide.isStep(userGuide.stepName.RADIO_PROMPT)) {
                 uiUtil.showGuideDialog(stringUtil.getString("radio_tut"), "radio", self);
+                player.map.unlockSite(400);
                 userGuide.step();
+                Record.saveAll();
             }
         }, 0.1);
     },

@@ -1,202 +1,214 @@
 var string = {
-     "banditType_1": "Sneaky",
-     "banditType_2": "Robust",
-     "banditType_4": "Cunning",
-     "banditType_5": "Agile",
-     "9045": "%s bandits discovered you!",
-     "9046": "%s bandit is approaching you! Distance %s",
-     "9047": "%s bandit shot you, HP %s",
-     "9048": "You use %s to shoot at %s bandit",
-     "9049": "You wield %s to slash at the %s bandit in front of you",
-     "9050": "You threw a %s into the bandit group",
-     "9051": "Precise shooting! %s bandit's head was blown off",
-     "9052": "%s bandit received %s damage",
-     "9053": "All bandits received %s damage",
-     "9054": "%s %s bandits died",
-     "9358": "You set all the bandits on fire,",
-     "9055":"%s attacked the bandit, and %s bandit received %s damage",
-     "9056":"Bandit is attracted by %s and will temporarily stop attacking you",
-     "9057":"%s collected these items from the bandits. Stored in depository for now.",
-     "9059": ["Bandits spotted ahead!", "Several patrolling bandits noticed you.", "You are surrounded by a group of bandits."],
-     "9165": "You punched the %s bandit brutally.",
-     "9139": "Number of bandits:",
-     "9118": "You successfully eliminated the bandits",
-     "9109": "Bandit's attack caused fatal damage to you!",
-"radio_tut": "To improve chance of encountering fellow survivors, you should construct the radio and broadcast yourself every day.",
-"motor_tut": "You can save fuel by not riding the motorcycle. The weight bonus still applies. To do so, click the motorcycle icon on this popup.",
-"site_502": {
+    "9114": "You have fled from the bandits. Keep going.",
+    "9115": "You have killed the bandits. Keep going.",
+    "9116": "You caved in to the bandit's demand and he let you go.",
+    "9082": "You have escaped from the bandits.",
+    "1172": "Capitulate",
+    "9113": "Bandit encounter!",
+    "9039": "He promised you that if you capitulate, they will let you go today. They want:",
+    "banditType_1": "Sneaky",
+    "banditType_2": "Robust",
+    "banditType_4": "Cunning",
+    "banditType_5": "Agile",
+    "9045": "%s bandits discovered you!",
+    "9046": "%s bandit is approaching you! Distance %s",
+    "9047": "%s bandit shot you, HP %s",
+    "9048": "You use %s to shoot at %s bandit",
+    "9049": "You wield %s to slash at the %s bandit in front of you",
+    "9050": "You threw a %s into the bandit group",
+    "9051": "Precise shooting! %s bandit's head was blown off",
+    "9052": "%s bandit received %s damage",
+    "9053": "All bandits received %s damage",
+    "9054": "%s %s bandits died",
+    "9358": "You set all the bandits on fire,",
+    "9055": "%s attacked the bandit, and %s bandit received %s damage",
+    "9056": "Bandit is attracted by %s and will temporarily stop attacking you",
+    "9057": "%s collected these items from the bandits. Stored in depository for now.",
+    "9059": ["Bandits spotted ahead!", "Several patrolling bandits noticed you.", "You are surrounded by a group of bandits."],
+    "9165": "You punched the %s bandit brutally.",
+    "9139": "Number of bandits:",
+    "9118": "You successfully eliminated the bandits",
+    "9109": "Bandit's attack caused fatal damage to you!",
+    "radio_tut": "To improve chance of encountering fellow survivors, you should construct the radio and broadcast yourself every day.",
+    "motor_tut": "You can save fuel by not riding the motorcycle. The weight bonus still applies. To do so, click the motorcycle icon on this popup.",
+    "site_502": {
         "name": "Aquarium",
         "des": "The fish in the aquarium are all but dead. The algae infested water render the interior eerily crimson. Better not disturb the glass dome, or else, this might become a watery grave.\nYou cannot use firearms and explosives here."
     },
-"equip_needed":"Effective only when equipped as tool.",
-"no_need_equip":"Passive equipment, no need to equip.",
-"7000": "Check %s's condition",
-"7001": "Bring %s outdoor",
-"7002": "Let %s guard the home",
-"7003": "Dog's name",
-"7004":"%s feels very good and is ready for combat!",
-"7005":"%s feels hungry, he needs meat to fight.",
-"7006":"%s is feeling down and needs encouragement to fight.",
-"7007":"%s is hurt and needs treatment to heal.",
-"7011":"At home, click the attribute buttons to check status and use item for %s. Options outside is limited, as you cannot view detailed stats, play with %s, and name him.",
-"7012":"You healed %s with bandage",
-"7013":"%s happily chews the bone",
-"7014":"You played with %s, he seems happy",
-"7015":"%s attacked a zombie, the %s zombie has suffered %s damage.",
-"7016":"Zombies are attracted by %s and stop attacking you.",
-"7017":"%s found these on the zombie, stored in depository for now:",
-"7018":"Dog's gift",
-"17": {
-    "title": "Dog's injury",
-    "des": "Dog can get hurt from combat, and need timely treatment."
-},
-"18": {
-    "title": "Dog's hunger",
-    "des": "Dog needs meat. One meat is good for 12 hours, you can feed up to 4."
-},
-"19": {
-    "title": "Dog's mood",
-    "des": "Harsh condtions makes dog depressed too. Play with him at home every day, or use a dog bone."
-},
-"1106014": {
-    "title": "Dog bone",
-    "des": "Home-made dog bone can cheer up your dog, even in such harsh environment."
-},
-"6677": "You temporarily fixed the generator.",
-"6678": "You temporarily fixed the gas pump.",
-"6679": "The generator has malfunctioned.",
-"6680": "The gas pump has malfunctioned.",
-"8027": "Soundtrack",
-"8028": "Modded versions used - Author",
-"8029": "Thank you for playing.",
-"6672": "Expired Food",
-"6673": "Yesterday, These food expired and is converted to fertilizer (%s outside, %s in home). Fridge can keep food fresh!",
-"6674": "Accelerate (1 %s)",
-"6675": "You rolled back the game version. Save file might be broken. Please start a new game, or revert to previous version.",
-"6676": "You updated the game. Save file might no longer be compatible. If you encounter issues, please start a new game.",
-"6671": "The virus finally defeted your immune system and ended your humanity.",
-"6669": "You don't have a motorcycle and cannot store the extracted gas. Let's fix it later.",
-"6670": "You don't have a motorcycle and cannot store the extracted gas!",
-"1101081": {
-    "title": "Fertilizer",
-    "des": "It's actually just expired food, and the only way to use them is to fertilize the crops."
-},
-"21_0": {
-    "title": "Fridge",
-    "des": "If there is power, food in home will not go bad."
-},
-"20_0": {
-    "title": "Safe",
-    "des": "Protect your supplies. Items in the Safe won't be stolen or damaged by zombies."
-},
-"6668": "The items are too heavy. The safe is full.",
-"1305011": {
-    "title": "Standard Bullet",
-    "des": "Produced before the disaster, it won't damage the gun and has better accuracy, making it more valuable."
-},
-"1305012": {
-    "title": "Handmade Bullet",
-    "des": "Handmade bullet with low accuracy. Might cause damage to the gun."
-},
-"8116": "Ride motorcycle",
-"8117": "Don't ride motorcycle",
-"8118": "Inactive (Player opted not to ride)",
-"6666": "New Update detected: Version %s. Please update via Github or other channel.",
-"6667": "Thanks for playing Buried City! Join the game community and the game's distribution channels, listed below. Report bugs as well!",
-"1324": "You had trouble sleeping because of the coffee. Rest after %s hours.",
-"1325": "Alcohol decreased your accuracy by %s%!",
-"1326": "Please sell from the bag!",
-"1327": ["Off","Partial","Full"],
-"1333": "Exchange %s x%s for 15 Virus Load? This action is irreversible.",
-"1334": "Exchange",
-"1335": "You exchanged %s %s for 15 virus load.",
-"1336": "Increase load upper limit: ",
-"1337": "Welcome!",
+    "equip_needed": "Effective only when equipped as tool.",
+    "no_need_equip": "Passive equipment, no need to equip.",
+    "7000": "Check %s's condition",
+    "7001": "Bring %s outdoor",
+    "7002": "Let %s guard the home",
+    "7003": "Dog's name",
+    "7004": "%s feels very good and is ready for combat!",
+    "7005": "%s feels hungry, he needs meat to fight.",
+    "7006": "%s is feeling down and needs encouragement to fight.",
+    "7007": "%s is hurt and needs treatment to heal.",
+    "7011": "At home, click the attribute buttons to check status and use item for %s. Options outside is limited, as you cannot view detailed stats, play with %s, and name him.",
+    "7012": "You healed %s with bandage",
+    "7013": "%s happily chews the bone",
+    "7014": "You played with %s, he seems happy",
+    "7015": "%s attacked a zombie, the %s zombie has suffered %s damage.",
+    "7017": "%s found these on the zombie, stored in depository for now:",
+    "7018": "Dog's gift",
+    "17": {
+        "title": "Dog's injury",
+        "des": "Dog can get hurt from combat, and need timely treatment."
+    },
+    "18": {
+        "title": "Dog's hunger",
+        "des": "Dog needs meat. One meat is good for 12 hours, you can feed up to 4."
+    },
+    "19": {
+        "title": "Dog's mood",
+        "des": "Harsh condtions makes dog depressed too. Play with him at home every day, or use a dog bone."
+    },
+    "1106014": {
+        "title": "Dog bone",
+        "des": "Home-made dog bone can cheer up your dog, even in such harsh environment."
+    },
+    "6677": "You temporarily fixed the generator.",
+    "6678": "You temporarily fixed the gas pump.",
+    "6679": "The generator has malfunctioned.",
+    "6680": "The gas pump has malfunctioned.",
+    "8027": "Soundtrack",
+    "8028": "Modded versions used - Author",
+    "8029": "Thank you for playing.",
+    "6672": "Expired Food",
+    "6673": "Yesterday, These food expired and is converted to fertilizer (%s outside, %s in home). Fridge can keep food fresh!",
+    "6674": "Accelerate (1 %s)",
+    "6675": "You rolled back the game version. Save file might be broken. Please start a new game, or revert to previous version.",
+    "6676": "Congratulations, you updated the game.",
+    "1266": "Version check error:",
+    "1267": "New version %s available",
+    "1268": "Updates:",
+    "1269": "This update will not affect current survival progress.",
+    "1270": "Some updated content can only be experienced when starting a new survival.",
+    "1271": "This update will forcefully delete the current survival progress.",
+    "6671": "The virus finally defeted your immune system and ended your humanity.",
+    "6669": "You don't have a motorcycle and cannot store the extracted gas. Let's fix it later.",
+    "6670": "You don't have a motorcycle and cannot store the extracted gas!",
+    "1101081": {
+        "title": "Fertilizer",
+        "des": "It's actually just expired food, and the only way to use them is to fertilize the crops."
+    },
+    "21_0": {
+        "title": "Fridge",
+        "des": "If there is power, food in home will not go bad."
+    },
+    "20_0": {
+        "title": "Safe",
+        "des": "Protect your supplies. Items in the Safe won't be stolen or damaged by zombies."
+    },
+    "6668": "The items are too heavy. The safe is full.",
+    "1305011": {
+        "title": "Standard Bullet",
+        "des": "Produced before the disaster, it is harder to damage the gun and has better accuracy, making it more valuable."
+    },
+    "1305012": {
+        "title": "Handmade Bullet",
+        "des": "Handmade bullet with low accuracy. Might cause damage to the gun."
+    },
+    "8116": "Ride motorcycle",
+    "8117": "Don't ride motorcycle",
+    "8118": "Inactive (Player opted not to ride)",
+    "6666": "Please update via Github or other channel.",
+    "6667": "Thanks for playing Buried City! Join the game community and the game's distribution channels, listed below. Report bugs as well!",
+    "1324": "You had trouble sleeping because of the coffee. Rest after %s hours.",
+    "1325": "Alcohol decreased your accuracy by %s%!",
+    "1326": "Please sell from the bag!",
+    "1327": ["Off", "Partial", "Full"],
+    "1333": "Exchange %s x%s for 15 Virus Load? This action is irreversible.",
+    "1334": "Exchange",
+    "1335": "You exchanged %s %s for 15 virus load.",
+    "1336": "Increase load upper limit: ",
+    "1337": "Welcome!",
     "1342": "Hostel",
     "1343": "The hostel can offer some comforts of home. If you can afford it, that is.",
-    "1344": "Sleep %sH (%s coins)",
-    "1345": "Coffee (%s coins)",
-    "1346": "Alcohol (%s coins)",
-"8103": "Speed boost: ",
-"8104": "Active",
-"8105": "Inactive (no item)",
-"8106": "Inactive (insufficient gas)",
-"8107": "You found a broken car. Although the rusty car itself is useless, there may be some gas in the tank. As long as you have a siphon tool you can get some gas.",
-"8108": "You didn't equip a siphon tool!",
-"8109": "Selected Talents",
-"8111": "Startled by the brutal battle,",
-"8112": "Startled by the mess at home,",
-"8113": "Your mental state has finally collapsed.",
-"8114": "You leaped from a tall building nearby, attempting to end your own life.",
-"8115": "You tied a knot, attempting to end your own life.",
-"1305075": {
-     "title": "Siphon Tool",
-     "des": "Simple hoses and containers allow you to use gravity to extract the gas in a car."
-},
-"8000": "As the group cautiously pushes open the door, they find themselves within a wide utility corridor.",
-"8001": "As they takes in their surroundings, they notice a series of doors lining the corridor, each marked with distinct numbers.",
-"8002": "Casting a glance over their shoulder, they spot the door they just stepped through, labeled with the number 081.",
-"8003": "As their gaze sweeps the corridor, two contrasting paths are revealed.",
-"8004": "On one end, a gate adorned with a vivid green exit sign emits an inviting glow above a sturdy blast gate, hinting at potential salvation.",
-"8005": "On the other end, an infinite, mysterious tunnel stretches into the unknown, shrouded in uncertainty and intrigue.",
-"8006": "'We are almost there. Which way should we go?'",
-"8010": "'You're right. We need to get out of here, fast.'",
-"8011": "They were in front of the gate in no time, frantically turing the wheel. It is, however, not to last.",
-"8012": "A haunting voice echoes down the hallway, chilling the protagonist to the bone. 'Survivors. What a rare sight. Life is truly incredible.'",
-"8013": "'Unfortunately, I can't let you go. After all, you should be dead.' The words hang heavily in the air, laden with a sense of impending doom.",
-"8014": "'Well, let's make it that way.' Crimson gas begins to seep from the walls, slowly filling the corridor with a deadly haze.",
-"8015": "Bill's face is as pale as a ghostly specter. 'It's him. Shit,' he mutters, his voice quivering with fear and dread.",
-"8016": "The pain was vast yet swift. Soon, nothing but silence remain.",
-"8020": "The survivor's eyes dart around the corridor. Traces of desperation are evident - some doors bear claw marks, remnants of frantic attempts to escape. ",
-"8021": "Patches of aged blood seep through the cracks of some doors, an ominous reminder of the horrors that have unfolded within. ",
-"8022": "It's evident that this place has witnessed unspeakable events, but amidst the darkness, a glimmer of optimism remains - some doors seems undisturbed.",
-"8023": "'We are obviously in a headquarter of some sort. We could never leave. Not via the normal way.'",
-"8024": "Perhaps behind those untouched doors, a semblance of civilization still exists. maybe more survivors are clinging onto life in the face of adversity.",
-"8025": "Perhaps the apocolypse havn't happened there yet. Maybe there's still a chance to stop them.",
-"8026": "The survivors quickly stepped through a door and disappeared into the endless void.",
-"8100": "The blast gate",
-"8101": "The hallway's depth",
-"8102": "It's finally over. A door is at the end of the room. With the town under blockade, this is the only way out.",
-"1349": "You selected only one talent. Buried City is more difficult than the original version, but it supports multiple talents. Do you want to re-select?",
-"1350": "You haven't selected any talents. Buried City is more difficult than the original version, it is recommended to choose at least one talent. Do you want to re-select?",
-"1351": "Warning",
-"gachapon": {
-    "title": "Sweepstakes",
-    "des": "Come try your luck! Huge prize awaits! 100% Winning!"
-},
-"1301091": {
-    "title": "Flamethrower",
-    "des": "Inflicts lasting damage to a large number of zombies, the only drawback is that it requires gasoline. A lot of gasoline. If you run out of gasoline halfway through..."
-},
-"1347": "You ignited all the zombies.",
-"1348": "You are out of gasoline!",
-"gachaponDialog": {
-    "title": {
-        "txt_1": "Price: %s Coins"
+    "1344": "You felt like that was not enough. Have to drink more next time.",
+    "1345": "Have coffee",
+    "1346": "Have alcohol",
+    "8103": "Speed boost: ",
+    "8104": "Active",
+    "8105": "Inactive (no item)",
+    "8106": "Inactive (insufficient gas)",
+    "8107": "You found a broken car. Although the rusty car itself is useless, there may be some gas in the tank. As long as you have a siphon tool you can get some gas.",
+    "8108": "You didn't equip a siphon tool!",
+    "8109": "Selected Talents",
+    "8111": "Startled by the brutal battle,",
+    "8112": "Startled by the mess at home,",
+    "8113": "Your mental state has finally collapsed.",
+    "8114": "You leaped from a tall building nearby, attempting to end your own life.",
+    "8115": "You tied a knot, attempting to end your own life.",
+    "1305075": {
+        "title": "Siphon Tool",
+        "des": "Simple hoses and containers allow you to use gravity to extract the gas in a car."
     },
-    "content": {},
-    "action": {
-        "btn_1": {
-            "txt": "Play"
+    "8000": "As the group cautiously pushes open the door, they find themselves within a wide utility corridor.",
+    "8001": "As they takes in their surroundings, they notice a series of doors lining the corridor, each marked with distinct numbers.",
+    "8002": "Casting a glance over their shoulder, they spot the door they just stepped through, labeled with the number 081.",
+    "8003": "As their gaze sweeps the corridor, two contrasting paths are revealed.",
+    "8004": "On one end, a gate adorned with a vivid green exit sign emits an inviting glow above a sturdy blast gate, hinting at potential salvation.",
+    "8005": "On the other end, an infinite, mysterious tunnel stretches into the unknown, shrouded in uncertainty and intrigue.",
+    "8006": "'We are almost there. Which way should we go?'",
+    "8010": "'You're right. We need to get out of here, fast.'",
+    "8011": "They were in front of the gate in no time, frantically turing the wheel. It is, however, not to last.",
+    "8012": "A haunting voice echoes down the hallway, chilling the protagonist to the bone. 'Survivors. What a rare sight. Life is truly incredible.'",
+    "8013": "'Unfortunately, I can't let you go. After all, you should be dead.' The words hang heavily in the air, laden with a sense of impending doom.",
+    "8014": "'Well, let's make it that way.' Crimson gas begins to seep from the walls, slowly filling the corridor with a deadly haze.",
+    "8015": "Bill's face is as pale as a ghostly specter. 'It's him. Shit,' he mutters, his voice quivering with fear and dread.",
+    "8016": "The pain was vast yet swift. Soon, nothing but silence remain.",
+    "8020": "The survivor's eyes dart around the corridor. Traces of desperation are evident - some doors bear claw marks, remnants of frantic attempts to escape. ",
+    "8021": "Patches of aged blood seep through the cracks of some doors, an ominous reminder of the horrors that have unfolded within. ",
+    "8022": "It's evident that this place has witnessed unspeakable events, but amidst the darkness, a glimmer of optimism remains - some doors seems undisturbed.",
+    "8023": "'We are obviously in a headquarter of some sort. We could never leave. Not via the normal way.'",
+    "8024": "Perhaps behind those untouched doors, a semblance of civilization still exists. maybe more survivors are clinging onto life in the face of adversity.",
+    "8025": "Perhaps the apocolypse havn't happened there yet. Maybe there's still a chance to stop them.",
+    "8026": "The survivors quickly stepped through a door and disappeared into the endless void.",
+    "8100": "The blast gate",
+    "8101": "The hallway's depth",
+    "8102": "It's finally over. A door is at the end of the room. With the town under blockade, this is the only way out.",
+    "1349": "You selected only one talent. Buried City is more difficult than the original version, but it supports multiple talents. Do you want to re-select?",
+    "1350": "You haven't selected any talents. Buried City is more difficult than the original version, it is recommended to choose at least one talent. Do you want to re-select?",
+    "1351": "Warning",
+    "gachapon": {
+        "title": "Sweepstakes",
+        "des": "Come try your luck! Huge prize awaits! 100% Winning!"
+    },
+    "1301091": {
+        "title": "Flamethrower",
+        "des": "Inflicts lasting damage to a large number of zombies, the only drawback is that it requires gasoline. A lot of gasoline. If you run out of gasoline halfway through..."
+    },
+    "1347": "You ignited all the zombies.",
+    "1348": "You are out of gasoline!",
+    "gachaponDialog": {
+        "title": {
+            "txt_1": "Price: %s Coins"
         },
-        "btn_1": {
-            "txt": "Never Mind"
+        "content": {},
+        "action": {
+            "btn_1": {
+                "txt": "Play"
+            },
+            "btn_1": {
+                "txt": "Never Mind"
+            }
         }
-    }
-},
-"1339": "Hi, I'd like to exchange these for %s coins. Are you good with it?",
-"1338": "Welcome to Buried City, a Buried Town mod made by ArithSeq.\n\nIf the screen content is incomplete, please go to Settings in the bottom right corner and modify Shrink Screen.\n\nThis version has undergone lots of tweaks and has received numerous features. Please read the documentation on the bottom left corner for all the information. \n\nOpen source software, please don't use for commercial gain. Enjoy your stay!",
- "1103094": {
+    },
+    "1339": "Hi, I'd like to exchange these for %s coins. Are you good with it?",
+    "1338": "Welcome to Buried City, a Buried Town mod made by ArithSeq.\n\nIf the screen content is incomplete, please go to Settings in the bottom right corner and modify Shrink Screen.\n\nThis version has undergone lots of tweaks and has received numerous features. Please read the documentation on the bottom left corner for all the information. \n\nOpen source software, please don't use for commercial gain. Enjoy your stay!",
+    "1103094": {
         "title": "Cheese",
         "des": "The smooth and melty texture and the rich milky flavor can make you forget the pressures of survival."
     },
-"site_501": {
+    "site_501": {
         "name": "High School",
         "des": "The high school hallway, once bustling with people, is now so quiet that you can hear a pin drop. If it weren't for the scattered books and bloodstains, one would think it's a holiday."
     },
-"site_666": {
-    "name": "Portal",
-    "des": "This television does not require external power and has a hidden world behind the screen. Although we don't know what's on the other side, it's definitely not heaven."
+    "site_666": {
+        "name": "Portal",
+        "des": "This television does not require external power and has a hidden world behind the screen. Although we don't know what's on the other side, it's definitely not heaven."
     },
     "18_0": {
         "title": "Electric Stove",
@@ -228,15 +240,13 @@ var string = {
     "1330": "You are very thirsty and drank %s water from the storeroom.",
     "1331": "You drank 1 water from your backpack.",
     "1332": "You drank 1 water from the storeroom.",
-"9030": "Do you want to sell?",
-"9031": "Do you want to buy?",
-"9033": "Sell",
-"9034": "Buy",
-"9035": "Stock: ",
-"9036": "But your backpack cannot hold the stolen items. You quitely put them back.",
+    "9030": "Do you want to sell?",
+    "9031": "Do you want to buy?",
+    "9033": "Sell",
+    "9034": "Buy",
+    "9035": "Stock: ",
+    "9036": "But your backpack cannot hold the stolen items. You quitely put them back.",
     "1171": "The dog is happily eating the fresh meat.",
-    "1321": "Masako",
-    "1322": "Electrical Engineer",
     "1323": "Repair (%s m)",
     "1169": "sound effect",
     "1": {
@@ -350,7 +360,7 @@ var string = {
     "1052": "The %s zombie has suffered %s damage.",
     "1053": "All zombies have taken %s damage.",
     "1054": "Miss",
-    "1055": "Zombies are attracted by the bait and stop attacking you.",
+    "1055": "Zombies are attracted by the %s and stop attacking you.",
     "1056": "%s %s zombies died.",
     "1057": "You have fainted due to blood loss.",
     "1058": "Use:",
@@ -371,7 +381,6 @@ var string = {
     "1073": "Got it.",
     "1074": "Possible loot:",
     "1075": "Zombie threat:",
-    "1076": "Zombies Night Raid",
     "1077": "A wave of zombies is attacking, there are vicious zombies all over town. A few zombies have broken through your defense. They have entered your house and wreaking a havoc.",
     "1078": "A wave of zombies is attacking, there are vicious zombies all over town. Thanks to your sturdy defenses, your shelter was able to weather the attack without any losses.",
     "1079": "You have lost:",
@@ -451,8 +460,6 @@ var string = {
     "1156": "Start a new game? Your original progress will be erased.",
     "1157": "Consider it",
     "1158": "Ranking list",
-    "1159": "You have survived in Buried City.",
-    "1160": "D%s H%s M%s",
     "1161": "Enter your name",
     "1162": "Share",
     "1163": "Main Menu",
@@ -461,9 +468,6 @@ var string = {
     "1167": "Tips:",
     "1168": "You have found shelter, but the inside is empty.",
     "1170": "Fist",
-    "1173": "Enhanced:",
-    "1190": "Price:",
-    "1191": "$%s",
     "1192": "Free",
     "1193": "Return",
     "1195": "Driven by hunger",
@@ -493,15 +497,12 @@ var string = {
     "1228": "Leave",
     "1229": "You cannot reenter this secret room once you leave. Are you sure you want to leave?",
     "1230": "None",
-    "1231": "How long can you survive in a city besieged by zombies?",
-    "1232": "Unlocked",
     "1233": "Bought",
     "1234": "Name cannot contain \",\" or \"|\"!",
     "1235": "Hall of Fame",
     "1237": "After passing through a street filled with zombies, you reach an empty hut. In order to survive, you have to return to the small town to search for supplies in its deserted buildings.",
     "1238": "You put the food and materials you brought back into your warehouse in the bottom left corner. Now, get some food from the warehouse and then sleep in the Sleeping Bag. (Simply tap the icon at the top to check your survival stats)",
     "1239": "After having enough sleep, you regain HP. However, starvation, disease and zombies can still kill you at any time. You need to get more supplies. In addition, you'd better carry a weapon when you head out.",
-    "1241": "The person left silently.",
     "1245": "Talent is not selected, shop cannot be entered.",
     "1246": "Wall of Medals",
     "1247": "Medal of Honor",
@@ -779,8 +780,8 @@ var string = {
         "des": "A powerful homemade weapon, it can create a powerful blast that can take out a group of zombies."
     },
     "1303022": {
-        "title": "Bait",
-        "des": "Put meat on dry battery cells to produce noises and smells that attract zombies."
+        "title": "Smoke Bomb",
+        "des": "Use batteries to heat chemicals and produce a lot of smoke. Add some meat, and zombies and robbers alike will be distracted."
     },
     "1303033": {
         "title": "Rocket Launcher ",
@@ -810,31 +811,27 @@ var string = {
         "title": "Military Grade Backpack",
         "des": "Made to military specifications, this backpack can load up to your maximum weight limit."
     },
-    "1305034": {
-        "title": "Motorcycle ",
-        "des": "An old-fashioned motorcycle. Greatly increases your movement speed while moving through rubble. "
-    },
     "1102053": {
         "title": "Motorcycle Engine",
         "des": "The core component for making motorcycles."
-        },
-        "1305034": {
+    },
+    "1305034": {
         "title": "Motorcycle",
         "des": "An old-fashioned motorcycle with a large carrying capacity, significantly increasing your travel speed."
-        },
-        "1305053": {
+    },
+    "1305053": {
         "title": "Strong Flashlight",
         "des": "Don't underestimate it; in its presence, zombies hiding in corners will have nowhere to hide. Greatly reduces the chance of encountering zombies."
-        },
-        "1102073": {
+    },
+    "1102073": {
         "title": "Gasoline Pump Component",
         "des": "Apart from lacking ceramics, this component is flawless. Gasoline is too corrosive, and plastic becomes brittle within days."
-        },
-        "16": {
+    },
+    "16": {
         "title": "Gasoline",
         "des": "Without gasoline, motor vehicles won't function. This precious resource is best kept a secret from other survivors. Highly flammable and explosive, it can only be stored in the fuel tank."
-        },
-        "1340": "Fuel Need:",
+    },
+    "1340": "Fuel Need:",
     "1341": "Your boots are broken.",
     "1305064": {
         "title": "Hyper Detector ",
@@ -904,10 +901,10 @@ var string = {
         "title": "Sleeping Bag",
         "des": "A warm and comfortable place where you can take a break."
     },
-"9_1": {
-    "title": "Beddings",
-    "des": "More comfortable than a sleeping bag, but still not ideal."
-},
+    "9_1": {
+        "title": "Beddings",
+        "des": "More comfortable than a sleeping bag, but still not ideal."
+    },
     "9_2": {
         "title": "Bed",
         "des": "A flat and comfortable bed where you can have a good night's sleep."
@@ -1132,50 +1129,50 @@ var string = {
         "name": "Gas Station",
         "des": "Various vehicles are parked so haphazardly in the station that they cannot move either forward or backward. It's a miracle that no explosion has occurred in the station."
     },
-     "site_202": {
-         "name": "Junkyard",
-         "des": "The town's garbage dump is so smelly that even zombies dare not approach it. Although there may be supplies in it, but... gimme a moment I need to volmit"
-     },
-     "site_400": {
-         "name": "Survivor's Market",
-         "des": "The bazaar organized by the survivors will have new products every day. Please sell supplies in 'Depository'. Capitalism is really more ferocious than zombies."
-     },
-     "site_500": {
-         "name": "Bandit Den",
-         "des": "This unremarkable building is actually the camp of a gang of robbers. Since you dare to rob me, then you should not be afraid of me taking it back.\nWarning: Bandits may be carrying weapons!"
-     },
-     "13": {
-         "title": "Coins",
-         "des": "Although the island is under the siege of zombies, coins are still the only medium for bartering with people."
-     },
-     "npc_7": {
-         "name": "W. White",
-         "des": "Before the disaster, He was a chemistry teacher in the town's high school, but judging by the equipment at home, the chemicals here are not even taught by universities.",
-         "dialogs": ["Cough..Cough..Cough.. Sorry, occupational disease. Protective materials are getting harder and harder to get.", "Jesse! Jesse! Hey, life is getting more and more stressful without Jesse.", "I can also make some chemical substances that are 'off the counter', hehehe...", "Stop! Put your hands up! Hey, you're not a thief... Sorry then." , "I still miss the time when I was fighting wits with my wife and friends. Now, I have to fight everyone."]
-     },
-     "statusDialog2": {
-         "title": {
-             "txt_1": "Current: %s"
-         },
-         "content": {"des2":"Coins are the only recognized currency in the Survivor Market. You can buy and sell supplies there and earn coins."
-         },
-         "action": {
-             "btn_1": {
-                 "txt": "Got it"
-             }
-         }
-     },
-     "9019": "Search (30 minutes)",
-     "9020": "Sell",
-     "9021": "Unit price: ",
-     "9022": "Select Quantity: ",
-     "9023": "Total price: ",
-     "9024": "You are about to sell (%s) for %s coins",
-     "9025": "You sold (%s) and got %s coins",
-     "9026": "You are about to spend %s coins to buy (%s)",
-     "9027": "You spent %s coins to buy (%s)",
-     "9028": "Your coins are not enough to pay the fee! The current coin is: %s",
-     "9032": "You returned home to find everything in a mess. Attracted by your wealth and lack of guard, thiefs plundered your house and you lost:",
+    "site_202": {
+        "name": "Junkyard",
+        "des": "The town's garbage dump is so smelly that even zombies dare not approach it. Although there may be supplies in it, but... gimme a moment I need to volmit"
+    },
+    "site_400": {
+        "name": "Survivor's Market",
+        "des": "The bazaar organized by the survivors will have new products every day. Please sell supplies in 'Depository'. Capitalism is really more ferocious than zombies."
+    },
+    "site_500": {
+        "name": "Bandit Den",
+        "des": "This unremarkable building is actually the camp of a gang of robbers. Since you dare to rob me, then you should not be afraid of me taking it back.\nWarning: Bandits may be carrying weapons!"
+    },
+    "13": {
+        "title": "Coins",
+        "des": "Although the island is under the siege of zombies, coins are still the only medium for bartering with people."
+    },
+    "npc_7": {
+        "name": "W. White",
+        "des": "Before the disaster, He was a chemistry teacher in the town's high school, but judging by the equipment at home, the chemicals here are not even taught by universities.",
+        "dialogs": ["Cough..Cough..Cough.. Sorry, occupational disease. Protective materials are getting harder and harder to get.", "Jesse! Jesse! Hey, life is getting more and more stressful without Jesse.", "I can also make some chemical substances that are 'off the counter', hehehe...", "Stop! Put your hands up! Hey, you're not a thief... Sorry then.", "I still miss the time when I was fighting wits with my wife and friends. Now, I have to fight everyone."]
+    },
+    "statusDialog2": {
+        "title": {
+            "txt_1": "Current: %s"
+        },
+        "content": {
+            "des2": "Coins are the only recognized currency in the Survivor Market. You can buy and sell supplies there and earn coins."
+        },
+        "action": {
+            "btn_1": {
+                "txt": "Got it"
+            }
+        }
+    },
+    "9019": "Search (30 minutes)",
+    "9020": "Sell",
+    "9022": "Select Quantity: ",
+    "9023": "Total price: ",
+    "9024": "You are about to sell (%s) for %s coins",
+    "9025": "You sold (%s) and got %s coins",
+    "9026": "You are about to spend %s coins to buy (%s)",
+    "9027": "You spent %s coins to buy (%s)",
+    "9028": "Your coins are not enough to pay the fee! The current coin is: %s",
+    "9032": "You returned home to find everything in a mess. Attracted by your wealth and lack of guard, thiefs plundered your house and you lost:",
     "site_61": {
         "name": "081 Research Institute ",
         "des": "One would never expect to find such an enormous structure 30 meters underground  beneath a secret base. Who on earth built this place?  And what happened here?"
@@ -1243,7 +1240,7 @@ var string = {
     "b_1107022": "Grants immunity to infection.",
     "b_1107032": "You no longer feel fatigued. ",
     "b_1107042": "You no longer feel hungry. ",
-"water_down": ["You're extremely thirsty - your vision is becoming blurred.", "You're very thirsty - when you close your eyes, you think of water.", "You want to drink water."],
+    "water_down": ["You're extremely thirsty - your vision is becoming blurred.", "You're very thirsty - when you close your eyes, you think of water.", "You want to drink water."],
     "infect_up": [null, "Bacteria are spreading throughout your body", "The infection is rapidly spreading. You feel aches all over.", "A serious infection has resulted in a fever. You feel like your life is draining away."],
     "infect_down": [null, null, "The infection is temporarily under control. For now, it has stopped spreading.", "The infection went into remission, but it is still dangerous.", "The medicine had some effect, but the infection is still severe."],
     "injury_up": [null, "Your wound has become bigger.", "Your injury has become worse, it may become infected at any time.", "Your injuries are very severe. You can hardly move."],
@@ -1382,35 +1379,35 @@ var string = {
         "des": "Instantly receive Grand HP Pack.\\n(It will be placed automatically in your Storeroom.) "
     },
     "p_105": {
-         "name": "Hoarder",
-         "des": "The supplies hoarded before the disaster finally came into play.",
-         "effect": "Get a lot of materials at the beginning."
-     },
-     "p_106": {
-         "name": "Ingenuity",
-         "des": "Handwork is your specialty. ",
-         "effect": "Item crafting and furniture upgrades are 30% faster."
-     },
-     "p_107": {
-         "name": "Stealth",
-         "des": "You are particularly good at hiding your track. ",
-         "effect": "25% less chance of encountering zombies, night raids, and thief visits."
-     },
-     "p_109": {
-         "name": "Cheat: Free IAP",
-         "des": "Unlimited free purchases in the store, and Radio CMD is open. ",
-         "effect": "Cheat function, unlimited free purchases in the store, and Radio CMD. (Achievements will not be counted)"
-     },
-     "p_110": {
-         "name": "Cheat: Unlock All",
-         "des": "Unlock all locations, NPCs, max friendship, and repeatable locations.",
-         "effect": "Cheat function, unlock all locations, NPCs, max friendship, and repeatable locations. (Achievements will not be counted)"
-     },
-"p_108": {
-    "name": "Backpacker",
-    "des": "You have an extra large backpack.",
-    "effect": "Backpack size +30."
-},
+        "name": "Hoarder",
+        "des": "The supplies hoarded before the disaster finally came into play.",
+        "effect": "Get a lot of materials at the beginning."
+    },
+    "p_106": {
+        "name": "Ingenuity",
+        "des": "Handwork is your specialty. ",
+        "effect": "Item crafting and furniture upgrades are 30% faster."
+    },
+    "p_107": {
+        "name": "Stealth",
+        "des": "You are particularly good at hiding your track. ",
+        "effect": "25% less chance of encountering zombies, night raids, and thief visits."
+    },
+    "p_109": {
+        "name": "Cheat: Free IAP",
+        "effect": "",
+        "des": "Cheat function, unlimited free purchases in the store, and Radio CMD. (Achievements will not be counted)"
+    },
+    "p_110": {
+        "name": "Cheat: Unlock All",
+        "effect": "",
+        "des": "Cheat function, unlock all locations, NPCs, max friendship, and repeatable locations. (Achievements will not be counted)"
+    },
+    "p_108": {
+        "name": "Backpacker",
+        "des": "You have an extra large backpack.",
+        "effect": "Backpack size +30."
+    },
     "m_103": {
         "name": "Ironman Medal (Grade 3)",
         "condition": "Survive 5 days in a single game",
@@ -1456,152 +1453,152 @@ var string = {
         "condition": "Clear 30 secret chambers in a single game",
         "des": "Start with 1 × [M40] at the beginning of a new game."
     },
-"bt_season_1": {
-    "title": "In winter",
-    "des": "Get through the autumn."
-},
-"bt_season_2": {
-    "title": "In spring",
-    "des": "Get through the winter."
-},
-"bt_season_3": {
-    "title": "In summer",
-    "des": "Get through the spring."
-},
-"bt_season_4": {
-    "title": "In autumn",
-    "des": "Get through the summer."
-},
-"bt_produce_1": {
-    "title": "Farmer",
-    "des": "Plant 50 potatoes."
-},
-"bt_produce_2": {
-    "title": "Hunter",
-    "des": "Make 25 pieces of meat."
-},
-"bt_produce_3": {
-    "title": "Fish",
-    "des": "Make 100 water."
-},
-"bt_produce_4": {
-    "title": "Alcoholic",
-    "des": "Make 50 bottles of Vodka."
-},
-"bt_make_1": {
-    "title": "This is a war!",
-    "des": "Make an AK47."
-},
-"bt_make_2": {
-    "title": "Passive defence",
-    "des": "Make an Anti-riot suit."
-},
-"bt_make_3": {
-    "title": "Quartermaster",
-    "des": "Make a military backpack."
-},
-"bt_make_4": {
-    "title": "Ninja",
-    "des": "Make a katana."
-},
-"bt_npc_1": {
-    "title": "Hi, Mr. Luo!",
-    "des": "Meet Mr. Luo."
-},
-"bt_npc_2": {
-    "title": "So kind of you, Luo!",
-    "des": "Friendship with Mr. Luo increases to 100%."
-},
-"bt_npc_3": {
-    "title": "Hi, Jeff!",
-    "des": "Meet Jeff."
-},
-"bt_npc_4": {
-    "title": "So kind of you, Jeff!",
-    "des": "Friendship with Jeff increases to 100%."
-},
-"bt_npc_5": {
-    "title": "Hi, Dr. Jean!",
-    "des": "Meet Dr. Jean."
-},
-"bt_npc_6": {
-    "title": "So kind of you, Doctor!",
-    "des": "Friendship with Dr. Jean increases to 100%."
-},
-"bt_npc_7": {
-    "title": "Hi, Masasko!",
-    "des": "Meet Masako."
-},
-"bt_npc_8": {
-    "title": "So kind of you, Masako!",
-    "des": "Friendship with Masako increases to 100%."
-},
-"bt_npc_9": {
-    "title": "Hi, Bill!",
-    "des": "Meet Bill."
-},
-"bt_npc_10": {
-    "title": "So kind of you, Bill!",
-    "des": "Friendship with Bill increases to 100%."
-},
-"bt_npc_11": {
-    "title": "Hi, Mr... Stranger!",
-    "des": "Meet Stranger."
-},
-"bt_npc_12": {
-    "title": "So kind of you, Mister!",
-    "des": "Friendship with Stranger increases to 100%."
-},
-"bt_npc_13": {
-    "title": "Hi, Mr. White!",
-    "des": "Meet W.White."
-},
-"bt_npc_14": {
-    "title": "So kind of you, Walter!",
-    "des": "Friendship with W.White increases to 100%."
-},
-"bt_item_1": {
-    "title": "Bang!",
-    "des": "Get a Magnum."
-},
-"bt_item_2": {
-    "title": "Bam!",
-    "des": "Get a M40."
-},
-"bt_item_3": {
-    "title": "Dadada!",
-    "des": "Get a FAMAS."
-},
-"bt_item_4": {
-    "title": "Horror fans",
-    "des": "Get a chain saw."
-},
-"bt_item_5": {
-    "title": "Whimsy",
-    "des": "Get a zombie bait."
-},
-"bt_item_6": {
-    "title": "Terrorist",
-    "des": "Get a homemade explosive."
-},
-"bt_cost_1": {
-    "title": "Excited",
-    "des": "Drink coffee 50 times."
-},
-"bt_cost_2": {
-    "title": "More excited",
-    "des": "Drink coffee 100 times."
-},
-"bt_cost_3": {
-    "title": "Cheer up",
-    "des": "Drink coffee 150 times."
-},
-"bt_special_1": {
-    "title": "Electricity!",
-    "des": "Fix power generator 5 times."
-},
-"bt_special_2": {
-    "title": "Fort Knox",
-    "des": "Reach maximum home defense once."
-}
+    "bt_season_1": {
+        "title": "In winter",
+        "des": "Get through the autumn."
+    },
+    "bt_season_2": {
+        "title": "In spring",
+        "des": "Get through the winter."
+    },
+    "bt_season_3": {
+        "title": "In summer",
+        "des": "Get through the spring."
+    },
+    "bt_season_4": {
+        "title": "In autumn",
+        "des": "Get through the summer."
+    },
+    "bt_produce_1": {
+        "title": "Farmer",
+        "des": "Plant 50 potatoes."
+    },
+    "bt_produce_2": {
+        "title": "Hunter",
+        "des": "Make 25 pieces of meat."
+    },
+    "bt_produce_3": {
+        "title": "Fish",
+        "des": "Make 100 water."
+    },
+    "bt_produce_4": {
+        "title": "Alcoholic",
+        "des": "Make 50 bottles of Vodka."
+    },
+    "bt_make_1": {
+        "title": "This is a war!",
+        "des": "Make an AK47."
+    },
+    "bt_make_2": {
+        "title": "Passive defence",
+        "des": "Make an Anti-riot suit."
+    },
+    "bt_make_3": {
+        "title": "Quartermaster",
+        "des": "Make a military backpack."
+    },
+    "bt_make_4": {
+        "title": "Ninja",
+        "des": "Make a katana."
+    },
+    "bt_npc_1": {
+        "title": "Hi, Mr. Luo!",
+        "des": "Meet Mr. Luo."
+    },
+    "bt_npc_2": {
+        "title": "So kind of you, Luo!",
+        "des": "Friendship with Mr. Luo increases to 100%."
+    },
+    "bt_npc_3": {
+        "title": "Hi, Jeff!",
+        "des": "Meet Jeff."
+    },
+    "bt_npc_4": {
+        "title": "So kind of you, Jeff!",
+        "des": "Friendship with Jeff increases to 100%."
+    },
+    "bt_npc_5": {
+        "title": "Hi, Dr. Jean!",
+        "des": "Meet Dr. Jean."
+    },
+    "bt_npc_6": {
+        "title": "So kind of you, Doctor!",
+        "des": "Friendship with Dr. Jean increases to 100%."
+    },
+    "bt_npc_7": {
+        "title": "Hi, Masasko!",
+        "des": "Meet Masako."
+    },
+    "bt_npc_8": {
+        "title": "So kind of you, Masako!",
+        "des": "Friendship with Masako increases to 100%."
+    },
+    "bt_npc_9": {
+        "title": "Hi, Bill!",
+        "des": "Meet Bill."
+    },
+    "bt_npc_10": {
+        "title": "So kind of you, Bill!",
+        "des": "Friendship with Bill increases to 100%."
+    },
+    "bt_npc_11": {
+        "title": "Hi, Mr... Stranger!",
+        "des": "Meet Stranger."
+    },
+    "bt_npc_12": {
+        "title": "So kind of you, Mister!",
+        "des": "Friendship with Stranger increases to 100%."
+    },
+    "bt_npc_13": {
+        "title": "Hi, Mr. White!",
+        "des": "Meet W.White."
+    },
+    "bt_npc_14": {
+        "title": "So kind of you, Walter!",
+        "des": "Friendship with W.White increases to 100%."
+    },
+    "bt_item_1": {
+        "title": "Bang!",
+        "des": "Get a Magnum."
+    },
+    "bt_item_2": {
+        "title": "Bam!",
+        "des": "Get a M40."
+    },
+    "bt_item_3": {
+        "title": "Dadada!",
+        "des": "Get a FAMAS."
+    },
+    "bt_item_4": {
+        "title": "Horror fans",
+        "des": "Get a chain saw."
+    },
+    "bt_item_5": {
+        "title": "Whimsy",
+        "des": "Get a zombie bait."
+    },
+    "bt_item_6": {
+        "title": "Terrorist",
+        "des": "Get a homemade explosive."
+    },
+    "bt_cost_1": {
+        "title": "Excited",
+        "des": "Drink coffee 50 times."
+    },
+    "bt_cost_2": {
+        "title": "More excited",
+        "des": "Drink coffee 100 times."
+    },
+    "bt_cost_3": {
+        "title": "Cheer up",
+        "des": "Drink coffee 150 times."
+    },
+    "bt_special_1": {
+        "title": "Electricity!",
+        "des": "Fix power generator 5 times."
+    },
+    "bt_special_2": {
+        "title": "Fort Knox",
+        "des": "Reach maximum home defense once."
+    }
 };

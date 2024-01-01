@@ -120,11 +120,11 @@ var TopFrameNode = cc.Node.extend({
             electric.updateView("icon_electric_" + val + ".png", stringUtil.getString(sid));
         });
         
-        var currency = new StatusButton(cc.size(this.firstLine.width / 6 + 5, this.firstLine.height),"#money_white.png"," "+Math.floor(player.currency),{scale: 0.5});
+        var currency = new StatusButton(cc.size(this.firstLine.width / 6 + 5, this.firstLine.height),"#icon_item_money.png",""+Math.floor(player.currency),{scale: 0.5});
         currency.setPosition(btnSize.width * 5 - 12.5, this.firstLine.getContentSize().height / 2);
         var self = this;
         currency.setClickListener(this, function(sender) {
-            showStatusDialog(13, Math.floor(player.currency), "#money_black.png");
+            showStatusDialog(13, Math.floor(player.currency), "#icon_item_money.png");
         });
 
         utils.emitter.on("onCurrencyChange", function(a) {

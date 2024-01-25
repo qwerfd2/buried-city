@@ -1,4 +1,5 @@
 var string = {
+    "6681": "Kayıtlı dosyayı temizlemek için lütfen aşağıdaki düğmeye tıklayın. İstemiyorsanız, lütfen hemen önceki sürüme geri dönün.",
     "9114": "Haydutlardan kaçtın. Devam et.",
     "9115": "Haydutları öldürdün. Devam et.",
     "9116": "Haydutun talebine boyun eğdin ve seni serbest bıraktı.",

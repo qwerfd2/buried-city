@@ -366,7 +366,11 @@ var NPCManager = cc.Class.extend({
         if (rand != 0) {
             var npc = this.npcList[rand];
             if (npc.isUnlocked) {
-                npc.needSell(rand);
+                if (npc.needSendGift()) {
+                    npc.sendGift();
+                } else {
+                    npc.needSell(rand);
+                }
             }
         } else {
             var npc = this.npcList[1];

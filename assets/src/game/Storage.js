@@ -34,6 +34,16 @@ var Storage = cc.Class.extend({
         var randomIndex = utils.getRandomInt(0, keyArray.length - 1);
         var itemid = keyArray[randomIndex];
         var index = this.getNumByItemId(itemid);
+        // Bug bodge: if for some reason item count is less than 1, refresh until a valid item is found
+        var tries = 0;
+        while (index < 1) {
+            itemid = keyArray[utils.getRandomInt(0, keyArray.length - 1)];
+            index = this.getNumByItemId(itemid);
+            tries++;
+            if (tries > 2) {
+                return null;
+            }
+        }
         if (index > 10) {
             randomIndex = utils.getRandomInt(3, 9);
         } else {

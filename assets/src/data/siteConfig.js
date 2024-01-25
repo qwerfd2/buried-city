@@ -5801,7 +5801,7 @@ var siteConfig = {
         "num": 0
     }],
     "unlockValue": {},
-    "secretRoomsId": 4,
+    "secretRoomsId": 6,
     "def": 50
 }
 };

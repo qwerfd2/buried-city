@@ -1,4 +1,5 @@
 var string = {
+    "6681": "Nhấp vào nút bên dưới để xóa tệp lưu. Nếu bạn không muốn, vui lòng quay lại phiên bản trước ngay lập tức.",
     "9114": "Bạn đã chạy trốn khỏi bọn cướp. tiếp tục đi về phía trước",
     "9115": "Bạn đã giết chết bọn cướp. tiếp tục đi về phía trước",
     "9116": "Bạn đã đồng ý với yêu cầu của bandid và hắn đã để bạn đi.",

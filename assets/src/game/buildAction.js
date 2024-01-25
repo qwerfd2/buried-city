@@ -172,6 +172,8 @@ var Formula = BuildAction.extend({
             if (IAPPackage.isHandyworkerUnlocked()) {
                 time = Math.round(time * 0.7);
             }
+            // Front-load item deduction to prevent bugs with NPC trading at 8PM
+            player.costItems(this.config.cost);
             var self = this;
             this.addTimer(time, time, function () {
                 self.step++;
@@ -180,16 +182,12 @@ var Formula = BuildAction.extend({
                 }
                 BuildOccupied = false;
                 if (self.step == 1) {
-                    //1. cost成功
-                    player.costItems(self.config.cost);
                     if (self.bid == 2) {
                         self.place(true);
                     } else {
                         self.place();
                     }
                 } else {
-                    //1. cost成功
-                    player.costItems(self.config.cost);
                     //非放置类的,第一次进度完成即获取物品
                     player.gainItems(self.config.produce);
                     self.config.produce.forEach(function (item) {
@@ -376,6 +374,8 @@ var TrapBuildAction = Formula.extend({
             if (IAPPackage.isHandyworkerUnlocked()) {
                 time = Math.round(time * 0.7);
             }
+            //1. cost成功
+            player.costItems(this.config.cost);
             var self = this;
             this.addTimer(time, time, function () {
                 self.step++;
@@ -383,12 +383,8 @@ var TrapBuildAction = Formula.extend({
                     self.step = 0;
                 }
                 if (self.step == 1) {
-                    //1. cost成功
-                    player.costItems(self.config.cost);
                     self.place(true);
                 } else {
-                    //1. cost成功
-                    player.costItems(self.config.cost);
                     //非放置类的,第一次进度完成即获取物品
                     player.gainItems(self.config.produce);
                     this.build.resetActiveBtnIndex();
@@ -516,7 +512,6 @@ var BonfireBuildAction = BuildAction.extend({
                 uiUtil.showTinyInfoDialog(1134);
             } else {
                 player.costItems(this.config.cost);
-
                 this.addFuel();
             }
         } else {
@@ -657,11 +652,11 @@ var RestBuildAction = BuildAction.extend({
         if (IAPPackage.isHandyworkerUnlocked()) {
             time = Math.round(time * 0.7);
         }
-        var self = this;
         audioManager.playEffect(audioManager.sound.COFFEE_POUR);
+        //1. cost成功
+        player.costItems(this.config.cost);
+        var self = this;
         this.addTimer(time, time, function () {
-            //1. cost成功
-            player.costItems(self.config.cost);
             player.lastCoffeeTime = Number(cc.timer.time);
             self.config.cost.forEach(function (item) {
                 Achievement.checkCost(item.itemId, item.num);
@@ -758,11 +753,11 @@ var DrinkBuildAction = BuildAction.extend({
         if (IAPPackage.isHandyworkerUnlocked()) {
             time = Math.round(time * 0.7);
         }
-        var self = this;
         audioManager.playEffect(audioManager.sound.BOTTLE_OPEN);
+        //1. cost成功
+        player.costItems(this.config.cost);
+        var self = this;
         this.addTimer(time, time, function () {
-            //1. cost成功
-            player.costItems(self.config.cost);
             player.lastAlcoholTime = Number(cc.timer.time);
             self.config.cost.forEach(function (item) {
                 Achievement.checkCost(item.itemId, item.num);
@@ -1009,11 +1004,10 @@ var BombBuildAction = BuildAction.extend({
         if (IAPPackage.isHandyworkerUnlocked()) {
             time = Math.round(time * 0.7);
         }
+        //1. cost成功
+        player.costItems(this.config.cost);
         var self = this;
         this.addTimer(time, time, function () {
-            //1. cost成功
-            player.costItems(self.config.cost);
-
             self.active();
             self.build.resetActiveBtnIndex();
             utils.emitter.emit("left_btn_enabled", true);

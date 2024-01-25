@@ -1,4 +1,5 @@
 var string = {
+    "6681": "Click the button below to clear the save file. If you don't want to, please revert to the previous version immediately.",
     "9114": "You have fled from the bandits. Keep going.",
     "9115": "You have killed the bandits. Keep going.",
     "9116": "You caved in to the bandit's demand and he let you go.",

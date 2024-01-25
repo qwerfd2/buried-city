@@ -50,7 +50,7 @@ var Site = BaseSite.extend({
                 var probability = Number.parseFloat(this.secretRoomsConfig.probability);
 
                 if (player.equip.isEquiped(1305064)) {
-                    probability += 0.16;
+                    probability *= 2;
                 }
                 var rand = Math.random();
                 if (probability >= rand) {

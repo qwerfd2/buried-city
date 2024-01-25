@@ -214,7 +214,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             }     
         }
 
-        if (player.equip.getEquip(EquipmentPos.GUN) && !player.equip.isEquiped(1301091) && player.bag.getNumByItemId(BattleConfig.BULLET_ID) && player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID)) {
+        if (player.equip.getEquip(EquipmentPos.GUN) && !player.equip.isEquiped(1301091) && player.bag.getNumByItemId(BattleConfig.BULLET_ID) && player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID) && player.nowSiteId != 502) {
             //if gun is equipped, and not flamethrower, and has 2 bullets in the inventory to select.
             var bulletRichText = GetRichTextForBullet(cc.color.WHITE);
             bulletRichText.setName("bulletPriority");

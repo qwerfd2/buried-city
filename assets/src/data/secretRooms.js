@@ -206,5 +206,28 @@ var secretRooms = {
             "itemId": "1305011",
             "weight": 0
         }]
+    },
+    "6": {
+        "id": 6,
+        "maxCount": 30,
+        "probability": "0.04",
+        "minRooms": 2,
+        "maxRooms": 5,
+        "minDifficultyOffset": 1,
+        "maxDifficultyOffset": 1,
+        "produceValue": 86,
+        "produceList": [{
+            "itemId": "1101073",
+            "weight": 0
+        }, {
+            "itemId": "1103083",
+            "weight": 0
+        }, {
+            "itemId": "1104011",
+            "weight": 10
+        }, {
+            "itemId": "1305011",
+            "weight": 0
+        }]
     }
 };

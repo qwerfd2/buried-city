@@ -39,6 +39,10 @@ var WeatherSystem = cc.Class.extend({
             });
             var randomWeather = weatherSystemConfig[season];
             var weatherInfo = utils.getRoundRandom(randomWeather);
+            //Special check to reduce chance of consecutive abnormal weather
+            if (weatherInfo.weatherId != 0 && this.Tomorrow[1] != 0 && Math.random() > 0.5) {
+                weatherInfo.weatherId = 0;
+            }
             this.Tomorrow.push(weatherInfo.weatherId);
             this.Tomorrow.shift();    
             this.weatherId = this.Tomorrow[0];

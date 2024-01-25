@@ -692,10 +692,8 @@ uiUtil.showGuideDialog = function(str, pic, target, isPicDown) {
         config.action.btn_1.target = null;
         config.action.btn_1.cb = function() {
             player.setSetting("step", 30);
-            player.map.unlockSite(400);
             player.buildWarn.setVisible(false);
             player.log.addMsg(stringUtil.getString(9001));
-            Record.saveAll();
         };
         config.action.btn_2.txt = stringUtil.getString(9002);
     }

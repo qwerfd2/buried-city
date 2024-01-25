@@ -24,9 +24,10 @@ var MenuLayer = cc.Layer.extend({
             toast.show();
         } else if (lastVer < ClientData.MOD_VERSION) {
             var strShow = stringUtil.getString(6676);
+            var useBig = false;
             if (lastVer < ClientData.MIN_VER) {
-                game.newGame();
-                strShow += "\n" + stringUtil.getString(1271);
+                useBig = true;
+                strShow += "\n" + stringUtil.getString(1271) + "\n" + stringUtil.getString(6681);
             } else if (lastVer < ClientData.REC_VER) {
                 strShow += "\n" + stringUtil.getString(1270);
             } else {
@@ -37,7 +38,16 @@ var MenuLayer = cc.Layer.extend({
                 content: {des: strShow},
                 action: {btn_1: {txt: stringUtil.getString(1193)}}
             };
-            var toast = new DialogTiny(config);
+            var toast;
+            if (useBig) {
+                config.title.title = stringUtil.getString(1351);
+                var self = this;
+                config.action.btn_1.cb = function () {game.newGame();cc.director.runScene(new MenuScene())};
+                toast = new DialogSmall(config);
+                toast.autoDismiss = false;
+            } else {
+                toast = new DialogTiny(config);
+            }
             toast.show();
         }
         cc.sys.localStorage.setItem("modVer", ClientData.MOD_VERSION);

@@ -170,54 +170,54 @@ var npcConfig = {
         ],
         "trading": [
             [{
-                "itemId": 1305012,
-                "num": 8
-            }],
-            [{
-                "itemId": 1305012,
+                "itemId": 1305011,
                 "num": 3
             }],
             [{
-                "itemId": 1303022,
-                "num": 1
+                "itemId": 1305011,
+                "num": 2
             }],
             [{
-                "itemId": 1305012,
-                "num": 3
+                "itemId": 1303033,
+                "num": 2
             }],
             [{
-                "itemId": 1305012,
-                "num": 3
+                "itemId": 1305011,
+                "num": 2
             }],
             [{
-                "itemId": 1305012,
-                "num": 3
+                "itemId": 1305011,
+                "num": 2
             }],
             [{
-                "itemId": 1303012,
-                "num": 1
+                "itemId": 1305011,
+                "num": 2
             }],
             [{
-                "itemId": 1305012,
-                "num": 3
+                "itemId": 1303033,
+                "num": 2
+            }],
+            [{
+                "itemId": 1305011,
+                "num": 2
             }, {
-                "itemId": 1305012,
+                "itemId": 1305011,
                 "num": 1
             }],
             [{
-                "itemId": 1305012,
-                "num": 3
+                "itemId": 1305011,
+                "num": 2
             }],
             [{
-                "itemId": 1305012,
-                "num": 3
+                "itemId": 1305011,
+                "num": 2
             }],
             [{
-                "itemId": 1305012,
-                "num": 3
+                "itemId": 1305011,
+                "num": 2
             }, {
-                "itemId": 1303012,
-                "num": 1
+                "itemId": 1303033,
+                "num": 2
             }]
         ],
         "needItem": [{

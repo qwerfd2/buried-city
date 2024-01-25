@@ -1,4 +1,5 @@
 var string = {
+    "6681": "Klicken Sie auf die Schaltfläche unten, um die gespeicherte Datei zu löschen. Wenn Sie das nicht möchten, kehren Sie bitte sofort zur vorherigen Version zurück.",
     "9114": "Du bist vor den Banditen geflohen. Bleibe weiter auf der Hut.",
     "9115": "Du hast die Banditen getötet. Bleibe weiter auf der Hut.",
     "9116": "Du bist auf die Forderung des Banditen eingegangen und er hat dich gehen lassen.",

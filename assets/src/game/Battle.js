@@ -213,7 +213,7 @@ var Battle = cc.Class.extend({
         cc.timer.resume();
         audioManager.resumeMusic();
         var rand = Math.random();
-        if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0 && player.nowSiteId != null && player.nowSiteId != 0 && rand > 0.8) {
+        if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0 && player.nowSiteId != null && player.nowSiteId != 0 && rand > 0.9) {
             //generate loot dialog for dog bonus
             player.changeAttr("dogMood", -1);
             var config = utils.clone(stringUtil.getString("statusDialog"));
@@ -554,7 +554,6 @@ var BattlePlayer = cc.Class.extend({
                 this.battle.sumRes.totalVirus += 1;
             }
         }
-        player.changeAttr("injury", 1);
     },
     die: function () {
         if (this.useBandit()) {
@@ -739,6 +738,12 @@ var Flamethrower = BattleEquipment.extend({
             var monsters = this.bPlayer.battle.monsters.concat();
             var numMonster = monsters.length;
             var harm = this.attr.atk;
+            var moodDec = 20 + Math.max(0, 80 - player.spirit); // value between 20 and 100
+            var rand = utils.getRandomInt(0, 100)
+            if (moodDec > rand) {
+                // deduct harm
+                harm -= utils.getRandomInt(1, 10)
+            }
             if (numMonster < 4) {
                 harm *= 2;     
             }

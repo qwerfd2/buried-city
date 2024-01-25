@@ -1,4 +1,5 @@
 var string = {
+    "6681": "Haga clic en el botón de abajo para borrar el archivo guardado. Si no desea hacerlo, por favor, vuelva a la versión anterior de inmediato.",
     "9114": "Has huido de los bandidos. Sigue adelante.",
     "9115": "Has matado a los bandidos. Sigue adelante.",
     "9116": "Has cedido a la demanda del bandido y él te dejó ir.",

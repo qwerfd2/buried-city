@@ -233,15 +233,6 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             exchangeButton.setPosition(180, bulletRichText.getPositionY() + 20);
             node.addChild(exchangeButton);
         }
-        if (cc.RTL) {
-            label1.anchorX = 1;
-            label1.x = node.width;
-
-            iconList.x = label1.x - label1.width - 5 - iconList.width;
-
-            label2.anchorX = 1;
-            label2.x = node.width;
-        }
 
         var currentTime = Number(cc.timer.time);
         currentTime -= player.lastAlcoholTime;
@@ -470,25 +461,6 @@ var BattleAndWorkNode = BottomFrameNode.extend({
             richText2.setAnchorPoint(0, 0.5);
             richText2.setPosition(label3.x + label3.width, label3.y - label3.height / 2);
             node.addChild(richText2);
-        }
-
-        if (cc.RTL) {
-            label1.anchorX = 1;
-            label1.x = node.width;
-
-            richText.anchorX = 1;
-            richText.x = label1.x - label1.width;
-
-            label2.anchorX = 1;
-            label2.x = node.width;
-
-            if (label3) {
-                label3.anchorX = 1;
-                label3.x = node.width;
-
-                richText2.anchorX = 1;
-                richText2.x = label3.x - label3.width;
-            }
         }
 
         var self = this;

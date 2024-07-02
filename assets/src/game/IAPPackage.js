@@ -111,7 +111,7 @@ var IAPPackage = {
     },
 
     chooseTalent: function (id) {
-        var purchaseId = JSON.parse(cc.sys.localStorage.getItem("chosenTalent"));
+        var purchaseId = JSON.parse(cc.sys.localStorage.getItem("chosenTalent" + utils.SAVE_SLOT));
         var index = -1;
         for (var i = 0; i < purchaseId.length; i++){
             if (purchaseId[i] == id){
@@ -123,11 +123,11 @@ var IAPPackage = {
         }else{
             purchaseId.splice(index, 1);
         }
-        cc.sys.localStorage.setItem("chosenTalent", JSON.stringify(purchaseId));
+        cc.sys.localStorage.setItem("chosenTalent" + utils.SAVE_SLOT, JSON.stringify(purchaseId));
     },
 
     getChosenTalentPurchaseId: function (id) {
-        var purchaseId = JSON.parse(cc.sys.localStorage.getItem("chosenTalent"));
+        var purchaseId = JSON.parse(cc.sys.localStorage.getItem("chosenTalent" + utils.SAVE_SLOT));
         for (var i = 0; i < purchaseId.length; i++){
             if (purchaseId[i] == id){
                 return true;

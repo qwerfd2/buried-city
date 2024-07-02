@@ -52,10 +52,6 @@ var ItemRichText = cc.Node.extend({
             none.setColor(this.defaultColor);
             none.anchorX = 0;
             this.addChild(none);
-            if (cc.RTL) {
-                none.anchorX = 1;
-                none.x = this.width;
-            }
         }
     }
 });

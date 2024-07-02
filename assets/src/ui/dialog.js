@@ -782,15 +782,6 @@ var RandomBattleDialog = DialogBig.extend({
             exchangeButton.setPosition(180, label1.getPositionY() - label1.getContentSize().height - 120);
             this.log.addChild(exchangeButton);
         }
-        if (cc.RTL) {
-            label1.anchorX = 1;
-            label1.x = this.rightEdge;
-
-            iconList.x = label1.x - label1.width - 5 - iconList.width;
-
-            label2.anchorX = 1;
-            label2.x = this.rightEdge;
-        }
 
         var currentTime = Number(cc.timer.time);
         currentTime -= player.lastAlcoholTime;
@@ -1103,34 +1094,6 @@ var RandomBattleDialog = DialogBig.extend({
                     richText3.setAnchorPoint(0, 0.5);
                     richText3.setPosition(label4.x + label4.width, label4.y - label4.height / 2);
                     this.log.addChild(richText3);
-                }
-            }
-        }
-
-        if (cc.RTL) {
-            label1.anchorX = 1;
-            label1.x = this.rightEdge;
-
-            richText.anchorX = 1;
-            richText.x = label1.x - label1.width;
-            if (sumRes) {
-                label2.anchorX = 1;
-                label2.x = this.rightEdge;
-
-                if (label3) {
-                    label3.anchorX = 1;
-                    label3.x = this.rightEdge;
-
-                    richText2.anchorX = 1;
-                    richText2.x = label3.x - label3.width;
-                }
-
-                if (label4) {
-                    label4.anchorX = 1;
-                   label4.x = this.rightEdge;
-
-                    richText3.anchorX = 1;
-                    richText3.x = label4.x - label4.width;
                 }
             }
         }

@@ -2,6 +2,7 @@ var Player = cc.Class.extend({
     ctor: function () {
         this.config = utils.clone(playerConfig);
 
+        this.saveName = stringUtil.getString(6007);
         this.hp = 240;
         this.hp = this.hp;
         this.hpMaxOrigin = 240;
@@ -50,7 +51,6 @@ var Player = cc.Class.extend({
         this.deathCausedInfect = false;
         //战斗前状态记录
         this.battleRecord = null;
-
         this.bag = new Bag('player');
         this.safe = new Safe('player');
         this.storage = new Storage('player');
@@ -90,12 +90,14 @@ var Player = cc.Class.extend({
         this.isDead = false;
         this.trapTime = -1;
         this.lastBanditCaveIn = 10;
+        this.cloned = false;
         this.shopList = [{"itemId": 1103011, "amount": 10, "discount": 0}, {"itemId": 1105042, "amount": 10, "discount": 0}, {"itemId": 1105051, "amount": 10, "discount": 0}, {"itemId": 1301011, "amount": 5, "discount": 0}, {"itemId": 1103033, "amount": 5, "discount": 0}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1301091": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
     
     save: function () {
         var opt = {
+            saveName: this.saveName,
             hp: this.hp,
             hpMaxOrigin: this.hpMaxOrigin,
             hpMax: this.hpMax,
@@ -163,14 +165,16 @@ var Player = cc.Class.extend({
             dogDistance: this.dogDistance,
             isDead: this.isDead,
             trapTime: this.trapTime,
-            lastBanditCaveIn: this.lastBanditCaveIn
+            lastBanditCaveIn: this.lastBanditCaveIn,
+            cloned: this.cloned,
         };
         return opt;
     },
 
     restore: function () {
-        var opt = Record.restore("player");
-        if (opt) {
+        var opt = Record.restore("player" + utils.SAVE_SLOT) || {};
+        if (opt.hp) {
+            this.saveName = opt.saveName;
             this.hp = opt.hp;
             this.hpMaxOrigin = opt.hpMaxOrigin;
             this.hpMax = opt.hpMax;
@@ -234,13 +238,14 @@ var Player = cc.Class.extend({
             this.isDead = opt.isDead || false;
             this.trapTime = opt.trapTime || -1;
             this.lastBanditCaveIn = opt.lastBanditCaveIn || 10;
+            this.cloned = opt.cloned || false;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
             if (IAPPackage.isHoarderUnlocked()) {
                 this.currency += 10;
                 var itemList = [1101011,1101021,1101031,1101041,1101051,1101061,1101071,1101073,1103011,1103041,1103083,1104011,1104021,1104043,1105011,1105022,1105033,1105042,1105051,1301011,1301022,1301033,1301041,1301052,1302011,1302021,1303012,1304012,1306001,1305011,1305023,1106054];
-                var amountList = [100,100,80,80,60,60,60,40,16,16,8,8,8,4,30,20,10,50,50,3,2,2,3,2,4,4,8,2,2,180,2,1];
+                var amountList = [90,90,80,75,60,60,50,40,15,15,5,5,5,4,30,20,10,40,40,3,2,2,3,2,4,4,8,2,2,160,2,1];
                 for (var i = 0; i < itemList.length; i++) {
                     this.storage.increaseItem(itemList[i], amountList[i], false);
                 }
@@ -360,7 +365,7 @@ var Player = cc.Class.extend({
     },
     
     isDogActive: function () {
-        if (!this.dogFood || !this.dogMood || this.dogInjury == 60) {
+        if (!this.dogFood || !this.dogMood || this.dogInjury == this.dogInjuryMax) {
             return false;
         }
         return true;
@@ -411,7 +416,14 @@ var Player = cc.Class.extend({
                 saveFlag = true;
             }
         }
-        var TheftConfig = [[0.02, 0.05, 0.09, 0.14, 0.2],[0.05, 0.11, 0.18, 0.26, 0.35],[0.09, 0.19, 0.3, 0.42, 0.55],[0.14, 0.29, 0.45, 0.62, 0.8],[0.2, 0.41, 0.63, 0.86, 1.1],[0.26, 0.53, 0.81, 1.1, 1.4]]; 
+        var TheftConfig = 
+        [[0.02, 0.05, 0.09, 0.14, 0.2 ],
+        [ 0.05, 0.11, 0.18, 0.26, 0.35],
+        [ 0.09, 0.19, 0.3,  0.42, 0.55],
+        [ 0.14, 0.29, 0.45, 0.62, 0.8 ],
+        [ 0.2,  0.41, 0.63, 0.86, 1.1 ],
+        [ 0.26, 0.53, 0.81, 1.1,  1.4 ]];
+
         var dtTime = Math.round(cc.timer.time - this.leftHomeTime);
         var weight = this.storage.getAllItemNum();
         var timeIndex = -1;
@@ -432,14 +444,15 @@ var Player = cc.Class.extend({
                 break;
             }
         }
-        var probability;
+        var probability = 2;
         if (!bypass) {
             if (timeIndex < 0 || weightIndex < 0) {
                 return;
             }
-            probability = TheftConfig[weightIndex][timeIndex];     
-        } else {
-            probability = 2;
+            probability = TheftConfig[weightIndex][timeIndex];
+            if (IAPPackage.isSocialEffectUnlocked()) {
+                probability = probability * 1.1;
+            }
         }
 
         var def = this._getHomeDeter();
@@ -450,26 +463,22 @@ var Player = cc.Class.extend({
             if (IAPPackage.isStealthUnlocked()) {
                 var rand = Math.random();
                 if (rand >= 0.25) {
-                    var res = this._getAttackResult(90, 0, this.storage);
-                    res = res.items;
                     saveFlag = true;
-                    var self = this;
-                    uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
                 }
             } else { 
-                var res = this._getAttackResult(90, 0, this.storage);
-                res = res.items;
                 saveFlag = true;
-                var self = this;
-                uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
             }
         }
         if (saveFlag) {
+            var res = this._getAttackResult(90, 0, this.storage);
+            res = res.items;
+            var self = this;
+            uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
             Record.saveAll();
         }
     },
     checkBreakdown: function (source) {
-        //Newbie protection - won't break down on the first 5 day.
+        //Newbie protection - won't break down on the first 5 days.
         var day = cc.timer.formatTime().d;
         if (day < 6 && this.spirit < 20) {
             day = 20 - this.spirit;
@@ -727,29 +736,18 @@ var Player = cc.Class.extend({
         if (cc.timer) {
             season = cc.timer.getSeason()
         }
-        if (season != 3) {
-            if (diff > 18) {
-                this.changeWater(18);
-            } else {
-                this.changeWater(diff);
-                //Converted time of immunity
-                var given = (18 - diff) / 3 * 3600;
-                var temp = Number(cc.timer.time) - 21600 + given;
-                if (temp > this.lastWaterTime) {
-                    this.lastWaterTime = temp;
-                }
-            }
+        if (diff > 18) {
+            this.changeWater(18);
         } else {
-            if (diff > 18) {
-                this.changeWater(18);
-            } else {
-                this.changeWater(diff);
-                //Converted time of immunity
-                var given = (18 - diff) / 6 * 3600;
-                var temp = Number(cc.timer.time) - 14400 + given;
-                if (temp > this.lastWaterTime) {
-                    this.lastWaterTime = temp;
-                }
+            var waterUpper = 21600;
+            if (season == 3) {
+                waterUpper = 14400;
+            }
+            this.changeWater(diff);
+            var given = (18 - diff) / 3 * 3600;
+            var temp = Number(cc.timer.time) - waterUpper + given;
+            if (temp > this.lastWaterTime) {
+                this.lastWaterTime = temp;
             }
         }
     },
@@ -1497,7 +1495,6 @@ var Player = cc.Class.extend({
         } else {
             homeRes.happened = false;
         }
-
         Record.saveAll();
         cc.timer.pause();
         new DayLayer(homeRes).show();
@@ -1523,8 +1520,15 @@ var Player = cc.Class.extend({
         if (player.equip.isEquiped(1305053)) {
             probability -= probability * 0.25;
         }
-
-        if (rand <= probability || override) {
+        var specialTheft = false;
+        if (IAPPackage.isSocialEffectUnlocked()) {
+            var randTheft = Math.random();
+            if (randTheft < 0.1) {
+                specialTheft = true;
+            }
+        }
+        
+        if (rand <= probability || override || specialTheft) {
             var diff;
             var list;
             var type = 0;
@@ -1532,7 +1536,7 @@ var Player = cc.Class.extend({
             if (!override) {
                 //no saved battle. Start new one. First, determine if this should be a bandit battle.
                 var banditRand = Math.random();
-                if (banditRand <= 0.2) {
+                if (banditRand <= 0.3 || specialTheft) {
                     //bandit battle. check if day is immune
                     if (this.lastBanditCaveIn >= cc.timer.getTimeNum()) {
                         return false;
@@ -1607,7 +1611,7 @@ var Player = cc.Class.extend({
             self.underAttackInNight();
             self.room.getBuild(9).sleeped = false;
             cc.timer.checkSeason();
-            cc.sys.localStorage.setItem("ad", "1");
+            cc.sys.localStorage.setItem("ad" + utils.SAVE_SLOT, "1");
         });
         cc.timer.addTimerCallbackDayByDayOneAM(this, function () {
             var fridgeBuild = self.room.getBuildLevel(21);

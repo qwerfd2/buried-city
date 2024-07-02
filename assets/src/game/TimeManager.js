@@ -29,8 +29,8 @@ var TimerManager = cc.Class.extend({
     },
 
     restore: function () {
-        var opt = Record.restore("time");
-        if (opt) {
+        var opt = Record.restore("time" + utils.SAVE_SLOT) || {};
+        if (opt.time) {
             this.time = opt.time;
         }
         this.currentSeason = this.getSeason();

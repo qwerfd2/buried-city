@@ -1,7 +1,7 @@
 var secretRooms = {
     "1": {
         "id": 1,
-        "maxCount": 5,
+        "maxCount": 10,
         "probability": "0.1",
         "minRooms": 2,
         "maxRooms": 3,
@@ -45,7 +45,7 @@ var secretRooms = {
     },
     "2": {
         "id": 2,
-        "maxCount": 5,
+        "maxCount": 10,
         "probability": "0.1",
         "minRooms": 2,
         "maxRooms": 4,
@@ -92,7 +92,7 @@ var secretRooms = {
     },
     "3": {
         "id": 3,
-        "maxCount": 5,
+        "maxCount": 10,
         "probability": "0.1",
         "minRooms": 2,
         "maxRooms": 5,
@@ -139,7 +139,7 @@ var secretRooms = {
     },
     "4": {
         "id": 4,
-        "maxCount": 8,
+        "maxCount": 15,
         "probability": "0.05",
         "minRooms": 2,
         "maxRooms": 6,
@@ -186,7 +186,7 @@ var secretRooms = {
     },
     "5": {
         "id": 5,
-        "maxCount": 5,
+        "maxCount": 10,
         "probability": "0.1",
         "minRooms": 2,
         "maxRooms": 5,

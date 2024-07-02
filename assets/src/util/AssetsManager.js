@@ -1,16 +1,6 @@
 var lanSupports = [];
 var stringName = {
-    "fr": "français",
     "zh": "简体中文",
-    "ar": "عربي",
-    "es": "El español",
-    "ja": "日本語",
-    "ko": "한국어",
-    "pt": "Português",
-    "ru": "русский",
-    "tr": "Türk",
-    "vi": "Vietnam",
-    "de": "Deutsch",
     "en": "English",
     "zh-Hant": "繁體中文"
 }
@@ -28,17 +18,7 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
         cc.director.getScheduler().scheduleCallbackForTarget(this, function () {
             lanSupports.push(cc.sys.LANGUAGE_ENGLISH);
             lanSupports.push(cc.sys.LANGUAGE_CHINESE);
-            lanSupports.push(cc.sys.LANGUAGE_SPANISH);
-            lanSupports.push(cc.sys.LANGUAGE_ARABIC);
-            lanSupports.push(cc.sys.LANGUAGE_FRENCH);
-            lanSupports.push(cc.sys.LANGUAGE_RUSSIAN);
-            lanSupports.push(cc.sys.LANGUAGE_PORTUGUESE);
-            lanSupports.push(cc.sys.LANGUAGE_GERMAN);
-            lanSupports.push(cc.sys.LANGUAGE_JAPANESE);
-            lanSupports.push(cc.sys.LANGUAGE_TURKISH);
-            lanSupports.push(cc.sys.LANGUAGE_VIETNAMESE);
-            lanSupports.push(cc.sys.LANGUAGE_KOREAN);
-            
+         
             cc.loader.loadJs(["src/jsList.js"], function (err) {
                 var storagePaths = jsb.fileUtils.getSearchPaths();
                 for (var key1 in jsList) {
@@ -48,10 +28,7 @@ var AssetsManagerLoaderScene = cc.Scene.extend({
                             var lan = cc.sys.localStorage.getItem("language");
                             if (!lan)
                                 lan = cc.sys.language;
-                            cc.RTL = false;
                             if (lanSupports.indexOf(lan) !== -1) {
-                                if (lan === cc.sys.LANGUAGE_ARABIC)
-                                    cc.RTL = true;
                                 if (lan === cc.sys.LANGUAGE_CHINESE) {
                                     var fullLan = self.getLocaleLanguage();
                                     var lanFlag = fullLan.split('-')[1];

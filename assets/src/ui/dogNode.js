@@ -34,11 +34,11 @@ var DogNode = BottomFrameNode.extend({
                     } else {
                         var realLen = 0;
                         var realStr = "";
-                        var len = 12;
+                        var len = 20;
                         for (var i = 0; i < str.length; i++) {
                             var charCode = str.charCodeAt(i);
                             if (charCode >= 65 && charCode <= 90)
-                                realLen += 1.5;
+                                realLen += 1.3;
                             else if (charCode >= 0 && charCode <= 128)
                                 realLen += 1;
                             else

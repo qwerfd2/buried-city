@@ -18,7 +18,7 @@ var RadioNode = BuildNode.extend({
     },
 
     updateData: function () {
-        var dat = cc.sys.localStorage.getItem("radio") || "[]";
+        var dat = cc.sys.localStorage.getItem("radio" + utils.SAVE_SLOT) || "[]";
         dat = JSON.parse(dat);
         for (var i = dat.length - 1; i > -1; i--) {
             this.addMsg(dat[i], false);
@@ -28,7 +28,7 @@ var RadioNode = BuildNode.extend({
     addMsg: function (msg, flag) {
         this.msgView.addLog(msg);
         if (msg.uid == Record.getUUID() && flag) {
-            var log = cc.sys.localStorage.getItem("radio") || "[]";
+            var log = cc.sys.localStorage.getItem("radio" + utils.SAVE_SLOT) || "[]";
             log = JSON.parse(log);
             if (msg.msg.length > 40) {
                msg.msg = msg.msg.substring(0, 40);
@@ -38,7 +38,7 @@ var RadioNode = BuildNode.extend({
             if (log.length > 30){
                 log.pop();
             }
-            cc.sys.localStorage.setItem("radio", JSON.stringify(log));
+            cc.sys.localStorage.setItem("radio" + utils.SAVE_SLOT, JSON.stringify(log));
         }
     },
 
@@ -153,19 +153,25 @@ var RadioNode = BuildNode.extend({
                         throw new Error('');
                     }
                     var count = 0;
+                    var otp = "";
                     if (payload.data.achievement) {
                         cc.sys.localStorage.setItem("achievement", JSON.stringify(payload.data.achievement));
                         count++;
                     }
                     if (payload.data.medal) {
-                        cc.sys.localStorage.setItem("medal", JSON.stringify(payload.data.medal));
-                        count++;
+                        //check whether this info should be discarded
+                        if (payload.data.medal["103"].aim != 5) {
+                            cc.sys.localStorage.setItem("medal", JSON.stringify(payload.data.medal));
+                            count++;
+                        } else {
+                            otp += "Medal data is outdated, discarded. ";
+                        }
                     }
                     if (payload.data.dataLog) {
                         cc.sys.localStorage.setItem("dataLog", JSON.stringify(payload.data.dataLog));
                         count++;
                     }
-                    msgData.msg = "Restore " + count + "/3 success.";
+                    msgData.msg = "Restore " + count + "/3 success. " + otp;
                 } catch (ex) {
                     msgData.msg = "Input JSON data invalid.";
                 }

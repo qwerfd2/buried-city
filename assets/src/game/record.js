@@ -7,8 +7,8 @@ var Record = {
     },
     saveAll: function () {
         if (!IS_IN_WORKROOM_STORAGE_NODE) {
-            this.save("player", player.save());
-            this.save("time", cc.timer.save());
+            this.save("player" + utils.SAVE_SLOT, player.save());
+            this.save("time" + utils.SAVE_SLOT, cc.timer.save());
         }
     },
     save: function (key, obj) {
@@ -69,18 +69,6 @@ var Record = {
             log.pop();
         }
         cc.sys.localStorage.setItem("dataLog", JSON.stringify(log));
-    },
-
-    getType: function () {
-        var type = cc.sys.localStorage.getItem("type");
-        if (type === undefined || type === null || type === "") {
-            return -1;
-        } else {
-            return Number(type);
-        }
-    },
-    setType: function (type) {
-        cc.sys.localStorage.setItem("type", type);
     },
 
     getMedalCheat: function () {

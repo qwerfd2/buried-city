@@ -1537,17 +1537,16 @@ uiUtil.removeIconWarn = function (parent, name) {
     }
 };
 
-uiUtil.showNewGameDialog = function (num, meta, cb, cb2) {
+uiUtil.showNewGameDialog = function (num, meta, cb) {
     var config = {
         title: {},
         content: {},
         action: {btn_1: {}, btn_2: {}}
     };
-    config.content.des = stringUtil.getString(6012, num, meta[0]);
+    config.content.des = "Save file in slot "+ num + ", named '" + meta[0] + "' will be deleted. Are you sure?";
     config.action.btn_2.txt = stringUtil.getString(1030);
     config.action.btn_2.target = null;
-    config.action.btn_1.cb = cb;
-    config.action.btn_2.cb = cb2;
+    config.action.btn_2.cb = cb;
 
     config.action.btn_1.txt = stringUtil.getString(1157);
     var dialog = new DialogTiny(config);

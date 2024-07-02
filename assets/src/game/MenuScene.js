@@ -15,7 +15,6 @@ var MenuLayer = cc.Layer.extend({
         Medal.init();
         var lastVer = cc.sys.localStorage.getItem("modVer") || ClientData.MOD_VERSION;
         if (lastVer > ClientData.MOD_VERSION) {
-            // version is reverted
             var config = {
                 title: {title: ""},
                 content: {des: stringUtil.getString(6675)},
@@ -24,20 +23,15 @@ var MenuLayer = cc.Layer.extend({
             var toast = new DialogTiny(config);
             toast.show();
         } else if (lastVer < ClientData.MOD_VERSION) {
-            // version is updated
             var strShow = stringUtil.getString(6676);
-            var wipeSave = false;
-            var upgradeSave = false;
+            var useBig = false;
             if (lastVer < ClientData.MIN_VER) {
-                wipeSave = true;
+                useBig = true;
                 strShow += "\n" + stringUtil.getString(1271) + "\n" + stringUtil.getString(6681);
             } else if (lastVer < ClientData.REC_VER) {
                 strShow += "\n" + stringUtil.getString(1270);
             } else {
                 strShow += "\n" + stringUtil.getString(1269);
-                if ((lastVer == 29 || lastVer == 30) && ClientData.MOD_VERSION > 30) {
-                    upgradeSave = true;
-                }
             }
             var config = {
                 title: {title: ""},
@@ -45,38 +39,10 @@ var MenuLayer = cc.Layer.extend({
                 action: {btn_1: {txt: stringUtil.getString(1193)}}
             };
             var toast;
-            if (upgradeSave) {
+            if (useBig) {
                 config.title.title = stringUtil.getString(1351);
                 var self = this;
-                config.action.btn_1.cb = function () {
-                    // check if save migration is needed
-                    Record.init("record");
-                    var player = Record.restore("player");
-                    if (player.hp) {
-                        // treat as if there is a save
-                        var chosenTalent = cc.sys.localStorage.getItem("chosenTalent") || "[]";
-                        var radio = cc.sys.localStorage.getItem("radio") || "[]";
-                        var medalTemp = cc.sys.localStorage.getItem("medalTemp") || "[]";
-                        var ad = cc.sys.localStorage.getItem("ad") || "0";
-                        var navigation = cc.sys.localStorage.getItem("navigation") || "{}";
-                        var weather = cc.sys.localStorage.getItem("weather") || "0";
-    
-                        var time = Record.restore("time");
-    
-                        player.saveName = stringUtil.getString(6007);
-    
-                        cc.sys.localStorage.setItem("chosenTalent1", chosenTalent);
-                        cc.sys.localStorage.setItem("radio1", radio);
-                        cc.sys.localStorage.setItem("medalTemp1", medalTemp);
-                        cc.sys.localStorage.setItem("ad1", ad.toString());
-                        cc.sys.localStorage.setItem("navigation1", navigation);
-                        cc.sys.localStorage.setItem("weather1", weather.toString());
-    
-                        Record.save("player1", player);
-                        Record.save("time1", time);
-                        cc.director.runScene(new MenuScene())};
-                    }
-
+                config.action.btn_1.cb = function () {game.newGame();cc.director.runScene(new MenuScene())};
                 toast = new DialogSmall(config);
                 toast.autoDismiss = false;
             } else {
@@ -189,29 +155,30 @@ var MenuLayer = cc.Layer.extend({
         logo.x = bg.width / 2;
         logo.y = 938;
         bg.addChild(logo);
-
-        var self = this;
-        var btn1 = uiUtil.createBigBtnWhite(stringUtil.getString(1142), this, function () {
-            cc.director.runScene(new saveFileScene());
-        });
+        
         if (!cc.sys.localStorage.getItem("ftue") && ClientData.MOD_VARIANT == 1) {
             var d = new FTUEDialog();
             d.show();
             cc.sys.localStorage.setItem("ftue", "1");
-        }
+        }     
         btn1.setPosition(bg.width / 2, bg.height / 2 - 126);
         bg.addChild(btn1);
         btn1.setName("btn_1");
 
-        var btn2 = uiUtil.createBigBtnWhite(stringUtil.getString(1235), this, function () {
-            cc.director.runScene(new RankFamousScene());
+        var btn2 = uiUtil.createBigBtnWhite(stringUtil.getString(1143), this, function () {
+            btn2.setEnabled(false);
+            audioManager.stopMusic(audioManager.music.MAIN_PAGE);
+            game.init();
+            game.start();
+            cc.director.runScene(new MainScene());
         });
         btn2.setPosition(bg.width / 2, bg.height / 2 - 236);
         bg.addChild(btn2);
         btn2.setName("btn_2");
+        btn2.setEnabled(!Record.isFirstTime());
 
-        var btn3 = uiUtil.createBigBtnWhite(stringUtil.getString(6015), this, function () {
-            
+        var btn3 = uiUtil.createBigBtnWhite(stringUtil.getString(1235), this, function () {
+            cc.director.runScene(new RankFamousScene());
         });
         btn3.setPosition(bg.width / 2, bg.height / 2 - 346);
         bg.addChild(btn3);
@@ -244,7 +211,7 @@ var MenuLayer = cc.Layer.extend({
         bg.addChild(btn7);
         
         var btn4 = uiUtil.createSpriteBtn({normal: "btn_achievement.png"}, this, function () {
-            cc.director.runScene(new achievementScene());
+            cc.director.runScene(new saveFileScene(1));
         });
         btn4.setPosition(bg.width / 2 + 72, 106);
         bg.addChild(btn4);
@@ -264,7 +231,6 @@ var MenuLayer = cc.Layer.extend({
             d.show();
         });
         btn6.setPosition(bg.width / 2, 20);
-        btn6.setZoomOnTouchDown(false);
         bg.addChild(btn6);
         
         Achievement.init();

@@ -232,6 +232,9 @@ var Formula = BuildAction.extend({
             if (player.storage.validateItem(1101081, 1)) {
                 player.storage.decreaseItem(1101081, 1);
                 this.pastTime += 10800;
+                if (this.pastTime > this.totalTime) {
+                    this.pastTime = this.totalTime;
+                }
                 this.place(true);
             } else {
                 action1Disabled = true;
@@ -358,8 +361,10 @@ var TrapBuildAction = Formula.extend({
         }, true, this.pastTime);
     },
     clickAction1: function () {
-        if (!uiUtil.checkVigour())
+        if (!uiUtil.checkVigour() || BuildOccupied) {
             return;
+        }
+        BuildOccupied = true;
 
         var itemInfo = this.config.produce[0];
         var itemName = stringUtil.getString(itemInfo.itemId).title;
@@ -378,6 +383,7 @@ var TrapBuildAction = Formula.extend({
             player.costItems(this.config.cost);
             var self = this;
             this.addTimer(time, time, function () {
+                BuildOccupied = false;
                 self.step++;
                 if (self.step == self.maxStep) {
                     self.step = 0;
@@ -396,10 +402,14 @@ var TrapBuildAction = Formula.extend({
             if (player.storage.validateItem(1103011, 1)) {
                 player.storage.decreaseItem(1103011, 1);
                 this.pastTime += 43200;
+                if (this.pastTime > this.totalTime) {
+                    this.pastTime = this.totalTime;
+                }
                 this.place();
             } else {
                 action1Disabled = true;
             }
+            BuildOccupied = false;
         } else {
             //天气影响
             var produce = utils.clone(this.config.produce);
@@ -419,6 +429,7 @@ var TrapBuildAction = Formula.extend({
             player.log.addMsg(1092, produce[0].num, itemName, player.storage.getNumByItemId(itemInfo.itemId));
             player.trapTime = -1;
             Record.saveAll();
+            BuildOccupied = false;
         }
         this._sendUpdageSignal();
     },
@@ -852,6 +863,9 @@ var BedBuildAction = BuildAction.extend({
         uiUtil.showBuildActionDialog(this.bid, this.type - 1);
     },
     clickAction1: function () {
+        if (BuildOccupied) {
+            return;
+        }
         var time;
         this.updateConfig();
         switch (this.type) {
@@ -882,6 +896,7 @@ var BedBuildAction = BuildAction.extend({
         player.sleep();
         var self = this;
         this.addTimer(time, time, function () {
+            BuildOccupied = false;
             player.applyEffect(totalEffect);
             player.wakeUp();
             self.build.resetActiveBtnIndex();

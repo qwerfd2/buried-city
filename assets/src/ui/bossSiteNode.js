@@ -71,7 +71,7 @@ var BossSiteNode = BottomFrameNode.extend({
             btn.addChild(warn, 11);
 
             if (iconName == 'icon_room_active.png') {
-                warn.runAction(cc.repeatForever((cc.sequence(cc.fadeOut(1.5), cc.fadeIn(1.5)))));
+                cc.repeatForever((cc.sequence(cc.fadeOut(1.5), cc.fadeIn(1.5))));
             }
         }
     },

@@ -104,7 +104,6 @@ var aboutLayer = cc.Layer.extend({
         btn_qq.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2 - 300);
         this.bg.addChild(btn_qq);
         btn_qq.setName("btn_qq");
-        
     }
 });
 

@@ -1,30 +1,30 @@
 var MedalConfig = {
     103: {
-        aim: 5, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1103083, num: 6}]}
+        aim: 10, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1103083, num: 6}]}
     },
     102: {
-        aim: 60, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1104011, num: 2}]}
+        aim: 100, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1104011, num: 2}]}
     },
     101: {
-        aim: 120, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1104043, num: 1}]}
+        aim: 365, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1104043, num: 1}]}
     },
     203: {
         aim: 20, aimCompleted: 0, completed: 0, effect: {attr: {hp: 10}}
     },
     202: {
-        aim: 200, aimCompleted: 0, completed: 0, effect: {attr: {hp: 20}}
+        aim: 400, aimCompleted: 0, completed: 0, effect: {attr: {hp: 20}}
     },
     201: {
-        aim: 2000, aimCompleted: 0, completed: 0, effect: {attr: {hp: 50}}
+        aim: 6000, aimCompleted: 0, completed: 0, effect: {attr: {hp: 50}}
     },
     303: {
-        aim: 5, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1305011, num: 30}]}
+        aim: 10, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1305011, num: 30}]}
     },
     302: {
-        aim: 15, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1301011, num: 1}]}
+        aim: 30, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1301011, num: 1}]}
     },
     301: {
-        aim: 30, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1301052, num: 1}]}
+        aim: 100, aimCompleted: 0, completed: 0, effect: {items: [{itemId: 1301052, num: 1}]}
     }
 };
 var Medal = {
@@ -34,6 +34,10 @@ var Medal = {
             var medalStr = cc.sys.localStorage.getItem("medal");
             if (medalStr) {
                 this._map = JSON.parse(medalStr);
+                if (this._map["103"].aim == 5) {
+                    // we have old version, overwrite everything.
+                    this._map = utils.clone(MedalConfig);
+                }
             } else {
                 this._map = utils.clone(MedalConfig);
             }
@@ -46,17 +50,6 @@ var Medal = {
     },
     save: function () {
         cc.sys.localStorage.setItem("medal", JSON.stringify(this._map));
-    },
-    newGameReset: function () {
-        var ids = ["101", "102", "103", "301", "302", "303"];
-        var self = this;
-        ids.forEach(function (id) {
-            var info = self._map[id];
-            if (!info.completed) {
-                info.aimCompleted = 0;
-            }
-        });
-        this.save();
     },
     improve: function (player) {
         this.improveAttr(player);
@@ -118,17 +111,17 @@ var Medal = {
         }
     },
     initCompletedForOneGame: function (isNewGame) {
-        var completeOneGame = cc.sys.localStorage.getItem("medalTemp");
+        var completeOneGame = cc.sys.localStorage.getItem("medalTemp" + utils.SAVE_SLOT);
         if (isNewGame || !completeOneGame) {
             this._completeForOneGame = [];
         } else {
             this._completeForOneGame = JSON.parse(completeOneGame);
         }
-        cc.sys.localStorage.setItem("medalTemp", JSON.stringify(this._completeForOneGame));
+        cc.sys.localStorage.setItem("medalTemp" + utils.SAVE_SLOT, JSON.stringify(this._completeForOneGame));
     },
     addCompletedForOneGame: function (medalInfo) {
         this._completeForOneGame.push(medalInfo);
-        cc.sys.localStorage.setItem("medalTemp", JSON.stringify(this._completeForOneGame));
+        cc.sys.localStorage.setItem("medalTemp" + utils.SAVE_SLOT, JSON.stringify(this._completeForOneGame));
     },
     getCompletedForOneGame: function () {
         return this._completeForOneGame;

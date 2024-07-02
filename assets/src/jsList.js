@@ -76,6 +76,7 @@ var jsList = [
     "src/ui/MainScene.js",
     "src/ui/MenuScene.js",
     "src/ui/StoryScene.js",
+    "src/ui/SaveFileScene.js",
     "src/ui/radioNode.js",
     "src/ui/endScene.js",
     "src/ui/gateOutNode.js",

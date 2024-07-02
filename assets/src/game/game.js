@@ -21,16 +21,25 @@ var game = {
             cc.timer.stop();
         }
     },
-    newGame: function () {
-        Record.deleteRecord("record");
-        Record.deleteRecord("radio");
-        Record.setType(-1);
-        Medal.newGameReset();
-        Medal.initCompletedForOneGame(true);
-    },
     relive: function () {
         this.init();
         this.start();
         player.relive();
-    }
+    },
+    deleteData: function (num) {
+        cc.sys.localStorage.setItem("chosenTalent" + num, "[]");
+        cc.sys.localStorage.setItem("radio" + num, "[]");
+        cc.sys.localStorage.setItem("medalTemp" + num, "[]");
+        cc.sys.localStorage.setItem("ad" + num, "0");
+        cc.sys.localStorage.setItem("navigation" + num, "{}");
+        cc.sys.localStorage.setItem("weather" + num, "0");
+        Record.init("record");
+        Record.save("player" + num, {});
+        Record.save("time" + num, {});
+    },
+    newGame: function (num) {
+        utils.SAVE_SLOT = num;
+        Medal.initCompletedForOneGame(true);
+        cc.director.runScene(new ChooseScene(0));
+    },
 };

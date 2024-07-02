@@ -215,7 +215,7 @@ var Battle = cc.Class.extend({
         var rand = Math.random();
         if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0 && player.nowSiteId != null && player.nowSiteId != 0 && rand > 0.9) {
             //generate loot dialog for dog bonus
-            player.changeAttr("dogMood", -1);
+            player.changeAttr("dogMood", -3);
             var config = utils.clone(stringUtil.getString("statusDialog"));
             config.title.icon = "#icon_item_1106013.png";
             config.title.title = stringUtil.getString(7018);
@@ -387,7 +387,7 @@ var Monster = cc.Class.extend({
         } else if (obj instanceof Flamethrower) {
             harm = providedHarm;
         } else if (obj == "Dog") {
-            harm = 10;
+            harm = utils.getRandomInt(10, 25);
             if (this.useBandit()) {
                 this.battle.processLog(stringUtil.getString(9055, player.getDogName(), stringUtil.getString("banditType_" + this.attr.prefixType), harm), cc.color.GREEN);
             } else {
@@ -466,10 +466,10 @@ var BattlePlayer = cc.Class.extend({
         return (player.nowSiteId == 500) || this.banditOverride;
     },
     action: function (dt) {
-        if (this.dogState < 100) {
+        if (this.dogState < 50) {
             this.dogState += 1;
         }
-        if (this.dogState == 10) {
+        if (this.dogState == 9) {
             if (this.battle.isMonsterStopDog) {
                 this.battle.isMonsterStopDog = false;
             }
@@ -502,11 +502,8 @@ var BattlePlayer = cc.Class.extend({
             var monster = this.battle.targetMon;
             monster.underAtk("Dog");
             audioManager.playEffect(audioManager.sound.SHORT_BARK);
-            if (rand < 0.2) {
-                //dog injury
-                player.changeAttr("dogInjury", 1);
-            }
-        } else if (rand > 0.8) {
+            player.changeAttr("dogInjury", 2);
+        } else if (rand > 0.9) {
             //dog kite enemy
             this.battle.isMonsterStopDog = true;
             if (this.useBandit()) {
@@ -514,10 +511,7 @@ var BattlePlayer = cc.Class.extend({
             } else {
                 this.battle.processLog(stringUtil.getString(1055, player.getDogName()), cc.color.GREEN);
             }
-            if (rand > 0.8) {
-                //dog loses mood
-                player.changeAttr("dogMood", -1);
-            }
+            player.changeAttr("dogMood", -2);
         }
     },
     underAtk: function (monster) {

@@ -71,7 +71,7 @@ var Navigation = {
                     this.changeSiteMusic();
                     break;
                 case this.nodeName.MAP_NODE:
-                    switch (Number(cc.sys.localStorage.getItem("weather")) || 0) {
+                    switch (Number(cc.sys.localStorage.getItem("weather" + utils.SAVE_SLOT)) || 0) {
                         case 0:
                             musicName = audioManager.music.MAP_CLOUDY;
                             break;
@@ -165,7 +165,7 @@ var Navigation = {
     updateMapMusic: function () {
         if (this._array[this._array.length - 1].nodeName == this.nodeName.MAP_NODE) {
             var musicName;
-            switch (Number(cc.sys.localStorage.getItem("weather")) || 0) {
+            switch (Number(cc.sys.localStorage.getItem("weather" + utils.SAVE_SLOT)) || 0) {
                 case 0:
                     musicName = audioManager.music.MAP_CLOUDY;
                     break;
@@ -354,11 +354,11 @@ var Navigation = {
         var saveObj = {
             _array: this._array
         };
-        Record.save("navigation", saveObj);
+        Record.save("navigation" + utils.SAVE_SLOT, saveObj);
         Record.saveAll();
     },
     restore: function () {
-        var saveObj = Record.restore("navigation");
+        var saveObj = Record.restore("navigation" + utils.SAVE_SLOT);
         if (saveObj) {
             this._array = saveObj._array;
         }

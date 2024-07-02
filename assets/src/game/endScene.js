@@ -55,11 +55,11 @@ var EndLayer = cc.Layer.extend({
                     if (str) {
                         var realLen = 0;
                         var realStr = "";
-                        var len = 20;
+                        var len = 12;
                         for (var i = 0; i < str.length; i++) {
                             var charCode = str.charCodeAt(i);
                             if (charCode >= 65 && charCode <= 90)
-                                realLen += 1.3;
+                                realLen += 1.5;
                             else if (charCode >= 0 && charCode <= 128)
                                 realLen += 1;
                             else
@@ -91,7 +91,7 @@ var EndLayer = cc.Layer.extend({
 
         var btn2 = uiUtil.createSpriteBtn({normal: "btn_home.png"}, this, function () {
             this.uploadGameData();
-            game.newGame();
+            game.deleteData();
             cc.director.runScene(new MenuScene());
         });
         btn2.x = leftEdge + (rightEdge - leftEdge) / 4 * 2;

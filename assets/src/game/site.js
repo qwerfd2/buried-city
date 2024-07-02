@@ -97,6 +97,24 @@ var Site = BaseSite.extend({
         }
         var produceValue = this.secretRoomsConfig.produceValue;
         produceValue = IAPPackage.getDropEffect(produceValue);
+        if (this.config.secretRoomsId == 6) {
+            var randAdd = Math.random();
+            var randItem = {
+                "itemId": "1107012",
+                "weight": 0
+            };
+            if (randAdd < 0.2){
+                randItem.itemId = "1107022";
+            } else if (randAdd < 0.4) {
+                randItem.itemId = "1107032";
+            } else if (randAdd < 0.6) {
+                randItem.itemId = "1107042";
+            } else if (randAdd < 0.8) {
+                randItem.itemId = "1107052";
+            }
+            produceValue += 24;
+            this.secretRoomsConfig.produceList.push(randItem);
+        }
         var itemIds = utils.getFixedValueItemIds(produceValue, this.secretRoomsConfig.produceList);
         var workRoom = utils.convertItemIds2Item(itemIds);
         this.secretRooms.push({

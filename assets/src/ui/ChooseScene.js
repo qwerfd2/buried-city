@@ -20,7 +20,7 @@ var ChooseLayer = cc.Layer.extend({
         var heightPadding = 30;
         var data;
         if (this.mode) {
-            data = JSON.parse(cc.sys.localStorage.getItem("chosenTalent") || []);
+            data = JSON.parse(cc.sys.localStorage.getItem("chosenTalent" + utils.SAVE_SLOT) || []);
             data.sort((a, b) => a - b);
         } else {
             data = [0, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110];
@@ -59,20 +59,20 @@ var ChooseLayer = cc.Layer.extend({
             btn.addChild(name);
         });
         if (!this.mode) {
-            cc.sys.localStorage.setItem("chosenTalent", "[]");
+            cc.sys.localStorage.setItem("chosenTalent" + utils.SAVE_SLOT, "[]");
             this.btnList.forEach(function (btn) {
                 btn.setEnabled(true);
             });
 
             var btn1 = uiUtil.createCommonBtnWhite(stringUtil.getString(1193), this, function () {
-                cc.director.runScene(new MenuScene());
+                cc.director.runScene(new saveFileScene(1));
             });
             btn1.setPosition(cc.winSize.width / 4, 60);
             this.addChild(btn1);
             btn1.setName("btn_1");
 
             var btn2 = uiUtil.createCommonBtnWhite(stringUtil.getString(1030), this, function () {
-                var purchaseId = JSON.parse(cc.sys.localStorage.getItem("chosenTalent"));
+                var purchaseId = JSON.parse(cc.sys.localStorage.getItem("chosenTalent" + utils.SAVE_SLOT));
                 if (purchaseId.length == 0) {
                     var config = {
                         title: {},
@@ -105,13 +105,11 @@ var ChooseLayer = cc.Layer.extend({
                     config.action.btn_1.txt = stringUtil.getString(1193);
                     config.action.btn_2.txt = stringUtil.getString(1143);
                     config.action.btn_2.cb = function() {
-                        var positionIndex = 0;
                         cc.director.runScene(new StoryScene());
                     };
                     var dialog = new DialogSmall(config);
                     dialog.show();
                 } else {
-                    var positionIndex = 0;
                     cc.director.runScene(new StoryScene());
                 }
             });
@@ -138,7 +136,9 @@ var ChooseLayer = cc.Layer.extend({
 
     onEnter: function () {
         this._super();
-        audioManager.playMusic(audioManager.music.ABYSS, false);
+        if (this.mode) {
+            audioManager.playMusic(audioManager.music.ABYSS, false);
+        }
     }
 });
 

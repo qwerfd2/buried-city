@@ -227,7 +227,7 @@ var TopFrameNode = cc.Node.extend({
         bg.addChild(this.thirdLine);
         this.createLogBar();
         
-        var talentLength = JSON.parse(cc.sys.localStorage.getItem("chosenTalent")).length || 0;
+        var talentLength = JSON.parse(cc.sys.localStorage.getItem("chosenTalent" + utils.SAVE_SLOT)).length || 0;
         this.talentButton = new TalentButton(talentLength, 0.7);
         this.thirdLine.addChild(this.talentButton, 1);
         this.talentButton.setPosition(this.thirdLine.width - 20, this.thirdLine.height - 20);
@@ -334,7 +334,7 @@ var TopFrameNode = cc.Node.extend({
         }
 
         this.thirdLine.updateLog = function (log) {
-            var logs = utils.splitLog(log, 55, 62);
+            var logs = utils.splitLog(log, 55, 55);
             logs.forEach(function (llog) {
                 self.thirdLine.updateLogSingleLine(llog);
             });

@@ -107,15 +107,18 @@ var NpcNode = BottomFrameNode.extend({
         };
 
         var btn3 = uiUtil.createCommonBtnWhite(stringUtil.getString(9015), this, function() {
+            if (!self.npc.isSteal) {
+                return;
+            }
             var a = player.bag.getCurrentWeight()
             var b = player.bag.getTotalWeight()
             if (a >= b) {//背包满了不可偷窃
                 uiUtil.showTinyInfoDialog(stringUtil.getString(9008));
             } else {
                 self.npc.isSteal = false;
+                btn3.setEnabled(false);
                 self.Steal();
                 tradeItems.updateView();
-                btn3.updateView();
                 Record.saveAll();
             }
         });

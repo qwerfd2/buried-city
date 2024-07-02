@@ -103,7 +103,7 @@ var TalentButton = Button.extend({
     ctor: function (a) {
 
         var icon = new cc.LabelTTF(String(a), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-        if (IAPPackage.isAllIAPUnlocked() || IAPPackage.isAllItemUnlocked()) {
+        if (IAPPackage.isAllIAPUnlocked() || IAPPackage.isAllItemUnlocked() || player.cloned) {
             icon.setColor(cc.color.GRAY);
         }
         
@@ -584,7 +584,7 @@ var SpriteButton = Button.extend({
     animPressed: function () {
         this.runAction(cc.scaleTo(0.1, 1.2));
     },
-    animNormal: function () {
+    animNormal: function (num) {
         this.runAction(cc.scaleTo(0.1, 1));
     }
 });

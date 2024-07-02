@@ -46,9 +46,11 @@ var Storage = cc.Class.extend({
         }
         if (index > 10) {
             randomIndex = utils.getRandomInt(3, 9);
-        } else {
+        } else if (index > 3) {
             var cap = Math.max((index - 2), 1);
             randomIndex = utils.getRandomInt(1, cap);
+        } else {
+            randomIndex = index;
         }
         var price = player.getPrice(itemid);
         if (itemid == 1305011 || itemid == 1305012) {

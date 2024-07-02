@@ -66,8 +66,8 @@ var AdSiteNode = BottomFrameNode.extend({
         btnPlay.x = this.playHighlight.width / 2;
         btnPlay.y = this.playHighlight.height / 2;
         this.playHighlight.addChild(btnPlay);
-
-        this.changeAdPlayStatus(cc.sys.localStorage.getItem("ad") == "1");
+        var isAvailable = cc.sys.localStorage.getItem("ad" + utils.SAVE_SLOT);
+        this.changeAdPlayStatus(isAvailable == "1");
     },
     changeAdPlayStatus: function (canPlay) {
         this.stop.setVisible(!canPlay);
@@ -94,7 +94,6 @@ var AdSiteNode = BottomFrameNode.extend({
     onAdStatusChange: function (adStatus) {
         var canReward = adStatus === adHelper.AD_STATUS_DISMISS;
         if (canReward) {
-
             var adc = utils.clone(adConfig);
             var itemIds = utils.getFixedValueItemIds(adc.reward.produceValue, adc.reward.produceList);
             var items = utils.convertItemIds2Item(itemIds);
@@ -103,7 +102,7 @@ var AdSiteNode = BottomFrameNode.extend({
                 self.site.increaseItem(item.itemId, item.num, false);
             });
             Record.saveAll();
-            cc.sys.localStorage.setItem("ad", "0");
+            cc.sys.localStorage.setItem("ad" + utils.SAVE_SLOT, "0");
         }
 
         var canPlay = adStatus === adHelper.AD_STATUS_READY;

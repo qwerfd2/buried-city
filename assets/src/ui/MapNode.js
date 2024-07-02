@@ -499,7 +499,7 @@ var Entity = Button.extend({
     },
     updateStatus: function () {
         if (this.baseSite instanceof AdSite) {
-            if (cc.sys.localStorage.getItem("ad") == "1") {
+            if (cc.sys.localStorage.getItem("ad" + utils.SAVE_SLOT) == "1") {
                 var notifyIcon = autoSpriteFrameController.getSpriteFromSpriteName('icon_ad_show.png');
                 notifyIcon.x = this.width - 10;
                 notifyIcon.y = this.height - 10;

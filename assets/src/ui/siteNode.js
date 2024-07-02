@@ -117,16 +117,16 @@ var SiteNode = BottomFrameNode.extend({
         var strConfig = stringUtil.getString("gachapon");
         config.title.icon = "#gacha.png";
         config.title.title = strConfig.title;
-        config.title.txt_1 = cc.formatStr(config.title.txt_1, 6);
+        config.title.txt_1 = cc.formatStr(config.title.txt_1, 8);
         config.content.des = strConfig.des;
         var dialog = new DialogSmall(config);
         dialog.autoDismiss = false;
         this.btnPlay = uiUtil.createSpriteBtn({normal: "icon_ad_play.png"}, this, function () {
-            if (player.currency < 6) {
+            if (player.currency < 8) {
                 this.displayNotEnough();
                 return;
             }
-            player.onCurrencyChange(-6);
+            player.onCurrencyChange(-8);
             var rand = utils.getRandomInt(0, 399);
             var bound = 0;
             for (var i = 0; i < GachaponConfig.length; i++) {
@@ -176,7 +176,7 @@ var SiteNode = BottomFrameNode.extend({
         var screenFix = Record.getScreenFix();
 
         this.dialogHotel.contentNode.getChildByName("dig_des").setScale(0.8);
-        this.dialogHotel.contentNode.getChildByName("des").y += 30;
+        this.dialogHotel.contentNode.getChildByName("des").y += 60;
         if (screenFix == 1) {
             this.dialogHotel.getChildByName("bgColor").height = 827;
         } else {
@@ -202,11 +202,12 @@ var SiteNode = BottomFrameNode.extend({
         this.hotelBtn4.setName("hotelBtn_4");
         this.dialogHotel.contentNode.addChild(this.hotelBtn4);
     
-        var pbBg = autoSpriteFrameController.getSpriteFromSpriteName("#pb_bg.png");
-        pbBg.setAnchorPoint(0.5, 0);
-        pbBg.setPosition(this.dialogHotel.contentNode.width / 2, this.dialogHotel.contentNode.height - 220);
-        pbBg.setName("pbBg");
-        this.dialogHotel.contentNode.addChild(pbBg);
+        this.pbBg = autoSpriteFrameController.getSpriteFromSpriteName("#pb_bg.png");
+        this.pbBg.setAnchorPoint(0.5, 0);
+        this.pbBg.setPosition(this.dialogHotel.contentNode.width / 2, this.dialogHotel.contentNode.height - 260);
+        this.pbBg.setName("pbBg");
+        this.pbBg.setVisible(false);
+        this.dialogHotel.contentNode.addChild(this.pbBg);
                 
         var items = [{itemId: "money", num: 1}];
         
@@ -265,7 +266,7 @@ var SiteNode = BottomFrameNode.extend({
         this.pb.type = cc.ProgressTimer.TYPE_BAR;
         this.pb.midPoint = cc.p(0, 0);
         this.pb.barChangeRate = cc.p(1, 0);
-        this.pb.setPosition(pbBg.getPositionX() , pbBg.getPositionY() + pbBg.getContentSize().height / 2);
+        this.pb.setPosition(this.pbBg.getPositionX(), this.pbBg.getPositionY() + this.pbBg.getContentSize().height / 2);
         this.pb.setPercentage(0);
         this.pb.setName("pb");
         this.dialogHotel.contentNode.addChild(this.pb);
@@ -373,6 +374,8 @@ var SiteNode = BottomFrameNode.extend({
             return;
         }
         DISMISS_BLOCKED = true;
+        this.pbBg.setVisible(true);
+        this.dialogHotel.contentNode.getChildByName("des").setVisible(false);
         this.hotelBtn1.setEnabled(false);
         this.hotelBtn2.setEnabled(false);
         this.hotelBtn3.setEnabled(false);
@@ -397,6 +400,8 @@ var SiteNode = BottomFrameNode.extend({
                     self.hotelBtn2.setEnabled(true);
                     self.hotelBtn3.setEnabled(true);
                     self.hotelBtn4.setEnabled(true);
+                    this.pbBg.setVisible(false);
+                    this.dialogHotel.contentNode.getChildByName("des").setVisible(true);
                     self.dialogHotel.bgNode.getChildByName("btn_1").setEnabled(true);
                     self.dialogHotel.bgNode.getChildByName("btn_1").setVisible(true);
                     self.isHotelActive = false;

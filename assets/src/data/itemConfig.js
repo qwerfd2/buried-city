@@ -763,8 +763,8 @@ var itemConfig = {
     "1305011": {
         "id": "1305011",
         "weight": 0,
-        "price": 0.7,
-        "value": 0.6888,
+        "price": 0.9,
+        "value": 0.8888,
         "effect_weapon": {
             "id": "1305011",
             "atk": 50,
@@ -784,8 +784,8 @@ var itemConfig = {
     "1305012": {
         "id": "1305012",
         "weight": 0,
-        "price": 0.9,
-        "value": 0.888888,
+        "price": 0.7,
+        "value": 0.688888,
         "effect_weapon": {
             "id": "1305011",
             "atk": 50,
@@ -834,7 +834,7 @@ var itemConfig = {
     },
     "1305075": {
         "id": 1305075,
-        "weight": 2,
+        "weight": 4,
         "price": 4,
         "value": 3.333333
     }

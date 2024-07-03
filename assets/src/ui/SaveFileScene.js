@@ -1,6 +1,7 @@
 var SaveFileLayer = cc.Layer.extend({
     ctor: function (mode) {
         this.cloningState = 0;
+        this.renamingState = 0;
         this.blocked = 0;
         this.mode = mode;
         Record.init("record");
@@ -30,11 +31,13 @@ var SaveFileLayer = cc.Layer.extend({
         this.addChild(this.title);
 
         var btn1 = uiUtil.createCommonBtnWhite(stringUtil.getString(1193), this, function () {
-            if (this.cloningState) {
-                this.cloningState = 0;
-                this.title.setString(stringUtil.getString(6000));
-                for (var i = 1; i < 5; i++) {
-                    this.refreshData(i);
+            if (this.cloningState || this.renamingState) {
+                if (this.cloningState) {
+                    this.cloningState = 0;
+                    this.title.setString(stringUtil.getString(6000));
+                    this.refreshAll();
+                } else {
+                    this.restoreFromRename(this.renamingState);
                 }
             } else {
                 cc.director.runScene(new MenuScene());
@@ -190,36 +193,44 @@ var SaveFileLayer = cc.Layer.extend({
 
         this.refreshData(4);
     },
-    refreshData: function (num) {
-        var saveMeta = this.getMetaStr(num);
-        var state = true;
-        if (saveMeta[1] == "" || this.cloningState) {
-            state = false;
-        }
+    setButtonState: function (num, state) {
         if (num == 1) {
-            this.slotOneTitle.setString(saveMeta[0]);
-            this.slotOneDesc.setString(saveMeta[1]);
             this.slotOneDeleteButton.setVisible(state);
             this.slotOneCloneButton.setVisible(state);
             this.slotOneRenameButton.setVisible(state);   
         } else if (num == 2) {
-            this.slotTwoTitle.setString(saveMeta[0]);
-            this.slotTwoDesc.setString(saveMeta[1]);
             this.slotTwoDeleteButton.setVisible(state);
             this.slotTwoCloneButton.setVisible(state);
             this.slotTwoRenameButton.setVisible(state);
         } else if (num == 3) {
-            this.slotThrTitle.setString(saveMeta[0]);
-            this.slotThrDesc.setString(saveMeta[1]);
             this.slotThrDeleteButton.setVisible(state);
             this.slotThrCloneButton.setVisible(state);
             this.slotThrRenameButton.setVisible(state);
         } else {
-            this.slotFurTitle.setString(saveMeta[0]);
-            this.slotFurDesc.setString(saveMeta[1]);
             this.slotFurDeleteButton.setVisible(state);
             this.slotFurCloneButton.setVisible(state);
             this.slotFurRenameButton.setVisible(state);
+        }
+    },
+    refreshData: function (num) {
+        var saveMeta = this.getMetaStr(num);
+        var state = true;
+        if (saveMeta[1] == "" || this.cloningState || this.renamingState) {
+            state = false;
+        }
+        this.setButtonState(num, state);
+        if (num == 1) {
+            this.slotOneTitle.setString(saveMeta[0]);
+            this.slotOneDesc.setString(saveMeta[1]); 
+        } else if (num == 2) {
+            this.slotTwoTitle.setString(saveMeta[0]);
+            this.slotTwoDesc.setString(saveMeta[1]);
+        } else if (num == 3) {
+            this.slotThrTitle.setString(saveMeta[0]);
+            this.slotThrDesc.setString(saveMeta[1]);
+        } else {
+            this.slotFurTitle.setString(saveMeta[0]);
+            this.slotFurDesc.setString(saveMeta[1]);
         }
     },
     getTimeStr: function (num) {
@@ -248,7 +259,7 @@ var SaveFileLayer = cc.Layer.extend({
         var additional = "";
         if (!saveMeta.saveName) {
             saveName = stringUtil.getString(6001);
-            if (!this.cloningState) {
+            if (!this.cloningState && !this.renamingState) {
                 saveName += stringUtil.getString(6013);
             }
         } else {
@@ -259,11 +270,16 @@ var SaveFileLayer = cc.Layer.extend({
                 additional += stringUtil.getString(6003);
             }
             saveMetaStr = stringUtil.getString(6002, this.getTimeStr(timeMeta.time), talentMeta, saveMeta.currency, additional);
-            if (!this.cloningState) {
+            if (!this.cloningState && !this.renamingState) {
                 saveMetaStr += stringUtil.getString(6014);
             }
         }
         return [saveName, saveMetaStr];
+    },
+    refreshAll: function () {
+        for (var i = 1; i < 5; i++) {
+            this.refreshData(i);
+        }
     },
     onClickSaveFile: function (num) {
         var metaStr = this.getMetaStr(num);
@@ -279,6 +295,9 @@ var SaveFileLayer = cc.Layer.extend({
                     action: {btn_1: {txt: stringUtil.getString(1193)}, btn_2: {txt: stringUtil.getString(1030)}}
                 };
                 var self = this;
+                config.action.btn_1.cb = function () {
+                    self.blocked = false;
+                },
                 config.action.btn_2.cb = function () {
                     if (self.cloningState) {
                         var cloneState = self.cloningState;
@@ -287,10 +306,10 @@ var SaveFileLayer = cc.Layer.extend({
                         var radio = cc.sys.localStorage.getItem("radio" + cloneState) || "[]";
                         var medalTemp = cc.sys.localStorage.getItem("medalTemp" + cloneState) || "[]";
                         var ad = cc.sys.localStorage.getItem("ad" + cloneState) || "0";
-                        var navigation = cc.sys.localStorage.getItem("navigation" + cloneState) || "{}";
                         var weather = cc.sys.localStorage.getItem("weather" + cloneState) || "0";
                         var player = Record.restore("player" + cloneState);
                         var time = Record.restore("time" + cloneState);
+                        var navigation = Record.restore("navigation" + cloneState);
     
                         player.saveName += stringUtil.getString(6005);
                         player.saveName = player.saveName.substring(0, 24);
@@ -300,17 +319,15 @@ var SaveFileLayer = cc.Layer.extend({
                         cc.sys.localStorage.setItem("radio" + num, radio);
                         cc.sys.localStorage.setItem("medalTemp" + num, medalTemp);
                         cc.sys.localStorage.setItem("ad" + num, ad.toString());
-                        cc.sys.localStorage.setItem("navigation" + num, navigation);
                         cc.sys.localStorage.setItem("weather" + num, weather.toString());
     
                         Record.init("record");
                         Record.save("player" + num, player);
                         Record.save("time" + num, time);
+                        Record.save("navigation" + num, navigation);
 
                         self.title.setString(stringUtil.getString(6000));
-                        for (var i = 1; i < 5; i++) {
-                            self.refreshData(i);
-                        }
+                        self.refreshAll();
                         self.blocked = false;
                     }
                 }
@@ -345,19 +362,10 @@ var SaveFileLayer = cc.Layer.extend({
             return;
         }
         this.blocked = true;
-        if (num == 1) {
-            this.slotOneRenameButton.setVisible(false);
-            this.slotOneTitle.setVisible(false);
-        } else if (num == 2) {
-            this.slotTwoRenameButton.setVisible(false);
-            this.slotTwoTitle.setVisible(false);
-        } else if (num == 3) {
-            this.slotThrRenameButton.setVisible(false);
-            this.slotThrTitle.setVisible(false);
-        } else {
-            this.slotFurRenameButton.setVisible(false);
-            this.slotFurTitle.setVisible(false);
-        }
+        this.renamingState = num;
+        this.title.setString(stringUtil.getString(6016));
+        this.refreshAll();
+        this.setTitleVisible(num, false);
         var coords = [0, 975, 750, 525, 300];
         this.editText = new cc.EditBox(cc.size(343, 40), autoSpriteFrameController.getScale9Sprite("edit_text_bg.png", cc.rect(4, 4, 1, 1)));
         var self = this;
@@ -392,22 +400,7 @@ var SaveFileLayer = cc.Layer.extend({
                     var saveMeta = Record.restore("player" + index);
                     saveMeta.saveName = realStr;
                     Record.save("player" + index, saveMeta);
-                    self.editText.setVisible(false);
-                    self.refreshData(index);
-                    self.blocked = false;
-                    if (index == 1) {
-                        self.slotOneRenameButton.setVisible(true);
-                        self.slotOneTitle.setVisible(true);
-                    } else if (index == 2) {
-                        self.slotTwoRenameButton.setVisible(true);
-                        self.slotTwoTitle.setVisible(true);
-                    } else if (index == 3) {
-                        self.slotThrRenameButton.setVisible(true);
-                        self.slotThrTitle.setVisible(true);
-                    } else {
-                        self.slotFurRenameButton.setVisible(true);
-                        self.slotFurTitle.setVisible(true);
-                    }
+                    self.restoreFromRename(self.renamingState);
                 }
             }
         });
@@ -419,6 +412,25 @@ var SaveFileLayer = cc.Layer.extend({
         this.editText.setName(num.toString());
         this.editText.setReturnType(cc.KEYBOARD_RETURNTYPE_SEND);
         this.editText.setPlaceHolder(stringUtil.getString(6008));
+    },
+    restoreFromRename: function (index) {
+        this.editText.setVisible(false);
+        this.blocked = false;
+        this.renamingState = 0;
+        this.title.setString(stringUtil.getString(6000));
+        this.refreshAll();
+        this.setTitleVisible(index, true);
+    },
+    setTitleVisible: function (index, state) {
+        if (index == 1) {
+            this.slotOneTitle.setVisible(state);
+        } else if (index == 2) {
+            this.slotTwoTitle.setVisible(state);
+        } else if (index == 3) {
+            this.slotThrTitle.setVisible(state);
+        } else {
+            this.slotFurTitle.setVisible(state);
+        }
     },
     onClickDeleteSaveFile: function (num) {
         if (this.blocked) {
@@ -453,9 +465,7 @@ var SaveFileLayer = cc.Layer.extend({
         config.action.btn_2.cb = function () {
             self.cloningState = num;
             self.title.setString(stringUtil.getString(6011));
-            for (var i = 1; i < 5; i++) {
-                self.refreshData(i);
-            }
+            self.refreshAll();
             self.blocked = false;
         }
         config.title.icon = "copied_save.png";

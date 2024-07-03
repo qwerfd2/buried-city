@@ -358,8 +358,8 @@ var Navigation = {
         Record.saveAll();
     },
     restore: function () {
-        var saveObj = Record.restore("navigation" + utils.SAVE_SLOT);
-        if (saveObj) {
+        var saveObj = Record.restore("navigation" + utils.SAVE_SLOT) || {};
+        if (saveObj._array) {
             this._array = saveObj._array;
         }
     }

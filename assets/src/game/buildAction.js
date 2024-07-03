@@ -866,6 +866,7 @@ var BedBuildAction = BuildAction.extend({
         if (BuildOccupied) {
             return;
         }
+        BuildOccupied = true;
         var time;
         this.updateConfig();
         switch (this.type) {
@@ -1005,8 +1006,10 @@ var BombBuildAction = BuildAction.extend({
         uiUtil.showBuildActionDialog(this.bid, 0);
     },
     clickAction1: function () {
-        if (!uiUtil.checkVigour())
+        if (!uiUtil.checkVigour() || BuildOccupied)
             return;
+
+        BuildOccupied = true;
         if (this.isActive()) {
             uiUtil.showTinyInfoDialog(1304);
             return;
@@ -1026,6 +1029,7 @@ var BombBuildAction = BuildAction.extend({
             self.active();
             self.build.resetActiveBtnIndex();
             utils.emitter.emit("left_btn_enabled", true);
+            BuildOccupied = false;
             Record.saveAll();
         });
         this._sendUpdageSignal();

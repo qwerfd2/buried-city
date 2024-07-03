@@ -122,6 +122,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
 
     createSecretRoomsEntryView: function () {
         var node = new cc.Node();
+        this.blocked = false;
         node.setContentSize(this.rightEdge - this.leftEdge, 600);
         node.setAnchorPoint(0.5, 0);
         node.setPosition(this.bgRect.width / 2, 0);
@@ -143,6 +144,10 @@ var BattleAndWorkNode = BottomFrameNode.extend({
 
         var self = this;
         var btn1 = uiUtil.createCommonBtnWhite(stringUtil.getString(1193), this, function () {
+            if (self.blocked) {
+                return;
+            }
+            self.blocked = true;
             self.onClickLeftBtn();
             self.site.isSecretRoomsEntryShowed = false;
         });
@@ -150,6 +155,10 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         node.addChild(btn1);
         btn1.setName("btn1");
         var btn2 = uiUtil.createCommonBtnWhite(stringUtil.getString(1204), this, function () {
+            if (self.blocked) {
+                return;
+            }
+            self.blocked = true;
             node.removeFromParent();
             self.site.enterSecretRooms();
             self.updateView();

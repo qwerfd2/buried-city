@@ -1,10 +1,12 @@
 var ClientData = {
-    MOD_VERSION: 31,
+    MOD_VERSION: 32,
     MOD_VARIANT: 1,
     MIN_VER: 27,
     REC_VER: 29
 };
-var developerUUID = ["170394271312275040", "170394506081892203", "171955862186243491"];
+var developerUUID = ["171996966739776364", //p-nr
+    "170394506081892203",  //54-r
+    "171955862186243491"]; //51-r
 var tempVersionConfig;
 var ERRORCode = 0;
 var MenuLayer = cc.Layer.extend({
@@ -57,11 +59,11 @@ var MenuLayer = cc.Layer.extend({
                         var chosenTalent = cc.sys.localStorage.getItem("chosenTalent") || "[]";
                         var radio = cc.sys.localStorage.getItem("radio") || "[]";
                         var medalTemp = cc.sys.localStorage.getItem("medalTemp") || "[]";
-                        var ad = cc.sys.localStorage.getItem("ad") || "0";
-                        var navigation = cc.sys.localStorage.getItem("navigation") || "{}";
+                        var ad = cc.sys.localStorage.gsetItem("ad") || "0";
                         var weather = cc.sys.localStorage.getItem("weather") || "0";
     
                         var time = Record.restore("time");
+                        var navigation = Record.restore("navigation")
     
                         player.saveName = stringUtil.getString(6007);
     
@@ -74,6 +76,7 @@ var MenuLayer = cc.Layer.extend({
     
                         Record.save("player1", player);
                         Record.save("time1", time);
+                        Record.save("navigation1", navigation);
                         cc.director.runScene(new MenuScene())};
                     }
 

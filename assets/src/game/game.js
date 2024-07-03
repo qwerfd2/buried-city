@@ -31,11 +31,11 @@ var game = {
         cc.sys.localStorage.setItem("radio" + num, "[]");
         cc.sys.localStorage.setItem("medalTemp" + num, "[]");
         cc.sys.localStorage.setItem("ad" + num, "0");
-        cc.sys.localStorage.setItem("navigation" + num, "{}");
         cc.sys.localStorage.setItem("weather" + num, "0");
         Record.init("record");
         Record.save("player" + num, {});
         Record.save("time" + num, {});
+        Record.save("navigation" + num, {});
     },
     newGame: function (num) {
         utils.SAVE_SLOT = num;

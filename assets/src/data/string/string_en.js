@@ -15,6 +15,7 @@ var string = {
     "6013": "\n\nClick to start new survival",
     "6014": "\nClick to Start",
     "6015": "Reserved",
+    "6016": "Rename Save File",
     "6666": "Please update via Github or other channel.",
     "6667": "Thanks for playing Buried City! Join the game community and the game's distribution channels, listed below. Report bugs as well!",
     "6668": "The items are too heavy. The safe is full.",

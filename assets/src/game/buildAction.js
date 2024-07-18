@@ -1009,11 +1009,11 @@ var BombBuildAction = BuildAction.extend({
         if (!uiUtil.checkVigour() || BuildOccupied)
             return;
 
-        BuildOccupied = true;
         if (this.isActive()) {
             uiUtil.showTinyInfoDialog(1304);
             return;
         }
+        BuildOccupied = true;
         utils.emitter.emit("left_btn_enabled", false);
         this.build.setActiveBtnIndex(this.idx);
         //2. 制作

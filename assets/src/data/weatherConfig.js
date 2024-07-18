@@ -18,7 +18,7 @@ var weatherConfig = {
         "id": 3,
         "lastDays": 3,
         "speed": -0.1,
-        "temperature": -2,
+        "temperature": -4,
         "item_1103041": 4
     },
     "4": {

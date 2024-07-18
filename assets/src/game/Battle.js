@@ -227,7 +227,7 @@ var Battle = cc.Class.extend({
             }
             var dialog = new DialogSmall(config);
             dialog.autoDismiss = true;
-            var adc = utils.clone(adConfig);
+            var adc = utils.clone(dogGiftConfig);
             var itemIds = utils.getFixedValueItemIds(adc.reward.produceValue, adc.reward.produceList);
             var items = utils.convertItemIds2Item(itemIds);
             var itemTableView = uiUtil.createItemListSlidersViewOnly(items, false);
@@ -502,7 +502,11 @@ var BattlePlayer = cc.Class.extend({
             var monster = this.battle.targetMon;
             monster.underAtk("Dog");
             audioManager.playEffect(audioManager.sound.SHORT_BARK);
-            player.changeAttr("dogInjury", 2);
+            if (rand < 0.1) {
+                player.changeAttr("dogInjury", 2);
+            } else {
+                player.changeAttr("dogInjury", 1);
+            }
         } else if (rand > 0.9) {
             //dog kite enemy
             this.battle.isMonsterStopDog = true;

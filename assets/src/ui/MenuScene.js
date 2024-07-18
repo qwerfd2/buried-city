@@ -1,5 +1,5 @@
 var ClientData = {
-    MOD_VERSION: 32,
+    MOD_VERSION: 33,
     MOD_VARIANT: 1,
     MIN_VER: 27,
     REC_VER: 29

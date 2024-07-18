@@ -499,6 +499,13 @@ var showAttrStatusDialog = function (stringId, attr) {
         
         return tempTest, itemList;
     };
+    var virusCommon = function (num) {
+        player.virusMax += 15;
+        Record.saveAll();
+        utils.emitter.emit("virus_change", 0);
+        player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(num).title));
+        dialog.dismiss();
+    };
     updateBuff();
     var tempTest = false;
     var storage;
@@ -584,12 +591,8 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(10, function() {
                     player.injuryMax -= 5;
                     player.injury = cc.clampf(player.injury, 0, player.injuryMax);
-                    player.virusMax += 15;
-                    player.changeInjury(0);
-                    player.changeVirus(0);
-                    Record.saveAll();
-                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(10).title));
-                    dialog.dismiss();
+                    utils.emitter.emit("injury_change", 0);
+                    virusCommon(10);
                 })
             });
         }
@@ -601,12 +604,8 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(9, function() {
                     player.infectMax -= 5;
                     player.infect = cc.clampf(player.infect, 0, player.infectMax);
-                    player.virusMax += 15;
-                    player.changeInfect(0);
-                    player.changeVirus(0);
-                    Record.saveAll();
-                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(9).title));
-                    dialog.dismiss();
+                    utils.emitter.emit("infect_change", 0);
+                    virusCommon(9);
                 })
             });
         }
@@ -618,12 +617,8 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(6, function() {
                     player.starveMax -= 5;
                     player.starve = cc.clampf(player.starve, 0, player.starveMax);
-                    player.virusMax += 15;
-                    player.changeStarve(0);
-                    player.changeVirus(0);
-                    Record.saveAll();
-                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(6).title));
-                    dialog.dismiss();
+                    utils.emitter.emit("starve_change", 0);
+                    virusCommon(6);
                 })        
             });
         }
@@ -635,12 +630,8 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(7, function() {
                     player.vigourMax -= 5;
                     player.vigour = cc.clampf(player.vigour, 0, player.vigourMax);
-                    player.virusMax += 15;
-                    player.changeVigour(0);
-                    player.changeVirus(0);
-                    Record.saveAll();
-                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(7).title));
-                    dialog.dismiss();
+                    utils.emitter.emit("vigour_change", 0);
+                    virusCommon(7);
                 })
             });
         }
@@ -652,12 +643,8 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(8, function() {
                     player.spiritMax -= 5;
                     player.spirit = cc.clampf(player.spirit, 0, player.spiritMax);
-                    player.virusMax += 15;
-                    player.changeSpirit(0);
-                    player.changeVirus(0);
-                    Record.saveAll();
-                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(8).title));
-                    dialog.dismiss();
+                    utils.emitter.emit("spirit_change", 0);
+                    virusCommon(8);
                 })
             });
         }
@@ -669,16 +656,16 @@ var showAttrStatusDialog = function (stringId, attr) {
                 virusExchangeDialog(14, function() {
                     player.waterMax -= 5;
                     player.water = cc.clampf(player.water, 0, player.waterMax);
-                    player.virusMax += 15;
-                    player.changeWater(0);
-                    player.changeVirus(0);
-                    Record.saveAll();
-                    player.log.addMsg(stringUtil.getString(1335, 5, stringUtil.getString(14).title));
-                    dialog.dismiss();
+                    utils.emitter.emit("water_change", 0);
+                    virusCommon(14);
                 })
             });
         }
-        if (player.hpMax > 29) {
+        var realHPMax = player.hpMax;
+        if (player.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107012)) {
+            realHPMax -= 60;
+        }
+        if (realHPMax > 29) {
             var exchangeHp = new ImageButton("#icon_hp_0.png", 0.7);
             exchangeHp.setPosition(400, 40);
             exchangeHp.setClickListener(this, function(a) {
@@ -686,12 +673,8 @@ var showAttrStatusDialog = function (stringId, attr) {
                     player.hpMax -= 10;
                     player.hpMaxOrigin -= 10;
                     player.hp = cc.clampf(player.hp, 0, player.hpMax);
-                    player.virusMax += 15;
-                    player.changeHp(0);
-                    player.changeVirus(0);
-                    Record.saveAll();
-                    player.log.addMsg(stringUtil.getString(1335, 10, stringUtil.getString(5).title));
-                    dialog.dismiss();
+                    utils.emitter.emit("hp_change", 0);
+                    virusCommon(5);
                 })
             });
             dialog.contentNode.addChild(exchangeHp, 1);

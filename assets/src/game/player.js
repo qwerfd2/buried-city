@@ -34,7 +34,6 @@ var Player = cc.Class.extend({
         this.temperature = this.initTemperature();
         this.temperature = this.temperature;
         this.temperatureMax = 100;
-        this.temperatureMax = this.temperatureMax;
         //睡眠状态
         this.isInSleep = false;
         //服药状态
@@ -400,8 +399,13 @@ var Player = cc.Class.extend({
     hasMotocycle: function () {
         return (player.bag.validateItem(1305034, 1) || player.storage.validateItem(1305034, 1) || player.safe.validateItem(1305034, 1));
     },
+    testDeter: function () {
+        var def = this._getHomeDeter();
+        player.log.addMsg("def: " + def)
+    },
     trySteal: function (bypass) {
         var saveFlag = false;
+        this.testDeter();
         if (this.shoeTime > 22500) {
             //break a shoe from storage
             if (this.storage.validateItem(1306001, 1)) {
@@ -456,6 +460,7 @@ var Player = cc.Class.extend({
         }
 
         var def = this._getHomeDeter();
+        player.log.addMsg("def: " + def);
         probability = probability * def;
         var rand = Math.random();
 
@@ -1468,7 +1473,7 @@ var Player = cc.Class.extend({
                 if (this.isBombActive) {
                     //If bomb active, disable bomb, process per usual.
                     this.isBombActive = false;
-                    homeDef += 40;
+                    homeDef += 30;
                     homeRes = this._getAttackResult(attackStrength, homeDef, this.storage);
                     homeRes.isBomb = true;
                     homeRes.happened = true;

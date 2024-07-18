@@ -515,7 +515,7 @@ var string = {
     "1230": "None",
     "1233": "Bought",
     "1234": "Name cannot contain \",\" or \"|\"!",
-    "1235": "Hall of Fame",
+    "1235": "Cemetery",
     "1237": "After sneaking through a street filled with zombies, you found an empty shelter. In order to survive, you have to return to the city to search for supplies in its deserted buildings.",
     "1238": "You put the food and materials you brought back into your warehouse in the bottom left corner. Now, get some food from the warehouse and then rest in the Sleeping Bag. (Simply tap the icon at the top to check your survival stats)",
     "1239": "After resting, you regain HP. However, starvation, disease and zombies can still kill you at any time. But you need to find more supplies. You'd better carry a weapon when you head out.",

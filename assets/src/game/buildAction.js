@@ -159,11 +159,11 @@ var Formula = BuildAction.extend({
             return;
         var itemInfo = this.config.produce[0];
         var itemName = stringUtil.getString(itemInfo.itemId).title;
+        if (BuildOccupied) {
+            return;
+        }
+        BuildOccupied = true;
         if (this.step == 0) {
-            if (BuildOccupied) {
-                return;
-            }
-            BuildOccupied = true;
             this.build.setActiveBtnIndex(this.idx);
             utils.emitter.emit("left_btn_enabled", false);
             //2. 制作
@@ -180,7 +180,6 @@ var Formula = BuildAction.extend({
                 if (self.step == self.maxStep) {
                     self.step = 0;
                 }
-                BuildOccupied = false;
                 if (self.step == 1) {
                     if (self.bid == 2) {
                         self.place(true);
@@ -201,6 +200,7 @@ var Formula = BuildAction.extend({
                         player.room.createBuild(14, 0);
                     }
                 }
+                BuildOccupied = false;
                 utils.emitter.emit("left_btn_enabled", true);
                 Record.saveAll();
             });
@@ -228,6 +228,7 @@ var Formula = BuildAction.extend({
             player.log.addMsg(1092, produce[0].num, itemName, player.storage.getNumByItemId(itemInfo.itemId));
             this.build.resetActiveBtnIndex();
             Record.saveAll();
+            BuildOccupied = false;
         } else if (this.step == 1 && this.bid == 2) {
             if (player.storage.validateItem(1101081, 1)) {
                 player.storage.decreaseItem(1101081, 1);
@@ -239,6 +240,7 @@ var Formula = BuildAction.extend({
             } else {
                 action1Disabled = true;
             }
+            BuildOccupied = false;
         }
         this._sendUpdageSignal();
     },

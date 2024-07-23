@@ -986,10 +986,10 @@ var RandomBattleDialog = DialogBig.extend({
             } else {
                 labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLenTotal, monsterLenTotal));
             }
-
+            var self = this;
             utils.emitter.on("battleMonsterLength", function (monsterLen) {
                 pb.setPercentage((monsterLenTotal - monsterLen) / monsterLenTotal * 100);
-                if (this.type) {
+                if (self.type) {
                     labelNum.setString(stringUtil.getString(9139) + cc.formatStr("%s/%s", monsterLen, monsterLenTotal));
                 } else {
                     labelNum.setString(stringUtil.getString(1139) + cc.formatStr("%s/%s", monsterLen, monsterLenTotal));

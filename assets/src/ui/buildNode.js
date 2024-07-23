@@ -337,7 +337,6 @@ var BuildNode = BottomFrameNode.extend({
     },
 
     tableCellAtIndex: function (table, idx) {
-        var strValue = idx.toFixed(0);
         var cell = table.dequeueCell();
         var size = this.tableCellSizeForIndex(idx);
         var itemView;

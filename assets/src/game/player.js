@@ -172,7 +172,7 @@ var Player = cc.Class.extend({
 
     restore: function () {
         var opt = Record.restore("player" + utils.SAVE_SLOT) || {};
-        if (opt.hp) {
+        if (opt.hpMax) {
             this.saveName = opt.saveName;
             this.hp = opt.hp;
             this.hpMaxOrigin = opt.hpMaxOrigin;
@@ -399,13 +399,9 @@ var Player = cc.Class.extend({
     hasMotocycle: function () {
         return (player.bag.validateItem(1305034, 1) || player.storage.validateItem(1305034, 1) || player.safe.validateItem(1305034, 1));
     },
-    testDeter: function () {
-        var def = this._getHomeDeter();
-        player.log.addMsg("def: " + def)
-    },
+
     trySteal: function (bypass) {
         var saveFlag = false;
-        this.testDeter();
         if (this.shoeTime > 22500) {
             //break a shoe from storage
             if (this.storage.validateItem(1306001, 1)) {

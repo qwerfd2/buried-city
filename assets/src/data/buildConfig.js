@@ -70,7 +70,7 @@ var buildConfig = {
             "bid": 1,
             "level": 0
         },
-        "produceList": [1203011, 1205042]
+        "produceList": [1203011,1205042]
     }, {
         "id": 2,
         "cost": [{

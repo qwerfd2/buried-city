@@ -290,7 +290,7 @@ var ElectricStoveBuild = Build.extend({
     initBuildActions: function () {
     },
     isActive: function () {
-        return player.map.getSite(WORK_SITE).isActive;
+        return player.map.getSite(WORK_SITE).isActive && this.level >= 0;
     }
 });
 
@@ -301,7 +301,7 @@ var FridgeBuild = Build.extend({
     initBuildActions: function () {
     },
     isActive: function () {
-        return player.map.getSite(WORK_SITE).isActive;
+        return player.map.getSite(WORK_SITE).isActive && this.level >= 0;
     }
 });
 
@@ -312,7 +312,7 @@ var ElectricFenceBuild = Build.extend({
     initBuildActions: function () {
     },
     isActive: function () {
-        return player.map.getSite(WORK_SITE).isActive;
+        return player.map.getSite(WORK_SITE).isActive && this.level >= 0;
     }
 });
 

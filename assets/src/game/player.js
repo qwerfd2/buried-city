@@ -400,6 +400,15 @@ var Player = cc.Class.extend({
         return (player.bag.validateItem(1305034, 1) || player.storage.validateItem(1305034, 1) || player.safe.validateItem(1305034, 1));
     },
 
+    testSteal: function () {
+        var def = this._getHomeDef();
+        if (this.isBombActive) {
+            def += 30;
+        }
+        def =  1.0 - (def / 100);
+        player.log.addMsg("def: " + def);
+    },
+
     trySteal: function (bypass) {
         var saveFlag = false;
         if (this.shoeTime > 22500) {
@@ -455,8 +464,11 @@ var Player = cc.Class.extend({
             }
         }
 
-        var def = this._getHomeDeter();
-        player.log.addMsg("def: " + def);
+        var def = this._getHomeDef();
+        if (this.isBombActive) {
+            def += 30;
+        }
+        def =  1.0 - (def / 100);
         probability = probability * def;
         var rand = Math.random();
 
@@ -1266,32 +1278,8 @@ var Player = cc.Class.extend({
             if (electricFenceBuild.isActive()) {
                 homeDef += 30;
             }
-
         }
         return homeDef;
-    },
-    
-    _getHomeDeter: function () {
-        //家的防御 = 栅栏等级*n + 狗(活跃+10)
-        var homeDef = 0;
-        var level = this.room.getBuildLevel(11);
-        if (level >= 0) {
-            homeDef += (level + 1) * 10;
-        }
-        if (this.room.getBuild(12).isActive()) {
-            homeDef += 10;
-        }
-        var electricFenceBuild = this.room.getBuild(19);
-        if (this.room.isBuildExist(19, 0)) {  //电网抵御僵尸
-            if (electricFenceBuild.isActive()) {
-                homeDef += 30;
-            }
-        }
-        //雷区抵御僵尸夜袭
-        if (this.isBombActive) {
-            homeDef += 30;
-        }
-        return 1.0 - (homeDef / 100);
     },
     
     _getOrigDef: function () {

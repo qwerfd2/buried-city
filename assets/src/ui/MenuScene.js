@@ -1,5 +1,5 @@
 var ClientData = {
-    MOD_VERSION: 34,
+    MOD_VERSION: 35,
     MOD_VARIANT: 1,
     MIN_VER: 27,
     REC_VER: 29
@@ -214,7 +214,21 @@ var MenuLayer = cc.Layer.extend({
         btn2.setName("btn_2");
 
         var btn3 = uiUtil.createBigBtnWhite(stringUtil.getString(6015), this, function () {
-            
+            var config = {
+                title: {},
+                content: {},
+                action: {btn_1: {}, btn_2: {}}
+            };
+            config.title.title = stringUtil.getString(1351);
+            config.content.des = stringUtil.getString(6017);
+            config.action.btn_1.txt = stringUtil.getString(1157);
+    
+            config.action.btn_2.txt = stringUtil.getString(1204);
+            config.action.btn_2.target = null;
+            config.action.btn_2.cb = function(){cc.director.runScene(new chatScene());};
+    
+            var dialog = new DialogSmall(config);
+            dialog.show();
         });
         btn3.setPosition(bg.width / 2, bg.height / 2 - 346);
         bg.addChild(btn3);

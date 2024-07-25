@@ -1,0 +1,3 @@
+This is a php script that is designed to run on any LAMP server.
+
+The code is quite shitty, functionality is barebone, and security is nil. Use at your own risk...

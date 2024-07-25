@@ -176,11 +176,12 @@ var MapView = cc.ScrollView.extend({
         var mapNode = this.getParent().getParent();
         var baseSite = entity.baseSite;
         var nodeName;
+        var playerSteal = false;
         if (baseSite instanceof Site) {
             if (baseSite.id == HOME_SITE) {
                 nodeName = Navigation.nodeName.HOME_NODE;
                 player.log.addMsg(1111);
-                player.trySteal();
+                playerSteal = true;
             } else {
                 if (baseSite.id == AD_SITE) {
                     nodeName = Navigation.nodeName.AD_SITE_NODE;
@@ -200,6 +201,9 @@ var MapView = cc.ScrollView.extend({
             player.log.addMsg(1116, entity.baseSite.getName());
         }
         mapNode.forward(nodeName, baseSite.id);
+        if (playerSteal) {
+            player.trySteal();
+        }
         Record.saveAll();
     },
 

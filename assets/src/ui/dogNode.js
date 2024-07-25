@@ -26,28 +26,13 @@ var DogNode = BottomFrameNode.extend({
             editText = new cc.EditBox(cc.size(343, 46), autoSpriteFrameController.getScale9Sprite("edit_text_bg.png", cc.rect(4, 4, 1, 1)));
             editText.setDelegate({
                 editBoxReturn: function (editBox) {
-                var str = editBox.getString();
+                    var str = editBox.getString();
                     var reg = str.match(/[,|]/g);
                     if (reg) {
                         uiUtil.showTinyInfoDialog(1234);
                         editBox.setString("");
                     } else {
-                        var realLen = 0;
-                        var realStr = "";
-                        var len = 20;
-                        for (var i = 0; i < str.length; i++) {
-                            var charCode = str.charCodeAt(i);
-                            if (charCode >= 65 && charCode <= 90)
-                                realLen += 1.3;
-                            else if (charCode >= 0 && charCode <= 128)
-                                realLen += 1;
-                            else
-                                realLen += 2;
-                            realStr += str[i];
-                            if (realLen >= len) {
-                                break;
-                            }
-                        }
+                        realStr = utils.getStringOfLength(str, 20);
                         editBox.setString(realStr);
                         player.dogName = realStr;
                         if (realStr == "") {

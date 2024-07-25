@@ -229,14 +229,37 @@ utils.convertItemIds2Item = function (itemIds) {
 };
 
 utils.getStringLength = function (str) {
-    ///中文2，英文1
-    var realLength = 0, len = str.length, charCode = -1;
-    for (var i = 0; i < len; i++) {
-        charCode = str.charCodeAt(i);
-        if (charCode >= 0 && charCode <= 128) realLength += 1;
-        else realLength += 2;
+    var realLen = 0;
+    for (var i = 0; i < str.length; i++) {
+        var charCode = str.charCodeAt(i);
+        if (charCode >= 65 && charCode <= 90) {
+            realLen += 1.5;
+        } else if (charCode >= 0 && charCode <= 128) {
+            realLen += 1;
+        } else {
+            realLen += 2;
+        }
     }
-    return realLength;
+    return realLen;
+};
+
+utils.getStringOfLength = function (str, len) {
+    var realLen = 0;
+    var realStr = "";
+    for (var i = 0; i < str.length; i++) {
+        var charCode = str.charCodeAt(i);
+        if (charCode >= 65 && charCode <= 90)
+            realLen += 1.5;
+        else if (charCode >= 0 && charCode <= 128)
+            realLen += 1;
+        else
+            realLen += 2;
+        realStr += str[i];
+        if (realLen >= len) {
+            break;
+        }
+    }
+    return realStr;
 };
 
 utils.getTimeDistanceStr = function (time) {

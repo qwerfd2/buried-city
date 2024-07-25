@@ -377,22 +377,7 @@ var SaveFileLayer = cc.Layer.extend({
                     uiUtil.showTinyInfoDialog(1234);
                     editBox.setString("");
                 } else {
-                    var realLen = 0;
-                    var realStr = "";
-                    var len = 36;
-                    for (var i = 0; i < str.length; i++) {
-                        var charCode = str.charCodeAt(i);
-                        if (charCode >= 65 && charCode <= 90)
-                            realLen += 1.3;
-                        else if (charCode >= 0 && charCode <= 128)
-                            realLen += 1;
-                        else
-                            realLen += 2;
-                        realStr += str[i];
-                        if (realLen >= len) {
-                            break;
-                        }
-                    }
+                    var realStr = utils.getStringOfLength(str, 36);
                     var index = self.editText.getName();
                     if (realStr == "") {
                         realStr = stringUtil.getString(6007);

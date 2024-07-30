@@ -320,6 +320,7 @@ var EquipNode = cc.Node.extend({
     },
     onEnter: function () {
         this._super();
+        cc.timer.pause();
         var self = this;
         utils.emitter.on("equiped_item_decrease_in_bag", function () {
             self.updateTabView();
@@ -342,6 +343,7 @@ var EquipNode = cc.Node.extend({
     },
     onExit: function () {
         this._super();
+        cc.timer.resume();
         utils.emitter.off("equiped_item_decrease_in_bag");
         utils.emitter.off("equip_item_need_guide");
     },

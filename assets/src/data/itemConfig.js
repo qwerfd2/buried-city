@@ -340,8 +340,8 @@ var itemConfig = {
     "1107042": {
         "id": "1107042",
         "weight": 1,
-        "price": 28,
-        "value": 28,
+        "price": 32,
+        "value": 32,
         "effect_buff": {
             "id": "1107042",
             "effect": 4,
@@ -507,7 +507,7 @@ var itemConfig = {
             "dtPrecise": 0,
             "deathHit": 0.1,
             "dtDeathHit": 0.05,
-            "brokenProbability": 0.04
+            "brokenProbability": 0.06
         }
     },
     "1301082": {
@@ -528,7 +528,7 @@ var itemConfig = {
             "dtPrecise": 0,
             "deathHit": 0.1,
             "dtDeathHit": 0.05,
-            "brokenProbability": 0.04
+            "brokenProbability": 0.06
         }
     },
     "1301091": {

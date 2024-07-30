@@ -498,8 +498,9 @@ var Player = cc.Class.extend({
             this.changeSpirit(day);
         }
         if (this.spirit < 5) {
-            var rand = utils.getRandomInt(0, this.spirit + 6);
-            if (rand == 0) {
+            var prob = [0.6, 0.45, 0.32, 0.21, 0.12]
+            var rand = Math.random();
+            if (rand == prob[this.spirit]) {
                 var str = stringUtil.getString(source) + " " + stringUtil.getString(8113) + " ";
                 if (source == 8111) {
                     str += stringUtil.getString(8115);
@@ -708,7 +709,26 @@ var Player = cc.Class.extend({
     },
 
     changeSpirit: function (value) {
-        this.changeAttr("spirit", value);
+        if (value < 0) {
+            //Apply safety filter
+            var tempSpirit = this.spirit;
+            var modifier = 1;
+            if (tempSpirit < 30) {
+                modifier = 0.85;
+                if (tempSpirit < 20) {
+                    modifier = 0.7;
+                    if (tempSpirit < 10) {
+                        modifier = 0.55;
+                    }
+                }
+            }
+            var rand = Math.random();
+            if (rand < modifier) {
+                this.changeAttr("spirit", value);
+            }
+        } else {
+            this.changeAttr("spirit", value);
+        }
     },
 
     changeVigour: function (value) {
@@ -1525,7 +1545,7 @@ var Player = cc.Class.extend({
             if (!override) {
                 //no saved battle. Start new one. First, determine if this should be a bandit battle.
                 var banditRand = Math.random();
-                if (banditRand <= 0.3 || specialTheft) {
+                if (banditRand <= 0.25 || specialTheft) {
                     //bandit battle. check if day is immune
                     if (this.lastBanditCaveIn >= cc.timer.getTimeNum()) {
                         return false;

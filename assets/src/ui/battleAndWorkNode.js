@@ -329,8 +329,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         }
 
         node.updateLog = function (log) {
-
-            var logs = utils.splitLog(log.log, 55, 55);
+            var logs = utils.splitLog(log.log, 55, 60);
             for (var key in logs) {
                 var logInfo = {
                     log: logs[key],

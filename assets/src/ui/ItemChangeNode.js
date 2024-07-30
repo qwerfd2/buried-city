@@ -72,7 +72,8 @@ var ItemChangeNode = cc.Node.extend({
     },
     onEnter: function () {
         this._super();
-
+        cc.timer.pause();
+        this.counter = -1;
         this.onItemClick = this.onItemClickFunc();
         utils.emitter.on("item_click", this.onItemClick);
 
@@ -87,7 +88,7 @@ var ItemChangeNode = cc.Node.extend({
     },
     onExit: function () {
         this._super();
-
+        cc.timer.resume();
         utils.emitter.off("item_click", this.onItemClick);
 
         this.topData.removeOnItemChangeListener();
@@ -120,6 +121,7 @@ var ItemChangeNode = cc.Node.extend({
             return false;
 
         var fromData, toData;
+        var offset = IAPPackage.getHandyworkerOffset() * 100;
         if (id === "top") {
             fromData = this.topData;
             toData = this.bottomData;
@@ -129,6 +131,22 @@ var ItemChangeNode = cc.Node.extend({
         }
         if (fromData.validateItem(itemId, num)) {
             if (toData.validateItemWeight(itemId, num)) {
+                //actual validated move
+                if (this.counter == -1) {
+                    cc.timer.updateTime(60);
+                    this.counter = 0;
+                }
+                var weight = itemConfig[itemId].weight;
+                if (weight == 0) {
+                    this.counter += ((num * 100) / 50);
+                } else {
+                    this.counter += weight * num * 100;
+                }
+                if (this.counter >= offset) {
+                    var times = Math.floor(this.counter / offset)
+                    this.counter -= offset * times;
+                    cc.timer.updateTime(times * 60);
+                }
                 fromData.decreaseItem(itemId, num);
                 if (id === "top") {
                     toData.increaseItem(itemId, num, false);
@@ -150,6 +168,8 @@ var ItemChangeNode = cc.Node.extend({
     },
 
     exchangeAll: function (id) {
+        var counter = 0;
+        var offset = IAPPackage.getHandyworkerOffset();
         var fromData, toData;
         if (id === "top") {
             fromData = this.topData;
@@ -174,15 +194,19 @@ var ItemChangeNode = cc.Node.extend({
                             toData.increaseItem(item.id, 50, false);
                         }
                         num -= 50;
+                        counter += 1;
                     }
                     if (num < 50 && num > 0 && toData.validateItemWeight(item.id, num)) {
                         fromData.decreaseItem(item.id, num);
                         toData.increaseItem(item.id, num, false);
+                        counter += 1;
                     }
                 }
             } else {
                 for (var i = 0; i < num; i++) {
                     if (toData.validateItemWeight(item.id, 1)) {
+                        var weight = itemConfig[item.id].weight;
+                        counter += weight;
                         fromData.decreaseItem(item.id, 1);
                         if (id === "top") {
                             toData.increaseItem(item.id, 1, false);
@@ -193,6 +217,7 @@ var ItemChangeNode = cc.Node.extend({
                 }
             }
         });
+        cc.timer.updateTime(Math.round((counter / offset) * 60));
     },
 
     updateView: function () {

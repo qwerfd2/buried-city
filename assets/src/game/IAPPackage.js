@@ -77,12 +77,12 @@ var IAPPackage = {
         }
             
     },
-
+    
     isSocialEffectUnlocked: function () {
         return this.getChosenTalentPurchaseId(104);
     },
     
-    isWeaponEffectUnlocked: function() {
+    isWeaponEffectUnlocked: function () {
         return this.getChosenTalentPurchaseId(0);
     },
 
@@ -92,6 +92,14 @@ var IAPPackage = {
 
     isHandyworkerUnlocked: function () {
         return this.getChosenTalentPurchaseId(106);
+    },
+
+    getHandyworkerOffset: function () {
+        var value = 4;
+        if (this.getChosenTalentPurchaseId(106)) {
+            value = 5;
+        }
+        return value;
     },
 
     isStealthUnlocked: function () {

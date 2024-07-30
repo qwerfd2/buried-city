@@ -334,7 +334,7 @@ var TopFrameNode = cc.Node.extend({
         }
 
         this.thirdLine.updateLog = function (log) {
-            var logs = utils.splitLog(log, 55, 55);
+            var logs = utils.splitLog(log, 55, 60);
             logs.forEach(function (llog) {
                 self.thirdLine.updateLogSingleLine(llog);
             });

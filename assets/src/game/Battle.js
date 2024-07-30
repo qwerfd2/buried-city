@@ -213,9 +213,9 @@ var Battle = cc.Class.extend({
         cc.timer.resume();
         audioManager.resumeMusic();
         var rand = Math.random();
-        if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0 && player.nowSiteId != null && player.nowSiteId != 0 && rand > 0.9) {
+        if (player.dogState && player.isDogActive() && player.room.getBuildLevel(12) >= 0 && player.nowSiteId != null && player.nowSiteId != 0 && rand > 0.8) {
             //generate loot dialog for dog bonus
-            player.changeAttr("dogMood", -3);
+            player.changeAttr("dogMood", -2);
             var config = utils.clone(stringUtil.getString("statusDialog"));
             config.title.icon = "#icon_item_1106013.png";
             config.title.title = stringUtil.getString(7018);
@@ -387,7 +387,7 @@ var Monster = cc.Class.extend({
         } else if (obj instanceof Flamethrower) {
             harm = providedHarm;
         } else if (obj == "Dog") {
-            harm = utils.getRandomInt(10, 25);
+            harm = utils.getRandomInt(10, 20);
             if (this.useBandit()) {
                 this.battle.processLog(stringUtil.getString(9055, player.getDogName(), stringUtil.getString("banditType_" + this.attr.prefixType), harm), cc.color.GREEN);
             } else {

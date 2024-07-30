@@ -137,13 +137,13 @@ var EndStoryLayer = cc.Layer.extend({
         txtNode.addChild(txt7);
         
         var endingSpriteOne = autoSpriteFrameController.getSpriteFromSpriteName("#ending_1.png");
-        endingSpriteOne.setAnchorPoint(0.5, 1);
-        endingSpriteOne.setPosition(cc.winSize.width / 3, txtNode.height - 50);
+        endingSpriteOne.setAnchorPoint(0, 1);
+        endingSpriteOne.setPosition(0, txtNode.height - 50);
         txtNode.addChild(endingSpriteOne);
         
         var endingSpriteTwo = autoSpriteFrameController.getSpriteFromSpriteName("#ending_2.png");
-        endingSpriteTwo.setAnchorPoint(0.5, 1);
-        endingSpriteTwo.setPosition(cc.winSize.width / 3, txtNode.height - 50);
+        endingSpriteTwo.setAnchorPoint(0, 1);
+        endingSpriteTwo.setPosition(0, txtNode.height - 50);
         txtNode.addChild(endingSpriteTwo);   
         
         var endtxt1 = new cc.LabelTTF("Dice7 (Buried Town)\n果农C    Lancelot    Alex", uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(txtNode.width, 0));

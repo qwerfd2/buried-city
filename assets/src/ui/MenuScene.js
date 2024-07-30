@@ -1,17 +1,7 @@
-var ClientData = {
-    MOD_VERSION: 35,
-    MOD_VARIANT: 1,
-    MIN_VER: 27,
-    REC_VER: 29
-};
-var developerUUID = ["171996966739776364", //p-nr
-    "170394506081892203",  //54-r
-    "171955862186243491"]; //51-r
-var tempVersionConfig;
-var ERRORCode = 0;
 var MenuLayer = cc.Layer.extend({
     ctor: function (checkVersion) {
         this._super();
+        this.checkVersion = checkVersion;
         PurchaseAndroid.init(CommonUtil.getMetaData("sdk_type"), {});
         adHelper.init(3);
         Medal.init();
@@ -88,84 +78,11 @@ var MenuLayer = cc.Layer.extend({
             toast.show();
         }
         cc.sys.localStorage.setItem("modVer", ClientData.MOD_VERSION);
-        if (checkVersion && ClientData.MOD_VARIANT == 1 && !tempVersionConfig) {
-            var isDev = (developerUUID.indexOf(Record.getUUID()) != -1);
-            this.getVersionString(function (versionConfig) {
-                if (versionConfig && versionConfig["version"]) {
-                    if (cc.director.getRunningScene().sceneName === "MenuScene" && (versionConfig["isOpen"] || isDev) && (versionConfig["version"] > ClientData.MOD_VERSION)) {
-                        var confirmLayer = new UpdateDialog(versionConfig);
-                        confirmLayer.show();
-                    } else {
-                        tempVersionConfig = versionConfig;
-                    }
-                } else if (versionConfig && versionConfig["statusCode"]) {
-                    ERRORCode = versionConfig["statusCode"];
-                } else {
-                    ERRORCode = 304;
-                }
-            }, this, isDev);
-        } else if (tempVersionConfig) {
-            if (tempVersionConfig["isOpen"] && (tempVersionConfig["version"] > ClientData.MOD_VERSION)) {
-                var confirmLayer = new UpdateDialog(tempVersionConfig);
-                confirmLayer.show();
-            }
-            tempVersionConfig = null;
-        }
         return true;
     },
 
     onExit: function () {
         this._super();
-    },
-    
-    getVersionString: function (cb, target, isDev) {
-        var xhr = cc.loader.getXMLHttpRequest();
-        var link = "https://grabify.link/HWNYRJ";
-        if (isDev) {
-            link = "https://studio.code.org/v3/sources/BDOGr35iuNT4hc06y6O_ES5P96xr3SMqhQ2tdwI1KOY/main.json";
-        }
-        xhr.open("GET", link, true);
-        var self = this;
-        xhr.onreadystatechange = function () {
-            var res;
-            if (xhr.readyState == 4 && (xhr.status >= 200 && xhr.status <= 207)) {
-                var response = xhr.responseText;
-                try {
-                    res = JSON.parse(JSON.parse(response).source);
-                } catch (error) {
-                    res = {"statusCode": 303};
-                }
-            } else {
-                res = {"statusCode": 300};
-            }
-            if (cb) {
-                if (res.statusCode && !isDev) {
-                    self.getVersionString(cb, target, true);
-                } else {
-                    cb.call(target, res);
-                }
-            }
-        };
-        xhr.onerror = function () {
-            if (cb) {
-                if (!isDev) {
-                    self.getVersionString(cb, target, true);
-                } else {
-                    cb.call(target, {"statusCode": 301});
-                }
-            }
-        };
-        xhr.timeout = 10000;
-        xhr.ontimeout = function () {
-            if (cb) {
-                if (!isDev) {
-                    this.getVersionString(cb, target, true);
-                } else {
-                    cb.call(target, {"statusCode": 302});
-                }
-            }
-        }
-        xhr.send();
     },
     
     onEnter: function () {
@@ -285,6 +202,7 @@ var MenuLayer = cc.Layer.extend({
         bg.addChild(btn6);
         
         Achievement.init();
+        utils.checkVersion(this.checkVersion);
     },
 });
 

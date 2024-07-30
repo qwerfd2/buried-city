@@ -211,16 +211,18 @@ var playerAttrEffect = {
     },
     "temperature": {
         "1": {
-            "effect": {},
+            "effect": {
+                "infect": 2
+            },
             "id": 1,
-            "range": "[-,-10)"
+            "range": "[-,0)"
         },
         "2": {
             "effect": {
                 "infect": 1
             },
             "id": 2,
-            "range": "[-10,10]"
+            "range": "[0,10]"
         },
         "3": {
             "effect": {},

@@ -16,6 +16,10 @@ var Equipment = cc.Class.extend({
                 return false;
             }
         }
+        if (this.isEquiped(itemId)) {
+            return false;
+        }
+        cc.timer.updateTime(60);
         this.equipPos[pos] = itemId;
         return true;
     },

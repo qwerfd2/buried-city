@@ -164,18 +164,25 @@ var HomeNode = BottomFrameNode.extend({
     },
 
     flushBag: function () {
+        var counter = 0;
+        var offset = IAPPackage.getHandyworkerOffset();
         player.bag.forEach(function (item, num) {
             if (!player.equip.isEquiped(item.id) && item.id != BattleConfig.BULLET_ID && item.id != BattleConfig.HOMEMADE_ID && item.id != "1101061") {
+                var weight = itemConfig[item.id].weight;
+                counter += weight * num;
                 player.storage.increaseItem(item.id, num, false);
                 player.bag.decreaseItem(item.id, num);
             } else if (item.id == "1101061") {
                 num = num - 5;
                 if (num > 0) {
-                     player.storage.increaseItem(item.id, num, false);
-                     player.bag.decreaseItem(item.id, num);
+                    var weight = itemConfig[item.id].weight;
+                    counter += weight * num;
+                    player.storage.increaseItem(item.id, num, false);
+                    player.bag.decreaseItem(item.id, num);
                 }
             }
         });
+        cc.timer.updateTime(Math.round((counter / offset) * 60));
     },
     onExit: function () {
         this._super();

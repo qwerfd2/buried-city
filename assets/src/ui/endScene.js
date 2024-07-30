@@ -76,7 +76,7 @@ var EndLayer = cc.Layer.extend({
 
         var btn2 = uiUtil.createSpriteBtn({normal: "btn_home.png"}, this, function () {
             this.uploadGameData();
-            game.newGame();
+            game.deleteData(utils.SAVE_SLOT);
             cc.director.runScene(new MenuScene());
         });
         btn2.x = leftEdge + (rightEdge - leftEdge) / 4 * 2;

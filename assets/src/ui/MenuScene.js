@@ -44,7 +44,7 @@ var MenuLayer = cc.Layer.extend({
                     // check if save migration is needed
                     Record.init("record");
                     var player = Record.restore("player");
-                    if (player.hp) {
+                    if (player.hpMax) {
                         // treat as if there is a save
                         var chosenTalent = cc.sys.localStorage.getItem("chosenTalent") || "[]";
                         var radio = cc.sys.localStorage.getItem("radio") || "[]";
@@ -63,7 +63,7 @@ var MenuLayer = cc.Layer.extend({
                         cc.sys.localStorage.setItem("ad1", ad.toString());
                         cc.sys.localStorage.setItem("navigation1", navigation);
                         cc.sys.localStorage.setItem("weather1", weather.toString());
-    
+                        Record.init("record");
                         Record.save("player1", player);
                         Record.save("time1", time);
                         Record.save("navigation1", navigation);

@@ -132,6 +132,12 @@ var ItemChangeNode = cc.Node.extend({
         if (fromData.validateItem(itemId, num)) {
             if (toData.validateItemWeight(itemId, num)) {
                 //actual validated move
+                fromData.decreaseItem(itemId, num);
+                if (id === "top") {
+                    toData.increaseItem(itemId, num, false);
+                } else {
+                    toData.increaseItem(itemId, num, true);
+                }
                 if (this.counter == -1) {
                     cc.timer.updateTime(60);
                     this.counter = 0;
@@ -146,12 +152,6 @@ var ItemChangeNode = cc.Node.extend({
                     var times = Math.floor(this.counter / offset)
                     this.counter -= offset * times;
                     cc.timer.updateTime(times * 60);
-                }
-                fromData.decreaseItem(itemId, num);
-                if (id === "top") {
-                    toData.increaseItem(itemId, num, false);
-                } else {
-                    toData.increaseItem(itemId, num, true);
                 }
                 return true;
             } else {

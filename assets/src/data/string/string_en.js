@@ -1403,7 +1403,7 @@ var string = {
     "p_106": {
         "name": "Ingenuity",
         "des": "Handywork is your specialty.",
-        "effect": "Item crafting, furniture upgrades, and item moving are 30% faster."
+        "effect": "Item crafting, moving, and furniture upgrades are 30% faster."
     },
     "p_107": {
         "name": "Stealth",

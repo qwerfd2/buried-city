@@ -54,9 +54,11 @@ var Storage = cc.Class.extend({
         }
         var price = player.getPrice(itemid);
         if (itemid == 1305011 || itemid == 1305012) {
-            randomIndex *= 2;
-            if (randomIndex > index) {
-                randomIndex = index - 4;
+            var maxIndex = randomIndex * 2;
+            if (maxIndex > index) {
+                randomIndex = index;
+            } else {
+                randomIndex = maxIndex;
             }
         } else if (price >= 15) {
             //Expensive items, reduce amount.

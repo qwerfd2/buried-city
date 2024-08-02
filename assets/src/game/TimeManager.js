@@ -1,7 +1,7 @@
 var TimerManager = cc.Class.extend({
     ctor: function () {
         //标准比例
-        this.timeScaleOrigin = 10 * 60 / 6;
+        this.timeScaleOrigin = 100;
         this.timeScale = this.timeScaleOrigin;
         this.pausedRef = 0;
         cc.director.getScheduler().scheduleUpdateForTarget(this);

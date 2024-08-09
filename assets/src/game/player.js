@@ -436,8 +436,9 @@ var Player = cc.Class.extend({
         player.log.addMsg("def: " + def);
     },
 
-    trySteal: function (bypass) {
+    trySteal: function () {
         var saveFlag = false;
+        var stealFlag = false;
         if (this.shoeTime > 22500) {
             //break a shoe from storage
             if (this.storage.validateItem(1306001, 1)) {
@@ -481,14 +482,12 @@ var Player = cc.Class.extend({
             }
         }
         var probability = 2;
-        if (!bypass) {
-            if (timeIndex < 0 || weightIndex < 0) {
-                return;
-            }
-            probability = TheftConfig[weightIndex][timeIndex];
-            if (IAPPackage.isSocialEffectUnlocked()) {
-                probability = probability * 1.1;
-            }
+        if (timeIndex < 0 || weightIndex < 0) {
+            return;
+        }
+        probability = TheftConfig[weightIndex][timeIndex];
+        if (IAPPackage.isSocialEffectUnlocked()) {
+            probability = probability * 1.1;
         }
 
         var def = this._getHomeDef();
@@ -499,21 +498,23 @@ var Player = cc.Class.extend({
         probability = probability * def;
         var rand = Math.random();
 
-        if (rand <= probability) {
+        if (rand < probability) {
             if (IAPPackage.isStealthUnlocked()) {
                 var rand = Math.random();
                 if (rand >= 0.25) {
-                    saveFlag = true;
+                    stealFlag = true;
                 }
             } else { 
-                saveFlag = true;
+                stealFlag = true;
             }
         }
-        if (saveFlag) {
+        if (stealFlag) {
             var res = this._getAttackResult(90, 0, this.storage);
             res = res.items;
             var self = this;
             uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
+        }
+        if (saveFlag || saveFlag) {
             Record.saveAll();
         }
     },

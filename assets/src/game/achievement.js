@@ -61,7 +61,7 @@ var Achievement = {
         this._enable = true;
     },
     save: function (gcId) {
-        if (IAPPackage.isAllIAPUnlocked() || IAPPackage.isAllItemUnlocked()) {
+        if (IAPPackage.isAllIAPUnlocked() || IAPPackage.isAllItemUnlocked() || player.cloned) {
             return;
         }
         if (this._map[gcId]["aimCompleted"] >= this._map[gcId]["aim"] && this._map[gcId]["completed"] == 0) {

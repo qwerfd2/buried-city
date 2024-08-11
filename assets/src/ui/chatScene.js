@@ -1,4 +1,5 @@
-
+var CSRF = "";
+var SESSION = "";
 var chatLayer = cc.Layer.extend({
     onEnter: function() {
         this._super();
@@ -6,7 +7,9 @@ var chatLayer = cc.Layer.extend({
         this.username = Record.getUUID();
         this.latestMessageId = 0;
         this.messages = [];
-        this.apiUrl = "http://ec2-3-106-122-234.ap-southeast-2.compute.amazonaws.com/~ec2-user/bc/api.php";
+        this.channel = "BDOGr35iuNT4hc06y6O_ES5P96xr3SMqhQ2tdwI1KOY";
+        this.apiUrl = "https://studio.code.org/datablock_storage/" + this.channel + "/";
+        this.csrfUrl = "https://studio.code.org/projects/applab/" + this.channel;
 
         this.scrollView = new ccui.ScrollView();
         this.scrollView.setDirection(ccui.ScrollView.DIR_VERTICAL);
@@ -36,21 +39,64 @@ var chatLayer = cc.Layer.extend({
         btnClose.x = cc.winSize.width - 70;
         btnClose.y = cc.winSize.height - 70;
         this.addChild(btnClose);
-
+        this.initData();
         this.fetchMessages(0);
         this.schedule(this.fetchNewMessages, 3);
     },
 
+    initData: function() {
+        if (CSRF != "" && SESSION != "") {
+            return;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", this.csrfUrl, true);
+        var self = this;
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var responseText = xhr.responseText;
+        
+                var metaStart = responseText.indexOf('<meta name="csrf-token" content="');
+                
+                if (metaStart !== -1) {
+                    var contentStart = responseText.indexOf('content="', metaStart) + 9;
+                    var contentEnd = responseText.indexOf('"', contentStart);
+                    
+                    // Extract the token
+                    var token = responseText.substring(contentStart, contentEnd);
+                    CSRF = token;
+                }
+                function extractToken(cookieString) {
+                    var tokenStart = cookieString.indexOf('_learn_session=');
+                    var tokenEnd = cookieString.indexOf(';', tokenStart);
+                    
+                    if (tokenStart > -1 && tokenEnd > -1) {
+                        return cookieString.substring(tokenStart, tokenEnd);
+                    } else if (tokenStart > -1) {
+                        return cookieString.substring(tokenStart);
+                    }
+                    return null;
+                }
+                var setCookieHeader = xhr.getAllResponseHeaders();
+                var learnSession = extractToken(setCookieHeader);
+
+                SESSION = learnSession;
+            }
+        };
+        
+        xhr.send();
+    },
+
     fetchMessages: function(index, val) {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", this.apiUrl + "?function=getMessage&index=" + index, true);
+        xhr.open("GET", this.apiUrl + "read_records?table_name=message", true);
         if (!index) {
             val = true;
         }
         var self = this;
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                var data = JSON.parse(xhr.responseText);
+                var data = JSON.parse(xhr.responseText)
                 self.handleNewMessages(data, val);
             }
         };
@@ -63,16 +109,21 @@ var chatLayer = cc.Layer.extend({
 
     handleNewMessages: function(data, val) {
         var self = this;
+        var trigger = false;
 
         data.forEach(function(message) {
-            self.latestMessageId = Math.max(self.latestMessageId, message.id);
-            var formattedMessage = message.message;
-            self.messages.unshift(formattedMessage);
+            if (message.id > self.latestMessageId){
+                trigger = true;
+                self.latestMessageId = Math.max(self.latestMessageId, message.id);
+                var formattedMessage = message.m;
+                self.messages.unshift(formattedMessage);
+            }
         });
-        if (data.length > 0 && val) {
-            self.updateTextArea(true);
+
+        if (trigger && val) {
+            this.updateTextArea(true);
         } else {
-            self.updateTextArea();
+            this.updateTextArea();
         }
     },
 
@@ -110,8 +161,10 @@ var chatLayer = cc.Layer.extend({
     updateTextArea: function(bottom) {
         var maxLineLength = 75;
         var self = this;
+
+
         var wrappedMessages = this.messages.map(function(message) {
-            return self.wrapText(message, maxLineLength);
+            return self.wrapText(message.toString(), maxLineLength);
         });
 
         wrappedMessages.reverse();
@@ -129,25 +182,37 @@ var chatLayer = cc.Layer.extend({
 
     sendMessage: function() {
         var message = this.inputField.string;
-        if (message.trim() === "") {
+        if (message.trim() === "" || CSRF == "" || SESSION == "") {
             return;
         }
 
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", this.apiUrl + "?function=sendMessage&username=" + this.username + "&message=" + message, true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.open("POST", this.apiUrl + "create_record", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("x-csrf-token", CSRF);
+        xhr.setRequestHeader("cookie", SESSION);
 
         var self = this;
         xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    self.inputField.string = "";
-                    self.fetchNewMessages(true);
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.id) {
+                        self.inputField.string = "";
+                        self.fetchNewMessages(true);
+                    }
                 }
             }
         };
-        xhr.send();
+        var json_data = JSON.stringify({
+            u: self.username,
+            m: message
+        });
+        var data = JSON.stringify({
+            table_name: "message",
+            record_json: json_data
+          });
+        xhr.send(data);
     },
 
     editBoxReturn: function(editBox) {

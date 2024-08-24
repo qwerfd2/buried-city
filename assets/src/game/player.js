@@ -333,33 +333,6 @@ var Player = cc.Class.extend({
                 }    
             }
         }
-        //also expire safe and bag
-        var foodStorage = this.safe.getItemsByType("1103");
-        for (var i = 0; i < foodStorage.length; i++) {
-            var amount = this.calculateExpired(foodStorage[i]);
-            if (amount) {
-                if (this.safe.validateItem(foodStorage[i].item.id, amount)) {
-                    this.safe.decreaseItem(foodStorage[i].item.id, amount);
-                    tmpStorage.increaseItem(foodStorage[i].item.id, amount, false);
-                    var fertilizerAmount = FertilizerRate[foodStorage[i].item.id] * amount;
-                    fertilizerHome += fertilizerAmount;
-                    this.safe.increaseItem("1101081", fertilizerAmount);
-                }
-            }
-        }
-        var foodStorage = this.bag.getItemsByType("1103");
-        for (var i = 0; i < foodStorage.length; i++) {
-            var amount = this.calculateExpired(foodStorage[i]);
-            if (amount) {
-                if (this.bag.validateItem(foodStorage[i].item.id, amount)) {
-                    this.bag.decreaseItem(foodStorage[i].item.id, amount);
-                    tmpStorage.increaseItem(foodStorage[i].item.id, amount, false);
-                    var fertilizerAmount = FertilizerRate[foodStorage[i].item.id] * amount;
-                    fertilizerHome += fertilizerAmount;
-                    this.bag.increaseItem("1101081", fertilizerAmount);
-                }
-            }
-        }
         if (!homePower) {
             var foodStorage = this.storage.getItemsByType("1103");
             for (var i = 0; i < foodStorage.length; i++) {
@@ -1711,10 +1684,7 @@ var Player = cc.Class.extend({
         this.isInSleep = false;
         this.cured = false;
         this.binded = false;
-        //所有建筑需要复原
-        this.room.forEach(function (build) {
-            build.resetActiveBtnIndex();
-        });
+
         this.isDead = false;
         Record.saveAll();
     },

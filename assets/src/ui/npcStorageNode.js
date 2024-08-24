@@ -1,3 +1,4 @@
+var SKIP_TIME = false;
 var NpcStorageNode = BottomFrameNode.extend({
     ctor: function (userData) {
         this._super(userData);
@@ -43,7 +44,7 @@ var NpcStorageNode = BottomFrameNode.extend({
 
 var ItemExchangeNode = ItemChangeNode.extend({
     ctor: function (npc, topStorage, topStorageName, bottomStorage, bottomStorageName) {
-        this._super(topStorage, topStorageName, bottomStorage, bottomStorageName, false, false, 0);
+        this._super(topStorage, topStorageName, bottomStorage, bottomStorageName, false, false, 0, 1);
         this.npc = npc;
 
         var sectionBar = this.getChildByName("bottom").getChildByName("section");
@@ -51,6 +52,7 @@ var ItemExchangeNode = ItemChangeNode.extend({
         this.exchangeBtn = uiUtil.createCommonBtnBlack(stringUtil.getString(1040), this, function () {
             if (!self.exchangeBtn.isEnabled())
                 return;
+            SKIP_TIME = true;
             self.topSrcData.map = self.topData.map;
             self.bottomSrcData.map = self.bottomData.map;
             for (var i = 0; i < 5; i++) {
@@ -59,6 +61,7 @@ var ItemExchangeNode = ItemChangeNode.extend({
                 player.equip.equip(i, equipped);
             }
             utils.emitter.emit("exchange_end");
+            SKIP_TIME = false;
             audioManager.playEffect(audioManager.sound.LOOT);
             self.npc.tradingCount = self.npc.tradingCount || 0;
             self.npc.tradingCount++;

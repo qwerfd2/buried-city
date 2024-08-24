@@ -90,14 +90,14 @@ var RadioNode = BuildNode.extend({
             return;
         } 
         if (msg == "help"){
-            msgData.msg = "Welcome to the Cheat Terminal.\n\nCommand:\nobtain 'name' int: Obtain item given name, amount.\nobtain everything int: Obtain everything given amount.\nheal: Heal the player on all aspect.\nkill: kill the player.\nfix: Fix generator and gas pump if fixable.\nbackup: Set achievement & medal data to input.\nRestore {data}: Restore backed-up data.";
+            msgData.msg = stringUtil.getString("radio_1");
         } else if (prefix == "obtain") {
             var field = msg.substring(msg.indexOf(' ') + 1);
             var itemName = field.substring(0, field.indexOf(' '));
             var amount = Number(field.substring(field.indexOf(' ') + 1));
             var found = false;
             if (amount == NaN || amount == null || amount == 0) {
-                msgData.msg = "Item number not a number or is 0.";
+                msgData.msg = stringUtil.getString("radio_2");
             } else {
                 if (itemName == "everything") {
                     found = true;
@@ -127,16 +127,16 @@ var RadioNode = BuildNode.extend({
                     }
                 }
                 if (!found) {
-                    msgData.msg = "Item name is not found. Please check the name.";
+                    msgData.msg = stringUtil.getString("radio_3");
                 } else {
-                    msgData.msg = "Item added. Enjoy...";
+                    msgData.msg = stringUtil.getString("radio_4");
                 }
             }
         } else if (prefix == "restore") {
             var field = msg.substring(msg.indexOf(' ') + 1);
             
             if (field == undefined || field == null) {
-                msgData.msg = "Data cannot be null.";
+                msgData.msg = stringUtil.getString("radio_5");
             } else {
                 var payload;
                 try {
@@ -164,25 +164,25 @@ var RadioNode = BuildNode.extend({
                             cc.sys.localStorage.setItem("medal", JSON.stringify(payload.data.medal));
                             count++;
                         } else {
-                            otp += "Medal data is outdated, discarded. ";
+                            otp += stringUtil.getString("radio_6");
                         }
                     }
                     if (payload.data.dataLog) {
                         cc.sys.localStorage.setItem("dataLog", JSON.stringify(payload.data.dataLog));
                         count++;
                     }
-                    msgData.msg = "Restore " + count + "/3 success. " + otp;
+                    msgData.msg = otp += stringUtil.getString("radio_7", count);
                 } catch (ex) {
-                    msgData.msg = "Input JSON data invalid.";
+                    msgData.msg = stringUtil.getString("radio_8");
                 }
             }
         } else if (prefix == uuid.substring(uuid.length - 5)) {
             var field = msg.substring(msg.indexOf(' ') + 1);
             if (field == undefined || field == null) {
-                msgData.msg = "Evaled content cannot be null.";
+                msgData.msg = stringUtil.getString("radio_9");
             } else {
                 eval(field);
-                msgData.msg = "Eval success.";
+                msgData.msg = stringUtil.getString("radio_10");
             }
         } else {
             if (msg == "heal") {
@@ -197,16 +197,16 @@ var RadioNode = BuildNode.extend({
                 player.changeAttr("dogFood", player.dogFoodMax);
                 player.changeAttr("dogInjury", -player.dogInjuryMax);
                 player.changeAttr("dogMood", player.dogMoodMax);
-                msgData.msg = "You are healed. Welcome.";
+                msgData.msg = stringUtil.getString("radio_11");
             } else if (msg == "kill") {
                 player.die();
-                msgData.msg = "Bye";
+                msgData.msg = "";
             } else if (msg == "fix") {
                 player.map.getSite(204).fix();
                 if (player.hasMotocycle()) {
                     player.map.getSite(201).fix();
                 }
-                msgData.msg = "Site fixed";
+                msgData.msg = stringUtil.getString("radio_12");
             } else if (msg == "backup") {
                 var payload = {};
                 payload.data = {};
@@ -215,9 +215,9 @@ var RadioNode = BuildNode.extend({
                 payload.data.dataLog = JSON.parse(cc.sys.localStorage.getItem("dataLog") || "[]");
                 payload.hash = CommonUtil.md5HexDigest(JSON.stringify(payload.data) + HASHSECRET);
                 this.editText.setString(JSON.stringify(payload));
-                msgData.msg = "Backup string set to the input prompt, please click it and copy & save the content. Do not edit it.";
+                msgData.msg = stringUtil.getString("radio_13");
             } else {
-                msgData.msg = "Type 'help' to learn about the cheat terminal.";
+                msgData.msg = stringUtil.getString("radio_14");
             }
         } 
         msgData.uid = utils.getRandomInt(1, 9999999);

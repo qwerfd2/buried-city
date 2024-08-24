@@ -138,7 +138,7 @@ var ItemChangeNode = cc.Node.extend({
                 } else {
                     toData.increaseItem(itemId, num, true);
                 }
-                if (this.counter == -1) {
+                if (this.counter == -1 && !SKIP_TIME) {
                     cc.timer.updateTime(60);
                     this.counter = 0;
                 }
@@ -151,7 +151,9 @@ var ItemChangeNode = cc.Node.extend({
                 if (this.counter >= offset) {
                     var times = Math.floor(this.counter / offset)
                     this.counter -= offset * times;
-                    cc.timer.updateTime(times * 60);
+                    if (!SKIP_TIME) {
+                        cc.timer.updateTime(times * 60);
+                    }
                 }
                 return true;
             } else {
@@ -217,7 +219,9 @@ var ItemChangeNode = cc.Node.extend({
                 }
             }
         });
-        cc.timer.updateTime(Math.round((counter / offset) * 60));
+        if (!SKIP_TIME) {
+            cc.timer.updateTime(Math.round((counter / offset) * 60));
+        }
     },
 
     updateView: function () {

@@ -159,6 +159,45 @@ var DogButton = Button.extend({
     }
 });
 
+var StealthButton = Button.extend({
+    ctor: function (a) {
+        var str = "#tab_content_btn_normal.png";
+        if (IAPPackage.isStealthUnlocked()) {
+            if (player.stealthInactive) {
+                str = "#stealth_disabled.png";
+            } else {
+                str = "#stealth_enabled.png";
+            }
+        }
+        var bg = new cc.Sprite(str);
+        bg.setName("stealthBg");
+        bg.setScale(0.4);
+        this._super(cc.size(35, 35));
+
+        bg.setPosition(this.width / 2, this.height / 2);
+        this.addChild(bg);
+    },
+    updateView: function () {
+        this.removeChildByName("stealthBg");
+        var str;
+        if (IAPPackage.isStealthUnlocked()) {
+            if (player.stealthInactive) {
+                str = "#stealth_disabled.png";
+            } else {
+                str = "#stealth_enabled.png";
+            }
+        } else {
+            str = "#tab_content_btn_normal.png";
+        }
+        var bg = new cc.Sprite(str);
+        bg.setName("stealthBg");
+        bg.setScale(0.4);
+
+        bg.setPosition(this.width / 2, this.height / 2);
+        this.addChild(bg);
+    }
+});
+
 var ButtonInScrollView = Button.extend({
     ctor: function (size) {
         this._super(size);

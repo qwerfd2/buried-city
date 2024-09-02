@@ -26,7 +26,7 @@ var chatLayer = cc.Layer.extend({
 
         this.inputField = new cc.EditBox(cc.size(300, 40), new cc.Scale9Sprite("edit_text_bg.png"));
         this.inputField.setPosition(cc.p(cc.winSize.width / 2, 50));
-        this.inputField.setPlaceHolder("Type a message...");
+        this.inputField.setPlaceHolder(stringUtil.getString(6665));
         this.inputField.setDelegate(this);
         this.addChild(this.inputField);
 

@@ -30,7 +30,11 @@ var string = {
     "6014": "\nClick to Start",
     "6015": "Message Wall",
     "6016": "Rename Save File",
-    "6017": "The chat room is barely moderated. If it is misused, the server might be taken offline. So please don't be that guy. Treat it as any regular internet chat rooms and stay safe.",
+    "6017": "The message wall is barely moderated. If it is misused, the server might be taken offline. So please don't be that guy. Treat it as any regular internet chat rooms and stay safe.",
+    "6662": "Stealth perk",
+    "6663": "The stealth perk reduces the chance of zombie encounters, and some other negative events.\n\nHowever, you may want to get more loot by killing zombies that are roaming the street.\n\nTo do this, you can forgo the perk and be less stealthy around zombies, while remaining vigilant towards bandits and night raids.\n\nWould you like to do that?",
+    "6664": "The stealth perk reduces the chance of zombie encounters, and some other negative events.\n\nIf you are down in ammo, health, or energy, you may want to attract less attention.\n\nTo do this, you must be stealthy around zombies as well.\n\nWould you like to do that?",
+    "6665": "Type a message...",
     "6666": "Please update via Github or other channel.",
     "6667": "Thanks for playing Buried City! Join the game community and the game's distribution channels, listed below. Report bugs as well!",
     "6668": "The items are too heavy. The safe is full.",
@@ -1422,7 +1426,7 @@ var string = {
     "p_107": {
         "name": "Stealth",
         "des": "You are particularly good at hiding your track.",
-        "effect": "25% less chance of encountering zombies, night raids, and thief visits."
+        "effect": "25% less chance of encountering zombies, night raids, and thief visits.\n\nYou can choose whether or not you want to be stealthy for zombie encounters."
     },
     "p_109": {
         "name": "Cheat: Free IAP",

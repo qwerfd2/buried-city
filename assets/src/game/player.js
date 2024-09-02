@@ -90,6 +90,7 @@ var Player = cc.Class.extend({
         this.trapTime = -1;
         this.lastBanditCaveIn = 10;
         this.cloned = false;
+        this.stealthInactive = false;
         this.shopList = [{"itemId": 1103011, "amount": 10, "discount": 0}, {"itemId": 1105042, "amount": 10, "discount": 0}, {"itemId": 1105051, "amount": 10, "discount": 0}, {"itemId": 1301011, "amount": 5, "discount": 0}, {"itemId": 1103033, "amount": 5, "discount": 0}];
         this.weaponRound = {"1301011": 0,"1301022": 0,"1301033": 0,"1301041": 0,"1301052": 0,"1301063": 0,"1301071": 0,"1301082": 0,"1301091": 0,"1302011": 0,"1302021": 0,"1302032": 0,"1302043": 0,"1304012": 0,"1304023": 0};
     },
@@ -166,6 +167,7 @@ var Player = cc.Class.extend({
             trapTime: this.trapTime,
             lastBanditCaveIn: this.lastBanditCaveIn,
             cloned: this.cloned,
+            stealthInactive: this.stealthInactive,
         };
         return opt;
     },
@@ -238,6 +240,7 @@ var Player = cc.Class.extend({
             this.trapTime = opt.trapTime || -1;
             this.lastBanditCaveIn = opt.lastBanditCaveIn || 10;
             this.cloned = opt.cloned || false;
+            this.stealthInactive = opt.stealthInactive || false;
         } else {
             IAPPackage.init(this);
             Medal.improve(this);
@@ -1524,7 +1527,7 @@ var Player = cc.Class.extend({
         var rand = Math.random();
         var probability = config.probability;
 
-        if (IAPPackage.isStealthUnlocked()) {
+        if (IAPPackage.isStealthUnlocked() && !this.stealthInactive) {
             probability -= probability * 0.25;
         }
         if (player.equip.isEquiped(1305053)) {
@@ -1533,7 +1536,8 @@ var Player = cc.Class.extend({
         var specialTheft = false;
         if (IAPPackage.isSocialEffectUnlocked()) {
             var randTheft = Math.random();
-            if (randTheft < 0.1) {
+            var tempProb = 0.1;
+            if (randTheft < tempProb) {
                 specialTheft = true;
             }
         }
@@ -1546,7 +1550,11 @@ var Player = cc.Class.extend({
             if (!override) {
                 //no saved battle. Start new one. First, determine if this should be a bandit battle.
                 var banditRand = Math.random();
-                if (banditRand <= 0.25 || specialTheft) {
+                var tempProb = 0.25;
+                if (IAPPackage.isStealthUnlocked() && this.stealthInactive) {
+                    tempProb = 0.1875;
+                }
+                if (banditRand <= tempProb || specialTheft) {
                     //bandit battle. check if day is immune
                     if (this.lastBanditCaveIn >= cc.timer.getTimeNum()) {
                         return false;

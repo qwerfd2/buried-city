@@ -244,6 +244,44 @@ var TopFrameNode = cc.Node.extend({
                 cc.director.runScene(new ChooseScene(1));
             }
         });
+
+        var stealthButton = new StealthButton(0.7);
+        this.thirdLine.addChild(stealthButton, 1);
+        stealthButton.setPosition(this.thirdLine.width - 18, this.thirdLine.height - 60);
+        stealthButton.setClickListener(this, function() {
+            if (IAPPackage.isStealthUnlocked()) {
+                // Prompt user the use case, and the button calls stealthStateChange and change player state.
+                var config = {
+                    title: {title: stringUtil.getString(6662), icon: "#stealth_enabled.png"},
+                    content: {des: ""},
+                    action: {btn_1: {txt: stringUtil.getString(1193)}, btn_2: {txt: stringUtil.getString(1030)}}
+                };
+                if (player.stealthInactive) {
+                    config.content.des = stringUtil.getString(6664);
+                    config.action.btn_2.cb = function () {
+                        player.stealthInactive = false;
+                        utils.emitter.emit("stealthStateChange");
+                    }
+                } else {
+                    config.content.des = stringUtil.getString(6663);
+                    config.action.btn_2.cb = function () {
+                        player.stealthInactive = true;
+                        utils.emitter.emit("stealthStateChange");
+                    }
+                }
+                var toast = new DialogBig(config);
+                toast.show();
+            }
+        });
+
+        utils.emitter.on("stealthStateChange", function (value) {
+            stealthButton.updateBtn();
+        });
+        stealthButton.updateBtn = function () {
+            if (cc.sys.isObjectValid(stealthButton)) {
+                stealthButton.updateView();
+            }
+        };
         
         var dogButton = new DogButton(0.7);
         this.thirdLine.addChild(dogButton, 1);
@@ -261,6 +299,7 @@ var TopFrameNode = cc.Node.extend({
                 }
             }
         });
+
         utils.emitter.on("dogStateChange", function (value) {
             dogButton.updateBtn();
         });

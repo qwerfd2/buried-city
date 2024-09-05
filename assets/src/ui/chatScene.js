@@ -7,9 +7,9 @@ var chatLayer = cc.Layer.extend({
         this.username = Record.getUUID();
         this.latestMessageId = 0;
         this.messages = [];
-        this.channel = "BDOGr35iuNT4hc06y6O_ES5P96xr3SMqhQ2tdwI1KOY";
-        this.apiUrl = "https://studio.code.org/datablock_storage/" + this.channel + "/";
-        this.csrfUrl = "https://studio.code.org/projects/applab/" + this.channel;
+        var channel = "BDOGr35iuNT4hc06y6O_ES5P96xr3SMqhQ2tdwI1KOY";
+        this.apiUrl = "https://studio.code.org/datablock_storage/" + channel + "/";
+        this.csrfUrl = "https://studio.code.org/projects/applab/" + channel;
 
         this.scrollView = new ccui.ScrollView();
         this.scrollView.setDirection(ccui.ScrollView.DIR_VERTICAL);

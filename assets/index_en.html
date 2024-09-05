@@ -1,5 +1,7 @@
 <!doctype html>
 <html lang="en">
+<!--Modifying the existing links and credit information within this file constitutes as a violation of this project's custom open-source license. You can add your own due credit, but do not touch the existing ones.
+修改此文件已含的链接和制作者信息的行为将违反此项目名下的自定义开源许可。你可以添加自己的贡献，不过不要动已有的内容。-->
 <head>
   <style>
     p {
@@ -96,7 +98,7 @@
       35. <button id="bullet_return" onclick="scrollToSection('bullet')">See appendix</button> New item: Standard bullet.<br>
       36. New appliance: Safe. Deposit items to prevent stealing and moonlighting.<br>
       37. Weapon less prone to breaking early, and will return some parts if broken.<br>
-      38. <button id="expire_return" onclick="scrollToSection('expire')">See appendix</button> Food now has a chance of expiring, turning into fertilizer.<br>
+      38. <button id="expire_return" onclick="scrollToSection('expire')">See appendix</button> Food now has a chance to spoil, turning into fertilizer.<br>
       39. You can accelerate the Hare Trap using potato (12 hours).<br>
       40. Zombie encounter while traveling will get more difficult and frequent as time progresses.<br>
       41. You might encounter bandits, who will demand items/money. You can fight, capitulate, or try to escape.<br>
@@ -112,7 +114,7 @@
     <p>Max difficulty: 131+ days, [65, 75], probability 50%. Formula: [ fence(30) + dog(10) + electric fence(40) ] + minefield(last line of defense, 40). Location's defense has been improved accordingly, but no location is invincible.</p>
     <h3 id="cmd">Radio CMD<button class="button2" onclick="scrollToSection('cmd_return')">Return</button></h3>
     <dl>
-      <p>Only available if Cheat: Free IAP is selected:</p>
+      <p>Only available if Cheat: Free IAP talent is selected:</p>
         <dt>heal - Heal the player and dog on all aspect.</dt>
         <dt>kill - Kill the player.</dt>
         <dt>fix - Fix generator and gas pump (if fixable).</dt>
@@ -131,14 +133,14 @@
     <h3>Virus Load</h3>
     <p>Every time you are hurt from a zombie combat with difficulty greater than 2, you risk gaining 1 virus. If the virus is overloaded, you will die instantly. Virus will not decrease, but you can increase the upper bound of virus load by sacrificing other attributes. All attributes except HP can be exchanged for virus load 5 to 15, and HP can be exchanged 10 to 15. Wearing clothes can reduce the chance of gaining virus. Added Experimental Antidote: Provide immunity for virus load for 72 hours, obtainable at Dr. Jane. When dead and first aid kit is used, virus load will be halved.</p>
     <h3 id="gas">Fuel Mechanism<button class="button2" onclick="scrollToSection('gas_return')">Return</button></h3>
-    <p>Only applicable after the player obtains motorcycle. Player can fix the pump at the gas station with gas pump part. When fixed, pump will provide 1 fuel per hour. Fuel cannot be sold and have a cap of 99. fuel can be used during motorcycle travel, which will significantly boost the player's speed. Falcon has been removed, the engine/buffs repurposed for/to the normal motorcycle. Shoes now break after a fixed distance have been traveled. If the player have shoes, it will be automatically used to provide a small speed boost. If the player have motorcycles,the storage space boost will be used. If the player also has fuel & want to use it (you can disable speed boost by clicking the motorcycle status icon on the travel dialog), speed boost will be provided. New weapon: Flamethrower, damage all enemies by consuming 1 fuel per turn. if more than 3 zombies are present, each are delt 25 damage. if more than 1 zombie is present, each are delt 50 damage. If 1 zombie is present, 100 damage is delt. You might encounter abandoned cars when traveling. If equipped with siphoning tool (craftable at the bench), you will receive some fuel.</p>
+    <p>Only applicable after the player obtains motorcycle. Player can fix the pump at the gas station with gas pump part. When fixed, pump will provide 1 fuel per hour. Fuel cannot be sold and have a cap of 99. fuel can be used during motorcycle travel, which will significantly boost the player's speed. Falcon has been removed, the engine/buffs repurposed for/to the normal motorcycle. Shoes now break after a fixed distance have been traveled. If the player have shoes, it will be automatically used to provide a small speed boost. If the player have motorcycles, the storage space boost will be used. If the player also has fuel & want to use it (you can disable speed boost by clicking the motorcycle status icon on the travel dialog), speed boost will be provided. New weapon: Flamethrower, damage all enemies by consuming 1 fuel per turn. if more than 3 zombies are present, each are delt 25 damage. if more than 1 zombie is present, each are delt 50 damage. If 1 zombie is present, 100 damage is delt. You might encounter abandoned cars when traveling. If equipped with siphoning tool (craftable at the bench), you will receive some fuel.</p>
     <h3 id="bullet">Standard Bullet<button class="button2" onclick="scrollToSection('bullet_return')">Return</button></h3>
     <p>Bullets obtained at locations and encounters will largely be standard bullets. Stanard bullet are unlikely to break the gun, has boosted accuracies, but can't be crafted. If you have standard bullets in your bag and it is set to priority, it will be used. If one kind of bullet is depleted, the other will be used automatically.</p>
-    <h3 id="expire">Food Expiration<button class="button2" onclick="scrollToSection('expire_return')">Return</button></h3>
-    <p>Different food have a different chance to expire at 1AM. Expired food will be converted to fertilizer to provide speed-up for crops (3 hours) or sold. Fridge with electricity can prevent food in home from expiring. Food in backpack and safe will not expire.</p>
+    <h3 id="expire">Spoiled Food<button class="button2" onclick="scrollToSection('expire_return')">Return</button></h3>
+    <p>Different food have a different chance to spoil at 1AM. Spoiled food will be automatically converted to fertilizer to provide speed-up for crops (3 hours), and can be sold. Fridge with electricity can prevent food in home from spoilage. Food in backpack and safe will not go bad. Food spoils slower in winter and faster in summer.</p>
     <h3 id="dog">Dog Outdoor<button class="button2" onclick="scrollToSection('dog_return')">Return</button></h3>
-    <p>Dogs now has 3 attributes: Hunger, injury, and mood. Hunger will deplete in 48 hours. 1 meat gives 12 hours of food. Pat dog every day to receive mood bonus for both player and dog. Give dog toys to instantly gain mood. Dog can be injured during battle - use bandages to heal him. If any one of the three attributes is depleted, dog will not help guard the home or in battle. Dog will not die.</p>
-    <p>You can bring dog outside in the Dog Shed appliance screen. If outside, dog cannot protect home. While outside, dog can distract zombies, attack them, and help you find more supplies. If you decide to bring dog outside, a dog logo will appear on the topbar, allowing you to check their stats. If the logo is gray, dog is not providing benefit due to low attribute. If at home and dog shed is grayed out, it means that dog will not defend your home due to low attribute. You can name your dog.</p>
+    <p>Dogs now has 3 attributes: Hunger, injury, and mood. Hunger will deplete in 48 hours. 1 meat gives 12 hours of food. Pat dog every day to receive mood bonus for both player and dog. Use dog bones to instantly gain mood. Dog can be injured during battle - use bandages to heal him. If any one of the three attributes is depleted, dog will not help guard the home or in battle. Dog will not die.</p>
+    <p>You can bring dog outside in the Dog Shed appliance screen. Moving the dog into the backpack does not do the same thing! If outside, dog cannot protect home. While outside, dog can distract zombies, attack them, and help you find more supplies. If you decide to bring dog outside, a dog logo will appear on the topbar, allowing you to check their stats. If the logo is gray, dog is not providing benefit due to low attribute. If at home and dog shed is grayed out, it means that dog will not defend your home due to low attribute. You can name your dog.</p>
 
     <h2 id="faq">FAQ<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
     <b>Q: I don't like the design of virus load! Can you make a version without it?</b>
@@ -158,7 +160,7 @@
     <b>Q: How do I update the game?</b>
     <p>A: Visit the Rentry post, or GitHub Release, located in Main Menu - Thumb button. Install the downloaded APK and have fun!</p>
     <b>Q: I can write code/make artworks/do QA, is there anything I can help?</b>
-    <p>A: There is so much. New functionality, locaion-specific maps like 081, unit testing for bugs... If you are passionate about this game, please contact me.</p>
+    <p>A: My work is already done here. If you have the technical ability and creativity, feel free to continue my effort. The project and its toolchain is open-source on GitHub.</p>
     <b>Q: I want to make my own mod version, where should I start?</b>
     <p>A: APK is a ZIP file. Take a look inside, all the code is in the js files, easily editable. You can use png for assets, or use TexturePacker to compile spritesheets. I recommend the Diff Folder plugin for VSCode, you can use it to compare code differences between mods. At the end, don't forget to sign the APK using Apktool or MT Manager.</p>
     <b>Q: Can you mod the game according to my specification, or help me crack another game?</b>

@@ -252,17 +252,19 @@ var TopFrameNode = cc.Node.extend({
             if (IAPPackage.isStealthUnlocked()) {
                 // Prompt user the use case, and the button calls stealthStateChange and change player state.
                 var config = {
-                    title: {title: stringUtil.getString(6662), icon: "#stealth_enabled.png"},
+                    title: {title: stringUtil.getString(6662)},
                     content: {des: ""},
                     action: {btn_1: {txt: stringUtil.getString(1193)}, btn_2: {txt: stringUtil.getString(1030)}}
                 };
                 if (player.stealthInactive) {
+                    config.title.icon = "#stealth_disabled.png";
                     config.content.des = stringUtil.getString(6664);
                     config.action.btn_2.cb = function () {
                         player.stealthInactive = false;
                         utils.emitter.emit("stealthStateChange");
                     }
                 } else {
+                    config.title.icon = "#stealth_enabled.png";
                     config.content.des = stringUtil.getString(6663);
                     config.action.btn_2.cb = function () {
                         player.stealthInactive = true;

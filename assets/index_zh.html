@@ -126,7 +126,7 @@
       <dt>restore {JSON} - 将备份来的字符串覆盖到存档。</dt>
     </dl>
     <h3 id="steal">NPC偷窃<button class="button2" onclick="scrollToSection('steal_return')">返回</button></h3>
-    <p>可在NPC家偷东西。摘抄true的指南：偷窃成功时该NPC增加1警惕度，失败增加2警惕度，同时减少2点好感值（社交达人-1，作弊全解锁-0）。每天更新贼运，会影响成功率。若当日未对该NPC偷窃，其警惕度-1。</p>
+    <p>可在NPC家偷东西。摘抄true的指南：偷窃成功时该NPC增加1警惕度，失败增加2警惕度，同时减少1点好感值（作弊全解锁-0）。每天更新贼运，会影响成功率。当前好感值越高，成功概率也越高。若当日未对该NPC偷窃，其警惕度-1。</p>
     <h3 id="bazaar">幸存者市场<button class="button2" onclick="scrollToSection('bazaar_return')">返回</button></h3>
     <p>你可以在这里售卖背包中的物品，获得钱币 (最多持有99999)，并购买物资。物资每天刷新，可在地图界面预览。如有优惠，地图界面 - 地点弹窗 - 物品列表弹窗会显示 “sale“ 图标。市场里有抽奖 (试试手气！) 和旅舍 (有偿休息和放松) 。</p>
     <h3 id="thirst">口渴值<button class="button2" onclick="scrollToSection('thirst_return')">返回</button></h3>
@@ -159,7 +159,7 @@
     <b>问：你能不能加一些剧情？</b>
     <p>答：个人有5+年游戏设计的经验，认为生存游戏传统剧情不可行。剧情只会分化玩家，让生存玩家没法专心生存，剧情玩家被生存难度阻碍。Lore可以有，除非有经费来搞多枝干剧情，再多有害无益。</p>
     <b>问：怎么下载新版本？好多链接都不好使！</b>
-    <p>答：很多网站被中国屏蔽。如果你想睁开眼睛看世界，请百度Geph，FreeBrowser，V2Ray，VPS机场。如果你不在乎最新的更新，可以时常看看贴吧的主题帖，我会不定期更新。</p>
+    <p>答：很多网站被中国屏蔽。如果你想睁开眼睛看世界，请百度Geph，FreeBrowser，V2Ray，VPS机场。如果你不在乎最新的更新，可以时常看看贴吧的主题帖，我会不定期更新。你可以试试运气，点击主菜单左下角大拇指按钮的"GitHub"按钮，下载最新的APK。</p>
     <b>问：我会写代码/做美工/搞内测，有什么我能帮到的？</b>
     <p>答：我对这个游戏的改良已经完成了。如果你有技术背景和创意，欢迎在我的基础上二创。游戏的代码和工具已在GitHub开源。</p>
     <b>问：我想做自己的魔改版，该从哪开始？</b>
@@ -201,7 +201,16 @@
     <p>死亡日记使用了Cocos2d-JS引擎，安装包没有加固，源码也没有经过编译和混淆，修改难度极低。虽然原版图像素材经过加密，密钥 (B29B3886-543224E4-71BDF6E3-9275C626) 和编辑工具 (TexturePacker) 获取后操作相对简单 (此版本已去除加密)。游戏存档在root目录下使用了加密sqlite3数据库存储，密钥为 (1a2b3c4d5fberrytown)。</p>
         
     <h2 id="contact">联络和更新方式<button class="button2" onclick="scrollToSection('hub')">返回</button></h2>
-    <p>主页面-大拇指按钮的任何途径。</p>
+    <p>可以通过主页面-右下角大拇指按钮来一键访问以下的信息。</p>
+    <p>此开源项目地址在：github.com/qwerfd2/buried-city</p>
+    <p>最新版APK可在此下载：github.com/qwerfd2/buried-city/releases</p>
+    <p>其他的死亡日记修改版在这里：rentry.co/fpkk2</p>
+    <p>它们被备份在：archive.org/details/t-27_20230804</p>
+    <p>游戏的Reddit页在：redd.it/14k6zcq</p>
+    <p>游戏的贴吧页在：tieba.baidu.com/p/8546322916</p>
+    <p>你可以在Discord找到作者：antcfgss#0</p>
+    <p>可以电邮：mtngckover at gmail dot com</p>
+    <p>或者QQ：3421587952</p>
 
 <script>
     function scrollToSection(sectionId) {

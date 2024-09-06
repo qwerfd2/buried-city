@@ -42,38 +42,38 @@ var aboutLayer = cc.Layer.extend({
         this.bg.addChild(btn);
         btn.setName("btn");
         
-        var btn_github = uiUtil.createCommonBtnBlack("github.com", this, function () {
-            CommonUtil.gotoUrl("https://github.com/qwerfd2/buried-city");
+        var btn_github = uiUtil.createCommonBtnBlack("GitHub", this, function () {
+            CommonUtil.gotoUrl("https://github.com/qwerfd2/buried-city/releases");
         });
-        btn_github.setPosition(this.bg.width / 4 + 30, this.bg.height / 2);
+        btn_github.setPosition(this.bg.width / 4 + 30, this.bg.height / 2 + 100);
         this.bg.addChild(btn_github);
         btn_github.setName("btn_github");
         
-        var btn_rentry = uiUtil.createCommonBtnBlack("rentry.co", this, function () {
+        var btn_rentry = uiUtil.createCommonBtnBlack("Rentry", this, function () {
             CommonUtil.gotoUrl("https://rentry.co/fpkk2");
         });
-        btn_rentry.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2);
+        btn_rentry.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2 + 100);
         this.bg.addChild(btn_rentry);
         btn_rentry.setName("btn_rentry");
         
-        var btn_archive = uiUtil.createCommonBtnBlack("archive.org", this, function () {
+        var btn_archive = uiUtil.createCommonBtnBlack("Internet Archive", this, function () {
             CommonUtil.gotoUrl("https://archive.org/details/t-27_20230804");
         });
-        btn_archive.setPosition(this.bg.width / 4 + 30, this.bg.height / 2 - 100);
+        btn_archive.setPosition(this.bg.width / 4 + 30, this.bg.height / 2);
         this.bg.addChild(btn_archive);
         btn_archive.setName("btn_archive");
         
-        var btn_reddit = uiUtil.createCommonBtnBlack("reddit.com", this, function () {
-            CommonUtil.gotoUrl("https://reddit.com/r/BuriedTown/comments/14k6zcq");
+        var btn_reddit = uiUtil.createCommonBtnBlack("Reddit", this, function () {
+            CommonUtil.gotoUrl("https://redd.it/14k6zcq");
         });
-        btn_reddit.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2 - 100);
+        btn_reddit.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2);
         this.bg.addChild(btn_reddit);
         btn_reddit.setName("btn_reddit");
         
-        var btn_tieba = uiUtil.createCommonBtnBlack("tieba.com", this, function () {
+        var btn_tieba = uiUtil.createCommonBtnBlack("Tieba", this, function () {
             CommonUtil.gotoUrl("https://tieba.baidu.com/p/8546322916");
         });
-        btn_tieba.setPosition(this.bg.width / 4 + 30, this.bg.height / 2 - 200);
+        btn_tieba.setPosition(this.bg.width / 4 + 30, this.bg.height / 2 - 100);
         this.bg.addChild(btn_tieba);
         btn_tieba.setName("btn_tieba");
         
@@ -86,14 +86,14 @@ var aboutLayer = cc.Layer.extend({
             var toast = new DialogTiny(config);
             toast.show();
         });
-        btn_discord.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2 - 200);
+        btn_discord.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2 - 100);
         this.bg.addChild(btn_discord);
         btn_discord.setName("btn_discord");
         
         var btn_email = uiUtil.createCommonBtnBlack("Email", this, function () {
             CommonUtil.gotoUrl("mailto:mtngckover@gmail.com");
         });
-        btn_email.setPosition(this.bg.width / 4 + 30, this.bg.height / 2 - 300);
+        btn_email.setPosition(this.bg.width / 4 + 30, this.bg.height / 2 - 200);
         this.bg.addChild(btn_email);
         btn_email.setName("btn_email");
         
@@ -106,7 +106,7 @@ var aboutLayer = cc.Layer.extend({
             var toast = new DialogTiny(config);
             toast.show();
         });
-        btn_qq.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2 - 300);
+        btn_qq.setPosition(this.bg.width / 4 * 3 - 30, this.bg.height / 2 - 200);
         this.bg.addChild(btn_qq);
         btn_qq.setName("btn_qq");
     }

@@ -198,7 +198,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount, discount) {
     }
 };
 
-uiUtil.Steal = function(arr, success, bo, npcName) {
+uiUtil.Steal = function(arr, success, npcName) {
     var config = {
         title: {},
         content: {},
@@ -209,6 +209,7 @@ uiUtil.Steal = function(arr, success, bo, npcName) {
     config.action.btn_1.txt = stringUtil.getString(1073);
     var title = success ? stringUtil.getString(9011) : stringUtil.getString(9010);
     var des;
+    var bo = arr.length > 0;
     if (success) {
         if (bo) {
             des = stringUtil.getString(9013);
@@ -225,10 +226,10 @@ uiUtil.Steal = function(arr, success, bo, npcName) {
     var co = dialog.contentNode;
 
     dialog.titleNode.getChildByName('title').setPosition(co.width / 15, co.height - 55);
-    richText = new ItemRichText(arr, arr.length * 86, arr.length, 0.5, cc.color(0, 0, 222, 222), 22);
+    richText = new ItemRichText(arr, arr.length * 90, arr.length, 0.5, cc.color.BLACK, 22);
     richText.setVisible(success && bo);
     co.addChild(richText);
-    var res = 2 - IAPPackage.isSocialEffectUnlocked();
+    var res = 1;
     if (IAPPackage.isAllItemUnlocked()) {
         res = 0;
     }
@@ -236,7 +237,7 @@ uiUtil.Steal = function(arr, success, bo, npcName) {
     close.setAnchorPoint(0, 1);
     close.setPosition(co.width / 12, co.height / 3)
     close.setColor(cc.color(255, 0, 0, 255));
-    close.setVisible(!bo);
+    close.setVisible(!bo && !success);
     co.addChild(close);
 
     dialog.show();

@@ -37,7 +37,7 @@
     <button onclick="scrollToSection('faq')">FAQ</button>
     <button onclick="scrollToSection('music')">Music List</button>
     <button onclick="scrollToSection('factsheet')">BuriedTown Factsheet</button>
-    <button onclick="scrollToSection('contact')">Contact and Update Info</button>
+    <button onclick="scrollToSection('contact')">Contact & Updates</button>
   </h2>
   <h2 id="external">Peripheral Edits<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
   <p>
@@ -73,7 +73,7 @@
       10. You can select multiple talents and the effects are combined.<br>
       11. If you're in extreme starvation, HP will decrease.<br>
       12. Power Plant won't break within the first 4 days, nor will it break between 9PM and 1AM. Reduced cost of generator parts.<br>
-      13. <button id="steal_return" onclick="scrollToSection('steal')">See appendix</button> NPC stealing functionality.<br>
+      13. <button id="steal_return" onclick="scrollToSection('steal')">See appendix</button> Steal from NPC functionality.<br>
       14. <button id="bazaar_return" onclick="scrollToSection('bazaar')">See appendix</button> "Survivor Bazaar" location, with new sweepstakes, hostel, and item sell/buy functionality.<br>
       15. "W. White" NPC, who loves guns and will sell chemical products. Unlockable locations: Bandit Den (armed bandits inside), High School.<br>
       16. Bandit will raid your home if you own too much stuff and left home for too long. Defense will reduce the chance of raids. If all defenses are active, you won't be raided.<br>
@@ -124,8 +124,8 @@
         <dt>backup - Set the backup string for Achievement and Medal to the input prompt, ready to be copied.</dt>
         <dt>restore {JSON} - Restore the JSON string to Achievement and Medal.</dt>
       </dl>
-    <h3 id="steal">NPC Stealing<button class="button2" onclick="scrollToSection('steal_return')">Return</button></h3>
-    <p>You can steal from NPC at their home. If stealing is successful, that NPC's alert increases by 1, and you keep the stolen goods. If failed, the alert increases by 2, and friendship is reduced by 2 (Communicator talent: -1, Cheat all unlocked: -0). Your luck is updated daily, and will affect the success rate. NPC's alert will decrease by 1 per day if you don't steal from them.</p>
+    <h3 id="steal">Steal from NPC<button class="button2" onclick="scrollToSection('steal_return')">Return</button></h3>
+    <p>You can steal from NPC at their home. If stealing is successful, that NPC's alert increases by 1, and you keep the stolen goods. If failed, the alert increases by 2, and friendship is reduced by 1 (will not reduce if Cheat: All Unlock is selected). Your luck is updated daily, and will affect the success rate. The higher the friendship, the higher the success rate. NPC's alert will decrease by 1 per day if you don't steal from them.</p>
     <h3 id="bazaar">Survivor Bazaar<button class="button2" onclick="scrollToSection('bazaar_return')">Return</button></h3>
     <p>A location where you can sell items in your bag for coins (max 99999 coins), and buy items which refreshes every day. Items can be previewed in map. If an item is discounted, a "sale" icon will appear in the popup. Sweepstakes are available in the Bazaar. Hostel allows you to sleep and rest for a fee.</p>
     <h3 id="thirst">Thirst<button class="button2" onclick="scrollToSection('thirst_return')">Return</button></h3>
@@ -158,7 +158,7 @@
     <b>Q: Can you add more stories to the gameplay?</b>
     <p>A: I have 5+ years of game design experience, and I believe that traditional story structure is incompatible with survival games. It will only divide players - distracting survival-oriented players and barring story-oriented players with survival difficulties. Lore is okay, but unless I have the resource to do branching storyline, any more story will not help with the player experience.</p>
     <b>Q: How do I update the game?</b>
-    <p>A: Visit the Rentry post, or GitHub Release, located in Main Menu - Thumb button. Install the downloaded APK and have fun!</p>
+    <p>A: Click on the "thumbs up" button on the bottom right corner of the menu page, and click the GitHub button. Download the latest release APK, Install it, and have fun!</p>
     <b>Q: I can write code/make artworks/do QA, is there anything I can help?</b>
     <p>A: My work is already done here. If you have the technical ability and creativity, feel free to continue my effort. The project and its toolchain is open-source on GitHub.</p>
     <b>Q: I want to make my own mod version, where should I start?</b>
@@ -198,8 +198,17 @@
     <p>BuriedTown, originally named BerryTown, was developed by Chengdu 点犀 (DianXi) (Dice7) Network Co.Ltd and published by Beijing 乐动卓越 (LeDongZhuoYue) (Locojoy) Technology Co.Ltd. First launched on the iOS on Sep. 23rd, 2015, The game started its Android beta phase on Sep. 25th, 2015, and was released at Google Play on Nov. 23rd, 2015. The last update (1.4.3) was released on Jun. 27th, 2018, and the game server was shut down around late June, 2019.</p><p>
     Thanks to the game's weak online dependency, the majority of the functionality can be enjoyed offline, with the exception of leaderboards, In-App Purchases, and in-game radio.</p><p>
     Developed using Cocos2d-JS, the installation package of Buried Town is unprotected, source code not compiled nor obfuscated, making modifications extremely easy. Although the graphics have been encrypted, the process after obtaining the key (B29B3886-543224E4-71BDF6E3-9275C626) and edit tool (TexturePacker) is trivial (The encryption has been removed in this version). The game's save file is stored under root-only directory using an encrypted sqlite3 database, with the password (1a2b3c4d5fberrytown).</p>
-    <h2 id="contact">Contact and Update Info<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
-    <p>Main Menu - Thumb button contains all the information.</p>
+    <h2 id="contact">Contact & Updates<button class="button2" onclick="scrollToSection('hub')">Return</button></h2>
+    <p>Menu page - buttom right corner Thumb button contains the same information that can be accessed with a single click.</p>
+    <p>The project is open-source at: github.com/qwerfd2/buried-city</p>
+    <p>The latest APK is at: github.com/qwerfd2/buried-city/releases</p>
+    <p>Other mods of Buried Town can be found at: rentry.co/fpkk2</p>
+    <p>They are archived at: archive.org/details/t-27_20230804</p>
+    <p>The game's Reddit thread is at: redd.it/14k6zcq</p>
+    <p>The game's Tieba thread is at: tieba.baidu.com/p/8546322916</p>
+    <p>You can reach the author at Discord: antcfgss#0</p>
+    <p>Via Email: mtngckover at gmail dot com</p>
+    <p>Or QQ: 3421587952</p>
 
 <script>
     function scrollToSection(sectionId) {

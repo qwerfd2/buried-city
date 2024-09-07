@@ -331,9 +331,7 @@ var NPCManager = cc.Class.extend({
     },
     visitPlayer: function () { 
         if (IAPPackage.isAllItemUnlocked()) {
-            for (var i = 1; i < 8; i++) {
-                this.unlockNpc(i);
-            }
+            this.unlockNpc(1);this.unlockNpc(2);this.unlockNpc(3);this.unlockNpc(4);this.unlockNpc(5);this.unlockNpc(6);this.unlockNpc(7);
         }
         if (cc.timer.formatTime().d < 2) {
             return;

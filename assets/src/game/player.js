@@ -300,15 +300,6 @@ var Player = cc.Class.extend({
         var item = foodItem.item.id;
         var numbers = foodItem.num;
         var expire = ExpireRate[item];
-        var season = 0;
-        if (cc.timer) {
-            season = cc.timer.getSeason()
-        }
-        if (season == 3) {
-            expire *= 1.25;
-        } else if (season == 1) {
-            expire *= 0.75;
-        }
         var amount = expire * numbers;
         var floorValue = Math.floor(amount);
         var ceilValue = Math.ceil(amount);
@@ -865,7 +856,7 @@ var Player = cc.Class.extend({
                 if (season != 3) {
                     this.changeWater(-3);
                 } else {
-                    this.changeWater(-5);
+                    this.changeWater(-6);
                 }
             }
         }
@@ -1703,7 +1694,6 @@ var Player = cc.Class.extend({
         this.binded = false;
 
         this.isDead = false;
-        BuildOccupied = false;
         Record.saveAll();
     },
 

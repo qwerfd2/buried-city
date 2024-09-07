@@ -1,8 +1,3 @@
-/*
-Modifying the existing links and credit information within this file constitutes as a violation of this project's custom open-source license. You can add your own due credit, but do not touch the existing ones.
-修改此文件已含的链接和制作者信息的行为将违反此项目名下的自定义开源许可。你可以添加自己的贡献，不过不要动已有的内容。
-*/
-
 var aboutLayer = cc.Layer.extend({
     ctor: function () {
         this._super();

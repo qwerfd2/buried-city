@@ -1,4 +1,11 @@
 var PurchaseList = {
+    201: {
+        effect: [
+            {itemId: 1103011, num: 10},
+            {itemId: 1103041, num: 10},
+            {itemId: 1103083, num: 5}
+        ]
+    },
     202: {
         effect: [
             {itemId: 1105011, num: 20},

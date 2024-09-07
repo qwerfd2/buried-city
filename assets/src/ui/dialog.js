@@ -1002,9 +1002,9 @@ var RandomBattleDialog = DialogBig.extend({
         if (!sumRes) {
             des.setString(stringUtil.getString(9116));
         } else if (this.type) {
-            des.setString(stringUtil.getString(9083));
+            des.setString(stringUtil.getString(9082));
         } else {
-            des.setString(stringUtil.getString(1173));
+            des.setString(stringUtil.getString(1082));
         }
 
         this.log.height += 10;

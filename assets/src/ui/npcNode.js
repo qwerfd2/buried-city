@@ -218,7 +218,7 @@ var NpcNode = BottomFrameNode.extend({
     
     updateViewAfterNpcNeed: function () {
         var needItemInfo = this.npc.getNeedItem();
-        var needStr = stringUtil.getString(needItemInfo.itemId).title + stringUtil.getString(6661) + needItemInfo.num;
+        var needStr = stringUtil.getString(needItemInfo.itemId).title + "x" + needItemInfo.num;
 
         var have = this.bg.getChildByName("have");
         have.setString(stringUtil.getString(1036, needStr) + ', ' + stringUtil.getString(1038, player.bag.getNumByItemId(needItemInfo.itemId)));

@@ -998,7 +998,7 @@ uiUtil.showNpcSendGiftDialog = function (npc) {
             return {itemId: itemId, num: itemMap[itemId]};
         });
 
-        config.content.des = stringUtil.getString(1068) + "\n" + stringUtil.getString(1069);
+        config.content.des = stringUtil.getString(1068);
         gifts.forEach(function (gift) {
             player.log.addMsg(1103, gift.num, stringUtil.getString(gift.itemId).title, player.storage.getNumByItemId(gift.itemId));
         });
@@ -1033,11 +1033,16 @@ uiUtil.showNpcSendGiftDialog = function (npc) {
     var dialog = new NpcDialog(config);
     if (isItem) {
         var log = dialog.contentNode.getChildByName("log");
+        var label = new cc.LabelTTF(stringUtil.getString(1069), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        label.setAnchorPoint(0, 1);
+        label.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
+        label.setColor(cc.color.BLACK);
+        log.addChild(label);
 
         var richText = new ItemRichText(gifts, dialog.rightEdge - dialog.leftEdge, 3, 0.5, cc.color.BLACK);
         richText.setName("richText")
         richText.setAnchorPoint(0, 1);
-        richText.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
+        richText.setPosition(dialog.leftEdge, label.getPositionY() - label.getContentSize().height - 10);
         log.addChild(richText);
     }
     dialog.show();

@@ -300,11 +300,19 @@ var Player = cc.Class.extend({
         var item = foodItem.item.id;
         var numbers = foodItem.num;
         var expire = ExpireRate[item];
+        var season = 0;
+        if (cc.timer) {
+            season = cc.timer.getSeason()
+        }
+        if (season == 3) {
+            expire *= 1.25;
+        } else if (season == 1) {
+            expire *= 0.75;
+        }
         var amount = expire * numbers;
         var floorValue = Math.floor(amount);
         var ceilValue = Math.ceil(amount);
         var probDown = 1 - (amount - floorValue);
-        var probUp = 1 - probDown;
         var random = Math.random();
         if (random <= probDown) {
             amount = floorValue;
@@ -462,9 +470,6 @@ var Player = cc.Class.extend({
             return;
         }
         probability = TheftConfig[weightIndex][timeIndex];
-        if (IAPPackage.isSocialEffectUnlocked()) {
-            probability = probability * 1.1;
-        }
 
         var def = this._getHomeDef();
         if (this.isBombActive) {
@@ -623,7 +628,7 @@ var Player = cc.Class.extend({
         return this[key] / this[key + "Max"];
     },
 
-    changeAttr: function (key, value) {
+    changeAttr: function (key, value, isSleep) {
         if (!this.isAttrChangeGood(key, value)) {
             if (key === 'infect' && this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107022)) {
                 return;
@@ -663,8 +668,7 @@ var Player = cc.Class.extend({
             currentTime -= this.lastCoffeeTime;
             if (afterRangeInfo.id - beforeRangeInfo.id > 0) {
                 suffix = "_up";
-                if (key === "vigour" && currentTime <= 21600) {
-                } else {
+                if (key === "vigour" && currentTime > 21600 && isSleep) {
                     this.log.addMsg(stringUtil.getString(key + suffix)[afterRangeInfo.id - 1]);
                 }
                 if (key === "infect" || key === "injury") {
@@ -674,8 +678,7 @@ var Player = cc.Class.extend({
                 }
             } else if (afterRangeInfo.id - beforeRangeInfo.id < 0) {
                 suffix = "_down";
-                if (key === "vigour" && currentTime <= 21600) {
-                } else {
+                if (key === "vigour" && currentTime > 21600) {
                     this.log.addMsg(stringUtil.getString(key + suffix)[afterRangeInfo.id - 1]);
                 }
                 if (key === "infect" || key === "injury") {
@@ -735,8 +738,8 @@ var Player = cc.Class.extend({
         }
     },
 
-    changeVigour: function (value) {
-        this.changeAttr("vigour", value);
+    changeVigour: function (value, isSleep) {
+        this.changeAttr("vigour", value, isSleep);
     },
 
     changeInjury: function (value) {
@@ -856,7 +859,7 @@ var Player = cc.Class.extend({
                 if (season != 3) {
                     this.changeWater(-3);
                 } else {
-                    this.changeWater(-6);
+                    this.changeWater(-5);
                 }
             }
         }
@@ -908,7 +911,7 @@ var Player = cc.Class.extend({
                 hp = Number(0.2 * hp);
             }
             
-            this.changeVigour(vigour);
+            this.changeVigour(vigour, true);
             this.changeHp(hp);
         }
         //天气影响
@@ -1533,16 +1536,7 @@ var Player = cc.Class.extend({
         if (player.equip.isEquiped(1305053)) {
             probability -= probability * 0.25;
         }
-        var specialTheft = false;
-        if (IAPPackage.isSocialEffectUnlocked()) {
-            var randTheft = Math.random();
-            var tempProb = 0.1;
-            if (randTheft < tempProb) {
-                specialTheft = true;
-            }
-        }
-        
-        if (rand <= probability || override || specialTheft) {
+        if (rand <= probability || override) {
             var diff;
             var list;
             var type = 0;
@@ -1554,7 +1548,7 @@ var Player = cc.Class.extend({
                 if (IAPPackage.isStealthUnlocked() && this.stealthInactive) {
                     tempProb = 0.1875;
                 }
-                if (banditRand <= tempProb || specialTheft) {
+                if (banditRand <= tempProb) {
                     //bandit battle. check if day is immune
                     if (this.lastBanditCaveIn >= cc.timer.getTimeNum()) {
                         return false;
@@ -1622,7 +1616,7 @@ var Player = cc.Class.extend({
                     npc.isSteal = true;
                 }
             }
-            self.Steal = utils.getRandomInt(35, 60);
+            self.Steal = utils.getRandomInt(30, 55);
             self.hasDogPlay = true;
             utils.emitter.emit("Steal");
             self.updateBazaarList();
@@ -1694,6 +1688,7 @@ var Player = cc.Class.extend({
         this.binded = false;
 
         this.isDead = false;
+        BuildOccupied = false;
         Record.saveAll();
     },
 

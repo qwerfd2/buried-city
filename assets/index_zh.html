@@ -1,5 +1,7 @@
 <!doctype html>
 <html lang="en">
+<!--Modifying the existing links and credit information within this file constitutes as a violation of this project's custom open-source license. You can add your own due credit, but do not touch the existing ones.
+修改此文件已含的链接和制作者信息的行为将违反此项目名下的自定义开源许可。你可以添加自己的贡献，不过不要动已有的内容。-->
 <head>
     <style>
         p {
@@ -97,7 +99,7 @@
       36. <button id="bullet_return" onclick="scrollToSection('bullet')">详见附录</button> 新增标准子弹。<br>
       37. 新增保险箱家具：建造后可放物品，避免偷窃和僵尸破坏。<br>
       38. 武器早期不容易坏，如果坏会返回一些部件。<br>
-      39. <button id="expire_return" onclick="scrollToSection('expire')">详见附录</button> 食物可能过期,变成肥料。<br>
+      39. <button id="expire_return" onclick="scrollToSection('expire')">详见附录</button> 食物可能腐败,变成肥料。<br>
       40. 野兔陷阱可用土豆加速 (12小时)。<br>
       41. 野怪难度和出现概率随天数增加。<br>
       42. 可能遇到强盗，索求一些物品或者钱。你可以战斗，妥协，或逃跑。<br>
@@ -113,7 +115,7 @@
     <p>最大难度：131+天，[65, 75]，概率50%。公式：[工事(30) + 狗(10) + 电网(40)] + 炸药(最后一道防线，40)。副本防御适度提高，但没有副本免疫夜袭。</p>
     <h3 id="cmd">电台命令行<button class="button2" onclick="scrollToSection('cmd_return')">返回</button></h3>
     <dl>
-    <p>需选择IAP破解才可使用：</p>
+    <p>需选择内购破解天赋才可使用：</p>
       <dt>heal - 治疗全八项和狗</dt>
       <dt>kill - 杀死玩家</dt>
       <dt>fix - 修复发电机和油泵 (如可修复)</dt>
@@ -124,7 +126,7 @@
       <dt>restore {JSON} - 将备份来的字符串覆盖到存档。</dt>
     </dl>
     <h3 id="steal">NPC偷窃<button class="button2" onclick="scrollToSection('steal_return')">返回</button></h3>
-    <p>可在NPC家偷东西。摘抄true的指南：偷窃成功时该NPC增加1警惕度，失败增加2警惕度，同时减少2点好感值（社交达人-1，作弊全解锁-0）。每天更新贼运，会影响成功率。若当日未对该NPC偷窃，其警惕度-1。</p>
+    <p>可在NPC家偷东西。摘抄true的指南：偷窃成功时该NPC增加1警惕度，失败增加2警惕度，同时减少1点好感值（作弊全解锁-0）。每天更新贼运，会影响成功率。当前好感值越高，成功概率也越高。若当日未对该NPC偷窃，其警惕度-1。</p>
     <h3 id="bazaar">幸存者市场<button class="button2" onclick="scrollToSection('bazaar_return')">返回</button></h3>
     <p>你可以在这里售卖背包中的物品，获得钱币 (最多持有99999)，并购买物资。物资每天刷新，可在地图界面预览。如有优惠，地图界面 - 地点弹窗 - 物品列表弹窗会显示 “sale“ 图标。市场里有抽奖 (试试手气！) 和旅舍 (有偿休息和放松) 。</p>
     <h3 id="thirst">口渴值<button class="button2" onclick="scrollToSection('thirst_return')">返回</button></h3>
@@ -135,11 +137,11 @@
     <p>仅在有摩托车的情况下生效。玩家可在加油站用油泵组件修复汽油泵。修复后每小时汽油+1。汽油最大值99，不可售卖。骑摩托会使用汽油，大幅增加速度。战隼被移除，引擎和加成用在摩托车上。 靴子会在行走固定距离后损坏。如果玩家有靴子，靴子会自动提供少量速度加成。如果玩家有摩托车会自动提供背包大小加成。如果玩家有汽油并想花费汽油 (可在移动界面-摩托车状态按钮禁用加速)，会提供速度加成。新增武器：火焰喷射器，消耗汽油，对全场僵尸造成伤害。若4只或以上僵尸在场上，每只僵尸获得25伤害。若2只或以上僵尸在场上，每只获得50伤害。若场上只有1只僵尸，获得100伤害。你可能在路边发现遗弃的汽车。如有装备虹吸工具 (工具台制造)，可获得汽油。</p>
     <h3 id="bullet">标准子弹<button class="button2" onclick="scrollToSection('bullet_return')">返回</button></h3>
     <p>副本及僵尸遭遇大概率只会获得标准子弹。标准子弹很难损伤枪支，准度也更高。不可制作，价值高。如背包有标准子弹并选择了标准子弹优先，会使用标准子弹。如果任意一种子弹打没，会自动切换子弹类型。</p>
-    <h3 id="expire">食物过期<button class="button2" onclick="scrollToSection('expire_return')">返回</button></h3>
-    <p>食物可能在凌晨1点过期，过期概率因食物而异。过期食物会被转化成肥料，加速作物生长 (3小时)，可以售卖。通电的冰箱可以避免家里的食物过期。保险箱和背包里的食物不会过期。</p>
+    <h3 id="expire">食物腐败<button class="button2" onclick="scrollToSection('expire_return')">返回</button></h3>
+    <p>食物可能在凌晨1点腐败，腐败概率因食物而异。腐败食物会被转化成肥料，加速作物生长 (3小时)，可以售卖。通电的冰箱可以避免家里的食物腐败。保险箱和背包里的食物不会腐败。冬天腐败较慢，夏天腐败较快。</p>
     <h3 id="dog">带狗外出<button class="button2" onclick="scrollToSection('dog_return')">返回</button></h3>
     <p>狗有三项属性：饥饿，外伤，和心情。饥饿值会在48小时内殆尽。喂肉可获得12小时饥饿时间。每天和狗互动来增加双方的心情值。使用狗骨头来立即填满狗的心情值。狗可能在战斗中受伤，用绷带来治疗。如果任一属性为0，狗不会参与战斗或家的防御。狗不会死。</p>
-    <p>你可以在狗舍界面将狗带出门。如果和狗在外过夜，狗无法保护家。战斗中，狗可以攻击或吸引僵尸的注意，更能帮你搜寻到更多的资源。如果将狗带出，顶栏会出现狗的标志，可点击管理狗的状态。如果图标变灰，意味着狗因为属性过低无法参与加成。如果狗舍家具图标变灰，狗将因为属性过低无法为家防御。你可以给狗起名。</p>
+    <p>你可以在狗舍界面将狗带出门。将狗装入背包不是带狗出门！如果和狗在外过夜，狗无法保护家。战斗中，狗可以攻击或吸引僵尸的注意，更能帮你搜寻到更多的资源。如果将狗带出，顶栏会出现狗的标志，可点击管理狗的状态。如果图标变灰，意味着狗因为属性过低无法参与加成。如果狗舍家具图标变灰，狗将因为属性过低无法为家防御。你可以给狗起名。</p>
 
     <h2 id="faq">常见问题<button class="button2" onclick="scrollToSection('hub')">返回</button></h2>
     <b>问：我很不喜欢病毒载量的设计！你能不能搞个没有这个功能的版本？</b>
@@ -157,9 +159,9 @@
     <b>问：你能不能加一些剧情？</b>
     <p>答：个人有5+年游戏设计的经验，认为生存游戏传统剧情不可行。剧情只会分化玩家，让生存玩家没法专心生存，剧情玩家被生存难度阻碍。Lore可以有，除非有经费来搞多枝干剧情，再多有害无益。</p>
     <b>问：怎么下载新版本？好多链接都不好使！</b>
-    <p>答：很多网站被中国屏蔽。如果你想睁开眼睛看世界，请百度Geph，FreeBrowser，V2Ray，VPS机场。如果你不在乎最新的更新，可以时常看看贴吧的主题帖，我会不定期更新。</p>
+    <p>答：很多网站被中国屏蔽。如果你想睁开眼睛看世界，请百度Geph，FreeBrowser，V2Ray，VPS机场。如果你不在乎最新的更新，可以时常看看贴吧的主题帖，我会不定期更新。你可以试试运气，点击主菜单左下角大拇指按钮的"GitHub"按钮，下载最新的APK。</p>
     <b>问：我会写代码/做美工/搞内测，有什么我能帮到的？</b>
-    <p>答：太多太多东西了。从新功能，到类似081的副本特殊地图，到单元测试 (unit testing)。如果你像我一样愿意为这个游戏发电，请联系我。</p>
+    <p>答：我对这个游戏的改良已经完成了。如果你有技术背景和创意，欢迎在我的基础上二创。游戏的代码和工具已在GitHub开源。</p>
     <b>问：我想做自己的魔改版，该从哪开始？</b>
     <p>答：APK就是ZIP，进去看看，游戏的代码都在js里，可以直接修改。素材可以直接加png，或者用TexturePacker压plist。推荐VSCode的Diff Folder插件，借鉴其他改版的代码区别。最后别忘了用apktool/MT管理器给应用签名。</p>
     <b>问：你能不能按我的需求改这个游戏，或者帮我破解另一个游戏？</b>
@@ -199,7 +201,16 @@
     <p>死亡日记使用了Cocos2d-JS引擎，安装包没有加固，源码也没有经过编译和混淆，修改难度极低。虽然原版图像素材经过加密，密钥 (B29B3886-543224E4-71BDF6E3-9275C626) 和编辑工具 (TexturePacker) 获取后操作相对简单 (此版本已去除加密)。游戏存档在root目录下使用了加密sqlite3数据库存储，密钥为 (1a2b3c4d5fberrytown)。</p>
         
     <h2 id="contact">联络和更新方式<button class="button2" onclick="scrollToSection('hub')">返回</button></h2>
-    <p>主页面-大拇指按钮的任何途径。</p>
+    <p>可以通过主页面-右下角大拇指按钮来一键访问以下的信息。</p>
+    <p>此开源项目地址在：github.com/qwerfd2/buried-city</p>
+    <p>最新版APK可在此下载：github.com/qwerfd2/buried-city/releases</p>
+    <p>其他的死亡日记修改版在这里：rentry.co/fpkk2</p>
+    <p>它们被备份在：archive.org/details/t-27_20230804</p>
+    <p>游戏的Reddit页在：redd.it/14k6zcq</p>
+    <p>游戏的贴吧页在：tieba.baidu.com/p/8546322916</p>
+    <p>你可以在Discord找到作者：antcfgss#0</p>
+    <p>可以电邮：mtngckover at gmail dot com</p>
+    <p>或者QQ：3421587952</p>
 
 <script>
     function scrollToSection(sectionId) {

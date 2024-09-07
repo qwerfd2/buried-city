@@ -93,18 +93,18 @@ var LogView2 = cc.ScrollView.extend({
 
         var time = new ccui.Text(stringUtil.getString(1000, arr.ti), "", 20);
         time.setColor(cc.color(0, 0, 0, 255))
-        time.setAnchorPoint(0, 1);
+        time.setAnchorPoint(1, 1);
         time.tag = 1;
         node.addChild(time);
 
-        var Line = new ccui.Text(String("_").repeat(30), "", 20);
+        var Line = new ccui.Text("____________________________", "", 20);
         Line.setColor(cc.color(0, 0, 0, 255))
         Line.setAnchorPoint(0, 1);
         node.addChild(Line);
 
         var msg = new ccui.Text(stringUtil.getString(9010), "", 20);
+        msg.setColor(cc.color(0, 0, 0, 255))
         msg.setAnchorPoint(0, 0);
-        msg.setColor(cc.color(255, 0, 0, 255))
         msg.setVisible(!arr.ar.length)
         node.addChild(msg);
 
@@ -114,10 +114,10 @@ var LogView2 = cc.ScrollView.extend({
 
         node.setContentSize(this.getViewSize().width, 50);
 
-        time.setPosition(0, node.height - 6);
-        Line.setPosition(-19, 26)
-        msg.setPosition(60, node.height - 34);
-        richText.setPosition(60, node.height - 34);
+        time.setPosition(85, node.height - 6);
+        Line.setPosition(0, 26)
+        msg.setPosition(95, node.height - 34);
+        richText.setPosition(85, node.height - 37);
 
         return node;
     }

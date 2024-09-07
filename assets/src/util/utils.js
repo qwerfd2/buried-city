@@ -10,7 +10,7 @@ var developerUUID = ["171996966739776364", //p-nr
     "171955862186243491"]; //51-r
 
 var ClientData = {
-    MOD_VERSION: 40,
+    MOD_VERSION: 41,
     MOD_VARIANT: 1,
     MIN_VER: 27,
     REC_VER: 29

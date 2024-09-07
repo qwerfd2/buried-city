@@ -897,6 +897,7 @@ var RandomBattleDialog = DialogBig.extend({
                 } else {
                     if (self.type) {
                         player.log.addMsg(9115);
+                        player.lastBanditCaveIn = cc.timer.getTimeNum();
                     } else {
                         player.log.addMsg(1115);
                     }
@@ -1002,9 +1003,9 @@ var RandomBattleDialog = DialogBig.extend({
         if (!sumRes) {
             des.setString(stringUtil.getString(9116));
         } else if (this.type) {
-            des.setString(stringUtil.getString(9082));
+            des.setString(stringUtil.getString(9083));
         } else {
-            des.setString(stringUtil.getString(1082));
+            des.setString(stringUtil.getString(1173));
         }
 
         this.log.height += 10;

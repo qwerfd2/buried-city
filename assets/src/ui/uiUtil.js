@@ -198,7 +198,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount, discount) {
     }
 };
 
-uiUtil.Steal = function(arr, success, bo, npcName) {
+uiUtil.Steal = function(arr, success, npcName) {
     var config = {
         title: {},
         content: {},
@@ -209,6 +209,7 @@ uiUtil.Steal = function(arr, success, bo, npcName) {
     config.action.btn_1.txt = stringUtil.getString(1073);
     var title = success ? stringUtil.getString(9011) : stringUtil.getString(9010);
     var des;
+    var bo = arr.length > 0;
     if (success) {
         if (bo) {
             des = stringUtil.getString(9013);
@@ -225,10 +226,10 @@ uiUtil.Steal = function(arr, success, bo, npcName) {
     var co = dialog.contentNode;
 
     dialog.titleNode.getChildByName('title').setPosition(co.width / 15, co.height - 55);
-    richText = new ItemRichText(arr, arr.length * 86, arr.length, 0.5, cc.color(0, 0, 222, 222), 22);
+    richText = new ItemRichText(arr, arr.length * 90, arr.length, 0.5, cc.color.BLACK, 22);
     richText.setVisible(success && bo);
     co.addChild(richText);
-    var res = 2 - IAPPackage.isSocialEffectUnlocked();
+    var res = 1;
     if (IAPPackage.isAllItemUnlocked()) {
         res = 0;
     }
@@ -236,7 +237,7 @@ uiUtil.Steal = function(arr, success, bo, npcName) {
     close.setAnchorPoint(0, 1);
     close.setPosition(co.width / 12, co.height / 3)
     close.setColor(cc.color(255, 0, 0, 255));
-    close.setVisible(!bo);
+    close.setVisible(!bo && !success);
     co.addChild(close);
 
     dialog.show();
@@ -253,7 +254,7 @@ uiUtil.StealLog = function(a) {
     var npcLog = npc.log;
     var lo = new DialogBig2(config);
     var logView = new LogView2(cc.size(436, 412));
-    logView.setPosition(lo.x + 102, lo.y);
+    logView.setPosition(lo.x + 90, lo.y);
     logView.setName("logView");
     lo.contentNode.addChild(logView, 1);
     for (var i in npcLog) {
@@ -262,12 +263,12 @@ uiUtil.StealLog = function(a) {
 
     var npcname = new ccui.Text(npcName, "", 16);
     npcname.setColor(cc.color(0, 0, 0, 255));
-    npcname.setPosition(lo.width / 5, lo.y - 12);
+    npcname.setPosition(lo.width / 4, lo.y - 12);
     lo.contentNode.addChild(npcname, 1);
     
     var title = new ccui.Text(stringUtil.getString(9004), "", 24);
     title.setColor(cc.color(0, 0, 0, 255));
-    title.setPosition(lo.width / 5, lo.y + 470);
+    title.setPosition(lo.width / 4, lo.y + 470);
     lo.contentNode.addChild(title, 1);
     lo.show();
 };
@@ -998,7 +999,7 @@ uiUtil.showNpcSendGiftDialog = function (npc) {
             return {itemId: itemId, num: itemMap[itemId]};
         });
 
-        config.content.des = stringUtil.getString(1068);
+        config.content.des = stringUtil.getString(1068) + "\n" + stringUtil.getString(1069);
         gifts.forEach(function (gift) {
             player.log.addMsg(1103, gift.num, stringUtil.getString(gift.itemId).title, player.storage.getNumByItemId(gift.itemId));
         });
@@ -1033,16 +1034,11 @@ uiUtil.showNpcSendGiftDialog = function (npc) {
     var dialog = new NpcDialog(config);
     if (isItem) {
         var log = dialog.contentNode.getChildByName("log");
-        var label = new cc.LabelTTF(stringUtil.getString(1069), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-        label.setAnchorPoint(0, 1);
-        label.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
-        label.setColor(cc.color.BLACK);
-        log.addChild(label);
 
         var richText = new ItemRichText(gifts, dialog.rightEdge - dialog.leftEdge, 3, 0.5, cc.color.BLACK);
         richText.setName("richText")
         richText.setAnchorPoint(0, 1);
-        richText.setPosition(dialog.leftEdge, label.getPositionY() - label.getContentSize().height - 10);
+        richText.setPosition(dialog.leftEdge, log.getContentSize().height - 10);
         log.addChild(richText);
     }
     dialog.show();

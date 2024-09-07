@@ -1,3 +1,0 @@
-Hey! You stumbled upon the source code folder. While you can change and use the code however you'd like, I'd appreciate it if you retain the credit information (don't claim that you single-handedly made this mod), and don't profit from my work (c'mon, the game is available online and no one plays a 10-year-old game anyways). Thanks!  -Tony, aka ArithSeq
-
-嘿！这里是游戏的源代码文件夹。虽然没人能阻止你修改和任意使用这里的代码，我希望你能保留制作者的信息（不要说这个修改是你一个人做的），也不要用我的工作成果牟利（醒醒，游戏网上都有，而且十年的游戏了都）。谢谢！ -Tony, aka ArithSeq

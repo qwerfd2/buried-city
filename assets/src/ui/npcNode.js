@@ -150,7 +150,7 @@ var NpcNode = BottomFrameNode.extend({
     Steal: function() {
         var arr = [];
         var ItemSortNum = this.npc.storage.getItemSortNum();
-        var baseLine = (player.Steal - this.npc.Alert - this.Increase + this.npc.reputation * 2) / ItemSortNum;
+        var baseLine = (player.Steal - this.npc.Alert - this.Increase) / ItemSortNum;
         var self = this;
         var success = false;
         this.npc.storage.forEach(function(i, n) {
@@ -158,13 +158,11 @@ var NpcNode = BottomFrameNode.extend({
             if (self.npc.id == 2) {
                 rand = 120;
             }
-            var base = utils.getRandomInt(0, rand);
-            var am = utils.getRandomInt(0, n);
-            am += utils.getRandomInt(0, n);
-            am *= (base / rand);
-            am = Math.round(Math.min(am, n));
-            
-            if (base <= baseLine) {
+            var b = utils.getRandomInt(0, rand);
+            var am = utils.getRandomInt(1, n);
+            var am2 = utils.getRandomInt(0, n);
+            am = Math.max(am + am2, n);
+            if (b <= baseLine) {
                 success = true;
                 if (itemConfig[i.id].weight == 0) {
                     self.npc.storage.decreaseItem(i.id, am);
@@ -197,7 +195,8 @@ var NpcNode = BottomFrameNode.extend({
             ti: time,
             ar: arr
         })
-        uiUtil.Steal(arr, success, this.npc.getName());
+        var bo = arr.length > 0;
+        uiUtil.Steal(arr, success, bo, this.npc.getName());
 
         //偷窃成功
         if (success) {

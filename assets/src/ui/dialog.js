@@ -897,7 +897,6 @@ var RandomBattleDialog = DialogBig.extend({
                 } else {
                     if (self.type) {
                         player.log.addMsg(9115);
-                        player.lastBanditCaveIn = cc.timer.getTimeNum();
                     } else {
                         player.log.addMsg(1115);
                     }

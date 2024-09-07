@@ -102,7 +102,7 @@ var string = {
     "7012": "You healed %s with bandage",
     "7013": "%s happily chews the bone",
     "7014": "You played with %s, he seems happy",
-    "7015": "%s attacked and the %s zombie received %s damage.",
+    "7015": "%s attacked a zombie, the %s zombie has suffered %s damage.",
     "7017": "%s found these on the zombie, stored in the stash for now:",
     "7018": "Dog's gift",
     "17": {
@@ -282,7 +282,7 @@ var string = {
     "9033": "Sell",
     "9034": "Buy",
     "9035": "Stock: ",
-    "9036": "But your backpack cannot hold the stolen items. You quietly put them back.",
+    "9036": "But your backpack cannot hold the stolen items. You quitely put them back.",
     "1323": "Repair (%s m)",
     "1": {
         "title": "Date",
@@ -925,7 +925,7 @@ var string = {
     },
     "6_1": {
         "title": "Thermostat Distiller",
-        "des": "With better temperature control, you can now use this to distill vodka and get high concentration alcohol."
+        "des": "With better tenperature control, you can now use this to distill vodka and get high concentration alcohol."
     },
     "7_0": {
         "title": "Cellar",
@@ -1385,8 +1385,8 @@ var string = {
     },
     "p_104": {
         "name": "Communicator",
-        "des": "You get along with people easily, and they help you out often.",
-        "effect": "Receive additional gifts from NPCs. Refusing to help will not decrease friendship."
+        "des": "You get along with people easily, and they help you out often. Sadly, your popularity also attracts those with ill intentions.",                        
+        "effect": "Receive additional gifts from NPCs. Refusing to help will not decrease friendship. Reduce the loss of friendship from failed steal attempts. However, you are more suseptable to burglary and robbery."
     },
     "p_201": {
         "name": "Food Bag",

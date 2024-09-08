@@ -1,38 +1,44 @@
 您在此被允许对《死亡之城》进行衍生作品创作，但您需遵循以下条件：
 
 1. 您的作品应明确标示为《死亡之城》的衍生作品。
-预期结果：玩家不应混淆游戏的某个版本是否为原始版本。
 
-2. 现有的版权信息和链接不得更改。允许添加新的版权信息和链接，但必须放在现有信息之后。
 
-预期结果：Locojoy/Dice7 对游戏的创作，我（和您）对额外功能的贡献都应得到认可，且需尊重该顺序。
+2. 现有的版权信息和链接不得更改。允许添加新的版权信息和链接，但必须基于时间顺序放在现有信息之后。
+
 
 3. 衍生作品必须保持开源，并且不得用于产生任何收入。
-预期结果：社区保持开放，创意工作不以盈利为目的。
 
-4. 衍生作品必须包含此许可证。您可以在不违背此许可证中条款的前提下，在新的许可证中新增条款。
-预期结果：在多层衍生作品中，每一层贡献均能被注明。项目可以保证开源，确保衍生作品的良好生态环境。
+“收入”包括直接销售、应用内购买、广告，或通过众筹、捐赠或其他财务手段获得的货币。
+
+
+4. 衍生作品必须包含此许可证。您可以在不违背此许可证中条款给予的自由和限制的前提下，在新的许可证中新增条款。任何限制本许可证所述开源、非商业化及署名原则的许可证均被禁止。
 
 非强制，但强烈建议：
 区分您的衍生作品。包括更改 APK 的签名、图标、名称、更新检查 CDN 和留言墙服务器。
 
+免责声明：原始作品《Buried Town》仍然是其最初创作者Locojoy/Dice7的知识产权。本许可证仅适用于基于原游戏修改所制作的衍生作品，并不涵盖对原作的所有权或法律授权。Locojoy/Dice7有权对衍生作品主张权利。
+
+
 You are hereby ALLOWED to make derivative work of Buried City, under the following conditions:
 
-1. Your work must be clearly marked as a derivative work of Buried City. 
+1. Your work must be clearly marked as a derivative work of Buried City.
 
-Desired outcome: Players should not be confused on whether a version of the game is the original version or not.
 
-2. The existing credit information and links must not be modified. Adding new credit information and links are allowed, provided that they are after the existing information.
+2. The existing credit information and links must not be modified. Adding new credit information and links are allowed, provided that they are added after the original credits, in chronological order of contribution.
 
-Desired outcome: Locojoy/Dice7's creation of the game, my (and your) work on additional features, should all be acknowledged, in that order.
 
 3. The derivative work must remain open-source, and must not be used to generate any income.
 
-Desired outcome: The community remains open and creative work is not done with profit in-mind.
+"Income" includes direct sales, in-app purchases, advertisements, or monetization via crowdfunding, donations, or other financial means.
 
-4. The derivative work must contain this license. Adding additional licenses are allowed provided that its clauses does not conflict with the clauses stated in this license.
+
+4. Additional licenses are allowed, provided that they do not restrict or conflict with the freedoms and restrictions stated in this license. Any license that limits the open-source, non-commercial, and attribution principles outlined here is prohibited.
+
 
 Not required, but strongly recommended:
 
 1. Distinguish your derivative work. This includes changing the APK's signature, icon, name, update check CDN, and message wall server.
+
+DISCLAIMER: The original work, *Buried Town*, remains the intellectual property of its original creators, Locojoy/Dice7. This license applies solely to derivative works made upon the modifications to the existing game, and does not imply ownership or legal authority over the original game. Locojoy/Dice7 have the right to assert claims to the derivative works.
+
 

@@ -6,10 +6,10 @@ Modded by ArithSeq, based on BuriedTown 1.4.3. Commercial use is prohibited.
 
 Buried City is very different from the official version, and player feedback generally says it is more difficult. Please read the change log carefully if you have played the official version before.
 
-Peripheral Edits Game Edits Appendix FAQ Music List BuriedTown Factsheet Contact and Update Info
+Derivative work is allowed provided you follow the License in `license.txt`.
 ------------------------------------------------------------------------------------------------
 
-Peripheral EditsReturn
+Peripheral Edits
 ----------------------
 
 1\. Renamed installer package and changed the icon for distinctiveness.  
@@ -29,7 +29,7 @@ Peripheral EditsReturn
 15\. All pvr.ccz asset packs are decrypted for easier modding.  
 16\. Removed unused codes and functionality.  
 
-Game EditsReturn
+Game Edits
 ----------------
 
 1\. Removed character selection mechanism. You are now playing as a 3rd party survivor, with every NPC unlockable.  
@@ -79,14 +79,14 @@ Game EditsReturn
 45\. Sub-zero temperature will accelerate infection. Winter temperature has been tweaked - during the blizzard, having both stove will still incur minor infection.  
 46\. Attempted to fix bugs (negative weight, tutorial work bench, non-Chinese appliance glitch, zombie attack after dead, hang when moving all bullet/coffee from site storage, NPC value rounding error, multi-clickable crafting buttons, NPC ghost gun exploit, avoid zombie encounter by quitting the game, tutorial visual bugs).
 
-AppendixReturn
+Appendix
 --------------
 
-### MoonlightingReturn
+### Moonlighting
 
 Max difficulty: 131+ days, \[65, 75\], probability 50%. Formula: \[ fence(30) + dog(10) + electric fence(40) \] + minefield(last line of defense, 40). Location's defense has been improved accordingly, but no location is invincible.
 
-### Radio CMDReturn
+### Radio CMD
 
 Only available if Cheat: Free IAP is selected:
 
@@ -106,15 +106,15 @@ backup - Set the backup string for Achievement and Medal to the input prompt, re
 
 restore {JSON} - Restore the JSON string to Achievement and Medal.
 
-### NPC StealingReturn
+### NPC Stealing
 
 You can steal from NPC at their home. If stealing is successful, that NPC's alert increases by 1, and you keep the stolen goods. If failed, the alert increases by 2, and friendship is reduced by 2 (Communicator talent: -1, Cheat all unlocked: -0). Your luck is updated daily, and will affect the success rate. NPC's alert will decrease by 1 per day if you don't steal from them.
 
-### Survivor BazaarReturn
+### Survivor Bazaar
 
 A location where you can sell items in your bag for coins (max 99999 coins), and buy items which refreshes every day. Items can be previewed in map. If an item is discounted, a "sale" icon will appear in the popup. Sweepstakes are available in the Bazaar. Hostel allows you to sleep and rest for a fee.
 
-### ThirstReturn
+### Thirst
 
 The player will drink water automatically from storage or from the bag, once every 6 hours (Summer: 4 hours). Each drink will provide thirst immunity for the next time frame. If there is no immunity, 3 thirsts are deducted every hour. If thirst is lower than 25, you will lose 20 hp per hour. If you obtain water and thirst is not full, you will drink until it is replenished. When arriving at home, you will drink until your thirst is quenched. Excessive amounts will be converted to equivalent immune time.
 
@@ -122,25 +122,25 @@ The player will drink water automatically from storage or from the bag, once eve
 
 Every time you are hurt from a zombie combat with difficulty greater than 2, you risk gaining 1 virus. If the virus is overloaded, you will die instantly. Virus will not decrease, but you can increase the upper bound of virus load by sacrificing other attributes. All attributes except HP can be exchanged for virus load 5 to 15, and HP can be exchanged 10 to 15. Wearing clothes can reduce the chance of gaining virus. Added Experimental Antidote: Provide immunity for virus load for 72 hours, obtainable at Dr. Jane. When dead and first aid kit is used, virus load will be halved.
 
-### Fuel MechanismReturn
+### Fuel Mechanism
 
 Only applicable after the player obtains motorcycle. Player can fix the pump at the gas station with gas pump part. When fixed, pump will provide 1 fuel per hour. Fuel cannot be sold and have a cap of 99. fuel can be used during motorcycle travel, which will significantly boost the player's speed. Falcon has been removed, the engine/buffs repurposed for/to the normal motorcycle. Shoes now break after a fixed distance have been traveled. If the player have shoes, it will be automatically used to provide a small speed boost. If the player have motorcycles,the storage space boost will be used. If the player also has fuel & want to use it (you can disable speed boost by clicking the motorcycle status icon on the travel dialog), speed boost will be provided. New weapon: Flamethrower, damage all enemies by consuming 1 fuel per turn. if more than 3 zombies are present, each are delt 25 damage. if more than 1 zombie is present, each are delt 50 damage. If 1 zombie is present, 100 damage is delt. You might encounter abandoned cars when traveling. If equipped with siphoning tool (craftable at the bench), you will receive some fuel.
 
-### Standard BulletReturn
+### Standard Bullet
 
 Bullets obtained at locations and encounters will largely be standard bullets. Stanard bullet are unlikely to break the gun, has boosted accuracies, but can't be crafted. If you have standard bullets in your bag and it is set to priority, it will be used. If one kind of bullet is depleted, the other will be used automatically.
 
-### Food ExpirationReturn
+### Food Expiration
 
 Different food have a different chance to expire at 1AM. Expired food will be converted to fertilizer to provide speed-up for crops (3 hours) or sold. Fridge with electricity can prevent food in home from expiring. Food in backpack and safe will not expire.
 
-### Dog OutdoorReturn
+### Dog Outdoor
 
 Dogs now has 3 attributes: Hunger, injury, and mood. Hunger will deplete in 48 hours. 1 meat gives 12 hours of food. Pat dog every day to receive mood bonus for both player and dog. Give dog toys to instantly gain mood. Dog can be injured during battle - use bandages to heal him. If any one of the three attributes is depleted, dog will not help guard the home or in battle. Dog will not die.
 
 You can bring dog outside in the Dog Shed appliance screen. If outside, dog cannot protect home. While outside, dog can distract zombies, attack them, and help you find more supplies. If you decide to bring dog outside, a dog logo will appear on the topbar, allowing you to check their stats. If the logo is gray, dog is not providing benefit due to low attribute. If at home and dog shed is grayed out, it means that dog will not defend your home due to low attribute. You can name your dog.
 
-FAQReturn
+FAQ
 ---------
 
 **Q: I don't like the design of virus load! Can you make a version without it?**
@@ -191,7 +191,7 @@ A: No. These requests takes a lot of time to complete. I usually charge people f
 
 A: Of course. If your questions are unanswered, you are welcomed to contact me through any methods inside Main Menu - Thumb button.
 
-Music ListReturn
+Music List
 ----------------
 
 Destroyer - Sergey Cheremisinov  
@@ -217,7 +217,7 @@ Search and Flight - Sergey Cheremisinov
 穷途 - 罗杨  
 末路 - 罗杨  
 
-BuriedTown FactsheetReturn
+BuriedTown Factsheet
 --------------------------
 
 BuriedTown, originally named BerryTown, was developed by Chengdu 点犀 (DianXi) (Dice7) Network Co.Ltd and published by Beijing 乐动卓越 (LeDongZhuoYue) (Locojoy) Technology Co.Ltd. First launched on the iOS on Sep. 23rd, 2015, The game started its Android beta phase on Sep. 25th, 2015, and was released at Google Play on Nov. 23rd, 2015. The last update (1.4.3) was released on Jun. 27th, 2018, and the game server was shut down around late June, 2019.
@@ -225,8 +225,3 @@ BuriedTown, originally named BerryTown, was developed by Chengdu 点犀 (DianXi)
 Thanks to the game's weak online dependency, the majority of the functionality can be enjoyed offline, with the exception of leaderboards, In-App Purchases, and in-game radio.
 
 Developed using Cocos2d-JS, the installation package of Buried Town is unprotected, source code not compiled nor obfuscated, making modifications extremely easy. Although the graphics have been encrypted, the process after obtaining the key (B29B3886-543224E4-71BDF6E3-9275C626) and edit tool (TexturePacker) is trivial (The encryption has been removed in this version). The game's save file is stored under root-only directory using an encrypted sqlite3 database, with the password (1a2b3c4d5fberrytown).
-
-Contact and Update InfoReturn
------------------------------
-
-Main Menu - Thumb button contains all the information.

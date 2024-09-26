@@ -1,0 +1,11 @@
+Instruction on building your own server:
+
+Register an account at studio.code.org
+
+Create a new "App Lab" project.
+
+Create a cloud data table named "message"
+
+Change the channel variable on line 10 of assets/src/ui/chatScene.js to the channel ID of your applab project (last part of its URL)
+
+Profit

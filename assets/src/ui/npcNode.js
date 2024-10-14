@@ -165,14 +165,7 @@ var NpcNode = BottomFrameNode.extend({
             am = Math.ceil(Math.min(am, n));
             if (base <= baseLine) {
                 success = true;
-                if (itemConfig[i.id].weight == 0) {
-                    self.npc.storage.decreaseItem(i.id, am);
-                    player.bag.increaseItem(i.id, am, true);
-                    arr.push({
-                        itemId: i.id,
-                        num: n
-                    })
-                } else if (arr.length < 2){
+                if (arr.length < 2){
                     var amount = 0;
                     for (var a = 0; a < am; a++) {
                         if (player.bag.validateItemWeight(i.id, 1)) {

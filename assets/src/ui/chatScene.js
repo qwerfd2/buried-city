@@ -41,7 +41,7 @@ var chatLayer = cc.Layer.extend({
         this.addChild(btnClose);
         this.initData();
         this.fetchMessages(0);
-        this.schedule(this.fetchNewMessages, 3);
+        this.schedule(this.fetchNewMessages, 5);
     },
 
     initData: function() {
@@ -117,14 +117,12 @@ var chatLayer = cc.Layer.extend({
                 self.latestMessageId = Math.max(self.latestMessageId, message.id);
                 var formattedMessage = message.m;
                 self.messages.unshift(formattedMessage);
+                if (self.messages.length > 120) {
+                    self.messages.pop()
+                }
             }
         });
-
-        if (trigger && val) {
-            this.updateTextArea(true);
-        } else {
-            this.updateTextArea();
-        }
+        this.updateTextArea(trigger, val);
     },
 
     wrapText: function(message, maxLineLength) {
@@ -158,26 +156,26 @@ var chatLayer = cc.Layer.extend({
         return wrappedMessage.trim();
     },
 
-    updateTextArea: function(bottom) {
-        var maxLineLength = 75;
-        var self = this;
+    updateTextArea: function(trigger, val) {
+        if (trigger) {
+            var wrappedMessages = "";
+            for (var i = this.messages.length - 1; i > -1; i--) {
+                wrappedMessages += "\n";
+                wrappedMessages += this.wrapText(this.messages[i].toString(), 70);
+                wrappedMessages += "\n";
+            }
 
-
-        var wrappedMessages = this.messages.map(function(message) {
-            return self.wrapText(message.toString(), maxLineLength);
-        });
-
-        wrappedMessages.reverse();
-
-        this.textArea.setString(wrappedMessages.join("\n\n"));
-
-        var textAreaHeight = this.textArea.getContentSize().height;
-        var scrollHeight = Math.max(textAreaHeight, this.scrollView.getContentSize().height);
-        this.scrollView.setInnerContainerSize(cc.size(this.scrollView.getContentSize().width, scrollHeight));
-        this.textArea.setPosition(cc.p(0, scrollHeight));
-        if (bottom) {
-            this.scrollView.jumpToBottom();
+            this.textArea.setString(wrappedMessages);
+    
+            var textAreaHeight = this.textArea.getContentSize().height;
+            var scrollHeight = Math.max(textAreaHeight, this.scrollView.getContentSize().height);
+            this.scrollView.setInnerContainerSize(cc.size(this.scrollView.getContentSize().width, scrollHeight));
+            this.textArea.setPosition(cc.p(0, scrollHeight));
+            if (val) {
+                this.scrollView.jumpToBottom();
+            }
         }
+
     },
 
     sendMessage: function() {

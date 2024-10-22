@@ -2,6 +2,8 @@
 Buried City
 ===========
 
+[![](https://img.shields.io/github/downloads/qwerfd2/buried-city/latest/total?style=flat-square)](https://github.com/qwerfd2/buried-city/releases/latest)
+
 Modded by ArithSeq, based on BuriedTown 1.4.3. Commercial use is prohibited.
 
 Buried City is very different from the official version, and player feedback generally says it is more difficult. Please read the change log carefully if you have played the official version before.

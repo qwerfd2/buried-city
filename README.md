@@ -2,7 +2,7 @@
 Buried City
 ===========
 
-[![](https://img.shields.io/github/downloads/qwerfd2/buried-city/latest/total?style=flat-square)](https://github.com/qwerfd2/buried-city/releases/latest)
+[![](https://img.shields.io/github/downloads/qwerfd2/buried-city/total?style=flat-square)](https://github.com/qwerfd2/buried-city/releases)
 
 Modded by ArithSeq, based on BuriedTown 1.4.3. Commercial use is prohibited.
 

@@ -495,7 +495,7 @@ var Player = cc.Class.extend({
             var self = this;
             uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
         }
-        if (saveFlag || saveFlag) {
+        if (saveFlag || stealFlag) {
             Record.saveAll();
         }
     },
@@ -1456,7 +1456,7 @@ var Player = cc.Class.extend({
             }
         }
         var homeDef = this._getHomeDef();
-        if (homeDef >= 80 && this.isBombActive) {
+        if (homeDef >= 70 && this.isBombActive) {
             Achievement.checkSpecial("bt_special_2");
         }
         if (IAPPackage.isStealthUnlocked()) {

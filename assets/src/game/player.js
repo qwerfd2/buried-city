@@ -410,16 +410,6 @@ var Player = cc.Class.extend({
     hasMotocycle: function () {
         return (player.bag.validateItem(1305034, 1) || player.storage.validateItem(1305034, 1) || player.safe.validateItem(1305034, 1));
     },
-
-    testSteal: function () {
-        var def = this._getHomeDef();
-        if (this.isBombActive) {
-            def += 30;
-        }
-        def =  1.0 - (def / 100);
-        player.log.addMsg("def: " + def);
-    },
-
     trySteal: function () {
         var saveFlag = false;
         var stealFlag = false;
@@ -475,7 +465,7 @@ var Player = cc.Class.extend({
         if (this.isBombActive) {
             def += 30;
         }
-        def =  1.0 - (def / 100);
+        def =  Math.max(0, 1.0 - (def / 100));
         probability = probability * def;
         var rand = Math.random();
 

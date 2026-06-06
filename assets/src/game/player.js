@@ -410,16 +410,6 @@ var Player = cc.Class.extend({
     hasMotocycle: function () {
         return (player.bag.validateItem(1305034, 1) || player.storage.validateItem(1305034, 1) || player.safe.validateItem(1305034, 1));
     },
-
-    testSteal: function () {
-        var def = this._getHomeDef();
-        if (this.isBombActive) {
-            def += 30;
-        }
-        def =  1.0 - (def / 100);
-        player.log.addMsg("def: " + def);
-    },
-
     trySteal: function () {
         var saveFlag = false;
         var stealFlag = false;
@@ -475,7 +465,7 @@ var Player = cc.Class.extend({
         if (this.isBombActive) {
             def += 30;
         }
-        def =  1.0 - (def / 100);
+        def =  Math.max(0, 1.0 - (def / 100));
         probability = probability * def;
         var rand = Math.random();
 
@@ -495,7 +485,7 @@ var Player = cc.Class.extend({
             var self = this;
             uiUtil.showStolenDialog(stringUtil.getString(9032), "res/new/stealPrompt.png", self, res, true);
         }
-        if (saveFlag || saveFlag) {
+        if (saveFlag || stealFlag) {
             Record.saveAll();
         }
     },
@@ -1456,7 +1446,7 @@ var Player = cc.Class.extend({
             }
         }
         var homeDef = this._getHomeDef();
-        if (homeDef >= 80 && this.isBombActive) {
+        if (homeDef >= 70 && this.isBombActive) {
             Achievement.checkSpecial("bt_special_2");
         }
         if (IAPPackage.isStealthUnlocked()) {

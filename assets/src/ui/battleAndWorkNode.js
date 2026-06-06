@@ -447,14 +447,10 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         richText.setPosition(label1.x + label1.width, label1.y - label1.height / 2);
         node.addChild(richText);
 
-        var label2 = new cc.LabelTTF(stringUtil.getString(1059) + stringUtil.getString("hp") + " " + sumRes.totalHarm + ", " + stringUtil.getString("15").title + " " + sumRes.totalVirus, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
+        var label2 = new cc.LabelTTF(stringUtil.getString(1059) + stringUtil.getString("hp") + " " + sumRes.totalHarm, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
         label2.setAnchorPoint(0, 1);
         label2.setPosition(0, label1.getPositionY() - label1.getContentSize().height - 10);
         node.addChild(label2);
-
-        if (sumRes.totalVirus) {
-            player.changeAttr("virus", sumRes.totalVirus);
-        }
 
         if (sumRes.brokenWeapon) {
             var label3 = new cc.LabelTTF(stringUtil.getString(1208), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
@@ -475,7 +471,7 @@ var BattleAndWorkNode = BottomFrameNode.extend({
         var btn = uiUtil.createCommonBtnWhite(stringUtil.getString(1060), this, function () {
             node.removeFromParent();
             self.updateView();
-            player.checkBreakdown(8112);
+            player.checkBreakdown(8111);
         });
 
         if (userGuide.isStep(userGuide.stepName.NEXT_ROOM)) {

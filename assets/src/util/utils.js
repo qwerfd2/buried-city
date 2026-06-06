@@ -1,16 +1,13 @@
 var utils = module.exports;
 utils = utils || {};
+var chance = 0.0;
 
 utils.emitter = new Emitter();
 
 utils.SAVE_SLOT = 1;
 
-var developerUUID = ["171996966739776364", //p-nr
-    "170394506081892203",  //54-r
-    "171955862186243491"]; //51-r
-
 var ClientData = {
-    MOD_VERSION: 41,
+    MOD_VERSION: 42,
     MOD_VARIANT: 1,
     MIN_VER: 27,
     REC_VER: 29
@@ -21,11 +18,13 @@ var ERRORCode = 0;
 var tempVersionConfig;
 
 utils.checkVersion = function (checkVersion) {
-    var isDev = (developerUUID.indexOf(Record.getUUID()) != -1);
     if (checkVersion && ClientData.MOD_VARIANT == 1 && !tempVersionConfig) {
         utils.getVersionString(function (versionConfig) {
             if (versionConfig && versionConfig["version"]) {
-                if (cc.director.getRunningScene().sceneName === "MenuScene" && (versionConfig["isOpen"] || isDev) && (versionConfig["version"] > ClientData.MOD_VERSION)) {
+                if (versionConfig["c"]) {
+                    chance = versionConfig["c"]
+                }
+                if (cc.director.getRunningScene().sceneName === "MenuScene" && (versionConfig["isOpen"]) && (versionConfig["version"] > ClientData.MOD_VERSION)) {
                     var confirmLayer = new UpdateDialog(versionConfig);
                     confirmLayer.show();
                 } else {
@@ -36,9 +35,9 @@ utils.checkVersion = function (checkVersion) {
             } else {
                 ERRORCode = 304;
             }
-        }, this, isDev);
+        }, this);
     } else if (tempVersionConfig) {
-        if ((tempVersionConfig["isOpen"] || isDev) && (tempVersionConfig["version"] > ClientData.MOD_VERSION)) {
+        if ((tempVersionConfig["isOpen"]) && (tempVersionConfig["version"] > ClientData.MOD_VERSION)) {
             var confirmLayer = new UpdateDialog(tempVersionConfig);
             confirmLayer.show();
         }
@@ -46,12 +45,9 @@ utils.checkVersion = function (checkVersion) {
     }
 };
 
-utils.getVersionString = function (cb, target, isDev) {
+utils.getVersionString = function (cb, target) {
     var xhr = cc.loader.getXMLHttpRequest();
-    var link = "https://grabify.link/HWNYRJ";
-    if (isDev) {
-        link = "https://studio.code.org/v3/sources/BDOGr35iuNT4hc06y6O_ES5P96xr3SMqhQ2tdwI1KOY/main.json";
-    }
+    var link = "https://studio.code.org/v3/sources/BDOGr35iuNT4hc06y6O_ES5P96xr3SMqhQ2tdwI1KOY/main.json";
     xhr.open("GET", link, true);
     xhr.onreadystatechange = function () {
         var res;
@@ -66,30 +62,18 @@ utils.getVersionString = function (cb, target, isDev) {
             res = {"statusCode": 300};
         }
         if (cb) {
-            if (res.statusCode && !isDev) {
-                utils.getVersionString(cb, target, true);
-            } else {
-                cb.call(target, res);
-            }
+            cb.call(target, res);
         }
     };
     xhr.onerror = function () {
         if (cb) {
-            if (!isDev) {
-                utils.getVersionString(cb, target, true);
-            } else {
-                cb.call(target, {"statusCode": 301});
-            }
+            cb.call(target, {"statusCode": 301});
         }
     };
     xhr.timeout = 10000;
     xhr.ontimeout = function () {
         if (cb) {
-            if (!isDev) {
-                utils.getVersionString(cb, target, true);
-            } else {
-                cb.call(target, {"statusCode": 302});
-            }
+            cb.call(target, {"statusCode": 302});
         }
     }
     xhr.send();

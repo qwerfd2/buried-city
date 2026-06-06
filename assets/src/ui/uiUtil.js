@@ -80,7 +80,7 @@ uiUtil.bazaarItem = function(itemInfo, target, cb) {
     return node;
 };
 
-uiUtil.bazaarSell = function(itemId, vvv, amount, discount) {
+uiUtil.bazaarSell = function(itemId, isSale, amount, discount) {
     var ee = player.getPrice(itemId);
     var config = {
         title: {},
@@ -145,7 +145,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount, discount) {
 
     var slider = new cc.ControlSlider("#slider_bg.png", "#slider_content.png", "#slider_cap.png");
     slider.setMinimumValue(Nuw);
-    if (vvv) {
+    if (isSale) {
         slider.setMaximumValue(player.bag.getNumByItemId(itemId));
     } else {
         slider.setMaximumValue(amount);
@@ -167,7 +167,7 @@ uiUtil.bazaarSell = function(itemId, vvv, amount, discount) {
         var a = (this.value ? this.value : 0);
         if (a > 0) {
             var v = a * ee;
-            if (vvv) {
+            if (isSale) {
                 bazaarSellDialog(vvv, stringUtil.getString(9024, a + "x " + config.title.title, round(v)), function() {
                     player.bag.decreaseItem(itemId, a);
                     player.onCurrencyChange(v);

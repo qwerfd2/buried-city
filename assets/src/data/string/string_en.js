@@ -1,4 +1,5 @@
 var string = {
+"9018": "\nYou felt a little sicker. Something is spreading.\nVirus load + %s",
 "radio_1": "Welcome to the Cheat Terminal.\n\nCommand:\nobtain 'name' int: Obtain item given name, amount.\nobtain everything int: Obtain everything given amount.\nheal: Heal the player on all aspect.\nkill: kill the player.\nfix: Fix generator and gas pump if fixable.\nbackup: Set achievement & medal data to input.\nRestore {data}: Restore backed-up data.",
 "radio_2": "Item number not a number or is 0.",
 "radio_3": "Item name is not found. Please check the name.",
@@ -559,7 +560,7 @@ var string = {
     "1296": "%s Effect: ",
     "1297": "Time Remaining: ",
     "1298": " Day(s) ",
-    "1299": "(Caution: Other buffs will be replaced upon use.)",
+    "1299": "(Caution: Other buffs will have their duration halfed upon use.)",
     "1300": "All explosives are placed.",
     "1301": "You need to place the explosives",
     "1302": "Placing the explosives……",

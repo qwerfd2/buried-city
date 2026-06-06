@@ -161,7 +161,7 @@ var chatLayer = cc.Layer.extend({
             var wrappedMessages = "";
             for (var i = this.messages.length - 1; i > -1; i--) {
                 wrappedMessages += "\n";
-                wrappedMessages += this.wrapText(this.messages[i].toString(), 70);
+                wrappedMessages += this.wrapText(this.messages[i].toString(), 75);
                 wrappedMessages += "\n";
             }
 

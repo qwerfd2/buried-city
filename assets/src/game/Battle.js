@@ -58,8 +58,6 @@ var Battle = cc.Class.extend({
             homemadeNum: player.bag.getNumByItemId(BattleConfig.HOMEMADE_ID),
             toolNum: player.bag.getNumByItemId(player.equip.getEquip(EquipmentPos.TOOL)),
             hp: player.hp,
-            virus: player.virus,
-            virusMax: player.virusMax,
             injury: player.injury,
             weapon1: player.equip.getEquip(EquipmentPos.GUN),
             weapon2: player.equip.getEquip(EquipmentPos.WEAPON),
@@ -75,7 +73,6 @@ var Battle = cc.Class.extend({
         this.sumRes = {
             id: this.battleInfo.id,
             underAtk: 0,
-            totalVirus: 0,
             totalHarm: 0,
             weapon1: 0,
             weapon2: 0,
@@ -104,7 +101,6 @@ var Battle = cc.Class.extend({
         this.dodgePassTime += dt;
         utils.emitter.emit("battleDodgePercentage", this.dodgePassTime / this.dodgeTime * 100);
         if (this.dodgePassTime >= this.dodgeTime) {
-            player.changeAttr("virus", this.sumRes.totalVirus);
             this.gameEnd(true);
         }
     },
@@ -448,7 +444,6 @@ var BattlePlayer = cc.Class.extend({
         this.isDodge = isDodge;
         
         this.hp = playerObj.hp;
-        this.virus = playerObj.virus;
         this.maxHp = this.hp;
         this.injury = playerObj.injury;
         this.def = playerObj.def;
@@ -541,16 +536,6 @@ var BattlePlayer = cc.Class.extend({
         if (harm > 0) {
             player.changeAttr("hp", -harm);
             player.changeAttr("injury", 1);
-            var rand = Math.random();
-            var threshold = 0.8;
-            if (player.equip.isEquiped(1304023)) {
-                threshold = 0.5;
-            } else if (player.equip.isEquiped(1304012)) {
-                threshold = 0.65;
-            }
-            if (rand <= threshold && !this.useBandit() && this.battle.difficulty > 2 && !player.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
-                this.battle.sumRes.totalVirus += 1;
-            }
         }
     },
     die: function () {

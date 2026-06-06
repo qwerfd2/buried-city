@@ -489,7 +489,7 @@ var showAttrStatusDialog = function (stringId, attr) {
             buffEffect.setVisible(true);
             buffLastTime.setVisible(true);
 
-            var buff = player.buffManager.getBuff();
+            var buff = player.buffManager.getBuff(attr);
             buffEffect.setString(stringUtil.getString(1296, stringUtil.getString(buff.itemId).title) + stringUtil.getString('b_' + buff.itemId));
             buffLastTime.setString(stringUtil.getString(1297) + utils.getBuffTimeStr(buff.lastTime));
             buffLastTime.y = buffEffect.y - buffEffect.height - 6;

@@ -509,7 +509,7 @@ var Player = cc.Class.extend({
         if (this.spirit < 5) {
             var prob = [0.6, 0.45, 0.32, 0.21, 0.12]
             var rand = Math.random();
-            if (rand == prob[this.spirit]) {
+            if (rand <= prob[this.spirit]) {
                 var str = stringUtil.getString(source) + " " + stringUtil.getString(8113) + " ";
                 if (source == 8111) {
                     str += stringUtil.getString(8115);
@@ -765,7 +765,7 @@ var Player = cc.Class.extend({
     updateHpMax: function () {
         var hpBuffEffect = 0;
         if (this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107012)) {
-            hpBuffEffect = this.buffManager.getBuffValue();
+            hpBuffEffect = this.buffManager.getBuffValue("1107012");
         }
         this.hpMax = this.hpMaxOrigin + hpBuffEffect - this.injury;
         this.hp = Math.min(this.hp, this.hpMax);
@@ -1511,6 +1511,21 @@ var Player = cc.Class.extend({
         } else {
             homeRes.happened = false;
         }
+        // deduct virus load
+        if (!homeRes.happened) {
+            for (var i = 0; i < virusGainConfig.strength.length; i++) {
+                var strengthObj = virusGainConfig.strength[i];
+                if (timeObj.d >= strengthObj.day[0] && timeObj.d <= (strengthObj.day[1] ? strengthObj.day[1] : Number.MAX_VALUE)) {
+                    homeRes.virusGain = utils.getRandomInt(strengthObj.strength[0], strengthObj.strength[1]);
+                    break;
+                }
+            }
+            if (this.buffManager.isBuffEffect(BuffItemEffectType.ITEM_1107052)) {
+                homeRes.virusGain = 0;
+            } else {
+                player.changeAttr("virus", homeRes.virusGain);
+            }
+        }
         Record.saveAll();
         cc.timer.pause();
         new DayLayer(homeRes).show();
@@ -1667,7 +1682,7 @@ var Player = cc.Class.extend({
     },
 
     die: function () {
-        this.buffManager.abortBuff();
+        this.buffManager.abortAllBuff();
         this.isDead = true;
         game.stop();
         this.map.resetPos();

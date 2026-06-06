@@ -30,6 +30,18 @@ var MoonlightingConfig = {
         {day: [136], strength: [65, 75], probability: 0.5}
     ]
 };
+var virusGainConfig = {
+    strength: [
+        {day: [1, 30], strength: [0, 0]},
+        {day: [31, 60], strength: [0, 1]},
+        {day: [61, 90], strength: [0, 2]},
+        {day: [91, 120], strength: [1, 2]},
+        {day: [121, 150], strength: [1, 3]},
+        {day: [151, 180], strength: [2, 3]},
+        {day: [181, 210], strength: [2, 4]},
+        {day: [211], strength: [3, 4]},
+    ]
+};
 var RandomBattleConfig = {
     strength: [
         {

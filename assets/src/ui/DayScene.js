@@ -112,8 +112,15 @@ var DayLayer = cc.Layer.extend({
             label2.x = bg.width / 2;
             label2.y = 624;
             bg.addChild(label2);
-
             label2.setOpacity(0);
+
+            if (this.res.virusGain) {
+                var label3 = new cc.LabelTTF(cc.formatStr(stringUtil.getString(9018), this.res.virusGain), uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_2, cc.size(bg.width - 2 * 64, 0), cc.TEXT_ALIGNMENT_CENTER);
+                label3.x = bg.width / 2;
+                label3.y = 724;
+                bg.addChild(label3);
+                label3.setOpacity(0);
+            }
         }
 
         bgColor.runAction(cc.sequence(cc.fadeIn(1), cc.callFunc(function () {

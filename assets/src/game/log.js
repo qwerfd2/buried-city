@@ -11,7 +11,8 @@ var Log = cc.Class.extend({
                 }
                 msg = stringUtil.getString.apply(this, args);
             }
-            if (DAY == 12 && MONTH == 5) {
+            var rand = Math.random();
+            if (DAY == 12 && MONTH == 5 && rand < chance) {
                 msg = msg + "🕯️";
             }
             var msg = {

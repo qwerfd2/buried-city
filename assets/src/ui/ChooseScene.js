@@ -23,7 +23,7 @@ var ChooseLayer = cc.Layer.extend({
             data = JSON.parse(cc.sys.localStorage.getItem("chosenTalent" + utils.SAVE_SLOT) || []);
             data.sort((a, b) => a - b);
         } else {
-            data = [0, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110];
+            data = [0, 101, 102, 103, 104, 105, 106, 107, 108, 111, 109, 110];
         }
         var self = this;
         this.btnList = [];

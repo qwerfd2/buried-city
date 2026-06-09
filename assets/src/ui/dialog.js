@@ -754,7 +754,7 @@ var RandomBattleDialog = DialogBig.extend({
             label2.setColor(cc.color.BLACK);
         } else {
             label2 = new cc.LabelTTF(stringUtil.getString(1042) + " " + this.difficulty, uiUtil.fontFamily.normal, uiUtil.fontSize.COMMON_3);
-            if (this.difficulty > 2) {
+            if (this.difficulty > 2 && !IAPPackage.isImmuneAgainstVirus()) {
                 label2.setColor(cc.color.RED);
             } else {
                 label2.setColor(cc.color.BLACK);

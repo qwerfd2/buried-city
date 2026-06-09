@@ -102,7 +102,7 @@ uiUtil.bazaarSell = function(itemId, isSale, amount, discount) {
     config.action.btn_1.txt = stringUtil.getString(1031);
     var ss = "";
     var z = 1;
-    if (vvv) {
+    if (isSale) {
         ss = stringUtil.getString(9033);
         config.title.txt_1 = cc.formatStr(stringUtil.getString("item_1").title.txt_1, Num);
         z = 0.8;
@@ -168,7 +168,7 @@ uiUtil.bazaarSell = function(itemId, isSale, amount, discount) {
         if (a > 0) {
             var v = a * ee;
             if (isSale) {
-                bazaarSellDialog(vvv, stringUtil.getString(9024, a + "x " + config.title.title, round(v)), function() {
+                bazaarSellDialog(isSale, stringUtil.getString(9024, a + "x " + config.title.title, round(v)), function() {
                     player.bag.decreaseItem(itemId, a);
                     player.onCurrencyChange(v);
                     player.log.addMsg(stringUtil.getString(9025, a + "x " + config.title.title, round(v)));
@@ -176,7 +176,7 @@ uiUtil.bazaarSell = function(itemId, isSale, amount, discount) {
                     Record.saveAll();
                 })
             } else {
-                bazaarSellDialog(vvv, stringUtil.getString(9026, round(v), a + "x " + config.title.title), function() {
+                bazaarSellDialog(isSale, stringUtil.getString(9026, round(v), a + "x " + config.title.title), function() {
                     if (player.currency >= v) {
                         player.map.getSite(400).storage.increaseItem(itemId, a, false);
                         player.map.getSite(400).haveNewItems = true;

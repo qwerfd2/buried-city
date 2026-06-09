@@ -1442,6 +1442,11 @@ var string = {
         "effect": "",
         "des": "Cheat function, unlock all locations, NPCs, max friendship, and repeatable locations. (Achievements will not be counted)"
     },
+    "p_111": {
+        "name": "Patient Zero",
+        "effect": "You are immune to the virus. Or so it seems...",
+        "des": "Immune to the virus from combat. Instead, virus will catch up to you as days progress."
+    },
     "p_108": {
         "name": "Backpacker",
         "des": "You have an extra large backpack.",

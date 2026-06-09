@@ -7,7 +7,7 @@ utils.emitter = new Emitter();
 utils.SAVE_SLOT = 1;
 
 var ClientData = {
-    MOD_VERSION: 42,
+    MOD_VERSION: 45,
     MOD_VARIANT: 1,
     MIN_VER: 27,
     REC_VER: 29

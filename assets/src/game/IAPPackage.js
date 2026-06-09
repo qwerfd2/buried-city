@@ -111,6 +111,10 @@ var IAPPackage = {
         return this.getChosenTalentPurchaseId(110);
     },
 
+    isImmuneAgainstVirus: function () {
+        return this.getChosenTalentPurchaseId(111);
+    },
+
     chooseTalent: function (id) {
         var purchaseId = JSON.parse(cc.sys.localStorage.getItem("chosenTalent" + utils.SAVE_SLOT));
         var index = -1;

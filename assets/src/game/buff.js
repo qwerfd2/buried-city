@@ -72,58 +72,65 @@ var BuffManager = cc.Class.extend({
     abortBuff: function (index) {
         if (this.buffs[index]) {
             var oldBuff = this.buffs[index];
-            this.buffs[index] = null;
+            this.buffs.splice(index, 1);
             oldBuff.onEnd();
         }
     },
     abortAllBuff: function () {
-        for (i = 0; i < this.buffs.length; i++) {
+        for (var i = 0; i < this.buffs.length; i++) {
             var oldBuff = this.buffs[i];
-            this.buffs[i] = null;
-            oldBuff.onEnd();
+            if (oldBuff && oldBuff.onEnd) {
+                oldBuff.onEnd();
+            }
         }
+        this.buffs = [];
     },
     process: function (dt) {
-        for (var i = 0; i < this.buffs.length; i++) {
-            var res = this.buffs[i].process(dt);
+        for (var i = this.buffs.length - 1; i >= 0; i--) {
+            var buff = this.buffs[i];
+            if (!buff) continue;
+            var res = buff.process(dt);
             if (!res) {
                 this.abortBuff(i);
             }
         }
     },
     isBuffEffect: function (itemId) {
-        var result = false;
         for (var i = 0; i < this.buffs.length; i++) {
-            if (itemId == this.buffs[i].itemId) {
-                result = true;
+            var b = this.buffs[i];
+            if (b && itemId == b.itemId) {
+                return true;
             }
         }
-        return result;
+        return false;
     },
     getBuffValue: function (itemId) {
         for (var i = 0; i < this.buffs.length; i++) {
-            if (this.buffs[i].itemId == itemId) {
-                return this.buffs[i].value ? this.buffs[i].value : 0;
+            var b = this.buffs[i];
+            if (b && b.itemId == itemId) {
+                return b.value ? b.value : 0;
             }
         }
         return 0;
     },
     getBuff: function (attr) {
         for (var i = 0; i < this.buffs.length; i++) {
-            if (attr === 'hp' && this.buffs[i].itemId == "1107012") {
-                return this.buffs[i];
+            var b = this.buffs[i];
+            if (!b) continue;
+            if (attr === 'hp' && b.itemId == "1107012") {
+                return b;
             }
-            if (attr === 'infect' && this.buffs[i].itemId == "1107022") {
-                return this.buffs[i];
+            if (attr === 'infect' && b.itemId == "1107022") {
+                return b;
             }
-            if (attr === 'vigour' && this.buffs[i].itemId == "1107032") {
-                return this.buffs[i];
+            if (attr === 'vigour' && b.itemId == "1107032") {
+                return b;
             }
-            if (attr === 'starve' && this.buffs[i].itemId == "1107042") {
-                return this.buffs[i];
+            if (attr === 'starve' && b.itemId == "1107042") {
+                return b;
             }
-            if (attr === 'virus' && this.buffs[i].itemId == "1107052") {
-                return this.buffs[i];
+            if (attr === 'virus' && b.itemId == "1107052") {
+                return b;
             }
         }
         return null;

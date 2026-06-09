@@ -360,7 +360,7 @@ var itemConfig = {
             "effect": 5,
             "effectType": 2,
             "value": 0,
-            "lastTime": 168
+            "lastTime": 72
         }
     },
     "1301011": {

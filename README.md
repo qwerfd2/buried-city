@@ -12,6 +12,8 @@ Derivative work is allowed provided you follow the License in `license.txt`.
 
 The repo is now archived, meaning no content or bug fixes will be added.
 
+Shoutout to [OpenSourcePatents](https://github.com/OpenSourcePatents), they ported the game to web, you can play it at [here](https://games.opensourceforall.com/buried-city/index.html), and the web artifact is available at [here](https://github.com/OpenSourcePatents/buried-city/tree/web-port)
+
 ------------------------------------------------------------------------------------------------
 
 Peripheral Edits

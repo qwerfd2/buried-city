@@ -49,7 +49,7 @@ var MenuLayer = cc.Layer.extend({
                         var chosenTalent = cc.sys.localStorage.getItem("chosenTalent") || "[]";
                         var radio = cc.sys.localStorage.getItem("radio") || "[]";
                         var medalTemp = cc.sys.localStorage.getItem("medalTemp") || "[]";
-                        var ad = cc.sys.localStorage.gsetItem("ad") || "0";
+                        var ad = cc.sys.localStorage.getItem("ad") || "0";
                         var weather = cc.sys.localStorage.getItem("weather") || "0";
     
                         var time = Record.restore("time");

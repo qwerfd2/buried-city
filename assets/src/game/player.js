@@ -1456,7 +1456,7 @@ var Player = cc.Class.extend({
             }
         }
         var homeDef = this._getHomeDef();
-        if (homeDef >= 80 && this.isBombActive) {
+        if (homeDef >= 70 && this.isBombActive) {
             Achievement.checkSpecial("bt_special_2");
         }
         if (IAPPackage.isStealthUnlocked()) {

@@ -172,7 +172,9 @@ var BuildNode = BottomFrameNode.extend({
         this._super();
         utils.emitter.off("build_node_update", this.updateFunc);
 
-        this.cleanBuildAction();
+        if (this.build.id !== 15 || cc.sys.isNative) {
+            this.cleanBuildAction();
+        }
 
         if (this.build.id === 10 || this.build.id === 9) {
             audioManager.resumeMusic();
